@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Define the models for the Application
+
+model BodySection {
+  id          Int                 @id @default(autoincrement())
+  name        String              @unique
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  muscularGroups MuscularGroup[]
+}
+
+model MuscularGroup {
+  id            Int         @id @default(autoincrement())
+  bodySectionId Int
+  bodySection   BodySection @relation(fields: [bodySectionId], references: [id])
+  name          String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  muscles       Muscle[]
+}
+
+model Muscle {
+  id              Int           @id @default(autoincrement())
+  muscularGroupId Int
+  muscularGroup   MuscularGroup @relation(fields: [muscularGroupId], references: [id])
+  name            String
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  exercises       Excercise[]
+}
+
+model Excercise {
+  id            Int           @id @default(autoincrement())
+  name          String        @unique
+  description   String?
+  muscles       Muscle[]
+  sets          Int?
+  reps          Int?
+  rest          Int?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  trainingDays  TrainingDay[]
+}
+
+model TrainingDay {
+  id            Int           @id @default(autoincrement())
+  name          String        @unique
+  description   String?
+  exercises     Excercise[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  routines      Routine[]
+}
+
+model Routine {
+  id            Int             @id @default(autoincrement())
+  name          String          @unique
+  description   String?
+  trainingDays  TrainingDay[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
