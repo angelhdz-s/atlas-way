@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-export function Header() {
+export function Header({ className = "" }: { className?: string }) {
 	return (
-		<header className="w-full h-12 bg-zinc-900">
+		<header className={`w-full h-12 bg-zinc-900 ${className}`}>
 			<main className="flex items-center justify-between gap-4 max-w-5xl mx-auto h-full *:h-full **:h-full">
 				<aside className="h-full">
 					<Link href="/" className="flex items-center text-2xl font-semibold">

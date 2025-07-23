@@ -1,6 +1,8 @@
-export function Footer() {
+export function Footer({ className = "" }: { className?: string }) {
 	return (
-		<footer className="w-full h-48 bg-zinc-900 flex items-center">
+		<footer
+			className={`w-full h-48 bg-zinc-900 flex items-center ${className}`}
+		>
 			<main className="max-w-5xl mx-auto flex items-center justify-between gap-16">
 				<aside>
 					<h5 className="text-2xl">
