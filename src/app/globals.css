@@ -1,11 +1,58 @@
 @import "tailwindcss";
+:root {
+	interpolate-size: allow-keywords;
+}
+
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
 
 @theme inline {
+	/* Color palette */
+
+	--color-primary: #b12c00;
+	--color-secondary: #dc5f00;
+	--color-accent: #ffc700;
+	--color-subtle: var(--color-zinc-600);
+
+	/* Dark colors */
+
 	--color-background: var(--color-zinc-950);
-	--color-foreground: var(--color-sky-50);
+	--color-sec-background: var(--color-zinc-900);
+	--color-main-foreground: var(--color-sky-50);
+	--color-foreground: color-mix(
+		in oklch,
+		var(--color-main-foreground) 70%,
+		transparent
+	);
+	--color-sec-foreground: color-mix(
+		in oklch,
+		var(--color-main-foreground) 40%,
+		transparent
+	);
+
+	/* Light colors */
+
+	--color-light-background: var(--color-slate-200);
+	--color-light-sec-background: var(--color-sky-50);
+	--color-light-main-foreground: var(--color-zinc-900);
+	--color-light-sec-foreground: color-mix(
+		in oklch,
+		var(--color-light-main-foreground) 60%,
+		transparent
+	);
+
 	--font-funnel-sans: var(--font-funnel-sans);
 	--font-funnel-display: var(--font-funnel-display);
 }
+
+html[data-theme="light"] {
+	--color-background: var(--color-slate-200);
+	--color-foreground: color-mix(
+		in oklch,
+		var(--color-light-main-foreground) 70%,
+		transparent
+	);
+}
+
 
 body {
 	background: var(--color-background);
