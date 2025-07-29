@@ -1,16 +1,20 @@
 import Link from "next/link";
+import { AtlasWayLogo } from "@/modules/globals/components/AtlasWayLogo";
+import { ToggleTheme } from "@/modules/globals/components/ToggleTheme";
 
 export function Header({ className = "" }: { className?: string }) {
 	return (
-		<header className={`w-full h-12 bg-zinc-900 ${className}`}>
-			<main className="flex items-center justify-between gap-4 max-w-5xl mx-auto h-full *:h-full **:h-full">
-				<aside className="h-full">
-					<Link href="/" className="flex items-center text-2xl font-semibold">
-						AtlasWay
+		<header
+			className={`ld-main-fg w-full h-12 px-2 md:px-4 lg:px-0 ld-sec-bg ${className}`}
+		>
+			<main className="flex items-center justify-between gap-4 max-w-5xl mx-auto h-full ">
+				<aside className="">
+					<Link href="/" className="text-2xl font-semibold flex items-center">
+						<AtlasWayLogo />
 					</Link>
 				</aside>
-				<nav className="">
-					<ul className="flex items-center gap-4 *:h-full *:w-fit **:grid **:place-items-center text-center">
+				<nav className="font-funnel-display font-medium">
+					<ul className="flex items-center gap-16 *:h-full *:w-fit *:grid *:place-items-center text-center">
 						<li>
 							<Link href="/">Home</Link>
 						</li>
@@ -22,8 +26,8 @@ export function Header({ className = "" }: { className?: string }) {
 						</li>
 					</ul>
 				</nav>
-				<div>
-					<button type="button">Dark Mode</button>
+				<div className="flex items-center">
+					<ToggleTheme />
 				</div>
 			</main>
 		</header>

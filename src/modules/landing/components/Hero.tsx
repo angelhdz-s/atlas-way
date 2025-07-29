@@ -4,7 +4,7 @@ export function Hero({ className = "" }: { className?: string }) {
 			className={`max-w-5xl w-full mx-auto flex items-center justify-between gap-4 py-16 mb-16 ${className}`}
 		>
 			<header className="flex flex-col gap-4">
-				<h1 className="text-4xl font-bold">Welcome to AtlasWay!</h1>
+				<h1 className="text-4xl font-bold ld-main-fg">Welcome to AtlasWay!</h1>
 				<p className="max-w-xl">
 					{`
                 AtlasWay is your go-to platform for tracking workouts, exercises,
@@ -14,7 +14,7 @@ export function Hero({ className = "" }: { className?: string }) {
 				</p>
 			</header>
 			<aside className="">
-				<figure className="size-82 bg-blue-500 rounded-full"></figure>
+				<figure className="size-82 bg-blue-500 rounded-full grid place-content-center"></figure>
 			</aside>
 		</section>
 	);
