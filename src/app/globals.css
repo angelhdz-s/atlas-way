@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "tailwindcss-animated";
+
 :root {
 	interpolate-size: allow-keywords;
 }
@@ -53,10 +55,89 @@ html[data-theme="light"] {
 	);
 }
 
+@layer components {
+	/* Backgrounds */
+
+	.ld-sec-bg {
+		@apply bg-sec-background light:bg-light-sec-background transition-colors;
+	}
+
+	.ld-sec-fg {
+		@apply text-sec-foreground light:text-light-sec-foreground transition-colors;
+	}
+
+	/* Foregrounds */
+
+	.ld-main-fg {
+		@apply text-main-foreground light:text-light-main-foreground transition-colors;
+	}
+
+	.ld-main-fg-gradient {
+		@apply text-transparent w-fit bg-gradient-to-t from-0% to-50% from-foreground to-main-foreground light:from-light-main-foreground light:to-light-main-foreground/20 light:from-50% light:to-100% bg-clip-text transition-colors;
+	}
+
+	/* Buttons */
+
+	/* Button Colors */
+
+	.btn-primary {
+		@apply cursor-pointer font-normal
+		bg-primary text-main-foreground 
+		hover:bg-primary/90 
+		transition-colors;
+	}
+
+	.btn-secondary {
+		@apply cursor-pointer font-normal
+		bg-secondary text-main-foreground
+		hover:bg-secondary/90 transition-colors;
+	}
+
+	.btn-accent {
+		@apply cursor-pointer font-normal
+		bg-accent text-main-foreground
+		hover:bg-accent/90 transition-colors;
+	}
+
+	.btn-subtle {
+		@apply cursor-pointer font-normal 
+		bg-subtle/20 text-main-foreground light:text-light-main-foreground
+		hover:bg-subtle/30 transition-colors;
+	}
+
+	.btn-subtle-outline {
+		@apply bg-transparent border border-secondary text-secondary hover:bg-secondary hover:text-main-foreground transition-colors;
+	}
+
+	/* Button Sizes */
+
+	.btn-sm {
+		@apply text-sm px-2 py-1 rounded;
+	}
+
+	.btn-md {
+		@apply text-base px-4 py-2 rounded;
+	}
+
+	.btn-lg {
+		@apply text-lg px-6 py-3 rounded;
+	}
+}
 
 body {
+	position: relative;
 	background: var(--color-background);
 	color: var(--color-foreground);
 	font-family: "Funnel Sans", sans-serif;
 	font-size: 1rem;
+	z-index: 10;
+}
+
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	background: color-mix(in oklch, var(--color-foreground) 5%, transparent);
+	z-index: -10;
+	mask: linear-gradient(to bottom, transparent 0%, transparent 60%, black 100%);
 }
