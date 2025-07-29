@@ -1,0 +1,43 @@
+@import "tailwindcss";
+@import "tailwindcss/theme";
+
+.label-input {
+	@apply relative w-full;
+}
+
+.label-input > input:disabled {
+	@apply opacity-50;
+}
+
+.label-input > span {
+	transition:
+		top 200ms ease-out,
+		left 200ms ease-out,
+		color 200ms ease-out;
+	@apply absolute block w-fit top-3 rounded-xl left-2 text-zinc-500 px-1 cursor-text;
+}
+
+.label-input > input {
+	transition: border-color 200ms ease-out;
+	@apply border-0 border-b-2 border-zinc-800 h-12 px-2 w-full outline-none;
+}
+
+.label-input > input:is(:-webkit-autofill, :autofill),
+.label-input > input:is(:-webkit-autofill:focus, :autofill),
+.label-input > input:is(:-webkit-autofill:active, :autofill),
+.label-input > input:is(:-webkit-autofill:hover, :autofill) {
+	-webkit-text-fill-color: var(--color-foreground) !important;
+	color: var(--color-foreground) !important;
+	caret-color: var(--color-white) !important;
+	box-shadow: 0 0 0px 200px var(--color-background) inset !important;
+}
+
+.label-input > input:focus,
+.label-input > input.input-filled {
+	@apply border-zinc-700;
+}
+
+.label-input:has(.input-filled) > span,
+.label-input:has(input:focus) > span {
+	@apply -top-3 text-zinc-500;
+}
