@@ -8,14 +8,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Define the models for the Application
+model User {
+  id            String        @id @default(cuid())
+  email         String        @unique
+  password      String
+  name          String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  routines      Routine[]
+  Sessions      Session[]
+  exercises     Excercise[]
+}
 
 model BodySection {
-  id          Int                 @id @default(autoincrement())
-  name        String              @unique
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
-  muscularGroups MuscularGroup[]
+  id              Int                 @id @default(autoincrement())
+  name            String              @unique
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  muscularGroups  MuscularGroup[]
 }
 
 model MuscularGroup {
@@ -40,6 +50,8 @@ model Muscle {
 
 model Excercise {
   id            Int           @id @default(autoincrement())
+  userId        String?
+  user          User?         @relation(fields: [userId], references: [id])
   name          String        @unique
   description   String?
   muscles       Muscle[]
@@ -48,11 +60,13 @@ model Excercise {
   rest          Int?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
-  trainingDays  TrainingDay[]
+  Sessions      Session[]
 }
 
-model TrainingDay {
+model Session {
   id            Int           @id @default(autoincrement())
+  userId        String?
+  user          User?         @relation(fields: [userId], references: [id])
   name          String        @unique
   description   String?
   exercises     Excercise[]
@@ -63,9 +77,12 @@ model TrainingDay {
 
 model Routine {
   id            Int             @id @default(autoincrement())
+  userId        String?
+  user          User?           @relation(fields: [userId], references: [id])
+  active        Boolean         @default(true)
   name          String          @unique
   description   String?
-  trainingDays  TrainingDay[]
+  Sessions      Session[]
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
 }
