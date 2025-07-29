@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Funnel_Display, Funnel_Sans } from "next/font/google";
-import "./globals.css";
+import { ThemeProvider } from "@/modules/globals/components/ThemeProvider";
+import "@/app/globals.css";
+import { ToastProvider } from "@/modules/globals/components/toast/ToastProvider";
 
 const funnelDisplayFont = Funnel_Display({
 	variable: "--font-funnel-display",
@@ -24,11 +26,13 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" data-theme="dark" suppressHydrationWarning>
 			<body
-				className={`${funnelDisplayFont.variable} ${funnelSansFont.variable} antialiased flex flex-col min-h-dvh`}
+				className={`${funnelDisplayFont.variable} ${funnelSansFont.variable} transition-colors antialiased flex flex-col min-h-dvh h-full`}
 			>
-				{children}
+				<ToastProvider>
+					<ThemeProvider>{children}</ThemeProvider>
+				</ToastProvider>
 			</body>
 		</html>
 	);
