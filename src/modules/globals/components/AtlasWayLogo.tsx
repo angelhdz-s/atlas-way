@@ -1,6 +1,6 @@
 export function AtlasWayLogo({ className = "" }: { className?: string }) {
 	return (
-		<div className={`flex tracking-tight font-blackfont-black ${className}`}>
+		<div className={`flex tracking-tight font-black ${className}`}>
 			<span className="pr-[0.5%] bg-gradient-to-t ld-main-fg-gradient bg-clip-text text-transparent">
 				Atlas
 			</span>
