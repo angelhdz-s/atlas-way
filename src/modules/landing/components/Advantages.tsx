@@ -15,7 +15,7 @@ export function Advantages({ className = "" }: { className?: string }) {
 								unique needs.
 							</p>
 						</header>
-						<figure className="size-24 bg-green-500 rounded-full"></figure>
+						<figure className="size-24 bg-accent rounded-full"></figure>
 					</li>
 
 					<li className="flex items-center gap-4">
@@ -26,7 +26,7 @@ export function Advantages({ className = "" }: { className?: string }) {
 								unique needs.
 							</p>
 						</header>
-						<figure className="size-24 bg-green-500 rounded-full"></figure>
+						<figure className="size-24 bg-accent rounded-full"></figure>
 					</li>
 
 					<li className="flex items-center gap-4">
@@ -37,7 +37,7 @@ export function Advantages({ className = "" }: { className?: string }) {
 								unique needs.
 							</p>
 						</header>
-						<figure className="size-24 bg-green-500 rounded-full"></figure>
+						<figure className="size-24 bg-accent rounded-full"></figure>
 					</li>
 
 					<li className="flex items-center gap-4">
@@ -48,7 +48,7 @@ export function Advantages({ className = "" }: { className?: string }) {
 								unique needs.
 							</p>
 						</header>
-						<figure className="size-24 bg-green-500 rounded-full"></figure>
+						<figure className="size-24 bg-accent rounded-full"></figure>
 					</li>
 				</ul>
 			</main>
