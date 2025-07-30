@@ -7,17 +7,18 @@
 
 @custom-variant light (&:where([data-theme=light], [data-theme=light] *));
 
-@theme inline {
+@theme {
 	/* Color palette */
 
-	--color-primary: #b12c00;
-	--color-secondary: #dc5f00;
-	--color-accent: #ffc700;
+	--color-primary: #bd1e01; /* Milano Red */
+	--color-secondary: #bc7700;
+	--color-tertiary: #eb5e31;
+	--color-accent: #e6a737;
 	--color-subtle: var(--color-zinc-600);
 
 	/* Dark colors */
 
-	--color-background: var(--color-zinc-950);
+	--color-background: #0a0a0a; /* Cod Grey */
 	--color-sec-background: var(--color-zinc-900);
 	--color-main-foreground: var(--color-sky-50);
 	--color-foreground: color-mix(
