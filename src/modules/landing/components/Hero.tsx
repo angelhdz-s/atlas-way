@@ -1,8 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { Shape01, Shape02, Shape03 } from "@/modules/globals/components/Shapes";
+import {
+	Shape01,
+	Shape02,
+	Shape03,
+	Shape05,
+} from "@/modules/globals/components/Shapes";
 import styles from "@/modules/landing/components/Hero.module.css";
+import { ArrowUp } from "@/modules/globals/components/Icons";
+import shapeStyles from "@/modules/globals/components/Shapes.module.css";
 
 function HeroImage() {
 	return (
@@ -39,12 +46,10 @@ function HeroImage() {
 	);
 }
 
-export function Hero({ className = "" }: { className?: string }) {
+export function Hero() {
 	return (
-		<section
-			className={`relative grid place-items-center h-200 py-16 mb-16 ${className}`}
-		>
-			<main className="relative z-1 max-w-360 w-full mx-auto flex items-center justify-between gap-4 ">
+		<section className="relative grid place-items-center h-200 py-16 mb-16">
+			<main className="relative z-1 max-w-360 w-full mx-auto flex items-start justify-between gap-4 ">
 				<header className="flex-1 flex flex-col gap-4">
 					<h1 className="text-7xl max-w-5xl font-bold ld-main-fg text-pretty animate-fade-right">
 						Manage your training to{" "}
@@ -54,16 +59,32 @@ export function Hero({ className = "" }: { className?: string }) {
 						: routines, sessions and exercises
 					</h1>
 					<p className="max-w-xl text-lg animate-fade animate-delay-300">
-						{`
-                AtlasWay is your go-to platform for tracking workouts, exercises,
-                and progressions.
-              `}
+						AtlasWay is your go-to platform for tracking workouts, exercises,
+						and progressions.
 					</p>
+					<footer className="flex items-center gap-4">
+						<a
+							href="#try"
+							className="inline-flex items-center gap-2 rounded-full btn-lg btn-primary animate-fade animate-delay-500"
+						>
+							Try AtlasWay
+							<span className="material-icons">
+								<ArrowUp className="size-5 rotate-90" />
+							</span>
+						</a>
+					</footer>
 				</header>
-				<aside className="">
+				<aside className="relative">
 					<HeroImage />
+					<Shape05
+						className={`absolute top-[50%] left-[50%] translate-[-50%] size-120 ${shapeStyles.animate_stroke}`}
+						strokeWidth="10"
+						color1="text-primary"
+						color2="text-primary/20"
+					/>
 				</aside>
 			</main>
+			{/* <div className="absolute inset-0 text-foreground background-grid opacity-5 mask-x-from-50% mask-x-to-120%"></div> */}
 			<div className="absolute inset-0 [background:url('/backgrounds/grid.svg')_repeat_50px/50px] z-0 opacity-5 mask-x-from-50% mask-x-to-120% light:invert light:opacity-10"></div>
 		</section>
 	);
