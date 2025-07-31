@@ -88,6 +88,13 @@ html[data-theme="light"] {
 		transition-colors;
 	}
 
+	.btn-primary-outline {
+		@apply cursor-pointer font-normal
+		bg-transparent outline-2 outline-offset-2 outline-primary text-main-foreground
+		hover:bg-primary/10 hover:text-main-foreground
+		transition-colors;
+	}
+
 	.btn-secondary {
 		@apply cursor-pointer font-normal
 		bg-secondary text-main-foreground
@@ -112,8 +119,12 @@ html[data-theme="light"] {
 
 	/* Button Sizes */
 
-	.btn-sm {
+	.btn-xs {
 		@apply text-sm px-2 py-1 rounded;
+	}
+
+	.btn-sm {
+		@apply text-sm px-3 py-1.5 rounded;
 	}
 
 	.btn-md {
