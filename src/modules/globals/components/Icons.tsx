@@ -1,10 +1,6 @@
-export function ArrowUp({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+import { IconProps } from "@/modules/globals/types.d";
+
+export function ArrowUp({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -22,13 +18,7 @@ export function ArrowUp({
 	);
 }
 
-export function Backward({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function Backward({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -46,13 +36,7 @@ export function Backward({
 	);
 }
 
-export function Barbell({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function Barbell({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			width={24}
@@ -77,13 +61,7 @@ export function Barbell({
 	);
 }
 
-export function Bell({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function Bell({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -101,13 +79,7 @@ export function Bell({
 	);
 }
 
-export function BellAlert({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function BellAlert({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -125,13 +97,7 @@ export function BellAlert({
 	);
 }
 
-export function BellSlash({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function BellSlash({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -149,13 +115,7 @@ export function BellSlash({
 	);
 }
 
-export function BellSnooze({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function BellSnooze({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -173,13 +133,7 @@ export function BellSnooze({
 	);
 }
 
-export function Bolt({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function Bolt({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -197,13 +151,7 @@ export function Bolt({
 	);
 }
 
-export function BoltSlash({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function BoltSlash({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -221,13 +169,7 @@ export function BoltSlash({
 	);
 }
 
-export function Check({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function Check({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -246,13 +188,7 @@ export function Check({
 	);
 }
 
-export function CircleCheck({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function CircleCheck({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -273,10 +209,7 @@ export function CircleCheck({
 export function ClipboardDocumentList({
 	className = "",
 	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -294,13 +227,7 @@ export function ClipboardDocumentList({
 	);
 }
 
-export function Clock({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function Clock({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -318,13 +245,28 @@ export function Clock({
 	);
 }
 
-export function Edit({
+export function ComputerDesktop({
 	className = "",
 	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+}: IconProps) {
+	return (
+		<svg
+			fill="none"
+			viewBox="0 0 24 24"
+			strokeWidth={strokeWidth}
+			stroke="currentColor"
+			className={className}
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25"
+			/>
+		</svg>
+	);
+}
+
+export function Edit({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -345,10 +287,7 @@ export function Edit({
 export function ExclamationTriangle({
 	className = "",
 	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -366,13 +305,25 @@ export function ExclamationTriangle({
 	);
 }
 
-export function Forward({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function FaceHappy({ className = "", strokeWidth = "2" }: IconProps) {
+	return (
+		<svg
+			fill="none"
+			viewBox="0 0 24 24"
+			strokeWidth={strokeWidth}
+			stroke="currentColor"
+			className={`${className}`}
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z"
+			/>
+		</svg>
+	);
+}
+
+export function Forward({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -390,13 +341,7 @@ export function Forward({
 	);
 }
 
-export function Home({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function Home({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -417,10 +362,7 @@ export function Home({
 export function InformationCircle({
 	className = "",
 	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -438,13 +380,7 @@ export function InformationCircle({
 	);
 }
 
-export function Moon({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function Moon({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -462,12 +398,12 @@ export function Moon({
 	);
 }
 
-export function MoreOptions({ className = "" }: { className?: string }) {
+export function MoreOptions({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
 			viewBox="0 0 24 24"
-			strokeWidth={1.5}
+			strokeWidth={strokeWidth}
 			stroke="currentColor"
 			className={className}
 		>
@@ -481,13 +417,28 @@ export function MoreOptions({ className = "" }: { className?: string }) {
 	);
 }
 
-export function Scale({
+export function PresentationChartLine({
 	className = "",
 	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+}: IconProps) {
+	return (
+		<svg
+			fill="none"
+			viewBox="0 0 24 24"
+			strokeWidth={strokeWidth}
+			stroke="currentColor"
+			className={className}
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"
+			/>
+		</svg>
+	);
+}
+
+export function Scale({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -505,13 +456,7 @@ export function Scale({
 	);
 }
 
-export function Sun({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function Sun({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -529,13 +474,7 @@ export function Sun({
 	);
 }
 
-export function TrendingDown({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function TrendingDown({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -553,13 +492,7 @@ export function TrendingDown({
 	);
 }
 
-export function TrendingUp({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function TrendingUp({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -577,13 +510,28 @@ export function TrendingUp({
 	);
 }
 
-export function XCircle({
+export function WrenchScrewdriver({
 	className = "",
 	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+}: IconProps) {
+	return (
+		<svg
+			fill="none"
+			viewBox="0 0 24 24"
+			strokeWidth={strokeWidth}
+			stroke="currentColor"
+			className={className}
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z"
+			/>
+		</svg>
+	);
+}
+
+export function XCircle({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -601,13 +549,7 @@ export function XCircle({
 	);
 }
 
-export function XMark({
-	className = "",
-	strokeWidth = "2",
-}: {
-	className?: string;
-	strokeWidth?: string;
-}) {
+export function XMark({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg
 			fill="none"
