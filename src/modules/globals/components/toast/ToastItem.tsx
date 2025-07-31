@@ -9,7 +9,7 @@ import {
 } from "@/modules/globals/components/Icons";
 import styles from "@/modules/globals/components/toast/Toast.module.css";
 import { TOAST_TYPE } from "@/modules/globals/constants";
-import { Toast } from "@/modules/globals/utils/toast.d";
+import { Toast } from "@/modules/globals/types.d";
 
 interface Props {
 	toast: Toast;
@@ -30,7 +30,7 @@ const TOAST_ICONS = {
 	warning: <ExclamationTriangle className="size-6" />,
 };
 
-export default function ToastItem({ toast, onClose }: Props) {
+export function ToastItem({ toast, onClose }: Props) {
 	const type = toast.type || TOAST_TYPE;
 
 	return (
