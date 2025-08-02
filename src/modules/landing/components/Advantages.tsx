@@ -15,7 +15,7 @@ function AdvantageFigure({ Icon }: { Icon: IconTypes }) {
 			</main>
 			<div
 				className="absolute inset-0 m-auto size-16 aspect-square p-3 animate-spin animate-duration-50000 border-2 bg-accent border-accent rotate-45"
-				style={{ animationDelay: `${Math.floor(Math.random() * 10)}s` }}
+				style={{ animationDelay: `-${Math.floor(Math.random() * 10)}s` }}
 			></div>
 		</figure>
 	);
@@ -31,9 +31,9 @@ function Advantage({
 	children: React.ReactNode;
 }) {
 	return (
-		<li className="flex items-center gap-4">
+		<li className="flex items-center gap-2 list-disc">
 			<header className="flex flex-col gap-2 flex-1">
-				<h3 className="ld-main-fg">{tile}</h3>
+				<h3 className="ld-main-fg text-xl font-medium">{tile}</h3>
 				<p>{description}</p>
 			</header>
 			{children}

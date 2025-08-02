@@ -13,7 +13,7 @@ export function Header({ className = "" }: { className?: string }) {
 						<AtlasWayLogo />
 					</Link>
 				</aside>
-				<nav className="font-funnel-display font-medium">
+				<nav className="font-funnel-display font-medium text-lg">
 					<ul className="flex items-center gap-16 *:h-full *:w-fit *:grid *:place-items-center text-center">
 						<li>
 							<Link href="/">Home</Link>
@@ -28,10 +28,7 @@ export function Header({ className = "" }: { className?: string }) {
 				</nav>
 				<div className="flex items-center gap-2">
 					<ToggleTheme className="btn-md" />
-					<a
-						href="/login"
-						className="rounded-full btn-md btn-primary py-1.5 animate-fade animate-delay-500"
-					>
+					<a href="/login" className="rounded-full btn-md btn-primary py-1.5">
 						Log In
 					</a>
 				</div>

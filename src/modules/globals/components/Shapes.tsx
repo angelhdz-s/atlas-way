@@ -408,3 +408,14 @@ export function Shape05({
 		</svg>
 	);
 }
+
+export function Shape06({ className = "" }: { className?: string }) {
+	return (
+		<svg viewBox="0 0 480 480" className={className}>
+			<path
+				d="M360 240 240 0 120 240l120 240 120-240z"
+				fill="currentColor"
+			></path>
+		</svg>
+	);
+}
