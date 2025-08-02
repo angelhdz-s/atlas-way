@@ -9,7 +9,7 @@ export default function Home() {
 	return (
 		<>
 			<Header className="font-funnel-display" />
-			<main className="w-full px-4 lg:px-0 flex flex-col flex-1 font-funnel-display">
+			<main className="w-full px-4 lg:px-0 flex flex-col flex-1 font-funnel-display text-lg">
 				<Hero />
 				<Advantages />
 				<BentoGrid />
