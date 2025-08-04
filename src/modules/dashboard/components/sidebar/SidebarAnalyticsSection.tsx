@@ -1,6 +1,6 @@
 import { SidebarSection } from "./SidebarSection";
 import { TrendingUp } from "@/modules/globals/components/Icons";
-import { NavLink, NavLinks } from "../NavLink";
+import { NavLink, NavLinks } from "./nav/NavLink";
 
 export function SidebarAnalyticsSection() {
 	return (
