@@ -90,7 +90,7 @@ html[data-theme="light"] {
 
 	.btn-primary-outline {
 		@apply cursor-pointer font-normal
-		bg-transparent outline-2 outline-offset-2 outline-primary text-main-foreground
+		bg-transparent outline-2 -outline-offset-2 outline-primary text-main-foreground
 		hover:bg-primary/10 hover:text-main-foreground
 		transition-colors;
 	}

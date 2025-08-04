@@ -1,7 +1,7 @@
 export function Footer({ className = "" }: { className?: string }) {
 	return (
 		<footer
-			className={`w-full mt-16 h-48 bg-zinc-900 flex items-center ${className}`}
+			className={`w-full mt-16 h-48 bg-zinc-900 flex items-center text-main-foreground ${className}`}
 		>
 			<main className="max-w-5xl mx-auto flex items-center justify-between gap-16">
 				<aside>
