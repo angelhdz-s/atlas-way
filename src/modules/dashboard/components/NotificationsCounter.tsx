@@ -1,7 +1,7 @@
-export function NotificationsCounter() {
+export function NotificationsCounter({ count }: { count: number }) {
 	return (
-		<div className="size-6 rounded-full -ml-1 grid place-items-center bg-blue-800 border-2 border-blue-600 text-white">
-			<span className="block w-fit text-sm font-medium">2</span>
+		<div className="size-6 rounded-full grid place-items-center bg-blue-800 border-1 border-blue-600 text-white">
+			<span className="block w-fit text-sm font-medium">{count}</span>
 		</div>
 	);
 }

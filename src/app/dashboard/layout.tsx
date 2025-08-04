@@ -1,6 +1,7 @@
 import { Footer } from "@/modules/dashboard/components/Footer";
 import { Header } from "@/modules/dashboard/components/Header";
-import { Sidebar } from "@/modules/dashboard/components/Sidebar";
+import { Sidebar } from "@/modules/dashboard/components/sidebar/Sidebar";
+import { SidebarProvider } from "@/modules/dashboard/components/sidebar/SidebarProvider";
 
 export default function Layout({
 	children,
@@ -13,12 +14,14 @@ export default function Layout({
 		<>
 			{modal}
 			<main className="grid grid-cols-[auto_1fr] h-dvh">
-				<Sidebar className="h-full" />
-				<main className="flex-1 flex flex-col">
-					<Header title="Hello, Angel" />
-					{children}
-					<Footer />
-				</main>
+				<SidebarProvider>
+					<Sidebar className="h-full" />
+					<main className="flex-1 flex flex-col">
+						<Header title="Hello, Angel" />
+						{children}
+						<Footer />
+					</main>
+				</SidebarProvider>
 			</main>
 		</>
 	);

@@ -1,4 +1,5 @@
 import { MoreOptions } from "@/modules/globals/components/Icons";
+import { useSidebar } from "../../hooks/useSidebar";
 
 export function SidebarFooter({
 	name,
@@ -9,13 +10,16 @@ export function SidebarFooter({
 	email: string;
 	className?: string;
 }) {
+	const { isOpen } = useSidebar();
 	return (
 		<footer
-			className={`mx-1 mb-1 rounded-xl flex items-center p-3 bg-background/50 light:bg-light-background ${className}`}
+			className={`flex items-center bg-background/50 light:bg-light-background ${className} ${isOpen ? "mx-1 mb-1 rounded-xl p-3" : "w-full justify-center"}`}
 		>
-			<main className="flex flex-1 items-center gap-2">
+			<main
+				className={`flex flex-1 items-center ${isOpen ? "gap-2" : "justify-center py-2"}`}
+			>
 				<figure className="size-10 rounded-full bg-blue-600"></figure>
-				<header className="w- leading-[1]">
+				<header className={`leading-[1] ${isOpen ? "" : "hidden"}`}>
 					<h4 className="h-5 -mb-1 font-medium overflow-hidden whitespace-nowrap text-ellipsis ld-main-fg">
 						{name}
 					</h4>
@@ -26,7 +30,7 @@ export function SidebarFooter({
 			</main>
 			<button
 				type="button"
-				className="cursor-pointer hover:bg-zinc-600/10 rounded-full p-2 transition-colors"
+				className={`cursor-pointer hover:bg-zinc-600/10 rounded-full p-2 transition-colors ${isOpen ? "" : "hidden"}`}
 			>
 				<MoreOptions className="size-6" />
 			</button>

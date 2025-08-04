@@ -3,7 +3,7 @@ import { Edit } from "@/modules/globals/components/Icons";
 export function Routine({ className = "" }: { className?: string }) {
 	return (
 		<article
-			className={`p-4 shadow-xl shadow-black/[0.05] ld-sec-bg flex flex-col gap-2 w-fit rounded-xl ${className}`}
+			className={`p-4 bg-background border-1 border-foreground/10 shadow-xl shadow-black/[0.05] flex flex-col gap-2 w-fit rounded-xl ${className}`}
 		>
 			<header>
 				<h3 className="flex gap-2 text-xl font-bold ld-main-fg">

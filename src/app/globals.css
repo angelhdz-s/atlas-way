@@ -92,6 +92,7 @@ html[data-theme="light"] {
 		@apply cursor-pointer font-normal
 		bg-transparent outline-2 -outline-offset-2 outline-primary text-main-foreground
 		hover:bg-primary/10 hover:text-main-foreground
+		light:text-light-main-foreground light:hover:text-light-main-foreground light:hover:outline-primary/60
 		transition-colors;
 	}
 

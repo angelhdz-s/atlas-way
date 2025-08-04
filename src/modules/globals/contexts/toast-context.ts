@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Toast } from "@/modules/globals/utils/toast.d";
+import { Toast } from "@/modules/globals/types.d";
 
 interface ToastContextType {
 	addToast: (
