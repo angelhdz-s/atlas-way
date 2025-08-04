@@ -245,6 +245,43 @@ export function Check({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
+export function Circle({
+	className = "",
+	strokeWidth = "2",
+	porcentage = 0,
+}: {
+	className?: string;
+	strokeWidth?: string;
+	porcentage?: number;
+}) {
+	const max = 100;
+	return (
+		<svg
+			fill="none"
+			viewBox="0 0 24 24"
+			strokeWidth={strokeWidth}
+			stroke="currentColor"
+			className={`${className}`}
+		>
+			<path
+				strokeDasharray={max}
+				strokeDashoffset={max}
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+			>
+				<animate
+					attributeName="stroke-dashoffset"
+					from={max}
+					to={max - (porcentage * (2 / 3) - porcentage / 10)}
+					dur="1s"
+					fill="freeze"
+				/>
+			</path>
+		</svg>
+	);
+}
+
 export function CircleCheck({ className = "", strokeWidth = "2" }: IconProps) {
 	return (
 		<svg

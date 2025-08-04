@@ -15,7 +15,7 @@ export default function RoutinesPage() {
 					Create Routine
 				</Link>
 			</PageHeader>
-			<PageContent className="grid grid-cols-2 gap-4 w-fit">
+			<PageContent className="flex flex-wrap gap-4">
 				<Routine />
 				<Routine />
 				<Routine />
