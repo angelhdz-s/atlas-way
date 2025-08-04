@@ -1,0 +1,26 @@
+@keyframes slide-right {
+	100% {
+		transform: translateX(1150%);
+	}
+}
+
+@keyframes slide-left {
+	0% {
+		transform: translateX(1150%);
+	}
+	100% {
+		transform: translateX(-150%);
+	}
+}
+
+.slide_right {
+	animation-name: slide-right;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.slide_left {
+	animation-name: slide-left;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
