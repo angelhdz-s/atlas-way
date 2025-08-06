@@ -12,13 +12,36 @@ export function Card({
 	);
 }
 
-export function DashboardCard({ children }: { children: React.ReactNode }) {
+const CARD_TYPE_CLASSES = {
+	default:
+		"bg-background light:bg-light-sec-background border-1 border-foreground/10",
+	disabled:
+		"bg-background light:bg-light-sec-background border-1 border-foreground/10 opacity-50",
+	main: "bg-primary text-light-main-foreground light:text-main-foreground border-1 border-primary",
+	special:
+		"bg-accent text-light-main-foreground light:text-main-foreground border-1 border-accent",
+};
+
+export type CardHighlightType = keyof typeof CARD_TYPE_CLASSES;
+
+function getCardHighlightClass(type: CardHighlightType = "default") {
+	return CARD_TYPE_CLASSES[type];
+}
+
+export function DashboardCard({
+	children,
+	type,
+}: {
+	children: React.ReactNode;
+	type?: CardHighlightType;
+}) {
+	const className = getCardHighlightClass(type);
 	return (
 		<article
-			className="
-			p-8 bg-background light:bg-light-sec-background border-1 border-foreground/10 
-			shadow-xl shadow-black/[0.05] flex flex-col gap-6 w-90 rounded-xl tracking-tight
-			"
+			className={`
+				p-8 
+			shadow-xl shadow-black/[0.05] flex flex-col gap-6 w-92 rounded-xl tracking-tight ${className}
+				`}
 		>
 			{children}
 		</article>
@@ -47,16 +70,45 @@ export function DashboardCardHeader({
 	);
 }
 
+function StatisticsSeparator({ value }: { value?: string }) {
+	return (
+		<>
+			<li className="flex items-center">
+				<span className="block w-[1px] h-4 bg-subtle/50"></span>
+			</li>
+			<li>{value}</li>
+		</>
+	);
+}
+
+type CountersType = [string?, string?, string?];
+
+function StatisticsTags({ counters }: { counters?: CountersType }) {
+	return counters?.map((counter, index) =>
+		index === 0 ? (
+			<li key={index}>{counter}</li>
+		) : (
+			<StatisticsSeparator key={index} value={counter} />
+		),
+	);
+}
+
 export function DashboardCardSubHeader({
-	children,
 	description,
+	counters,
 }: {
-	children: React.ReactNode;
 	description: string;
+	counters: CountersType;
 }) {
 	return (
 		<footer className="flex flex-col gap-1 text-lg font-light">
-			<main className="ld-sub-fg">{children}</main>
+			{counters && counters.length > 0 && (
+				<main className="ld-sub-fg">
+					<ul className="text-base flex justify-between gap-2">
+						<StatisticsTags counters={counters} />
+					</ul>
+				</main>
+			)}
 			<p>{description}</p>
 		</footer>
 	);
@@ -88,5 +140,38 @@ export function DashboardCardButton({
 		>
 			{children}
 		</button>
+	);
+}
+
+type DashboardCardTagValueType = string | React.ReactNode;
+
+type DashboardCardTagType = {
+	selected: boolean;
+	value: DashboardCardTagValueType;
+};
+
+export function DashboardCardTags({
+	values,
+}: {
+	values: DashboardCardTagType[];
+}) {
+	return (
+		<ul className="flex flex-wrap gap-1">
+			{values.map((tag, index) => (
+				<DashboardCardTag key={index} tag={tag} />
+			))}
+		</ul>
+	);
+}
+
+export function DashboardCardTag({ tag }: { tag: DashboardCardTagType }) {
+	const { value, selected } = tag;
+	const className = selected
+		? "bg-accent text-light-main-foreground light:text-main-foreground"
+		: "bg-foreground/10 ld-main-fg";
+	return (
+		<li className={`px-3 py-1 rounded-full text-sm font-light ${className}`}>
+			{value}
+		</li>
 	);
 }

@@ -1,14 +1,23 @@
 export type StatusDayType = "completed" | "canceled" | "current" | "next";
 
-export type DayTypeProps = "training" | "rest";
+export type RestStatusType = Exclude<StatusDayType, "canceled">;
 
-export interface DayType {
+export type DayTypeProps = "training" | "rest" | "recovery" | "yoga";
+
+export type DayType = {
 	name: string;
-	status: StatusDayType;
-	type: DayTypeProps;
 	weekDay: string;
 	weekDayShort: string;
-}
+} & (
+	| {
+			type: "rest";
+			status: RestStatusType;
+	  }
+	| {
+			type: Exclude<DayTypeProps, "rest">;
+			status: StatusDayType;
+	  }
+);
 
 export interface RoutineType {
 	name: string;
@@ -55,7 +64,7 @@ export const ROUTINES: RoutineType[] = [
 			{
 				name: "Leg Day",
 				status: "next",
-				type: "rest",
+				type: "training",
 				weekDay: "Friday",
 				weekDayShort: "Fri",
 			},
@@ -158,8 +167,8 @@ export const ROUTINES: RoutineType[] = [
 				name: "Rest Day",
 				status: "completed",
 				type: "rest",
-				weekDay: "Monday",
-				weekDayShort: "Mon",
+				weekDay: "Wednesday",
+				weekDayShort: "Wed",
 			},
 			{
 				name: "HIIT Day",
@@ -200,8 +209,8 @@ export const ROUTINES: RoutineType[] = [
 		days: [
 			{
 				name: "Morning Yoga",
-				status: "canceled",
-				type: "rest",
+				status: "completed",
+				type: "yoga",
 				weekDay: "Monday",
 				weekDayShort: "Mon",
 			},
@@ -215,7 +224,7 @@ export const ROUTINES: RoutineType[] = [
 			{
 				name: "Evening Yoga",
 				status: "current",
-				type: "rest",
+				type: "yoga",
 				weekDay: "Wednesday",
 				weekDayShort: "Wed",
 			},

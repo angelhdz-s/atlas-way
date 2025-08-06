@@ -1,11 +1,13 @@
 import { DayTypeProps, RoutineType, StatusDayType } from "@/mocks/routines";
 import {
+	CardHighlightType,
 	DashboardCard,
 	DashboardCardButton,
 	DashboardCardFooter,
 	DashboardCardHeader,
 	DashboardCardMain,
 	DashboardCardSubHeader,
+	DashboardCardTags,
 } from "@/modules/dashboard/components/Card";
 import {
 	Bolt,
@@ -60,8 +62,9 @@ const DAY_TYPE_REST = {
 const getDayAttributes = (status: StatusDayType, type: DayTypeProps) => {
 	if (type === "rest")
 		return {
-			className: `${STATUS_DAYS[status].class} ${DAY_TYPE_REST.class}}`,
-			Icon: DAY_TYPE_REST.icon,
+			className: `${STATUS_DAYS[status].class} ${status === "next" ? DAY_TYPE_REST.class : ""}`,
+			Icon:
+				status === "completed" ? STATUS_DAYS[status].icon : DAY_TYPE_REST.icon,
 			title: `${STATUS_DAYS[status].title} - Rest Day`,
 		};
 
@@ -84,45 +87,53 @@ function ListDayItem({
 	const { className, title, Icon } = getDayAttributes(status, type);
 	return (
 		<li
-			className={`rounded w-16 h-8 flex items-center gap-1 justify-center text-center border-1 transition-colors ${className}`}
+			className={`rounded w-17 h-8 flex items-center gap-1 px-2 text-center justify-center border-1 transition-colors ${className}`}
 			title={title}
 		>
-			<Icon className="size-5" strokeWidth="1.5" />
 			{name}
+			<Icon className="size-5" strokeWidth="1.5" />
 		</li>
 	);
 }
 
-export function Routine({ data }: { data: RoutineType }) {
+export function Routine({
+	type,
+	data,
+}: {
+	data: RoutineType;
+	type?: CardHighlightType;
+}) {
 	const { name, description, days, exercisesCount, date, sessions } = data;
+
+	const trainingSessions = days.filter((day) => day.type !== "rest");
+	const sessionsTags = trainingSessions.map((day) => ({
+		value: day.name,
+		selected: day.status === "current",
+	}));
+
 	return (
-		<DashboardCard>
+		<DashboardCard type={type}>
 			<DashboardCardHeader
 				title={name}
 				decoration={
 					<span className="block aspect-square size-4 rounded-full bg-primary"></span>
 				}
 			>
-				<DashboardCardSubHeader description={description}>
-					<ul className="text-base flex gap-2">
-						<li>{date}</li>
-						<li className="flex items-center">
-							<span className="block w-[1px] h-4 bg-subtle/50"></span>
-						</li>
-						<li>{exercisesCount} exercises</li>
-						<li className="flex items-center">
-							<span className="block w-[1px] h-4 bg-subtle/50"></span>
-						</li>
-						<li>{sessions} sessions</li>
-					</ul>
-				</DashboardCardSubHeader>
+				<DashboardCardSubHeader
+					counters={[
+						date,
+						`${exercisesCount} exercises`,
+						`${sessions} sessions`,
+					]}
+					description={description}
+				/>
 			</DashboardCardHeader>
 			<DashboardCardMain>
+				<footer>
+					<DashboardCardTags values={sessionsTags} />
+				</footer>
 				<main>
-					<header className="mb-1">
-						<span className="ld-sub-fg font-light">Current week:</span>
-					</header>
-					<ul className="text-sm flex gap-3 items-center flex-wrap">
+					<ul className="text-sm flex gap-2 items-center flex-wrap">
 						{days.map(({ weekDayShort, type, status }) => (
 							<ListDayItem
 								key={weekDayShort}
@@ -133,15 +144,6 @@ export function Routine({ data }: { data: RoutineType }) {
 						))}
 					</ul>
 				</main>
-
-				<footer>
-					<header>
-						<span className="ld-sub-fg font-light">{"Today's session:"}</span>
-					</header>
-					<h3 className="text-xl ld-main-fg">
-						{days.filter(({ status }) => status === "current")[0].name}
-					</h3>
-				</footer>
 			</DashboardCardMain>
 			<DashboardCardFooter>
 				<DashboardCardButton>

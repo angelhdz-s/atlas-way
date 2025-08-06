@@ -1,4 +1,4 @@
-import { Bolt, CalendarDays } from "@/modules/globals/components/Icons";
+import { Bolt } from "@/modules/globals/components/Icons";
 import {
 	DashboardCard,
 	DashboardCardButton,
@@ -6,6 +6,7 @@ import {
 	DashboardCardHeader,
 	DashboardCardMain,
 	DashboardCardSubHeader,
+	DashboardCardTags,
 } from "../Card";
 import { ExerciseType, SessionDayType } from "@/mocks/sessions";
 
@@ -39,8 +40,19 @@ function ExercisesList({ exercises }: { exercises: ExerciseType[] }) {
 	);
 }
 
+export function listUniqueTags(values: string[]) {
+	return [...new Set(values)];
+}
+
 export function Session({ data }: { data: SessionDayType }) {
 	const { name, description, exercises, date, routines } = data;
+
+	const muscularGroups = exercises.map((e) => e.muscleGroup);
+	const tags = listUniqueTags(muscularGroups).map((value) => ({
+		value,
+		selected: false,
+	}));
+
 	return (
 		<DashboardCard>
 			<DashboardCardHeader
@@ -49,22 +61,18 @@ export function Session({ data }: { data: SessionDayType }) {
 					<span className="block aspect-square size-4 rounded-full bg-primary"></span>
 				}
 			>
-				<DashboardCardSubHeader>
-					<ul className="text-base flex gap-4">
-						<li>{date}</li>
-						<li className="flex items-center">
-							<span className="block w-[1px] h-4 bg-subtle/50"></span>
-						</li>
-						<li>{exercises.length} exercises</li>
-						<li className="flex items-center">
-							<span className="block w-[1px] h-4 bg-subtle/50"></span>
-						</li>
-						<li>{`${routines} ${routines === 1 ? "routine" : "routines"}`}</li>
-					</ul>
-				</DashboardCardSubHeader>
+				<DashboardCardSubHeader
+					counters={[
+						date,
+						`${exercises.length} exercises`,
+						`${routines} ${routines === 1 ? "routine" : "routines"}`,
+					]}
+					description={description}
+				/>
 			</DashboardCardHeader>
 
-			<DashboardCardMain description={description}>
+			<DashboardCardMain>
+				<DashboardCardTags values={tags} />
 				<ExercisesList exercises={exercises} />
 			</DashboardCardMain>
 			<DashboardCardFooter>
