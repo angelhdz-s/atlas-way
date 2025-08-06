@@ -11,7 +11,7 @@ export function Sidebar({ className = "" }: { className?: string }) {
 	return (
 		<aside className={`${isOpen ? "w-74" : "w-14"}`}>
 			<main
-				className={`fixed z-50 top-0 left-0 bottom-0 h-full flex flex-col ld-sec-bg shadow-2xl shadow-black/[0.05] ${isOpen ? "w-74 gap-4" : "gap-1.5 w-14"} ${className}`}
+				className={`fixed z-1 top-0 left-0 bottom-0 h-full flex flex-col ld-sec-bg shadow-2xl shadow-black/[0.05] ${isOpen ? "w-74 gap-4" : "gap-1.5 w-14"} ${className}`}
 			>
 				<SidebarHeader />
 
