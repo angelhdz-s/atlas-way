@@ -1,7 +1,14 @@
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "@/modules/dashboard/components/sidebar/Sidebar.module.css";
 import { useSidebar } from "@/modules/dashboard/hooks/useSidebar";
-import { usePathname } from "next/navigation";
+
+const isActiveLink = (path: string, href: string) => {
+	return (
+		path === href ||
+		(path.startsWith(href) && href !== "/" && href !== "/dashboard")
+	);
+};
 
 export function SubLink({
 	className = "",
@@ -15,12 +22,12 @@ export function SubLink({
 	const { isOpen } = useSidebar();
 	const pathname = usePathname();
 
-	const aditionalClassName = `${pathname === href ? styles.active : ""}`;
+	const aditionalClassName = isActiveLink(pathname, href) ? styles.active : "";
 
 	return (
 		<Link
 			href={href}
-			className={`relative transition-colors hover:bg-foreground/10 hover:text-current/50 ${styles.nav_link} ${isOpen ? "" : styles.closed} ${className} ${aditionalClassName}`}
+			className={`relative ld-main-fg hover:bg-foreground/10 hover:text-current/80 ${styles.nav_link} ${isOpen ? "" : styles.closed} ${className} ${aditionalClassName}`}
 		>
 			{children}
 		</Link>

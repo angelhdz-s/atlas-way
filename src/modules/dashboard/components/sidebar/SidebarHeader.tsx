@@ -14,7 +14,7 @@ export function SidebarHeader() {
 				className={`flex items-center font-bold font-funnel-display py-4 ${isOpen ? "px-6" : "w-fit mx-auto"}`}
 			>
 				<AtlasWayLogo
-					className={`${isOpen ? "text-2xl" : "text-lg [writing-mode:vertical-rl]"} transition-all`}
+					className={`${isOpen ? "text-2xl" : "text-lg [writing-mode:vertical-rl]"}`}
 				/>
 			</Link>
 			<NavLinks>
