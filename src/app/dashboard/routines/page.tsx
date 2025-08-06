@@ -1,8 +1,9 @@
+import Link from "next/link";
+import { ROUTINES } from "@/mocks/routines";
 import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import { PageContent } from "@/modules/dashboard/components/page/PageContent";
 import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";
 import { Routine } from "@/modules/dashboard/components/routines/Routine";
-import Link from "next/link";
 
 export default function RoutinesPage() {
 	return (
@@ -16,10 +17,9 @@ export default function RoutinesPage() {
 				</Link>
 			</PageHeader>
 			<PageContent className="flex flex-wrap gap-4">
-				<Routine />
-				<Routine />
-				<Routine />
-				<Routine />
+				{ROUTINES.map((routine) => (
+					<Routine key={routine.name} data={routine} />
+				))}
 			</PageContent>
 		</PageContainer>
 	);

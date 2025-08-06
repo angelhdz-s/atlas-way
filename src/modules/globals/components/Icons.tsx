@@ -258,7 +258,7 @@ export function Circle({
 	return (
 		<svg
 			fill="none"
-			viewBox="0 0 24 24"
+			viewBox="2 2 20 20"
 			strokeWidth={strokeWidth}
 			stroke="currentColor"
 			className={`${className}`}
@@ -273,7 +273,7 @@ export function Circle({
 				<animate
 					attributeName="stroke-dashoffset"
 					from={max}
-					to={max - (porcentage * (2 / 3) - porcentage / 10)}
+					to={max - porcentage * (17 / 30)}
 					dur="1s"
 					fill="freeze"
 				/>

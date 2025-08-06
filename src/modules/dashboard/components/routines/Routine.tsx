@@ -1,120 +1,154 @@
-import { CalendarDays, Circle } from "@/modules/globals/components/Icons";
+import { DayTypeProps, RoutineType, StatusDayType } from "@/mocks/routines";
+import {
+	DashboardCard,
+	DashboardCardButton,
+	DashboardCardFooter,
+	DashboardCardHeader,
+	DashboardCardMain,
+	DashboardCardSubHeader,
+} from "@/modules/dashboard/components/Card";
+import {
+	Bolt,
+	BoltSlash,
+	CalendarDays,
+	CircleCheck,
+	XCircle,
+} from "@/modules/globals/components/Icons";
+import { IconTypes } from "@/modules/globals/types";
 
-const DAY_TYPES = {
+interface DayObjectType {
+	class: string;
+	title: string;
+	icon: IconTypes;
+}
+
+type StatusDayTypes = {
+	[K in StatusDayType]: DayObjectType;
+};
+
+const STATUS_DAYS: StatusDayTypes = {
 	canceled: {
 		class:
-			"border-red-600 text-red-600 light:bg-red-300 light:text-red-700 light:border-red-700",
+			"border-red-950 text-red-800 light:border-red-300 light:text-red-400",
 		title: "Canceled",
+		icon: XCircle,
 	},
 	completed: {
 		class:
-			"border-green-600 text-green-600 light:bg-green-300 light:text-green-700 light:border-green-700",
+			"border-green-950 text-green-800 light:border-green-400 light:text-green-600",
 		title: "Completed",
+		icon: CircleCheck,
 	},
 	current: {
 		class:
-			"bg-green-800 border-green-600 text-main-foreground light:bg-green-600 light:border-green-800",
+			"bg-green-800 border-green-800 text-main-foreground light:bg-green-600 light:border-green-600",
 		title: "Current Day",
+		icon: Bolt,
 	},
 	next: {
 		class: "border-subtle/50 ld-main-fg",
 		title: "Next Day",
-	},
-	rest: {
-		class: "border-foreground/10 text-subtle light:text-subtle/70",
-		title: "Rest Day",
+		icon: CalendarDays,
 	},
 };
 
-type DayType = keyof typeof DAY_TYPES;
+const DAY_TYPE_REST = {
+	class: "opacity-50",
+	icon: BoltSlash,
+};
 
-function ListDayItem({ name, type }: { name: string; type: DayType }) {
+const getDayAttributes = (status: StatusDayType, type: DayTypeProps) => {
+	if (type === "rest")
+		return {
+			className: `${STATUS_DAYS[status].class} ${DAY_TYPE_REST.class}}`,
+			Icon: DAY_TYPE_REST.icon,
+			title: `${STATUS_DAYS[status].title} - Rest Day`,
+		};
+
+	return {
+		className: STATUS_DAYS[status].class,
+		Icon: STATUS_DAYS[status].icon,
+		title: `${STATUS_DAYS[status].title} - Training Day`,
+	};
+};
+
+function ListDayItem({
+	name,
+	type,
+	status,
+}: {
+	name: string;
+	type: DayTypeProps;
+	status: StatusDayType;
+}) {
+	const { className, title, Icon } = getDayAttributes(status, type);
 	return (
 		<li
-			className={`rounded w-16 h-8 flex items-center justify-center text-center border-1 ${DAY_TYPES[type].class}`}
-			title={DAY_TYPES[type].title}
+			className={`rounded w-16 h-8 flex items-center gap-1 justify-center text-center border-1 transition-colors ${className}`}
+			title={title}
 		>
+			<Icon className="size-5" strokeWidth="1.5" />
 			{name}
 		</li>
 	);
 }
 
-interface RoutineState {
-	name: string;
-	active: boolean;
-	exercisesCount: number;
-	days: { name: string; completed: boolean; date: Date }[];
-}
-
-export function Routine({ className = "" }: { className?: string }) {
-	// const { name, active, exercisesCount, days } = data;
+export function Routine({ data }: { data: RoutineType }) {
+	const { name, description, days, exercisesCount, date, sessions } = data;
 	return (
-		<article
-			className={`p-8 bg-background light:bg-light-sec-background border-1 border-foreground/10 shadow-xl shadow-black/[0.05] flex flex-col gap-4 w-90 rounded-xl tracking-tight ${className}`}
-		>
-			<header>
-				<main className="flex gap-4 text-4xl font-funnel-display font-light ld-main-fg">
-					<h2 className="whitespace-nowrap text-ellipsis overflow-hidden tracking-tighter">
-						Routine Name
-					</h2>
-					<span className="block aspect-square size-4 my-auto rounded-full bg-primary"></span>
-				</main>
-				<footer className="text-lg font-light">
-					<ul className="flex gap-4">
-						<li>1 day ago</li>
+		<DashboardCard>
+			<DashboardCardHeader
+				title={name}
+				decoration={
+					<span className="block aspect-square size-4 rounded-full bg-primary"></span>
+				}
+			>
+				<DashboardCardSubHeader description={description}>
+					<ul className="text-base flex gap-2">
+						<li>{date}</li>
 						<li className="flex items-center">
 							<span className="block w-[1px] h-4 bg-subtle/50"></span>
 						</li>
-						<li>16 exercises</li>
+						<li>{exercisesCount} exercises</li>
+						<li className="flex items-center">
+							<span className="block w-[1px] h-4 bg-subtle/50"></span>
+						</li>
+						<li>{sessions} sessions</li>
 					</ul>
+				</DashboardCardSubHeader>
+			</DashboardCardHeader>
+			<DashboardCardMain>
+				<main>
+					<header className="mb-1">
+						<span className="ld-sub-fg font-light">Current week:</span>
+					</header>
+					<ul className="text-sm flex gap-3 items-center flex-wrap">
+						{days.map(({ weekDayShort, type, status }) => (
+							<ListDayItem
+								key={weekDayShort}
+								name={weekDayShort}
+								type={type}
+								status={status}
+							/>
+						))}
+					</ul>
+				</main>
+
+				<footer>
+					<header>
+						<span className="ld-sub-fg font-light">{"Today's session:"}</span>
+					</header>
+					<h3 className="text-xl ld-main-fg">
+						{days.filter(({ status }) => status === "current")[0].name}
+					</h3>
 				</footer>
-			</header>
-			<main className="flex flex-col gap-4">
-				<ul className="flex gap-2 items-center flex-wrap">
-					<ListDayItem name="Mon" type="completed" />
-					<ListDayItem name="Tue" type="canceled" />
-					<ListDayItem name="Wed" type="current" />
-					<ListDayItem name="Thu" type="next" />
-					<ListDayItem name="Fri" type="next" />
-					<ListDayItem name="Sat" type="rest" />
-					<ListDayItem name="Sun" type="rest" />
-				</ul>
-			</main>
-			<div className="flex items-center justify-center">
-				<div className="relative text-center leading-[1] size-24 grid place-content-center">
-					<header className="text-subtle light:text-subtle/60">days</header>
-					<main className="text-2xl ld-main-fg font-funnel-display">2/5</main>
-					<div className="absolute left-[50%] top-[50%] translate-[-50%] rounded-full text-primary">
-						<Circle
-							className="size-26 -rotate-90"
-							strokeWidth="1"
-							porcentage={40}
-						/>
-					</div>
-					<div className="absolute left-[50%] top-[50%] translate-[-50%] size-20 rounded-full border-2 border-foreground/10"></div>
-				</div>
-				<div className="relative text-center leading-[1] size-24 grid place-content-center">
-					<header className="text-subtle light:text-subtle/60">AVG</header>
-					<main className="text-2xl ld-main-fg font-funnel-display">75%</main>
-					<div className="absolute left-[50%] top-[50%] translate-[-50%] rounded-full text-primary">
-						<Circle
-							className="size-26 -rotate-90"
-							strokeWidth="1"
-							porcentage={75}
-						/>
-					</div>
-					<div className="absolute left-[50%] top-[50%] translate-[-50%] size-20 rounded-full border-2 border-foreground/10"></div>
-				</div>
-			</div>
-			<footer className="flex items-center gap-2 text-sm">
-				<button
-					type="button"
-					className="flex items-center gap-1 btn-md btn-primary ml-auto"
-				>
-					<CalendarDays className="size-6" strokeWidth="1.5" />
+			</DashboardCardMain>
+			<DashboardCardFooter>
+				<DashboardCardButton>
+					<CalendarDays className="size-6" strokeWidth="1.3" />
 					Edit
-				</button>
-			</footer>
-		</article>
+				</DashboardCardButton>
+			</DashboardCardFooter>
+		</DashboardCard>
 	);
 }

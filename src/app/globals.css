@@ -67,6 +67,10 @@ html[data-theme="light"] {
 		@apply text-sec-foreground light:text-light-sec-foreground transition-colors;
 	}
 
+	.ld-sub-fg {
+		@apply text-zinc-500 light:text-zinc-400 transition-colors;
+	}
+
 	/* Foregrounds */
 
 	.ld-main-fg {

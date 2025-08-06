@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SESSIONS } from "@/mocks/sessions";
 import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import { PageContent } from "@/modules/dashboard/components/page/PageContent";
 import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";
@@ -15,11 +16,10 @@ export default function SessionsPage() {
 					Create Session
 				</Link>
 			</PageHeader>
-			<PageContent className="grid grid-cols-2 gap-4 w-fit">
-				<Session />
-				<Session />
-				<Session />
-				<Session />
+			<PageContent className="flex flex-wrap gap-4 w-fit">
+				{SESSIONS.map((session) => (
+					<Session key={session.name} data={session} />
+				))}
 			</PageContent>
 		</PageContainer>
 	);
