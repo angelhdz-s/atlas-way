@@ -60,7 +60,17 @@ export const MUSCULAR_GROUPS = {
 	},
 };
 
-export const MUSCLES = {
+export type MuscleType = {
+	name: string;
+	muscularGroup: string;
+	bodySection: string;
+};
+
+export type MusclesType = {
+	[key: string]: MuscleType;
+};
+
+export const MUSCLES: MusclesType = {
 	// ARMS
 
 	// BICEPS
@@ -252,7 +262,17 @@ export const MUSCLES = {
 	},
 };
 
-export const EXERCISES = {
+export type ExerciseType = {
+	name: string;
+	description: string;
+	muscles: MuscleType[];
+};
+
+export type ExercisesType = {
+	[key: string]: ExerciseType;
+};
+
+export const EXERCISES: ExercisesType = {
 	// PUSH DAY
 	ABS: {
 		name: "Abs",

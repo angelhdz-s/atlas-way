@@ -1,6 +1,6 @@
+import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import { PageContent } from "@/modules/dashboard/components/page/PageContent";
 import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";
-import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import MusclesTable from "@/modules/dashboard/components/routines/MusclesTable";
 import { MuscularGroupsTable } from "@/modules/dashboard/components/routines/MuscularGroupsTable";
 
