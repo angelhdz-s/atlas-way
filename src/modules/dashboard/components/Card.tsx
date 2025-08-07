@@ -28,19 +28,32 @@ function getCardHighlightClass(type: CardHighlightType = "default") {
 	return CARD_TYPE_CLASSES[type];
 }
 
+export type DashboardCardSize = "xs" | "sm" | "md" | "lg";
+
+function getWidthClass(size: DashboardCardSize) {
+	if (size === "xs") return "w-40";
+	if (size === "sm") return "w-60";
+	if (size === "md") return "w-75";
+	return "w-92";
+}
+
 export function DashboardCard({
 	children,
 	type,
+	size = "lg",
 }: {
 	children: React.ReactNode;
 	type?: CardHighlightType;
+	size?: DashboardCardSize;
 }) {
 	const className = getCardHighlightClass(type);
+	const widthClass = getWidthClass(size);
+
 	return (
 		<article
 			className={`
 				p-8 
-			shadow-xl shadow-black/[0.05] flex flex-col gap-6 w-92 rounded-xl tracking-tight ${className}
+			shadow-xl shadow-black/[0.05] flex flex-col gap-6 rounded-xl tracking-tight ${widthClass} ${className}
 				`}
 		>
 			{children}
@@ -98,7 +111,7 @@ export function DashboardCardSubHeader({
 	counters,
 }: {
 	description: string;
-	counters: CountersType;
+	counters?: CountersType;
 }) {
 	return (
 		<footer className="flex flex-col gap-1 text-lg font-light">
