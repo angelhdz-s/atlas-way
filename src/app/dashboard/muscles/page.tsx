@@ -9,7 +9,7 @@ export default function MuscularGroupsPage() {
 		<PageContainer>
 			<PageHeader title="Muscles and Muscular Groups" />
 			<PageContent className="flex flex-col gap-8">
-				<section>
+				<section className="flex flex-wrap gap-4">
 					<MusclesTable />
 				</section>
 				<section>

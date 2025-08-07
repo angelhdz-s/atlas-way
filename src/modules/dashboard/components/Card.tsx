@@ -63,12 +63,12 @@ export function DashboardCard({
 
 export function DashboardCardHeader({
 	title,
-	decoration,
 	children,
+	decoration,
 }: {
 	title: string;
-	decoration: React.ReactNode;
-	children: React.ReactNode;
+	children?: React.ReactNode;
+	decoration?: React.ReactNode;
 }) {
 	return (
 		<header>

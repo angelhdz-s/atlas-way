@@ -1,3 +1,5 @@
+export type BodySectionsKeys = keyof typeof BODY_SECTIONS;
+
 export const BODY_SECTIONS = {
 	ARMS: "Arms",
 	LEGS: "Legs",
