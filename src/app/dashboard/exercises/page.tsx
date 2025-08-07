@@ -4,35 +4,43 @@ import { PageContent } from "@/modules/dashboard/components/page/PageContent";
 import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";
 import {} from "@/mocks/sessions";
 import { BODY_SECTIONS, EXERCISES, ExerciseType } from "@/constants/db";
+import {
+	DashboardCard,
+	DashboardCardButton,
+	DashboardCardFooter,
+	DashboardCardHeader,
+	DashboardCardMain,
+	DashboardCardSubHeader,
+	DashboardCardTag,
+} from "@/modules/dashboard/components/Card";
+import { Bolt } from "@/modules/globals/components/Icons";
 
 function Exercises({ exercises }: { exercises: ExerciseType[] }) {
-	return (
-		<table className="w-full text-left">
-			<thead>
-				<tr className="*:px-2 *:py-1 ld-main-fg">
-					<th>Exercise</th>
-					<th>Description</th>
-					<th>Muscles</th>
-				</tr>
-			</thead>
-			<tbody>
-				{exercises
-					.sort((a, b) => a.name.localeCompare(b.name))
-					.map(({ name, description, muscles }, index) => {
-						return (
-							<tr
+	return exercises
+		.sort((a, b) => a.name.localeCompare(b.name))
+		.map(({ name, description, muscles }, index) => (
+			<DashboardCard key={index} size="sm">
+				<DashboardCardHeader title={name} decoration="">
+					<DashboardCardSubHeader description={description} />
+				</DashboardCardHeader>
+				<DashboardCardMain>
+					<ul className="flex items-center flex-wrap gap-1">
+						{muscles.map((muscle, index) => (
+							<DashboardCardTag
 								key={index}
-								className="*:px-2 *:py-1 border-t-[1px] border-zinc-700"
-							>
-								<td>{name}</td>
-								<td>{description}</td>
-								<td>{muscles.map((muscle) => muscle.name).join(", ")}</td>
-							</tr>
-						);
-					})}
-			</tbody>
-		</table>
-	);
+								tag={{ value: muscle.name, selected: false }}
+							/>
+						))}
+					</ul>
+				</DashboardCardMain>
+				<DashboardCardFooter>
+					<DashboardCardButton>
+						<Bolt className="size-5" />
+						Edit
+					</DashboardCardButton>
+				</DashboardCardFooter>
+			</DashboardCard>
+		));
 }
 
 function getExercisesByBodySection(bodySection: keyof typeof BODY_SECTIONS) {
@@ -66,10 +74,12 @@ export default function ExercisesPage() {
 
 					console.log(exercises);
 					return (
-						<article key={index}>
-							<h2 className="text-2xl font-bold ld-main-fg">{section}</h2>
-							<Exercises exercises={exercises} />
-						</article>
+						<main key={index} className="flex flex-col gap-4">
+							<h2 className="text-4xl font-bold ld-main-fg">{section}</h2>
+							<main className="flex flex-wrap gap-2">
+								<Exercises exercises={exercises} />
+							</main>
+						</main>
 					);
 				})}
 			</PageContent>
