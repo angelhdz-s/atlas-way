@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { THEME } from "@/constants/client";
-import { Moon, Sun } from "@/modules/globals/components/Icons";
+import { DefaultIcon, Moon, Sun } from "@/modules/globals/components/Icons";
 
 export function ToggleTheme({ className = "" }: { className?: string }) {
 	const [mount, setMount] = useState(false);
@@ -23,8 +23,8 @@ export function ToggleTheme({ className = "" }: { className?: string }) {
 			className={`cursor-pointer animate-fade ${className}`}
 			onClick={handleClick}
 		>
-			{theme === THEME.DARK && <Sun className="size-6" />}
-			{theme === THEME.LIGHT && <Moon className="size-6" />}
+			{theme === THEME.DARK && <DefaultIcon Icon={Sun} />}
+			{theme === THEME.LIGHT && <DefaultIcon Icon={Moon} />}
 		</button>
 	) : (
 		<div className={className}>
