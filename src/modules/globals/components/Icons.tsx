@@ -1,6 +1,23 @@
-import { IconProps } from "@/modules/globals/types.d";
+import { IconProps, IconTypes } from "@/modules/globals/types.d";
 
-export function ArrowUp({ className = "", strokeWidth = "2" }: IconProps) {
+const defaultStrokeWidth = "1.8";
+
+export function DefaultIcon({
+	Icon,
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: {
+	Icon: IconTypes;
+	className?: string;
+	strokeWidth?: string;
+}) {
+	return <Icon className={`size-5 ${className}`} strokeWidth={strokeWidth} />;
+}
+
+export function ArrowUp({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -20,7 +37,7 @@ export function ArrowUp({ className = "", strokeWidth = "2" }: IconProps) {
 
 export function ArrowsLeftRight({
 	className = "",
-	strokeWidth = "2",
+	strokeWidth = defaultStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -39,7 +56,10 @@ export function ArrowsLeftRight({
 	);
 }
 
-export function Backward({ className = "", strokeWidth = "2" }: IconProps) {
+export function Backward({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -57,7 +77,10 @@ export function Backward({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function Barbell({ className = "", strokeWidth = "2" }: IconProps) {
+export function Barbell({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			width={24}
@@ -82,7 +105,10 @@ export function Barbell({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function Bars3({ className = "", strokeWidth = "2" }: IconProps) {
+export function Bars3({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -100,7 +126,10 @@ export function Bars3({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function Bell({ className = "", strokeWidth = "2" }: IconProps) {
+export function Bell({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -118,7 +147,10 @@ export function Bell({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function BellAlert({ className = "", strokeWidth = "2" }: IconProps) {
+export function BellAlert({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -136,7 +168,10 @@ export function BellAlert({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function BellSlash({ className = "", strokeWidth = "2" }: IconProps) {
+export function BellSlash({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -154,7 +189,10 @@ export function BellSlash({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function BellSnooze({ className = "", strokeWidth = "2" }: IconProps) {
+export function BellSnooze({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -172,7 +210,10 @@ export function BellSnooze({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function Bolt({ className = "", strokeWidth = "2" }: IconProps) {
+export function Bolt({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -190,7 +231,10 @@ export function Bolt({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function BoltSlash({ className = "", strokeWidth = "2" }: IconProps) {
+export function BoltSlash({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -208,7 +252,10 @@ export function BoltSlash({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function CalendarDays({ className = "", strokeWidth = "2" }: IconProps) {
+export function CalendarDays({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -226,7 +273,10 @@ export function CalendarDays({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function Check({ className = "", strokeWidth = "2" }: IconProps) {
+export function Check({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -247,7 +297,7 @@ export function Check({ className = "", strokeWidth = "2" }: IconProps) {
 
 export function Circle({
 	className = "",
-	strokeWidth = "2",
+	strokeWidth = defaultStrokeWidth,
 	porcentage = 0,
 }: {
 	className?: string;
@@ -282,7 +332,10 @@ export function Circle({
 	);
 }
 
-export function CircleCheck({ className = "", strokeWidth = "2" }: IconProps) {
+export function CircleCheck({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -302,7 +355,7 @@ export function CircleCheck({ className = "", strokeWidth = "2" }: IconProps) {
 
 export function ClipboardDocumentList({
 	className = "",
-	strokeWidth = "2",
+	strokeWidth = defaultStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -321,7 +374,10 @@ export function ClipboardDocumentList({
 	);
 }
 
-export function Clock({ className = "", strokeWidth = "2" }: IconProps) {
+export function Clock({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -339,9 +395,35 @@ export function Clock({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
+export function Cog({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
+	return (
+		<svg
+			fill="none"
+			viewBox="0 0 24 24"
+			strokeWidth={strokeWidth}
+			stroke="currentColor"
+			className={className}
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527a1.125 1.125 0 0 1 1.45.12l.773.774c.39.389.44 1.002.12 1.45l-.527.737c-.25.35-.272.806-.107 1.204.165.397.505.71.93.78l.893.15c.543.09.94.559.94 1.109v1.094c0 .55-.397 1.02-.94 1.11l-.894.149c-.424.07-.764.383-.929.78-.165.398-.143.854.107 1.204l.527.738c.32.447.269 1.06-.12 1.45l-.774.773a1.125 1.125 0 0 1-1.449.12l-.738-.527c-.35-.25-.806-.272-1.203-.107-.398.165-.71.505-.781.929l-.149.894c-.09.542-.56.94-1.11.94h-1.094c-.55 0-1.019-.398-1.11-.94l-.148-.894c-.071-.424-.384-.764-.781-.93-.398-.164-.854-.142-1.204.108l-.738.527c-.447.32-1.06.269-1.45-.12l-.773-.774a1.125 1.125 0 0 1-.12-1.45l.527-.737c.25-.35.272-.806.108-1.204-.165-.397-.506-.71-.93-.78l-.894-.15c-.542-.09-.94-.56-.94-1.109v-1.094c0-.55.398-1.02.94-1.11l.894-.149c.424-.07.765-.383.93-.78.165-.398.143-.854-.108-1.204l-.526-.738a1.125 1.125 0 0 1 .12-1.45l.773-.773a1.125 1.125 0 0 1 1.45-.12l.737.527c.35.25.807.272 1.204.107.397-.165.71-.505.78-.929l.15-.894Z"
+			/>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+			/>
+		</svg>
+	);
+}
+
 export function ComputerDesktop({
 	className = "",
-	strokeWidth = "2",
+	strokeWidth = defaultStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -360,7 +442,10 @@ export function ComputerDesktop({
 	);
 }
 
-export function Edit({ className = "", strokeWidth = "2" }: IconProps) {
+export function Edit({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -380,7 +465,7 @@ export function Edit({ className = "", strokeWidth = "2" }: IconProps) {
 
 export function ExclamationTriangle({
 	className = "",
-	strokeWidth = "2",
+	strokeWidth = defaultStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -399,7 +484,10 @@ export function ExclamationTriangle({
 	);
 }
 
-export function FaceHappy({ className = "", strokeWidth = "2" }: IconProps) {
+export function FaceHappy({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -417,7 +505,10 @@ export function FaceHappy({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function Forward({ className = "", strokeWidth = "2" }: IconProps) {
+export function Forward({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -435,7 +526,10 @@ export function Forward({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function Home({ className = "", strokeWidth = "2" }: IconProps) {
+export function Home({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -455,7 +549,7 @@ export function Home({ className = "", strokeWidth = "2" }: IconProps) {
 
 export function InformationCircle({
 	className = "",
-	strokeWidth = "2",
+	strokeWidth = defaultStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -474,7 +568,31 @@ export function InformationCircle({
 	);
 }
 
-export function Megaphone({ className = "", strokeWidth = "2" }: IconProps) {
+export function Language({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
+	return (
+		<svg
+			fill="none"
+			viewBox="0 0 24 24"
+			strokeWidth={strokeWidth}
+			stroke="currentColor"
+			className={`${className}`}
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802"
+			/>
+		</svg>
+	);
+}
+
+export function Megaphone({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -492,7 +610,10 @@ export function Megaphone({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function Moon({ className = "", strokeWidth = "2" }: IconProps) {
+export function Moon({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -510,7 +631,10 @@ export function Moon({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function MoreOptions({ className = "", strokeWidth = "2" }: IconProps) {
+export function MoreOptions({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -531,7 +655,7 @@ export function MoreOptions({ className = "", strokeWidth = "2" }: IconProps) {
 
 export function PresentationChartLine({
 	className = "",
-	strokeWidth = "2",
+	strokeWidth = defaultStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -550,7 +674,10 @@ export function PresentationChartLine({
 	);
 }
 
-export function Scale({ className = "", strokeWidth = "2" }: IconProps) {
+export function Scale({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -568,7 +695,10 @@ export function Scale({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function Sun({ className = "", strokeWidth = "2" }: IconProps) {
+export function Sun({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -586,7 +716,10 @@ export function Sun({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function TrendingDown({ className = "", strokeWidth = "2" }: IconProps) {
+export function TrendingDown({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -604,7 +737,10 @@ export function TrendingDown({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function TrendingUp({ className = "", strokeWidth = "2" }: IconProps) {
+export function TrendingUp({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -622,7 +758,10 @@ export function TrendingUp({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function Trophy({ className = "", strokeWidth = "2" }: IconProps) {
+export function Trophy({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -642,7 +781,7 @@ export function Trophy({ className = "", strokeWidth = "2" }: IconProps) {
 
 export function WrenchScrewdriver({
 	className = "",
-	strokeWidth = "2",
+	strokeWidth = defaultStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -661,7 +800,10 @@ export function WrenchScrewdriver({
 	);
 }
 
-export function XCircle({ className = "", strokeWidth = "2" }: IconProps) {
+export function XCircle({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
@@ -679,7 +821,10 @@ export function XCircle({ className = "", strokeWidth = "2" }: IconProps) {
 	);
 }
 
-export function XMark({ className = "", strokeWidth = "2" }: IconProps) {
+export function XMark({
+	className = "",
+	strokeWidth = defaultStrokeWidth,
+}: IconProps) {
 	return (
 		<svg
 			fill="none"
