@@ -71,8 +71,6 @@ export default function ExercisesPage() {
 					const exercises = getExercisesByBodySection(
 						section as keyof typeof BODY_SECTIONS,
 					);
-
-					console.log(exercises);
 					return (
 						<main key={index} className="flex flex-col gap-4">
 							<h2 className="text-4xl font-bold ld-main-fg">{section}</h2>

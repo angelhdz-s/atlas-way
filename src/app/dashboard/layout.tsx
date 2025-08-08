@@ -17,7 +17,7 @@ export default function Layout({
 				<SidebarProvider>
 					<Sidebar className="h-full" />
 					<main className="flex-1 flex flex-col">
-						<Header title="Hello, Angel" />
+						<Header />
 						{children}
 						<Footer />
 					</main>
