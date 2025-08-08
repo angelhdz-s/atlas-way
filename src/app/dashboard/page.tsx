@@ -1,27 +1,18 @@
+import { FirstRoutine } from "@/modules/dashboard/components/home/FirstRoutine";
+import { FirstSession } from "@/modules/dashboard/components/home/FirstSession";
+import { MainCard } from "@/modules/dashboard/components/home/MainCard";
 import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import { PageContent } from "@/modules/dashboard/components/page/PageContent";
 import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";
-import { Section } from "@/modules/dashboard/components/Section";
 
 export default function Dashboard() {
 	return (
 		<PageContainer>
-			<PageHeader title="Dashboard" />
-			<PageContent className="flex flex-col gap-8">
-				<Section
-					title="Welcome to your dashboard"
-					description="Here you can manage your workouts, routines, and more."
-				>
-					<p>This is your dashboard where you can manage your workouts.</p>
-				</Section>
-				<Section
-					title="Welcome to your dashboard"
-					description="Here you can manage your workouts, routines, and more."
-				>
-					<p className="text-foreground-sec">
-						This is your dashboard where you can manage your workouts.
-					</p>
-				</Section>
+			<PageHeader title="Welcome" />
+			<PageContent className="grid grid-cols-12 gap-4 *:rounded-3xl">
+				<MainCard className="col-span-4" />
+				<FirstRoutine className="col-span-2" />
+				<FirstSession className="col-span-2" />
 			</PageContent>
 		</PageContainer>
 	);
