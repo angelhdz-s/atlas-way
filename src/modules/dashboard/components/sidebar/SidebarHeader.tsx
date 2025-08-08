@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AtlasWayLogo } from "@/modules/globals/components/AtlasWayLogo";
 import { useSidebar } from "../../hooks/useSidebar";
 import { NavLink, NavLinks } from "./nav/NavLink";
-import { Forward, Home } from "@/modules/globals/components/Icons";
+import { CalendarDays, Home } from "@/modules/globals/components/Icons";
 import { NavLinkNotification } from "./nav/custom/NavLinkNotification";
 
 export function SidebarHeader() {
@@ -24,8 +24,8 @@ export function SidebarHeader() {
 
 				<NavLinkNotification href="/dashboard/notifications" />
 
-				<NavLink href="/dashboard/tracking" Icon={Forward}>
-					Session Tracking
+				<NavLink href="/dashboard/tracking" Icon={CalendarDays}>
+					Tracking
 				</NavLink>
 			</NavLinks>
 		</header>
