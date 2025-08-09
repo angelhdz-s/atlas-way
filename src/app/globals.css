@@ -15,6 +15,7 @@
 	--color-tertiary: #eb5e31;
 	--color-accent: #e6a737;
 	--color-subtle: var(--color-zinc-600);
+	--color-full-black: #0a0a0a;
 
 	/* Dark colors */
 
@@ -78,7 +79,7 @@ html[data-theme="light"] {
 	}
 
 	.ld-main-fg-gradient {
-		@apply text-transparent w-fit bg-gradient-to-t from-0% to-50% from-foreground to-main-foreground light:from-light-main-foreground light:to-light-main-foreground/20 light:from-50% light:to-100% bg-clip-text transition-colors;
+		@apply text-transparent w-fit bg-gradient-to-t from-0% to-50% from-foreground to-main-foreground light:from-light-main-foreground light:to-light-main-foreground/80 light:from-50% light:to-100% bg-clip-text transition-colors;
 	}
 
 	/* Buttons */
