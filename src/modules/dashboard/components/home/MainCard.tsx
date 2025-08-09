@@ -1,4 +1,4 @@
-import { CircleCheck } from "@/modules/globals/components/Icons";
+import { MiniCheckCircle } from "@/modules/globals/components/Icons";
 
 export function MainCard({ className = "" }: { className?: string }) {
 	return (
@@ -12,14 +12,18 @@ export function MainCard({ className = "" }: { className?: string }) {
 				</h3>
 			</header>
 			<main className="relative z-1 max-w-140 flex flex-col">
-				<ul className="*:relative *:flex *:items-center *:gap-2 text-2xl flex flex-col">
+				<ul className="*:relative *:flex *:items-start *:gap-2 text-2xl flex flex-col gap-2">
 					<li>
-						Create Your Own Path
-						<CircleCheck className="size-6" strokeWidth="2" />
+						<span className="pt-1">
+							<MiniCheckCircle className="size-8" />
+						</span>
+						<span className="flex-1">Create Your Own Path</span>
 					</li>
 					<li>
-						{"You Don't Need to Be an Expert"}
-						<CircleCheck className="size-6" strokeWidth="2" />
+						<span className="pt-1">
+							<MiniCheckCircle className="size-8" />
+						</span>
+						<span className="flex-1">{"You Don't Need to Be an Expert"}</span>
 					</li>
 				</ul>
 			</main>
