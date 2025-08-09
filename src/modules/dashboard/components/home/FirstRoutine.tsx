@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { CardTitle } from "./card/CardTitle";
 import { ImageBackground } from "./ImageBackground";
 
 export function FirstRoutine({ className = "" }: { className?: string }) {
@@ -6,9 +7,7 @@ export function FirstRoutine({ className = "" }: { className?: string }) {
 		<article
 			className={`relative bg-background light:bg-light-sec-background back p-8 border-1 border-foreground/10 overflow-hidden ${className}`}
 		>
-			<h3 className="font-funnel-display ld-main-fg text-4xl">
-				Create Your Routine
-			</h3>
+			<CardTitle title="Create Your First Routine" />
 			<ImageBackground>
 				<Image
 					src="/images/dashboard/routine-dark.png"

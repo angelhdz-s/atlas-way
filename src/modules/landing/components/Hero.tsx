@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowUp } from "@/modules/globals/components/Icons";
 
 export function Hero() {
@@ -22,15 +23,15 @@ export function Hero() {
 					</p>
 
 					<footer className="flex items-center gap-4 animate-fade-down animate-delay-200 animate-ease-out">
-						<a
-							href="#try"
+						<Link
+							href="/dashboard"
 							className="inline-flex items-center gap-2 rounded-full btn-lg btn-primary mx-auto"
 						>
 							Try AtlasWay
 							<span className="material-icons">
 								<ArrowUp className="size-5 rotate-90" />
 							</span>
-						</a>
+						</Link>
 					</footer>
 				</header>
 			</main>
