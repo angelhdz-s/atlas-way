@@ -1,0 +1,201 @@
+export type NotificationRelevanceType =
+	| "special"
+	| "info"
+	| "warning"
+	| "error";
+
+export interface NotificationType {
+	title: string;
+	description: string;
+	date: string;
+	notSeen?: boolean;
+	url?: string;
+	relevance?: NotificationRelevanceType;
+}
+
+export const NOTIFICATIONS: NotificationType[] = [
+	{
+		title: "Account Locked",
+		description: "Your account has been locked due to suspicious activity.",
+		date: "1 day",
+		notSeen: true,
+		url: "/support",
+		relevance: "error",
+	},
+	{
+		title: "Profile Picture Updated",
+		description: "Your profile picture has been updated.",
+		date: "2 days",
+		notSeen: false,
+		url: "/profile",
+		relevance: "info",
+	},
+	{
+		title: "Session Reminder",
+		description: "Don't forget your upcoming session tomorrow.",
+		date: "3 days",
+		notSeen: true,
+		url: "/dashboard/sessions",
+		relevance: "info",
+	},
+	{
+		title: "Invitation to Join Team",
+		description: "You have been invited to join a new team.",
+		date: "4 days",
+		notSeen: true,
+		url: "/dashboard/teams",
+		relevance: "info",
+	},
+	{
+		title: "Update Available",
+		description: "A new update is available. Please refresh the page.",
+		date: "5 days",
+		notSeen: false,
+		url: "/dashboard",
+		relevance: "info",
+	},
+	{
+		title: "Security Alert",
+		description: "A new device was used to access your account.",
+		date: "6 days",
+		notSeen: true,
+		url: "/settings/security",
+		relevance: "warning",
+	},
+	{
+		title: "Goal Achieved!",
+		description: "You have achieved your weekly goal.",
+		date: "1 week",
+		notSeen: true,
+		url: "/dashboard/goals",
+		relevance: "special",
+	},
+	{
+		title: "Friend Request Accepted",
+		description: "Your friend request was accepted.",
+		date: "1 week",
+		notSeen: false,
+		url: "/dashboard/friends",
+		relevance: "info",
+	},
+	{
+		title: "Error: Unable to Sync Data",
+		description: "There was an error syncing your data. Please try again.",
+		date: "2 weeks",
+		notSeen: true,
+		url: "/dashboard/sync",
+		relevance: "error",
+	},
+	{
+		title: "System Maintenance Scheduled",
+		description: "Scheduled maintenance will occur this weekend.",
+		date: "2 weeks",
+		notSeen: false,
+		url: "/status",
+		relevance: "warning",
+	},
+	{
+		title: "New Comment on Your Post",
+		description: "Someone commented on your recent post.",
+		date: "2 weeks",
+		notSeen: true,
+		url: "/dashboard/posts",
+		relevance: "info",
+	},
+	{
+		title: "Payment Received",
+		description: "Your payment was processed successfully.",
+		date: "3 weeks",
+		notSeen: false,
+		url: "/settings/billing",
+		relevance: "info",
+	},
+	{
+		title: "Subscription Expiring Soon",
+		description: "Your subscription will expire in 7 days.",
+		date: "3 weeks",
+		notSeen: true,
+		url: "/settings/subscription",
+		relevance: "warning",
+	},
+	{
+		title: "Account Verification Needed",
+		description: "Please verify your email address to continue.",
+		date: "1 month",
+		notSeen: true,
+		url: "/verify-email",
+		relevance: "warning",
+	},
+	{
+		title: "Routine Completed",
+		description: "Congratulations! You completed your routine.",
+		date: "1 month",
+		notSeen: false,
+		url: "/dashboard/routines",
+		relevance: "special",
+	},
+	{
+		title: "New Message Received",
+		description: "You have received a new message from your coach.",
+		date: "1 month",
+		notSeen: true,
+		url: "/messages",
+		relevance: "info",
+	},
+	{
+		title: "Profile Updated",
+		description: "Your profile information was updated.",
+		date: "1 month",
+		notSeen: false,
+		url: "/profile",
+		relevance: "info",
+	},
+	{
+		title: "Session Expired",
+		description: "Your session has expired. Please log in again.",
+		date: "2 months",
+		notSeen: false,
+		url: "/login",
+		relevance: "warning",
+	},
+	{
+		title: "New Feature: Dark Mode",
+		description: "Try out the new dark mode in your profile settings.",
+		date: "2 months",
+		notSeen: true,
+		url: "/settings/appearance",
+		relevance: "special",
+	},
+	{
+		title: "Password Changed Successfully",
+		description: "Your password was changed successfully.",
+		date: "2 months",
+		notSeen: false,
+		url: "/settings/security",
+		relevance: "info",
+	},
+	{
+		title: "Monthly report is ready",
+		description: "The monthly report for your project is ready to view.",
+		date: "3 months",
+		notSeen: true,
+		url: "/dashboard/statistics",
+		relevance: "info",
+	},
+	{
+		title: "Create your sessions",
+		description: "Go to sessions and create your own sessions.",
+		date: "4 months",
+		notSeen: false,
+		url: "/dashboard/sessions",
+		relevance: "info",
+	},
+	{
+		title: "Welcome to AtlasWay - Start your journey",
+		description: "Start creating your first routine.",
+		date: "4 months",
+		notSeen: true,
+		url: "/dashboard/routines",
+		relevance: "special",
+	},
+];
