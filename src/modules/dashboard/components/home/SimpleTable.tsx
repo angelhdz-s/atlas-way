@@ -17,7 +17,7 @@ export function SimpleTable({
 	values: { key: number; name: string }[];
 }) {
 	return (
-		<ul className="grid grid-cols-[1.5rem_1fr] *:py-0.5 font-light">
+		<ul className="grid grid-cols-[1.5rem_1fr] *:py-0.5 font-light text-sm">
 			<li className="ld-main-fg font-medium">{header.key}</li>
 			<li className="ld-main-fg font-medium">{header.name}</li>
 			{values.map((value) => (

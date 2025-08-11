@@ -9,7 +9,7 @@ export function LastSession({ className = "" }: { className?: string }) {
 			<CardTitle title="Last Sessions" />
 			<main className="flex flex-col gap-4">
 				<header className="flex items-center">
-					<h4 className="leading-[1] inline font-bold text-2xl text-green-600">
+					<h4 className="leading-[1] inline font-bold text-xl text-green-600">
 						Push Day
 					</h4>
 					<span className="px-3 py-1 bg-subtle/10 rounded-full ml-2 inline text-sm font-light text-foreground/70">
@@ -17,11 +17,11 @@ export function LastSession({ className = "" }: { className?: string }) {
 					</span>
 				</header>
 				<main>
-					<ul className="font-light">
+					<ul className="font-light font-sm">
 						<li className="flex justify-between items-center gap-2">
 							<main className="*:inline">
 								<MiniCheckCircle className="size-6 text-green-600 mr-1" />
-								<span className="leading-[1] text-lg">Push Ups</span>
+								<span className="leading-[1]">Push Ups</span>
 							</main>
 							<aside>
 								<span className="text-sm font-light text-foreground/50">
@@ -33,7 +33,7 @@ export function LastSession({ className = "" }: { className?: string }) {
 						<li className="flex justify-between items-center gap-2">
 							<main className="*:inline">
 								<MiniCheckCircle className="size-6 text-green-600 mr-1" />
-								<span className="leading-[1] text-lg">Lateral Raises</span>
+								<span className="leading-[1]">Lateral Raises</span>
 							</main>
 							<aside>
 								<span className="text-sm font-light text-foreground/50">
@@ -45,7 +45,7 @@ export function LastSession({ className = "" }: { className?: string }) {
 						<li className="flex justify-between items-center gap-2">
 							<main className="*:inline">
 								<MiniCheckCircle className="size-6 text-green-600 mr-1" />
-								<span className="leading-[1] text-lg">Abs</span>
+								<span className="leading-[1]">Abs</span>
 							</main>
 							<aside>
 								<span className="text-sm font-light text-foreground/50">
@@ -57,7 +57,7 @@ export function LastSession({ className = "" }: { className?: string }) {
 						<li className="flex justify-between items-center gap-2">
 							<main className="*:inline">
 								<MiniCheckCircle className="size-6 text-green-600 mr-1" />
-								<span className="leading-[1] text-lg">Dips</span>
+								<span className="leading-[1]">Dips</span>
 							</main>
 							<aside>
 								<span className="text-sm font-light text-foreground/50">

@@ -19,7 +19,7 @@ export default function Dashboard() {
 	return (
 		<PageContainer>
 			<PageHeader
-				title="Welcome to Atlas"
+				title="Dashboard"
 				description="Your personal fitness dashboard"
 			/>
 			<PageContent className="grid grid-cols-12 gap-4 *:rounded-3xl">

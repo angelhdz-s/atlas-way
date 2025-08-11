@@ -9,7 +9,7 @@ export function NextSession({ className = "" }: { className?: string }) {
 			<CardTitle title="Next Sessions" />
 			<main className="flex flex-col gap-4">
 				<header className="flex items-center">
-					<h4 className="leading-[1] inline font-bold text-2xl text-accent">
+					<h4 className="leading-[1] inline font-bold text-xl text-accent">
 						Push Day
 					</h4>
 					<span className="inline-flex items-center gap-1 outline-1 outline-accent/50 text-accent px-3 py-1 bg-subtle/10 rounded-full ml-2 text-sm font-light">
@@ -18,9 +18,9 @@ export function NextSession({ className = "" }: { className?: string }) {
 					</span>
 				</header>
 				<main>
-					<ul className="font-light leading-[1]">
+					<ul className="font-light leading-[1] flex flex-col gap-1">
 						<li className="flex justify-between items-center gap-2">
-							<main className="text-lg flex items-center gap-2">
+							<main className="flex items-center gap-2">
 								<CircleCheck
 									className="size-5.5 text-foreground/30 mr-1"
 									strokeWidth="1.5"
@@ -37,7 +37,7 @@ export function NextSession({ className = "" }: { className?: string }) {
 							</aside>
 						</li>
 						<li className="flex justify-between items-center gap-2">
-							<main className="text-lg flex items-center gap-2">
+							<main className="flex items-center gap-2">
 								<CircleCheck
 									className="size-5.5 text-foreground/30 mr-1"
 									strokeWidth="1.5"
@@ -54,7 +54,7 @@ export function NextSession({ className = "" }: { className?: string }) {
 							</aside>
 						</li>
 						<li className="flex justify-between items-center gap-2">
-							<main className="text-lg flex items-center gap-2">
+							<main className="flex items-center gap-2">
 								<CircleCheck
 									className="size-5.5 text-foreground/30 mr-1"
 									strokeWidth="1.5"
@@ -71,7 +71,7 @@ export function NextSession({ className = "" }: { className?: string }) {
 							</aside>
 						</li>
 						<li className="flex justify-between items-center gap-2">
-							<main className="text-lg flex items-center gap-2">
+							<main className="flex items-center gap-2">
 								<CircleCheck
 									className="size-5.5 text-foreground/30 mr-1"
 									strokeWidth="1.5"
