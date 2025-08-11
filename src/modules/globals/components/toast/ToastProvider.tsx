@@ -1,13 +1,13 @@
 "use client";
 
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { TOAST_DURATION, TOAST_TYPE } from "@/config/defaults";
 import ToastContainer from "@/modules/globals/components/toast/ToastContainer";
-import { TOAST_DURATION, TOAST_TYPE } from "@/modules/globals/constants";
 import { ToastContext } from "@/modules/globals/contexts/toast-context";
 import { generateId } from "@/modules/globals/lib/toast";
 import { Toast } from "@/modules/globals/types.d";
 
-export const ToastProvider = ({ children }: { children: ReactNode }) => {
+export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
 	const [toasts, setToasts] = useState<Toast[]>([]);
 	const [mounted, setMounted] = useState(false);
 

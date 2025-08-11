@@ -1,5 +1,6 @@
 "use client";
 
+import { TOAST_TYPE } from "@/config/defaults";
 import {
 	CircleCheck,
 	ExclamationTriangle,
@@ -8,7 +9,6 @@ import {
 	XMark,
 } from "@/modules/globals/components/Icons";
 import styles from "@/modules/globals/components/toast/Toast.module.css";
-import { TOAST_TYPE } from "@/modules/globals/constants";
 import { Toast } from "@/modules/globals/types.d";
 
 interface Props {
