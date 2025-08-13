@@ -1,22 +1,28 @@
 import { IconProps, IconTypes } from "@/modules/globals/types.d";
 
-const defaultStrokeWidth = "1.8";
+export const defaultIconStrokeWidth = "1.8";
+export const defaultIconSizeClass = "size-5";
 
 export function DefaultIcon({
 	Icon,
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: {
 	Icon: IconTypes;
 	className?: string;
 	strokeWidth?: string;
 }) {
-	return <Icon className={`size-5 ${className}`} strokeWidth={strokeWidth} />;
+	return (
+		<Icon
+			className={`${defaultIconSizeClass} ${className}`}
+			strokeWidth={strokeWidth}
+		/>
+	);
 }
 
 export function ArrowUp({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -37,7 +43,7 @@ export function ArrowUp({
 
 export function ArrowsLeftRight({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -58,7 +64,7 @@ export function ArrowsLeftRight({
 
 export function Backward({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -79,7 +85,7 @@ export function Backward({
 
 export function Barbell({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -107,7 +113,7 @@ export function Barbell({
 
 export function Bars3({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -128,7 +134,7 @@ export function Bars3({
 
 export function Bell({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -149,7 +155,7 @@ export function Bell({
 
 export function BellAlert({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -170,7 +176,7 @@ export function BellAlert({
 
 export function BellSlash({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -191,7 +197,7 @@ export function BellSlash({
 
 export function BellSnooze({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -212,7 +218,7 @@ export function BellSnooze({
 
 export function Bolt({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -233,7 +239,7 @@ export function Bolt({
 
 export function BoltSlash({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -254,7 +260,7 @@ export function BoltSlash({
 
 export function CalendarDays({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -275,7 +281,7 @@ export function CalendarDays({
 
 export function Check({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -297,7 +303,7 @@ export function Check({
 
 export function Circle({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 	porcentage = 0,
 }: {
 	className?: string;
@@ -334,7 +340,7 @@ export function Circle({
 
 export function CircleCheck({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -355,7 +361,7 @@ export function CircleCheck({
 
 export function ClipboardDocumentList({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -376,7 +382,7 @@ export function ClipboardDocumentList({
 
 export function Clock({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -397,7 +403,7 @@ export function Clock({
 
 export function Cog({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -423,7 +429,7 @@ export function Cog({
 
 export function ComputerDesktop({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -444,7 +450,7 @@ export function ComputerDesktop({
 
 export function Edit({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -465,7 +471,7 @@ export function Edit({
 
 export function ExclamationTriangle({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -486,7 +492,7 @@ export function ExclamationTriangle({
 
 export function FaceHappy({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -507,7 +513,7 @@ export function FaceHappy({
 
 export function Forward({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -528,7 +534,7 @@ export function Forward({
 
 export function Home({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -549,7 +555,7 @@ export function Home({
 
 export function InformationCircle({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -570,7 +576,7 @@ export function InformationCircle({
 
 export function Language({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -591,7 +597,7 @@ export function Language({
 
 export function Megaphone({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -612,7 +618,7 @@ export function Megaphone({
 
 export function Moon({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -633,7 +639,7 @@ export function Moon({
 
 export function MoreOptions({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -655,7 +661,7 @@ export function MoreOptions({
 
 export function PresentationChartLine({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -676,7 +682,7 @@ export function PresentationChartLine({
 
 export function Scale({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -697,7 +703,7 @@ export function Scale({
 
 export function Sun({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -718,7 +724,7 @@ export function Sun({
 
 export function Trash({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -739,7 +745,7 @@ export function Trash({
 
 export function TrendingDown({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -760,7 +766,7 @@ export function TrendingDown({
 
 export function TrendingUp({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -781,7 +787,7 @@ export function TrendingUp({
 
 export function Trophy({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -802,7 +808,7 @@ export function Trophy({
 
 export function WrenchScrewdriver({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -823,7 +829,7 @@ export function WrenchScrewdriver({
 
 export function XCircle({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
@@ -844,7 +850,7 @@ export function XCircle({
 
 export function XMark({
 	className = "",
-	strokeWidth = defaultStrokeWidth,
+	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
 		<svg
