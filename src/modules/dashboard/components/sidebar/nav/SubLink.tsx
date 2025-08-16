@@ -27,7 +27,7 @@ export function SubLink({
 	return (
 		<Link
 			href={href}
-			className={`relative ld-main-fg hover:bg-foreground/10 hover:text-current/80 ${styles.nav_link} ${isOpen ? "" : styles.closed} ${className} ${aditionalClassName}`}
+			className={`relative hover:bg-foreground/10 hover:text-current/80 ${styles.nav_link} ${isOpen ? "" : styles.closed} ${className} ${aditionalClassName}`}
 		>
 			{children}
 		</Link>

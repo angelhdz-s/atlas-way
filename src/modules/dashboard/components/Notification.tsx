@@ -1,46 +1,6 @@
 import Link from "next/link";
-import {
-	NotificationRelevanceType,
-	NotificationType,
-} from "@/mocks/notifications";
+import { NotificationType } from "@/mocks/notifications";
 import { Trash } from "@/modules/globals/components/Icons";
-import { NOTIFICATION_DEFAULT_RELEVANCE } from "@/config/defaults";
-
-type RelevanceClassType = {
-	seen: string;
-	notSeen: string;
-};
-
-type RelevanceClassesType = {
-	[key in Exclude<NotificationRelevanceType, "info">]: RelevanceClassType;
-};
-
-const RELEVANCE_CLASSES: RelevanceClassesType = {
-	special: {
-		seen: "bg-gradient-to-r from-accent/50 via-accent/30 to-accent/20 outline-accent text-accent",
-		notSeen:
-			"bg-gradient-to-r from-accent/50 via-accent/30 to-accent/20 outline-accent text-accent light:text-yellow-700",
-	},
-	error: {
-		seen: "light:bg-red-200 outline-red-500",
-		notSeen: "bg-red-800/50 light:bg-red-200 outline-red-700 text-red-600",
-	},
-	warning: {
-		seen: "light:bg-yellow-100/50 outline-yellow-500/50 text-yellow-500 light:text-yellow-600",
-		notSeen:
-			"bg-yellow-950/50 light:bg-yellow-100/50 outline-yellow-500/50 text-yellow-500 light:text-yellow-700",
-	},
-};
-
-type NotificationRelevanceMessage = {
-	[key in Exclude<NotificationRelevanceType, "info">]: string;
-};
-
-const NOTIFICATION_RELEVANCE_MESSAGE: NotificationRelevanceMessage = {
-	special: "Special",
-	error: "Danger",
-	warning: "Warning",
-};
 
 export function Notification({
 	className = "",
@@ -49,24 +9,10 @@ export function Notification({
 	className?: string;
 	data: NotificationType;
 }) {
-	const {
-		title,
-		description,
-		date,
-		notSeen,
-		relevance = NOTIFICATION_DEFAULT_RELEVANCE,
-		url,
-	} = data;
-
-	const relevancePilClass =
-		relevance !== "info"
-			? notSeen
-				? RELEVANCE_CLASSES[relevance].notSeen
-				: RELEVANCE_CLASSES[relevance].seen
-			: "";
+	const { title, description, date, notSeen, url } = data;
 
 	const notificationClass = notSeen
-		? "ld-sec-bg border-foreground/20"
+		? "ld-sec-bg border-foreground/5"
 		: "border-foreground/10";
 
 	return (
@@ -89,13 +35,6 @@ export function Notification({
 						</h3>
 						{notSeen && (
 							<span className="block size-2.5 rounded-full bg-blue-500"></span>
-						)}
-						{relevance !== "info" && (
-							<span
-								className={`px-2 rounded-full outline-1 -outline-offset-1 text-sm ${relevancePilClass}`}
-							>
-								{NOTIFICATION_RELEVANCE_MESSAGE[relevance]}
-							</span>
 						)}
 					</header>
 					<footer>
