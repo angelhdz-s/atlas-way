@@ -80,7 +80,6 @@ export function IconsAnimation({
 
 	const getDelay = (index: number) => {
 		const delay = getIndex(index) * (DURATION / ICONS.length);
-		console.log(delay);
 		return delay;
 	};
 

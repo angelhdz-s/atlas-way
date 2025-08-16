@@ -159,11 +159,6 @@ export function BarCharts({
 	const barWidth = widthAvailable - absoluteWidth * gap;
 	const freeWidth = absoluteWidth - barWidth * data.length;
 
-	console.log(`Free width: ${freeWidth} of ${absoluteWidth}`);
-	console.log(
-		`Total Width Filled: ${barWidth * data.length} of ${absoluteWidth}`,
-	);
-
 	const maxY = Math.max(...data.map((d) => d.y));
 
 	const X = (i: number) =>
