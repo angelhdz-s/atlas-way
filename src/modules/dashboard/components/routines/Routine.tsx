@@ -1,3 +1,4 @@
+import { DAYS, DayWeeksType } from "@/config/defaults";
 import { DayTypeProps, RoutineType, StatusDayType } from "@/mocks/routines";
 import {
 	CardHighlightType,
@@ -134,10 +135,10 @@ export function Routine({
 				</footer>
 				<main>
 					<ul className="text-sm flex gap-2 items-center flex-wrap">
-						{days.map(({ weekDayShort, type, status }) => (
+						{days.map(({ weekDay, type, status }) => (
 							<ListDayItem
-								key={weekDayShort}
-								name={weekDayShort}
+								key={weekDay}
+								name={DAYS[weekDay as DayWeeksType].shortName}
 								type={type}
 								status={status}
 							/>
