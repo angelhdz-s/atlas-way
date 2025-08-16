@@ -13,16 +13,16 @@ export default function Layout({
 	return (
 		<>
 			{modal}
-			<main className="grid grid-cols-[auto_1fr] h-dvh">
-				<SidebarProvider>
-					<Sidebar className="h-full" />
+			<SidebarProvider>
+				<Header />
+				<main className="flex-1 grid grid-cols-[auto_1fr] h-dvh">
+					<Sidebar />
 					<main className="flex-1 flex flex-col">
-						<Header />
 						{children}
 						<Footer />
 					</main>
-				</SidebarProvider>
-			</main>
+				</main>
+			</SidebarProvider>
 		</>
 	);
 }

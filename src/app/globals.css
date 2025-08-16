@@ -3,6 +3,9 @@
 
 :root {
 	interpolate-size: allow-keywords;
+	--header-height: calc(var(--spacing) * 14);
+	--sidebar-height: calc(100% - var(--header-height));
+	--sidebar-width: calc(var(--spacing) * 74);
 }
 
 @custom-variant light (&:where([data-theme=light], [data-theme=light] *));

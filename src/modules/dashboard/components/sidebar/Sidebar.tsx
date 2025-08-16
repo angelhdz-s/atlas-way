@@ -9,9 +9,14 @@ import { useSidebar } from "../../hooks/useSidebar";
 export function Sidebar({ className = "" }: { className?: string }) {
 	const { isOpen } = useSidebar();
 	return (
-		<aside className={`${isOpen ? "w-74" : "w-14"}`}>
+		<aside className={`${isOpen ? "w-[var(--sidebar-width)]" : "w-14"}`}>
 			<main
-				className={`fixed z-2 top-0 left-0 bottom-0 h-full flex flex-col ld-sec-bg shadow-2xl shadow-black/[0.05] font-normal font-funnel-display ${isOpen ? "w-74 gap-4" : "gap-1.5 w-14"} ${className}`}
+				className={`
+					py-2 fixed z-10 left-0 top-[var(--header-height)] h-[var(--sidebar-height)] 
+					flex flex-col ld-sec-bg shadow-2xl shadow-black/[0.05] font-normal font-funnel-display 
+					before:absolute before:inset-0 before:bottom-auto before:h-[1px] before:w-[80%] before:mx-auto before:bg-subtle/10
+					${isOpen ? "w-[var(--sidebar-width)] gap-4" : "gap-1.5 w-14"} ${className}
+					`}
 			>
 				<SidebarHeader />
 

@@ -32,7 +32,7 @@ export function Modal({
 
 	return (
 		<div
-			className={`z-10 fixed inset-0 m-auto flex items-center justify-center ${className}`}
+			className={`z-50 fixed inset-0 m-auto flex items-center justify-center ${className}`}
 		>
 			<div className="z-50 bg-zinc-900 p-8 w-96 rounded-lg shadow-lg">
 				{children}

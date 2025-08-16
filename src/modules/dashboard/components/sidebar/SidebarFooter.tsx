@@ -13,7 +13,7 @@ export function SidebarFooter({
 	const { isOpen } = useSidebar();
 	return (
 		<footer
-			className={`flex items-center bg-background/50 light:bg-light-background ${className} ${isOpen ? "mx-1 mb-1 rounded p-3" : "w-full justify-center"}`}
+			className={`flex items-center bg-background/50 light:bg-light-background ${className} ${isOpen ? "mx-1 rounded p-3" : "w-full justify-center"}`}
 		>
 			<main
 				className={`flex flex-1 items-center ${isOpen ? "gap-2" : "justify-center py-2"}`}

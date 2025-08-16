@@ -8,40 +8,54 @@ import { LangButton } from "@/modules/globals/components/LangButton";
 import { SettingsButton } from "@/modules/globals/components/SettingsButton";
 import { UserInfo } from "./UserInfo";
 import { NotificationsButton } from "./NotificationsButton";
+import Link from "next/link";
+import { Imagotype } from "@/modules/globals/components/AtlasWayLogo";
 
 export function Header({ className = "" }: { className?: string }) {
-	const { toggleOpen } = useSidebar();
+	const { isOpen, toggleOpen } = useSidebar();
 
 	return (
-		<header
-			className={`grid grid-cols-[1fr_auto_1fr] ld-sec-bg px-2 gap-4 font-funnel-display ${className} h-14`}
-		>
-			<main className="flex items-center gap-4 h-full">
-				<button
-					type="button"
-					onClick={toggleOpen}
-					className="cursor-pointer p-2"
-				>
-					<Bars3 className="size-6 ld-main-fg" />
-				</button>
-				<Breadcrumb />
+		<header className="h-[var(--header-height)] w-full">
+			<main
+				className={`fixed top-0 left-0 z-10 w-full grid grid-cols-[1fr_auto_1fr] ld-sec-bg pr-2 gap-4 font-funnel-display ${className} h-[var(--header-height)]`}
+			>
+				<section className="flex items-center gap-2 h-full">
+					<main
+						className={`flex justify-between items-center gap-0 h-full ${isOpen ? "pl-4 w-[var(--sidebar-width)]" : ""} `}
+					>
+						<Link
+							href="/"
+							className={`flex items-center gap-2 font-light font-funnel-display ${isOpen ? "" : "justify-center w-14"}`}
+						>
+							<Imagotype closed={!isOpen} />
+						</Link>
+						<button
+							type="button"
+							onClick={toggleOpen}
+							className="cursor-pointer p-2"
+						>
+							<Bars3 className="size-6 ld-main-fg" />
+						</button>
+					</main>
+					<Breadcrumb />
+				</section>
+				<section className="flex items-center gap-2 h-full">
+					<input
+						type="search"
+						placeholder="Search"
+						className="flex-1 h-8 px-4 rounded-4xl border-1 border-current/20 outline-none"
+					/>
+					<aside className="flex items-center">
+						<NotificationsButton className="p-2 rounded-full" />
+						<SettingsButton className="p-2 rounded-full" />
+						<ToggleTheme className="p-2 rounded-full" />
+						<LangButton className="p-2 rounded-full" />
+					</aside>
+				</section>
+				<section className="flex items-center justify-end gap-2 h-full">
+					<UserInfo />
+				</section>
 			</main>
-			<div className="flex items-center gap-2 h-full">
-				<input
-					type="search"
-					placeholder="Search"
-					className="flex-1 h-8 px-4 rounded-4xl border-1 border-current/20 outline-none"
-				/>
-				<aside className="flex items-center">
-					<NotificationsButton className="p-2 rounded-full" />
-					<SettingsButton className="p-2 rounded-full" />
-					<ToggleTheme className="p-2 rounded-full" />
-					<LangButton className="p-2 rounded-full" />
-				</aside>
-			</div>
-			<aside className="flex items-center justify-end gap-2 h-full">
-				<UserInfo />
-			</aside>
 		</header>
 	);
 }
