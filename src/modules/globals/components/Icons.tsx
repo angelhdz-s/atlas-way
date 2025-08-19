@@ -279,36 +279,16 @@ export function CalendarDays({
 	);
 }
 
-export function Check({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
-	return (
-		<svg
-			fill="none"
-			viewBox="0 0 24 24"
-			stroke="currentColor"
-			strokeWidth={strokeWidth}
-			className={className}
-		>
-			<title>Check Icon</title>
-			<path
-				strokeLinecap="round"
-				strokeLinejoin="round"
-				d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-			/>
-		</svg>
-	);
-}
-
 export function Circle({
 	className = "",
 	strokeWidth = defaultIconStrokeWidth,
 	porcentage = 0,
+	animation = false,
 }: {
 	className?: string;
 	strokeWidth?: string;
 	porcentage?: number;
+	animation?: boolean;
 }) {
 	const max = 100;
 	return (
@@ -326,13 +306,15 @@ export function Circle({
 				strokeLinejoin="round"
 				d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
 			>
-				<animate
-					attributeName="stroke-dashoffset"
-					from={max}
-					to={max - porcentage * (17 / 30)}
-					dur="1s"
-					fill="freeze"
-				/>
+				{animation && (
+					<animate
+						attributeName="stroke-dashoffset"
+						from={max}
+						to={max - porcentage * (17 / 30)}
+						dur="1s"
+						fill="freeze"
+					/>
+				)}
 			</path>
 		</svg>
 	);
@@ -354,6 +336,27 @@ export function CircleCheck({
 				strokeLinecap="round"
 				strokeLinejoin="round"
 				d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+			/>
+		</svg>
+	);
+}
+
+export function CircleOutline({
+	className = "",
+	strokeWidth = defaultIconStrokeWidth,
+}: IconProps) {
+	return (
+		<svg
+			fill="none"
+			viewBox="0 0 24 24"
+			strokeWidth={strokeWidth}
+			stroke="currentColor"
+			className={`${className}`}
+		>
+			<path
+				strokeLinecap="round"
+				strokeLinejoin="round"
+				d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
 			/>
 		</svg>
 	);
