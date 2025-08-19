@@ -1,7 +1,11 @@
+import { getTrackingDates } from "@/lib/dates";
 import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import { PageContent } from "@/modules/dashboard/components/page/PageContent";
 import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";
 import { TrackingDay } from "@/modules/dashboard/components/TrackingDay";
+import { Calendar } from "@/modules/dashboard/components/tracking/Calendar";
+
+const dates = getTrackingDates();
 
 export default function SessionsPage() {
 	return (
@@ -14,10 +18,15 @@ export default function SessionsPage() {
 					Create Routine
 				</button>
 			</PageHeader>
-			<PageContent className="grid grid-cols-7 rounded overflow-hidden border-2 border-zinc-900">
-				{[...Array(21)].map((_, index) => {
-					return <TrackingDay key={index} title={`Day ${index + 1}, July`} />;
-				})}
+			<PageContent>
+				<header className="mb-8">
+					<Calendar />
+				</header>
+				<main className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7">
+					{dates.map((date) => {
+						return <TrackingDay key={date.toISOString()} date={date} />;
+					})}
+				</main>
 			</PageContent>
 		</PageContainer>
 	);
