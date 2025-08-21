@@ -1,13 +1,14 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useContext, useMemo, useRef, useState } from "react";
 import { MONTH_NAMES, MonthDisplacement } from "@/constants/date";
 import { getCalendarDays, getPreviousNextMonthDate } from "@/lib/dates";
+import { CalendarContext } from "../context/calendar-context";
 
-export function useCalendar({ todayDate }: { todayDate: Date }) {
-	const [currentDate, setCurrentDate] = useState<Date>(todayDate);
+export function useCalendar() {
+	const { selectedDate, setCurrentDate } = useContext(CalendarContext);
 	const [currentMonth, setCurrentMonth] = useState<number>(
-		todayDate.getMonth(),
+		selectedDate.getMonth(),
 	);
-	const date = useRef(currentDate);
+	const date = useRef(selectedDate);
 
 	const days = useMemo(() => {
 		const currentYear = date.current.getFullYear();
@@ -65,7 +66,7 @@ export function useCalendar({ todayDate }: { todayDate: Date }) {
 	};
 
 	return {
-		currentDate,
+		selectedDate,
 		days,
 		monthName,
 		handlePreviousMonth,

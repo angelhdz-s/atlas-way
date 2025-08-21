@@ -1,6 +1,6 @@
 "use client";
 
-import { FIRST_TRACKED_DAY, TODAY } from "@/mocks/tracking";
+import { FIRST_TRACKED_DAY } from "@/mocks/tracking";
 import { CalendarDay } from "@/modules/dashboard/components/tracking/calendar/CalendarDay";
 import { useCalendar } from "@/modules/dashboard/hooks/useCalendar";
 import { ArrowUp } from "@/modules/globals/components/Icons";
@@ -27,14 +27,14 @@ function ArrowButton({
 
 export function Calendar() {
 	const {
-		currentDate,
+		selectedDate,
 		days,
 		handleNextDate,
 		handleNextMonth,
 		handlePreviousDate,
 		handlePreviousMonth,
 		monthName,
-	} = useCalendar({ todayDate: TODAY });
+	} = useCalendar();
 
 	return (
 		<main className="h-86 flex items-start gap-2 w-fit">
@@ -48,7 +48,7 @@ export function Calendar() {
 					<button className="cursor-pointer p-2" onClick={handlePreviousMonth}>
 						<ArrowUp className="size-5 -rotate-90" />
 					</button>
-					<span>{`${monthName} ${currentDate.getFullYear()}`}</span>
+					<span>{`${monthName} ${selectedDate.getFullYear()}`}</span>
 					<button className="cursor-pointer p-2" onClick={handleNextMonth}>
 						<ArrowUp className="size-5 rotate-90" />
 					</button>
@@ -68,7 +68,7 @@ export function Calendar() {
 							key={index}
 							day={day}
 							initialDate={FIRST_TRACKED_DAY}
-							currentDate={currentDate}
+							currentDate={selectedDate}
 						/>
 					))}
 				</ul>
