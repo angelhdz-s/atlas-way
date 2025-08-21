@@ -1,6 +1,7 @@
 import { isToday } from "@/lib/dates";
 import { ROUTINES, StatusDayType } from "./routines";
 import { ExerciseType, PULL_DAY } from "./sessions";
+import { minorValue } from "@/modules/globals/lib/utils";
 
 type TrainingtDayNameType = "Training Day";
 type RestDayNameType = "Rest Day";
@@ -115,3 +116,7 @@ export const TRACKED_DAYS: TrackedDayType[] = [
 		status: "completed",
 	},
 ];
+
+export const FIRST_TRACKED_DAY = TRACKED_DAYS.map((day) => day.date).reduce(
+	(a, b) => minorValue(a, b),
+);

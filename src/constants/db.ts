@@ -1,3 +1,11 @@
+export type SessionTrackedStatusType = "completed" | "canceled" | "pending";
+export type CalendarDayStatusType = SessionTrackedStatusType | "out";
+export type CalendarDayPositionTimelineType =
+	| "pastout"
+	| "past"
+	| "today"
+	| "future";
+
 export type BodySectionsKeys = keyof typeof BODY_SECTIONS;
 
 export const BODY_SECTIONS = {

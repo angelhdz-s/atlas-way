@@ -22,7 +22,7 @@ export default function SessionsPage() {
 				<header className="mb-8">
 					<Calendar />
 				</header>
-				<main className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7">
+				<main className="hidden grid-cols-4 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7">
 					{dates.map((date) => {
 						return <TrackingDay key={date.toISOString()} date={date} />;
 					})}

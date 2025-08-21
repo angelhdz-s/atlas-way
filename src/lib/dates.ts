@@ -1,4 +1,9 @@
-import { MONTH_DAYS, MONTH_DAYS_LEAP } from "@/constants/date";
+import {
+	MONTH_DAYS,
+	MONTH_DAYS_LEAP,
+	MONTH_LIMITS,
+	MonthDisplacement,
+} from "@/constants/date";
 import { StatusDayType } from "@/mocks/routines";
 import { NextSessionType, SESSIONS } from "@/mocks/sessions";
 import {
@@ -127,7 +132,6 @@ export function getCalendarDays(date: Date): CalendarDayType[] {
 
 	const firstOfTheMonth = new Date(year, month, 1);
 	const dayOfTheWeek = firstOfTheMonth.getDay();
-	console.log(`Day of the week: ${dayOfTheWeek}`);
 
 	if (dayOfTheWeek !== 7) {
 		const daysOffset = dayOfTheWeek - 1;
@@ -172,4 +176,43 @@ export function getCalendarStatusDay(date: Date) {
 		status,
 		trainingDay: type === "TRAINING",
 	};
+}
+
+function getPrevNextMonth(
+	month: number,
+	displacement: MonthDisplacement,
+): number {
+	if (displacement === "previous")
+		return month === MONTH_LIMITS.previous ? MONTH_LIMITS.next : month - 1;
+	return month === MONTH_LIMITS.next ? MONTH_LIMITS.previous : month + 1;
+}
+
+function getPrevNextMonthYear(
+	month: number,
+	year: number,
+	displacement: MonthDisplacement,
+): number {
+	if (displacement === "previous")
+		return month === MONTH_LIMITS.next ? year - 1 : year;
+
+	return month === MONTH_LIMITS.previous ? year + 1 : year;
+}
+
+function getPrevNextMonthDay(month: number, day: number): number {
+	return day > MONTH_DAYS[month] ? MONTH_DAYS[month] : day;
+}
+
+export function getPreviousNextMonthDate(
+	prevDate: Date,
+	config: MonthDisplacement = "next",
+) {
+	const [prevMonth, prevYear, prevDay] = [
+		prevDate.getMonth(),
+		prevDate.getFullYear(),
+		prevDate.getDate(),
+	];
+	const newMonth = getPrevNextMonth(prevMonth, config);
+	const newYear = getPrevNextMonthYear(newMonth, prevYear, config);
+	const newDay = getPrevNextMonthDay(newMonth, prevDay);
+	return new Date(newYear, newMonth, newDay);
 }

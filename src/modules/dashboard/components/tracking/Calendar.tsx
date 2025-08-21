@@ -1,89 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import {
-	CalendarDayType,
-	getCalendarDays,
-	getCalendarStatusDay,
-	getISOStringDate,
-} from "@/lib/dates";
-import { TODAY } from "@/mocks/tracking";
+import { FIRST_TRACKED_DAY, TODAY } from "@/mocks/tracking";
+import { CalendarDay } from "@/modules/dashboard/components/tracking/calendar/CalendarDay";
+import { useCalendar } from "@/modules/dashboard/hooks/useCalendar";
 import { ArrowUp } from "@/modules/globals/components/Icons";
-
-function CalendarDay({
-	day,
-	currentDate,
-}: {
-	day: CalendarDayType;
-	currentDate: Date;
-}) {
-	const { type, monthDay, date } = day;
-
-	if (type === "out") {
-		return <li className="opacity-50">{monthDay}</li>;
-	}
-
-	const isSelected = getISOStringDate(date) === getISOStringDate(currentDate);
-
-	const { status, trainingDay } = getCalendarStatusDay(date);
-
-	if (status === "completed")
-		return (
-			<li
-				className={
-					isSelected
-						? "text-green-400 bg-green-800"
-						: "text-green-600 outline-1 outline-offset-1 outline-green-800"
-				}
-			>
-				{monthDay}
-			</li>
-		);
-
-	if (status === "canceled")
-		return (
-			<li
-				className={
-					isSelected
-						? "text-red-300 bg-red-800"
-						: "text-red-400 outline-1 outline-offset-1 outline-red-800"
-				}
-			>
-				{monthDay}
-			</li>
-		);
-
-	if (status === "current")
-		return (
-			<li
-				className={
-					isSelected
-						? "text-main-foreground bg-blue-600"
-						: "text-main-foreground outline-1 outline-offset-1 outline-blue-700"
-				}
-			>
-				{monthDay}
-			</li>
-		);
-
-	if (isSelected)
-		return (
-			<li className="font-medium bg-main-foreground text-full-black light:bg-light-main-foreground light:text-main-background">
-				{monthDay}
-			</li>
-		);
-
-	if (trainingDay)
-		return (
-			<li
-				className={`ld-main-fg outline-1 outline-offset-1 outline-foreground/20`}
-			>
-				{monthDay}
-			</li>
-		);
-
-	return <li>{monthDay}</li>;
-}
 
 function ArrowButton({
 	onClick,
@@ -95,7 +15,10 @@ function ArrowButton({
 	return (
 		<button
 			onClick={onClick}
-			className="rounded-full ld-sec-bg grid place-content-center size-8"
+			className="
+			size-8 cursor-pointer rounded-full ld-sec-bg ld-main-fg 
+			grid place-content-center hover:text-current/50
+			"
 		>
 			{children}
 		</button>
@@ -103,45 +26,58 @@ function ArrowButton({
 }
 
 export function Calendar() {
-	const [currentDate, setCurrentDate] = useState(TODAY);
-	const days = getCalendarDays(currentDate);
-
-	const handlePreviousDate = () => {
-		setCurrentDate((prev) => {
-			const newDate = new Date(prev);
-			newDate.setDate(prev.getDate() - 1);
-			return newDate;
-		});
-	};
-
-	const handleNextDate = () => {
-		setCurrentDate((prev) => {
-			const newDate = new Date(prev);
-			newDate.setDate(prev.getDate() + 1);
-			return newDate;
-		});
-	};
+	const {
+		currentDate,
+		days,
+		handleNextDate,
+		handleNextMonth,
+		handlePreviousDate,
+		handlePreviousMonth,
+		monthName,
+	} = useCalendar({ todayDate: TODAY });
 
 	return (
-		<main className="flex items-center gap-2">
-			<ArrowButton onClick={handlePreviousDate}>
-				<ArrowUp className="size-6 -rotate-90" />
-			</ArrowButton>
-			<ul className="text-sm ld-sec-bg rounded-lg p-4 font-light grid grid-cols-7 w-fit gap-2 *:rounded-full *:size-6 *:flex *:items-center *:justify-center">
-				<li>S</li>
-				<li>M</li>
-				<li>T</li>
-				<li>W</li>
-				<li>T</li>
-				<li>F</li>
-				<li>S</li>
-				{days.map((day, index) => (
-					<CalendarDay key={index} day={day} currentDate={currentDate} />
-				))}
-			</ul>
-			<ArrowButton onClick={handleNextDate}>
-				<ArrowUp className="size-6 rotate-90" />
-			</ArrowButton>
+		<main className="h-86 flex items-start gap-2 w-fit">
+			<aside className="h-full pt-34">
+				<ArrowButton onClick={handlePreviousDate}>
+					<ArrowUp className="size-5 -rotate-90" strokeWidth="2" />
+				</ArrowButton>
+			</aside>
+			<main className="flex flex-col gap-2 p-4 ld-sec-bg rounded-lg">
+				<header className="flex items-center justify-between">
+					<button className="cursor-pointer p-2" onClick={handlePreviousMonth}>
+						<ArrowUp className="size-5 -rotate-90" />
+					</button>
+					<span>{`${monthName} ${currentDate.getFullYear()}`}</span>
+					<button className="cursor-pointer p-2" onClick={handleNextMonth}>
+						<ArrowUp className="size-5 rotate-90" />
+					</button>
+				</header>
+				<ul className="text-sm font-light grid grid-cols-7 w-fit gap-2">
+					<ul className="font-bold grid grid-cols-7 col-span-7 gap-2 text-center">
+						<li>S</li>
+						<li>M</li>
+						<li>T</li>
+						<li>W</li>
+						<li>T</li>
+						<li>F</li>
+						<li>S</li>
+					</ul>
+					{days.map((day, index) => (
+						<CalendarDay
+							key={index}
+							day={day}
+							initialDate={FIRST_TRACKED_DAY}
+							currentDate={currentDate}
+						/>
+					))}
+				</ul>
+			</main>
+			<aside className="h-full pt-34">
+				<ArrowButton onClick={handleNextDate}>
+					<ArrowUp className="size-5 rotate-90" strokeWidth="2" />
+				</ArrowButton>
+			</aside>
 		</main>
 	);
 }
