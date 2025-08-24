@@ -1,6 +1,6 @@
 import {
-	MONTH_DAYS,
 	MONTH_DAYS_LEAP,
+	MONTH_DAYS,
 	MONTH_LIMITS,
 	MonthDisplacement,
 } from "@/constants/date";
@@ -215,4 +215,28 @@ export function getPreviousNextMonthDate(
 	const newYear = getPrevNextMonthYear(newMonth, prevYear, config);
 	const newDay = getPrevNextMonthDay(newMonth, prevDay);
 	return new Date(newYear, newMonth, newDay);
+}
+
+export function getPrevAndNextDate(date: Date) {
+	return [getPastDate(date, 1), getNextDate(date, 1)];
+}
+
+export function getPreviousNextYearDate(
+	prevDate: Date,
+	config: MonthDisplacement = "next",
+) {
+	const [prevYear, currentMonth, prevDay] = [
+		prevDate.getFullYear(),
+		prevDate.getMonth(),
+		prevDate.getDate(),
+	];
+
+	const newYear = config === "next" ? prevYear + 1 : prevYear - 1;
+
+	if (currentMonth === 1 && prevDay === 29) {
+		const newDay = isLeapYear(newYear) ? 29 : 28;
+		return new Date(newYear, currentMonth, newDay);
+	}
+
+	return new Date(newYear, currentMonth, prevDay);
 }
