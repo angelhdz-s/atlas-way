@@ -1,25 +1,42 @@
-import { useCallback, useContext, useMemo, useRef, useState } from "react";
-import { MONTH_NAMES, MonthDisplacement } from "@/constants/date";
-import { getCalendarDays, getPreviousNextMonthDate } from "@/lib/dates";
-import { CalendarContext } from "../context/calendar-context";
+"use client";
 
-export function useCalendar() {
-	const { selectedDate, setCurrentDate } = useContext(CalendarContext);
-	const [currentMonth, setCurrentMonth] = useState<number>(
-		selectedDate.getMonth(),
-	);
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { MONTH_NAMES, MonthDisplacement } from "@/constants/date";
+import {
+	getCalendarDays,
+	getPreviousNextMonthDate,
+	getPreviousNextYearDate,
+} from "@/lib/dates";
+import { CalendarContextType } from "../context/calendar-context";
+
+export function useCalendar({
+	selectedDate,
+	setCurrentDate,
+}: CalendarContextType) {
+	const [[currentYear, currentMonth], setCurrentYearMonth] = useState<
+		[number, number]
+	>([selectedDate.getFullYear(), selectedDate.getMonth()]);
 	const date = useRef(selectedDate);
 
+	console.log(selectedDate.toISOString().split("T")[0]);
+
 	const days = useMemo(() => {
-		const currentYear = date.current.getFullYear();
 		const currentDay = date.current.getDate();
 		return getCalendarDays(new Date(currentYear, currentMonth, currentDay));
-	}, [currentMonth]);
+	}, [currentMonth, currentYear]);
 
 	const setNewMonthAndDate = useCallback(
 		(prev: Date, displacement: MonthDisplacement) => {
 			const newDate = getPreviousNextMonthDate(prev, displacement);
-			setCurrentMonth(newDate.getMonth());
+			date.current = newDate;
+			return newDate;
+		},
+		[],
+	);
+
+	const setNewYearAndDate = useCallback(
+		(prev: Date, displacement: MonthDisplacement) => {
+			const newDate = getPreviousNextYearDate(prev, displacement);
 			date.current = newDate;
 			return newDate;
 		},
@@ -43,13 +60,23 @@ export function useCalendar() {
 		});
 	};
 
+	const handlePreviousYear = () => {
+		setCurrentDate((prev) => {
+			return setNewYearAndDate(prev, "previous");
+		});
+	};
+
+	const handleNextYear = () => {
+		setCurrentDate((prev) => {
+			return setNewYearAndDate(prev, "next");
+		});
+	};
+
 	const handlePreviousDate = () => {
 		setCurrentDate((prev) => {
 			const newDate = new Date(prev);
 			newDate.setDate(prev.getDate() - 1);
 			date.current = newDate;
-			if (currentMonth !== newDate.getMonth())
-				setCurrentMonth(newDate.getMonth());
 			return newDate;
 		});
 	};
@@ -59,11 +86,21 @@ export function useCalendar() {
 			const newDate = new Date(prev);
 			newDate.setDate(prev.getDate() + 1);
 			date.current = newDate;
-			if (currentMonth !== newDate.getMonth())
-				setCurrentMonth(newDate.getMonth());
 			return newDate;
 		});
 	};
+
+	useEffect(() => {
+		if (
+			selectedDate.getMonth() !== currentMonth ||
+			selectedDate.getFullYear() !== currentYear
+		) {
+			setCurrentYearMonth([
+				selectedDate.getFullYear(),
+				selectedDate.getMonth(),
+			]);
+		}
+	}, [selectedDate, currentMonth, currentYear]);
 
 	return {
 		selectedDate,
@@ -73,5 +110,7 @@ export function useCalendar() {
 		handleNextMonth,
 		handlePreviousDate,
 		handleNextDate,
+		handlePreviousYear,
+		handleNextYear,
 	};
 }

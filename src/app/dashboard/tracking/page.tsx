@@ -1,6 +1,5 @@
 "use client";
 
-import { TODAY } from "@/mocks/tracking";
 import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import { PageContent } from "@/modules/dashboard/components/page/PageContent";
 import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";
@@ -20,8 +19,8 @@ export default function SessionsPage() {
 				</button>
 			</PageHeader>
 			<PageContent>
-				<CalendarProvider selectedDate={TODAY}>
-					<main className="flex items-center gap-2">
+				<CalendarProvider>
+					<main className="flex items-center gap-8">
 						<Calendar />
 						<SessionsDetails />
 					</main>

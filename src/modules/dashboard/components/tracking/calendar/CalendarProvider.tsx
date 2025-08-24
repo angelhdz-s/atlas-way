@@ -1,14 +1,10 @@
 import { useState } from "react";
+import { TODAY } from "@/mocks/tracking";
 import { CalendarContext } from "@/modules/dashboard/context/calendar-context";
 
-export function CalendarProvider({
-	children,
-	selectedDate,
-}: {
-	children: React.ReactNode;
-	selectedDate: Date;
-}) {
-	const [currentDate, setCurrentDate] = useState<Date>(selectedDate);
+export function CalendarProvider({ children }: { children: React.ReactNode }) {
+	const [currentDate, setCurrentDate] = useState<Date>(TODAY);
+
 	return (
 		<CalendarContext.Provider
 			value={{ selectedDate: currentDate, setCurrentDate }}

@@ -8,30 +8,36 @@ import { BoltSlash } from "@/modules/globals/components/Icons";
 function CalendarDayItem({
 	children,
 	className,
+	onClick,
 }: {
 	children: React.ReactNode;
 	className?: string;
+	onClick?: () => void;
 }) {
 	return (
-		<li
-			className={`rounded-full size-8 flex items-center justify-center ${className}`}
+		<button
+			onClick={onClick}
+			className={`cursor-pointer rounded-full size-8 flex items-center justify-center ${className}`}
 		>
 			{children}
-		</li>
+		</button>
 	);
 }
 
 type CalendarDayTypeProps = {
 	day: number;
 	isSelected?: boolean;
+	onClick?: () => void;
 };
 
 function CalendarDayCompleted({
 	day,
 	isSelected = false,
+	onClick,
 }: CalendarDayTypeProps) {
 	return (
 		<CalendarDayItem
+			onClick={onClick}
 			className={
 				isSelected ? "text-main-foreground bg-green-600" : "bg-green-600/50"
 			}
@@ -44,9 +50,11 @@ function CalendarDayCompleted({
 function CalendarDayCanceled({
 	day,
 	isSelected = false,
+	onClick,
 }: CalendarDayTypeProps) {
 	return (
 		<CalendarDayItem
+			onClick={onClick}
 			className={
 				isSelected ? "text-main-foreground bg-red-600" : "bg-red-600/50"
 			}
@@ -56,9 +64,16 @@ function CalendarDayCanceled({
 	);
 }
 
-function CalendarDayCurrent({ isSelected = false }) {
+function CalendarDayCurrent({
+	isSelected = false,
+	onClick,
+}: {
+	isSelected: boolean;
+	onClick?: () => void;
+}) {
 	return (
 		<CalendarDayItem
+			onClick={onClick}
 			className={`${isSelected ? "text-full-black bg-main-foreground light:text-main-foreground light:bg-full-black" : "bg-subtle/20"}`}
 		>
 			<BoltSlash className="size-5" strokeWidth={isSelected ? "2" : "1.5"} />
@@ -66,17 +81,21 @@ function CalendarDayCurrent({ isSelected = false }) {
 	);
 }
 
-function CalendarDayNormalSelected({ day }: CalendarDayTypeProps) {
+function CalendarDayNormalSelected({ day, onClick }: CalendarDayTypeProps) {
 	return (
-		<CalendarDayItem className="font-bold bg-main-foreground text-full-black light:bg-light-main-foreground light:text-main-foreground">
+		<CalendarDayItem
+			onClick={onClick}
+			className="font-bold bg-main-foreground text-full-black light:bg-light-main-foreground light:text-main-foreground"
+		>
 			{day}
 		</CalendarDayItem>
 	);
 }
 
-function CalendarDayNextTraining({ day }: CalendarDayTypeProps) {
+function CalendarDayNextTraining({ day, onClick }: CalendarDayTypeProps) {
 	return (
 		<CalendarDayItem
+			onClick={onClick}
 			className={`ld-main-fg outline-1 outline-offset-1 outline-foreground/20`}
 		>
 			{day}
@@ -88,42 +107,71 @@ export function CalendarDay({
 	day,
 	currentDate,
 	initialDate,
+	onClick,
 }: {
 	day: CalendarDayType;
 	currentDate: Date;
 	initialDate: Date;
+	onClick?: () => void;
 }) {
 	const { type, monthDay, date } = day;
 
-	const isSelected = getISOStringDate(date) === getISOStringDate(currentDate);
-
 	if (type === "out") {
-		return <CalendarDayItem className="opacity-50">{monthDay}</CalendarDayItem>;
+		return (
+			<CalendarDayItem onClick={onClick} className="opacity-50">
+				{monthDay}
+			</CalendarDayItem>
+		);
 	}
+
+	const isSelected = getISOStringDate(date) === getISOStringDate(currentDate);
 
 	if (date < initialDate) {
 		return isSelected ? (
-			<CalendarDayNormalSelected day={monthDay} isSelected={isSelected} />
+			<CalendarDayNormalSelected
+				onClick={onClick}
+				day={monthDay}
+				isSelected={isSelected}
+			/>
 		) : (
-			<CalendarDayItem>{monthDay}</CalendarDayItem>
+			<CalendarDayItem onClick={onClick}>{monthDay}</CalendarDayItem>
 		);
 	}
 
 	const { status, trainingDay } = getCalendarStatusDay(date);
 
 	if (status === "completed")
-		return <CalendarDayCompleted day={monthDay} isSelected={isSelected} />;
+		return (
+			<CalendarDayCompleted
+				onClick={onClick}
+				day={monthDay}
+				isSelected={isSelected}
+			/>
+		);
 
 	if (status === "canceled")
-		return <CalendarDayCanceled day={monthDay} isSelected={isSelected} />;
+		return (
+			<CalendarDayCanceled
+				onClick={onClick}
+				day={monthDay}
+				isSelected={isSelected}
+			/>
+		);
 
 	if (status === "current")
-		return <CalendarDayCurrent isSelected={isSelected} />;
+		return <CalendarDayCurrent onClick={onClick} isSelected={isSelected} />;
 
 	if (isSelected)
-		return <CalendarDayNormalSelected day={monthDay} isSelected={isSelected} />;
+		return (
+			<CalendarDayNormalSelected
+				onClick={onClick}
+				day={monthDay}
+				isSelected={isSelected}
+			/>
+		);
 
-	if (trainingDay) return <CalendarDayNextTraining day={monthDay} />;
+	if (trainingDay)
+		return <CalendarDayNextTraining onClick={onClick} day={monthDay} />;
 
-	return <CalendarDayItem>{monthDay}</CalendarDayItem>;
+	return <CalendarDayItem onClick={onClick}>{monthDay}</CalendarDayItem>;
 }
