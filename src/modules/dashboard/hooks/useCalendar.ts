@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { MONTH_NAMES, MonthDisplacement } from "@/constants/date";
 import {
 	getCalendarDays,
@@ -25,23 +25,17 @@ export function useCalendar({
 		return getCalendarDays(new Date(currentYear, currentMonth, currentDay));
 	}, [currentMonth, currentYear]);
 
-	const setNewMonthAndDate = useCallback(
-		(prev: Date, displacement: MonthDisplacement) => {
-			const newDate = getPreviousNextMonthDate(prev, displacement);
-			date.current = newDate;
-			return newDate;
-		},
-		[],
-	);
+	const setNewMonthAndDate = (prev: Date, displacement: MonthDisplacement) => {
+		const newDate = getPreviousNextMonthDate(prev, displacement);
+		date.current = newDate;
+		return newDate;
+	};
 
-	const setNewYearAndDate = useCallback(
-		(prev: Date, displacement: MonthDisplacement) => {
-			const newDate = getPreviousNextYearDate(prev, displacement);
-			date.current = newDate;
-			return newDate;
-		},
-		[],
-	);
+	const setNewYearAndDate = (prev: Date, displacement: MonthDisplacement) => {
+		const newDate = getPreviousNextYearDate(prev, displacement);
+		date.current = newDate;
+		return newDate;
+	};
 
 	const monthName = useMemo(
 		() => MONTH_NAMES[currentMonth].name,
