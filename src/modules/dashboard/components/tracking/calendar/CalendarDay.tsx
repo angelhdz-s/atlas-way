@@ -17,9 +17,13 @@ function CalendarDayItem({
 	return (
 		<button
 			onClick={onClick}
-			className={`cursor-pointer rounded-full size-8 flex items-center justify-center ${className}`}
+			className="cursor-pointer w-full flex justify-center"
 		>
-			{children}
+			<div
+				className={`flex items-center justify-center rounded-full size-8 ${className}`}
+			>
+				{children}
+			</div>
 		</button>
 	);
 }

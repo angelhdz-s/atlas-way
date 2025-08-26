@@ -37,10 +37,7 @@ export function useCalendar({
 		return newDate;
 	};
 
-	const monthName = useMemo(
-		() => MONTH_NAMES[currentMonth].name,
-		[currentMonth],
-	);
+	const monthName = MONTH_NAMES[currentMonth].name;
 
 	const handlePreviousMonth = () => {
 		setCurrentDate((prev) => {

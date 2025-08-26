@@ -3,12 +3,14 @@ import { getPrevAndNextDate } from "@/lib/dates";
 import { CalendarContext } from "../../context/calendar-context";
 import { TrackingDay } from "../TrackingDay";
 
-export function SessionsDetails() {
+export function SessionsDetails({ className }: { className?: string }) {
 	const { selectedDate } = useContext(CalendarContext);
 	const [prevDate, nextDate] = getPrevAndNextDate(selectedDate);
 
 	return (
-		<main className="rounded bg-sec-background/20 h-86 p-8 flex-1 flex flex-col gap-4">
+		<main
+			className={`rounded bg-sec-background/20 h-86 p-8 flex-1 flex flex-col gap-4 ${className}`}
+		>
 			<header className="text-center text-2xl font-light font-funnel-display">
 				Details
 			</header>
