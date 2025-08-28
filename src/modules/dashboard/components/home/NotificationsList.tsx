@@ -57,7 +57,7 @@ function Notifications({ className = "" }: { className?: string }) {
 export function NotificationsList({ className = "" }: { className?: string }) {
 	return (
 		<article
-			className={`flex flex-col gap-4 p-8 bg-background light:bg-light-sec-background border border-foreground/10 col-span-3 ${className}`}
+			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
 		>
 			<header>
 				<CardTitle title="Notifications" />

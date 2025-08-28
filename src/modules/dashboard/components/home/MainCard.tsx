@@ -8,7 +8,7 @@ import {
 export function MainCard({ className = "" }: { className?: string }) {
 	return (
 		<article
-			className={`relative flex flex-col gap-4 text-main-foreground p-8 bg-primary overflow-hidden ${className}`}
+			className={`relative flex flex-col gap-4 dashboard-card text-main-foreground bg-primary overflow-hidden ${className}`}
 		>
 			<header className="relative z-1">
 				<h3 className="text-2xl tracking-tight max-w-100 font-funnel-display">

@@ -117,7 +117,7 @@ function CalendarNextWeek({ className }: { className?: string }) {
 export function Calendar({ className = "" }: { className?: string }) {
 	return (
 		<article
-			className={`col-span-4 flex flex-col gap-4 p-8 bg-background light:bg-light-sec-background border border-foreground/10 ${className}`}
+			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
 		>
 			<CalendarHeader />
 			<main className="flex-1 leading-[1.2] flex flex-col justify-end gap-2 font-light text-center">

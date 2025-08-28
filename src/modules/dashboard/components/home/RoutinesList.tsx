@@ -4,7 +4,7 @@ import { CardTitle } from "./card/CardTitle";
 export function RoutinesList({ className = "" }: { className?: string }) {
 	return (
 		<article
-			className={`flex flex-col gap-4 p-8 bg-background light:bg-light-sec-background border border-foreground/10 col-span-2 ${className}`}
+			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
 		>
 			<CardTitle title="Routines" />
 			<main>

@@ -4,7 +4,7 @@ import { CardTitle } from "./card/CardTitle";
 export function NextSession({ className = "" }: { className?: string }) {
 	return (
 		<article
-			className={`col-span-3 flex flex-col gap-4 p-8 bg-background light:bg-light-sec-background border border-foreground/10 ${className}`}
+			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
 		>
 			<CardTitle title="Next Sessions" />
 			<main className="flex flex-col gap-4">

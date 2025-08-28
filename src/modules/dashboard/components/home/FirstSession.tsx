@@ -5,7 +5,7 @@ import { ImageBackground } from "./ImageBackground";
 export function FirstSession({ className = "" }: { className?: string }) {
 	return (
 		<article
-			className={`relative bg-background light:bg-light-sec-background p-8 border-1 border-foreground/10 overflow-hidden ${className}`}
+			className={`relative dashboard-card-default overflow-hidden ${className}`}
 		>
 			<CardTitle title="Create Your Sessions" />
 			<ImageBackground>

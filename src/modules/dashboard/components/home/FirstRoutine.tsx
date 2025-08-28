@@ -5,7 +5,7 @@ import { ImageBackground } from "./ImageBackground";
 export function FirstRoutine({ className = "" }: { className?: string }) {
 	return (
 		<article
-			className={`relative bg-background light:bg-light-sec-background back p-8 border-1 border-foreground/10 overflow-hidden ${className}`}
+			className={`relative dashboard-card-default overflow-hidden ${className}`}
 		>
 			<CardTitle title="Create Your First Routine" />
 			<ImageBackground>

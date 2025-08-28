@@ -143,6 +143,21 @@ html[data-theme="light"] {
 	.btn-lg {
 		@apply text-lg px-6 py-3 rounded;
 	}
+
+	.dashboard-card,
+	.dashboard-card-default {
+		@apply rounded-3xl p-8;
+	}
+
+	.dashboard-card-bg,
+	.dashboard-card-default {
+		@apply bg-background light:bg-light-sec-background;
+	}
+
+	.dashboard-card-border,
+	.dashboard-card-default {
+		@apply border-1 border-foreground/10;
+	}
 }
 
 body {

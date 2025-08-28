@@ -22,32 +22,32 @@ export default function Dashboard() {
 				title="Dashboard"
 				description="Your personal fitness dashboard"
 			/>
-			<PageContent className="grid grid-cols-12 gap-4 *:rounded-3xl">
+			<PageContent className="grid grid-cols-12 gap-4">
 				<MainCard className="col-span-4" />
 
 				<FirstRoutine className="col-span-3" />
 
 				<FirstSession className="col-span-3" />
 
-				<ExercisesList />
+				<ExercisesList className="col-span-2" />
 
-				<LastSession />
+				<LastSession className="col-span-3" />
 
-				<NextSession />
+				<NextSession className="col-span-3" />
 
-				<SessionStreak />
+				<SessionStreak className="col-span-2" />
 
-				<RoutinesList />
+				<RoutinesList className="col-span-2" />
 
-				<MusclesList />
+				<MusclesList className="col-span-2" />
 
-				<TotalSessionsDone />
+				<TotalSessionsDone className="col-span-2" />
 
-				<Calendar />
+				<Calendar className="col-span-4" />
 
-				<NotificationsList />
+				<NotificationsList className="col-span-3" />
 
-				<BestExercises />
+				<BestExercises className="col-span-3" />
 			</PageContent>
 		</PageContainer>
 	);
