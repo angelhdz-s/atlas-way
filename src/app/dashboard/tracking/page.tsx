@@ -1,15 +1,18 @@
 "use client";
 
-import { LastSession } from "@/modules/dashboard/components/home/LastSession";
-import { NextSession } from "@/modules/dashboard/components/home/NextSession";
-import { SessionStreak } from "@/modules/dashboard/components/home/SessionStreak";
 import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import { PageContent } from "@/modules/dashboard/components/page/PageContent";
 import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";
-import { Calendar } from "@/modules/dashboard/components/tracking/calendar/Calendar";
+import { ActivitiesToday } from "@/modules/dashboard/components/tracking/ActivitiesToday";
+import { AllSessionsDoneCounter } from "@/modules/dashboard/components/tracking/AllSessionsDoneCounter";
+import { BestRecords } from "@/modules/dashboard/components/tracking/BestRecords";
 import { CalendarProvider } from "@/modules/dashboard/components/tracking/calendar/CalendarProvider";
-import { DateSelector } from "@/modules/dashboard/components/tracking/calendar/DateSelector";
-import { SessionsDetails } from "@/modules/dashboard/components/tracking/SessionsDetails";
+import { CurrentGoals } from "@/modules/dashboard/components/tracking/CurrentGoals";
+import { CurrentMonthSessionsCounter } from "@/modules/dashboard/components/tracking/CurrentMonthSessionsCounter";
+import { NextSession } from "@/modules/dashboard/components/tracking/NextSession";
+import { SessionsChart } from "@/modules/dashboard/components/tracking/SessionsChart";
+import { SessionsHistory } from "@/modules/dashboard/components/tracking/SessionsHistory";
+import { SessionStreak } from "@/modules/dashboard/components/tracking/SessionStreak";
 
 export default function SessionsPage() {
 	return (
@@ -17,15 +20,22 @@ export default function SessionsPage() {
 			<PageHeader
 				title="Tracking"
 				className="flex items-center justify-between"
-			></PageHeader>
+			>
+				<button className="rounded bg-primary px-4 py-2 cursor-pointer ld-main-fg hover:text-current/50">
+					<span className="font-normal">New Session Done</span>
+				</button>
+			</PageHeader>
 			<CalendarProvider>
-				<PageContent className="grid grid-cols-4 gap-4 *:rounded-3xl">
-					<DateSelector />
-					<Calendar />
-					<SessionsDetails className="col-span-2" />
-					<LastSession className="!col-span-1" />
-					<NextSession className="!col-span-1" />
-					<SessionStreak className="!col-span-1" />
+				<PageContent className="grid grid-cols-3 gap-4 *:rounded-3xl">
+					<SessionStreak className="!min-h-30" />
+					<CurrentMonthSessionsCounter className="!min-h-30" />
+					<AllSessionsDoneCounter className="!min-h-30" />
+					<ActivitiesToday />
+					<SessionsHistory className="col-span-2" />
+					<SessionsChart />
+					<BestRecords />
+					<CurrentGoals />
+					<NextSession />
 				</PageContent>
 			</CalendarProvider>
 		</PageContainer>

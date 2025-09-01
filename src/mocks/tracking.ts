@@ -120,3 +120,12 @@ export const TRACKED_DAYS: TrackedDayType[] = [
 export const FIRST_TRACKED_DAY = TRACKED_DAYS.map((day) => day.date).reduce(
 	(a, b) => minorValue(a, b),
 );
+
+export const SESSIONS_COUNTERS = {
+	sessionStreak: 16,
+	totalSessions: 58,
+	currentMonth: 8,
+	currentYear: 43,
+	averagePerMonth: 14,
+	averagePerYear: 97,
+};

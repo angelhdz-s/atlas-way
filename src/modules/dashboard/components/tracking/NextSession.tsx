@@ -1,12 +1,12 @@
 import { CircleCheck, Clock } from "@/modules/globals/components/Icons";
-import { CardTitle } from "./card/CardTitle";
+import { CardTitle } from "../home/card/CardTitle";
 
 export function NextSession({ className = "" }: { className?: string }) {
 	return (
 		<article
 			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
 		>
-			<CardTitle title="Next Sessions" />
+			<CardTitle title="Next Session" />
 			<main className="flex flex-col gap-4">
 				<header className="flex items-center">
 					<h4 className="leading-[1] inline font-bold text-xl text-accent">
