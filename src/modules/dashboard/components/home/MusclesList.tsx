@@ -1,4 +1,4 @@
-import { MUSCLES } from "@/constants/db";
+import { MUSCLES } from "@/modules/globals/constants/db";
 import { CardTitle } from "./card/CardTitle";
 import { SimpleTable } from "./SimpleTable";
 

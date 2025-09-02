@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TODAY } from "@/mocks/tracking";
+import { TODAY } from "@/modules/globals/mocks/tracking";
 import { CalendarContext } from "@/modules/dashboard/context/calendar-context";
 
 export function CalendarProvider({ children }: { children: React.ReactNode }) {

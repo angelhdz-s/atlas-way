@@ -1,7 +1,8 @@
-import { MONTH_NAMES } from "@/constants/date";
-import { SESSIONS_COUNTERS, TODAY } from "@/mocks/tracking";
+import { MONTH_NAMES } from "@/modules/globals/constants/date";
+import { SESSIONS_COUNTERS, TODAY } from "@/modules/globals/mocks/tracking";
 import { CardTitle } from "@/modules/dashboard/components/home/card/CardTitle";
-import { Counter } from "./Counter";
+import { Counter, CounterIcon } from "./header/Counter";
+import { CalendarWeek } from "@/modules/globals/components/Icons";
 
 export function CurrentMonthSessionsCounter({
 	className,
@@ -13,15 +14,15 @@ export function CurrentMonthSessionsCounter({
 
 	return (
 		<article
-			className={`flex flex-col font-light dashboard-card-default ${className}`}
+			className={`flex flex-col gap-1 font-light dashboard-card-default ${className}`}
 		>
 			<header>
 				<CardTitle title={`${monthName}'s Reached Sessions`} />
 			</header>
-			<main>
+			<main className="flex-1 flex items-center gap-1">
+				<CounterIcon icon={CalendarWeek} />
 				<Counter number={currentMonth} />
 			</main>
-			<footer></footer>
 		</article>
 	);
 }

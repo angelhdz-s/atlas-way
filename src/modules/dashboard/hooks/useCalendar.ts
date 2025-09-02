@@ -1,12 +1,15 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { MONTH_NAMES, MonthDisplacement } from "@/constants/date";
+import {
+	MONTH_NAMES,
+	MonthDisplacement,
+} from "@/modules/globals/constants/date";
 import {
 	getCalendarDays,
 	getPreviousNextMonthDate,
 	getPreviousNextYearDate,
-} from "@/lib/dates";
+} from "@/modules/globals/lib/dates";
 import { CalendarContextType } from "../context/calendar-context";
 
 export function useCalendar({

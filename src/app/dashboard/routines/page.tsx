@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ROUTINES } from "@/mocks/routines";
+import { ROUTINES } from "@/modules/globals/mocks/routines";
 import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import { PageContent } from "@/modules/dashboard/components/page/PageContent";
 import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";

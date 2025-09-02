@@ -1,4 +1,4 @@
-import { NOTIFICATIONS } from "@/mocks/notifications";
+import { NOTIFICATIONS } from "@/modules/globals/mocks/notifications";
 import { Notification } from "@/modules/dashboard/components/Notification";
 import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import { PageContent } from "@/modules/dashboard/components/page/PageContent";

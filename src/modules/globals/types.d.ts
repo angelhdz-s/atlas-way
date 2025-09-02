@@ -5,6 +5,12 @@ export interface IconProps {
 
 export type IconTypes = React.FC<IconProps>;
 
+export interface SolidIconProps {
+	className?: string;
+}
+
+export type SolidIconTypes = React.FC<IconProps>;
+
 export type ToastType = "success" | "error" | "info" | "warning";
 
 export interface Toast {

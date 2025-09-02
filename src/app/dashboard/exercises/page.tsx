@@ -2,8 +2,12 @@ import Link from "next/link";
 import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import { PageContent } from "@/modules/dashboard/components/page/PageContent";
 import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";
-import {} from "@/mocks/sessions";
-import { BODY_SECTIONS, EXERCISES, ExerciseType } from "@/constants/db";
+import {} from "@/modules/globals/mocks/sessions";
+import {
+	BODY_SECTIONS,
+	EXERCISES,
+	ExerciseType,
+} from "@/modules/globals/constants/db";
 import {
 	DashboardCard,
 	DashboardCardButton,

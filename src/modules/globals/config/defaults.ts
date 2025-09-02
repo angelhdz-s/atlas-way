@@ -1,4 +1,4 @@
-import { NotificationRelevanceType } from "@/mocks/notifications";
+import { NotificationRelevanceType } from "@/modules/globals/mocks/notifications";
 import type { ToastType } from "@/modules/globals/types.d";
 
 export const NOTIFICATION_DEFAULT_RELEVANCE: NotificationRelevanceType = "info";

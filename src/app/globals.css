@@ -19,6 +19,8 @@
 	--color-accent: #e6a737;
 	--color-subtle: var(--color-zinc-600);
 	--color-full-black: #0a0a0a;
+	--color-complete: var(--color-green-600);
+	--color-cancel: var(--color-red-600);
 
 	/* Dark colors */
 
@@ -146,7 +148,7 @@ html[data-theme="light"] {
 
 	.dashboard-card,
 	.dashboard-card-default {
-		@apply rounded-3xl p-8;
+		@apply rounded-xl p-4;
 	}
 
 	.dashboard-card-bg,

@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext } from "react";
-import { FIRST_TRACKED_DAY } from "@/mocks/tracking";
+import { FIRST_TRACKED_DAY } from "@/modules/globals/mocks/tracking";
 import { CalendarDay } from "@/modules/dashboard/components/tracking/calendar/CalendarDay";
 import { CalendarContext } from "@/modules/dashboard/context/calendar-context";
 import { useCalendar } from "@/modules/dashboard/hooks/useCalendar";

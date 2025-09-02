@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { THEME } from "@/constants/client";
+import { THEME } from "@/modules/globals/constants/client";
 import {
 	DefaultIcon,
 	defaultIconSizeClass,

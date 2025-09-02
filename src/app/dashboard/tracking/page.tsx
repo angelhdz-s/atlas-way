@@ -9,6 +9,7 @@ import { BestRecords } from "@/modules/dashboard/components/tracking/BestRecords
 import { CalendarProvider } from "@/modules/dashboard/components/tracking/calendar/CalendarProvider";
 import { CurrentGoals } from "@/modules/dashboard/components/tracking/CurrentGoals";
 import { CurrentMonthSessionsCounter } from "@/modules/dashboard/components/tracking/CurrentMonthSessionsCounter";
+import { CurrentWeekStatus } from "@/modules/dashboard/components/tracking/CurrentWeekStatus";
 import { NextSession } from "@/modules/dashboard/components/tracking/NextSession";
 import { SessionsChart } from "@/modules/dashboard/components/tracking/SessionsChart";
 import { SessionsHistory } from "@/modules/dashboard/components/tracking/SessionsHistory";
@@ -26,16 +27,17 @@ export default function SessionsPage() {
 				</button>
 			</PageHeader>
 			<CalendarProvider>
-				<PageContent className="grid grid-cols-3 gap-4 *:rounded-3xl">
-					<SessionStreak className="!min-h-30" />
-					<CurrentMonthSessionsCounter className="!min-h-30" />
-					<AllSessionsDoneCounter className="!min-h-30" />
+				<PageContent className="grid grid-cols-3 gap-4">
+					<SessionStreak />
+					<CurrentMonthSessionsCounter />
+					<AllSessionsDoneCounter />
 					<ActivitiesToday />
 					<SessionsHistory className="col-span-2" />
 					<SessionsChart />
 					<BestRecords />
 					<CurrentGoals />
 					<NextSession />
+					<CurrentWeekStatus />
 				</PageContent>
 			</CalendarProvider>
 		</PageContainer>

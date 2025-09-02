@@ -98,7 +98,6 @@ export function Barbell({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M2 12h1" />
 			<path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" />
 			<path d="M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1z" />
@@ -116,7 +115,6 @@ export function LayoutSidebar({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
 			<path d="M9 4l0 16" />
 		</MainSvgBody>
@@ -129,7 +127,6 @@ export function Bell({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
 			<path d="M9 17v1a3 3 0 0 0 6 0v-1" />
 		</MainSvgBody>
@@ -142,7 +139,6 @@ export function BellRinging({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
 			<path d="M9 17v1a3 3 0 0 0 6 0v-1" />
 			<path d="M21 6.727a11.05 11.05 0 0 0 -2.794 -3.727" />
@@ -172,7 +168,6 @@ export function BellZ({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
 			<path d="M9 17v1a3 3 0 0 0 6 0v-1" />
 			<path d="M10 9h4l-4 4h4" />
@@ -186,7 +181,6 @@ export function BarbellOff({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M2 12h1" />
 			<path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" />
 			<path d="M6.298 6.288a1 1 0 0 0 -.298 .712v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-8" />
@@ -205,7 +199,6 @@ export function CalendarWeek({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
 			<path d="M16 3v4" />
 			<path d="M8 3v4" />
@@ -267,7 +260,6 @@ export function CircleCheck({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
 			<path d="M9 12l2 2l4 -4" />
 		</MainSvgBody>
@@ -280,7 +272,6 @@ export function CircleOutline({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
 		</MainSvgBody>
 	);
@@ -292,7 +283,6 @@ export function MapRoute({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M3 7l6 -3l6 3l6 -3v13l-6 3l-6 -3l-6 3v-13" />
 			<path d="M9 12v.01" />
 			<path d="M6 13v.01" />
@@ -308,7 +298,6 @@ export function Alarm({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M12 13m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
 			<path d="M12 10l0 3l2 0" />
 			<path d="M7 4l-2.75 2" />
@@ -323,7 +312,6 @@ export function Cog({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
 			<path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
 		</MainSvgBody>
@@ -336,7 +324,6 @@ export function DeviceDesktop({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z" />
 			<path d="M7 20h10" />
 			<path d="M9 16v4" />
@@ -351,7 +338,6 @@ export function Edit({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
 			<path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
 			<path d="M16 5l3 3" />
@@ -365,7 +351,6 @@ export function AlertTriangle({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M12 9v4" />
 			<path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z" />
 			<path d="M12 16h.01" />
@@ -394,7 +379,6 @@ export function Forward({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M3 5v14l8 -7z" />
 			<path d="M14 5v14l8 -7z" />
 		</MainSvgBody>
@@ -407,7 +391,6 @@ export function Home({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M5 12l-2 0l9 -9l9 9l-2 0" />
 			<path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
 			<path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
@@ -421,7 +404,6 @@ export function InformationCircle({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
 			<path d="M12 9h.01" />
 			<path d="M11 12h1v4h1" />
@@ -435,7 +417,6 @@ export function Language({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M4 5h7" />
 			<path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
 			<path d="M5 9c0 2.144 2.952 3.908 6.7 4" />
@@ -451,7 +432,6 @@ export function Heart({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
 		</MainSvgBody>
 	);
@@ -463,7 +443,6 @@ export function Moon({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
 		</MainSvgBody>
 	);
@@ -475,7 +454,6 @@ export function Dots({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
 			<path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
 			<path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
@@ -489,7 +467,6 @@ export function DeviceDesktopAnalytics({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M3 4m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1z" />
 			<path d="M7 20h10" />
 			<path d="M9 16v4" />
@@ -508,7 +485,6 @@ export function Scale({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M7 20l10 0" />
 			<path d="M6 6l6 -1l6 1" />
 			<path d="M12 3l0 17" />
@@ -524,7 +500,6 @@ export function Sun({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
 			<path d="M6.343 17.657l-1.414 1.414" />
 			<path d="M6.343 6.343l-1.414 -1.414" />
@@ -544,7 +519,6 @@ export function Trash({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M4 7l16 0" />
 			<path d="M10 11l0 6" />
 			<path d="M14 11l0 6" />
@@ -560,7 +534,6 @@ export function TrendingDown({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M3 7l6 6l4 -4l8 8" />
 			<path d="M21 10l0 7l-7 0" />
 		</MainSvgBody>
@@ -573,7 +546,6 @@ export function TrendingUp({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M3 17l6 -6l4 4l8 -8" />
 			<path d="M14 7l7 0l0 7" />
 		</MainSvgBody>
@@ -586,7 +558,6 @@ export function Trophy({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M8 21l8 0" />
 			<path d="M12 17l0 4" />
 			<path d="M7 4l10 0" />
@@ -603,7 +574,6 @@ export function Hammer({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
 			<path d="M18.121 15.293l2.586 -2.586a1 1 0 0 0 0 -1.414l-7.586 -7.586a1 1 0 0 0 -1.414 0l-2.586 2.586a1 1 0 0 0 0 1.414l7.586 7.586a1 1 0 0 0 1.414 0z" />
 		</MainSvgBody>
@@ -616,7 +586,6 @@ export function XCircle({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
 			<path d="M10 10l4 4m0 -4l-4 4" />
 		</MainSvgBody>
@@ -629,7 +598,6 @@ export function XMark({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M18 6l-12 12" />
 			<path d="M6 6l12 12" />
 		</MainSvgBody>
@@ -642,7 +610,6 @@ export function ClipboardList({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
 			<path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
 			<path d="M9 12l.01 0" />
@@ -659,7 +626,6 @@ export function Man({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M10 16v5" />
 			<path d="M14 16v5" />
 			<path d="M9 9h6l-1 7h-4z" />
@@ -676,7 +642,6 @@ export function ChartPie({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8" />
 			<path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a1 1 0 0 1 -1 -1v-4.5" />
 		</MainSvgBody>
@@ -689,7 +654,6 @@ export function ReportAnalytics({
 }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
 			<path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" />
 			<path d="M9 17v-5" />
@@ -699,13 +663,32 @@ export function ReportAnalytics({
 	);
 }
 
+export function Flame({
+	className,
+	strokeWidth = defaultIconStrokeWidth,
+}: IconProps) {
+	return (
+		<MainSvgBody strokeWidth={strokeWidth} className={className}>
+			<path d="M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.621 -2.333 5.588c0 3.704 3.134 6.706 7 6.706s7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235" />
+		</MainSvgBody>
+	);
+}
+
 /* MARK: Solid Icons */
 
 export function SolidCircleCheck({ className = "" }: { className?: string }) {
 	return (
 		<MainSolidSvgBody className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z" />
+		</MainSolidSvgBody>
+	);
+}
+
+export function SolidCircleX({ className = "" }: { className?: string }) {
+	return (
+		<MainSolidSvgBody className={className}>
+			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+			<path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-6.489 5.8a1 1 0 0 0 -1.218 1.567l1.292 1.293l-1.292 1.293l-.083 .094a1 1 0 0 0 1.497 1.32l1.293 -1.292l1.293 1.292l.094 .083a1 1 0 0 0 1.32 -1.497l-1.292 -1.293l1.292 -1.293l.083 -.094a1 1 0 0 0 -1.497 -1.32l-1.293 1.292l-1.293 -1.292l-.094 -.083z" />
 		</MainSolidSvgBody>
 	);
 }

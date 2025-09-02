@@ -3,7 +3,7 @@ import {
 	BodySectionsKeys,
 	MUSCLES,
 	MuscleType,
-} from "@/constants/db";
+} from "@/modules/globals/constants/db";
 import {
 	DashboardCard,
 	DashboardCardFooter,

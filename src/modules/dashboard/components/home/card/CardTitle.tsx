@@ -7,7 +7,7 @@ export function CardTitle({
 }) {
 	return (
 		<h3
-			className={`font-funnel-display font-light tracking-tight text-2xl ld-main-fg ${className}`}
+			className={`font-funnel-display font-light tracking-tight text-xl ld-main-fg ${className}`}
 		>
 			{title}
 		</h3>

@@ -1,6 +1,9 @@
-import { DAYS, DayWeeksType } from "@/config/defaults";
-import { getISOStringDate, getSessionFromDate } from "@/lib/dates";
-import { TODAY } from "@/mocks/tracking";
+import { DAYS, DayWeeksType } from "@/modules/globals/config/defaults";
+import {
+	getISOStringDate,
+	getSessionFromDate,
+} from "@/modules/globals/lib/dates";
+import { TODAY } from "@/modules/globals/mocks/tracking";
 import {
 	BarbellOff,
 	Circle,

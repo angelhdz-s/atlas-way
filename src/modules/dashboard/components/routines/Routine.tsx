@@ -1,5 +1,9 @@
-import { DAYS, DayWeeksType } from "@/config/defaults";
-import { DayTypeProps, RoutineType, StatusDayType } from "@/mocks/routines";
+import { DAYS, DayWeeksType } from "@/modules/globals/config/defaults";
+import {
+	DayTypeProps,
+	RoutineType,
+	StatusDayType,
+} from "@/modules/globals/mocks/routines";
 import {
 	CardHighlightType,
 	DashboardCard,

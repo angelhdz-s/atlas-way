@@ -3,9 +3,9 @@ import {
 	MONTH_DAYS,
 	MONTH_LIMITS,
 	MonthDisplacement,
-} from "@/constants/date";
-import { StatusDayType } from "@/mocks/routines";
-import { NextSessionType, SESSIONS } from "@/mocks/sessions";
+} from "@/modules/globals/constants/date";
+import { StatusDayType } from "@/modules/globals/mocks/routines";
+import { NextSessionType, SESSIONS } from "@/modules/globals/mocks/sessions";
 import {
 	getRestDay,
 	NextRestDayPlanifiedType,
@@ -14,45 +14,52 @@ import {
 	TrackedDayType,
 	TRACKING_DAYS_OFFSET,
 	TRACKING_DAYS,
-} from "@/mocks/tracking";
+} from "@/modules/globals/mocks/tracking";
 
 export function getTrackingDates() {
-	return [...getOffsetDates(TODAY), TODAY, ...getNextDates(TODAY)];
+	return [
+		...getOffsetDates(TODAY),
+		TODAY,
+		...getNextDates(TODAY, TRACKING_DAYS - TRACKING_DAYS_OFFSET - 1),
+	];
 }
 
-function getOffsetDates(date: Date) {
+export function getOffsetDates(
+	date: Date,
+	offsetDays: number = TRACKING_DAYS_OFFSET,
+) {
 	const dates = [];
 
-	for (let i = 1; i <= TRACKING_DAYS_OFFSET; i++) {
+	for (let i = 1; i <= offsetDays; i++) {
 		dates.push(getPastDate(date, i));
 	}
 
 	return dates.reverse();
 }
 
-function getNextDates(date: Date): Date[] {
+export function getNextDates(date: Date, days: number): Date[] {
 	const dates = [];
 
-	for (let i = 1; i <= TRACKING_DAYS - TRACKING_DAYS_OFFSET - 1; i++) {
+	for (let i = 1; i <= days; i++) {
 		dates.push(getNextDate(date, i));
 	}
 
 	return dates;
 }
 
-function getPastDate(date: Date, days: number): Date {
+export function getPastDate(date: Date, days: number): Date {
 	const lastDate = new Date(date);
 	lastDate.setDate(lastDate.getDate() - days);
 	return lastDate;
 }
 
-function getNextDate(date: Date, days: number): Date {
+export function getNextDate(date: Date, days: number): Date {
 	const lastDate = new Date(date);
 	lastDate.setDate(lastDate.getDate() + days);
 	return lastDate;
 }
 
-type SessionsTypes =
+export type SessionsTypes =
 	| TrackedDayType
 	| NextRestDayPlanifiedType
 	| NextSessionType;

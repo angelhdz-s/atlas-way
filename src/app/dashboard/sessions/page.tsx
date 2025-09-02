@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SESSIONS } from "@/mocks/sessions";
+import { SESSIONS } from "@/modules/globals/mocks/sessions";
 import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import { PageContent } from "@/modules/dashboard/components/page/PageContent";
 import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";

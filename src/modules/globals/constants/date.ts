@@ -80,4 +80,42 @@ export const MONTH_LIMITS = {
 	next: 11,
 };
 
+export const WEEK_DAYS = [
+	{
+		name: "Monday",
+		short: "Mon",
+		initial: "M",
+	},
+	{
+		name: "Tuesday",
+		short: "Tue",
+		initial: "T",
+	},
+	{
+		name: "Wednesday",
+		short: "Wed",
+		initial: "W",
+	},
+	{
+		name: "Thursday",
+		short: "Thu",
+		initial: "T",
+	},
+	{
+		name: "Friday",
+		short: "Fri",
+		initial: "F",
+	},
+	{
+		name: "Saturday",
+		short: "Sat",
+		initial: "S",
+	},
+	{
+		name: "Sunday",
+		short: "Sun",
+		initial: "S",
+	},
+];
+
 export type MonthDisplacement = keyof typeof MONTH_LIMITS;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { TOAST_DURATION, TOAST_TYPE } from "@/config/defaults";
+import { TOAST_DURATION, TOAST_TYPE } from "@/modules/globals/config/defaults";
 import ToastContainer from "@/modules/globals/components/toast/ToastContainer";
 import { ToastContext } from "@/modules/globals/contexts/toast-context";
 import { generateId } from "@/modules/globals/lib/toast";

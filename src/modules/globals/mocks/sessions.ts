@@ -1,4 +1,4 @@
-import { DayWeeksType } from "@/config/defaults";
+import { DayWeeksType } from "@/modules/globals/config/defaults";
 import { StatusDayType } from "./routines";
 import { TypesOfDayType } from "./tracking";
 

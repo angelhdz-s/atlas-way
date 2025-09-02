@@ -440,3 +440,12 @@ export const SESSIONS_COUNTERS = {
 	averagePerMonth: 14,
 	averagePerYear: 97,
 };
+
+export const EXERCISES_COUNTERS = {
+	exerciseStreak: 16,
+	totalExercises: 58,
+	currentMonth: 12,
+	currentYear: 134,
+	averagePerMonth: 28,
+	averagePerYear: 413,
+};

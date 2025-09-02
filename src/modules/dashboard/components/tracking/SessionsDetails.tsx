@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { getPrevAndNextDate } from "@/lib/dates";
+import { getPrevAndNextDate } from "@/modules/globals/lib/dates";
 import { CalendarContext } from "../../context/calendar-context";
 import { TrackingDay } from "../TrackingDay";
 

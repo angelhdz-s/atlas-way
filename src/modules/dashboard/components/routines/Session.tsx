@@ -8,7 +8,7 @@ import {
 	DashboardCardSubHeader,
 	DashboardCardTags,
 } from "../Card";
-import { ExerciseType, SessionDayType } from "@/mocks/sessions";
+import { ExerciseType, SessionDayType } from "@/modules/globals/mocks/sessions";
 
 function ExercisesList({ exercises }: { exercises: ExerciseType[] }) {
 	return (

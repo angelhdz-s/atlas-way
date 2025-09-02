@@ -1,4 +1,4 @@
-import { EXERCISES } from "@/constants/db";
+import { EXERCISES } from "@/modules/globals/constants/db";
 import { CardTitle } from "./card/CardTitle";
 import { SimpleTable } from "./SimpleTable";
 

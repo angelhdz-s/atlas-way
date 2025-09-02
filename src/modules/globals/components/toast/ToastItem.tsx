@@ -1,6 +1,6 @@
 "use client";
 
-import { TOAST_TYPE } from "@/config/defaults";
+import { TOAST_TYPE } from "@/modules/globals/config/defaults";
 import {
 	CircleCheck,
 	AlertTriangle,

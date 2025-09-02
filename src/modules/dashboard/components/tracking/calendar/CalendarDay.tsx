@@ -2,7 +2,7 @@ import {
 	CalendarDayType,
 	getCalendarStatusDay,
 	getISOStringDate,
-} from "@/lib/dates";
+} from "@/modules/globals/lib/dates";
 import { BarbellOff } from "@/modules/globals/components/Icons";
 
 function CalendarDayItem({
