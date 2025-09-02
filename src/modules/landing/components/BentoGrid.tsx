@@ -1,18 +1,18 @@
 import {
 	ArrowsLeftRight,
-	BellAlert,
-	Bolt,
-	CalendarDays,
-	Clock,
+	BellRinging,
+	Barbell,
+	CalendarWeek,
+	Alarm,
 	Edit,
 	FaceHappy,
 	Forward,
-	Megaphone,
-	PresentationChartLine,
+	Heart,
+	DeviceDesktopAnalytics,
 	Scale,
 	TrendingUp,
 	Trophy,
-	WrenchScrewdriver,
+	Hammer,
 } from "@/modules/globals/components/Icons";
 import { Border } from "@/modules/globals/components/utils/Border";
 import Link from "next/link";
@@ -121,7 +121,7 @@ export function BentoGrid({ className = "" }: { className?: string }) {
 					<main className="relative z-3 flex flex-col h-full p-4 overflow-hidden">
 						<header className="relative flex-1 grid place-content-center">
 							<figure className="relative z-1 bg-primary rounded-full p-1.5 shadow-lg shadow-primary/50">
-								<Megaphone
+								<Heart
 									className="size-10 text-main-foreground mask-b-from-0% mask-b-to-100% mask-b-from-black mask-b-to-black/40"
 									strokeWidth="1"
 								/>
@@ -153,17 +153,17 @@ export function BentoGrid({ className = "" }: { className?: string }) {
 										className="border-foreground/50 text-foreground/50"
 									/>
 									<IconBubble
-										Icon={Clock}
+										Icon={Alarm}
 										className="border-foreground/50 text-foreground/50"
 									/>
 									<IconBubble
-										Icon={BellAlert}
+										Icon={BellRinging}
 										className="border-accent text-accent"
 									/>
 								</span>
 								<span>
 									<IconBubble
-										Icon={Bolt}
+										Icon={Barbell}
 										className="border-accent text-accent"
 									/>
 								</span>
@@ -173,11 +173,11 @@ export function BentoGrid({ className = "" }: { className?: string }) {
 										className="border-foreground/50 text-foreground/50"
 									/>
 									<IconBubble
-										Icon={WrenchScrewdriver}
+										Icon={Hammer}
 										className="border-accent text-accent"
 									/>
 									<IconBubble
-										Icon={PresentationChartLine}
+										Icon={DeviceDesktopAnalytics}
 										className="border-foreground/50 text-foreground/50"
 									/>
 								</span>
@@ -187,7 +187,7 @@ export function BentoGrid({ className = "" }: { className?: string }) {
 										className="border-foreground/50 text-foreground/50"
 									/>
 									<IconBubble
-										Icon={CalendarDays}
+										Icon={CalendarWeek}
 										className="border-foreground/50 text-foreground/50"
 									/>
 								</span>
@@ -224,7 +224,7 @@ export function BentoGrid({ className = "" }: { className?: string }) {
 							<div className="grid grid-cols-[repeat(5,2.4rem)] w-fit mx-auto opacity-0">
 								<span className="flex flex-col gap-0.5">
 									<IconBubble
-										Icon={Clock}
+										Icon={Alarm}
 										className="border-foreground/50 text-foreground/50"
 									/>
 									<IconBubble
@@ -238,7 +238,7 @@ export function BentoGrid({ className = "" }: { className?: string }) {
 										className="border-foreground/50 text-foreground/50"
 									/>
 									<IconBubble
-										Icon={BellAlert}
+										Icon={BellRinging}
 										className="border-foreground/50 text-foreground/50"
 									/>
 									<IconBubble
@@ -248,13 +248,13 @@ export function BentoGrid({ className = "" }: { className?: string }) {
 								</span>
 								<span>
 									<IconBubble
-										Icon={Bolt}
+										Icon={Barbell}
 										className="border-accent text-accent"
 									/>
 								</span>
 								<span className="flex flex-col gap-0.5 translate-y-[-1.55rem]">
 									<IconBubble
-										Icon={WrenchScrewdriver}
+										Icon={Hammer}
 										className="border-foreground/50 text-foreground/50"
 									/>
 									<IconBubble
@@ -262,7 +262,7 @@ export function BentoGrid({ className = "" }: { className?: string }) {
 										className="border-accent text-accent"
 									/>
 									<IconBubble
-										Icon={CalendarDays}
+										Icon={CalendarWeek}
 										className="border-accent text-accent"
 									/>
 								</span>
@@ -272,7 +272,7 @@ export function BentoGrid({ className = "" }: { className?: string }) {
 										className="border-foreground/50 text-foreground/50"
 									/>
 									<IconBubble
-										Icon={PresentationChartLine}
+										Icon={DeviceDesktopAnalytics}
 										className="border-foreground/50 text-foreground/50"
 									/>
 								</span>

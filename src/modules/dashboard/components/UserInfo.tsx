@@ -1,4 +1,4 @@
-import { MoreOptions } from "@/modules/globals/components/Icons";
+import { Dots } from "@/modules/globals/components/Icons";
 
 export function UserInfo({ className = "" }: { className?: string }) {
 	return (
@@ -15,7 +15,7 @@ export function UserInfo({ className = "" }: { className?: string }) {
 				</header>
 			</main>
 			<button type="button" className="cursor-pointer p-2">
-				<MoreOptions className="size-6" />
+				<Dots className="size-6" />
 			</button>
 		</footer>
 	);

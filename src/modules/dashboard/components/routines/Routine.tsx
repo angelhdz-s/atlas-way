@@ -11,9 +11,9 @@ import {
 	DashboardCardTags,
 } from "@/modules/dashboard/components/Card";
 import {
-	Bolt,
-	BoltSlash,
-	CalendarDays,
+	Barbell,
+	BarbellOff,
+	CalendarWeek,
 	CircleCheck,
 	XCircle,
 } from "@/modules/globals/components/Icons";
@@ -46,18 +46,18 @@ const STATUS_DAYS: StatusDayTypes = {
 		class:
 			"bg-green-800 border-green-800 text-main-foreground light:bg-green-600 light:border-green-600",
 		title: "Current Day",
-		icon: Bolt,
+		icon: Barbell,
 	},
 	next: {
 		class: "border-subtle/50 ld-main-fg",
 		title: "Next Day",
-		icon: CalendarDays,
+		icon: CalendarWeek,
 	},
 };
 
 const DAY_TYPE_REST = {
 	class: "opacity-50",
-	icon: BoltSlash,
+	icon: BarbellOff,
 };
 
 const getDayAttributes = (status: StatusDayType, type: DayTypeProps) => {
@@ -148,7 +148,7 @@ export function Routine({
 			</DashboardCardMain>
 			<DashboardCardFooter>
 				<DashboardCardButton>
-					<CalendarDays className="size-6" strokeWidth="1.3" />
+					<CalendarWeek className="size-6" strokeWidth="1.3" />
 					Edit
 				</DashboardCardButton>
 			</DashboardCardFooter>

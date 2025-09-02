@@ -1,4 +1,4 @@
-import { CalendarDays, Home } from "@/modules/globals/components/Icons";
+import { CalendarWeek, Home } from "@/modules/globals/components/Icons";
 import { NavLinkNotification } from "./nav/custom/NavLinkNotification";
 import { NavLink, NavLinks } from "./nav/NavLink";
 
@@ -12,7 +12,7 @@ export function SidebarHeader() {
 
 				<NavLinkNotification href="/dashboard/notifications" />
 
-				<NavLink href="/dashboard/tracking" Icon={CalendarDays}>
+				<NavLink href="/dashboard/tracking" Icon={CalendarWeek}>
 					Tracking
 				</NavLink>
 			</NavLinks>

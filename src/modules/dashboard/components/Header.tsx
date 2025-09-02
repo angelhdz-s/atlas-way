@@ -1,7 +1,7 @@
 "use client";
 
 import { useSidebar } from "@/modules/dashboard/hooks/useSidebar";
-import { Bars3 } from "@/modules/globals/components/Icons";
+import { LayoutSidebar } from "@/modules/globals/components/Icons";
 import { Breadcrumb } from "./Breadcrumb";
 import { ToggleTheme } from "@/modules/globals/components/ToggleTheme";
 import { LangButton } from "@/modules/globals/components/LangButton";
@@ -34,7 +34,7 @@ export function Header({ className = "" }: { className?: string }) {
 							onClick={toggleOpen}
 							className="cursor-pointer p-2"
 						>
-							<Bars3 className="size-6 ld-main-fg" />
+							<LayoutSidebar className="size-6 ld-main-fg" />
 						</button>
 					</main>
 					<Breadcrumb />

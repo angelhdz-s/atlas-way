@@ -1,4 +1,4 @@
-import { Bolt } from "@/modules/globals/components/Icons";
+import { Barbell } from "@/modules/globals/components/Icons";
 import {
 	DashboardCard,
 	DashboardCardButton,
@@ -79,7 +79,7 @@ export function Session({ data }: { data: SessionDayType }) {
 			</DashboardCardMain>
 			<DashboardCardFooter>
 				<DashboardCardButton>
-					<Bolt className="size-6" strokeWidth="1.3" />
+					<Barbell className="size-6" strokeWidth="1.3" />
 					Edit
 				</DashboardCardButton>
 			</DashboardCardFooter>

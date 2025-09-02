@@ -3,7 +3,7 @@
 import { TOAST_TYPE } from "@/config/defaults";
 import {
 	CircleCheck,
-	ExclamationTriangle,
+	AlertTriangle,
 	InformationCircle,
 	XCircle,
 	XMark,
@@ -27,7 +27,7 @@ const TOAST_ICONS = {
 	info: <InformationCircle className="size-6" />,
 	success: <CircleCheck className="size-6" />,
 	error: <XCircle className="size-6" />,
-	warning: <ExclamationTriangle className="size-6" />,
+	warning: <AlertTriangle className="size-6" />,
 };
 
 export function ToastItem({ toast, onClose }: Props) {

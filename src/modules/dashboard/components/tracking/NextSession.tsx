@@ -1,4 +1,4 @@
-import { CircleCheck, Clock } from "@/modules/globals/components/Icons";
+import { Circle, CircleCheck, Alarm } from "@/modules/globals/components/Icons";
 import { CardTitle } from "../home/card/CardTitle";
 
 export function NextSession({ className = "" }: { className?: string }) {
@@ -13,7 +13,7 @@ export function NextSession({ className = "" }: { className?: string }) {
 						Push Day
 					</h4>
 					<span className="inline-flex items-center gap-1 outline-1 outline-accent/50 text-accent px-3 py-1 bg-subtle/10 rounded-full ml-2 text-sm font-light">
-						<Clock className="size-5 -ml-1" strokeWidth="1.5" />
+						<Alarm className="size-5 -ml-1" strokeWidth="1.5" />
 						Today
 					</span>
 				</header>
@@ -21,7 +21,7 @@ export function NextSession({ className = "" }: { className?: string }) {
 					<ul className="font-light leading-[1] flex flex-col gap-1">
 						<li className="flex justify-between items-center gap-2">
 							<main className="flex items-center gap-2">
-								<CircleCheck
+								<Circle
 									className="size-5.5 text-foreground/30 mr-1"
 									strokeWidth="1.5"
 								/>

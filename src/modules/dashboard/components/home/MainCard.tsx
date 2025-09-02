@@ -1,8 +1,8 @@
 import {
-	Bolt,
-	ClipboardDocumentList,
-	Clock,
-	MiniCheckCircle,
+	Barbell,
+	MapRoute,
+	Alarm,
+	SolidCircleCheck,
 } from "@/modules/globals/components/Icons";
 
 export function MainCard({ className = "" }: { className?: string }) {
@@ -20,13 +20,13 @@ export function MainCard({ className = "" }: { className?: string }) {
 				<ul className="*:relative *:flex *:items-start *:gap-2 text-lg flex flex-col gap-0">
 					<li>
 						<span className="pt-1">
-							<MiniCheckCircle className="size-5" />
+							<SolidCircleCheck className="size-6" />
 						</span>
 						<span className="flex-1">Create Your Own Path</span>
 					</li>
 					<li>
 						<span className="pt-1">
-							<MiniCheckCircle className="size-5" />
+							<SolidCircleCheck className="size-6" />
 						</span>
 						<span className="flex-1">{"You Don't Need to Be an Expert"}</span>
 					</li>
@@ -34,15 +34,15 @@ export function MainCard({ className = "" }: { className?: string }) {
 			</main>
 			<footer className="text-base flex items-center justify-center gap-2 relative z-1 w-full *:border *:border-main-foreground/20 *:flex *:items-center *:gap-2 *:px-3 *:py-1.5 *:rounded-full">
 				<button>
-					<ClipboardDocumentList className="size-5" strokeWidth="1.5" />
+					<MapRoute className="size-5" strokeWidth="1.5" />
 					Routines
 				</button>
 				<button>
-					<Clock className="size-5" strokeWidth="1.5" />
+					<Alarm className="size-5" strokeWidth="1.5" />
 					Sessions
 				</button>
 				<button>
-					<Bolt className="size-5" strokeWidth="1.5" />
+					<Barbell className="size-5" strokeWidth="1.5" />
 					Exercises
 				</button>
 			</footer>

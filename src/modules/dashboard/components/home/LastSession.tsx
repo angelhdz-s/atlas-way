@@ -1,4 +1,4 @@
-import { MiniCheckCircle } from "@/modules/globals/components/Icons";
+import { SolidCircleCheck } from "@/modules/globals/components/Icons";
 import { CardTitle } from "./card/CardTitle";
 
 export function LastSession({ className = "" }: { className?: string }) {
@@ -20,7 +20,7 @@ export function LastSession({ className = "" }: { className?: string }) {
 					<ul className="font-light font-sm">
 						<li className="flex justify-between items-center gap-2">
 							<main className="*:inline">
-								<MiniCheckCircle className="size-6 text-green-600 mr-1" />
+								<SolidCircleCheck className="size-6 text-green-600 mr-1" />
 								<span className="leading-[1]">Push Ups</span>
 							</main>
 							<aside>
@@ -32,7 +32,7 @@ export function LastSession({ className = "" }: { className?: string }) {
 
 						<li className="flex justify-between items-center gap-2">
 							<main className="*:inline">
-								<MiniCheckCircle className="size-6 text-green-600 mr-1" />
+								<SolidCircleCheck className="size-6 text-green-600 mr-1" />
 								<span className="leading-[1]">Lateral Raises</span>
 							</main>
 							<aside>
@@ -44,7 +44,7 @@ export function LastSession({ className = "" }: { className?: string }) {
 
 						<li className="flex justify-between items-center gap-2">
 							<main className="*:inline">
-								<MiniCheckCircle className="size-6 text-green-600 mr-1" />
+								<SolidCircleCheck className="size-6 text-green-600 mr-1" />
 								<span className="leading-[1]">Abs</span>
 							</main>
 							<aside>
@@ -56,7 +56,7 @@ export function LastSession({ className = "" }: { className?: string }) {
 
 						<li className="flex justify-between items-center gap-2">
 							<main className="*:inline">
-								<MiniCheckCircle className="size-6 text-green-600 mr-1" />
+								<SolidCircleCheck className="size-6 text-green-600 mr-1" />
 								<span className="leading-[1]">Dips</span>
 							</main>
 							<aside>

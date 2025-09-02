@@ -13,7 +13,7 @@ import {
 	DashboardCardSubHeader,
 	DashboardCardTag,
 } from "@/modules/dashboard/components/Card";
-import { Bolt } from "@/modules/globals/components/Icons";
+import { Barbell } from "@/modules/globals/components/Icons";
 
 function Exercises({ exercises }: { exercises: ExerciseType[] }) {
 	return exercises
@@ -35,7 +35,7 @@ function Exercises({ exercises }: { exercises: ExerciseType[] }) {
 				</DashboardCardMain>
 				<DashboardCardFooter>
 					<DashboardCardButton>
-						<Bolt className="size-5" />
+						<Barbell className="size-5" />
 						Edit
 					</DashboardCardButton>
 				</DashboardCardFooter>

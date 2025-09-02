@@ -2,10 +2,10 @@
 
 import { SidebarSection } from "@/modules/dashboard/components/sidebar/SidebarSection";
 import {
-	Bolt,
-	ClipboardDocumentList,
-	Clock,
-	Scale,
+	Barbell,
+	ClipboardList,
+	Man,
+	MapRoute,
 } from "@/modules/globals/components/Icons";
 import { NavLink, NavLinks } from "./nav/NavLink";
 
@@ -13,19 +13,19 @@ export function SidebarMainSection() {
 	return (
 		<SidebarSection name="Main">
 			<NavLinks>
-				<NavLink href="/dashboard/routines" Icon={ClipboardDocumentList}>
+				<NavLink href="/dashboard/routines" Icon={MapRoute}>
 					Routines
 				</NavLink>
 
-				<NavLink href="/dashboard/sessions" Icon={Clock}>
+				<NavLink href="/dashboard/sessions" Icon={ClipboardList}>
 					Sessions
 				</NavLink>
 
-				<NavLink href="/dashboard/exercises" Icon={Bolt}>
+				<NavLink href="/dashboard/exercises" Icon={Barbell}>
 					Exercises
 				</NavLink>
 
-				<NavLink href="/dashboard/muscles" Icon={Scale}>
+				<NavLink href="/dashboard/muscles" Icon={Man}>
 					Muscles
 				</NavLink>
 			</NavLinks>

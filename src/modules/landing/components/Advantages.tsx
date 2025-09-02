@@ -1,8 +1,8 @@
 import {
-	BellAlert,
-	ComputerDesktop,
-	PresentationChartLine,
-	WrenchScrewdriver,
+	BellRinging,
+	DeviceDesktop,
+	DeviceDesktopAnalytics,
+	Hammer,
 } from "@/modules/globals/components/Icons";
 
 import { IconTypes } from "@/modules/globals/types.d";
@@ -54,28 +54,28 @@ export function Advantages({ className = "" }: { className?: string }) {
 						tile="Highly Customizable"
 						description="Tailor your workout routines and exercises plans to fit your unique needs."
 					>
-						<AdvantageFigure Icon={WrenchScrewdriver} />
+						<AdvantageFigure Icon={Hammer} />
 					</Advantage>
 
 					<Advantage
 						tile="Easy to Use"
 						description="Designed with user-friendliness in mind, making it accessible for everyone."
 					>
-						<AdvantageFigure Icon={ComputerDesktop} />
+						<AdvantageFigure Icon={DeviceDesktop} />
 					</Advantage>
 
 					<Advantage
 						tile="Comprehensive Tracking"
 						description="Monitor your progress with detailed analytics and insights."
 					>
-						<AdvantageFigure Icon={PresentationChartLine} />
+						<AdvantageFigure Icon={DeviceDesktopAnalytics} />
 					</Advantage>
 
 					<Advantage
 						tile="Notifications and Alerts"
 						description="Get reminders and alerts to keep you on track with your fitness goals."
 					>
-						<AdvantageFigure Icon={BellAlert} />
+						<AdvantageFigure Icon={BellRinging} />
 					</Advantage>
 				</ul>
 			</main>

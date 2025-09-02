@@ -1,8 +1,8 @@
 import {
-	Bolt,
-	BoltSlash,
+	Barbell,
+	BarbellOff,
 	CircleCheck,
-	Clock,
+	Alarm,
 } from "@/modules/globals/components/Icons";
 
 function CalendarHeader({ className = "" }: { className?: string }) {
@@ -46,7 +46,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
 					<footer>09</footer>
 				</main>
 				<footer>
-					<Clock className="size-5 mx-auto" />
+					<Alarm className="size-5 mx-auto" />
 				</footer>
 			</li>
 			<li className="flex flex-col items-center gap-2 bg-subtle/10">
@@ -55,7 +55,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
 					<footer>10</footer>
 				</main>
 				<footer>
-					<Bolt className="size-5 mx-auto" />
+					<Barbell className="size-5 mx-auto" />
 				</footer>
 			</li>
 			<li className="bg-subtle/[0.05] text-xs font-normal flex flex-col items-center gap-2 text-foreground/70">
@@ -64,7 +64,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
 					<footer>11</footer>
 				</main>
 				<footer>
-					<BoltSlash className="size-5 mx-auto" />
+					<BarbellOff className="size-5 mx-auto" />
 				</footer>
 			</li>
 		</ul>
@@ -83,31 +83,31 @@ function CalendarNextWeek({ className }: { className?: string }) {
 			<li>
 				<main>Tue 12</main>
 				<footer>
-					<Bolt className="size-4 mx-auto" strokeWidth="1.5" />
+					<Barbell className="size-4 mx-auto" strokeWidth="1.5" />
 				</footer>
 			</li>
 			<li>
 				<main>Wed 13</main>
 				<footer>
-					<BoltSlash className="size-4 mx-auto" strokeWidth="1.5" />
+					<BarbellOff className="size-4 mx-auto" strokeWidth="1.5" />
 				</footer>
 			</li>
 			<li>
 				<main>Thu 14</main>
 				<footer>
-					<Bolt className="size-4 mx-auto" strokeWidth="1.5" />
+					<Barbell className="size-4 mx-auto" strokeWidth="1.5" />
 				</footer>
 			</li>
 			<li>
 				<main>Fri 15</main>
 				<footer>
-					<BoltSlash className="size-4 mx-auto" strokeWidth="1.5" />
+					<BarbellOff className="size-4 mx-auto" strokeWidth="1.5" />
 				</footer>
 			</li>
 			<li>
 				<main>Sat 16</main>
 				<footer>
-					<BoltSlash className="size-4 mx-auto" strokeWidth="1.5" />
+					<BarbellOff className="size-4 mx-auto" strokeWidth="1.5" />
 				</footer>
 			</li>
 		</ul>

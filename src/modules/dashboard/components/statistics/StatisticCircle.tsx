@@ -22,6 +22,7 @@ export function StatisticCircle({
 					className="size-28 -rotate-90"
 					strokeWidth="0.5"
 					porcentage={porcentage}
+					animation
 				/>
 			</div>
 			<div className="absolute left-[50%] top-[50%] translate-[-50%] size-26 rounded-full border-2 border-foreground/10"></div>

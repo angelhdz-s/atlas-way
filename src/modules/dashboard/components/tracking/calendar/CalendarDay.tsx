@@ -3,7 +3,7 @@ import {
 	getCalendarStatusDay,
 	getISOStringDate,
 } from "@/lib/dates";
-import { BoltSlash } from "@/modules/globals/components/Icons";
+import { BarbellOff } from "@/modules/globals/components/Icons";
 
 function CalendarDayItem({
 	children,
@@ -80,7 +80,7 @@ function CalendarDayCurrent({
 			onClick={onClick}
 			className={`${isSelected ? "text-full-black bg-main-foreground light:text-main-foreground light:bg-full-black" : "bg-subtle/20"}`}
 		>
-			<BoltSlash className="size-5" strokeWidth={isSelected ? "2" : "1.5"} />
+			<BarbellOff className="size-5" strokeWidth={isSelected ? "2" : "1.5"} />
 		</CalendarDayItem>
 	);
 }

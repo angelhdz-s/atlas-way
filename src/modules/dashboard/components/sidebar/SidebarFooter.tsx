@@ -1,4 +1,4 @@
-import { MoreOptions } from "@/modules/globals/components/Icons";
+import { Dots } from "@/modules/globals/components/Icons";
 import { useSidebar } from "../../hooks/useSidebar";
 
 export function SidebarFooter({
@@ -32,7 +32,7 @@ export function SidebarFooter({
 				type="button"
 				className={`cursor-pointer hover:bg-zinc-600/10 rounded-full p-2 transition-colors ${isOpen ? "" : "hidden"}`}
 			>
-				<MoreOptions className="size-6" />
+				<Dots className="size-6" />
 			</button>
 		</footer>
 	);

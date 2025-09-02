@@ -2,10 +2,11 @@ import { DAYS, DayWeeksType } from "@/config/defaults";
 import { getISOStringDate, getSessionFromDate } from "@/lib/dates";
 import { TODAY } from "@/mocks/tracking";
 import {
-	BoltSlash,
+	BarbellOff,
+	Circle,
 	CircleCheck,
 	CircleOutline,
-	Clock,
+	Alarm,
 	XCircle,
 } from "@/modules/globals/components/Icons";
 import { IconTypes } from "@/modules/globals/types";
@@ -13,7 +14,7 @@ import { IconTypes } from "@/modules/globals/types";
 const STATUS_ICONS = {
 	completed: CircleCheck,
 	canceled: XCircle,
-	current: Clock,
+	current: Alarm,
 	next: CircleOutline,
 };
 
@@ -66,10 +67,7 @@ function NextTrainingDayTaskItem({
 }) {
 	return (
 		<div className={`flex items-center ${main ? "gap-2" : "gap-1"}`}>
-			<CircleOutline
-				className={`${main ? "size-5" : "size-4"}`}
-				strokeWidth="1"
-			/>
+			<Circle className={`${main ? "size-5" : "size-4"}`} strokeWidth="1" />
 			<span className={`font-light ${main ? "text-lg" : "text-sm"}`}>
 				{task}
 			</span>
@@ -135,7 +133,7 @@ export function TrackingDay({
 				{session.type === "REST" && (
 					<div className="grid place-content-center p-2 h-full">
 						<div className="text-current/20 group-hover:text-current flex flex-col items-center justify-center gap-2">
-							<BoltSlash
+							<BarbellOff
 								className="size-20 mask-radial-[100%_100%] mask-radial-at-top-left mask-radial-from-0% mask-radial-to-150%"
 								strokeWidth="0.5"
 							/>

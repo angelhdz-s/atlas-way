@@ -1,13 +1,13 @@
 "use client";
 
 import {
+	Alarm,
+	Barbell,
 	Bell,
-	Bolt,
-	ClipboardDocumentList,
-	Clock,
 	Edit,
 	Forward,
-	Megaphone,
+	MapRoute,
+	Heart,
 	Scale,
 	TrendingUp,
 	Trophy,
@@ -18,12 +18,12 @@ import { useEffect, useState } from "react";
 
 const ICONS: IconTypes[] = [
 	Bell,
-	Bolt,
-	ClipboardDocumentList,
-	Clock,
+	Barbell,
+	MapRoute,
+	Alarm,
 	Edit,
 	Forward,
-	Megaphone,
+	Heart,
 	Scale,
 	TrendingUp,
 	Trophy,
