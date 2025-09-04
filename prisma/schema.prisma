@@ -8,16 +8,96 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// MARK: User Plan
+
 model User {
   id            String        @id @default(cuid())
   email         String        @unique
-  password      String
-  name          String?
+  name          String
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   routines      Routine[]
-  Sessions      Session[]
+  sessions      Session[]
   exercises     Excercise[]
+  notifications Notifications[]
+  tracking      Tracking[]
+}
+
+model Routine {
+  id            Int             @id @default(autoincrement())
+  userId        String
+  active        Boolean         @default(true)
+  name          String          @unique
+  description   String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  user          User            @relation(fields: [userId], references: [id])
+  sessions      Session[]
+}
+
+model Session {
+  id            Int           @id @default(autoincrement())
+  userId        String
+  name          String        @unique
+  description   String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  user          User          @relation(fields: [userId], references: [id])
+  routines      Routine[]
+  exercises     Excercise[]
+}
+
+model Excercise {
+  id            Int           @id @default(autoincrement())
+  userId        String
+  name          String        
+  description   String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  user          User          @relation(fields: [userId], references: [id])
+  sessions      Session[]
+  muscles       Muscle[]
+  initialStats  ExcerciseInitialStats?
+  trackedExercise TrackedExercise[]
+}
+
+model ExcerciseInitialStats {
+  id            Int           @id @default(autoincrement())
+  exerciseId    Int           @unique
+  sets          Int
+  reps          Int
+  weight        Int
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  exercise      Excercise     @relation(fields: [exerciseId], references: [id])
+}
+
+// MARK: System tables
+
+model Notifications {
+  id              Int                 @id @default(autoincrement())
+  userId          String
+  name            String              
+  message         String
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  user            User                @relation(fields: [userId], references: [id])
+}
+
+model Status {
+  id              String              @id
+  name            String              @unique
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  tracking        Tracking[]
+}
+
+model DayType {
+  id              String              @id
+  name            String              @unique
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  tracking        Tracking[]
 }
 
 model BodySection {
@@ -31,58 +111,60 @@ model BodySection {
 model MuscularGroup {
   id            Int         @id @default(autoincrement())
   bodySectionId Int
-  bodySection   BodySection @relation(fields: [bodySectionId], references: [id])
   name          String
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
+  bodySection   BodySection @relation(fields: [bodySectionId], references: [id])
   muscles       Muscle[]
 }
 
 model Muscle {
   id              Int           @id @default(autoincrement())
   muscularGroupId Int
-  muscularGroup   MuscularGroup @relation(fields: [muscularGroupId], references: [id])
   name            String
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
+  muscularGroup   MuscularGroup @relation(fields: [muscularGroupId], references: [id])
   exercises       Excercise[]
 }
 
-model Excercise {
-  id            Int           @id @default(autoincrement())
-  userId        String?
-  user          User?         @relation(fields: [userId], references: [id])
-  name          String        @unique
-  description   String?
-  muscles       Muscle[]
-  sets          Int?
-  reps          Int?
-  rest          Int?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  Sessions      Session[]
+// MARK: Tracking tables
+
+model Tracking {
+  id                    Int                 @id @default(autoincrement())
+  userId                String
+  status                String
+  dayType               String
+  notes                 String?
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+  user                  User                @relation(fields: [userId], references: [id])
+  fkStatus              Status              @relation(fields: [status], references: [id])
+  fkDayType             DayType             @relation(fields: [dayType], references: [id])
+  trackedExercise       TrackedExercise[]
 }
 
-model Session {
-  id            Int           @id @default(autoincrement())
-  userId        String?
-  user          User?         @relation(fields: [userId], references: [id])
-  name          String        @unique
-  description   String?
-  exercises     Excercise[]
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  routines      Routine[]
+model TrackedExercise {
+  id                      Int                       @id @default(autoincrement())
+  trackingId              Int
+  exerciseId              Int                      
+  sets                    Int
+  reps                    Int
+  weight                  Int
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @updatedAt
+  tracking                Tracking                  @relation(fields: [trackingId], references: [id])
+  exercise                Excercise                 @relation(fields: [exerciseId], references: [id])
+  trackedExerciseStats    TrackedExerciseStats?
 }
 
-model Routine {
-  id            Int             @id @default(autoincrement())
-  userId        String?
-  user          User?           @relation(fields: [userId], references: [id])
-  active        Boolean         @default(true)
-  name          String          @unique
-  description   String?
-  Sessions      Session[]
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+model TrackedExerciseStats {
+  id                  Int                 @id @default(autoincrement())
+  trackedExerciseId   Int                 @unique
+  sets                Int
+  reps                Int
+  weight              Int
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  trackedExercise     TrackedExercise     @relation(fields: [trackedExerciseId], references: [id])
 }
