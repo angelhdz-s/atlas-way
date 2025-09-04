@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+  output   = "../src/prisma/client"
 }
 
 datasource db {
@@ -10,20 +10,20 @@ datasource db {
 
 // MARK: User Plan
 
-model User {
+model Users {
   id            String        @id @default(cuid())
   email         String        @unique
   name          String
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
-  routines      Routine[]
-  sessions      Session[]
-  exercises     Excercise[]
+  routines      Routines[]
+  sessions      Sessions[]
+  exercises     Excercises[]
   notifications Notifications[]
   tracking      Tracking[]
 }
 
-model Routine {
+model Routines {
   id            Int             @id @default(autoincrement())
   userId        String
   active        Boolean         @default(true)
@@ -31,34 +31,34 @@ model Routine {
   description   String?
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
-  user          User            @relation(fields: [userId], references: [id])
-  sessions      Session[]
+  user          Users            @relation(fields: [userId], references: [id])
+  sessions      Sessions[]
 }
 
-model Session {
+model Sessions {
   id            Int           @id @default(autoincrement())
   userId        String
   name          String        @unique
   description   String?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
-  user          User          @relation(fields: [userId], references: [id])
-  routines      Routine[]
-  exercises     Excercise[]
+  user          Users          @relation(fields: [userId], references: [id])
+  routines      Routines[]
+  exercises     Excercises[]
 }
 
-model Excercise {
+model Excercises {
   id            Int           @id @default(autoincrement())
   userId        String
   name          String        
   description   String?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
-  user          User          @relation(fields: [userId], references: [id])
-  sessions      Session[]
-  muscles       Muscle[]
+  user          Users          @relation(fields: [userId], references: [id])
+  sessions      Sessions[]
+  muscles       Muscles[]
   initialStats  ExcerciseInitialStats?
-  trackedExercise TrackedExercise[]
+  trackedExercise TrackedExercises[]
 }
 
 model ExcerciseInitialStats {
@@ -69,7 +69,7 @@ model ExcerciseInitialStats {
   weight        Int
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
-  exercise      Excercise     @relation(fields: [exerciseId], references: [id])
+  exercise      Excercises     @relation(fields: [exerciseId], references: [id])
 }
 
 // MARK: System tables
@@ -81,7 +81,7 @@ model Notifications {
   message         String
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt
-  user            User                @relation(fields: [userId], references: [id])
+  user            Users                @relation(fields: [userId], references: [id])
 }
 
 model Status {
@@ -92,7 +92,7 @@ model Status {
   tracking        Tracking[]
 }
 
-model DayType {
+model DayTypes {
   id              String              @id
   name            String              @unique
   createdAt       DateTime            @default(now())
@@ -100,32 +100,32 @@ model DayType {
   tracking        Tracking[]
 }
 
-model BodySection {
+model BodySections {
   id              Int                 @id @default(autoincrement())
   name            String              @unique
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt
-  muscularGroups  MuscularGroup[]
+  muscularGroups  MuscularGroups[]
 }
 
-model MuscularGroup {
+model MuscularGroups {
   id            Int         @id @default(autoincrement())
   bodySectionId Int
   name          String
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  bodySection   BodySection @relation(fields: [bodySectionId], references: [id])
-  muscles       Muscle[]
+  bodySection   BodySections @relation(fields: [bodySectionId], references: [id])
+  muscles       Muscles[]
 }
 
-model Muscle {
+model Muscles {
   id              Int           @id @default(autoincrement())
   muscularGroupId Int
   name            String
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
-  muscularGroup   MuscularGroup @relation(fields: [muscularGroupId], references: [id])
-  exercises       Excercise[]
+  muscularGroup   MuscularGroups @relation(fields: [muscularGroupId], references: [id])
+  exercises       Excercises[]
 }
 
 // MARK: Tracking tables
@@ -138,13 +138,13 @@ model Tracking {
   notes                 String?
   createdAt             DateTime            @default(now())
   updatedAt             DateTime            @updatedAt
-  user                  User                @relation(fields: [userId], references: [id])
+  user                  Users                @relation(fields: [userId], references: [id])
   fkStatus              Status              @relation(fields: [status], references: [id])
-  fkDayType             DayType             @relation(fields: [dayType], references: [id])
-  trackedExercise       TrackedExercise[]
+  fkDayType             DayTypes             @relation(fields: [dayType], references: [id])
+  trackedExercise       TrackedExercises[]
 }
 
-model TrackedExercise {
+model TrackedExercises {
   id                      Int                       @id @default(autoincrement())
   trackingId              Int
   exerciseId              Int                      
@@ -154,7 +154,7 @@ model TrackedExercise {
   createdAt               DateTime                  @default(now())
   updatedAt               DateTime                  @updatedAt
   tracking                Tracking                  @relation(fields: [trackingId], references: [id])
-  exercise                Excercise                 @relation(fields: [exerciseId], references: [id])
+  exercise                Excercises                @relation(fields: [exerciseId], references: [id])
   trackedExerciseStats    TrackedExerciseStats?
 }
 
@@ -166,5 +166,5 @@ model TrackedExerciseStats {
   weight              Int
   createdAt           DateTime            @default(now())
   updatedAt           DateTime            @updatedAt
-  trackedExercise     TrackedExercise     @relation(fields: [trackedExerciseId], references: [id])
+  trackedExercise     TrackedExercises     @relation(fields: [trackedExerciseId], references: [id])
 }

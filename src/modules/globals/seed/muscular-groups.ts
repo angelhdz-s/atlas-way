@@ -1,0 +1,88 @@
+import { MuscularGroups } from "@/prisma/client";
+
+export const MUSCULAR_GROUPS: MuscularGroups[] = [
+	{
+		id: 1,
+		bodySectionId: 2,
+		name: "Biceps",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		id: 2,
+		bodySectionId: 2,
+		name: "Forearms",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		id: 3,
+		bodySectionId: 2,
+		name: "Shoulders",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		id: 4,
+		bodySectionId: 2,
+		name: "Triceps",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		id: 5,
+		bodySectionId: 3,
+		name: "Abductors",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		id: 6,
+		bodySectionId: 3,
+		name: "Calves",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		id: 7,
+		bodySectionId: 3,
+		name: "Glutes",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		id: 8,
+		bodySectionId: 3,
+		name: "Hamstrings",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		id: 9,
+		bodySectionId: 3,
+		name: "Quadriceps",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		id: 10,
+		bodySectionId: 1,
+		name: "Abdominals",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		id: 11,
+		bodySectionId: 1,
+		name: "Back",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		id: 12,
+		bodySectionId: 1,
+		name: "Pectorals",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+];

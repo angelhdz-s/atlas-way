@@ -1,0 +1,198 @@
+import { Muscles } from "@/prisma/client";
+
+type MusclesWithoutId = Omit<Muscles, "id">;
+
+export const MUSCLES: MusclesWithoutId[] = [
+	{
+		muscularGroupId: 1,
+		name: "Biceps",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 1,
+		name: "Biceps Long Head",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 1,
+		name: "Biceps Short Head",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 2,
+		name: "Forearms",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 2,
+		name: "Anterior Forearms",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 2,
+		name: "Rear Forearms",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 3,
+		name: "Shoulders",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 3,
+		name: "Anterior Shoulders",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 3,
+		name: "Lateral Shoulders",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 3,
+		name: "Rear Shoulders",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 4,
+		name: "Triceps",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 4,
+		name: "Triceps Long Head",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 4,
+		name: "Triceps Short Head",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 5,
+		name: "Abductors",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 6,
+		name: "Calves",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 7,
+		name: "Glutes",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 8,
+		name: "Hamstrings",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 9,
+		name: "Quadriceps",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 9,
+		name: "Rectus Femoris",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 9,
+		name: "Vastus Lateralis",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 9,
+		name: "Vastus Medialis",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 10,
+		name: "Abdominals",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 10,
+		name: "Lower Abdominals",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 10,
+		name: "Upper Abdominals",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 11,
+		name: "Back",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 11,
+		name: "Bibs",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 11,
+		name: "Lumbar",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 11,
+		name: "Trapezius",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 12,
+		name: "Pectorals",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 12,
+		name: "Lower Pectorals",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 12,
+		name: "Middle Pectorals",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+	{
+		muscularGroupId: 12,
+		name: "Upper Pectorals",
+		createdAt: new Date(),
+		updatedAt: new Date(),
+	},
+];

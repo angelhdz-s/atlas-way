@@ -4,10 +4,18 @@ import { SidebarAnalyticsSection } from "@/modules/dashboard/components/sidebar/
 import { SidebarFooter } from "@/modules/dashboard/components/sidebar/SidebarFooter";
 import { SidebarHeader } from "@/modules/dashboard/components/sidebar/SidebarHeader";
 import { SidebarMainSection } from "@/modules/dashboard/components/sidebar/SidebarMainSection";
-import { useSidebar } from "../../hooks/useSidebar";
+import { useSidebar } from "@/modules/dashboard/hooks/useSidebar";
+import { Users } from "@/prisma/client";
 
-export function Sidebar({ className = "" }: { className?: string }) {
+export function Sidebar({
+	user,
+	className = "",
+}: {
+	user?: Users;
+	className?: string;
+}) {
 	const { isOpen } = useSidebar();
+
 	return (
 		<aside className={`${isOpen ? "w-[var(--sidebar-width)]" : "w-14"}`}>
 			<main
@@ -26,7 +34,7 @@ export function Sidebar({ className = "" }: { className?: string }) {
 					<SidebarAnalyticsSection />
 				</main>
 
-				<SidebarFooter name="Angel Sotelo" email="useremail@example.com" />
+				<SidebarFooter user={user} />
 			</main>
 		</aside>
 	);

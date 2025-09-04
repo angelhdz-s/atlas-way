@@ -1,13 +1,12 @@
 import { Dots } from "@/modules/globals/components/Icons";
 import { useSidebar } from "../../hooks/useSidebar";
+import { Users } from "@/prisma/client";
 
 export function SidebarFooter({
-	name,
-	email,
+	user,
 	className = "",
 }: {
-	name: string;
-	email: string;
+	user?: Users;
 	className?: string;
 }) {
 	const { isOpen } = useSidebar();
@@ -21,10 +20,10 @@ export function SidebarFooter({
 				<figure className="size-10 rounded-full bg-blue-600"></figure>
 				<header className={`leading-[1] ${isOpen ? "" : "hidden"}`}>
 					<h4 className="h-5 -mb-1 font-medium overflow-hidden whitespace-nowrap text-ellipsis ld-main-fg">
-						{name}
+						{user?.name || "Unknown User"}
 					</h4>
 					<p className="text-sm overflow-y-clip overflow-hidden whitespace-nowrap text-ellipsis">
-						{email}
+						{user?.email || "useremail@example.com"}
 					</p>
 				</header>
 			</main>

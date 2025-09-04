@@ -10,8 +10,15 @@ import { UserInfo } from "./UserInfo";
 import { NotificationsButton } from "./NotificationsButton";
 import Link from "next/link";
 import { Imagotype } from "@/modules/globals/components/AtlasWayLogo";
+import { Users } from "@/prisma/client";
 
-export function Header({ className = "" }: { className?: string }) {
+export function Header({
+	user,
+	className = "",
+}: {
+	user?: Users;
+	className?: string;
+}) {
 	const { isOpen, toggleOpen } = useSidebar();
 
 	return (
@@ -53,7 +60,7 @@ export function Header({ className = "" }: { className?: string }) {
 					</aside>
 				</section>
 				<section className="flex items-center justify-end gap-2 h-full">
-					<UserInfo />
+					<UserInfo user={user} />
 				</section>
 			</main>
 		</header>
