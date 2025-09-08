@@ -1,6 +1,9 @@
 import { XMark } from "@/modules/globals/components/Icons";
 import { StatusIcon } from "@/modules/globals/components/status/StatusIcons";
-import { getStatusTextColorClass } from "@/modules/globals/lib/get-classes";
+import {
+	getGridColsClassFromWithStatus,
+	getStatusTextColorClass,
+} from "@/modules/globals/lib/get-classes";
 import { StatusDayType } from "@/modules/globals/mocks/routines";
 
 const iconSize = "size-4.5";
@@ -15,20 +18,25 @@ type ExerciseRowType = {
 
 export function ExerciseRow({
 	exercise,
+	withStatus = false,
 	className = "",
 }: {
 	exercise: ExerciseRowType;
+	withStatus?: boolean;
 	className?: string;
 }) {
 	const { name, reps, sets, status, weight } = exercise;
 	const statusTextColorClass = getStatusTextColorClass(status);
+	const withStatusGridClass = getGridColsClassFromWithStatus(withStatus);
 	return (
 		<li
-			className={`grid items-center grid-cols-[1.3rem_1fr_6rem_1rem] gap-1 text-center ${statusTextColorClass} ${className}`}
+			className={`grid items-center gap-1 text-center ${withStatusGridClass} ${statusTextColorClass} ${className}`}
 		>
-			<span>
-				<StatusIcon status={status} className={iconSize} />
-			</span>
+			{withStatus && (
+				<span>
+					<StatusIcon status={status} className={iconSize} />
+				</span>
+			)}
 			<span className="text-left">{name}</span>
 			<div className="grid grid-cols-[1fr_auto_1fr] gap-0.5">
 				<span className="text-right">{sets}</span>

@@ -10,7 +10,7 @@ export function PageHeader({
 	title: string;
 }) {
 	return (
-		<header className={`ld-main-fg h-18 mb-8 ${className}`}>
+		<header className={`ld-main-fg mb-8 ${className}`}>
 			<main className="flex items-center gap-4">
 				<h1 className="ld-main-fg-gradient text-5xl leading-[1] font-light tracking-tighter font-funnel-display pb-1">
 					{title}

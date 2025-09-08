@@ -1,0 +1,13 @@
+@keyframes scale-x-right {
+	0% {
+		transform: scaleX(0);
+	}
+	100% {
+		transform: scaleX(1);
+	}
+}
+
+.animate-scale-x-right {
+	animation: scale-x-right 0.3s ease-in-out forwards;
+	transform-origin: left;
+}

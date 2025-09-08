@@ -9,8 +9,9 @@ import { StatusDayType } from "@/modules/globals/mocks/routines";
 import { TODAY } from "@/modules/globals/mocks/tracking";
 import { IconTypes, SolidIconTypes } from "@/modules/globals/types";
 import { CardTitle } from "../home/card/CardTitle";
+import { getStatusTextColorClass } from "@/modules/globals/lib/get-classes";
 
-const ICON_SIZE_CLASS = "size-8";
+const ICON_SIZE_CLASS = "size-7";
 
 type CurrentWeekStatusDays = {
 	day: number;
@@ -101,21 +102,14 @@ export function CurrentWeekStatus({ className = "" }: { className?: string }) {
 	const currentWeekStatusDays = getCurrentWeekStatusDays();
 
 	return (
-		<article
-			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
-		>
+		<article className={`flex flex-col dashboard-card-default ${className}`}>
 			<header>
 				<CardTitle title="Week" />
 			</header>
-			<main className="flex items-center justify-center gap-1">
+			<main className="flex items-center justify-center gap-2">
 				{currentWeekStatusDays.map(({ day, status, title }) => {
 					const dayName = WEEK_DAYS[day].initial;
-					const className =
-						status === "completed"
-							? "text-complete"
-							: status === "canceled"
-								? "text-cancel"
-								: "";
+					const className = getStatusTextColorClass(status);
 					return (
 						<div
 							key={day}

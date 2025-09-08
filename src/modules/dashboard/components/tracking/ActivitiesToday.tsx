@@ -1,9 +1,6 @@
 import { CardTitle } from "@/modules/dashboard/components/home/card/CardTitle";
 import { CirclePlus } from "@/modules/globals/components/Icons";
-import {
-	SessionDetails,
-	SessionDetailsProps,
-} from "../sessions/SessionDetails";
+import { SessionDetails, SessionDetailsType } from "../sessions/SessionDetails";
 import { SubtleCard } from "@/modules/globals/components/SubtleCard";
 
 const session = {
@@ -45,7 +42,7 @@ const session = {
 		},
 	],
 	status: "next",
-} as SessionDetailsProps["session"];
+} as SessionDetailsType;
 
 export function ActivitiesToday({ className }: { className?: string }) {
 	return (
@@ -57,7 +54,7 @@ export function ActivitiesToday({ className }: { className?: string }) {
 			</header>
 			<main className="flex flex-col gap-1">
 				<SubtleCard>
-					<SessionDetails session={session} />
+					<SessionDetails withStatus={true} session={session} />
 				</SubtleCard>
 			</main>
 			<footer>

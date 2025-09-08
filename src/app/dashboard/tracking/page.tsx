@@ -15,25 +15,20 @@ import { SessionStreak } from "@/modules/dashboard/components/tracking/SessionSt
 export default function SessionsPage() {
 	return (
 		<PageContainer>
-			<PageHeader
-				title="Tracking"
-				className="flex items-center justify-between"
-			>
-				<button className="rounded bg-primary px-4 py-2 cursor-pointer ld-main-fg hover:text-current/50">
-					<span className="font-normal">New Session Done</span>
-				</button>
-			</PageHeader>
+			<PageHeader title="Tracking" />
 			<PageContent className="grid grid-cols-3 gap-4">
-				<SessionStreak />
-				<CurrentMonthSessionsCounter />
-				<AllSessionsDoneCounter />
+				<CurrentWeekStatus />
+				<section className="grid grid-cols-3 gap-2 col-span-2">
+					<SessionStreak />
+					<CurrentMonthSessionsCounter />
+					<AllSessionsDoneCounter />
+				</section>
 				<ActivitiesToday />
 				<SessionsHistory className="col-span-2" />
 				<SessionsChart />
 				<BestRecords />
 				<CurrentGoals />
 				<NextSession />
-				<CurrentWeekStatus />
 			</PageContent>
 		</PageContainer>
 	);

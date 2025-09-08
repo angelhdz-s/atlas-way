@@ -1,6 +1,9 @@
 import { ExerciseRow } from "@/modules/dashboard/components/exercises/ExerciseList";
 import { StatusIcon } from "@/modules/globals/components/status/StatusIcons";
-import { getStatusTextColorClass } from "@/modules/globals/lib/get-classes";
+import {
+	getGridColsClassFromWithStatus,
+	getStatusTextColorClass,
+} from "@/modules/globals/lib/get-classes";
 import { StatusDayType } from "@/modules/globals/mocks/routines";
 
 export type exerciseType = {
@@ -12,42 +15,61 @@ export type exerciseType = {
 	status: StatusDayType;
 };
 
-export type SessionDetailsProps = {
-	session: {
-		id: number;
-		name: string;
-		description?: string;
-		exercises: exerciseType[];
-		status: StatusDayType;
-	};
+export type SessionDetailsType = {
+	id: number;
+	name: string;
+	description?: string;
+	exercises: exerciseType[];
+	status: StatusDayType;
+	date?: string;
 };
 
-export function SessionDetails({ session }: SessionDetailsProps) {
+export function SessionDetails({
+	withStatus = false,
+	session,
+}: {
+	withStatus?: boolean;
+	session: SessionDetailsType;
+}) {
 	const { name, exercises, status } = session;
 	const statusTextColorClass = getStatusTextColorClass(status);
+	const withStatusGridClass = getGridColsClassFromWithStatus(withStatus);
 	return (
 		<>
-			<header className={`flex items-center gap-2 ${statusTextColorClass}`}>
-				<h4 className="text-lg">{name}</h4>
-				<aside>
-					<StatusIcon status={status} className="size-6" />
-				</aside>
+			<header
+				className={`flex items-center gap-2 justify-between ${statusTextColorClass}`}
+			>
+				<main className="flex items-center gap-2">
+					<h4 className="text-lg">{name}</h4>
+					{withStatus && (
+						<aside>
+							<StatusIcon status={status} className="size-6" />
+						</aside>
+					)}
+				</main>
+				{session.date && (
+					<aside>
+						<span className="bg-subtle/5 text-foreground/50 text-sm py-1 px-3 rounded-full">
+							{session.date}
+						</span>
+					</aside>
+				)}
 			</header>
 			<main className="font-light">
 				<ul>
 					<li
-						className={`grid grid-cols-[1.3rem_1fr_6rem_4rem]! gap-1 w-full text-sm font-light text-foreground/50 text-center`}
+						className={`grid gap-1 w-full text-sm font-light text-foreground/50 text-center ${withStatusGridClass}`}
 					>
-						<span></span>
+						{withStatus && <span></span>}
 						<span className="text-left">Exercise</span>
 						<span>Sets x Reps</span>
 						<span>Weight</span>
 					</li>
 					{exercises.map((exercise, index) => (
 						<ExerciseRow
+							withStatus={withStatus}
 							exercise={exercise}
 							key={index}
-							className={`grid-cols-[1.3rem_1fr_6rem_4rem]!`}
 						/>
 					))}
 				</ul>
