@@ -1,12 +1,9 @@
-"use client";
-
 import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
 import { PageContent } from "@/modules/dashboard/components/page/PageContent";
 import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";
 import { ActivitiesToday } from "@/modules/dashboard/components/tracking/ActivitiesToday";
 import { AllSessionsDoneCounter } from "@/modules/dashboard/components/tracking/AllSessionsDoneCounter";
 import { BestRecords } from "@/modules/dashboard/components/tracking/BestRecords";
-import { CalendarProvider } from "@/modules/dashboard/components/tracking/calendar/CalendarProvider";
 import { CurrentGoals } from "@/modules/dashboard/components/tracking/CurrentGoals";
 import { CurrentMonthSessionsCounter } from "@/modules/dashboard/components/tracking/CurrentMonthSessionsCounter";
 import { CurrentWeekStatus } from "@/modules/dashboard/components/tracking/CurrentWeekStatus";
@@ -26,20 +23,18 @@ export default function SessionsPage() {
 					<span className="font-normal">New Session Done</span>
 				</button>
 			</PageHeader>
-			<CalendarProvider>
-				<PageContent className="grid grid-cols-3 gap-4">
-					<SessionStreak />
-					<CurrentMonthSessionsCounter />
-					<AllSessionsDoneCounter />
-					<ActivitiesToday />
-					<SessionsHistory className="col-span-2" />
-					<SessionsChart />
-					<BestRecords />
-					<CurrentGoals />
-					<NextSession />
-					<CurrentWeekStatus />
-				</PageContent>
-			</CalendarProvider>
+			<PageContent className="grid grid-cols-3 gap-4">
+				<SessionStreak />
+				<CurrentMonthSessionsCounter />
+				<AllSessionsDoneCounter />
+				<ActivitiesToday />
+				<SessionsHistory className="col-span-2" />
+				<SessionsChart />
+				<BestRecords />
+				<CurrentGoals />
+				<NextSession />
+				<CurrentWeekStatus />
+			</PageContent>
 		</PageContainer>
 	);
 }

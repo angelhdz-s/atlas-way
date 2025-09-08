@@ -21,8 +21,6 @@ export function useCalendar({
 	>([selectedDate.getFullYear(), selectedDate.getMonth()]);
 	const date = useRef(selectedDate);
 
-	console.log(selectedDate.toISOString().split("T")[0]);
-
 	const days = useMemo(() => {
 		const currentDay = date.current.getDate();
 		return getCalendarDays(new Date(currentYear, currentMonth, currentDay));

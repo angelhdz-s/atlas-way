@@ -11,3 +11,19 @@ export function CanceledIcon({ className }: { className?: string }) {
 export function PendingIcon({ className }: { className?: string }) {
 	return <CircleOutline className={`${className}`} />;
 }
+
+export function StatusIcon({
+	status,
+	className = "",
+}: {
+	status: string;
+	className?: string;
+}) {
+	if (status === "completed") {
+		return <CompletedIcon className={className} />;
+	}
+	if (status === "canceled") {
+		return <CanceledIcon className={className} />;
+	}
+	return <PendingIcon className={className} />;
+}

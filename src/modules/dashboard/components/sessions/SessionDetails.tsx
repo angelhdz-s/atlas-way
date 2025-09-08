@@ -1,9 +1,5 @@
 import { ExerciseRow } from "@/modules/dashboard/components/exercises/ExerciseList";
-import {
-	CircleOutline,
-	SolidCircleCheck,
-	SolidCircleX,
-} from "@/modules/globals/components/Icons";
+import { StatusIcon } from "@/modules/globals/components/status/StatusIcons";
 import { getStatusTextColorClass } from "@/modules/globals/lib/get-classes";
 import { StatusDayType } from "@/modules/globals/mocks/routines";
 
@@ -34,11 +30,7 @@ export function SessionDetails({ session }: SessionDetailsProps) {
 			<header className={`flex items-center gap-2 ${statusTextColorClass}`}>
 				<h4 className="text-lg">{name}</h4>
 				<aside>
-					{status === "completed" && <SolidCircleCheck className="size-6" />}
-					{status === "canceled" && <SolidCircleX className="size-6" />}
-					{status !== "completed" && status !== "canceled" && (
-						<CircleOutline className="size-6" />
-					)}
+					<StatusIcon status={status} className="size-6" />
 				</aside>
 			</header>
 			<main className="font-light">

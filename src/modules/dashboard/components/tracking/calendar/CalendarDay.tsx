@@ -20,7 +20,7 @@ function CalendarDayItem({
 			className="cursor-pointer w-full flex justify-center"
 		>
 			<div
-				className={`flex items-center justify-center rounded-full size-8 ${className}`}
+				className={`flex items-center justify-center rounded-full size-6 ${className}`}
 			>
 				{children}
 			</div>
@@ -80,7 +80,7 @@ function CalendarDayCurrent({
 			onClick={onClick}
 			className={`${isSelected ? "text-full-black bg-main-foreground light:text-main-foreground light:bg-full-black" : "bg-subtle/20"}`}
 		>
-			<BarbellOff className="size-5" strokeWidth={isSelected ? "2" : "1.5"} />
+			<BarbellOff className="size-4.5" strokeWidth={isSelected ? "2" : "1.5"} />
 		</CalendarDayItem>
 	);
 }

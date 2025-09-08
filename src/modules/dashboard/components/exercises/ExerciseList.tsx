@@ -1,9 +1,5 @@
-import {
-	CircleOutline,
-	SolidCircleCheck,
-	SolidCircleX,
-	XMark,
-} from "@/modules/globals/components/Icons";
+import { XMark } from "@/modules/globals/components/Icons";
+import { StatusIcon } from "@/modules/globals/components/status/StatusIcons";
 import { getStatusTextColorClass } from "@/modules/globals/lib/get-classes";
 import { StatusDayType } from "@/modules/globals/mocks/routines";
 
@@ -31,13 +27,7 @@ export function ExerciseRow({
 			className={`grid items-center grid-cols-[1.3rem_1fr_6rem_1rem] gap-1 text-center ${statusTextColorClass} ${className}`}
 		>
 			<span>
-				{status === "completed" && (
-					<SolidCircleCheck className={`${iconSize}`} />
-				)}
-				{status === "canceled" && <SolidCircleX className={`${iconSize}`} />}
-				{(status === "next" || status === "current") && (
-					<CircleOutline className={`${iconSize}`} />
-				)}
+				<StatusIcon status={status} className={iconSize} />
 			</span>
 			<span className="text-left">{name}</span>
 			<div className="grid grid-cols-[1fr_auto_1fr] gap-0.5">
