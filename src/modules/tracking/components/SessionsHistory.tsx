@@ -9,6 +9,9 @@ import {
 } from "@/modules/sessions/components/SessionDetails";
 import { Calendar } from "@/modules/calendar/components/Calendar";
 import { CalendarProvider } from "@/modules/calendar/components/CalendarProvider";
+import { MonthDateSelector } from "@/modules/calendar/components/MonthDateSelector";
+import { YearDateSelector } from "@/modules/calendar/components/YearDateSelector";
+import { CalendarClock } from "@/modules/globals/components/Icons";
 
 const session = {
 	id: 1,
@@ -61,10 +64,14 @@ export function SessionsHistory({ className }: { className?: string }) {
 					<CardTitle title="Session History" />
 				</header>
 				<main className="grid grid-cols-[auto_1fr_auto] gap-4">
-					<Calendar />
-					<section className="flex flex-col gap-1 justify-between">
-						<header>
-							<CardTitle title="Details" />
+					<section className="flex flex-col justify-between h-61.5">
+						<Calendar />
+					</section>
+					<section className="flex flex-col gap-4">
+						<header className="flex items-center gap-2">
+							<CalendarClock className="text-subtle" strokeWidth="1.5" />
+							<MonthDateSelector />
+							<YearDateSelector />
 						</header>
 						<SubtleCard>
 							<SessionDetails session={session} />

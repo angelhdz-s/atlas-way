@@ -1,0 +1,1 @@
+export const DROPDOWN_LIST_YEARS_RANGE = 10;

@@ -1,0 +1,28 @@
+/* Custom styles for select and option tags */
+
+.select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: 1px solid color-mix(in oklch, var(--color-subtle) 30%, transparent);
+	background-color: var(--color-background);
+	color: var(--color-foreground);
+	cursor: pointer;
+	transition:
+		color 200ms,
+		border-color 200ms;
+}
+
+.select:hover {
+	border-color: color-mix(in oklch, var(--color-subtle) 80%, transparent);
+	color: var(--color-main-foreground);
+}
+
+.select::-ms-expand {
+	display: none;
+}
+
+.select option {
+	color: var(--color-foreground);
+	background-color: var(--color-background);
+}
