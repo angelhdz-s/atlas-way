@@ -1,8 +1,8 @@
 import { NOTIFICATIONS } from "@/modules/globals/mocks/notifications";
-import { Notification } from "@/modules/dashboard/components/Notification";
-import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
-import { PageContent } from "@/modules/dashboard/components/page/PageContent";
-import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";
+import { Notification } from "@/modules/notifications/components/Notification";
+import { PageContainer } from "@/modules/dashboard/page/components/PageContainer";
+import { PageContent } from "@/modules/dashboard/page/components/PageContent";
+import { PageHeader } from "@/modules/dashboard/page/components/PageHeader";
 
 export default function Dashboard() {
 	return (

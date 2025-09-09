@@ -1,15 +1,18 @@
-import { USERS } from "../src/modules/globals/seed/users";
-import { BODY_SECTIONS } from "../src/modules/globals/seed/body-sections";
-import { MUSCLES } from "../src/modules/globals/seed/muscles";
-import { MUSCULAR_GROUPS } from "../src/modules/globals/seed/muscular-groups";
-import { PrismaClient } from "../src/prisma/client";
-import { STATUS } from "../src/modules/globals/seed/status";
+import { createId } from "../node_modules/@paralleldrive/cuid2";
 import { DAY_TYPES } from "../src/modules/globals/seed/day-types";
+import { BODY_SECTIONS } from "../src/modules/muscles/seed/body-sections";
+import { MUSCLES } from "../src/modules/muscles/seed/muscles";
+import { MUSCULAR_GROUPS } from "../src/modules/muscles/seed/muscular-groups";
+import { STATUS } from "../src/modules/status/seed/status";
+import { USERS } from "../src/modules/users/seed/users";
+import { PrismaClient } from "../src/prisma/client";
 
 const prisma = new PrismaClient();
 async function main() {
+	const usersWithId = USERS.map((user) => ({ ...user, id: createId() }));
+
 	await prisma.$transaction([
-		prisma.users.createMany({ data: USERS }),
+		prisma.users.createMany({ data: usersWithId }),
 		prisma.status.createMany({ data: STATUS }),
 		prisma.dayTypes.createMany({ data: DAY_TYPES }),
 		prisma.bodySections.createMany({ data: BODY_SECTIONS }),

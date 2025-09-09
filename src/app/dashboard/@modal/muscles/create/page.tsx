@@ -1,4 +1,4 @@
-import { RoutineForm } from "@/modules/dashboard/components/forms/RoutineForm";
+import { RoutineForm } from "@/modules/forms/components/RoutineForm";
 
 export default function CreateMusclePage() {
 	return <RoutineForm />;

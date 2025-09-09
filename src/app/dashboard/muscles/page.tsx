@@ -1,8 +1,8 @@
-import { PageContainer } from "@/modules/dashboard/components/page/PageContainer";
-import { PageContent } from "@/modules/dashboard/components/page/PageContent";
-import { PageHeader } from "@/modules/dashboard/components/page/PageHeader";
-import MusclesTable from "@/modules/dashboard/components/routines/MusclesTable";
-import { MuscularGroupsTable } from "@/modules/dashboard/components/routines/MuscularGroupsTable";
+import { PageContainer } from "@/modules/dashboard/page/components/PageContainer";
+import { PageContent } from "@/modules/dashboard/page/components/PageContent";
+import { PageHeader } from "@/modules/dashboard/page/components/PageHeader";
+import MusclesTable from "@/modules/muscles/components/MusclesTable";
+import { MuscularGroupsTable } from "@/modules/muscles/components/MuscularGroupsTable";
 
 export default function MuscularGroupsPage() {
 	return (

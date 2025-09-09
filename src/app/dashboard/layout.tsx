@@ -1,7 +1,7 @@
 import { Footer } from "@/modules/dashboard/components/Footer";
 import { Header } from "@/modules/dashboard/components/Header";
-import { Sidebar } from "@/modules/dashboard/components/sidebar/Sidebar";
-import { SidebarProvider } from "@/modules/dashboard/components/sidebar/SidebarProvider";
+import { Sidebar } from "@/modules/sidebar/components/Sidebar";
+import { SidebarProvider } from "@/modules/sidebar/components/SidebarProvider";
 import { getUser } from "@/actions/users";
 
 export default async function Layout({

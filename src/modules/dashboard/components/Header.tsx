@@ -1,13 +1,13 @@
 "use client";
 
-import { useSidebar } from "@/modules/dashboard/hooks/useSidebar";
+import { useSidebar } from "@/modules/sidebar/hooks/useSidebar";
 import { LayoutSidebar } from "@/modules/globals/components/Icons";
 import { Breadcrumb } from "./Breadcrumb";
 import { ToggleTheme } from "@/modules/globals/components/ToggleTheme";
 import { LangButton } from "@/modules/globals/components/LangButton";
 import { SettingsButton } from "@/modules/globals/components/SettingsButton";
 import { UserInfo } from "./UserInfo";
-import { NotificationsButton } from "./NotificationsButton";
+import { NotificationsButton } from "../../notifications/components/NotificationsButton";
 import Link from "next/link";
 import { Imagotype } from "@/modules/globals/components/AtlasWayLogo";
 import { Users } from "@/prisma/client";
