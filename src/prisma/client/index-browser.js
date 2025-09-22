@@ -215,6 +215,7 @@ exports.Prisma.MusclesScalarFieldEnum = {
 exports.Prisma.TrackingScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
+  date: 'date',
   status: 'status',
   dayType: 'dayType',
   notes: 'notes',

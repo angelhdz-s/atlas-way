@@ -133,6 +133,7 @@ model Muscles {
 model Tracking {
   id              Int                @id @default(autoincrement())
   userId          String
+  date            DateTime
   status          String
   dayType         String
   notes           String?

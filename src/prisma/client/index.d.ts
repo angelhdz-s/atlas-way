@@ -14850,6 +14850,7 @@ export namespace Prisma {
   export type TrackingMinAggregateOutputType = {
     id: number | null
     userId: string | null
+    date: Date | null
     status: string | null
     dayType: string | null
     notes: string | null
@@ -14860,6 +14861,7 @@ export namespace Prisma {
   export type TrackingMaxAggregateOutputType = {
     id: number | null
     userId: string | null
+    date: Date | null
     status: string | null
     dayType: string | null
     notes: string | null
@@ -14870,6 +14872,7 @@ export namespace Prisma {
   export type TrackingCountAggregateOutputType = {
     id: number
     userId: number
+    date: number
     status: number
     dayType: number
     notes: number
@@ -14890,6 +14893,7 @@ export namespace Prisma {
   export type TrackingMinAggregateInputType = {
     id?: true
     userId?: true
+    date?: true
     status?: true
     dayType?: true
     notes?: true
@@ -14900,6 +14904,7 @@ export namespace Prisma {
   export type TrackingMaxAggregateInputType = {
     id?: true
     userId?: true
+    date?: true
     status?: true
     dayType?: true
     notes?: true
@@ -14910,6 +14915,7 @@ export namespace Prisma {
   export type TrackingCountAggregateInputType = {
     id?: true
     userId?: true
+    date?: true
     status?: true
     dayType?: true
     notes?: true
@@ -15007,6 +15013,7 @@ export namespace Prisma {
   export type TrackingGroupByOutputType = {
     id: number
     userId: string
+    date: Date
     status: string
     dayType: string
     notes: string | null
@@ -15036,6 +15043,7 @@ export namespace Prisma {
   export type TrackingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    date?: boolean
     status?: boolean
     dayType?: boolean
     notes?: boolean
@@ -15051,6 +15059,7 @@ export namespace Prisma {
   export type TrackingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    date?: boolean
     status?: boolean
     dayType?: boolean
     notes?: boolean
@@ -15064,6 +15073,7 @@ export namespace Prisma {
   export type TrackingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
+    date?: boolean
     status?: boolean
     dayType?: boolean
     notes?: boolean
@@ -15077,6 +15087,7 @@ export namespace Prisma {
   export type TrackingSelectScalar = {
     id?: boolean
     userId?: boolean
+    date?: boolean
     status?: boolean
     dayType?: boolean
     notes?: boolean
@@ -15084,7 +15095,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type TrackingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "status" | "dayType" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["tracking"]>
+  export type TrackingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "status" | "dayType" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["tracking"]>
   export type TrackingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     fkStatus?: boolean | StatusDefaultArgs<ExtArgs>
@@ -15114,6 +15125,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       userId: string
+      date: Date
       status: string
       dayType: string
       notes: string | null
@@ -15548,6 +15560,7 @@ export namespace Prisma {
   interface TrackingFieldRefs {
     readonly id: FieldRef<"Tracking", 'Int'>
     readonly userId: FieldRef<"Tracking", 'String'>
+    readonly date: FieldRef<"Tracking", 'DateTime'>
     readonly status: FieldRef<"Tracking", 'String'>
     readonly dayType: FieldRef<"Tracking", 'String'>
     readonly notes: FieldRef<"Tracking", 'String'>
@@ -18449,6 +18462,7 @@ export namespace Prisma {
   export const TrackingScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
+    date: 'date',
     status: 'status',
     dayType: 'dayType',
     notes: 'notes',
@@ -19267,6 +19281,7 @@ export namespace Prisma {
     NOT?: TrackingWhereInput | TrackingWhereInput[]
     id?: IntFilter<"Tracking"> | number
     userId?: StringFilter<"Tracking"> | string
+    date?: DateTimeFilter<"Tracking"> | Date | string
     status?: StringFilter<"Tracking"> | string
     dayType?: StringFilter<"Tracking"> | string
     notes?: StringNullableFilter<"Tracking"> | string | null
@@ -19281,6 +19296,7 @@ export namespace Prisma {
   export type TrackingOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
+    date?: SortOrder
     status?: SortOrder
     dayType?: SortOrder
     notes?: SortOrderInput | SortOrder
@@ -19298,6 +19314,7 @@ export namespace Prisma {
     OR?: TrackingWhereInput[]
     NOT?: TrackingWhereInput | TrackingWhereInput[]
     userId?: StringFilter<"Tracking"> | string
+    date?: DateTimeFilter<"Tracking"> | Date | string
     status?: StringFilter<"Tracking"> | string
     dayType?: StringFilter<"Tracking"> | string
     notes?: StringNullableFilter<"Tracking"> | string | null
@@ -19312,6 +19329,7 @@ export namespace Prisma {
   export type TrackingOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
+    date?: SortOrder
     status?: SortOrder
     dayType?: SortOrder
     notes?: SortOrderInput | SortOrder
@@ -19330,6 +19348,7 @@ export namespace Prisma {
     NOT?: TrackingScalarWhereWithAggregatesInput | TrackingScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Tracking"> | number
     userId?: StringWithAggregatesFilter<"Tracking"> | string
+    date?: DateTimeWithAggregatesFilter<"Tracking"> | Date | string
     status?: StringWithAggregatesFilter<"Tracking"> | string
     dayType?: StringWithAggregatesFilter<"Tracking"> | string
     notes?: StringNullableWithAggregatesFilter<"Tracking"> | string | null
@@ -20164,6 +20183,7 @@ export namespace Prisma {
   }
 
   export type TrackingCreateInput = {
+    date: Date | string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -20176,6 +20196,7 @@ export namespace Prisma {
   export type TrackingUncheckedCreateInput = {
     id?: number
     userId: string
+    date: Date | string
     status: string
     dayType: string
     notes?: string | null
@@ -20185,6 +20206,7 @@ export namespace Prisma {
   }
 
   export type TrackingUpdateInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20197,6 +20219,7 @@ export namespace Prisma {
   export type TrackingUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
     dayType?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20208,6 +20231,7 @@ export namespace Prisma {
   export type TrackingCreateManyInput = {
     id?: number
     userId: string
+    date: Date | string
     status: string
     dayType: string
     notes?: string | null
@@ -20216,6 +20240,7 @@ export namespace Prisma {
   }
 
   export type TrackingUpdateManyMutationInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20224,6 +20249,7 @@ export namespace Prisma {
   export type TrackingUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
     dayType?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20979,6 +21005,7 @@ export namespace Prisma {
   export type TrackingCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    date?: SortOrder
     status?: SortOrder
     dayType?: SortOrder
     notes?: SortOrder
@@ -20993,6 +21020,7 @@ export namespace Prisma {
   export type TrackingMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    date?: SortOrder
     status?: SortOrder
     dayType?: SortOrder
     notes?: SortOrder
@@ -21003,6 +21031,7 @@ export namespace Prisma {
   export type TrackingMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+    date?: SortOrder
     status?: SortOrder
     dayType?: SortOrder
     notes?: SortOrder
@@ -22352,6 +22381,7 @@ export namespace Prisma {
   }
 
   export type TrackingCreateWithoutUserInput = {
+    date: Date | string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -22362,6 +22392,7 @@ export namespace Prisma {
 
   export type TrackingUncheckedCreateWithoutUserInput = {
     id?: number
+    date: Date | string
     status: string
     dayType: string
     notes?: string | null
@@ -22515,6 +22546,7 @@ export namespace Prisma {
     NOT?: TrackingScalarWhereInput | TrackingScalarWhereInput[]
     id?: IntFilter<"Tracking"> | number
     userId?: StringFilter<"Tracking"> | string
+    date?: DateTimeFilter<"Tracking"> | Date | string
     status?: StringFilter<"Tracking"> | string
     dayType?: StringFilter<"Tracking"> | string
     notes?: StringNullableFilter<"Tracking"> | string | null
@@ -23163,6 +23195,7 @@ export namespace Prisma {
   }
 
   export type TrackingCreateWithoutFkStatusInput = {
+    date: Date | string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23174,6 +23207,7 @@ export namespace Prisma {
   export type TrackingUncheckedCreateWithoutFkStatusInput = {
     id?: number
     userId: string
+    date: Date | string
     dayType: string
     notes?: string | null
     createdAt?: Date | string
@@ -23208,6 +23242,7 @@ export namespace Prisma {
   }
 
   export type TrackingCreateWithoutFkDayTypeInput = {
+    date: Date | string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23219,6 +23254,7 @@ export namespace Prisma {
   export type TrackingUncheckedCreateWithoutFkDayTypeInput = {
     id?: number
     userId: string
+    date: Date | string
     status: string
     notes?: string | null
     createdAt?: Date | string
@@ -23677,6 +23713,7 @@ export namespace Prisma {
   }
 
   export type TrackingCreateWithoutTrackedExerciseInput = {
+    date: Date | string
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -23688,6 +23725,7 @@ export namespace Prisma {
   export type TrackingUncheckedCreateWithoutTrackedExerciseInput = {
     id?: number
     userId: string
+    date: Date | string
     status: string
     dayType: string
     notes?: string | null
@@ -23762,6 +23800,7 @@ export namespace Prisma {
   }
 
   export type TrackingUpdateWithoutTrackedExerciseInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23773,6 +23812,7 @@ export namespace Prisma {
   export type TrackingUncheckedUpdateWithoutTrackedExerciseInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
     dayType?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23935,6 +23975,7 @@ export namespace Prisma {
 
   export type TrackingCreateManyUserInput = {
     id?: number
+    date: Date | string
     status: string
     dayType: string
     notes?: string | null
@@ -24052,6 +24093,7 @@ export namespace Prisma {
   }
 
   export type TrackingUpdateWithoutUserInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24062,6 +24104,7 @@ export namespace Prisma {
 
   export type TrackingUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
     dayType?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24072,6 +24115,7 @@ export namespace Prisma {
 
   export type TrackingUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
     dayType?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24263,6 +24307,7 @@ export namespace Prisma {
   export type TrackingCreateManyFkStatusInput = {
     id?: number
     userId: string
+    date: Date | string
     dayType: string
     notes?: string | null
     createdAt?: Date | string
@@ -24270,6 +24315,7 @@ export namespace Prisma {
   }
 
   export type TrackingUpdateWithoutFkStatusInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24281,6 +24327,7 @@ export namespace Prisma {
   export type TrackingUncheckedUpdateWithoutFkStatusInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     dayType?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24291,6 +24338,7 @@ export namespace Prisma {
   export type TrackingUncheckedUpdateManyWithoutFkStatusInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     dayType?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24300,6 +24348,7 @@ export namespace Prisma {
   export type TrackingCreateManyFkDayTypeInput = {
     id?: number
     userId: string
+    date: Date | string
     status: string
     notes?: string | null
     createdAt?: Date | string
@@ -24307,6 +24356,7 @@ export namespace Prisma {
   }
 
   export type TrackingUpdateWithoutFkDayTypeInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24318,6 +24368,7 @@ export namespace Prisma {
   export type TrackingUncheckedUpdateWithoutFkDayTypeInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24328,6 +24379,7 @@ export namespace Prisma {
   export type TrackingUncheckedUpdateManyWithoutFkDayTypeInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
