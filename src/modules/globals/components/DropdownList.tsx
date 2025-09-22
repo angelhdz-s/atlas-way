@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 type DropdownListValueType = {
 	label: string;
 	value: string | number;
@@ -10,16 +12,27 @@ export type DropdownListProps = {
 };
 
 export function DropdownList({
-	selectedValue,
+	selectedValue = "",
 	className,
 	values,
 	onChange,
 }: DropdownListProps) {
+	const [selectedOption, setSelectedOption] =
+		useState<DropdownListValueType["value"]>(selectedValue);
+
+	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		onChange?.(e);
+	};
+
+	useEffect(() => {
+		setSelectedOption(selectedValue);
+	}, [selectedValue]);
+
 	return (
 		<select
 			className={`border bg-background ${className}`}
-			onChange={onChange}
-			value={selectedValue}
+			onChange={handleChange}
+			value={selectedOption}
 		>
 			{values.map((value) => (
 				<option key={value.value} value={value.value}>

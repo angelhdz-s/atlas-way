@@ -1,10 +1,23 @@
-import { DateControl } from "./DateControl";
-import { YearDropdownlist } from "./YearDropdownlist";
+import { useContext } from "react";
+import { DateControl } from "@/modules/calendar/components/DateControl";
+import { YearDropdownlist } from "@/modules/calendar/components/YearDropdownlist";
+import { CalendarContext } from "@/modules/calendar/contexts/calendar-context";
+import { useCalendar } from "@/modules/calendar/hooks/useCalendar";
 
 export function YearDateSelector({ className }: { className?: string }) {
+	const { selectedDate, setCurrentDate } = useContext(CalendarContext);
+	const { handlePreviousYear, handleNextYear, handleYearChange, currentYear } =
+		useCalendar({
+			selectedDate,
+			setCurrentDate,
+		});
 	return (
-		<DateControl>
-			<YearDropdownlist className={`${className}`} />
+		<DateControl onLeftClick={handlePreviousYear} onRightClick={handleNextYear}>
+			<YearDropdownlist
+				className={`${className}`}
+				onChange={(e) => handleYearChange(Number(e.target.value))}
+				selectedValue={currentYear}
+			/>
 		</DateControl>
 	);
 }

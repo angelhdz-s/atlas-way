@@ -247,3 +247,13 @@ export function getPreviousNextYearDate(
 
 	return new Date(newYear, currentMonth, prevDay);
 }
+
+export function getDaysDifference(a: Date, b: Date) {
+	const diffTime = Math.abs(b.getTime() - a.getTime());
+	return Math.ceil(diffTime / (24 * 60 * 60 * 1000));
+}
+
+export function getDays(a: Date, b: Date, range: number) {
+	const diffDays = getDaysDifference(a, b);
+	return diffDays % range;
+}

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CalendarContext } from "@/modules/calendar/context/calendar-context";
+import { CalendarContext } from "@/modules/calendar/contexts/calendar-context";
 import { useCalendar } from "@/modules/calendar/hooks/useCalendar";
 import { ArrowUp } from "@/modules/globals/components/Icons";
 

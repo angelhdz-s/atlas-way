@@ -10,7 +10,7 @@ import {
 	getPreviousNextMonthDate,
 	getPreviousNextYearDate,
 } from "@/modules/globals/lib/dates";
-import { CalendarContextType } from "../context/calendar-context";
+import { CalendarContextType } from "../contexts/calendar-context";
 
 export function useCalendar({
 	selectedDate,
@@ -19,7 +19,14 @@ export function useCalendar({
 	const [[currentYear, currentMonth], setCurrentYearMonth] = useState<
 		[number, number]
 	>([selectedDate.getFullYear(), selectedDate.getMonth()]);
+
 	const date = useRef(selectedDate);
+
+	const updateMonthYear = (month: number, year: number) => {
+		const newDate = new Date(year, month, selectedDate.getDate());
+		date.current = newDate;
+		setCurrentDate(newDate);
+	};
 
 	const days = useMemo(() => {
 		const currentDay = date.current.getDate();
@@ -82,6 +89,14 @@ export function useCalendar({
 		});
 	};
 
+	const handleMonthChange = (month: number) => {
+		updateMonthYear(month, currentYear);
+	};
+
+	const handleYearChange = (year: number) => {
+		updateMonthYear(currentMonth, year);
+	};
+
 	useEffect(() => {
 		if (
 			selectedDate.getMonth() !== currentMonth ||
@@ -96,6 +111,8 @@ export function useCalendar({
 
 	return {
 		selectedDate,
+		currentYear,
+		currentMonth,
 		days,
 		monthName,
 		handlePreviousMonth,
@@ -104,5 +121,7 @@ export function useCalendar({
 		handleNextDate,
 		handlePreviousYear,
 		handleNextYear,
+		handleMonthChange,
+		handleYearChange,
 	};
 }

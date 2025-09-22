@@ -1,8 +1,15 @@
 import { MONTH_NAMES } from "@/modules/globals/constants/date";
-import { TODAY } from "@/modules/globals/mocks/tracking";
 import { DateDropdownlist } from "./DateDropdrownList";
 
-export function MonthDropdownlist({ className }: { className?: string }) {
+export function MonthDropdownlist({
+	className,
+	selectedValue,
+	onChange,
+}: {
+	className?: string;
+	selectedValue?: number;
+	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}) {
 	const monthOptions = MONTH_NAMES.map((month) => ({
 		value: month.month,
 		label: month.name,
@@ -11,7 +18,8 @@ export function MonthDropdownlist({ className }: { className?: string }) {
 		<DateDropdownlist
 			values={monthOptions}
 			className={`${className}`}
-			selectedValue={TODAY.getMonth() + 1}
+			selectedValue={selectedValue}
+			onChange={onChange}
 		/>
 	);
 }

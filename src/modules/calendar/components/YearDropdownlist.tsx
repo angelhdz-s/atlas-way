@@ -8,7 +8,15 @@ function generateYearOptions<T>(_value: T, i: number) {
 	return { value: year, label: year.toString() };
 }
 
-export function YearDropdownlist({ className }: { className?: string }) {
+export function YearDropdownlist({
+	className,
+	selectedValue,
+	onChange,
+}: {
+	className?: string;
+	selectedValue?: number;
+	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}) {
 	const yearOptions = Array.from(
 		{ length: DROPDOWN_LIST_YEARS_RANGE },
 		generateYearOptions,
@@ -17,7 +25,8 @@ export function YearDropdownlist({ className }: { className?: string }) {
 		<DateDropdownlist
 			values={yearOptions}
 			className={`${className}`}
-			selectedValue={TODAY.getFullYear()}
+			selectedValue={selectedValue}
+			onChange={onChange}
 		/>
 	);
 }

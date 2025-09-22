@@ -1,17 +1,20 @@
 "use client";
 
-import { SubtleCard } from "@/modules/globals/components/SubtleCard";
+import { Calendar } from "@/modules/calendar/components/Calendar";
+import { CalendarProvider } from "@/modules/calendar/components/CalendarProvider";
+import { MonthDateSelector } from "@/modules/calendar/components/MonthDateSelector";
+import { YearDateSelector } from "@/modules/calendar/components/YearDateSelector";
+import { CalendarContext } from "@/modules/calendar/contexts/calendar-context";
 import { CardTitle } from "@/modules/dashboard/card/components/CardTitle";
+import { CalendarClock } from "@/modules/globals/components/Icons";
+import { SubtleCard } from "@/modules/globals/components/SubtleCard";
+import { getSessionFromDate } from "@/modules/globals/lib/dates";
 import { LastSessions } from "@/modules/sessions/components/LastSessions";
 import {
 	SessionDetails,
 	SessionDetailsType,
 } from "@/modules/sessions/components/SessionDetails";
-import { Calendar } from "@/modules/calendar/components/Calendar";
-import { CalendarProvider } from "@/modules/calendar/components/CalendarProvider";
-import { MonthDateSelector } from "@/modules/calendar/components/MonthDateSelector";
-import { YearDateSelector } from "@/modules/calendar/components/YearDateSelector";
-import { CalendarClock } from "@/modules/globals/components/Icons";
+import { useContext } from "react";
 
 const session = {
 	id: 1,
@@ -55,6 +58,9 @@ const session = {
 } as SessionDetailsType;
 
 export function SessionsHistory({ className }: { className?: string }) {
+	const { selectedDate } = useContext(CalendarContext);
+	const currentSession = getSessionFromDate(selectedDate);
+	console.log(currentSession);
 	return (
 		<CalendarProvider>
 			<article
@@ -73,7 +79,7 @@ export function SessionsHistory({ className }: { className?: string }) {
 							<MonthDateSelector />
 							<YearDateSelector />
 						</header>
-						<SubtleCard>
+						<SubtleCard className="border-1 border-subtle/10 rounded-lg">
 							<SessionDetails session={session} />
 						</SubtleCard>
 					</section>
