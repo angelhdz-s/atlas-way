@@ -1,10 +1,10 @@
 import { createId } from "../node_modules/@paralleldrive/cuid2";
 import { DAY_TYPES } from "../src/modules/globals/seed/day-types";
-import { BODY_SECTIONS } from "../src/modules/muscles/seed/body-sections";
-import { MUSCLES } from "../src/modules/muscles/seed/muscles";
-import { MUSCULAR_GROUPS } from "../src/modules/muscles/seed/muscular-groups";
+import { BODY_SECTIONS } from "../src/modules/muscle/seed/body-sections";
+import { MUSCLES } from "../src/modules/muscle/seed/muscles";
+import { MUSCULAR_GROUPS } from "../src/modules/muscle/seed/muscular-groups";
 import { STATUS } from "../src/modules/status/seed/status";
-import { USERS } from "../src/modules/users/seed/users";
+import { USERS } from "../src/modules/user/seed/users";
 import { PrismaClient } from "../src/prisma/client";
 
 const prisma = new PrismaClient();

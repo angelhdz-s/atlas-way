@@ -3620,16 +3620,20 @@ export namespace Prisma {
 
   export type RoutinesAvgAggregateOutputType = {
     id: number | null
+    days: number | null
   }
 
   export type RoutinesSumAggregateOutputType = {
     id: number | null
+    days: number | null
   }
 
   export type RoutinesMinAggregateOutputType = {
     id: number | null
     userId: string | null
     active: boolean | null
+    days: number | null
+    initialDate: Date | null
     name: string | null
     description: string | null
     createdAt: Date | null
@@ -3640,6 +3644,8 @@ export namespace Prisma {
     id: number | null
     userId: string | null
     active: boolean | null
+    days: number | null
+    initialDate: Date | null
     name: string | null
     description: string | null
     createdAt: Date | null
@@ -3650,6 +3656,8 @@ export namespace Prisma {
     id: number
     userId: number
     active: number
+    days: number
+    initialDate: number
     name: number
     description: number
     createdAt: number
@@ -3660,16 +3668,20 @@ export namespace Prisma {
 
   export type RoutinesAvgAggregateInputType = {
     id?: true
+    days?: true
   }
 
   export type RoutinesSumAggregateInputType = {
     id?: true
+    days?: true
   }
 
   export type RoutinesMinAggregateInputType = {
     id?: true
     userId?: true
     active?: true
+    days?: true
+    initialDate?: true
     name?: true
     description?: true
     createdAt?: true
@@ -3680,6 +3692,8 @@ export namespace Prisma {
     id?: true
     userId?: true
     active?: true
+    days?: true
+    initialDate?: true
     name?: true
     description?: true
     createdAt?: true
@@ -3690,6 +3704,8 @@ export namespace Prisma {
     id?: true
     userId?: true
     active?: true
+    days?: true
+    initialDate?: true
     name?: true
     description?: true
     createdAt?: true
@@ -3787,6 +3803,8 @@ export namespace Prisma {
     id: number
     userId: string
     active: boolean
+    days: number
+    initialDate: Date
     name: string
     description: string | null
     createdAt: Date
@@ -3816,6 +3834,8 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     active?: boolean
+    days?: boolean
+    initialDate?: boolean
     name?: boolean
     description?: boolean
     createdAt?: boolean
@@ -3829,6 +3849,8 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     active?: boolean
+    days?: boolean
+    initialDate?: boolean
     name?: boolean
     description?: boolean
     createdAt?: boolean
@@ -3840,6 +3862,8 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     active?: boolean
+    days?: boolean
+    initialDate?: boolean
     name?: boolean
     description?: boolean
     createdAt?: boolean
@@ -3851,13 +3875,15 @@ export namespace Prisma {
     id?: boolean
     userId?: boolean
     active?: boolean
+    days?: boolean
+    initialDate?: boolean
     name?: boolean
     description?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type RoutinesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "active" | "name" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["routines"]>
+  export type RoutinesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "active" | "days" | "initialDate" | "name" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["routines"]>
   export type RoutinesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     sessions?: boolean | Routines$sessionsArgs<ExtArgs>
@@ -3880,6 +3906,8 @@ export namespace Prisma {
       id: number
       userId: string
       active: boolean
+      days: number
+      initialDate: Date
       name: string
       description: string | null
       createdAt: Date
@@ -4312,6 +4340,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Routines", 'Int'>
     readonly userId: FieldRef<"Routines", 'String'>
     readonly active: FieldRef<"Routines", 'Boolean'>
+    readonly days: FieldRef<"Routines", 'Int'>
+    readonly initialDate: FieldRef<"Routines", 'DateTime'>
     readonly name: FieldRef<"Routines", 'String'>
     readonly description: FieldRef<"Routines", 'String'>
     readonly createdAt: FieldRef<"Routines", 'DateTime'>
@@ -18349,6 +18379,8 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     active: 'active',
+    days: 'days',
+    initialDate: 'initialDate',
     name: 'name',
     description: 'description',
     createdAt: 'createdAt',
@@ -18669,6 +18701,8 @@ export namespace Prisma {
     id?: IntFilter<"Routines"> | number
     userId?: StringFilter<"Routines"> | string
     active?: BoolFilter<"Routines"> | boolean
+    days?: IntFilter<"Routines"> | number
+    initialDate?: DateTimeFilter<"Routines"> | Date | string
     name?: StringFilter<"Routines"> | string
     description?: StringNullableFilter<"Routines"> | string | null
     createdAt?: DateTimeFilter<"Routines"> | Date | string
@@ -18681,6 +18715,8 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     active?: SortOrder
+    days?: SortOrder
+    initialDate?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -18697,6 +18733,8 @@ export namespace Prisma {
     NOT?: RoutinesWhereInput | RoutinesWhereInput[]
     userId?: StringFilter<"Routines"> | string
     active?: BoolFilter<"Routines"> | boolean
+    days?: IntFilter<"Routines"> | number
+    initialDate?: DateTimeFilter<"Routines"> | Date | string
     description?: StringNullableFilter<"Routines"> | string | null
     createdAt?: DateTimeFilter<"Routines"> | Date | string
     updatedAt?: DateTimeFilter<"Routines"> | Date | string
@@ -18708,6 +18746,8 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     active?: SortOrder
+    days?: SortOrder
+    initialDate?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -18726,6 +18766,8 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Routines"> | number
     userId?: StringWithAggregatesFilter<"Routines"> | string
     active?: BoolWithAggregatesFilter<"Routines"> | boolean
+    days?: IntWithAggregatesFilter<"Routines"> | number
+    initialDate?: DateTimeWithAggregatesFilter<"Routines"> | Date | string
     name?: StringWithAggregatesFilter<"Routines"> | string
     description?: StringNullableWithAggregatesFilter<"Routines"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Routines"> | Date | string
@@ -19579,6 +19621,8 @@ export namespace Prisma {
 
   export type RoutinesCreateInput = {
     active?: boolean
+    days?: number
+    initialDate: Date | string
     name: string
     description?: string | null
     createdAt?: Date | string
@@ -19591,6 +19635,8 @@ export namespace Prisma {
     id?: number
     userId: string
     active?: boolean
+    days?: number
+    initialDate: Date | string
     name: string
     description?: string | null
     createdAt?: Date | string
@@ -19600,6 +19646,8 @@ export namespace Prisma {
 
   export type RoutinesUpdateInput = {
     active?: BoolFieldUpdateOperationsInput | boolean
+    days?: IntFieldUpdateOperationsInput | number
+    initialDate?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19612,6 +19660,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     active?: BoolFieldUpdateOperationsInput | boolean
+    days?: IntFieldUpdateOperationsInput | number
+    initialDate?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19623,6 +19673,8 @@ export namespace Prisma {
     id?: number
     userId: string
     active?: boolean
+    days?: number
+    initialDate: Date | string
     name: string
     description?: string | null
     createdAt?: Date | string
@@ -19631,6 +19683,8 @@ export namespace Prisma {
 
   export type RoutinesUpdateManyMutationInput = {
     active?: BoolFieldUpdateOperationsInput | boolean
+    days?: IntFieldUpdateOperationsInput | number
+    initialDate?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19641,6 +19695,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     active?: BoolFieldUpdateOperationsInput | boolean
+    days?: IntFieldUpdateOperationsInput | number
+    initialDate?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20576,6 +20632,8 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     active?: SortOrder
+    days?: SortOrder
+    initialDate?: SortOrder
     name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
@@ -20584,12 +20642,15 @@ export namespace Prisma {
 
   export type RoutinesAvgOrderByAggregateInput = {
     id?: SortOrder
+    days?: SortOrder
   }
 
   export type RoutinesMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     active?: SortOrder
+    days?: SortOrder
+    initialDate?: SortOrder
     name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
@@ -20600,6 +20661,8 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     active?: SortOrder
+    days?: SortOrder
+    initialDate?: SortOrder
     name?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
@@ -20608,6 +20671,7 @@ export namespace Prisma {
 
   export type RoutinesSumOrderByAggregateInput = {
     id?: SortOrder
+    days?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -21395,6 +21459,14 @@ export namespace Prisma {
     set?: boolean
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
@@ -21418,14 +21490,6 @@ export namespace Prisma {
     update?: SessionsUpdateWithWhereUniqueWithoutRoutinesInput | SessionsUpdateWithWhereUniqueWithoutRoutinesInput[]
     updateMany?: SessionsUpdateManyWithWhereWithoutRoutinesInput | SessionsUpdateManyWithWhereWithoutRoutinesInput[]
     deleteMany?: SessionsScalarWhereInput | SessionsScalarWhereInput[]
-  }
-
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type SessionsUncheckedUpdateManyWithoutRoutinesNestedInput = {
@@ -22266,6 +22330,8 @@ export namespace Prisma {
 
   export type RoutinesCreateWithoutUserInput = {
     active?: boolean
+    days?: number
+    initialDate: Date | string
     name: string
     description?: string | null
     createdAt?: Date | string
@@ -22276,6 +22342,8 @@ export namespace Prisma {
   export type RoutinesUncheckedCreateWithoutUserInput = {
     id?: number
     active?: boolean
+    days?: number
+    initialDate: Date | string
     name: string
     description?: string | null
     createdAt?: Date | string
@@ -22434,6 +22502,8 @@ export namespace Prisma {
     id?: IntFilter<"Routines"> | number
     userId?: StringFilter<"Routines"> | string
     active?: BoolFilter<"Routines"> | boolean
+    days?: IntFilter<"Routines"> | number
+    initialDate?: DateTimeFilter<"Routines"> | Date | string
     name?: StringFilter<"Routines"> | string
     description?: StringNullableFilter<"Routines"> | string | null
     createdAt?: DateTimeFilter<"Routines"> | Date | string
@@ -22689,6 +22759,8 @@ export namespace Prisma {
 
   export type RoutinesCreateWithoutSessionsInput = {
     active?: boolean
+    days?: number
+    initialDate: Date | string
     name: string
     description?: string | null
     createdAt?: Date | string
@@ -22700,6 +22772,8 @@ export namespace Prisma {
     id?: number
     userId: string
     active?: boolean
+    days?: number
+    initialDate: Date | string
     name: string
     description?: string | null
     createdAt?: Date | string
@@ -23943,6 +24017,8 @@ export namespace Prisma {
   export type RoutinesCreateManyUserInput = {
     id?: number
     active?: boolean
+    days?: number
+    initialDate: Date | string
     name: string
     description?: string | null
     createdAt?: Date | string
@@ -23985,6 +24061,8 @@ export namespace Prisma {
 
   export type RoutinesUpdateWithoutUserInput = {
     active?: BoolFieldUpdateOperationsInput | boolean
+    days?: IntFieldUpdateOperationsInput | number
+    initialDate?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23995,6 +24073,8 @@ export namespace Prisma {
   export type RoutinesUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     active?: BoolFieldUpdateOperationsInput | boolean
+    days?: IntFieldUpdateOperationsInput | number
+    initialDate?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24005,6 +24085,8 @@ export namespace Prisma {
   export type RoutinesUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     active?: BoolFieldUpdateOperationsInput | boolean
+    days?: IntFieldUpdateOperationsInput | number
+    initialDate?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24153,6 +24235,8 @@ export namespace Prisma {
 
   export type RoutinesUpdateWithoutSessionsInput = {
     active?: BoolFieldUpdateOperationsInput | boolean
+    days?: IntFieldUpdateOperationsInput | number
+    initialDate?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24164,6 +24248,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     active?: BoolFieldUpdateOperationsInput | boolean
+    days?: IntFieldUpdateOperationsInput | number
+    initialDate?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24174,6 +24260,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     active?: BoolFieldUpdateOperationsInput | boolean
+    days?: IntFieldUpdateOperationsInput | number
+    initialDate?: DateTimeFieldUpdateOperationsInput | Date | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

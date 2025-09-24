@@ -132,6 +132,8 @@ exports.Prisma.RoutinesScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   active: 'active',
+  days: 'days',
+  initialDate: 'initialDate',
   name: 'name',
   description: 'description',
   createdAt: 'createdAt',
