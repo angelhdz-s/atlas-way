@@ -1,15 +1,15 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import { ToastItem } from "@/modules/globals/components/toast/ToastItem";
 import type { Toast } from "@/modules/globals/types.d";
+import { ToastItem } from "@/modules/toast/components/ToastItem";
 
 interface Props {
 	toasts: Toast[];
 	onRemove: (id: string) => void;
 }
 
-export default function ToastContainer({ toasts, onRemove }: Props) {
+export function ToastContainer({ toasts, onRemove }: Props) {
 	if (typeof window === "undefined") return null;
 
 	return createPortal(

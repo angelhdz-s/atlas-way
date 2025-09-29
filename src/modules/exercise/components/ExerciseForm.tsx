@@ -10,7 +10,7 @@ import { SelectOption } from "@/modules/form/types";
 import { InputNumber } from "@/modules/form/components/InputNumber";
 import { MuscleIdName } from "@/modules/muscle/types";
 import { createExerciseAction } from "../actions/create-muscle";
-import { useToast } from "@/modules/globals/hooks/useToast";
+import { useToast } from "@/modules/toast/hooks/useToast";
 
 export function ExerciseForm({
 	title,

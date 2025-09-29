@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { TOAST_DURATION, TOAST_TYPE } from "@/modules/globals/config/defaults";
-import ToastContainer from "@/modules/globals/components/toast/ToastContainer";
-import { ToastContext } from "@/modules/globals/contexts/toast-context";
-import { generateId } from "@/modules/globals/lib/toast";
+import { generateId } from "@/modules/globals/lib/utils";
 import { Toast } from "@/modules/globals/types.d";
+import { ToastContainer } from "@/modules/toast/components/ToastContainer";
+import { ToastContext } from "@/modules/toast/contexts/toast-context";
 
 export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
 	const [toasts, setToasts] = useState<Toast[]>([]);
