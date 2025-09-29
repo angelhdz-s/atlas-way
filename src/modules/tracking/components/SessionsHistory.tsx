@@ -1,5 +1,6 @@
 "use client";
 
+import { useContext } from "react";
 import { Calendar } from "@/modules/calendar/components/Calendar";
 import { CalendarProvider } from "@/modules/calendar/components/CalendarProvider";
 import { MonthDateSelector } from "@/modules/calendar/components/MonthDateSelector";
@@ -9,12 +10,11 @@ import { CardTitle } from "@/modules/dashboard/card/components/CardTitle";
 import { CalendarClock } from "@/modules/globals/components/Icons";
 import { SubtleCard } from "@/modules/globals/components/SubtleCard";
 import { getSessionFromDate } from "@/modules/globals/lib/dates";
-import { LastSessions } from "@/modules/sessions/components/LastSessions";
+import { LastSessions } from "@/modules/session/components/LastSessions";
 import {
 	SessionDetails,
 	SessionDetailsType,
-} from "@/modules/sessions/components/SessionDetails";
-import { useContext } from "react";
+} from "@/modules/session/components/SessionDetails";
 
 const session = {
 	id: 1,
@@ -59,8 +59,7 @@ const session = {
 
 export function SessionsHistory({ className }: { className?: string }) {
 	const { selectedDate } = useContext(CalendarContext);
-	const currentSession = getSessionFromDate(selectedDate);
-	console.log(currentSession);
+	const currentSession = getSessionFromDate(selectedDate); // Here will be a function to get session from date
 	return (
 		<CalendarProvider>
 			<article

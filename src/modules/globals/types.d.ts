@@ -1,3 +1,7 @@
+export type Prettify<T> = {
+	[K in keyof T]: T[K];
+} & {};
+
 export interface IconProps {
 	className?: string;
 	strokeWidth?: string;

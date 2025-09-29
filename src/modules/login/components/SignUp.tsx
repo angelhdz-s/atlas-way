@@ -1,4 +1,4 @@
-import { LabelInput } from "@/modules/forms/components/Label/label-input";
+import { LabelInput } from "@/modules/form/components/Label/label-input";
 import { SubmitButton } from "./SubmitButton";
 
 export function SignUp({ className = "" }: { className?: string }) {

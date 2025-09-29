@@ -1,7 +1,7 @@
 import { useSidebar } from "@/modules/sidebar/hooks/useSidebar";
 import { SubLink } from "@/modules/sidebar/components/nav/SubLink";
 import { NavIconSize } from "@/modules/sidebar/components/nav/NavConstants";
-import { NotificationsCounter } from "@/modules/notifications/components/NotificationsCounter";
+import { NotificationsCounter } from "@/modules/notification/components/NotificationsCounter";
 import { NavLinkBody } from "@/modules/sidebar/components/nav/NavLinkBody";
 import { Bell } from "@/modules/globals/components/Icons";
 

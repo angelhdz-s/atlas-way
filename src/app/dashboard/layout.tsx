@@ -2,7 +2,7 @@ import { Footer } from "@/modules/dashboard/components/Footer";
 import { Header } from "@/modules/dashboard/components/Header";
 import { Sidebar } from "@/modules/sidebar/components/Sidebar";
 import { SidebarProvider } from "@/modules/sidebar/components/SidebarProvider";
-import { getUser } from "@/actions/users";
+import { getUser } from "@/modules/user/actions/users";
 
 export default async function Layout({
 	children,

@@ -1,4 +1,4 @@
-import { UsersWithoutId } from "@/modules/users/types.d";
+import { UsersWithoutId } from "@/modules/user/types";
 
 export const USERS: UsersWithoutId[] = [
 	{

@@ -1,5 +1,7 @@
-import { ExerciseForm } from "@/modules/forms/components/ExerciseForm";
+import { ExerciseForm } from "@/modules/exercise/components/ExerciseForm";
+import { getMuscleIdName } from "@/modules/muscle/actions/getMuscles";
 
-export default function CreateExercisePage() {
-	return <ExerciseForm />;
+export default async function CreateExercisePage() {
+	const muscles = await getMuscleIdName();
+	return <ExerciseForm title="New Exercise" muscles={muscles} />;
 }

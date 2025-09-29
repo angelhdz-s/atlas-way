@@ -1,20 +1,22 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import CloseButton from "@/modules/globals/components/modal/CloseButton";
 
-export function ModalFormButtons() {
-	const router = useRouter();
+export function ModalFormButtons({
+	isPending = false,
+}: {
+	isPending?: boolean;
+}) {
+	// const router = useRouter();
 
 	const handleSubmit = () => {
-		// Logic here
-		router.back();
+		// router.back();
 	};
 	return (
 		<>
 			<button
-				type="button"
-				className="bg-blue-600 border-blue-600 cursor-pointer"
+				type="submit"
+				className={`bg-blue-600 border-blue-600 text-main-foreground ${isPending ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
 				onClick={handleSubmit}
 			>
 				Create

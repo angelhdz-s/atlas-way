@@ -1,4 +1,4 @@
-import { SessionForm } from "@/modules/forms/components/SessionForm";
+import { SessionForm } from "@/modules/form/components/SessionForm";
 
 export default function CreateSessionPage() {
 	return <SessionForm />;

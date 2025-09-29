@@ -39,10 +39,13 @@ export function ToastItem({ toast, onClose }: Props) {
 		>
 			<main className="flex items-center gap-2">
 				<div className="-mb-1">{TOAST_ICONS[type]}</div>
-				<span className="block w-fit">{toast.message}</span>
+				<span className="block w-fit font-semibold">{toast.message}</span>
 			</main>
-			<button onClick={onClose} className="cursor-pointer">
-				<XMark className="size-4" />
+			<button
+				onClick={onClose}
+				className="text-subtle cursor-pointer hover:opacity-50 transition-opacity"
+			>
+				<XMark className="size-5" />
 			</button>
 			<div className="h-1 absolute bottom-0 left-0 w-full mask-l-from-50% mask-l-to-110%">
 				<span

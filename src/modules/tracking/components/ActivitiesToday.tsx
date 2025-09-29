@@ -3,7 +3,7 @@ import { CirclePlus } from "@/modules/globals/components/Icons";
 import {
 	SessionDetails,
 	SessionDetailsType,
-} from "../../sessions/components/SessionDetails";
+} from "../../session/components/SessionDetails";
 import { SubtleCard } from "@/modules/globals/components/SubtleCard";
 
 const session = {

@@ -2,7 +2,7 @@ import { CardTitle } from "../../dashboard/card/components/CardTitle";
 import {
 	SessionDetails,
 	SessionDetailsType,
-} from "../../sessions/components/SessionDetails";
+} from "../../session/components/SessionDetails";
 
 const session = {
 	id: 1,

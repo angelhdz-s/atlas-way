@@ -179,3 +179,27 @@ body::before {
 	z-index: -10;
 	mask: linear-gradient(to bottom, transparent 0%, transparent 60%, black 100%);
 }
+
+.scrollbar-y {
+	overflow-y: scroll;
+	scrollbar-gutter: stable;
+
+	&::-webkit-scrollbar {
+		width: calc(var(--spacing) * 3);
+	}
+
+	&::-webkit-scrollbar-track {
+		background: var(--color-sec-background);
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: color-mix(in oklch, var(--color-subtle) 50%, transparent);
+		border-radius: calc(var(--spacing) * 6);
+		border: 2px solid transparent;
+		background-clip: content-box;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background-color: var(--color-subtle);
+	}
+}
