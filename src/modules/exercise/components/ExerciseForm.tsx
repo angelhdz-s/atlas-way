@@ -1,16 +1,16 @@
 "use client";
 
 import { useActionState, useEffect } from "react";
-import { Label } from "@/modules/form/components/LabelInput";
-import { ModalFormButtons } from "../../form/components/ModalFormButtons";
-import { InputText } from "@/modules/form/components/InputText";
-import { TextArea } from "@/modules/form/components/TextArea";
-import { MusclesSelection } from "./MusclesSelection";
-import { SelectOption } from "@/modules/form/types";
+import { createExerciseAction } from "@/modules/exercise/actions/create-muscle";
 import { InputNumber } from "@/modules/form/components/InputNumber";
+import { InputText } from "@/modules/form/components/InputText";
+import { Label } from "@/modules/form/components/LabelInput";
+import { ModalFormButtons } from "@/modules/form/components/ModalFormButtons";
+import { TextArea } from "@/modules/form/components/TextArea";
+import { SelectOption } from "@/modules/form/types";
 import { MuscleIdName } from "@/modules/muscle/types";
-import { createExerciseAction } from "../actions/create-muscle";
 import { useToast } from "@/modules/toast/hooks/useToast";
+import { MultipleSelectBox } from "@/modules/form/components/MultipleSelectBox";
 
 export function ExerciseForm({
 	title,
@@ -64,7 +64,12 @@ export function ExerciseForm({
 						</Label>
 					</section>
 					<section>
-						<MusclesSelection options={muscleOptions} />
+						<MultipleSelectBox
+							label="Muscles"
+							name="muscles"
+							selectingTitle="Select muscles"
+							options={muscleOptions}
+						/>
 					</section>
 					<footer className="flex gap-2 *:px-4 *:py-2 *:rounded *:w-full *:border-2">
 						<ModalFormButtons isPending={isPending} />

@@ -8,8 +8,8 @@ import {
 	XCircle,
 	XMark,
 } from "@/modules/globals/components/Icons";
-import styles from "@/modules/globals/components/toast/Toast.module.css";
 import { Toast } from "@/modules/globals/types.d";
+import styles from "@/modules/toast/components/Toast.module.css";
 
 interface Props {
 	toast: Toast;

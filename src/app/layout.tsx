@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Funnel_Display, Funnel_Sans } from "next/font/google";
 import { ThemeProvider } from "@/modules/globals/components/ThemeProvider";
+import { ToastProvider } from "@/modules/toast/components/ToastProvider";
 import "@/app/globals.css";
-import { ToastProvider } from "@/modules/globals/components/toast/ToastProvider";
 
 const funnelDisplayFont = Funnel_Display({
 	variable: "--font-funnel-display",
