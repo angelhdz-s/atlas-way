@@ -1,16 +1,13 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
-import { createExerciseAction } from "@/modules/exercise/actions/create-muscle";
+import { useExerciseForm } from "@/modules/exercise/hooks/useExerciseForm";
 import { InputNumber } from "@/modules/form/components/InputNumber";
 import { InputText } from "@/modules/form/components/InputText";
 import { Label } from "@/modules/form/components/LabelInput";
 import { ModalFormButtons } from "@/modules/form/components/ModalFormButtons";
-import { TextArea } from "@/modules/form/components/TextArea";
-import { SelectOption } from "@/modules/form/types";
-import { MuscleIdName } from "@/modules/muscle/types";
-import { useToast } from "@/modules/toast/hooks/useToast";
 import { MultipleSelectBox } from "@/modules/form/components/MultipleSelectBox";
+import { TextArea } from "@/modules/form/components/TextArea";
+import { MuscleIdName } from "@/modules/muscle/types";
 
 export function ExerciseForm({
 	title,
@@ -19,22 +16,7 @@ export function ExerciseForm({
 	title: string;
 	muscles: MuscleIdName[];
 }) {
-	const { addToast } = useToast();
-	const [state, action, isPending] = useActionState(createExerciseAction, null);
-
-	const muscleOptions: SelectOption[] = muscles.map((muscle) => ({
-		value: muscle.id.toString(),
-		label: muscle.name,
-	}));
-
-	useEffect(() => {
-		if (!state) return;
-		if (!state.success) {
-			addToast(state.message, { type: "error" });
-		} else if (state.success) {
-			addToast("Data sended correctly", { type: "success" });
-		}
-	}, [state, addToast]);
+	const { action, isPending, muscleOptions } = useExerciseForm({ muscles });
 
 	return (
 		<div className="w-96">

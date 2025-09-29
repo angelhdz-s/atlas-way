@@ -1,10 +1,10 @@
 import { XMark } from "@/modules/globals/components/Icons";
-import { StatusIcon } from "@/modules/status/components/StatusIcons";
 import {
 	getGridColsClassFromWithStatus,
 	getStatusTextColorClass,
 } from "@/modules/globals/lib/get-classes";
 import { StatusDayType } from "@/modules/globals/mocks/routines";
+import { StatusIcon } from "@/modules/status/components/StatusIcons";
 
 const iconSize = "size-4.5";
 
