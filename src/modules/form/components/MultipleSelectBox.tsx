@@ -48,7 +48,7 @@ export function MultipleSelectBox({
 		isSelecting,
 		removeAllOptionsSelected,
 		selectedOptions,
-		setIsSelecting,
+		handleCloseSelectOptions,
 	} = useMultipleSelectBox({ options });
 
 	return (
@@ -97,10 +97,11 @@ export function MultipleSelectBox({
 							title={selectingTitle}
 							options={filteredOptions}
 							onAdd={handleAddOptionsSelection}
+							onClose={handleCloseSelectOptions}
 						/>
 					</div>
 					<div
-						onClick={() => setIsSelecting(false)}
+						onClick={handleCloseSelectOptions}
 						className="fixed inset-0 z-40 bg-black/50"
 					/>
 				</>

@@ -9,6 +9,10 @@ export function useMultipleSelectBox({ options }: { options: SelectOption[] }) {
 		(option) => !selectedOptions.includes(option),
 	);
 
+	const handleCloseSelectOptions = () => {
+		setIsSelecting(false);
+	};
+
 	const handleAddOption = () => {
 		setIsSelecting(true);
 	};
@@ -36,6 +40,6 @@ export function useMultipleSelectBox({ options }: { options: SelectOption[] }) {
 		removeAllOptionsSelected,
 		handleAddOptionsSelection,
 		handleRemoveOptionsSelected,
-		setIsSelecting,
+		handleCloseSelectOptions,
 	};
 }

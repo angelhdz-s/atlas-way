@@ -4,9 +4,11 @@ import { SelectOption } from "@/modules/form/types";
 export function useMultipleSelectOptionsBox({
 	options,
 	onAdd,
+	onClose,
 }: {
 	options: SelectOption[];
 	onAdd: (options: SelectOption[]) => void;
+	onClose?: () => void;
 }) {
 	const [search, setSearch] = useState<string>("");
 	const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>([]);
@@ -14,6 +16,11 @@ export function useMultipleSelectOptionsBox({
 	const filteredOptions = options.filter((option) =>
 		option.label.toLowerCase().includes(search),
 	);
+
+	const handleClose = () => {
+		onClose?.();
+		console.log("closed");
+	};
 
 	const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearch(e.target.value);
@@ -37,6 +44,7 @@ export function useMultipleSelectOptionsBox({
 		search,
 		selectedOptions,
 		filteredOptions,
+		handleClose,
 		handleSearchChange,
 		handleSelectOption,
 		handleAddOptions,
