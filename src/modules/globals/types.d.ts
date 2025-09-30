@@ -23,3 +23,7 @@ export interface Toast {
 	message: string;
 	duration?: number;
 }
+
+export type ActionResponseType =
+	| { success: true }
+	| { success: false; message: string };

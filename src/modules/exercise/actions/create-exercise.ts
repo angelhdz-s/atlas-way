@@ -1,8 +1,6 @@
 "use server";
 
-type ActionResponseType =
-	| { success: true }
-	| { success: false; message: string };
+import { ActionResponseType } from "@/modules/globals/types";
 
 export async function createExerciseAction(
 	previousState: unknown,
