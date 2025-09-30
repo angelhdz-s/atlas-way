@@ -11,8 +11,12 @@ export async function createSessionAction(
 	return { success: true };
 }
 
-export async function createSession(formData: FormData) {
+export async function createSession(
+	formData: FormData,
+): Promise<string[] | null> {
+	const errors: string[] = [];
 	const data = Object.fromEntries(formData);
 	console.log("Creating session with data:", data);
-	return null;
+
+	return errors.length > 0 ? errors : null;
 }

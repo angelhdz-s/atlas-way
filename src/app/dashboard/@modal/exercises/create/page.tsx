@@ -1,7 +1,11 @@
-import { ExerciseForm } from "@/modules/exercise/components/ExerciseForm";
+import { ExerciseForm } from "@/modules/exercise/components/ModalExerciseForm";
 import { getMuscleIdName } from "@/modules/muscle/actions/getMuscles";
 
 export default async function CreateExercisePage() {
 	const muscles = await getMuscleIdName();
-	return <ExerciseForm title="New Exercise" muscles={muscles} />;
+	const muscleOptions = muscles.map((muscle) => ({
+		value: muscle.id.toString(),
+		label: muscle.name,
+	}));
+	return <ExerciseForm title="New Exercise" muscles={muscleOptions} />;
 }

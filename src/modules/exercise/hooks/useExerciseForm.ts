@@ -1,32 +1,34 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { createExerciseAction } from "@/modules/exercise/actions/create-exercise";
-import { SelectOption } from "@/modules/form/types";
-import { MuscleIdName } from "@/modules/muscle/types";
 import { useToast } from "@/modules/toast/hooks/useToast";
 
-export function useExerciseForm({ muscles }: { muscles: MuscleIdName[] }) {
+export function useExerciseForm({ onSuccess }: { onSuccess?: () => void }) {
+	const isSuccess = useRef(false);
 	const { addToast } = useToast();
 	const [state, action, isPending] = useActionState(createExerciseAction, null);
-
-	const muscleOptions: SelectOption[] = muscles.map((muscle) => ({
-		value: muscle.id.toString(),
-		label: muscle.name,
-	}));
 
 	useEffect(() => {
 		if (!state) return;
 		if (!state.success) {
-			addToast(state.message, { type: "error" });
+			for (const message of state.message) {
+				addToast(message, { type: "error" });
+			}
 		} else if (state.success) {
 			addToast("Data sended correctly", { type: "success" });
 		}
 	}, [state, addToast]);
 
+	useEffect(() => {
+		if (!state || !state.success || !onSuccess) return;
+		if (isSuccess.current) return;
+		isSuccess.current = true;
+		onSuccess?.();
+	}, [state, onSuccess]);
+
 	return {
 		action,
 		isPending,
-		muscleOptions,
 	};
 }

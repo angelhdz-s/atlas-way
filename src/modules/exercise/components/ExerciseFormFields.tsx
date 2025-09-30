@@ -1,26 +1,13 @@
-"use client";
-
-import { useExerciseForm } from "@/modules/exercise/hooks/useExerciseForm";
 import { InputNumber } from "@/modules/form/components/InputNumber";
 import { InputText } from "@/modules/form/components/InputText";
 import { Label } from "@/modules/form/components/LabelInput";
-import { ModalForm } from "@/modules/form/components/ModalForm";
-import { ModalFormButtons } from "@/modules/form/components/ModalFormButtons";
 import { MultipleSelectBox } from "@/modules/form/components/MultipleSelectBox";
 import { TextArea } from "@/modules/form/components/TextArea";
-import { MuscleIdName } from "@/modules/muscle/types";
+import { SelectOption } from "@/modules/form/types";
 
-export function ExerciseForm({
-	title,
-	muscles,
-}: {
-	title: string;
-	muscles: MuscleIdName[];
-}) {
-	const { action, isPending, muscleOptions } = useExerciseForm({ muscles });
-
+export function ExerciseFormFields({ muscles }: { muscles: SelectOption[] }) {
 	return (
-		<ModalForm title={title} action={action}>
+		<>
 			<Label title="Name">
 				<InputText name="name" placeholder="Bench Press" />
 			</Label>
@@ -46,12 +33,9 @@ export function ExerciseForm({
 					label="Muscles"
 					name="muscles"
 					selectingTitle="Select muscles"
-					options={muscleOptions}
+					options={muscles}
 				/>
 			</section>
-			<footer className="flex gap-2 *:px-4 *:py-2 *:rounded *:w-full *:border-2">
-				<ModalFormButtons isPending={isPending} />
-			</footer>
-		</ModalForm>
+		</>
 	);
 }

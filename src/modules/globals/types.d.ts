@@ -26,4 +26,4 @@ export interface Toast {
 
 export type ActionResponseType =
 	| { success: true }
-	| { success: false; message: string };
+	| { success: false; message: string[] };
