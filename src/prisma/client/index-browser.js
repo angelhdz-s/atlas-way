@@ -149,7 +149,7 @@ exports.Prisma.SessionsScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ExcercisesScalarFieldEnum = {
+exports.Prisma.ExercisesScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   name: 'name',
@@ -158,7 +158,7 @@ exports.Prisma.ExcercisesScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.ExcerciseInitialStatsScalarFieldEnum = {
+exports.Prisma.ExerciseInitialStatsScalarFieldEnum = {
   id: 'id',
   exerciseId: 'exerciseId',
   sets: 'sets',
@@ -266,8 +266,8 @@ exports.Prisma.ModelName = {
   Users: 'Users',
   Routines: 'Routines',
   Sessions: 'Sessions',
-  Excercises: 'Excercises',
-  ExcerciseInitialStats: 'ExcerciseInitialStats',
+  Exercises: 'Exercises',
+  ExerciseInitialStats: 'ExerciseInitialStats',
   Notifications: 'Notifications',
   Status: 'Status',
   DayTypes: 'DayTypes',

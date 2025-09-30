@@ -18,13 +18,13 @@ model Users {
   updatedAt     DateTime        @updatedAt
   routines      Routines[]
   sessions      Sessions[]
-  exercises     Excercises[]
+  exercises     Exercises[]
   notifications Notifications[]
   tracking      Tracking[]
 }
 
 model Routines {
-  id          Int        @id @default(autoincrement())
+  id          String     @id @default(uuid())
   userId      String
   active      Boolean    @default(true)
   days        Int        @default(7)
@@ -38,46 +38,46 @@ model Routines {
 }
 
 model Sessions {
-  id          Int          @id @default(autoincrement())
+  id          String      @id @default(uuid())
   userId      String
-  name        String       @unique
+  name        String      @unique
   description String?
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  user        Users        @relation(fields: [userId], references: [id])
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  user        Users       @relation(fields: [userId], references: [id])
   routines    Routines[]
-  exercises   Excercises[]
+  exercises   Exercises[]
 }
 
-model Excercises {
-  id              Int                    @id @default(autoincrement())
+model Exercises {
+  id              String                @id @default(uuid())
   userId          String
   name            String
   description     String?
-  createdAt       DateTime               @default(now())
-  updatedAt       DateTime               @updatedAt
-  user            Users                  @relation(fields: [userId], references: [id])
+  createdAt       DateTime              @default(now())
+  updatedAt       DateTime              @updatedAt
+  user            Users                 @relation(fields: [userId], references: [id])
   sessions        Sessions[]
   muscles         Muscles[]
-  initialStats    ExcerciseInitialStats?
+  initialStats    ExerciseInitialStats?
   trackedExercise TrackedExercises[]
 }
 
-model ExcerciseInitialStats {
-  id         Int        @id @default(autoincrement())
-  exerciseId Int        @unique
+model ExerciseInitialStats {
+  id         String    @id @default(uuid())
+  exerciseId String    @unique
   sets       Int
   reps       Int
   weight     Int
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-  exercise   Excercises @relation(fields: [exerciseId], references: [id])
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  exercise   Exercises @relation(fields: [exerciseId], references: [id])
 }
 
 // MARK: System tables
 
 model Notifications {
-  id        Int      @id @default(autoincrement())
+  id        String   @id @default(uuid())
   userId    String
   name      String
   message   String
@@ -127,13 +127,13 @@ model Muscles {
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
   muscularGroup   MuscularGroups @relation(fields: [muscularGroupId], references: [id])
-  exercises       Excercises[]
+  exercises       Exercises[]
 }
 
 // MARK: Tracking tables
 
 model Tracking {
-  id              Int                @id @default(autoincrement())
+  id              String             @id @default(uuid())
   userId          String
   date            DateTime
   status          String
@@ -148,22 +148,22 @@ model Tracking {
 }
 
 model TrackedExercises {
-  id                   Int                   @id @default(autoincrement())
-  trackingId           Int
-  exerciseId           Int
+  id                   String                @id @default(uuid())
+  trackingId           String
+  exerciseId           String
   sets                 Int
   reps                 Int
   weight               Int
   createdAt            DateTime              @default(now())
   updatedAt            DateTime              @updatedAt
   tracking             Tracking              @relation(fields: [trackingId], references: [id])
-  exercise             Excercises            @relation(fields: [exerciseId], references: [id])
+  exercise             Exercises             @relation(fields: [exerciseId], references: [id])
   trackedExerciseStats TrackedExerciseStats?
 }
 
 model TrackedExerciseStats {
-  id                Int              @id @default(autoincrement())
-  trackedExerciseId Int              @unique
+  id                String           @id @default(uuid())
+  trackedExerciseId String           @unique
   sets              Int
   reps              Int
   weight            Int
