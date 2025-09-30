@@ -1,32 +1,31 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useExerciseForm } from "@/modules/exercise/hooks/useExerciseForm";
 import { ModalForm } from "@/modules/form/components/ModalForm";
 import { ModalFormButtons } from "@/modules/form/components/ModalFormButtons";
 import { SelectOption } from "@/modules/form/types";
-import { ExerciseFormFields } from "@/modules/exercise/components/ExerciseFormFields";
+import { useSessionForm } from "@/modules/session/hooks/useSessionForm";
 import { useForm } from "@/modules/form/hooks/useForm";
+import { SessionFormFields } from "@/modules/session/components/SessionFormFields";
 
-export function ExerciseForm({
+export function ModalSessionForm({
 	title,
-	muscles,
+	exercises,
 }: {
 	title: string;
-	muscles: SelectOption[];
+	exercises: SelectOption[];
 }) {
 	const router = useRouter();
-
 	const handleSuccess = () => {
-		console.log("Form closed");
-		router.back(); // close modal
+		router.back();
 	};
-	const { state, action, isPending } = useExerciseForm();
+
+	const { state, action, isPending } = useSessionForm();
 	useForm({ state, onSuccess: handleSuccess });
 
 	return (
 		<ModalForm title={title} action={action}>
-			<ExerciseFormFields muscles={muscles} />
+			<SessionFormFields exercises={exercises} />
 			<footer className="flex gap-2 *:px-4 *:py-2 *:rounded *:w-full *:border-2">
 				<ModalFormButtons isPending={isPending} />
 			</footer>

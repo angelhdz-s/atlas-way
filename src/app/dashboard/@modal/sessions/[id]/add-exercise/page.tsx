@@ -1,5 +1,5 @@
-import { SessionForm } from "@/modules/session/components/SessionForm";
+import { ModalSessionForm } from "@/modules/session/components/ModalSessionForm";
 
 export default function AddSessionToRoutinePage() {
-	return <SessionForm />;
+	return <ModalSessionForm exercises={[]} title="Add Exercise to Session" />;
 }
