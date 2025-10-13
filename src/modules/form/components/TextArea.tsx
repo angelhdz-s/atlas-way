@@ -7,6 +7,7 @@ export function TextArea({
 	placeholder = "",
 	disabled = false,
 	rows = 3,
+	...props
 }: TextAreaProps) {
 	return (
 		<textarea
@@ -15,6 +16,7 @@ export function TextArea({
 			placeholder={placeholder}
 			disabled={disabled}
 			rows={rows}
+			{...props}
 		/>
 	);
 }

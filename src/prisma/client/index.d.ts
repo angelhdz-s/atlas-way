@@ -24,6 +24,11 @@ export type Users = $Result.DefaultSelection<Prisma.$UsersPayload>
  */
 export type Routines = $Result.DefaultSelection<Prisma.$RoutinesPayload>
 /**
+ * Model RoutineDays
+ * 
+ */
+export type RoutineDays = $Result.DefaultSelection<Prisma.$RoutineDaysPayload>
+/**
  * Model Sessions
  * 
  */
@@ -228,6 +233,16 @@ export class PrismaClient<
     * ```
     */
   get routines(): Prisma.RoutinesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.routineDays`: Exposes CRUD operations for the **RoutineDays** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RoutineDays
+    * const routineDays = await prisma.routineDays.findMany()
+    * ```
+    */
+  get routineDays(): Prisma.RoutineDaysDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.sessions`: Exposes CRUD operations for the **Sessions** model.
@@ -790,6 +805,7 @@ export namespace Prisma {
   export const ModelName: {
     Users: 'Users',
     Routines: 'Routines',
+    RoutineDays: 'RoutineDays',
     Sessions: 'Sessions',
     Exercises: 'Exercises',
     ExerciseInitialStats: 'ExerciseInitialStats',
@@ -820,7 +836,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "users" | "routines" | "sessions" | "exercises" | "exerciseInitialStats" | "notifications" | "status" | "dayTypes" | "bodySections" | "muscularGroups" | "muscles" | "tracking" | "trackedExercises" | "trackedExerciseStats"
+      modelProps: "users" | "routines" | "routineDays" | "sessions" | "exercises" | "exerciseInitialStats" | "notifications" | "status" | "dayTypes" | "bodySections" | "muscularGroups" | "muscles" | "tracking" | "trackedExercises" | "trackedExerciseStats"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -969,6 +985,80 @@ export namespace Prisma {
           count: {
             args: Prisma.RoutinesCountArgs<ExtArgs>
             result: $Utils.Optional<RoutinesCountAggregateOutputType> | number
+          }
+        }
+      }
+      RoutineDays: {
+        payload: Prisma.$RoutineDaysPayload<ExtArgs>
+        fields: Prisma.RoutineDaysFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RoutineDaysFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutineDaysPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RoutineDaysFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutineDaysPayload>
+          }
+          findFirst: {
+            args: Prisma.RoutineDaysFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutineDaysPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RoutineDaysFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutineDaysPayload>
+          }
+          findMany: {
+            args: Prisma.RoutineDaysFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutineDaysPayload>[]
+          }
+          create: {
+            args: Prisma.RoutineDaysCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutineDaysPayload>
+          }
+          createMany: {
+            args: Prisma.RoutineDaysCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RoutineDaysCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutineDaysPayload>[]
+          }
+          delete: {
+            args: Prisma.RoutineDaysDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutineDaysPayload>
+          }
+          update: {
+            args: Prisma.RoutineDaysUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutineDaysPayload>
+          }
+          deleteMany: {
+            args: Prisma.RoutineDaysDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RoutineDaysUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RoutineDaysUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutineDaysPayload>[]
+          }
+          upsert: {
+            args: Prisma.RoutineDaysUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RoutineDaysPayload>
+          }
+          aggregate: {
+            args: Prisma.RoutineDaysAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRoutineDays>
+          }
+          groupBy: {
+            args: Prisma.RoutineDaysGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RoutineDaysGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RoutineDaysCountArgs<ExtArgs>
+            result: $Utils.Optional<RoutineDaysCountAggregateOutputType> | number
           }
         }
       }
@@ -1946,6 +2036,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     users?: UsersOmit
     routines?: RoutinesOmit
+    routineDays?: RoutineDaysOmit
     sessions?: SessionsOmit
     exercises?: ExercisesOmit
     exerciseInitialStats?: ExerciseInitialStatsOmit
@@ -2120,10 +2211,12 @@ export namespace Prisma {
 
   export type RoutinesCountOutputType = {
     sessions: number
+    routineDays: number
   }
 
   export type RoutinesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     sessions?: boolean | RoutinesCountOutputTypeCountSessionsArgs
+    routineDays?: boolean | RoutinesCountOutputTypeCountRoutineDaysArgs
   }
 
   // Custom InputTypes
@@ -2144,6 +2237,13 @@ export namespace Prisma {
     where?: SessionsWhereInput
   }
 
+  /**
+   * RoutinesCountOutputType without action
+   */
+  export type RoutinesCountOutputTypeCountRoutineDaysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoutineDaysWhereInput
+  }
+
 
   /**
    * Count Type SessionsCountOutputType
@@ -2152,11 +2252,13 @@ export namespace Prisma {
   export type SessionsCountOutputType = {
     routines: number
     exercises: number
+    routineDays: number
   }
 
   export type SessionsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     routines?: boolean | SessionsCountOutputTypeCountRoutinesArgs
     exercises?: boolean | SessionsCountOutputTypeCountExercisesArgs
+    routineDays?: boolean | SessionsCountOutputTypeCountRoutineDaysArgs
   }
 
   // Custom InputTypes
@@ -2182,6 +2284,13 @@ export namespace Prisma {
    */
   export type SessionsCountOutputTypeCountExercisesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ExercisesWhereInput
+  }
+
+  /**
+   * SessionsCountOutputType without action
+   */
+  export type SessionsCountOutputTypeCountRoutineDaysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoutineDaysWhereInput
   }
 
 
@@ -3838,6 +3947,7 @@ export namespace Prisma {
     updatedAt?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
     sessions?: boolean | Routines$sessionsArgs<ExtArgs>
+    routineDays?: boolean | Routines$routineDaysArgs<ExtArgs>
     _count?: boolean | RoutinesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["routines"]>
 
@@ -3883,6 +3993,7 @@ export namespace Prisma {
   export type RoutinesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     sessions?: boolean | Routines$sessionsArgs<ExtArgs>
+    routineDays?: boolean | Routines$routineDaysArgs<ExtArgs>
     _count?: boolean | RoutinesCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type RoutinesIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3897,6 +4008,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UsersPayload<ExtArgs>
       sessions: Prisma.$SessionsPayload<ExtArgs>[]
+      routineDays: Prisma.$RoutineDaysPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4304,6 +4416,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     sessions<T extends Routines$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, Routines$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    routineDays<T extends Routines$routineDaysArgs<ExtArgs> = {}>(args?: Subset<T, Routines$routineDaysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4762,6 +4875,30 @@ export namespace Prisma {
   }
 
   /**
+   * Routines.routineDays
+   */
+  export type Routines$routineDaysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysInclude<ExtArgs> | null
+    where?: RoutineDaysWhereInput
+    orderBy?: RoutineDaysOrderByWithRelationInput | RoutineDaysOrderByWithRelationInput[]
+    cursor?: RoutineDaysWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RoutineDaysScalarFieldEnum | RoutineDaysScalarFieldEnum[]
+  }
+
+  /**
    * Routines without action
    */
   export type RoutinesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4777,6 +4914,1151 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: RoutinesInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RoutineDays
+   */
+
+  export type AggregateRoutineDays = {
+    _count: RoutineDaysCountAggregateOutputType | null
+    _avg: RoutineDaysAvgAggregateOutputType | null
+    _sum: RoutineDaysSumAggregateOutputType | null
+    _min: RoutineDaysMinAggregateOutputType | null
+    _max: RoutineDaysMaxAggregateOutputType | null
+  }
+
+  export type RoutineDaysAvgAggregateOutputType = {
+    dayNumber: number | null
+  }
+
+  export type RoutineDaysSumAggregateOutputType = {
+    dayNumber: number | null
+  }
+
+  export type RoutineDaysMinAggregateOutputType = {
+    id: string | null
+    routineId: string | null
+    sessionId: string | null
+    name: string | null
+    dayNumber: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RoutineDaysMaxAggregateOutputType = {
+    id: string | null
+    routineId: string | null
+    sessionId: string | null
+    name: string | null
+    dayNumber: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RoutineDaysCountAggregateOutputType = {
+    id: number
+    routineId: number
+    sessionId: number
+    name: number
+    dayNumber: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RoutineDaysAvgAggregateInputType = {
+    dayNumber?: true
+  }
+
+  export type RoutineDaysSumAggregateInputType = {
+    dayNumber?: true
+  }
+
+  export type RoutineDaysMinAggregateInputType = {
+    id?: true
+    routineId?: true
+    sessionId?: true
+    name?: true
+    dayNumber?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RoutineDaysMaxAggregateInputType = {
+    id?: true
+    routineId?: true
+    sessionId?: true
+    name?: true
+    dayNumber?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RoutineDaysCountAggregateInputType = {
+    id?: true
+    routineId?: true
+    sessionId?: true
+    name?: true
+    dayNumber?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RoutineDaysAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RoutineDays to aggregate.
+     */
+    where?: RoutineDaysWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoutineDays to fetch.
+     */
+    orderBy?: RoutineDaysOrderByWithRelationInput | RoutineDaysOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RoutineDaysWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoutineDays from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoutineDays.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RoutineDays
+    **/
+    _count?: true | RoutineDaysCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RoutineDaysAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RoutineDaysSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RoutineDaysMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RoutineDaysMaxAggregateInputType
+  }
+
+  export type GetRoutineDaysAggregateType<T extends RoutineDaysAggregateArgs> = {
+        [P in keyof T & keyof AggregateRoutineDays]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRoutineDays[P]>
+      : GetScalarType<T[P], AggregateRoutineDays[P]>
+  }
+
+
+
+
+  export type RoutineDaysGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RoutineDaysWhereInput
+    orderBy?: RoutineDaysOrderByWithAggregationInput | RoutineDaysOrderByWithAggregationInput[]
+    by: RoutineDaysScalarFieldEnum[] | RoutineDaysScalarFieldEnum
+    having?: RoutineDaysScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RoutineDaysCountAggregateInputType | true
+    _avg?: RoutineDaysAvgAggregateInputType
+    _sum?: RoutineDaysSumAggregateInputType
+    _min?: RoutineDaysMinAggregateInputType
+    _max?: RoutineDaysMaxAggregateInputType
+  }
+
+  export type RoutineDaysGroupByOutputType = {
+    id: string
+    routineId: string
+    sessionId: string | null
+    name: string
+    dayNumber: number
+    createdAt: Date
+    updatedAt: Date
+    _count: RoutineDaysCountAggregateOutputType | null
+    _avg: RoutineDaysAvgAggregateOutputType | null
+    _sum: RoutineDaysSumAggregateOutputType | null
+    _min: RoutineDaysMinAggregateOutputType | null
+    _max: RoutineDaysMaxAggregateOutputType | null
+  }
+
+  type GetRoutineDaysGroupByPayload<T extends RoutineDaysGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RoutineDaysGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RoutineDaysGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RoutineDaysGroupByOutputType[P]>
+            : GetScalarType<T[P], RoutineDaysGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RoutineDaysSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    routineId?: boolean
+    sessionId?: boolean
+    name?: boolean
+    dayNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    routine?: boolean | RoutinesDefaultArgs<ExtArgs>
+    session?: boolean | RoutineDays$sessionArgs<ExtArgs>
+  }, ExtArgs["result"]["routineDays"]>
+
+  export type RoutineDaysSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    routineId?: boolean
+    sessionId?: boolean
+    name?: boolean
+    dayNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    routine?: boolean | RoutinesDefaultArgs<ExtArgs>
+    session?: boolean | RoutineDays$sessionArgs<ExtArgs>
+  }, ExtArgs["result"]["routineDays"]>
+
+  export type RoutineDaysSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    routineId?: boolean
+    sessionId?: boolean
+    name?: boolean
+    dayNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    routine?: boolean | RoutinesDefaultArgs<ExtArgs>
+    session?: boolean | RoutineDays$sessionArgs<ExtArgs>
+  }, ExtArgs["result"]["routineDays"]>
+
+  export type RoutineDaysSelectScalar = {
+    id?: boolean
+    routineId?: boolean
+    sessionId?: boolean
+    name?: boolean
+    dayNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RoutineDaysOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "routineId" | "sessionId" | "name" | "dayNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["routineDays"]>
+  export type RoutineDaysInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    routine?: boolean | RoutinesDefaultArgs<ExtArgs>
+    session?: boolean | RoutineDays$sessionArgs<ExtArgs>
+  }
+  export type RoutineDaysIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    routine?: boolean | RoutinesDefaultArgs<ExtArgs>
+    session?: boolean | RoutineDays$sessionArgs<ExtArgs>
+  }
+  export type RoutineDaysIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    routine?: boolean | RoutinesDefaultArgs<ExtArgs>
+    session?: boolean | RoutineDays$sessionArgs<ExtArgs>
+  }
+
+  export type $RoutineDaysPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RoutineDays"
+    objects: {
+      routine: Prisma.$RoutinesPayload<ExtArgs>
+      session: Prisma.$SessionsPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      routineId: string
+      sessionId: string | null
+      name: string
+      dayNumber: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["routineDays"]>
+    composites: {}
+  }
+
+  type RoutineDaysGetPayload<S extends boolean | null | undefined | RoutineDaysDefaultArgs> = $Result.GetResult<Prisma.$RoutineDaysPayload, S>
+
+  type RoutineDaysCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RoutineDaysFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RoutineDaysCountAggregateInputType | true
+    }
+
+  export interface RoutineDaysDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RoutineDays'], meta: { name: 'RoutineDays' } }
+    /**
+     * Find zero or one RoutineDays that matches the filter.
+     * @param {RoutineDaysFindUniqueArgs} args - Arguments to find a RoutineDays
+     * @example
+     * // Get one RoutineDays
+     * const routineDays = await prisma.routineDays.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RoutineDaysFindUniqueArgs>(args: SelectSubset<T, RoutineDaysFindUniqueArgs<ExtArgs>>): Prisma__RoutineDaysClient<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RoutineDays that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RoutineDaysFindUniqueOrThrowArgs} args - Arguments to find a RoutineDays
+     * @example
+     * // Get one RoutineDays
+     * const routineDays = await prisma.routineDays.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RoutineDaysFindUniqueOrThrowArgs>(args: SelectSubset<T, RoutineDaysFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RoutineDaysClient<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RoutineDays that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutineDaysFindFirstArgs} args - Arguments to find a RoutineDays
+     * @example
+     * // Get one RoutineDays
+     * const routineDays = await prisma.routineDays.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RoutineDaysFindFirstArgs>(args?: SelectSubset<T, RoutineDaysFindFirstArgs<ExtArgs>>): Prisma__RoutineDaysClient<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RoutineDays that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutineDaysFindFirstOrThrowArgs} args - Arguments to find a RoutineDays
+     * @example
+     * // Get one RoutineDays
+     * const routineDays = await prisma.routineDays.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RoutineDaysFindFirstOrThrowArgs>(args?: SelectSubset<T, RoutineDaysFindFirstOrThrowArgs<ExtArgs>>): Prisma__RoutineDaysClient<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RoutineDays that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutineDaysFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RoutineDays
+     * const routineDays = await prisma.routineDays.findMany()
+     * 
+     * // Get first 10 RoutineDays
+     * const routineDays = await prisma.routineDays.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const routineDaysWithIdOnly = await prisma.routineDays.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RoutineDaysFindManyArgs>(args?: SelectSubset<T, RoutineDaysFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RoutineDays.
+     * @param {RoutineDaysCreateArgs} args - Arguments to create a RoutineDays.
+     * @example
+     * // Create one RoutineDays
+     * const RoutineDays = await prisma.routineDays.create({
+     *   data: {
+     *     // ... data to create a RoutineDays
+     *   }
+     * })
+     * 
+     */
+    create<T extends RoutineDaysCreateArgs>(args: SelectSubset<T, RoutineDaysCreateArgs<ExtArgs>>): Prisma__RoutineDaysClient<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RoutineDays.
+     * @param {RoutineDaysCreateManyArgs} args - Arguments to create many RoutineDays.
+     * @example
+     * // Create many RoutineDays
+     * const routineDays = await prisma.routineDays.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RoutineDaysCreateManyArgs>(args?: SelectSubset<T, RoutineDaysCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RoutineDays and returns the data saved in the database.
+     * @param {RoutineDaysCreateManyAndReturnArgs} args - Arguments to create many RoutineDays.
+     * @example
+     * // Create many RoutineDays
+     * const routineDays = await prisma.routineDays.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RoutineDays and only return the `id`
+     * const routineDaysWithIdOnly = await prisma.routineDays.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RoutineDaysCreateManyAndReturnArgs>(args?: SelectSubset<T, RoutineDaysCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RoutineDays.
+     * @param {RoutineDaysDeleteArgs} args - Arguments to delete one RoutineDays.
+     * @example
+     * // Delete one RoutineDays
+     * const RoutineDays = await prisma.routineDays.delete({
+     *   where: {
+     *     // ... filter to delete one RoutineDays
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RoutineDaysDeleteArgs>(args: SelectSubset<T, RoutineDaysDeleteArgs<ExtArgs>>): Prisma__RoutineDaysClient<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RoutineDays.
+     * @param {RoutineDaysUpdateArgs} args - Arguments to update one RoutineDays.
+     * @example
+     * // Update one RoutineDays
+     * const routineDays = await prisma.routineDays.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RoutineDaysUpdateArgs>(args: SelectSubset<T, RoutineDaysUpdateArgs<ExtArgs>>): Prisma__RoutineDaysClient<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RoutineDays.
+     * @param {RoutineDaysDeleteManyArgs} args - Arguments to filter RoutineDays to delete.
+     * @example
+     * // Delete a few RoutineDays
+     * const { count } = await prisma.routineDays.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RoutineDaysDeleteManyArgs>(args?: SelectSubset<T, RoutineDaysDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RoutineDays.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutineDaysUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RoutineDays
+     * const routineDays = await prisma.routineDays.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RoutineDaysUpdateManyArgs>(args: SelectSubset<T, RoutineDaysUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RoutineDays and returns the data updated in the database.
+     * @param {RoutineDaysUpdateManyAndReturnArgs} args - Arguments to update many RoutineDays.
+     * @example
+     * // Update many RoutineDays
+     * const routineDays = await prisma.routineDays.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RoutineDays and only return the `id`
+     * const routineDaysWithIdOnly = await prisma.routineDays.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RoutineDaysUpdateManyAndReturnArgs>(args: SelectSubset<T, RoutineDaysUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RoutineDays.
+     * @param {RoutineDaysUpsertArgs} args - Arguments to update or create a RoutineDays.
+     * @example
+     * // Update or create a RoutineDays
+     * const routineDays = await prisma.routineDays.upsert({
+     *   create: {
+     *     // ... data to create a RoutineDays
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RoutineDays we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RoutineDaysUpsertArgs>(args: SelectSubset<T, RoutineDaysUpsertArgs<ExtArgs>>): Prisma__RoutineDaysClient<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RoutineDays.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutineDaysCountArgs} args - Arguments to filter RoutineDays to count.
+     * @example
+     * // Count the number of RoutineDays
+     * const count = await prisma.routineDays.count({
+     *   where: {
+     *     // ... the filter for the RoutineDays we want to count
+     *   }
+     * })
+    **/
+    count<T extends RoutineDaysCountArgs>(
+      args?: Subset<T, RoutineDaysCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RoutineDaysCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RoutineDays.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutineDaysAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RoutineDaysAggregateArgs>(args: Subset<T, RoutineDaysAggregateArgs>): Prisma.PrismaPromise<GetRoutineDaysAggregateType<T>>
+
+    /**
+     * Group by RoutineDays.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RoutineDaysGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RoutineDaysGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RoutineDaysGroupByArgs['orderBy'] }
+        : { orderBy?: RoutineDaysGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RoutineDaysGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRoutineDaysGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RoutineDays model
+   */
+  readonly fields: RoutineDaysFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RoutineDays.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RoutineDaysClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    routine<T extends RoutinesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RoutinesDefaultArgs<ExtArgs>>): Prisma__RoutinesClient<$Result.GetResult<Prisma.$RoutinesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    session<T extends RoutineDays$sessionArgs<ExtArgs> = {}>(args?: Subset<T, RoutineDays$sessionArgs<ExtArgs>>): Prisma__SessionsClient<$Result.GetResult<Prisma.$SessionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RoutineDays model
+   */
+  interface RoutineDaysFieldRefs {
+    readonly id: FieldRef<"RoutineDays", 'String'>
+    readonly routineId: FieldRef<"RoutineDays", 'String'>
+    readonly sessionId: FieldRef<"RoutineDays", 'String'>
+    readonly name: FieldRef<"RoutineDays", 'String'>
+    readonly dayNumber: FieldRef<"RoutineDays", 'Int'>
+    readonly createdAt: FieldRef<"RoutineDays", 'DateTime'>
+    readonly updatedAt: FieldRef<"RoutineDays", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RoutineDays findUnique
+   */
+  export type RoutineDaysFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysInclude<ExtArgs> | null
+    /**
+     * Filter, which RoutineDays to fetch.
+     */
+    where: RoutineDaysWhereUniqueInput
+  }
+
+  /**
+   * RoutineDays findUniqueOrThrow
+   */
+  export type RoutineDaysFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysInclude<ExtArgs> | null
+    /**
+     * Filter, which RoutineDays to fetch.
+     */
+    where: RoutineDaysWhereUniqueInput
+  }
+
+  /**
+   * RoutineDays findFirst
+   */
+  export type RoutineDaysFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysInclude<ExtArgs> | null
+    /**
+     * Filter, which RoutineDays to fetch.
+     */
+    where?: RoutineDaysWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoutineDays to fetch.
+     */
+    orderBy?: RoutineDaysOrderByWithRelationInput | RoutineDaysOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RoutineDays.
+     */
+    cursor?: RoutineDaysWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoutineDays from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoutineDays.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RoutineDays.
+     */
+    distinct?: RoutineDaysScalarFieldEnum | RoutineDaysScalarFieldEnum[]
+  }
+
+  /**
+   * RoutineDays findFirstOrThrow
+   */
+  export type RoutineDaysFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysInclude<ExtArgs> | null
+    /**
+     * Filter, which RoutineDays to fetch.
+     */
+    where?: RoutineDaysWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoutineDays to fetch.
+     */
+    orderBy?: RoutineDaysOrderByWithRelationInput | RoutineDaysOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RoutineDays.
+     */
+    cursor?: RoutineDaysWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoutineDays from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoutineDays.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RoutineDays.
+     */
+    distinct?: RoutineDaysScalarFieldEnum | RoutineDaysScalarFieldEnum[]
+  }
+
+  /**
+   * RoutineDays findMany
+   */
+  export type RoutineDaysFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysInclude<ExtArgs> | null
+    /**
+     * Filter, which RoutineDays to fetch.
+     */
+    where?: RoutineDaysWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RoutineDays to fetch.
+     */
+    orderBy?: RoutineDaysOrderByWithRelationInput | RoutineDaysOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RoutineDays.
+     */
+    cursor?: RoutineDaysWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RoutineDays from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RoutineDays.
+     */
+    skip?: number
+    distinct?: RoutineDaysScalarFieldEnum | RoutineDaysScalarFieldEnum[]
+  }
+
+  /**
+   * RoutineDays create
+   */
+  export type RoutineDaysCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RoutineDays.
+     */
+    data: XOR<RoutineDaysCreateInput, RoutineDaysUncheckedCreateInput>
+  }
+
+  /**
+   * RoutineDays createMany
+   */
+  export type RoutineDaysCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RoutineDays.
+     */
+    data: RoutineDaysCreateManyInput | RoutineDaysCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RoutineDays createManyAndReturn
+   */
+  export type RoutineDaysCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * The data used to create many RoutineDays.
+     */
+    data: RoutineDaysCreateManyInput | RoutineDaysCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RoutineDays update
+   */
+  export type RoutineDaysUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RoutineDays.
+     */
+    data: XOR<RoutineDaysUpdateInput, RoutineDaysUncheckedUpdateInput>
+    /**
+     * Choose, which RoutineDays to update.
+     */
+    where: RoutineDaysWhereUniqueInput
+  }
+
+  /**
+   * RoutineDays updateMany
+   */
+  export type RoutineDaysUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RoutineDays.
+     */
+    data: XOR<RoutineDaysUpdateManyMutationInput, RoutineDaysUncheckedUpdateManyInput>
+    /**
+     * Filter which RoutineDays to update
+     */
+    where?: RoutineDaysWhereInput
+    /**
+     * Limit how many RoutineDays to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RoutineDays updateManyAndReturn
+   */
+  export type RoutineDaysUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * The data used to update RoutineDays.
+     */
+    data: XOR<RoutineDaysUpdateManyMutationInput, RoutineDaysUncheckedUpdateManyInput>
+    /**
+     * Filter which RoutineDays to update
+     */
+    where?: RoutineDaysWhereInput
+    /**
+     * Limit how many RoutineDays to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RoutineDays upsert
+   */
+  export type RoutineDaysUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RoutineDays to update in case it exists.
+     */
+    where: RoutineDaysWhereUniqueInput
+    /**
+     * In case the RoutineDays found by the `where` argument doesn't exist, create a new RoutineDays with this data.
+     */
+    create: XOR<RoutineDaysCreateInput, RoutineDaysUncheckedCreateInput>
+    /**
+     * In case the RoutineDays was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RoutineDaysUpdateInput, RoutineDaysUncheckedUpdateInput>
+  }
+
+  /**
+   * RoutineDays delete
+   */
+  export type RoutineDaysDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysInclude<ExtArgs> | null
+    /**
+     * Filter which RoutineDays to delete.
+     */
+    where: RoutineDaysWhereUniqueInput
+  }
+
+  /**
+   * RoutineDays deleteMany
+   */
+  export type RoutineDaysDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RoutineDays to delete
+     */
+    where?: RoutineDaysWhereInput
+    /**
+     * Limit how many RoutineDays to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RoutineDays.session
+   */
+  export type RoutineDays$sessionArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sessions
+     */
+    select?: SessionsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sessions
+     */
+    omit?: SessionsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SessionsInclude<ExtArgs> | null
+    where?: SessionsWhereInput
+  }
+
+  /**
+   * RoutineDays without action
+   */
+  export type RoutineDaysDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysInclude<ExtArgs> | null
   }
 
 
@@ -4955,6 +6237,7 @@ export namespace Prisma {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     routines?: boolean | Sessions$routinesArgs<ExtArgs>
     exercises?: boolean | Sessions$exercisesArgs<ExtArgs>
+    routineDays?: boolean | Sessions$routineDaysArgs<ExtArgs>
     _count?: boolean | SessionsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sessions"]>
 
@@ -4992,6 +6275,7 @@ export namespace Prisma {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     routines?: boolean | Sessions$routinesArgs<ExtArgs>
     exercises?: boolean | Sessions$exercisesArgs<ExtArgs>
+    routineDays?: boolean | Sessions$routineDaysArgs<ExtArgs>
     _count?: boolean | SessionsCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type SessionsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5007,6 +6291,7 @@ export namespace Prisma {
       user: Prisma.$UsersPayload<ExtArgs>
       routines: Prisma.$RoutinesPayload<ExtArgs>[]
       exercises: Prisma.$ExercisesPayload<ExtArgs>[]
+      routineDays: Prisma.$RoutineDaysPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5412,6 +6697,7 @@ export namespace Prisma {
     user<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     routines<T extends Sessions$routinesArgs<ExtArgs> = {}>(args?: Subset<T, Sessions$routinesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoutinesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     exercises<T extends Sessions$exercisesArgs<ExtArgs> = {}>(args?: Subset<T, Sessions$exercisesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExercisesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    routineDays<T extends Sessions$routineDaysArgs<ExtArgs> = {}>(args?: Subset<T, Sessions$routineDaysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RoutineDaysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5888,6 +7174,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ExercisesScalarFieldEnum | ExercisesScalarFieldEnum[]
+  }
+
+  /**
+   * Sessions.routineDays
+   */
+  export type Sessions$routineDaysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RoutineDays
+     */
+    select?: RoutineDaysSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RoutineDays
+     */
+    omit?: RoutineDaysOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RoutineDaysInclude<ExtArgs> | null
+    where?: RoutineDaysWhereInput
+    orderBy?: RoutineDaysOrderByWithRelationInput | RoutineDaysOrderByWithRelationInput[]
+    cursor?: RoutineDaysWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RoutineDaysScalarFieldEnum | RoutineDaysScalarFieldEnum[]
   }
 
   /**
@@ -18222,6 +19532,19 @@ export namespace Prisma {
   export type RoutinesScalarFieldEnum = (typeof RoutinesScalarFieldEnum)[keyof typeof RoutinesScalarFieldEnum]
 
 
+  export const RoutineDaysScalarFieldEnum: {
+    id: 'id',
+    routineId: 'routineId',
+    sessionId: 'sessionId',
+    name: 'name',
+    dayNumber: 'dayNumber',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RoutineDaysScalarFieldEnum = (typeof RoutineDaysScalarFieldEnum)[keyof typeof RoutineDaysScalarFieldEnum]
+
+
   export const SessionsScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -18541,6 +19864,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Routines"> | Date | string
     user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
     sessions?: SessionsListRelationFilter
+    routineDays?: RoutineDaysListRelationFilter
   }
 
   export type RoutinesOrderByWithRelationInput = {
@@ -18555,6 +19879,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     user?: UsersOrderByWithRelationInput
     sessions?: SessionsOrderByRelationAggregateInput
+    routineDays?: RoutineDaysOrderByRelationAggregateInput
   }
 
   export type RoutinesWhereUniqueInput = Prisma.AtLeast<{
@@ -18572,6 +19897,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Routines"> | Date | string
     user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
     sessions?: SessionsListRelationFilter
+    routineDays?: RoutineDaysListRelationFilter
   }, "id" | "name">
 
   export type RoutinesOrderByWithAggregationInput = {
@@ -18606,6 +19932,76 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Routines"> | Date | string
   }
 
+  export type RoutineDaysWhereInput = {
+    AND?: RoutineDaysWhereInput | RoutineDaysWhereInput[]
+    OR?: RoutineDaysWhereInput[]
+    NOT?: RoutineDaysWhereInput | RoutineDaysWhereInput[]
+    id?: StringFilter<"RoutineDays"> | string
+    routineId?: StringFilter<"RoutineDays"> | string
+    sessionId?: StringNullableFilter<"RoutineDays"> | string | null
+    name?: StringFilter<"RoutineDays"> | string
+    dayNumber?: IntFilter<"RoutineDays"> | number
+    createdAt?: DateTimeFilter<"RoutineDays"> | Date | string
+    updatedAt?: DateTimeFilter<"RoutineDays"> | Date | string
+    routine?: XOR<RoutinesScalarRelationFilter, RoutinesWhereInput>
+    session?: XOR<SessionsNullableScalarRelationFilter, SessionsWhereInput> | null
+  }
+
+  export type RoutineDaysOrderByWithRelationInput = {
+    id?: SortOrder
+    routineId?: SortOrder
+    sessionId?: SortOrderInput | SortOrder
+    name?: SortOrder
+    dayNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    routine?: RoutinesOrderByWithRelationInput
+    session?: SessionsOrderByWithRelationInput
+  }
+
+  export type RoutineDaysWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: RoutineDaysWhereInput | RoutineDaysWhereInput[]
+    OR?: RoutineDaysWhereInput[]
+    NOT?: RoutineDaysWhereInput | RoutineDaysWhereInput[]
+    routineId?: StringFilter<"RoutineDays"> | string
+    sessionId?: StringNullableFilter<"RoutineDays"> | string | null
+    name?: StringFilter<"RoutineDays"> | string
+    dayNumber?: IntFilter<"RoutineDays"> | number
+    createdAt?: DateTimeFilter<"RoutineDays"> | Date | string
+    updatedAt?: DateTimeFilter<"RoutineDays"> | Date | string
+    routine?: XOR<RoutinesScalarRelationFilter, RoutinesWhereInput>
+    session?: XOR<SessionsNullableScalarRelationFilter, SessionsWhereInput> | null
+  }, "id">
+
+  export type RoutineDaysOrderByWithAggregationInput = {
+    id?: SortOrder
+    routineId?: SortOrder
+    sessionId?: SortOrderInput | SortOrder
+    name?: SortOrder
+    dayNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RoutineDaysCountOrderByAggregateInput
+    _avg?: RoutineDaysAvgOrderByAggregateInput
+    _max?: RoutineDaysMaxOrderByAggregateInput
+    _min?: RoutineDaysMinOrderByAggregateInput
+    _sum?: RoutineDaysSumOrderByAggregateInput
+  }
+
+  export type RoutineDaysScalarWhereWithAggregatesInput = {
+    AND?: RoutineDaysScalarWhereWithAggregatesInput | RoutineDaysScalarWhereWithAggregatesInput[]
+    OR?: RoutineDaysScalarWhereWithAggregatesInput[]
+    NOT?: RoutineDaysScalarWhereWithAggregatesInput | RoutineDaysScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RoutineDays"> | string
+    routineId?: StringWithAggregatesFilter<"RoutineDays"> | string
+    sessionId?: StringNullableWithAggregatesFilter<"RoutineDays"> | string | null
+    name?: StringWithAggregatesFilter<"RoutineDays"> | string
+    dayNumber?: IntWithAggregatesFilter<"RoutineDays"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"RoutineDays"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RoutineDays"> | Date | string
+  }
+
   export type SessionsWhereInput = {
     AND?: SessionsWhereInput | SessionsWhereInput[]
     OR?: SessionsWhereInput[]
@@ -18619,6 +20015,7 @@ export namespace Prisma {
     user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
     routines?: RoutinesListRelationFilter
     exercises?: ExercisesListRelationFilter
+    routineDays?: RoutineDaysListRelationFilter
   }
 
   export type SessionsOrderByWithRelationInput = {
@@ -18631,6 +20028,7 @@ export namespace Prisma {
     user?: UsersOrderByWithRelationInput
     routines?: RoutinesOrderByRelationAggregateInput
     exercises?: ExercisesOrderByRelationAggregateInput
+    routineDays?: RoutineDaysOrderByRelationAggregateInput
   }
 
   export type SessionsWhereUniqueInput = Prisma.AtLeast<{
@@ -18646,6 +20044,7 @@ export namespace Prisma {
     user?: XOR<UsersScalarRelationFilter, UsersWhereInput>
     routines?: RoutinesListRelationFilter
     exercises?: ExercisesListRelationFilter
+    routineDays?: RoutineDaysListRelationFilter
   }, "id" | "name">
 
   export type SessionsOrderByWithAggregationInput = {
@@ -19454,6 +20853,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutRoutinesInput
     sessions?: SessionsCreateNestedManyWithoutRoutinesInput
+    routineDays?: RoutineDaysCreateNestedManyWithoutRoutineInput
   }
 
   export type RoutinesUncheckedCreateInput = {
@@ -19467,6 +20867,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     sessions?: SessionsUncheckedCreateNestedManyWithoutRoutinesInput
+    routineDays?: RoutineDaysUncheckedCreateNestedManyWithoutRoutineInput
   }
 
   export type RoutinesUpdateInput = {
@@ -19480,6 +20881,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutRoutinesNestedInput
     sessions?: SessionsUpdateManyWithoutRoutinesNestedInput
+    routineDays?: RoutineDaysUpdateManyWithoutRoutineNestedInput
   }
 
   export type RoutinesUncheckedUpdateInput = {
@@ -19493,6 +20895,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionsUncheckedUpdateManyWithoutRoutinesNestedInput
+    routineDays?: RoutineDaysUncheckedUpdateManyWithoutRoutineNestedInput
   }
 
   export type RoutinesCreateManyInput = {
@@ -19530,6 +20933,74 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RoutineDaysCreateInput = {
+    id?: string
+    name: string
+    dayNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    routine: RoutinesCreateNestedOneWithoutRoutineDaysInput
+    session?: SessionsCreateNestedOneWithoutRoutineDaysInput
+  }
+
+  export type RoutineDaysUncheckedCreateInput = {
+    id?: string
+    routineId: string
+    sessionId?: string | null
+    name: string
+    dayNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RoutineDaysUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dayNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    routine?: RoutinesUpdateOneRequiredWithoutRoutineDaysNestedInput
+    session?: SessionsUpdateOneWithoutRoutineDaysNestedInput
+  }
+
+  export type RoutineDaysUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    routineId?: StringFieldUpdateOperationsInput | string
+    sessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    dayNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoutineDaysCreateManyInput = {
+    id?: string
+    routineId: string
+    sessionId?: string | null
+    name: string
+    dayNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RoutineDaysUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dayNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoutineDaysUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    routineId?: StringFieldUpdateOperationsInput | string
+    sessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    dayNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type SessionsCreateInput = {
     id?: string
     name: string
@@ -19539,6 +21010,7 @@ export namespace Prisma {
     user: UsersCreateNestedOneWithoutSessionsInput
     routines?: RoutinesCreateNestedManyWithoutSessionsInput
     exercises?: ExercisesCreateNestedManyWithoutSessionsInput
+    routineDays?: RoutineDaysCreateNestedManyWithoutSessionInput
   }
 
   export type SessionsUncheckedCreateInput = {
@@ -19550,6 +21022,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     routines?: RoutinesUncheckedCreateNestedManyWithoutSessionsInput
     exercises?: ExercisesUncheckedCreateNestedManyWithoutSessionsInput
+    routineDays?: RoutineDaysUncheckedCreateNestedManyWithoutSessionInput
   }
 
   export type SessionsUpdateInput = {
@@ -19561,6 +21034,7 @@ export namespace Prisma {
     user?: UsersUpdateOneRequiredWithoutSessionsNestedInput
     routines?: RoutinesUpdateManyWithoutSessionsNestedInput
     exercises?: ExercisesUpdateManyWithoutSessionsNestedInput
+    routineDays?: RoutineDaysUpdateManyWithoutSessionNestedInput
   }
 
   export type SessionsUncheckedUpdateInput = {
@@ -19572,6 +21046,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     routines?: RoutinesUncheckedUpdateManyWithoutSessionsNestedInput
     exercises?: ExercisesUncheckedUpdateManyWithoutSessionsNestedInput
+    routineDays?: RoutineDaysUncheckedUpdateManyWithoutSessionNestedInput
   }
 
   export type SessionsCreateManyInput = {
@@ -20471,9 +21946,19 @@ export namespace Prisma {
     isNot?: UsersWhereInput
   }
 
+  export type RoutineDaysListRelationFilter = {
+    every?: RoutineDaysWhereInput
+    some?: RoutineDaysWhereInput
+    none?: RoutineDaysWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type RoutineDaysOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type RoutinesCountOrderByAggregateInput = {
@@ -20560,6 +22045,54 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type RoutinesScalarRelationFilter = {
+    is?: RoutinesWhereInput
+    isNot?: RoutinesWhereInput
+  }
+
+  export type SessionsNullableScalarRelationFilter = {
+    is?: SessionsWhereInput | null
+    isNot?: SessionsWhereInput | null
+  }
+
+  export type RoutineDaysCountOrderByAggregateInput = {
+    id?: SortOrder
+    routineId?: SortOrder
+    sessionId?: SortOrder
+    name?: SortOrder
+    dayNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RoutineDaysAvgOrderByAggregateInput = {
+    dayNumber?: SortOrder
+  }
+
+  export type RoutineDaysMaxOrderByAggregateInput = {
+    id?: SortOrder
+    routineId?: SortOrder
+    sessionId?: SortOrder
+    name?: SortOrder
+    dayNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RoutineDaysMinOrderByAggregateInput = {
+    id?: SortOrder
+    routineId?: SortOrder
+    sessionId?: SortOrder
+    name?: SortOrder
+    dayNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RoutineDaysSumOrderByAggregateInput = {
+    dayNumber?: SortOrder
   }
 
   export type SessionsCountOrderByAggregateInput = {
@@ -21249,10 +22782,24 @@ export namespace Prisma {
     connect?: SessionsWhereUniqueInput | SessionsWhereUniqueInput[]
   }
 
+  export type RoutineDaysCreateNestedManyWithoutRoutineInput = {
+    create?: XOR<RoutineDaysCreateWithoutRoutineInput, RoutineDaysUncheckedCreateWithoutRoutineInput> | RoutineDaysCreateWithoutRoutineInput[] | RoutineDaysUncheckedCreateWithoutRoutineInput[]
+    connectOrCreate?: RoutineDaysCreateOrConnectWithoutRoutineInput | RoutineDaysCreateOrConnectWithoutRoutineInput[]
+    createMany?: RoutineDaysCreateManyRoutineInputEnvelope
+    connect?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+  }
+
   export type SessionsUncheckedCreateNestedManyWithoutRoutinesInput = {
     create?: XOR<SessionsCreateWithoutRoutinesInput, SessionsUncheckedCreateWithoutRoutinesInput> | SessionsCreateWithoutRoutinesInput[] | SessionsUncheckedCreateWithoutRoutinesInput[]
     connectOrCreate?: SessionsCreateOrConnectWithoutRoutinesInput | SessionsCreateOrConnectWithoutRoutinesInput[]
     connect?: SessionsWhereUniqueInput | SessionsWhereUniqueInput[]
+  }
+
+  export type RoutineDaysUncheckedCreateNestedManyWithoutRoutineInput = {
+    create?: XOR<RoutineDaysCreateWithoutRoutineInput, RoutineDaysUncheckedCreateWithoutRoutineInput> | RoutineDaysCreateWithoutRoutineInput[] | RoutineDaysUncheckedCreateWithoutRoutineInput[]
+    connectOrCreate?: RoutineDaysCreateOrConnectWithoutRoutineInput | RoutineDaysCreateOrConnectWithoutRoutineInput[]
+    createMany?: RoutineDaysCreateManyRoutineInputEnvelope
+    connect?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -21292,6 +22839,20 @@ export namespace Prisma {
     deleteMany?: SessionsScalarWhereInput | SessionsScalarWhereInput[]
   }
 
+  export type RoutineDaysUpdateManyWithoutRoutineNestedInput = {
+    create?: XOR<RoutineDaysCreateWithoutRoutineInput, RoutineDaysUncheckedCreateWithoutRoutineInput> | RoutineDaysCreateWithoutRoutineInput[] | RoutineDaysUncheckedCreateWithoutRoutineInput[]
+    connectOrCreate?: RoutineDaysCreateOrConnectWithoutRoutineInput | RoutineDaysCreateOrConnectWithoutRoutineInput[]
+    upsert?: RoutineDaysUpsertWithWhereUniqueWithoutRoutineInput | RoutineDaysUpsertWithWhereUniqueWithoutRoutineInput[]
+    createMany?: RoutineDaysCreateManyRoutineInputEnvelope
+    set?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    disconnect?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    delete?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    connect?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    update?: RoutineDaysUpdateWithWhereUniqueWithoutRoutineInput | RoutineDaysUpdateWithWhereUniqueWithoutRoutineInput[]
+    updateMany?: RoutineDaysUpdateManyWithWhereWithoutRoutineInput | RoutineDaysUpdateManyWithWhereWithoutRoutineInput[]
+    deleteMany?: RoutineDaysScalarWhereInput | RoutineDaysScalarWhereInput[]
+  }
+
   export type SessionsUncheckedUpdateManyWithoutRoutinesNestedInput = {
     create?: XOR<SessionsCreateWithoutRoutinesInput, SessionsUncheckedCreateWithoutRoutinesInput> | SessionsCreateWithoutRoutinesInput[] | SessionsUncheckedCreateWithoutRoutinesInput[]
     connectOrCreate?: SessionsCreateOrConnectWithoutRoutinesInput | SessionsCreateOrConnectWithoutRoutinesInput[]
@@ -21303,6 +22864,50 @@ export namespace Prisma {
     update?: SessionsUpdateWithWhereUniqueWithoutRoutinesInput | SessionsUpdateWithWhereUniqueWithoutRoutinesInput[]
     updateMany?: SessionsUpdateManyWithWhereWithoutRoutinesInput | SessionsUpdateManyWithWhereWithoutRoutinesInput[]
     deleteMany?: SessionsScalarWhereInput | SessionsScalarWhereInput[]
+  }
+
+  export type RoutineDaysUncheckedUpdateManyWithoutRoutineNestedInput = {
+    create?: XOR<RoutineDaysCreateWithoutRoutineInput, RoutineDaysUncheckedCreateWithoutRoutineInput> | RoutineDaysCreateWithoutRoutineInput[] | RoutineDaysUncheckedCreateWithoutRoutineInput[]
+    connectOrCreate?: RoutineDaysCreateOrConnectWithoutRoutineInput | RoutineDaysCreateOrConnectWithoutRoutineInput[]
+    upsert?: RoutineDaysUpsertWithWhereUniqueWithoutRoutineInput | RoutineDaysUpsertWithWhereUniqueWithoutRoutineInput[]
+    createMany?: RoutineDaysCreateManyRoutineInputEnvelope
+    set?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    disconnect?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    delete?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    connect?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    update?: RoutineDaysUpdateWithWhereUniqueWithoutRoutineInput | RoutineDaysUpdateWithWhereUniqueWithoutRoutineInput[]
+    updateMany?: RoutineDaysUpdateManyWithWhereWithoutRoutineInput | RoutineDaysUpdateManyWithWhereWithoutRoutineInput[]
+    deleteMany?: RoutineDaysScalarWhereInput | RoutineDaysScalarWhereInput[]
+  }
+
+  export type RoutinesCreateNestedOneWithoutRoutineDaysInput = {
+    create?: XOR<RoutinesCreateWithoutRoutineDaysInput, RoutinesUncheckedCreateWithoutRoutineDaysInput>
+    connectOrCreate?: RoutinesCreateOrConnectWithoutRoutineDaysInput
+    connect?: RoutinesWhereUniqueInput
+  }
+
+  export type SessionsCreateNestedOneWithoutRoutineDaysInput = {
+    create?: XOR<SessionsCreateWithoutRoutineDaysInput, SessionsUncheckedCreateWithoutRoutineDaysInput>
+    connectOrCreate?: SessionsCreateOrConnectWithoutRoutineDaysInput
+    connect?: SessionsWhereUniqueInput
+  }
+
+  export type RoutinesUpdateOneRequiredWithoutRoutineDaysNestedInput = {
+    create?: XOR<RoutinesCreateWithoutRoutineDaysInput, RoutinesUncheckedCreateWithoutRoutineDaysInput>
+    connectOrCreate?: RoutinesCreateOrConnectWithoutRoutineDaysInput
+    upsert?: RoutinesUpsertWithoutRoutineDaysInput
+    connect?: RoutinesWhereUniqueInput
+    update?: XOR<XOR<RoutinesUpdateToOneWithWhereWithoutRoutineDaysInput, RoutinesUpdateWithoutRoutineDaysInput>, RoutinesUncheckedUpdateWithoutRoutineDaysInput>
+  }
+
+  export type SessionsUpdateOneWithoutRoutineDaysNestedInput = {
+    create?: XOR<SessionsCreateWithoutRoutineDaysInput, SessionsUncheckedCreateWithoutRoutineDaysInput>
+    connectOrCreate?: SessionsCreateOrConnectWithoutRoutineDaysInput
+    upsert?: SessionsUpsertWithoutRoutineDaysInput
+    disconnect?: SessionsWhereInput | boolean
+    delete?: SessionsWhereInput | boolean
+    connect?: SessionsWhereUniqueInput
+    update?: XOR<XOR<SessionsUpdateToOneWithWhereWithoutRoutineDaysInput, SessionsUpdateWithoutRoutineDaysInput>, SessionsUncheckedUpdateWithoutRoutineDaysInput>
   }
 
   export type UsersCreateNestedOneWithoutSessionsInput = {
@@ -21323,6 +22928,13 @@ export namespace Prisma {
     connect?: ExercisesWhereUniqueInput | ExercisesWhereUniqueInput[]
   }
 
+  export type RoutineDaysCreateNestedManyWithoutSessionInput = {
+    create?: XOR<RoutineDaysCreateWithoutSessionInput, RoutineDaysUncheckedCreateWithoutSessionInput> | RoutineDaysCreateWithoutSessionInput[] | RoutineDaysUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: RoutineDaysCreateOrConnectWithoutSessionInput | RoutineDaysCreateOrConnectWithoutSessionInput[]
+    createMany?: RoutineDaysCreateManySessionInputEnvelope
+    connect?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+  }
+
   export type RoutinesUncheckedCreateNestedManyWithoutSessionsInput = {
     create?: XOR<RoutinesCreateWithoutSessionsInput, RoutinesUncheckedCreateWithoutSessionsInput> | RoutinesCreateWithoutSessionsInput[] | RoutinesUncheckedCreateWithoutSessionsInput[]
     connectOrCreate?: RoutinesCreateOrConnectWithoutSessionsInput | RoutinesCreateOrConnectWithoutSessionsInput[]
@@ -21333,6 +22945,13 @@ export namespace Prisma {
     create?: XOR<ExercisesCreateWithoutSessionsInput, ExercisesUncheckedCreateWithoutSessionsInput> | ExercisesCreateWithoutSessionsInput[] | ExercisesUncheckedCreateWithoutSessionsInput[]
     connectOrCreate?: ExercisesCreateOrConnectWithoutSessionsInput | ExercisesCreateOrConnectWithoutSessionsInput[]
     connect?: ExercisesWhereUniqueInput | ExercisesWhereUniqueInput[]
+  }
+
+  export type RoutineDaysUncheckedCreateNestedManyWithoutSessionInput = {
+    create?: XOR<RoutineDaysCreateWithoutSessionInput, RoutineDaysUncheckedCreateWithoutSessionInput> | RoutineDaysCreateWithoutSessionInput[] | RoutineDaysUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: RoutineDaysCreateOrConnectWithoutSessionInput | RoutineDaysCreateOrConnectWithoutSessionInput[]
+    createMany?: RoutineDaysCreateManySessionInputEnvelope
+    connect?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
   }
 
   export type UsersUpdateOneRequiredWithoutSessionsNestedInput = {
@@ -21369,6 +22988,20 @@ export namespace Prisma {
     deleteMany?: ExercisesScalarWhereInput | ExercisesScalarWhereInput[]
   }
 
+  export type RoutineDaysUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<RoutineDaysCreateWithoutSessionInput, RoutineDaysUncheckedCreateWithoutSessionInput> | RoutineDaysCreateWithoutSessionInput[] | RoutineDaysUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: RoutineDaysCreateOrConnectWithoutSessionInput | RoutineDaysCreateOrConnectWithoutSessionInput[]
+    upsert?: RoutineDaysUpsertWithWhereUniqueWithoutSessionInput | RoutineDaysUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: RoutineDaysCreateManySessionInputEnvelope
+    set?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    disconnect?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    delete?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    connect?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    update?: RoutineDaysUpdateWithWhereUniqueWithoutSessionInput | RoutineDaysUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: RoutineDaysUpdateManyWithWhereWithoutSessionInput | RoutineDaysUpdateManyWithWhereWithoutSessionInput[]
+    deleteMany?: RoutineDaysScalarWhereInput | RoutineDaysScalarWhereInput[]
+  }
+
   export type RoutinesUncheckedUpdateManyWithoutSessionsNestedInput = {
     create?: XOR<RoutinesCreateWithoutSessionsInput, RoutinesUncheckedCreateWithoutSessionsInput> | RoutinesCreateWithoutSessionsInput[] | RoutinesUncheckedCreateWithoutSessionsInput[]
     connectOrCreate?: RoutinesCreateOrConnectWithoutSessionsInput | RoutinesCreateOrConnectWithoutSessionsInput[]
@@ -21393,6 +23026,20 @@ export namespace Prisma {
     update?: ExercisesUpdateWithWhereUniqueWithoutSessionsInput | ExercisesUpdateWithWhereUniqueWithoutSessionsInput[]
     updateMany?: ExercisesUpdateManyWithWhereWithoutSessionsInput | ExercisesUpdateManyWithWhereWithoutSessionsInput[]
     deleteMany?: ExercisesScalarWhereInput | ExercisesScalarWhereInput[]
+  }
+
+  export type RoutineDaysUncheckedUpdateManyWithoutSessionNestedInput = {
+    create?: XOR<RoutineDaysCreateWithoutSessionInput, RoutineDaysUncheckedCreateWithoutSessionInput> | RoutineDaysCreateWithoutSessionInput[] | RoutineDaysUncheckedCreateWithoutSessionInput[]
+    connectOrCreate?: RoutineDaysCreateOrConnectWithoutSessionInput | RoutineDaysCreateOrConnectWithoutSessionInput[]
+    upsert?: RoutineDaysUpsertWithWhereUniqueWithoutSessionInput | RoutineDaysUpsertWithWhereUniqueWithoutSessionInput[]
+    createMany?: RoutineDaysCreateManySessionInputEnvelope
+    set?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    disconnect?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    delete?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    connect?: RoutineDaysWhereUniqueInput | RoutineDaysWhereUniqueInput[]
+    update?: RoutineDaysUpdateWithWhereUniqueWithoutSessionInput | RoutineDaysUpdateWithWhereUniqueWithoutSessionInput[]
+    updateMany?: RoutineDaysUpdateManyWithWhereWithoutSessionInput | RoutineDaysUpdateManyWithWhereWithoutSessionInput[]
+    deleteMany?: RoutineDaysScalarWhereInput | RoutineDaysScalarWhereInput[]
   }
 
   export type UsersCreateNestedOneWithoutExercisesInput = {
@@ -22138,6 +23785,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     sessions?: SessionsCreateNestedManyWithoutRoutinesInput
+    routineDays?: RoutineDaysCreateNestedManyWithoutRoutineInput
   }
 
   export type RoutinesUncheckedCreateWithoutUserInput = {
@@ -22150,6 +23798,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     sessions?: SessionsUncheckedCreateNestedManyWithoutRoutinesInput
+    routineDays?: RoutineDaysUncheckedCreateNestedManyWithoutRoutineInput
   }
 
   export type RoutinesCreateOrConnectWithoutUserInput = {
@@ -22170,6 +23819,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     routines?: RoutinesCreateNestedManyWithoutSessionsInput
     exercises?: ExercisesCreateNestedManyWithoutSessionsInput
+    routineDays?: RoutineDaysCreateNestedManyWithoutSessionInput
   }
 
   export type SessionsUncheckedCreateWithoutUserInput = {
@@ -22180,6 +23830,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     routines?: RoutinesUncheckedCreateNestedManyWithoutSessionsInput
     exercises?: ExercisesUncheckedCreateNestedManyWithoutSessionsInput
+    routineDays?: RoutineDaysUncheckedCreateNestedManyWithoutSessionInput
   }
 
   export type SessionsCreateOrConnectWithoutUserInput = {
@@ -22466,6 +24117,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutSessionsInput
     exercises?: ExercisesCreateNestedManyWithoutSessionsInput
+    routineDays?: RoutineDaysCreateNestedManyWithoutSessionInput
   }
 
   export type SessionsUncheckedCreateWithoutRoutinesInput = {
@@ -22476,11 +24128,40 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     exercises?: ExercisesUncheckedCreateNestedManyWithoutSessionsInput
+    routineDays?: RoutineDaysUncheckedCreateNestedManyWithoutSessionInput
   }
 
   export type SessionsCreateOrConnectWithoutRoutinesInput = {
     where: SessionsWhereUniqueInput
     create: XOR<SessionsCreateWithoutRoutinesInput, SessionsUncheckedCreateWithoutRoutinesInput>
+  }
+
+  export type RoutineDaysCreateWithoutRoutineInput = {
+    id?: string
+    name: string
+    dayNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    session?: SessionsCreateNestedOneWithoutRoutineDaysInput
+  }
+
+  export type RoutineDaysUncheckedCreateWithoutRoutineInput = {
+    id?: string
+    sessionId?: string | null
+    name: string
+    dayNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RoutineDaysCreateOrConnectWithoutRoutineInput = {
+    where: RoutineDaysWhereUniqueInput
+    create: XOR<RoutineDaysCreateWithoutRoutineInput, RoutineDaysUncheckedCreateWithoutRoutineInput>
+  }
+
+  export type RoutineDaysCreateManyRoutineInputEnvelope = {
+    data: RoutineDaysCreateManyRoutineInput | RoutineDaysCreateManyRoutineInput[]
+    skipDuplicates?: boolean
   }
 
   export type UsersUpsertWithoutRoutinesInput = {
@@ -22534,6 +24215,163 @@ export namespace Prisma {
     data: XOR<SessionsUpdateManyMutationInput, SessionsUncheckedUpdateManyWithoutRoutinesInput>
   }
 
+  export type RoutineDaysUpsertWithWhereUniqueWithoutRoutineInput = {
+    where: RoutineDaysWhereUniqueInput
+    update: XOR<RoutineDaysUpdateWithoutRoutineInput, RoutineDaysUncheckedUpdateWithoutRoutineInput>
+    create: XOR<RoutineDaysCreateWithoutRoutineInput, RoutineDaysUncheckedCreateWithoutRoutineInput>
+  }
+
+  export type RoutineDaysUpdateWithWhereUniqueWithoutRoutineInput = {
+    where: RoutineDaysWhereUniqueInput
+    data: XOR<RoutineDaysUpdateWithoutRoutineInput, RoutineDaysUncheckedUpdateWithoutRoutineInput>
+  }
+
+  export type RoutineDaysUpdateManyWithWhereWithoutRoutineInput = {
+    where: RoutineDaysScalarWhereInput
+    data: XOR<RoutineDaysUpdateManyMutationInput, RoutineDaysUncheckedUpdateManyWithoutRoutineInput>
+  }
+
+  export type RoutineDaysScalarWhereInput = {
+    AND?: RoutineDaysScalarWhereInput | RoutineDaysScalarWhereInput[]
+    OR?: RoutineDaysScalarWhereInput[]
+    NOT?: RoutineDaysScalarWhereInput | RoutineDaysScalarWhereInput[]
+    id?: StringFilter<"RoutineDays"> | string
+    routineId?: StringFilter<"RoutineDays"> | string
+    sessionId?: StringNullableFilter<"RoutineDays"> | string | null
+    name?: StringFilter<"RoutineDays"> | string
+    dayNumber?: IntFilter<"RoutineDays"> | number
+    createdAt?: DateTimeFilter<"RoutineDays"> | Date | string
+    updatedAt?: DateTimeFilter<"RoutineDays"> | Date | string
+  }
+
+  export type RoutinesCreateWithoutRoutineDaysInput = {
+    id?: string
+    active?: boolean
+    days?: number
+    initialDate: Date | string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UsersCreateNestedOneWithoutRoutinesInput
+    sessions?: SessionsCreateNestedManyWithoutRoutinesInput
+  }
+
+  export type RoutinesUncheckedCreateWithoutRoutineDaysInput = {
+    id?: string
+    userId: string
+    active?: boolean
+    days?: number
+    initialDate: Date | string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    sessions?: SessionsUncheckedCreateNestedManyWithoutRoutinesInput
+  }
+
+  export type RoutinesCreateOrConnectWithoutRoutineDaysInput = {
+    where: RoutinesWhereUniqueInput
+    create: XOR<RoutinesCreateWithoutRoutineDaysInput, RoutinesUncheckedCreateWithoutRoutineDaysInput>
+  }
+
+  export type SessionsCreateWithoutRoutineDaysInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UsersCreateNestedOneWithoutSessionsInput
+    routines?: RoutinesCreateNestedManyWithoutSessionsInput
+    exercises?: ExercisesCreateNestedManyWithoutSessionsInput
+  }
+
+  export type SessionsUncheckedCreateWithoutRoutineDaysInput = {
+    id?: string
+    userId: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    routines?: RoutinesUncheckedCreateNestedManyWithoutSessionsInput
+    exercises?: ExercisesUncheckedCreateNestedManyWithoutSessionsInput
+  }
+
+  export type SessionsCreateOrConnectWithoutRoutineDaysInput = {
+    where: SessionsWhereUniqueInput
+    create: XOR<SessionsCreateWithoutRoutineDaysInput, SessionsUncheckedCreateWithoutRoutineDaysInput>
+  }
+
+  export type RoutinesUpsertWithoutRoutineDaysInput = {
+    update: XOR<RoutinesUpdateWithoutRoutineDaysInput, RoutinesUncheckedUpdateWithoutRoutineDaysInput>
+    create: XOR<RoutinesCreateWithoutRoutineDaysInput, RoutinesUncheckedCreateWithoutRoutineDaysInput>
+    where?: RoutinesWhereInput
+  }
+
+  export type RoutinesUpdateToOneWithWhereWithoutRoutineDaysInput = {
+    where?: RoutinesWhereInput
+    data: XOR<RoutinesUpdateWithoutRoutineDaysInput, RoutinesUncheckedUpdateWithoutRoutineDaysInput>
+  }
+
+  export type RoutinesUpdateWithoutRoutineDaysInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    days?: IntFieldUpdateOperationsInput | number
+    initialDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UsersUpdateOneRequiredWithoutRoutinesNestedInput
+    sessions?: SessionsUpdateManyWithoutRoutinesNestedInput
+  }
+
+  export type RoutinesUncheckedUpdateWithoutRoutineDaysInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    active?: BoolFieldUpdateOperationsInput | boolean
+    days?: IntFieldUpdateOperationsInput | number
+    initialDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sessions?: SessionsUncheckedUpdateManyWithoutRoutinesNestedInput
+  }
+
+  export type SessionsUpsertWithoutRoutineDaysInput = {
+    update: XOR<SessionsUpdateWithoutRoutineDaysInput, SessionsUncheckedUpdateWithoutRoutineDaysInput>
+    create: XOR<SessionsCreateWithoutRoutineDaysInput, SessionsUncheckedCreateWithoutRoutineDaysInput>
+    where?: SessionsWhereInput
+  }
+
+  export type SessionsUpdateToOneWithWhereWithoutRoutineDaysInput = {
+    where?: SessionsWhereInput
+    data: XOR<SessionsUpdateWithoutRoutineDaysInput, SessionsUncheckedUpdateWithoutRoutineDaysInput>
+  }
+
+  export type SessionsUpdateWithoutRoutineDaysInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UsersUpdateOneRequiredWithoutSessionsNestedInput
+    routines?: RoutinesUpdateManyWithoutSessionsNestedInput
+    exercises?: ExercisesUpdateManyWithoutSessionsNestedInput
+  }
+
+  export type SessionsUncheckedUpdateWithoutRoutineDaysInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    routines?: RoutinesUncheckedUpdateManyWithoutSessionsNestedInput
+    exercises?: ExercisesUncheckedUpdateManyWithoutSessionsNestedInput
+  }
+
   export type UsersCreateWithoutSessionsInput = {
     id?: string
     email: string
@@ -22573,6 +24411,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutRoutinesInput
+    routineDays?: RoutineDaysCreateNestedManyWithoutRoutineInput
   }
 
   export type RoutinesUncheckedCreateWithoutSessionsInput = {
@@ -22585,6 +24424,7 @@ export namespace Prisma {
     description?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    routineDays?: RoutineDaysUncheckedCreateNestedManyWithoutRoutineInput
   }
 
   export type RoutinesCreateOrConnectWithoutSessionsInput = {
@@ -22619,6 +24459,34 @@ export namespace Prisma {
   export type ExercisesCreateOrConnectWithoutSessionsInput = {
     where: ExercisesWhereUniqueInput
     create: XOR<ExercisesCreateWithoutSessionsInput, ExercisesUncheckedCreateWithoutSessionsInput>
+  }
+
+  export type RoutineDaysCreateWithoutSessionInput = {
+    id?: string
+    name: string
+    dayNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    routine: RoutinesCreateNestedOneWithoutRoutineDaysInput
+  }
+
+  export type RoutineDaysUncheckedCreateWithoutSessionInput = {
+    id?: string
+    routineId: string
+    name: string
+    dayNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RoutineDaysCreateOrConnectWithoutSessionInput = {
+    where: RoutineDaysWhereUniqueInput
+    create: XOR<RoutineDaysCreateWithoutSessionInput, RoutineDaysUncheckedCreateWithoutSessionInput>
+  }
+
+  export type RoutineDaysCreateManySessionInputEnvelope = {
+    data: RoutineDaysCreateManySessionInput | RoutineDaysCreateManySessionInput[]
+    skipDuplicates?: boolean
   }
 
   export type UsersUpsertWithoutSessionsInput = {
@@ -22688,6 +24556,22 @@ export namespace Prisma {
     data: XOR<ExercisesUpdateManyMutationInput, ExercisesUncheckedUpdateManyWithoutSessionsInput>
   }
 
+  export type RoutineDaysUpsertWithWhereUniqueWithoutSessionInput = {
+    where: RoutineDaysWhereUniqueInput
+    update: XOR<RoutineDaysUpdateWithoutSessionInput, RoutineDaysUncheckedUpdateWithoutSessionInput>
+    create: XOR<RoutineDaysCreateWithoutSessionInput, RoutineDaysUncheckedCreateWithoutSessionInput>
+  }
+
+  export type RoutineDaysUpdateWithWhereUniqueWithoutSessionInput = {
+    where: RoutineDaysWhereUniqueInput
+    data: XOR<RoutineDaysUpdateWithoutSessionInput, RoutineDaysUncheckedUpdateWithoutSessionInput>
+  }
+
+  export type RoutineDaysUpdateManyWithWhereWithoutSessionInput = {
+    where: RoutineDaysScalarWhereInput
+    data: XOR<RoutineDaysUpdateManyMutationInput, RoutineDaysUncheckedUpdateManyWithoutSessionInput>
+  }
+
   export type UsersCreateWithoutExercisesInput = {
     id?: string
     email: string
@@ -22725,6 +24609,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     user: UsersCreateNestedOneWithoutSessionsInput
     routines?: RoutinesCreateNestedManyWithoutSessionsInput
+    routineDays?: RoutineDaysCreateNestedManyWithoutSessionInput
   }
 
   export type SessionsUncheckedCreateWithoutExercisesInput = {
@@ -22735,6 +24620,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     routines?: RoutinesUncheckedCreateNestedManyWithoutSessionsInput
+    routineDays?: RoutineDaysUncheckedCreateNestedManyWithoutSessionInput
   }
 
   export type SessionsCreateOrConnectWithoutExercisesInput = {
@@ -23895,6 +25781,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionsUpdateManyWithoutRoutinesNestedInput
+    routineDays?: RoutineDaysUpdateManyWithoutRoutineNestedInput
   }
 
   export type RoutinesUncheckedUpdateWithoutUserInput = {
@@ -23907,6 +25794,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionsUncheckedUpdateManyWithoutRoutinesNestedInput
+    routineDays?: RoutineDaysUncheckedUpdateManyWithoutRoutineNestedInput
   }
 
   export type RoutinesUncheckedUpdateManyWithoutUserInput = {
@@ -23928,6 +25816,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     routines?: RoutinesUpdateManyWithoutSessionsNestedInput
     exercises?: ExercisesUpdateManyWithoutSessionsNestedInput
+    routineDays?: RoutineDaysUpdateManyWithoutSessionNestedInput
   }
 
   export type SessionsUncheckedUpdateWithoutUserInput = {
@@ -23938,6 +25827,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     routines?: RoutinesUncheckedUpdateManyWithoutSessionsNestedInput
     exercises?: ExercisesUncheckedUpdateManyWithoutSessionsNestedInput
+    routineDays?: RoutineDaysUncheckedUpdateManyWithoutSessionNestedInput
   }
 
   export type SessionsUncheckedUpdateManyWithoutUserInput = {
@@ -24036,6 +25926,15 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RoutineDaysCreateManyRoutineInput = {
+    id?: string
+    sessionId?: string | null
+    name: string
+    dayNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type SessionsUpdateWithoutRoutinesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
@@ -24044,6 +25943,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutSessionsNestedInput
     exercises?: ExercisesUpdateManyWithoutSessionsNestedInput
+    routineDays?: RoutineDaysUpdateManyWithoutSessionNestedInput
   }
 
   export type SessionsUncheckedUpdateWithoutRoutinesInput = {
@@ -24054,6 +25954,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     exercises?: ExercisesUncheckedUpdateManyWithoutSessionsNestedInput
+    routineDays?: RoutineDaysUncheckedUpdateManyWithoutSessionNestedInput
   }
 
   export type SessionsUncheckedUpdateManyWithoutRoutinesInput = {
@@ -24063,6 +25964,42 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoutineDaysUpdateWithoutRoutineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dayNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    session?: SessionsUpdateOneWithoutRoutineDaysNestedInput
+  }
+
+  export type RoutineDaysUncheckedUpdateWithoutRoutineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    dayNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoutineDaysUncheckedUpdateManyWithoutRoutineInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
+    dayNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoutineDaysCreateManySessionInput = {
+    id?: string
+    routineId: string
+    name: string
+    dayNumber: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type RoutinesUpdateWithoutSessionsInput = {
@@ -24075,6 +26012,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutRoutinesNestedInput
+    routineDays?: RoutineDaysUpdateManyWithoutRoutineNestedInput
   }
 
   export type RoutinesUncheckedUpdateWithoutSessionsInput = {
@@ -24087,6 +26025,7 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    routineDays?: RoutineDaysUncheckedUpdateManyWithoutRoutineNestedInput
   }
 
   export type RoutinesUncheckedUpdateManyWithoutSessionsInput = {
@@ -24134,6 +26073,33 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RoutineDaysUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dayNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    routine?: RoutinesUpdateOneRequiredWithoutRoutineDaysNestedInput
+  }
+
+  export type RoutineDaysUncheckedUpdateWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    routineId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dayNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RoutineDaysUncheckedUpdateManyWithoutSessionInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    routineId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    dayNumber?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type TrackedExercisesCreateManyExerciseInput = {
     id?: string
     trackingId: string
@@ -24152,6 +26118,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UsersUpdateOneRequiredWithoutSessionsNestedInput
     routines?: RoutinesUpdateManyWithoutSessionsNestedInput
+    routineDays?: RoutineDaysUpdateManyWithoutSessionNestedInput
   }
 
   export type SessionsUncheckedUpdateWithoutExercisesInput = {
@@ -24162,6 +26129,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     routines?: RoutinesUncheckedUpdateManyWithoutSessionsNestedInput
+    routineDays?: RoutineDaysUncheckedUpdateManyWithoutSessionNestedInput
   }
 
   export type SessionsUncheckedUpdateManyWithoutExercisesInput = {

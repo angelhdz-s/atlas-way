@@ -66,7 +66,7 @@ export default function ExercisesPage() {
 				title="Exercises"
 				className="flex items-center justify-between"
 			>
-				<Link href="/dashboard/exercises/create" className="btn-primary btn-md">
+				<Link href="/dashboard/exercises/create" className="pil-btn">
 					Create Exercise
 				</Link>
 			</PageHeader>

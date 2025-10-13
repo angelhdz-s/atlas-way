@@ -19,6 +19,7 @@ type SelectProps = {
 	placeholder?: string;
 	disabled?: boolean;
 	options: SelectOption[];
+	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 } & multipleSelectedType;
 
 function selectedValue(
@@ -39,6 +40,7 @@ export function Select({
 	multiple,
 	disabled,
 	selected,
+	onChange,
 }: SelectProps) {
 	const defaultValue = selected ? selectedValue(multiple, selected) : undefined;
 
@@ -49,6 +51,7 @@ export function Select({
 			multiple={multiple}
 			disabled={disabled}
 			defaultValue={defaultValue}
+			onChange={onChange}
 		>
 			{options.map((option) => (
 				<option

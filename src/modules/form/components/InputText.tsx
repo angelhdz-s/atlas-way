@@ -6,6 +6,7 @@ export function InputText({
 	className = "",
 	placeholder = "",
 	disabled = false,
+	...props
 }: InputTextProps) {
 	return (
 		<input
@@ -14,6 +15,7 @@ export function InputText({
 			name={name}
 			disabled={disabled}
 			className={`${InputClasses} ${className}`}
+			{...props}
 		/>
 	);
 }

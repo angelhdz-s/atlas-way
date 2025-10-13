@@ -12,17 +12,13 @@ export default function RoutinesPage() {
 			<PageHeader
 				title="Your Routines"
 				description="Create and manage your routines to automate tasks and workflows."
-			></PageHeader>
+			>
+				<Link href="/dashboard/routines/create" className="pil-btn">
+					<MapPlus className="size-5" strokeWidth="2" />
+					New Routine
+				</Link>
+			</PageHeader>
 			<PageContent className="flex flex-col gap-4">
-				<section>
-					<Link
-						href="/dashboard/routines/create"
-						className="flex items-center gap-1 btn-primary btn-md w-fit"
-					>
-						<MapPlus className="size-5" strokeWidth="2" />
-						New Routine
-					</Link>
-				</section>
 				<section className="flex flex-wrap gap-4">
 					{ROUTINES.map((routine, index) => (
 						<Routine

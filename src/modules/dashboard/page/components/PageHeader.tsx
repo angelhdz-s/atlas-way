@@ -10,12 +10,12 @@ export function PageHeader({
 	title: string;
 }) {
 	return (
-		<header className={`ld-main-fg ${className}`}>
-			<main className="flex items-center gap-1">
-				<h1 className="ld-main-fg-gradient text-4xl leading-[1] font-light tracking-tighter font-funnel-display pb-1">
+		<header className={`w-full ld-main-fg ${className}`}>
+			<main className="w-full flex items-center gap-2">
+				<h1 className="flex-1 ld-main-fg-gradient text-4xl leading-[1] font-bold tracking-tight font-funnel-display pb-1">
 					{title}
 				</h1>
-				{children}
+				<aside>{children}</aside>
 			</main>
 			{description && (
 				<footer>

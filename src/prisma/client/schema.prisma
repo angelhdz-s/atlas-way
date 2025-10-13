@@ -24,29 +24,43 @@ model Users {
 }
 
 model Routines {
-  id          String     @id @default(uuid())
+  id          String        @id @default(uuid())
   userId      String
-  active      Boolean    @default(true)
-  days        Int        @default(7)
+  active      Boolean       @default(true)
+  days        Int           @default(7)
   initialDate DateTime
-  name        String     @unique
+  name        String        @unique
   description String?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  user        Users      @relation(fields: [userId], references: [id])
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  user        Users         @relation(fields: [userId], references: [id])
   sessions    Sessions[]
+  routineDays RoutineDays[]
+}
+
+model RoutineDays {
+  id        String    @id @default(uuid())
+  routineId String
+  sessionId String?
+  name      String
+  dayNumber Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  routine   Routines  @relation(fields: [routineId], references: [id])
+  session   Sessions? @relation(fields: [sessionId], references: [id])
 }
 
 model Sessions {
-  id          String      @id @default(uuid())
+  id          String        @id @default(uuid())
   userId      String
-  name        String      @unique
+  name        String        @unique
   description String?
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  user        Users       @relation(fields: [userId], references: [id])
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  user        Users         @relation(fields: [userId], references: [id])
   routines    Routines[]
   exercises   Exercises[]
+  routineDays RoutineDays[]
 }
 
 model Exercises {

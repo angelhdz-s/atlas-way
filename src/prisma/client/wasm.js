@@ -140,6 +140,16 @@ exports.Prisma.RoutinesScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.RoutineDaysScalarFieldEnum = {
+  id: 'id',
+  routineId: 'routineId',
+  sessionId: 'sessionId',
+  name: 'name',
+  dayNumber: 'dayNumber',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SessionsScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -265,6 +275,7 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   Users: 'Users',
   Routines: 'Routines',
+  RoutineDays: 'RoutineDays',
   Sessions: 'Sessions',
   Exercises: 'Exercises',
   ExerciseInitialStats: 'ExerciseInitialStats',

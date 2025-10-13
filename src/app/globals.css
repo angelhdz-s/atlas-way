@@ -91,6 +91,12 @@ html[data-theme="light"] {
 
 	/* Button Colors */
 
+	.pil-btn {
+		@apply flex items-center gap-2 rounded-full border-1 px-4 py-2
+		bg-subtle/10 border-subtle/20 
+		hover:bg-primary transition-colors;
+	}
+
 	.btn-primary {
 		@apply cursor-pointer font-normal
 		bg-primary text-main-foreground 

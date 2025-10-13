@@ -9,6 +9,7 @@ export function InputNumber({
 	min,
 	max,
 	value,
+	...props
 }: InputNumberProps) {
 	return (
 		<input
@@ -20,6 +21,7 @@ export function InputNumber({
 			min={min}
 			max={max}
 			value={value}
+			{...props}
 		/>
 	);
 }
