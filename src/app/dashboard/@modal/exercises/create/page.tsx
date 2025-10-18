@@ -1,4 +1,4 @@
-import { ExerciseForm } from "@/modules/exercise/components/ModalExerciseForm";
+import { ModalExerciseForm } from "@/modules/exercise/components/ModalExerciseForm";
 import { getMuscleIdName } from "@/modules/muscle/actions/getMuscles";
 
 export default async function CreateExercisePage() {
@@ -7,5 +7,5 @@ export default async function CreateExercisePage() {
 		value: muscle.id.toString(),
 		label: muscle.name,
 	}));
-	return <ExerciseForm title="New Exercise" muscles={muscleOptions} />;
+	return <ModalExerciseForm title="New Exercise" muscles={muscleOptions} />;
 }

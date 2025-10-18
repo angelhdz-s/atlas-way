@@ -9,25 +9,13 @@ import { TextArea } from "@/modules/form/components/TextArea";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-
-import { z } from "zod";
-
-const routineFormSchema = z.object({
-	name: z
-		.string({ error: "Name must be a string" })
-		.min(3, { error: "Name must be at least 3 characters long" })
-		.max(50, { error: "Name must be at most 50 characters long" }),
-	description: z
-		.string({ error: "Description must be a string" })
-		.max(255, { error: "Description must be at most 255 characters long" })
-		.optional(),
-	cycle: z.enum(["normal", "custom"]),
-	days: z.number().min(1).max(30).optional(),
-});
-
-export type RoutineForm = z.infer<typeof routineFormSchema>;
+import { createRoutine } from "../actions/create-routine";
+import { RoutineForm, routineFormSchema } from "../config/routine-schema";
+import { useToast } from "@/modules/toast/hooks/useToast";
+import { inputNumberConfig } from "@/modules/form/config/input-config";
 
 export function RoutineModalForm({ title }: { title: string }) {
+	const toast = useToast();
 	const {
 		register,
 		handleSubmit,
@@ -47,8 +35,10 @@ export function RoutineModalForm({ title }: { title: string }) {
 		setDaysEnabled(value === "custom");
 	};
 
-	const onSubmit = (data: RoutineForm) => {
-		console.log(data);
+	const onSubmit = async (data: RoutineForm) => {
+		const { success, message } = await createRoutine(data);
+		const toastType = success ? "success" : "error";
+		toast.addToast(message, { type: toastType });
 	};
 
 	return (
@@ -64,34 +54,33 @@ export function RoutineModalForm({ title }: { title: string }) {
 							<InputText
 								{...register("name")}
 								placeholder="Full Body Workout"
+								error={errors.name?.message}
 							/>
-							{errors.name && (
-								<p className="text-red-500">{errors.name.message}</p>
-							)}
 						</Label>
 						<Label title="Description name">
 							<TextArea
 								{...register("description")}
+								error={errors.description?.message}
 								placeholder="A workout routine for the whole body"
 							/>
-							{errors.description && (
-								<p className="text-red-500">{errors.description.message}</p>
-							)}
 						</Label>
-						<div className="flex items-center gap-2">
+						<div className="grid grid-cols-2 gap-2">
 							<Label title="Cycle" className="flex-1">
 								<Select
-									name="cycle"
+									{...register("cycle")}
 									options={daysOptions}
 									multiple={false}
 									onChange={handleOnChange}
+									error={errors.cycle?.message}
 								/>
 							</Label>
 							<Label title="Days" className="w-fit">
 								<InputNumber
-									name="days"
+									{...register("days", inputNumberConfig)}
+									value={"7"}
 									placeholder="7"
 									disabled={!daysEnabled}
+									error={errors.days?.message}
 								/>
 							</Label>
 						</div>

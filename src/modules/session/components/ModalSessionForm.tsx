@@ -5,7 +5,7 @@ import { ModalForm } from "@/modules/form/components/ModalForm";
 import { ModalFormButtons } from "@/modules/form/components/ModalFormButtons";
 import { SelectOption } from "@/modules/form/types";
 import { useSessionForm } from "@/modules/session/hooks/useSessionForm";
-import { useForm } from "@/modules/form/hooks/useForm";
+import { useForm } from "@/modules/form/hooks/useModalForm";
 import { SessionFormFields } from "@/modules/session/components/SessionFormFields";
 
 export function ModalSessionForm({

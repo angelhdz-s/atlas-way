@@ -16,20 +16,19 @@ export async function createSessionAction(
 ): Promise<ActionResponseType> {
 	const error = await createSession(formData);
 	if (error) return { success: false, message: error };
-	return { success: true };
+	return { success: true, message: "Session created successfully" };
 }
 
 export async function createSession(
 	formData: FormData,
-): Promise<string[] | null> {
-	const errors: string[] = [];
+): Promise<string | null> {
 	const { name, description, exercises } = Object.fromEntries(formData);
 
 	const nameErrors = validateExerciseName(name as string);
-	if (nameErrors) errors.push(nameErrors);
+	if (nameErrors) return nameErrors;
 
 	const descriptionErrors = validateExerciseDescription(description as string);
-	if (descriptionErrors) errors.push(descriptionErrors);
+	if (descriptionErrors) return descriptionErrors;
 
 	const exercisesArray = (exercises as string)?.split(",");
 	if (
@@ -37,16 +36,13 @@ export async function createSession(
 		exercisesArray.length === 0 ||
 		(exercisesArray.length === 1 && !exercisesArray[0])
 	) {
-		errors.push("At least one exercise is required");
+		return "At least one exercise is required";
 	}
 
 	const userId = await getUserId();
 	if (!userId) {
-		errors.push("User not found");
-		return errors;
+		return "User not found";
 	}
-
-	if (errors.length > 0) return errors;
 
 	const sessionId = crypto.randomUUID();
 	const exercisesIds = exercisesArray.map((id) => ({ id }));
@@ -66,8 +62,8 @@ export async function createSession(
 			}),
 		]);
 	} catch {
-		errors.push("Error creating session");
+		return "Error creating session";
 	}
 
-	return errors.length > 0 ? errors : null;
+	return null;
 }

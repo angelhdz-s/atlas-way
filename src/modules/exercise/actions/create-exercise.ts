@@ -2,111 +2,109 @@
 
 import { ActionResponseType } from "@/modules/globals/types";
 import { PrismaClient } from "@/prisma/client";
-import {
-	validateExerciseDescription,
-	validateExerciseName,
-	validateExerciseReps,
-	validateExerciseSets,
-	validateExerciseWeight,
-} from "../lib/exercise-form-valdation";
 import { getUserId } from "@/modules/user/actions/users";
+import {
+	ExerciseForm,
+	exerciseFormSchema,
+	ExerciseInitialStatsType,
+	ExerciseType,
+} from "../config/exercise-schema";
 
 const prisma = new PrismaClient();
 
 export async function createExerciseAction(
-	previousState: unknown,
-	formData: FormData,
+	data: ExerciseForm,
 ): Promise<ActionResponseType> {
 	await new Promise((resolve) => setTimeout(resolve, 300));
-	const error = await createExercise(formData);
+	const error = await createExercise(data);
 	if (error) return { success: false, message: error };
-	return { success: true };
+	return { success: true, message: "Exercise created successfully" };
 }
 
 export async function createExercise(
-	formData: FormData,
-): Promise<string[] | null> {
-	const errors: string[] = [];
-	const { name, description, sets, reps, weight, muscles } =
-		Object.fromEntries(formData);
-
-	const nameError = validateExerciseName(name as string);
-	if (nameError) errors.push(nameError);
-
-	const descriptionError = validateExerciseDescription(description as string);
-	if (descriptionError) errors.push(descriptionError);
-
-	const [setsN, repsN, weightN] = [Number(sets), Number(reps), Number(weight)];
-
-	const setsError = validateExerciseSets(setsN);
-	if (setsError) errors.push(setsError);
-
-	const repsError = validateExerciseReps(repsN);
-	if (repsError) errors.push(repsError);
-
-	const weightError = validateExerciseWeight(weightN);
-	if (weightError) errors.push(weightError);
-
-	const musclesArray = (muscles as string)
-		?.split(",")
-		.map((m) => Number(m.trim()));
-	if (
-		!musclesArray ||
-		musclesArray.length === 0 ||
-		(musclesArray.length === 1 && musclesArray[0] === 0)
-	) {
-		errors.push("At least one muscle is required");
+	data: ExerciseForm,
+): Promise<string | null> {
+	const result = exerciseFormSchema.safeParse(data);
+	if (!result.success) {
+		return result.error.issues.map((issue) => issue.message).join(", ");
 	}
-
-	if (errors.length > 0) return errors;
 
 	const exerciseId = crypto.randomUUID();
 	const userId = await getUserId();
 	if (!userId?.id) {
-		errors.push("User not found");
-		return errors;
+		return "User not found";
 	}
 
 	console.log({
 		data: {
 			id: exerciseId,
 			userId: userId.id,
-			name: name as string,
-			description: description as string | null,
-			muscles: musclesArray,
+			name: data.exercise.name,
+			description: data.exercise.description,
+			muscles: data.exercise.muscles,
 			exerciseId: exerciseId,
-			sets: setsN || 0,
-			reps: repsN || 0,
-			weight: weightN || 0,
+			sets: data.initialStats?.sets,
+			reps: data.initialStats?.reps,
+			weight: data.initialStats?.weight,
 		},
 	});
 
+	await newExercise(data, exerciseId, userId.id);
+
+	return null;
+}
+
+async function newExercise(
+	data: ExerciseForm,
+	exerciseId: string,
+	userId: string,
+) {
+	const { exercise: exerciseData, initialStats: initialStatsData } = data;
 	try {
+		if (!initialStatsData?.sets && !initialStatsData?.reps) {
+			await createExercisePrisma(exerciseId, userId, exerciseData);
+			return;
+		}
 		await prisma.$transaction([
-			prisma.exercises.create({
-				data: {
-					id: exerciseId,
-					userId: userId.id,
-					name: name as string,
-					description: description as string | null,
-					muscles: {
-						connect: musclesArray.map((id) => ({ id })),
-					},
-				},
-			}),
-			prisma.exerciseInitialStats.create({
-				data: {
-					id: crypto.randomUUID(),
-					exerciseId: exerciseId,
-					sets: setsN || 0,
-					reps: repsN || 0,
-					weight: weightN || 0,
-				},
-			}),
+			createExercisePrisma(exerciseId, userId, exerciseData),
+			createExerciseInitialStatsPrisma(exerciseId, initialStatsData),
 		]);
 	} catch {
-		errors.push("Error creating exercise");
+		return "Error creating exercise";
 	}
+}
+function createExercisePrisma(
+	exerciseId: string,
+	userId: string,
+	data: ExerciseType,
+) {
+	const musclesConnect = data.muscles.map((muscle) => ({
+		id: Number(muscle.id),
+	}));
+	return prisma.exercises.create({
+		data: {
+			id: exerciseId,
+			userId: userId,
+			name: data.name,
+			description: data.description,
+			muscles: {
+				connect: musclesConnect,
+			},
+		},
+	});
+}
 
-	return errors.length > 0 ? errors : null;
+function createExerciseInitialStatsPrisma(
+	exerciseId: string,
+	data: ExerciseInitialStatsType,
+) {
+	return prisma.exerciseInitialStats.create({
+		data: {
+			id: crypto.randomUUID(),
+			exerciseId: exerciseId,
+			sets: data.sets ?? 0,
+			reps: data.reps ?? 0,
+			weight: data.weight ?? 0,
+		},
+	});
 }
