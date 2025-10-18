@@ -2,6 +2,7 @@ import { InputClasses } from "../constants/classes";
 
 import styles from "@/modules/form/components/Select.module.css";
 import { SelectOption, SelectOptionValue } from "../types";
+import { ErrorMessage } from "./ErrorMessage";
 
 type multipleSelectedType =
 	| {
@@ -19,6 +20,7 @@ type SelectProps = {
 	placeholder?: string;
 	disabled?: boolean;
 	options: SelectOption[];
+	error?: string;
 	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 } & multipleSelectedType;
 
@@ -41,27 +43,33 @@ export function Select({
 	disabled,
 	selected,
 	onChange,
+	error,
+	...props
 }: SelectProps) {
 	const defaultValue = selected ? selectedValue(multiple, selected) : undefined;
 
 	return (
-		<select
-			name={name}
-			className={`${InputClasses} [appearance:none] ${styles.select} ${className}`}
-			multiple={multiple}
-			disabled={disabled}
-			defaultValue={defaultValue}
-			onChange={onChange}
-		>
-			{options.map((option) => (
-				<option
-					key={option.value}
-					value={option.value}
-					className="bg-sec-background focus:bg-background hover:bg-background"
-				>
-					{option.label}
-				</option>
-			))}
-		</select>
+		<>
+			<select
+				name={name}
+				className={`${InputClasses} [appearance:none] ${styles.select} ${className}`}
+				multiple={multiple}
+				disabled={disabled}
+				defaultValue={defaultValue}
+				onChange={onChange}
+				{...props}
+			>
+				{options.map((option) => (
+					<option
+						key={option.value}
+						value={option.value}
+						className="bg-sec-background focus:bg-background hover:bg-background"
+					>
+						{option.label}
+					</option>
+				))}
+			</select>
+			<ErrorMessage message={error} />
+		</>
 	);
 }

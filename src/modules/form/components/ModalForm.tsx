@@ -1,11 +1,13 @@
 export function ModalForm({
 	className,
 	action,
+	onSubmit,
 	children,
 	title,
 }: {
 	className?: string;
-	action: (payload: FormData) => void;
+	action?: (payload: FormData) => void;
+	onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
 	children: React.ReactNode;
 	title: string;
 }) {
@@ -15,7 +17,11 @@ export function ModalForm({
 				{title}
 			</header>
 			<main className="font-light">
-				<form action={action} className="flex flex-col gap-2">
+				<form
+					action={action}
+					onSubmit={onSubmit}
+					className="flex flex-col gap-2"
+				>
 					{children}
 				</form>
 			</main>

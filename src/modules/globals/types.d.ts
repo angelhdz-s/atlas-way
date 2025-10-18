@@ -24,6 +24,4 @@ export interface Toast {
 	duration?: number;
 }
 
-export type ActionResponseType =
-	| { success: true }
-	| { success: false; message: string[] };
+export type ActionResponseType = { success: boolean; message: string };

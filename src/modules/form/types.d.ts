@@ -3,12 +3,13 @@ export type InputTextProps = {
 	name: string;
 	placeholder?: string;
 	disabled?: boolean;
+	error?: string;
 };
 
 export type InputNumberProps = InputTextProps & {
-	min?: number;
-	max?: number;
-	value?: number;
+	min?: string | number;
+	max?: string | number;
+	value?: string | number;
 };
 
 export type TextAreaProps = InputTextProps & {

@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SelectOption } from "@/modules/form/types";
 
-export function useMultipleSelectBox({ options }: { options: SelectOption[] }) {
+type UseMultipleSelectBoxProps = {
+	options: SelectOption[];
+	onOptionsChange?: (options: SelectOption[]) => void;
+};
+
+export function useMultipleSelectBox({
+	options,
+	onOptionsChange,
+}: UseMultipleSelectBoxProps) {
 	const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>([]);
+	const currentOptions = useRef(selectedOptions);
 	const [isSelecting, setIsSelecting] = useState(false);
 
 	const filteredOptions = options.filter(
@@ -31,6 +40,12 @@ export function useMultipleSelectBox({ options }: { options: SelectOption[] }) {
 			prev.filter((selectedOption) => selectedOption.value !== option.value),
 		);
 	};
+
+	useEffect(() => {
+		if (currentOptions.current === selectedOptions) return;
+		currentOptions.current = selectedOptions;
+		onOptionsChange?.(currentOptions.current);
+	}, [selectedOptions, onOptionsChange]);
 
 	return {
 		selectedOptions,

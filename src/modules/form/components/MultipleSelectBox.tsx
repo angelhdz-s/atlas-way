@@ -5,6 +5,7 @@ import { MultipleSelectOptionsBox } from "@/modules/form/components/MultipleSele
 import { useMultipleSelectBox } from "@/modules/form/hooks/useMultipleSelectBox";
 import { SelectOption } from "@/modules/form/types";
 import { CirclePlus, Trash, XMark } from "@/modules/globals/components/Icons";
+import { ErrorMessage } from "./ErrorMessage";
 
 function SelectedOptions({
 	label,
@@ -31,14 +32,18 @@ function SelectedOptions({
 
 export function MultipleSelectBox({
 	label,
-	name,
 	selectingTitle,
 	options,
+	error,
+	children,
+	onOptionsChange,
 }: {
 	label: string;
 	selectingTitle: string;
-	name: string;
 	options: SelectOption[];
+	error?: string;
+	children?: React.ReactNode;
+	onOptionsChange?: (options: SelectOption[]) => void;
 }) {
 	const {
 		filteredOptions,
@@ -49,7 +54,7 @@ export function MultipleSelectBox({
 		removeAllOptionsSelected,
 		selectedOptions,
 		handleCloseSelectOptions,
-	} = useMultipleSelectBox({ options });
+	} = useMultipleSelectBox({ options, onOptionsChange });
 
 	return (
 		<>
@@ -82,13 +87,8 @@ export function MultipleSelectBox({
 						))}
 					</main>
 				</Box>
-				<input
-					type="hidden"
-					name={name}
-					value={selectedOptions
-						.map((selectedOption) => selectedOption.value)
-						.join(",")}
-				/>
+				{children}
+				<ErrorMessage message={error} />
 			</div>
 			{isSelecting && (
 				<>
