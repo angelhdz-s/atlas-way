@@ -11,7 +11,6 @@ import { PrismaClient } from "@/prisma/client";
 const prisma = new PrismaClient();
 
 export async function createSessionAction(
-	previousState: unknown,
 	formData: FormData,
 ): Promise<ActionResponseType> {
 	const error = await createSession(formData);

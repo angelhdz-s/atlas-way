@@ -5,7 +5,7 @@ import { ModalForm } from "@/modules/form/components/ModalForm";
 import { ModalFormButtons } from "@/modules/form/components/ModalFormButtons";
 import { SelectOption } from "@/modules/form/types";
 import { useSessionForm } from "@/modules/session/hooks/useSessionForm";
-import { useForm } from "@/modules/form/hooks/useModalForm";
+import { useModalForm } from "@/modules/form/hooks/useFormHook";
 import { SessionFormFields } from "@/modules/session/components/SessionFormFields";
 
 export function ModalSessionForm({
@@ -21,7 +21,7 @@ export function ModalSessionForm({
 	};
 
 	const { state, action, isPending } = useSessionForm();
-	useForm({ state, onSuccess: handleSuccess });
+	useModalForm();
 
 	return (
 		<ModalForm title={title} action={action}>

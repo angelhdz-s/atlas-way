@@ -12,77 +12,77 @@ import { inputNumberConfig } from "@/modules/form/config/input-config";
 import { SelectOption } from "@/modules/form/types";
 
 export function ModalExerciseForm({
-	title,
-	muscles,
+    title,
+    muscles,
 }: {
-	title: string;
-	muscles: SelectOption[];
+    title: string;
+    muscles: SelectOption[];
 }) {
-	const {
-		isSubmitting,
-		errors,
-		fields,
-		handleOnMusclesChange,
-		handleSubmit,
-		register,
-	} = useExerciseForm();
+    const {
+        isSubmitting,
+        errors,
+        fields,
+        handleOnMusclesChange,
+        handleSubmit,
+        register,
+    } = useExerciseForm();
 
-	return (
-		<ModalForm title={title} onSubmit={handleSubmit}>
-			<Label title="Name">
-				<InputText
-					{...register("exercise.name")}
-					error={errors.exercise?.name?.message}
-					placeholder="Bench Press"
-				/>
-			</Label>
-			<Label title="Description">
-				<TextArea
-					{...register("exercise.description")}
-					error={errors.exercise?.description?.message}
-					placeholder="A compound exercise that targets the chest, shoulders, and triceps."
-				/>
-			</Label>
-			<section className="flex items-start gap-2">
-				<Label title="Sets">
-					<InputNumber
-						{...register("initialStats.sets", inputNumberConfig)}
-						error={errors.initialStats?.sets?.message}
-					/>
-				</Label>
-				<Label title="Reps">
-					<InputNumber
-						{...register("initialStats.reps", inputNumberConfig)}
-						error={errors.initialStats?.reps?.message}
-					/>
-				</Label>
-				<Label title="Weight (lbs)">
-					<InputNumber
-						{...register("initialStats.weight", inputNumberConfig)}
-						error={errors.initialStats?.weight?.message}
-					/>
-				</Label>
-			</section>
-			<section>
-				<MultipleSelectBox
-					label="Muscles"
-					selectingTitle="Select muscles"
-					options={muscles}
-					error={errors.exercise?.muscles?.message}
-					onOptionsChange={handleOnMusclesChange}
-				>
-					{fields.map((field, index) => (
-						<input
-							type="hidden"
-							key={field.id}
-							{...register(`exercise.muscles.${index}.id`)}
-						></input>
-					))}
-				</MultipleSelectBox>
-			</section>
-			<footer className="flex gap-2 *:px-4 *:py-2 *:rounded *:w-full *:border-2">
-				<ModalFormButtons isPending={isSubmitting} />
-			</footer>
-		</ModalForm>
-	);
+    return (
+        <ModalForm title={title} onSubmit={handleSubmit}>
+            <Label title="Name">
+                <InputText
+                    {...register("exercise.name")}
+                    error={errors.exercise?.name?.message}
+                    placeholder="Bench Press"
+                />
+            </Label>
+            <Label title="Description">
+                <TextArea
+                    {...register("exercise.description")}
+                    error={errors.exercise?.description?.message}
+                    placeholder="A compound exercise that targets the chest, shoulders, and triceps."
+                />
+            </Label>
+            <section className="flex items-start gap-2">
+                <Label title="Sets">
+                    <InputNumber
+                        {...register("initialStats.sets", inputNumberConfig)}
+                        error={errors.initialStats?.sets?.message}
+                    />
+                </Label>
+                <Label title="Reps">
+                    <InputNumber
+                        {...register("initialStats.reps", inputNumberConfig)}
+                        error={errors.initialStats?.reps?.message}
+                    />
+                </Label>
+                <Label title="Weight (lbs)">
+                    <InputNumber
+                        {...register("initialStats.weight", inputNumberConfig)}
+                        error={errors.initialStats?.weight?.message}
+                    />
+                </Label>
+            </section>
+            <section>
+                <MultipleSelectBox
+                    label="Muscles"
+                    selectingTitle="Select muscles"
+                    options={muscles}
+                    error={errors.exercise?.muscles?.message}
+                    onOptionsChange={handleOnMusclesChange}
+                >
+                    {fields.map((field, index) => (
+                        <input
+                            type="hidden"
+                            key={field.id}
+                            {...register(`exercise.muscles.${index}.id`)}
+                        ></input>
+                    ))}
+                </MultipleSelectBox>
+            </section>
+            <footer className="flex gap-2 *:px-4 *:py-2 *:rounded *:w-full *:border-2">
+                <ModalFormButtons isPending={isSubmitting} />
+            </footer>
+        </ModalForm>
+    );
 }
