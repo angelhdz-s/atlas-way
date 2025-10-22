@@ -71,7 +71,7 @@ export function MultipleSelectOptionsBox({
 					/>
 				))}
 			</Box>
-			<footer className="mt-4 flex gap-2 [&_button]:w-fit [&_button]:flex [&_button]:items-center [&_button]:gap-2 [&_button]:cursor-pointer [&_button]:transition-colors">
+			<footer className="flex gap-2 [&_button]:w-fit [&_button]:flex [&_button]:items-center [&_button]:gap-2 [&_button]:cursor-pointer [&_button]:transition-colors">
 				<button
 					type="button"
 					onClick={handleAddOptions}

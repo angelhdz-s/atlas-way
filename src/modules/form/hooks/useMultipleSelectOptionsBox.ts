@@ -21,7 +21,7 @@ export function useMultipleSelectOptionsBox({
 	};
 
 	const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setSearch(e.target.value);
+		setSearch(e.target.value.toLowerCase());
 	};
 
 	const handleSelectOption = (value: SelectOption) => {
