@@ -1,10 +1,10 @@
-import { getPastDate, isToday } from "@/modules/globals/lib/dates";
-import { ROUTINES, StatusDayType } from "./routines";
-import { ExerciseType, LEGS_DAY, PULL_DAY, PUSH_DAY } from "./sessions";
-import { minorValue } from "@/modules/globals/lib/utils";
+import { getPastDate, isToday } from '@/modules/globals/lib/dates';
+import { ROUTINES, StatusDayType } from './routines';
+import { ExerciseType, LEGS_DAY, PULL_DAY, PUSH_DAY } from './sessions';
+import { minorValue } from '@/modules/globals/lib/utils';
 
-type TrainingtDayNameType = "Training Day";
-type RestDayNameType = "Rest Day";
+type TrainingtDayNameType = 'Training Day';
+type RestDayNameType = 'Rest Day';
 
 type DayTypes = {
 	TRAINING: TrainingtDayNameType;
@@ -17,8 +17,8 @@ type DayDatesType = {
 };
 
 export const DAY_TYPES: DayTypes = {
-	TRAINING: "Training Day",
-	REST: "Rest Day",
+	TRAINING: 'Training Day',
+	REST: 'Rest Day',
 };
 
 export type TypesOfDayType = keyof typeof DAY_TYPES;
@@ -32,29 +32,29 @@ const MONTH_TODAY = 6;
 const DAY_TODAY = 4;
 export const TODAY = new Date(YEAR_TODAY, MONTH_TODAY, DAY_TODAY);
 
-const routine = ROUTINES.find((routine) => routine.name === "Push, Pull, Legs");
+const routine = ROUTINES.find((routine) => routine.name === 'Push, Pull, Legs');
 
 type RestDayType = {
-	type: Extract<TypesOfDayType, "REST">;
-	status: Extract<StatusDayType, "completed">;
+	type: Extract<TypesOfDayType, 'REST'>;
+	status: Extract<StatusDayType, 'completed'>;
 	name: typeof DAY_TYPES.REST;
-	routine: "Rest";
+	routine: 'Rest';
 };
 
 type NextRestDayType = {
-	type: "REST";
-	status: Exclude<StatusDayType, "canceled">;
+	type: 'REST';
+	status: Exclude<StatusDayType, 'canceled'>;
 	name: typeof DAY_TYPES.REST;
-	routine: "Rest";
+	routine: 'Rest';
 };
 
 export type NextRestDayPlanifiedType = DayDatesType & NextRestDayType;
 
-type ExerciseSkipped = ExerciseType["name"];
+type ExerciseSkipped = ExerciseType['name'];
 
 type TrainingDayType = {
-	type: Extract<TypesOfDayType, "TRAINING">;
-	status: Extract<StatusDayType, "completed" | "canceled">;
+	type: Extract<TypesOfDayType, 'TRAINING'>;
+	status: Extract<StatusDayType, 'completed' | 'canceled'>;
 	name: string;
 	routine: string;
 	exercicesDone: ExerciseType[];
@@ -64,14 +64,14 @@ type TrainingDayType = {
 export type TrackedDayType = DayDatesType & (RestDayType | TrainingDayType);
 
 const REST_DAY: NextRestDayType = {
-	type: "REST",
-	routine: "Rest",
+	type: 'REST',
+	routine: 'Rest',
 	name: DAY_TYPES.REST,
-	status: "next",
+	status: 'next',
 };
 
 export function getRestDay(date: Date): NextRestDayPlanifiedType {
-	const status = isToday(date) ? "current" : "next";
+	const status = isToday(date) ? 'current' : 'next';
 	return {
 		...REST_DAY,
 		date,
@@ -84,352 +84,352 @@ export const TRACKED_DAYS: TrackedDayType[] = [
 	// SAT
 	{
 		date: getPastDate(TODAY, 35),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 35).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// SUN
 	{
 		date: getPastDate(TODAY, 34),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 34).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// MON - PUSH
 	{
 		date: getPastDate(TODAY, 33),
-		routine: "Push, Pull, Legs",
+		routine: 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 33).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: PUSH_DAY.name,
 		exercicesDone: PUSH_DAY.exercises,
 		exercicesSkipped: [],
-		status: "completed",
+		status: 'completed',
 	},
 	// TUE
 	{
 		date: getPastDate(TODAY, 32),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 32).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// WED - LEGS
 	{
 		date: getPastDate(TODAY, 31),
-		routine: routine?.name || "Push, Pull, Legs",
+		routine: routine?.name || 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 31).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: LEGS_DAY.name,
 		exercicesDone: LEGS_DAY.exercises,
 		exercicesSkipped: [],
-		status: "canceled",
+		status: 'canceled',
 	},
 	// THU
 	{
 		date: getPastDate(TODAY, 30),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 30).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// FRI - PULL
 	{
 		date: getPastDate(TODAY, 29),
-		routine: routine?.name || "Push, Pull, Legs",
+		routine: routine?.name || 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 29).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: PULL_DAY.name,
 		exercicesDone: PULL_DAY.exercises,
 		exercicesSkipped: [],
-		status: "completed",
+		status: 'completed',
 	},
 	// SAT
 	{
 		date: getPastDate(TODAY, 28),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 28).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// SUN
 	{
 		date: getPastDate(TODAY, 27),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 27).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// MON - PUSH
 	{
 		date: getPastDate(TODAY, 26),
-		routine: "Push, Pull, Legs",
+		routine: 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 26).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: PUSH_DAY.name,
 		exercicesDone: PUSH_DAY.exercises,
 		exercicesSkipped: [],
-		status: "completed",
+		status: 'completed',
 	},
 	// TUE
 	{
 		date: getPastDate(TODAY, 25),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 25).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// WED - LEGS
 	{
 		date: getPastDate(TODAY, 24),
-		routine: routine?.name || "Push, Pull, Legs",
+		routine: routine?.name || 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 24).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: LEGS_DAY.name,
 		exercicesDone: LEGS_DAY.exercises,
 		exercicesSkipped: [],
-		status: "canceled",
+		status: 'canceled',
 	},
 	// THU
 	{
 		date: getPastDate(TODAY, 23),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 23).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// FRI - PULL
 	{
 		date: getPastDate(TODAY, 22),
-		routine: routine?.name || "Push, Pull, Legs",
+		routine: routine?.name || 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 22).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: PULL_DAY.name,
 		exercicesDone: PULL_DAY.exercises,
 		exercicesSkipped: [],
-		status: "completed",
+		status: 'completed',
 	},
 	// SAT
 	{
 		date: getPastDate(TODAY, 21),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 21).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// SUN
 	{
 		date: getPastDate(TODAY, 20),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 20).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// MON - PUSH
 	{
 		date: getPastDate(TODAY, 19),
-		routine: "Push, Pull, Legs",
+		routine: 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 19).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: PUSH_DAY.name,
 		exercicesDone: PUSH_DAY.exercises,
 		exercicesSkipped: [],
-		status: "completed",
+		status: 'completed',
 	},
 	// TUE
 	{
 		date: getPastDate(TODAY, 18),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 18).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// WED - LEGS
 	{
 		date: getPastDate(TODAY, 17),
-		routine: routine?.name || "Push, Pull, Legs",
+		routine: routine?.name || 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 17).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: LEGS_DAY.name,
 		exercicesDone: LEGS_DAY.exercises,
 		exercicesSkipped: [],
-		status: "canceled",
+		status: 'canceled',
 	},
 	// THU
 	{
 		date: getPastDate(TODAY, 16),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 16).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// FRI - PULL
 	{
 		date: getPastDate(TODAY, 15),
-		routine: routine?.name || "Push, Pull, Legs",
+		routine: routine?.name || 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 15).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: PULL_DAY.name,
 		exercicesDone: PULL_DAY.exercises,
 		exercicesSkipped: [],
-		status: "completed",
+		status: 'completed',
 	},
 	// SAT
 	{
 		date: getPastDate(TODAY, 14),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 14).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// SUN
 	{
 		date: getPastDate(TODAY, 13),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 13).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// MON - PUSH
 	{
 		date: getPastDate(TODAY, 12),
-		routine: "Push, Pull, Legs",
+		routine: 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 12).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: PUSH_DAY.name,
 		exercicesDone: PUSH_DAY.exercises,
 		exercicesSkipped: [],
-		status: "completed",
+		status: 'completed',
 	},
 	// TUE
 	{
 		date: getPastDate(TODAY, 11),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 11).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// WED - LEGS
 	{
 		date: getPastDate(TODAY, 10),
-		routine: routine?.name || "Push, Pull, Legs",
+		routine: routine?.name || 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 10).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: LEGS_DAY.name,
 		exercicesDone: LEGS_DAY.exercises,
 		exercicesSkipped: [],
-		status: "completed",
+		status: 'completed',
 	},
 	// THU
 	{
 		date: getPastDate(TODAY, 9),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 9).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// FRI - PULL
 	{
 		date: getPastDate(TODAY, 8),
-		routine: routine?.name || "Push, Pull, Legs",
+		routine: routine?.name || 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 8).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: PULL_DAY.name,
 		exercicesDone: PULL_DAY.exercises,
 		exercicesSkipped: [],
-		status: "completed",
+		status: 'completed',
 	},
 	// SAT
 	{
 		date: getPastDate(TODAY, 7),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 7).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// SUN
 	{
 		date: getPastDate(TODAY, 6),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 6).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// MON - PUSH
 	{
 		date: getPastDate(TODAY, 5),
-		routine: "Push, Pull, Legs",
+		routine: 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 5).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: PUSH_DAY.name,
 		exercicesDone: PUSH_DAY.exercises,
 		exercicesSkipped: [],
-		status: "completed",
+		status: 'completed',
 	},
 	// TUE
 	{
 		date: getPastDate(TODAY, 4),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 4).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// WED - LEGS
 	{
 		date: getPastDate(TODAY, 3),
-		routine: routine?.name || "Push, Pull, Legs",
+		routine: routine?.name || 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 3).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: LEGS_DAY.name,
 		exercicesDone: LEGS_DAY.exercises,
 		exercicesSkipped: [],
-		status: "completed",
+		status: 'completed',
 	},
 	// THU
 	{
 		date: getPastDate(TODAY, 2),
-		routine: "Rest",
+		routine: 'Rest',
 		day: getPastDate(TODAY, 2).getDay(),
-		type: "REST",
+		type: 'REST',
 		name: DAY_TYPES.REST,
-		status: "completed",
+		status: 'completed',
 	},
 	// FRI - PULL
 	{
 		date: getPastDate(TODAY, 1),
-		routine: routine?.name || "Push, Pull, Legs",
+		routine: routine?.name || 'Push, Pull, Legs',
 		day: getPastDate(TODAY, 1).getDay(),
-		type: "TRAINING",
+		type: 'TRAINING',
 		name: PULL_DAY.name,
 		exercicesDone: PULL_DAY.exercises,
 		exercicesSkipped: [],
-		status: "completed",
+		status: 'completed',
 	},
 ];
 
-export const FIRST_TRACKED_DAY = TRACKED_DAYS.map((day) => day.date).reduce(
-	(a, b) => minorValue(a, b),
+export const FIRST_TRACKED_DAY = TRACKED_DAYS.map((day) => day.date).reduce((a, b) =>
+	minorValue(a, b)
 );
 
 export const SESSIONS_COUNTERS = {

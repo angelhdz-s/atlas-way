@@ -1,24 +1,18 @@
-"use client";
+'use client';
 
-import { useSidebar } from "@/modules/sidebar/hooks/useSidebar";
-import { LayoutSidebar } from "@/modules/globals/components/Icons";
-import { Breadcrumb } from "./Breadcrumb";
-import { ToggleTheme } from "@/modules/globals/components/ToggleTheme";
-import { LangButton } from "@/modules/globals/components/LangButton";
-import { SettingsButton } from "@/modules/globals/components/SettingsButton";
-import { UserInfo } from "./UserInfo";
-import { NotificationsButton } from "../../notification/components/NotificationsButton";
-import Link from "next/link";
-import { Imagotype } from "@/modules/globals/components/AtlasWayLogo";
-import { Users } from "@/prisma/client";
+import { useSidebar } from '@/modules/sidebar/hooks/useSidebar';
+import { LayoutSidebar } from '@/modules/globals/components/Icons';
+import { Breadcrumb } from './Breadcrumb';
+import { ToggleTheme } from '@/modules/globals/components/ToggleTheme';
+import { LangButton } from '@/modules/globals/components/LangButton';
+import { SettingsButton } from '@/modules/globals/components/SettingsButton';
+import { UserInfo } from './UserInfo';
+import { NotificationsButton } from '../../notification/components/NotificationsButton';
+import Link from 'next/link';
+import { Imagotype } from '@/modules/globals/components/AtlasWayLogo';
+import { Users } from '@/prisma/client';
 
-export function Header({
-	user,
-	className = "",
-}: {
-	user?: Users;
-	className?: string;
-}) {
+export function Header({ user, className = '' }: { user?: Users; className?: string }) {
 	const { isOpen, toggleOpen } = useSidebar();
 
 	return (
@@ -28,19 +22,15 @@ export function Header({
 			>
 				<section className="flex items-center gap-2 h-full">
 					<main
-						className={`flex justify-between items-center gap-0 h-full ${isOpen ? "pl-4 w-[var(--sidebar-width)]" : ""} `}
+						className={`flex justify-between items-center gap-0 h-full ${isOpen ? 'pl-4 w-[var(--sidebar-width)]' : ''} `}
 					>
 						<Link
 							href="/"
-							className={`flex items-center gap-2 font-light font-funnel-display ${isOpen ? "" : "justify-center w-14"}`}
+							className={`flex items-center gap-2 font-light font-funnel-display ${isOpen ? '' : 'justify-center w-14'}`}
 						>
 							<Imagotype closed={!isOpen} />
 						</Link>
-						<button
-							type="button"
-							onClick={toggleOpen}
-							className="cursor-pointer p-2"
-						>
+						<button type="button" onClick={toggleOpen} className="cursor-pointer p-2">
 							<LayoutSidebar className="size-6 ld-main-fg" />
 						</button>
 					</main>

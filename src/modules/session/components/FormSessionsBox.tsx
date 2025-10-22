@@ -1,8 +1,8 @@
-import { Box } from "@/modules/form/components/Box";
-import { useState } from "react";
-import { SessionsFormDataWithExercises } from "../types";
-import Link from "next/link";
-import { CirclePlus } from "@/modules/globals/components/Icons";
+import { Box } from '@/modules/form/components/Box';
+import { useState } from 'react';
+import { SessionsFormDataWithExercises } from '../types';
+import Link from 'next/link';
+import { CirclePlus } from '@/modules/globals/components/Icons';
 
 export function FormSessionsBox() {
 	const [sessions, setSessions] = useState<SessionsFormDataWithExercises[]>([]);
@@ -12,9 +12,7 @@ export function FormSessionsBox() {
 				{sessions.length > 0 ? (
 					sessions.map((session, index) => <p key={index}>{session.name}</p>)
 				) : (
-					<p className="font-light text-base text-foreground/50">
-						No sessions added
-					</p>
+					<p className="font-light text-base text-foreground/50">No sessions added</p>
 				)}
 			</main>
 			<aside>

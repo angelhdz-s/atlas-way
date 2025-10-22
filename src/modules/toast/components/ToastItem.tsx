@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { TOAST_TYPE } from "@/modules/globals/config/defaults";
+import { TOAST_TYPE } from '@/modules/globals/config/defaults';
 import {
 	CircleCheck,
 	AlertTriangle,
 	InformationCircle,
 	XCircle,
 	XMark,
-} from "@/modules/globals/components/Icons";
-import { Toast } from "@/modules/globals/types.d";
-import styles from "@/modules/toast/components/Toast.module.css";
+} from '@/modules/globals/components/Icons';
+import { Toast } from '@/modules/globals/types.d';
+import styles from '@/modules/toast/components/Toast.module.css';
 
 interface Props {
 	toast: Toast;

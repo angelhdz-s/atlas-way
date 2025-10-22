@@ -1,10 +1,6 @@
-export const MONTH_DAYS = [
-	31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
-] as const;
+export const MONTH_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] as const;
 
-export const MONTH_DAYS_LEAP = [
-	31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
-] as const;
+export const MONTH_DAYS_LEAP = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] as const;
 
 type MonthType = {
 	name: string;
@@ -14,63 +10,63 @@ type MonthType = {
 
 export const MONTH_NAMES: MonthType[] = [
 	{
-		name: "January",
-		shortName: "Jan",
+		name: 'January',
+		shortName: 'Jan',
 		month: 1,
 	},
 	{
-		name: "February",
-		shortName: "Feb",
+		name: 'February',
+		shortName: 'Feb',
 		month: 2,
 	},
 	{
-		name: "March",
-		shortName: "Mar",
+		name: 'March',
+		shortName: 'Mar',
 		month: 3,
 	},
 	{
-		name: "April",
-		shortName: "Apr",
+		name: 'April',
+		shortName: 'Apr',
 		month: 4,
 	},
 	{
-		name: "May",
-		shortName: "May",
+		name: 'May',
+		shortName: 'May',
 		month: 5,
 	},
 	{
-		name: "June",
-		shortName: "Jun",
+		name: 'June',
+		shortName: 'Jun',
 		month: 6,
 	},
 	{
-		name: "July",
-		shortName: "Jul",
+		name: 'July',
+		shortName: 'Jul',
 		month: 7,
 	},
 	{
-		name: "August",
-		shortName: "Aug",
+		name: 'August',
+		shortName: 'Aug',
 		month: 8,
 	},
 	{
-		name: "September",
-		shortName: "Sep",
+		name: 'September',
+		shortName: 'Sep',
 		month: 9,
 	},
 	{
-		name: "October",
-		shortName: "Oct",
+		name: 'October',
+		shortName: 'Oct',
 		month: 10,
 	},
 	{
-		name: "November",
-		shortName: "Nov",
+		name: 'November',
+		shortName: 'Nov',
 		month: 11,
 	},
 	{
-		name: "December",
-		shortName: "Dec",
+		name: 'December',
+		shortName: 'Dec',
 		month: 12,
 	},
 ] as const;
@@ -82,39 +78,39 @@ export const MONTH_LIMITS = {
 
 export const WEEK_DAYS = [
 	{
-		name: "Monday",
-		short: "Mon",
-		initial: "M",
+		name: 'Monday',
+		short: 'Mon',
+		initial: 'M',
 	},
 	{
-		name: "Tuesday",
-		short: "Tue",
-		initial: "T",
+		name: 'Tuesday',
+		short: 'Tue',
+		initial: 'T',
 	},
 	{
-		name: "Wednesday",
-		short: "Wed",
-		initial: "W",
+		name: 'Wednesday',
+		short: 'Wed',
+		initial: 'W',
 	},
 	{
-		name: "Thursday",
-		short: "Thu",
-		initial: "T",
+		name: 'Thursday',
+		short: 'Thu',
+		initial: 'T',
 	},
 	{
-		name: "Friday",
-		short: "Fri",
-		initial: "F",
+		name: 'Friday',
+		short: 'Fri',
+		initial: 'F',
 	},
 	{
-		name: "Saturday",
-		short: "Sat",
-		initial: "S",
+		name: 'Saturday',
+		short: 'Sat',
+		initial: 'S',
 	},
 	{
-		name: "Sunday",
-		short: "Sun",
-		initial: "S",
+		name: 'Sunday',
+		short: 'Sun',
+		initial: 'S',
 	},
 ];
 

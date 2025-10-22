@@ -1,6 +1,6 @@
 const INSET = {
-	1: "inset-[-1px] rounded-lg",
-	2: "inset-[-1px] rounded-[calc((var(--spacing)*2)+1px)]",
+	1: 'inset-[-1px] rounded-lg',
+	2: 'inset-[-1px] rounded-[calc((var(--spacing)*2)+1px)]',
 };
 
 type BorderType = keyof typeof INSET;
@@ -13,21 +13,17 @@ type BorderType = keyof typeof INSET;
  */
 
 export function Border({
-	className = "",
+	className = '',
 	border = 1,
 }: {
 	className?: string;
 	border?: BorderType;
 }) {
-	return (
-		<div
-			className={`absolute ${INSET[border]} light:rounded-lg -z-1 ${className}`}
-		></div>
-	);
+	return <div className={`absolute ${INSET[border]} light:rounded-lg -z-1 ${className}`}></div>;
 }
 
 export function BorderBack({
-	className = "",
+	className = '',
 	border = 1,
 }: {
 	className?: string;

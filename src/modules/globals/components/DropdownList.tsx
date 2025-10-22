@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 type DropdownListValueType = {
 	label: string;
 	value: string | number;
 };
 export type DropdownListProps = {
-	selectedValue?: DropdownListValueType["value"];
+	selectedValue?: DropdownListValueType['value'];
 	className?: string;
 	values: DropdownListValueType[];
 	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 export function DropdownList({
-	selectedValue = "",
+	selectedValue = '',
 	className,
 	values,
 	onChange,
 }: DropdownListProps) {
 	const [selectedOption, setSelectedOption] =
-		useState<DropdownListValueType["value"]>(selectedValue);
+		useState<DropdownListValueType['value']>(selectedValue);
 
 	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		onChange?.(e);

@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useState } from "react";
-import { TOAST_DURATION, TOAST_TYPE } from "@/modules/globals/config/defaults";
-import { generateId } from "@/modules/globals/lib/utils";
-import { Toast } from "@/modules/globals/types.d";
-import { ToastContainer } from "@/modules/toast/components/ToastContainer";
-import { ToastContext } from "@/modules/toast/contexts/toast-context";
+import { useCallback, useEffect, useState } from 'react';
+import { TOAST_DURATION, TOAST_TYPE } from '@/modules/globals/config/defaults';
+import { generateId } from '@/modules/globals/lib/utils';
+import { Toast } from '@/modules/globals/types.d';
+import { ToastContainer } from '@/modules/toast/components/ToastContainer';
+import { ToastContext } from '@/modules/toast/contexts/toast-context';
 
 export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
 	const [toasts, setToasts] = useState<Toast[]>([]);
 	const [mounted, setMounted] = useState(false);
 
 	const addToast = useCallback(
-		(message: string, options?: Partial<Omit<Toast, "id" | "message">>) => {
+		(message: string, options?: Partial<Omit<Toast, 'id' | 'message'>>) => {
 			const toast: Toast = {
 				id: generateId(),
 				message,
@@ -25,7 +25,7 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
 				setToasts((prev) => prev.filter((t) => t.id !== toast.id));
 			}, toast.duration);
 		},
-		[],
+		[]
 	);
 
 	const removeToast = (id: string) => {

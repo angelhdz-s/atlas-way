@@ -1,9 +1,5 @@
-import { DAYS, DayWeeksType } from "@/modules/globals/config/defaults";
-import {
-	DayTypeProps,
-	RoutineType,
-	StatusDayType,
-} from "@/modules/globals/mocks/routines";
+import { DAYS, DayWeeksType } from '@/modules/globals/config/defaults';
+import { DayTypeProps, RoutineType, StatusDayType } from '@/modules/globals/mocks/routines';
 import {
 	CardHighlightType,
 	DashboardCard,
@@ -13,15 +9,15 @@ import {
 	DashboardCardMain,
 	DashboardCardSubHeader,
 	DashboardCardTags,
-} from "@/modules/dashboard/components/Card";
+} from '@/modules/dashboard/components/Card';
 import {
 	Barbell,
 	BarbellOff,
 	CalendarWeek,
 	CircleCheck,
 	XCircle,
-} from "@/modules/globals/components/Icons";
-import { IconTypes } from "@/modules/globals/types";
+} from '@/modules/globals/components/Icons';
+import { IconTypes } from '@/modules/globals/types';
 
 interface DayObjectType {
 	class: string;
@@ -35,41 +31,37 @@ type StatusDayTypes = {
 
 const STATUS_DAYS: StatusDayTypes = {
 	canceled: {
-		class:
-			"border-red-950 text-red-800 light:border-red-300 light:text-red-400",
-		title: "Canceled",
+		class: 'border-red-950 text-red-800 light:border-red-300 light:text-red-400',
+		title: 'Canceled',
 		icon: XCircle,
 	},
 	completed: {
-		class:
-			"border-green-950 text-green-800 light:border-green-400 light:text-green-600",
-		title: "Completed",
+		class: 'border-green-950 text-green-800 light:border-green-400 light:text-green-600',
+		title: 'Completed',
 		icon: CircleCheck,
 	},
 	current: {
-		class:
-			"bg-green-800 border-green-800 text-main-foreground light:bg-green-600 light:border-green-600",
-		title: "Current Day",
+		class: 'bg-green-800 border-green-800 text-main-foreground light:bg-green-600 light:border-green-600',
+		title: 'Current Day',
 		icon: Barbell,
 	},
 	next: {
-		class: "border-subtle/50 ld-main-fg",
-		title: "Next Day",
+		class: 'border-subtle/50 ld-main-fg',
+		title: 'Next Day',
 		icon: CalendarWeek,
 	},
 };
 
 const DAY_TYPE_REST = {
-	class: "opacity-50",
+	class: 'opacity-50',
 	icon: BarbellOff,
 };
 
 const getDayAttributes = (status: StatusDayType, type: DayTypeProps) => {
-	if (type === "rest")
+	if (type === 'rest')
 		return {
-			className: `${STATUS_DAYS[status].class} ${status === "next" ? DAY_TYPE_REST.class : ""}`,
-			Icon:
-				status === "completed" ? STATUS_DAYS[status].icon : DAY_TYPE_REST.icon,
+			className: `${STATUS_DAYS[status].class} ${status === 'next' ? DAY_TYPE_REST.class : ''}`,
+			Icon: status === 'completed' ? STATUS_DAYS[status].icon : DAY_TYPE_REST.icon,
 			title: `${STATUS_DAYS[status].title} - Rest Day`,
 		};
 
@@ -101,19 +93,13 @@ function ListDayItem({
 	);
 }
 
-export function Routine({
-	type,
-	data,
-}: {
-	data: RoutineType;
-	type?: CardHighlightType;
-}) {
+export function Routine({ type, data }: { data: RoutineType; type?: CardHighlightType }) {
 	const { name, description, days, exercisesCount, date, sessions } = data;
 
-	const trainingSessions = days.filter((day) => day.type !== "rest");
+	const trainingSessions = days.filter((day) => day.type !== 'rest');
 	const sessionsTags = trainingSessions.map((day) => ({
 		value: day.name,
-		selected: day.status === "current",
+		selected: day.status === 'current',
 	}));
 
 	return (
@@ -125,11 +111,7 @@ export function Routine({
 				}
 			>
 				<DashboardCardSubHeader
-					counters={[
-						date,
-						`${exercisesCount} exercises`,
-						`${sessions} sessions`,
-					]}
+					counters={[date, `${exercisesCount} exercises`, `${sessions} sessions`]}
 					description={description}
 				/>
 			</DashboardCardHeader>

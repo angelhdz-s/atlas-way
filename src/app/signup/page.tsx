@@ -1,6 +1,6 @@
-import { Footer } from "@/modules/landing/components/Footer";
-import { Header } from "@/modules/landing/components/Header";
-import { SignUp } from "@/modules/login/components/SignUp";
+import { Footer } from '@/modules/landing/components/Footer';
+import { Header } from '@/modules/landing/components/Header';
+import { SignUp } from '@/modules/login/components/SignUp';
 
 export default function SignUpPage() {
 	return (

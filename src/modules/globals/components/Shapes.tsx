@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useId } from "react";
+import { useId } from 'react';
 
 export function Shape01({
-	className = "",
-	color1 = "",
-	color2 = "",
+	className = '',
+	color1 = '',
+	color2 = '',
 }: {
 	className?: string;
 	color1?: string;
@@ -14,13 +14,7 @@ export function Shape01({
 	const clipPathId = useId();
 	const gradientId = useId();
 	return (
-		<svg
-			width="200"
-			height="200"
-			viewBox="0 0 200 200"
-			fill="none"
-			className={className}
-		>
+		<svg width="200" height="200" viewBox="0 0 200 200" fill="none" className={className}>
 			<g clipPath={`url(#${clipPathId})`}>
 				<path
 					fillRule="evenodd"
@@ -50,9 +44,9 @@ export function Shape01({
 }
 
 export function Shape02({
-	className = "",
-	color1 = "",
-	color2 = "",
+	className = '',
+	color1 = '',
+	color2 = '',
 }: {
 	className?: string;
 	color1?: string;
@@ -61,13 +55,7 @@ export function Shape02({
 	const clipPathId = useId();
 	const gradientId = useId();
 	return (
-		<svg
-			width="200"
-			height="200"
-			viewBox="0 0 200 200"
-			fill="none"
-			className={className}
-		>
+		<svg width="200" height="200" viewBox="0 0 200 200" fill="none" className={className}>
 			<g clipPath={`url(#${clipPathId})`}>
 				<path
 					fillRule="evenodd"
@@ -97,9 +85,9 @@ export function Shape02({
 }
 
 export function Shape03({
-	className = "",
-	color1 = "",
-	color2 = "",
+	className = '',
+	color1 = '',
+	color2 = '',
 }: {
 	className?: string;
 	color1?: string;
@@ -108,13 +96,7 @@ export function Shape03({
 	const clipPathId = useId();
 	const gradientId = useId();
 	return (
-		<svg
-			width="200"
-			height="200"
-			viewBox="0 0 200 200"
-			fill="none"
-			className={className}
-		>
+		<svg width="200" height="200" viewBox="0 0 200 200" fill="none" className={className}>
 			<g clipPath={`url(#${clipPathId})`}>
 				<path
 					fillRule="evenodd"
@@ -144,22 +126,16 @@ export function Shape03({
 }
 
 export function Shape04({
-	className = "",
-	color1 = "",
-	color2 = "",
+	className = '',
+	color1 = '',
+	color2 = '',
 }: {
 	className?: string;
 	color1?: string;
 	color2?: string;
 }) {
 	return (
-		<svg
-			width="200"
-			height="200"
-			viewBox="0 0 200 200"
-			fill="none"
-			className={className}
-		>
+		<svg width="200" height="200" viewBox="0 0 200 200" fill="none" className={className}>
 			<g clipPath="url(#clip0_105_723)">
 				<path
 					fillRule="evenodd"
@@ -189,11 +165,11 @@ export function Shape04({
 }
 
 export function Shape05({
-	strokeWidth = "5",
+	strokeWidth = '5',
 	strokeDasharray = 0,
-	className = "",
-	color1 = "",
-	color2 = "",
+	className = '',
+	color1 = '',
+	color2 = '',
 }: {
 	strokeWidth?: string;
 	strokeDasharray?: number;
@@ -209,7 +185,7 @@ export function Shape05({
 			viewBox="0 0 800 800"
 			className={className}
 			strokeWidth={strokeWidth}
-			offset={"60"}
+			offset={'60'}
 			strokeDashoffset={strokeDasharray}
 		>
 			<defs>
@@ -397,25 +373,16 @@ export function Shape05({
 					transform="rotate(17, 400, 400)"
 					opacity="0.90"
 				></circle>
-				<circle
-					r="16.5"
-					cx="400"
-					cy="400"
-					strokeDasharray="0 104"
-					opacity="0.09"
-				></circle>
+				<circle r="16.5" cx="400" cy="400" strokeDasharray="0 104" opacity="0.09"></circle>
 			</g>
 		</svg>
 	);
 }
 
-export function Shape06({ className = "" }: { className?: string }) {
+export function Shape06({ className = '' }: { className?: string }) {
 	return (
 		<svg viewBox="0 0 480 480" className={className}>
-			<path
-				d="M360 240 240 0 120 240l120 240 120-240z"
-				fill="currentColor"
-			></path>
+			<path d="M360 240 240 0 120 240l120 240 120-240z" fill="currentColor"></path>
 		</svg>
 	);
 }

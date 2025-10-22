@@ -1,11 +1,9 @@
-import { Barbell, Alarm } from "@/modules/globals/components/Icons";
-import { CardTitle } from "../../card/components/CardTitle";
+import { Barbell, Alarm } from '@/modules/globals/components/Icons';
+import { CardTitle } from '../../card/components/CardTitle';
 
-export function RoutinesList({ className = "" }: { className?: string }) {
+export function RoutinesList({ className = '' }: { className?: string }) {
 	return (
-		<article
-			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
-		>
+		<article className={`flex flex-col gap-4 dashboard-card-default ${className}`}>
 			<CardTitle title="Routines" />
 			<main>
 				<ul className="flex flex-col gap-2">

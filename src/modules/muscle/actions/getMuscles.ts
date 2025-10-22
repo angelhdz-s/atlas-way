@@ -1,7 +1,7 @@
-"use server";
+'use server';
 
-import { PrismaClient } from "@/prisma/client";
-import { MuscleIdName } from "../types";
+import { PrismaClient } from '@/prisma/client';
+import { MuscleIdName } from '../types';
 
 const prisma = new PrismaClient();
 
@@ -16,7 +16,7 @@ export async function getMuscleIdName(): Promise<MuscleIdName[]> {
 			name: true,
 		},
 		orderBy: {
-			name: "asc",
+			name: 'asc',
 		},
 	});
 }

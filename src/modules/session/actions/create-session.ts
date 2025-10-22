@@ -1,67 +1,49 @@
-"use server";
+'use server';
 
-import {
-	validateExerciseDescription,
-	validateExerciseName,
-} from "@/modules/exercise/lib/exercise-form-valdation";
-import { ActionResponseType } from "@/modules/globals/types";
-import { getUserId } from "@/modules/user/actions/users";
-import { PrismaClient } from "@/prisma/client";
+import { ActionResponseType } from '@/modules/globals/types';
+import { getUserId } from '@/modules/user/actions/users';
+import { PrismaClient } from '@/prisma/client';
+import { SessionForm, sessionFormSchema } from '../config/session-schema';
 
 const prisma = new PrismaClient();
 
-export async function createSessionAction(
-	formData: FormData,
-): Promise<ActionResponseType> {
-	const error = await createSession(formData);
+export async function createSessionAction(data: SessionForm): Promise<ActionResponseType> {
+	const error = await createSession(data);
 	if (error) return { success: false, message: error };
-	return { success: true, message: "Session created successfully" };
+	return { success: true, message: 'Session created successfully' };
 }
 
-export async function createSession(
-	formData: FormData,
-): Promise<string | null> {
-	const { name, description, exercises } = Object.fromEntries(formData);
-
-	const nameErrors = validateExerciseName(name as string);
-	if (nameErrors) return nameErrors;
-
-	const descriptionErrors = validateExerciseDescription(description as string);
-	if (descriptionErrors) return descriptionErrors;
-
-	const exercisesArray = (exercises as string)?.split(",");
-	if (
-		!exercisesArray ||
-		exercisesArray.length === 0 ||
-		(exercisesArray.length === 1 && !exercisesArray[0])
-	) {
-		return "At least one exercise is required";
+export async function createSession(data: SessionForm): Promise<string | null> {
+	const result = sessionFormSchema.safeParse(data);
+	if (!result.success) {
+		return result.error.issues.map((issue) => issue.message).join(', ');
 	}
+
+	const {} = data;
 
 	const userId = await getUserId();
 	if (!userId) {
-		return "User not found";
+		return 'User not found';
 	}
 
 	const sessionId = crypto.randomUUID();
-	const exercisesIds = exercisesArray.map((id) => ({ id }));
 
 	try {
 		await prisma.$transaction([
 			prisma.sessions.create({
 				data: {
 					id: sessionId,
-					name: name as string,
-					description: description as string | null,
+					name: data.name,
+					description: data.description,
 					userId: userId.id,
 					exercises: {
-						connect: exercisesIds,
+						connect: data.exercises,
 					},
 				},
 			}),
 		]);
 	} catch {
-		return "Error creating session";
+		return 'Error creating session';
 	}
 
 	return null;

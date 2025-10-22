@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { DateControl } from "@/modules/calendar/components/DateControl";
-import { MonthDropdownlist } from "@/modules/calendar/components/MonthDropdownlist";
-import { CalendarContext } from "@/modules/calendar/contexts/calendar-context";
-import { useCalendar } from "@/modules/calendar/hooks/useCalendar";
+import { useContext } from 'react';
+import { DateControl } from '@/modules/calendar/components/DateControl';
+import { MonthDropdownlist } from '@/modules/calendar/components/MonthDropdownlist';
+import { CalendarContext } from '@/modules/calendar/contexts/calendar-context';
+import { useCalendar } from '@/modules/calendar/hooks/useCalendar';
 
 export function MonthDateSelector({ className }: { className?: string }) {
 	const { selectedDate, setCurrentDate } = useContext(CalendarContext);
@@ -17,10 +17,7 @@ export function MonthDateSelector({ className }: { className?: string }) {
 	});
 	const currentMonth = currentDate.getMonth() + 1;
 	return (
-		<DateControl
-			onLeftClick={handlePreviousMonth}
-			onRightClick={handleNextMonth}
-		>
+		<DateControl onLeftClick={handlePreviousMonth} onRightClick={handleNextMonth}>
 			<MonthDropdownlist
 				selectedValue={currentMonth}
 				className={`${className}`}

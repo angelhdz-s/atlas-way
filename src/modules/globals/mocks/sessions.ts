@@ -1,6 +1,6 @@
-import { DayWeeksType } from "@/modules/globals/config/defaults";
-import { StatusDayType } from "./routines";
-import { TypesOfDayType } from "./tracking";
+import { DayWeeksType } from '@/modules/globals/config/defaults';
+import { StatusDayType } from './routines';
+import { TypesOfDayType } from './tracking';
 
 export interface ExerciseType {
 	name: string;
@@ -21,149 +21,148 @@ export interface SessionDayType {
 }
 
 export type NextSessionType = SessionDayType & {
-	status: Extract<StatusDayType, "current" | "next">;
-	type: Extract<TypesOfDayType, "TRAINING">;
+	status: Extract<StatusDayType, 'current' | 'next'>;
+	type: Extract<TypesOfDayType, 'TRAINING'>;
 };
 
 export const PUSH_DAY: SessionDayType = {
-	name: "Push Day",
-	description:
-		"Focus on pushing movements like bench press and shoulder press.",
+	name: 'Push Day',
+	description: 'Focus on pushing movements like bench press and shoulder press.',
 	exercises: [
 		{
-			name: "Shoulder Press",
+			name: 'Shoulder Press',
 			reps: 10,
 			sets: 3,
 			rest: 60,
 			weight: 50,
-			muscleGroup: "Shoulders",
+			muscleGroup: 'Shoulders',
 		},
 		{
-			name: "Tricep Dips",
+			name: 'Tricep Dips',
 			reps: 10,
 			sets: 3,
 			rest: 60,
 			weight: 40,
-			muscleGroup: "Triceps",
+			muscleGroup: 'Triceps',
 		},
 		{
-			name: "Lateral Raises",
+			name: 'Lateral Raises',
 			reps: 12,
 			sets: 3,
 			rest: 60,
 			weight: 20,
-			muscleGroup: "Shoulders",
+			muscleGroup: 'Shoulders',
 		},
 		{
-			name: "Push Ups",
+			name: 'Push Ups',
 			reps: 15,
 			sets: 3,
 			rest: 60,
 			weight: 0,
-			muscleGroup: "Chest",
+			muscleGroup: 'Chest',
 		},
 	],
-	date: "1 day ago",
+	date: '1 day ago',
 	routines: 1,
 	weekDay: 1,
 };
 
 export const PULL_DAY: SessionDayType = {
-	name: "Pull Day",
-	description: "Focus on pulling movements like deadlifts and pull-ups.",
+	name: 'Pull Day',
+	description: 'Focus on pulling movements like deadlifts and pull-ups.',
 	exercises: [
 		{
-			name: "Deadlift",
+			name: 'Deadlift',
 			reps: 8,
 			sets: 3,
 			rest: 90,
 			weight: 100,
-			muscleGroup: "Back",
+			muscleGroup: 'Back',
 		},
 		{
-			name: "Pull Ups",
+			name: 'Pull Ups',
 			reps: 8,
 			sets: 3,
 			rest: 90,
 			weight: 0,
-			muscleGroup: "Back",
+			muscleGroup: 'Back',
 		},
 		{
-			name: "Bent Over Rows",
+			name: 'Bent Over Rows',
 			reps: 10,
 			sets: 3,
 			rest: 60,
 			weight: 60,
-			muscleGroup: "Back",
+			muscleGroup: 'Back',
 		},
 		{
-			name: "Face Pulls",
+			name: 'Face Pulls',
 			reps: 12,
 			sets: 3,
 			rest: 60,
 			weight: 30,
-			muscleGroup: "Shoulders",
+			muscleGroup: 'Shoulders',
 		},
 		{
-			name: "Bicep Curls",
+			name: 'Bicep Curls',
 			reps: 12,
 			sets: 3,
 			rest: 60,
 			weight: 25,
-			muscleGroup: "Biceps",
+			muscleGroup: 'Biceps',
 		},
 	],
-	date: "2 days ago",
+	date: '2 days ago',
 	routines: 1,
 	weekDay: 3,
 };
 
 export const LEGS_DAY: SessionDayType = {
-	name: "Leg Day",
-	description: "Focus on leg movements like squats and lunges.",
+	name: 'Leg Day',
+	description: 'Focus on leg movements like squats and lunges.',
 	exercises: [
 		{
-			name: "Squats",
+			name: 'Squats',
 			reps: 10,
 			sets: 3,
 			rest: 90,
 			weight: 80,
-			muscleGroup: "Legs",
+			muscleGroup: 'Legs',
 		},
 		{
-			name: "Lunges",
+			name: 'Lunges',
 			reps: 10,
 			sets: 3,
 			rest: 60,
 			weight: 30,
-			muscleGroup: "Legs",
+			muscleGroup: 'Legs',
 		},
 		{
-			name: "Leg Press",
+			name: 'Leg Press',
 			reps: 10,
 			sets: 3,
 			rest: 60,
 			weight: 90,
-			muscleGroup: "Legs",
+			muscleGroup: 'Legs',
 		},
 		{
-			name: "Calf Raises",
+			name: 'Calf Raises',
 			reps: 15,
 			sets: 3,
 			rest: 60,
 			weight: 40,
-			muscleGroup: "Legs",
+			muscleGroup: 'Legs',
 		},
 		{
-			name: "Leg Curls",
+			name: 'Leg Curls',
 			reps: 12,
 			sets: 3,
 			rest: 60,
 			weight: 50,
-			muscleGroup: "Legs",
+			muscleGroup: 'Legs',
 		},
 	],
-	date: "3 days ago",
+	date: '3 days ago',
 	routines: 1,
 	weekDay: 5,
 };

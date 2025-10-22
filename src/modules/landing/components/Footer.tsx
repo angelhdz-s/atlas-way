@@ -1,4 +1,4 @@
-export function Footer({ className = "" }: { className?: string }) {
+export function Footer({ className = '' }: { className?: string }) {
 	return (
 		<footer
 			className={`w-full mt-16 h-48 bg-zinc-900 flex items-center text-main-foreground ${className}`}
@@ -11,9 +11,7 @@ export function Footer({ className = "" }: { className?: string }) {
 				</aside>
 
 				<main>
-					<a href="https://www.github.com/angelhdz-s/atlas-way">
-						GitHub Repository
-					</a>
+					<a href="https://www.github.com/angelhdz-s/atlas-way">GitHub Repository</a>
 				</main>
 			</main>
 		</footer>

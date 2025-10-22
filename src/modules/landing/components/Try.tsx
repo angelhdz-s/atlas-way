@@ -1,6 +1,6 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-export function Try({ className = "" }: { className?: string }) {
+export function Try({ className = '' }: { className?: string }) {
 	return (
 		<section
 			className={`max-w-5xl w-full mx-auto grid place-items-center gap-4 ld-main-fg my-16 ${className}`}

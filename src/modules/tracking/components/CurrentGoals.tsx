@@ -1,12 +1,12 @@
-import { CardTitle } from "../../dashboard/card/components/CardTitle";
-import styles from "./CurrentGoals.module.css";
+import { CardTitle } from '../../dashboard/card/components/CardTitle';
+import styles from './CurrentGoals.module.css';
 
 function PercentageBar({ value, target }: { value: number; target: number }) {
 	const percentage = Math.min((value / target) * 100, 100);
 	return (
 		<div className="w-full bg-subtle/20 rounded-full h-1 overflow-hidden">
 			<div
-				className={`bg-complete h-1 rounded-full transition-all duration-500 ${styles["animate-scale-x-right"]}`}
+				className={`bg-complete h-1 rounded-full transition-all duration-500 ${styles['animate-scale-x-right']}`}
 				style={{ width: `${percentage}%` }}
 			></div>
 		</div>
@@ -20,16 +20,10 @@ type GoalItemType = {
 	target: number;
 };
 
-function GoalItem({
-	className = "",
-	goal,
-}: {
-	className?: string;
-	goal: GoalItemType;
-}) {
+function GoalItem({ className = '', goal }: { className?: string; goal: GoalItemType }) {
 	const { name, value, target } = goal;
 
-	const completedClass = value >= target ? "text-complete" : "";
+	const completedClass = value >= target ? 'text-complete' : '';
 
 	return (
 		<article
@@ -39,7 +33,7 @@ function GoalItem({
 				<h3 className="text-base">{name}</h3>
 				<aside>
 					<span
-						className={`font-light ${completedClass || "text-foreground/50"}`}
+						className={`font-light ${completedClass || 'text-foreground/50'}`}
 					>{`${value} / ${target}`}</span>
 				</aside>
 			</header>
@@ -53,25 +47,25 @@ function GoalItem({
 const GOALS: GoalItemType[] = [
 	{
 		id: 1,
-		name: "Reach 8 Sessions in July",
+		name: 'Reach 8 Sessions in July',
 		value: 4,
 		target: 8,
 	},
 	{
 		id: 2,
-		name: "Monthly Articles",
+		name: 'Monthly Articles',
 		value: 7,
 		target: 10,
 	},
 	{
 		id: 3,
-		name: "Daily Steps",
+		name: 'Daily Steps',
 		value: 8000,
 		target: 10000,
 	},
 	{
 		id: 4,
-		name: "Do 3 Exercises Today",
+		name: 'Do 3 Exercises Today',
 		value: 3,
 		target: 3,
 	},
@@ -79,9 +73,7 @@ const GOALS: GoalItemType[] = [
 
 export function CurrentGoals({ className }: { className?: string }) {
 	return (
-		<article
-			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
-		>
+		<article className={`flex flex-col gap-4 dashboard-card-default ${className}`}>
 			<header>
 				<CardTitle title="Goals" />
 			</header>

@@ -1,22 +1,20 @@
-import { useState } from "react";
-import { InputClasses } from "../constants/classes";
-import { InputNumberProps } from "../types";
-import { ErrorMessage } from "./ErrorMessage";
+import { useState } from 'react';
+import { InputClasses } from '../constants/classes';
+import { InputNumberProps } from '../types';
+import { ErrorMessage } from './ErrorMessage';
 
 export function InputNumber({
 	name,
-	className = "",
+	className = '',
 	disabled = false,
 	placeholder,
 	min,
 	max,
-	value = "",
+	value = '',
 	error,
 	...props
 }: InputNumberProps) {
-	const [currentValue, setCurrentValue] = useState<string | number | undefined>(
-		value,
-	);
+	const [currentValue, setCurrentValue] = useState<string | number | undefined>(value);
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const val = e.target.value;
 		if (val !== currentValue) setCurrentValue(val);

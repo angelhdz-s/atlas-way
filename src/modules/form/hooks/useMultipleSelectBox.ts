@@ -1,22 +1,17 @@
-import { useEffect, useRef, useState } from "react";
-import { SelectOption } from "@/modules/form/types";
+import { useEffect, useRef, useState } from 'react';
+import { SelectOption } from '@/modules/form/types';
 
 type UseMultipleSelectBoxProps = {
 	options: SelectOption[];
 	onOptionsChange?: (options: SelectOption[]) => void;
 };
 
-export function useMultipleSelectBox({
-	options,
-	onOptionsChange,
-}: UseMultipleSelectBoxProps) {
+export function useMultipleSelectBox({ options, onOptionsChange }: UseMultipleSelectBoxProps) {
 	const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>([]);
 	const currentOptions = useRef(selectedOptions);
 	const [isSelecting, setIsSelecting] = useState(false);
 
-	const filteredOptions = options.filter(
-		(option) => !selectedOptions.includes(option),
-	);
+	const filteredOptions = options.filter((option) => !selectedOptions.includes(option));
 
 	const handleCloseSelectOptions = () => {
 		setIsSelecting(false);
@@ -37,7 +32,7 @@ export function useMultipleSelectBox({
 
 	const handleRemoveOptionsSelected = (option: SelectOption) => {
 		setSelectedOptions((prev) =>
-			prev.filter((selectedOption) => selectedOption.value !== option.value),
+			prev.filter((selectedOption) => selectedOption.value !== option.value)
 		);
 	};
 

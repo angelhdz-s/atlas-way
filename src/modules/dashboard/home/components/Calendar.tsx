@@ -1,11 +1,6 @@
-import {
-	Barbell,
-	BarbellOff,
-	CircleCheck,
-	Alarm,
-} from "@/modules/globals/components/Icons";
+import { Barbell, BarbellOff, CircleCheck, Alarm } from '@/modules/globals/components/Icons';
 
-function CalendarHeader({ className = "" }: { className?: string }) {
+function CalendarHeader({ className = '' }: { className?: string }) {
 	return (
 		<header className={` ${className}`}>
 			<ul className="font-funnel-display font-light grid grid-cols-[1fr_auto_1fr]">
@@ -114,11 +109,9 @@ function CalendarNextWeek({ className }: { className?: string }) {
 	);
 }
 
-export function Calendar({ className = "" }: { className?: string }) {
+export function Calendar({ className = '' }: { className?: string }) {
 	return (
-		<article
-			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
-		>
+		<article className={`flex flex-col gap-4 dashboard-card-default ${className}`}>
 			<CalendarHeader />
 			<main className="flex-1 leading-[1.2] flex flex-col justify-end gap-2 font-light text-center">
 				<CalendarCurrentWeek />

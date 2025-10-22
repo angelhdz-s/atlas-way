@@ -1,13 +1,8 @@
-"use client";
+'use client';
 
-import { SidebarSection } from "@/modules/sidebar/components/SidebarSection";
-import {
-	Barbell,
-	ClipboardList,
-	Man,
-	MapRoute,
-} from "@/modules/globals/components/Icons";
-import { NavLink, NavLinks } from "./nav/NavLink";
+import { SidebarSection } from '@/modules/sidebar/components/SidebarSection';
+import { Barbell, ClipboardList, Man, MapRoute } from '@/modules/globals/components/Icons';
+import { NavLink, NavLinks } from './nav/NavLink';
 
 export function SidebarMainSection() {
 	return (

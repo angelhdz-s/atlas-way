@@ -1,7 +1,4 @@
-import {
-	STATUS_TEXT_COLORS,
-	WITH_STATUS_GRID_COLS_CLASS,
-} from "../constants/classes";
+import { STATUS_TEXT_COLORS, WITH_STATUS_GRID_COLS_CLASS } from '../constants/classes';
 
 export function getStatusTextColorClass(status: string) {
 	if (status in STATUS_TEXT_COLORS) {

@@ -1,6 +1,6 @@
-import { CalendarWeek, Home } from "@/modules/globals/components/Icons";
-import { NavLinkNotification } from "./nav/custom/NavLinkNotification";
-import { NavLink, NavLinks } from "./nav/NavLink";
+import { CalendarWeek, Home } from '@/modules/globals/components/Icons';
+import { NavLinkNotification } from './nav/custom/NavLinkNotification';
+import { NavLink, NavLinks } from './nav/NavLink';
 
 export function SidebarHeader() {
 	return (

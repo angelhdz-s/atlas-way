@@ -1,17 +1,11 @@
-"use client";
+'use client';
 
-import { Box } from "@/modules/form/components/Box";
-import { Label } from "@/modules/form/components/LabelInput";
-import { CirclePlus } from "@/modules/globals/components/Icons";
-import Link from "next/link";
+import { Box } from '@/modules/form/components/Box';
+import { Label } from '@/modules/form/components/LabelInput';
+import { CirclePlus } from '@/modules/globals/components/Icons';
+import Link from 'next/link';
 
-export function RoutineModalFormStep3({
-	title,
-	sessions,
-}: {
-	title: string;
-	sessions: string[];
-}) {
+export function RoutineModalFormStep3({ title, sessions }: { title: string; sessions: string[] }) {
 	return (
 		<section>
 			<header className="ld-main-fg">{title}</header>

@@ -1,55 +1,50 @@
-import { CardTitle } from "../../dashboard/card/components/CardTitle";
-import {
-	SessionDetails,
-	SessionDetailsType,
-} from "../../session/components/SessionDetails";
+import { CardTitle } from '../../dashboard/card/components/CardTitle';
+import { SessionDetails, SessionDetailsType } from '../../session/components/SessionDetails';
 
 const session = {
 	id: 1,
-	name: "Push Day",
-	description: "Take it easy today!",
+	name: 'Push Day',
+	description: 'Take it easy today!',
 	exercises: [
 		{
 			id: 1,
-			name: "Push Ups",
+			name: 'Push Ups',
 			sets: 3,
 			reps: 10,
 			weight: 0,
-			status: "next",
+			status: 'next',
 		},
 		{
 			id: 2,
-			name: "Shoulder Press",
+			name: 'Shoulder Press',
 			sets: 3,
 			reps: 12,
 			weight: 20,
-			status: "next",
+			status: 'next',
 		},
 		{
 			id: 3,
-			name: "Tricep Dips",
+			name: 'Tricep Dips',
 			sets: 3,
 			reps: 10,
 			weight: 10,
-			status: "next",
+			status: 'next',
 		},
 		{
 			id: 4,
-			name: "Lateral Raises",
+			name: 'Lateral Raises',
 			sets: 3,
 			reps: 15,
 			weight: 5,
-			status: "next",
+			status: 'next',
 		},
 	],
-	status: "next",
-	date: "Aug 10, 2024",
+	status: 'next',
+	date: 'Aug 10, 2024',
 } as SessionDetailsType;
-export function NextSession({ className = "" }: { className?: string }) {
+export function NextSession({ className = '' }: { className?: string }) {
 	return (
-		<article
-			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
-		>
+		<article className={`flex flex-col gap-4 dashboard-card-default ${className}`}>
 			<header>
 				<CardTitle title="Next Session" />
 			</header>

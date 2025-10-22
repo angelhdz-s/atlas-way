@@ -1,8 +1,8 @@
-import { Barbell, BarbellOff } from "../Icons";
+import { Barbell, BarbellOff } from '../Icons';
 
 export function TrainingIcon({
-	className = "",
-	strokeWidth = "2",
+	className = '',
+	strokeWidth = '2',
 }: {
 	className?: string;
 	strokeWidth?: string;
@@ -11,8 +11,8 @@ export function TrainingIcon({
 }
 
 export function RestIcon({
-	className = "",
-	strokeWidth = "2",
+	className = '',
+	strokeWidth = '2',
 }: {
 	className?: string;
 	strokeWidth?: string;
@@ -21,15 +21,15 @@ export function RestIcon({
 }
 
 export function TypeDayIcon({
-	className = "",
-	strokeWidth = "2",
+	className = '',
+	strokeWidth = '2',
 	type,
 }: {
 	className?: string;
 	strokeWidth?: string;
 	type: string;
 }) {
-	if (type === "training") {
+	if (type === 'training') {
 		return <TrainingIcon className={className} />;
 	}
 	return <RestIcon className={className} strokeWidth={strokeWidth} />;

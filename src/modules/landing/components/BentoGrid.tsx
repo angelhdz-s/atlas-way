@@ -13,20 +13,14 @@ import {
 	TrendingUp,
 	Trophy,
 	Hammer,
-} from "@/modules/globals/components/Icons";
-import { Border } from "@/modules/globals/components/utils/Border";
-import Link from "next/link";
-import { DaysSelection } from "./bentogrid/DaysSelection";
-import { IconsAnimation } from "./bentogrid/IconsAnimation";
-import { IconTypes } from "@/modules/globals/types";
+} from '@/modules/globals/components/Icons';
+import { Border } from '@/modules/globals/components/utils/Border';
+import Link from 'next/link';
+import { DaysSelection } from './bentogrid/DaysSelection';
+import { IconsAnimation } from './bentogrid/IconsAnimation';
+import { IconTypes } from '@/modules/globals/types';
 
-function IconBubble({
-	className = "",
-	Icon,
-}: {
-	className?: string;
-	Icon: IconTypes;
-}) {
+function IconBubble({ className = '', Icon }: { className?: string; Icon: IconTypes }) {
 	return (
 		<figure className={`border-1 p-1 w-fit rounded-full ${className}`}>
 			<Icon className="size-8" strokeWidth="1" />
@@ -34,11 +28,9 @@ function IconBubble({
 	);
 }
 
-export function BentoGrid({ className = "" }: { className?: string }) {
+export function BentoGrid({ className = '' }: { className?: string }) {
 	return (
-		<section
-			className={`w-full max-w-5xl mx-auto my-16 flex flex-col gap-8 ${className}`}
-		>
+		<section className={`w-full max-w-5xl mx-auto my-16 flex flex-col gap-8 ${className}`}>
 			<h2 className="text-4xl font-bold ld-main-fg">Explore Our Features</h2>
 			<main className="grid grid-cols-4 gap-6 *:relative *:rounded-lg *:min-h-32 *:shadow-2xl *:light:shadow-lg *:shadow-black/10 *:light:shadow-slate-400/20">
 				<article className="relative row-span-2 p-4 bg-radial-[200%_100%_at_120%_-10%]  from-accent/30 to-sec-background from-[-50%] to-50% light:to-light-sec-background">
@@ -128,9 +120,7 @@ export function BentoGrid({ className = "" }: { className?: string }) {
 							</figure>
 						</header>
 						<main className="text-center">
-							<header className="text-xl ld-main-fg font-bold">
-								Reminders
-							</header>
+							<header className="text-xl ld-main-fg font-bold">Reminders</header>
 							<p className="leading-[1.3] text-zinc-400">
 								Timely reminders for your sessions.
 							</p>
@@ -213,9 +203,7 @@ export function BentoGrid({ className = "" }: { className?: string }) {
 						</header>
 
 						<main className="relative z-1 text-center">
-							<header className="text-xl ld-main-fg font-bold">
-								Statistics
-							</header>
+							<header className="text-xl ld-main-fg font-bold">Statistics</header>
 							<p className="leading-[1.3] text-zinc-400">
 								Track your progress and performance.
 							</p>

@@ -1,10 +1,8 @@
-import { CardTitle } from "../../card/components/CardTitle";
+import { CardTitle } from '../../card/components/CardTitle';
 
-export function BestExercises({ className = "" }: { className?: string }) {
+export function BestExercises({ className = '' }: { className?: string }) {
 	return (
-		<article
-			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
-		>
+		<article className={`flex flex-col gap-4 dashboard-card-default ${className}`}>
 			<CardTitle title="Best Exercises" />
 			<main>
 				<table className="w-full text-left">

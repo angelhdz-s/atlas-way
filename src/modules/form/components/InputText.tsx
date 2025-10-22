@@ -1,11 +1,11 @@
-import { InputClasses } from "../constants/classes";
-import { InputTextProps } from "../types";
-import { ErrorMessage } from "./ErrorMessage";
+import { InputClasses } from '../constants/classes';
+import { InputTextProps } from '../types';
+import { ErrorMessage } from './ErrorMessage';
 
 export function InputText({
 	name,
-	className = "",
-	placeholder = "",
+	className = '',
+	placeholder = '',
 	disabled = false,
 	error,
 	...props

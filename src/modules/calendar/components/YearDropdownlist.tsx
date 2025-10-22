@@ -1,6 +1,6 @@
-import { TODAY } from "@/modules/globals/mocks/tracking";
-import { DROPDOWN_LIST_YEARS_RANGE } from "../constants/dropdown-list";
-import { DateDropdownlist } from "./DateDropdrownList";
+import { TODAY } from '@/modules/globals/mocks/tracking';
+import { DROPDOWN_LIST_YEARS_RANGE } from '../constants/dropdown-list';
+import { DateDropdownlist } from './DateDropdrownList';
 
 function generateYearOptions<T>(_value: T, i: number) {
 	const rangeHalf = Math.floor(DROPDOWN_LIST_YEARS_RANGE / 2);
@@ -17,10 +17,7 @@ export function YearDropdownlist({
 	selectedValue?: number;
 	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }) {
-	const yearOptions = Array.from(
-		{ length: DROPDOWN_LIST_YEARS_RANGE },
-		generateYearOptions,
-	);
+	const yearOptions = Array.from({ length: DROPDOWN_LIST_YEARS_RANGE }, generateYearOptions);
 	return (
 		<DateDropdownlist
 			values={yearOptions}

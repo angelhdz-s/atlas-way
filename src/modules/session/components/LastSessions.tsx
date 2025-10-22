@@ -1,24 +1,24 @@
-import { TypeDayIcon } from "@/modules/globals/components/day-type/TypeDayIcon";
-import { StatusIcon } from "@/modules/status/components/StatusIcons";
-import { getStatusTextColorClass } from "@/modules/globals/lib/get-classes";
+import { TypeDayIcon } from '@/modules/globals/components/day-type/TypeDayIcon';
+import { StatusIcon } from '@/modules/status/components/StatusIcons';
+import { getStatusTextColorClass } from '@/modules/globals/lib/get-classes';
 
 type SessionTrainingDayType = {
 	id: number;
 	name: string;
 	description?: string;
 	date: string;
-	type: "training";
+	type: 'training';
 } & (
-	| { exercisesCompleted: number; totalExercises: number; status: "completed" }
-	| { status: "canceled" }
+	| { exercisesCompleted: number; totalExercises: number; status: 'completed' }
+	| { status: 'canceled' }
 );
 
 type SessionRestDayType = {
 	id: number;
 	name: string;
 	date: string;
-	type: "rest";
-	status: "completed";
+	type: 'rest';
+	status: 'completed';
 };
 
 type SessionListItemType = SessionTrainingDayType | SessionRestDayType;
@@ -26,44 +26,44 @@ type SessionListItemType = SessionTrainingDayType | SessionRestDayType;
 const LAST_SESSIONS: SessionListItemType[] = [
 	{
 		id: 1,
-		name: "Rest Day",
-		status: "completed",
-		date: "5 days ago",
-		type: "rest",
+		name: 'Rest Day',
+		status: 'completed',
+		date: '5 days ago',
+		type: 'rest',
 	},
 	{
 		id: 2,
-		name: "Pull Day",
-		description: "Take it easy today!",
+		name: 'Pull Day',
+		description: 'Take it easy today!',
 		exercisesCompleted: 3,
 		totalExercises: 4,
-		status: "completed",
-		date: "4 days ago",
-		type: "training",
+		status: 'completed',
+		date: '4 days ago',
+		type: 'training',
 	},
 	{
 		id: 3,
-		name: "Rest Day",
-		status: "completed",
-		date: "3 days ago",
-		type: "rest",
+		name: 'Rest Day',
+		status: 'completed',
+		date: '3 days ago',
+		type: 'rest',
 	},
 	{
 		id: 4,
-		name: "Legs Day",
-		description: "Take it easy today!",
+		name: 'Legs Day',
+		description: 'Take it easy today!',
 		exercisesCompleted: 3,
 		totalExercises: 4,
-		status: "completed",
-		date: "2 days ago",
-		type: "training",
+		status: 'completed',
+		date: '2 days ago',
+		type: 'training',
 	},
 	{
 		id: 5,
-		name: "Rest Day",
-		status: "completed",
-		date: "1 day ago",
-		type: "rest",
+		name: 'Rest Day',
+		status: 'completed',
+		date: '1 day ago',
+		type: 'rest',
 	},
 ];
 

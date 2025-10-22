@@ -1,24 +1,19 @@
-"use client";
+'use client';
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import {
-	MONTH_NAMES,
-	MonthDisplacement,
-} from "@/modules/globals/constants/date";
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { MONTH_NAMES, MonthDisplacement } from '@/modules/globals/constants/date';
 import {
 	getCalendarDays,
 	getPreviousNextMonthDate,
 	getPreviousNextYearDate,
-} from "@/modules/globals/lib/dates";
-import { CalendarContextType } from "../contexts/calendar-context";
+} from '@/modules/globals/lib/dates';
+import { CalendarContextType } from '../contexts/calendar-context';
 
-export function useCalendar({
-	selectedDate,
-	setCurrentDate,
-}: CalendarContextType) {
-	const [[currentYear, currentMonth], setCurrentYearMonth] = useState<
-		[number, number]
-	>([selectedDate.getFullYear(), selectedDate.getMonth()]);
+export function useCalendar({ selectedDate, setCurrentDate }: CalendarContextType) {
+	const [[currentYear, currentMonth], setCurrentYearMonth] = useState<[number, number]>([
+		selectedDate.getFullYear(),
+		selectedDate.getMonth(),
+	]);
 
 	const date = useRef(selectedDate);
 
@@ -49,25 +44,25 @@ export function useCalendar({
 
 	const handlePreviousMonth = () => {
 		setCurrentDate((prev) => {
-			return setNewMonthAndDate(prev, "previous");
+			return setNewMonthAndDate(prev, 'previous');
 		});
 	};
 
 	const handleNextMonth = () => {
 		setCurrentDate((prev) => {
-			return setNewMonthAndDate(prev, "next");
+			return setNewMonthAndDate(prev, 'next');
 		});
 	};
 
 	const handlePreviousYear = () => {
 		setCurrentDate((prev) => {
-			return setNewYearAndDate(prev, "previous");
+			return setNewYearAndDate(prev, 'previous');
 		});
 	};
 
 	const handleNextYear = () => {
 		setCurrentDate((prev) => {
-			return setNewYearAndDate(prev, "next");
+			return setNewYearAndDate(prev, 'next');
 		});
 	};
 
@@ -102,10 +97,7 @@ export function useCalendar({
 			selectedDate.getMonth() !== currentMonth ||
 			selectedDate.getFullYear() !== currentYear
 		) {
-			setCurrentYearMonth([
-				selectedDate.getFullYear(),
-				selectedDate.getMonth(),
-			]);
+			setCurrentYearMonth([selectedDate.getFullYear(), selectedDate.getMonth()]);
 		}
 	}, [selectedDate, currentMonth, currentYear]);
 

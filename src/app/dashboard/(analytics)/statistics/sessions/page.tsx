@@ -1,14 +1,11 @@
-import { PageContainer } from "@/modules/dashboard/page/components/PageContainer";
-import { PageContent } from "@/modules/dashboard/page/components/PageContent";
-import { PageHeader } from "@/modules/dashboard/page/components/PageHeader";
+import { PageContainer } from '@/modules/dashboard/page/components/PageContainer';
+import { PageContent } from '@/modules/dashboard/page/components/PageContent';
+import { PageHeader } from '@/modules/dashboard/page/components/PageHeader';
 
 export default function SessionsStatisticsPage() {
 	return (
 		<PageContainer>
-			<PageHeader
-				title="Sessions Statistics"
-				className="flex items-center justify-between"
-			/>
+			<PageHeader title="Sessions Statistics" className="flex items-center justify-between" />
 			<PageContent>
 				<div>Statistics 1</div>
 				<div>Statistics 2</div>

@@ -1,46 +1,41 @@
 export function Card({
-	className = "",
+	className = '',
 	children,
 }: {
 	className?: string;
 	children: React.ReactNode;
 }) {
-	return (
-		<article className={`p-4 rounded-xl bg-zinc-800 ${className}`}>
-			{children}
-		</article>
-	);
+	return <article className={`p-4 rounded-xl bg-zinc-800 ${className}`}>{children}</article>;
 }
 
 const CARD_TYPE_CLASSES = {
-	default:
-		"bg-background light:bg-light-sec-background border-1 border-foreground/10",
+	default: 'bg-background light:bg-light-sec-background border-1 border-foreground/10',
 	disabled:
-		"bg-background light:bg-light-sec-background border-1 border-foreground/10 opacity-50",
-	main: "bg-primary text-light-main-foreground light:text-main-foreground border-1 border-primary",
+		'bg-background light:bg-light-sec-background border-1 border-foreground/10 opacity-50',
+	main: 'bg-primary text-light-main-foreground light:text-main-foreground border-1 border-primary',
 	special:
-		"bg-accent text-light-main-foreground light:text-main-foreground border-1 border-accent",
+		'bg-accent text-light-main-foreground light:text-main-foreground border-1 border-accent',
 };
 
 export type CardHighlightType = keyof typeof CARD_TYPE_CLASSES;
 
-function getCardHighlightClass(type: CardHighlightType = "default") {
+function getCardHighlightClass(type: CardHighlightType = 'default') {
 	return CARD_TYPE_CLASSES[type];
 }
 
-export type DashboardCardSize = "xs" | "sm" | "md" | "lg";
+export type DashboardCardSize = 'xs' | 'sm' | 'md' | 'lg';
 
 function getWidthClass(size: DashboardCardSize) {
-	if (size === "xs") return "w-40";
-	if (size === "sm") return "w-60";
-	if (size === "md") return "w-75";
-	return "w-92";
+	if (size === 'xs') return 'w-40';
+	if (size === 'sm') return 'w-60';
+	if (size === 'md') return 'w-75';
+	return 'w-92';
 }
 
 export function DashboardCard({
 	children,
 	type,
-	size = "lg",
+	size = 'lg',
 }: {
 	children: React.ReactNode;
 	type?: CardHighlightType;
@@ -102,7 +97,7 @@ function StatisticsTags({ counters }: { counters?: CountersType }) {
 			<li key={index}>{counter}</li>
 		) : (
 			<StatisticsSeparator key={index} value={counter} />
-		),
+		)
 	);
 }
 
@@ -131,26 +126,13 @@ export function DashboardCardMain({ children }: { children: React.ReactNode }) {
 	return <main className="flex-1 flex flex-col gap-6">{children}</main>;
 }
 
-export function DashboardCardFooter({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
-	return (
-		<footer className="flex items-center gap-2 text-sm">{children}</footer>
-	);
+export function DashboardCardFooter({ children }: { children: React.ReactNode }) {
+	return <footer className="flex items-center gap-2 text-sm">{children}</footer>;
 }
 
-export function DashboardCardButton({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export function DashboardCardButton({ children }: { children: React.ReactNode }) {
 	return (
-		<button
-			type="button"
-			className="flex items-center gap-1 btn-md btn-subtle ml-auto"
-		>
+		<button type="button" className="flex items-center gap-1 btn-md btn-subtle ml-auto">
 			{children}
 		</button>
 	);
@@ -163,11 +145,7 @@ type DashboardCardTagType = {
 	value: DashboardCardTagValueType;
 };
 
-export function DashboardCardTags({
-	values,
-}: {
-	values: DashboardCardTagType[];
-}) {
+export function DashboardCardTags({ values }: { values: DashboardCardTagType[] }) {
 	return (
 		<ul className="flex flex-wrap gap-1">
 			{values.map((tag, index) => (
@@ -180,11 +158,7 @@ export function DashboardCardTags({
 export function DashboardCardTag({ tag }: { tag: DashboardCardTagType }) {
 	const { value, selected } = tag;
 	const className = selected
-		? "bg-accent text-light-main-foreground light:text-main-foreground"
-		: "bg-foreground/10 ld-main-fg";
-	return (
-		<li className={`px-3 py-1 rounded-full text-sm font-light ${className}`}>
-			{value}
-		</li>
-	);
+		? 'bg-accent text-light-main-foreground light:text-main-foreground'
+		: 'bg-foreground/10 ld-main-fg';
+	return <li className={`px-3 py-1 rounded-full text-sm font-light ${className}`}>{value}</li>;
 }

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
 	Alarm,
@@ -11,10 +11,10 @@ import {
 	Scale,
 	TrendingUp,
 	Trophy,
-} from "@/modules/globals/components/Icons";
-import { IconTypes } from "@/modules/globals/types.d";
-import styles from "@/modules/landing/components/bentogrid/IconsAnimation.module.css";
-import { useEffect, useState } from "react";
+} from '@/modules/globals/components/Icons';
+import { IconTypes } from '@/modules/globals/types.d';
+import styles from '@/modules/landing/components/bentogrid/IconsAnimation.module.css';
+import { useEffect, useState } from 'react';
 
 const ICONS: IconTypes[] = [
 	Bell,
@@ -39,7 +39,7 @@ const DIRECTION = {
 type AnimationDirection = keyof typeof DIRECTION;
 
 function IconContainer({
-	className = "",
+	className = '',
 	style,
 	Icon,
 }: {
@@ -48,10 +48,7 @@ function IconContainer({
 	Icon: IconTypes;
 }) {
 	return (
-		<figure
-			className={`block absolute top-0 left-0 ${className}`}
-			style={style}
-		>
+		<figure className={`block absolute top-0 left-0 ${className}`} style={style}>
 			<Icon
 				className="ld-main-fg size-8 animate-wiggle-more animate-infinite animate-duration-5000"
 				strokeWidth="1"
@@ -60,11 +57,7 @@ function IconContainer({
 	);
 }
 
-export function IconsAnimation({
-	direction,
-}: {
-	direction: AnimationDirection;
-}) {
+export function IconsAnimation({ direction }: { direction: AnimationDirection }) {
 	const [mounted, setMounted] = useState(false);
 
 	const limitRange = ICONS.length;

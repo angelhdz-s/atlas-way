@@ -1,5 +1,5 @@
 export function Section({
-	className = "",
+	className = '',
 	children,
 	title,
 	description,

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Box } from "@/modules/form/components/Box";
-import { Label } from "@/modules/form/components/LabelInput";
-import { Edit, Trash } from "@/modules/globals/components/Icons";
+import { Box } from '@/modules/form/components/Box';
+import { Label } from '@/modules/form/components/LabelInput';
+import { Edit, Trash } from '@/modules/globals/components/Icons';
 
 export function RoutineModalFormStep1({ title }: { title: string }) {
 	return (

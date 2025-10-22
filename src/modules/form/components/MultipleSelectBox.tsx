@@ -1,19 +1,13 @@
-"use client";
+'use client';
 
-import { Box } from "@/modules/form/components/Box";
-import { MultipleSelectOptionsBox } from "@/modules/form/components/MultipleSelectOptionsBox";
-import { useMultipleSelectBox } from "@/modules/form/hooks/useMultipleSelectBox";
-import { SelectOption } from "@/modules/form/types";
-import { CirclePlus, Trash, XMark } from "@/modules/globals/components/Icons";
-import { ErrorMessage } from "./ErrorMessage";
+import { Box } from '@/modules/form/components/Box';
+import { MultipleSelectOptionsBox } from '@/modules/form/components/MultipleSelectOptionsBox';
+import { useMultipleSelectBox } from '@/modules/form/hooks/useMultipleSelectBox';
+import { SelectOption } from '@/modules/form/types';
+import { CirclePlus, Trash, XMark } from '@/modules/globals/components/Icons';
+import { ErrorMessage } from './ErrorMessage';
 
-function SelectedOptions({
-	label,
-	onCrossClick,
-}: {
-	label: string;
-	onCrossClick?: () => void;
-}) {
+function SelectedOptions({ label, onCrossClick }: { label: string; onCrossClick?: () => void }) {
 	return (
 		<div className="flex items-center bg-sec-background border border-subtle/10 rounded-full px-2 w-fit">
 			{label}

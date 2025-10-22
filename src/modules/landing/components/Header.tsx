@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { Imagotype } from "@/modules/globals/components/AtlasWayLogo";
-import { ToggleTheme } from "@/modules/globals/components/ToggleTheme";
+import Link from 'next/link';
+import { Imagotype } from '@/modules/globals/components/AtlasWayLogo';
+import { ToggleTheme } from '@/modules/globals/components/ToggleTheme';
 
-export function Header({ className = "" }: { className?: string }) {
+export function Header({ className = '' }: { className?: string }) {
 	return (
 		<header className={`h-14 ${className}`}>
 			<main className="fixed h-14 w-full ld-sec-bg z-10">

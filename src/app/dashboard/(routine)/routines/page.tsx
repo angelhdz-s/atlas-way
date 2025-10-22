@@ -1,10 +1,10 @@
-import Link from "next/link";
-import { PageContainer } from "@/modules/dashboard/page/components/PageContainer";
-import { PageContent } from "@/modules/dashboard/page/components/PageContent";
-import { PageHeader } from "@/modules/dashboard/page/components/PageHeader";
-import { MapPlus } from "@/modules/globals/components/Icons";
-import { ROUTINES } from "@/modules/globals/mocks/routines";
-import { Routine } from "@/modules/routine/components/Routine";
+import Link from 'next/link';
+import { PageContainer } from '@/modules/dashboard/page/components/PageContainer';
+import { PageContent } from '@/modules/dashboard/page/components/PageContent';
+import { PageHeader } from '@/modules/dashboard/page/components/PageHeader';
+import { MapPlus } from '@/modules/globals/components/Icons';
+import { ROUTINES } from '@/modules/globals/mocks/routines';
+import { Routine } from '@/modules/routine/components/Routine';
 
 export default function RoutinesPage() {
 	return (
@@ -24,7 +24,7 @@ export default function RoutinesPage() {
 						<Routine
 							key={routine.name}
 							data={routine}
-							type={index === 0 ? "default" : "default"}
+							type={index === 0 ? 'default' : 'default'}
 						/>
 					))}
 				</section>

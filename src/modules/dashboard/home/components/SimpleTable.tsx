@@ -1,9 +1,7 @@
 function SimpleTableRow({ row }: { row: { key: number; name: string } }) {
 	return (
 		<>
-			<li className="text-current/80 border-t border-foreground/10">
-				{row.key + 1}
-			</li>
+			<li className="text-current/80 border-t border-foreground/10">{row.key + 1}</li>
 			<li className="border-t border-foreground/10">{row.name}</li>
 		</>
 	);

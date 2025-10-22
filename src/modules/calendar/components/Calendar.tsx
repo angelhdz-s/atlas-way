@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useContext } from "react";
-import { FIRST_TRACKED_DAY } from "@/modules/globals/mocks/tracking";
-import { CalendarDay } from "@/modules/calendar/components/CalendarDay";
-import { CalendarContext } from "@/modules/calendar/contexts/calendar-context";
-import { useCalendar } from "@/modules/calendar/hooks/useCalendar";
+import { useContext } from 'react';
+import { FIRST_TRACKED_DAY } from '@/modules/globals/mocks/tracking';
+import { CalendarDay } from '@/modules/calendar/components/CalendarDay';
+import { CalendarContext } from '@/modules/calendar/contexts/calendar-context';
+import { useCalendar } from '@/modules/calendar/hooks/useCalendar';
 
 export function Calendar() {
 	const { selectedDate, setCurrentDate } = useContext(CalendarContext);

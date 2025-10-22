@@ -1,5 +1,5 @@
 export function PageHeader({
-	className = "",
+	className = '',
 	description,
 	children,
 	title,

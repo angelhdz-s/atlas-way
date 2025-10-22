@@ -23,19 +23,28 @@ model Users {
   tracking      Tracking[]
 }
 
+model RoutineCycleTypes {
+  id        String     @id
+  name      String     @unique
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  routines  Routines[]
+}
+
 model Routines {
-  id          String        @id @default(uuid())
-  userId      String
-  active      Boolean       @default(true)
-  days        Int           @default(7)
-  initialDate DateTime
-  name        String        @unique
-  description String?
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  user        Users         @relation(fields: [userId], references: [id])
-  sessions    Sessions[]
-  routineDays RoutineDays[]
+  id             String            @id @default(uuid())
+  userId         String
+  routineCycleId String
+  active         Boolean           @default(true)
+  days           Int               @default(7)
+  initialDate    DateTime
+  name           String
+  description    String?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  user           Users             @relation(fields: [userId], references: [id])
+  cycleType      RoutineCycleTypes @relation(fields: [routineCycleId], references: [id])
+  routineDays    RoutineDays[]
 }
 
 model RoutineDays {
@@ -58,7 +67,6 @@ model Sessions {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   user        Users         @relation(fields: [userId], references: [id])
-  routines    Routines[]
   exercises   Exercises[]
   routineDays RoutineDays[]
 }
@@ -101,11 +109,12 @@ model Notifications {
 }
 
 model Status {
-  id        String     @id
-  name      String     @unique
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  id        String             @id
+  name      String             @unique
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
   tracking  Tracking[]
+  exercises TrackedExercises[]
 }
 
 model DayTypes {
@@ -164,14 +173,13 @@ model Tracking {
 model TrackedExercises {
   id                   String                @id @default(uuid())
   trackingId           String
-  exerciseId           String
-  sets                 Int
-  reps                 Int
-  weight               Int
+  exerciseId           String?
+  status               String
   createdAt            DateTime              @default(now())
   updatedAt            DateTime              @updatedAt
   tracking             Tracking              @relation(fields: [trackingId], references: [id])
-  exercise             Exercises             @relation(fields: [exerciseId], references: [id])
+  exercise             Exercises?            @relation(fields: [exerciseId], references: [id])
+  fkStatus             Status?               @relation(fields: [status], references: [id])
   trackedExerciseStats TrackedExerciseStats?
 }
 

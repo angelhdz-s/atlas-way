@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { useState, type HTMLInputTypeAttribute } from "react";
-import "./label-input.css";
+import { useState, type HTMLInputTypeAttribute } from 'react';
+import './label-input.css';
 
 export function LabelInput({
 	inputId,
 	label,
-	type = "text",
+	type = 'text',
 	name,
 	required = false,
 	disabled = false,
@@ -18,7 +18,7 @@ export function LabelInput({
 	required?: boolean;
 	disabled?: boolean;
 }) {
-	const [value, setvalue] = useState("");
+	const [value, setvalue] = useState('');
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setvalue(e.target.value);
 	};
@@ -29,7 +29,7 @@ export function LabelInput({
 				id={inputId}
 				type={type}
 				name={name}
-				className={value.trim() ? "input-filled" : ""}
+				className={value.trim() ? 'input-filled' : ''}
 				onChange={handleChange}
 				disabled={disabled}
 				required={required}

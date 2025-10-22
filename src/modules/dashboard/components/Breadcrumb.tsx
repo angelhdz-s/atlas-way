@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { usePathname } from "next/navigation";
-import { ArrowUp } from "@/modules/globals/components/Icons";
-import Link from "next/link";
+import { usePathname } from 'next/navigation';
+import { ArrowUp } from '@/modules/globals/components/Icons';
+import Link from 'next/link';
 
 function joinUrlParts(urls: string[], index: number): string {
-	return urls.slice(0, index + 1).join("");
+	return urls.slice(0, index + 1).join('');
 }
 
 function ListBreadcrumbs({
@@ -19,14 +19,12 @@ function ListBreadcrumbs({
 		const part = name.charAt(0).toUpperCase() + name.slice(1);
 		const completeUrl = joinUrlParts(
 			parts.map((p) => p.url),
-			index,
+			index
 		);
 		if (completeUrl === pathname)
 			return (
 				<li key={index} className="flex items-center gap-1">
-					{index > 0 && (
-						<ArrowUp className="size-3 rotate-90" strokeWidth="3" />
-					)}
+					{index > 0 && <ArrowUp className="size-3 rotate-90" strokeWidth="3" />}
 					<span className="p-2">{part}</span>
 				</li>
 			);
@@ -42,15 +40,15 @@ function ListBreadcrumbs({
 	});
 }
 
-export function Breadcrumb({ className = "" }: { className?: string }) {
+export function Breadcrumb({ className = '' }: { className?: string }) {
 	const pathname = usePathname();
 	const pathParts = pathname
-		.split("/")
+		.split('/')
 		.slice(1)
 		.map((part, index) => {
 			if (index === 0)
 				return {
-					name: "home",
+					name: 'home',
 					url: `/${part}`,
 				};
 			return {

@@ -1,11 +1,9 @@
-import { CardTitle } from "../../dashboard/card/components/CardTitle";
-import { LineChart } from "../../statistics/components/Charts";
+import { CardTitle } from '../../dashboard/card/components/CardTitle';
+import { LineChart } from '../../statistics/components/Charts';
 
 export function SessionsChart({ className }: { className?: string }) {
 	return (
-		<article
-			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
-		>
+		<article className={`flex flex-col gap-4 dashboard-card-default ${className}`}>
 			<header>
 				<CardTitle title="Average of Sessions Completed" />
 			</header>

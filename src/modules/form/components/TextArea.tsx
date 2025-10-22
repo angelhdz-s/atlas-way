@@ -1,11 +1,11 @@
-import { TextAreaClasses } from "../constants/classes";
-import { TextAreaProps } from "../types";
-import { ErrorMessage } from "./ErrorMessage";
+import { TextAreaClasses } from '../constants/classes';
+import { TextAreaProps } from '../types';
+import { ErrorMessage } from './ErrorMessage';
 
 export function TextArea({
 	name,
-	className = "",
-	placeholder = "",
+	className = '',
+	placeholder = '',
 	disabled = false,
 	rows = 3,
 	error,

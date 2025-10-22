@@ -1,5 +1,5 @@
 export function PageContent({
-	className = "",
+	className = '',
 	children,
 }: {
 	className?: string;

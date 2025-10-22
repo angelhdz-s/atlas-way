@@ -1,8 +1,8 @@
-import { EXERCISES } from "@/modules/globals/constants/db";
-import { CardTitle } from "../../card/components/CardTitle";
-import { SimpleTable } from "./SimpleTable";
+import { EXERCISES } from '@/modules/globals/constants/db';
+import { CardTitle } from '../../card/components/CardTitle';
+import { SimpleTable } from './SimpleTable';
 
-export function ExercisesList({ className = "" }: { className?: string }) {
+export function ExercisesList({ className = '' }: { className?: string }) {
 	const exerciseKeys = Object.keys(EXERCISES)
 		.slice(0, 5)
 		.map((key, index) => ({
@@ -11,15 +11,10 @@ export function ExercisesList({ className = "" }: { className?: string }) {
 		}));
 
 	return (
-		<article
-			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
-		>
+		<article className={`flex flex-col gap-4 dashboard-card-default ${className}`}>
 			<CardTitle title="Exercises" />
 			<main>
-				<SimpleTable
-					header={{ key: "#", name: "Exercise" }}
-					values={exerciseKeys}
-				/>
+				<SimpleTable header={{ key: '#', name: 'Exercise' }} values={exerciseKeys} />
 			</main>
 		</article>
 	);

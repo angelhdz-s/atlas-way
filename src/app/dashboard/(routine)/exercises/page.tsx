@@ -1,13 +1,9 @@
-import Link from "next/link";
-import { PageContainer } from "@/modules/dashboard/page/components/PageContainer";
-import { PageContent } from "@/modules/dashboard/page/components/PageContent";
-import { PageHeader } from "@/modules/dashboard/page/components/PageHeader";
-import {} from "@/modules/globals/mocks/sessions";
-import {
-	BODY_SECTIONS,
-	EXERCISES,
-	ExerciseType,
-} from "@/modules/globals/constants/db";
+import Link from 'next/link';
+import { PageContainer } from '@/modules/dashboard/page/components/PageContainer';
+import { PageContent } from '@/modules/dashboard/page/components/PageContent';
+import { PageHeader } from '@/modules/dashboard/page/components/PageHeader';
+import {} from '@/modules/globals/mocks/sessions';
+import { BODY_SECTIONS, EXERCISES, ExerciseType } from '@/modules/globals/constants/db';
 import {
 	DashboardCard,
 	DashboardCardButton,
@@ -16,8 +12,8 @@ import {
 	DashboardCardMain,
 	DashboardCardSubHeader,
 	DashboardCardTag,
-} from "@/modules/dashboard/components/Card";
-import { Barbell } from "@/modules/globals/components/Icons";
+} from '@/modules/dashboard/components/Card';
+import { Barbell } from '@/modules/globals/components/Icons';
 
 function Exercises({ exercises }: { exercises: ExerciseType[] }) {
 	return exercises
@@ -51,7 +47,7 @@ function getExercisesByBodySection(bodySection: keyof typeof BODY_SECTIONS) {
 	return Object.values(EXERCISES)
 		.filter((exercise) => {
 			return exercise.muscles.some(
-				(muscle) => muscle.bodySection === BODY_SECTIONS[bodySection],
+				(muscle) => muscle.bodySection === BODY_SECTIONS[bodySection]
 			);
 		})
 		.sort((a, b) => a.name.localeCompare(b.name));
@@ -62,10 +58,7 @@ export default function ExercisesPage() {
 
 	return (
 		<PageContainer>
-			<PageHeader
-				title="Exercises"
-				className="flex items-center justify-between"
-			>
+			<PageHeader title="Exercises" className="flex items-center justify-between">
 				<Link href="/dashboard/exercises/create" className="pil-btn">
 					Create Exercise
 				</Link>
@@ -73,7 +66,7 @@ export default function ExercisesPage() {
 			<PageContent className="flex flex-col gap-8">
 				{bodySections.map((section, index) => {
 					const exercises = getExercisesByBodySection(
-						section as keyof typeof BODY_SECTIONS,
+						section as keyof typeof BODY_SECTIONS
 					);
 					return (
 						<main key={index} className="flex flex-col gap-4">

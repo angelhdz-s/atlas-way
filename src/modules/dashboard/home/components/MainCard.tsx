@@ -1,19 +1,13 @@
-import {
-	Barbell,
-	MapRoute,
-	Alarm,
-	SolidCircleCheck,
-} from "@/modules/globals/components/Icons";
+import { Barbell, MapRoute, Alarm, SolidCircleCheck } from '@/modules/globals/components/Icons';
 
-export function MainCard({ className = "" }: { className?: string }) {
+export function MainCard({ className = '' }: { className?: string }) {
 	return (
 		<article
 			className={`relative flex flex-col gap-4 dashboard-card text-main-foreground bg-primary overflow-hidden ${className}`}
 		>
 			<header className="relative z-1">
 				<h3 className="text-2xl tracking-tight max-w-100 font-funnel-display">
-					Start achieving your goals with{" "}
-					<span className="text-accent">AtlasWay</span>
+					Start achieving your goals with <span className="text-accent">AtlasWay</span>
 				</h3>
 			</header>
 			<main className="flex-1 relative z-1 max-w-140 flex flex-col">

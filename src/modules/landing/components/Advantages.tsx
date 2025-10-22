@@ -3,9 +3,9 @@ import {
 	DeviceDesktop,
 	DeviceDesktopAnalytics,
 	Hammer,
-} from "@/modules/globals/components/Icons";
+} from '@/modules/globals/components/Icons';
 
-import { IconTypes } from "@/modules/globals/types.d";
+import { IconTypes } from '@/modules/globals/types.d';
 
 function AdvantageFigure({ Icon }: { Icon: IconTypes }) {
 	return (
@@ -41,7 +41,7 @@ function Advantage({
 	);
 }
 
-export function Advantages({ className = "" }: { className?: string }) {
+export function Advantages({ className = '' }: { className?: string }) {
 	return (
 		<section className={`max-w-5xl w-full mx-auto my-16 ${className}`}>
 			<header>

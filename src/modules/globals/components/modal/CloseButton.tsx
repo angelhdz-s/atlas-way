@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation';
 
 export default function CloseButton({
-	className = "",
+	className = '',
 	children,
 }: {
 	className?: string;
@@ -14,11 +14,7 @@ export default function CloseButton({
 		router.back();
 	};
 	return (
-		<button
-			type="button"
-			className={`cursor-pointer ${className}`}
-			onClick={handleClose}
-		>
+		<button type="button" className={`cursor-pointer ${className}`} onClick={handleClose}>
 			{children}
 		</button>
 	);

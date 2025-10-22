@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { CalendarContext } from "@/modules/calendar/contexts/calendar-context";
-import { useCalendar } from "@/modules/calendar/hooks/useCalendar";
-import { ArrowUp } from "@/modules/globals/components/Icons";
+import { useContext } from 'react';
+import { CalendarContext } from '@/modules/calendar/contexts/calendar-context';
+import { useCalendar } from '@/modules/calendar/hooks/useCalendar';
+import { ArrowUp } from '@/modules/globals/components/Icons';
 
 function ArrowButton({
 	onClick,
@@ -40,9 +40,7 @@ function DateController({
 	onNextClick,
 }: DateControllerProps) {
 	return (
-		<section
-			className={`flex flex-col gap-2 items-center justify-between ${className}`}
-		>
+		<section className={`flex flex-col gap-2 items-center justify-between ${className}`}>
 			<ArrowButton onClick={onPreviousClick} className="text-foreground/25">
 				<ArrowUp className="-mb-1.5 size-8" strokeWidth="2" />
 			</ArrowButton>
@@ -54,7 +52,7 @@ function DateController({
 	);
 }
 
-export function DateSelector({ className = "" }: { className?: string }) {
+export function DateSelector({ className = '' }: { className?: string }) {
 	const { selectedDate, setCurrentDate } = useContext(CalendarContext);
 
 	const {
@@ -74,10 +72,7 @@ export function DateSelector({ className = "" }: { className?: string }) {
 				<h2>Friday, July 5</h2>
 			</header>
 			<main className="flex gap-4">
-				<DateController
-					onPreviousClick={handlePreviousYear}
-					onNextClick={handleNextYear}
-				>
+				<DateController onPreviousClick={handlePreviousYear} onNextClick={handleNextYear}>
 					{selectedDate.getFullYear()}
 				</DateController>
 				<DateController

@@ -1,5 +1,5 @@
 export function Label({
-	className = "",
+	className = '',
 	children,
 	title,
 }: {

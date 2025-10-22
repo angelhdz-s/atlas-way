@@ -1,5 +1,5 @@
-import { ModalExerciseForm } from "@/modules/exercise/components/ModalExerciseForm";
-import { getMuscleIdName } from "@/modules/muscle/actions/getMuscles";
+import { ModalExerciseForm } from '@/modules/exercise/components/ModalExerciseForm';
+import { getMuscleIdName } from '@/modules/muscle/actions/getMuscles';
 
 export default async function CreateExercisePage() {
 	const muscles = await getMuscleIdName();

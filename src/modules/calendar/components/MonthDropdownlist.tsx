@@ -1,5 +1,5 @@
-import { MONTH_NAMES } from "@/modules/globals/constants/date";
-import { DateDropdownlist } from "./DateDropdrownList";
+import { MONTH_NAMES } from '@/modules/globals/constants/date';
+import { DateDropdownlist } from './DateDropdrownList';
 
 export function MonthDropdownlist({
 	className,

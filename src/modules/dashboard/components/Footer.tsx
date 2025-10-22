@@ -1,4 +1,4 @@
-export function Footer({ className = "" }: { className?: string }) {
+export function Footer({ className = '' }: { className?: string }) {
 	return (
 		<footer className={`flex items-center gap-4 p-4 ${className}`}>
 			<main className="flex gap-2 items-center">
@@ -8,9 +8,7 @@ export function Footer({ className = "" }: { className?: string }) {
 			<p>
 				Mail us at: <a href="mailto:info@atlasway.com">info@atlasway.com</a>
 			</p>
-			<a href="https://www.github.com/angelhdz-s/atlas-way">
-				GitHub Repository
-			</a>
+			<a href="https://www.github.com/angelhdz-s/atlas-way">GitHub Repository</a>
 		</footer>
 	);
 }

@@ -1,6 +1,6 @@
-import { Footer } from "@/modules/landing/components/Footer";
-import { Header } from "@/modules/landing/components/Header";
-import { Login } from "@/modules/login/components/Login";
+import { Footer } from '@/modules/landing/components/Footer';
+import { Header } from '@/modules/landing/components/Header';
+import { Login } from '@/modules/login/components/Login';
 
 export default function LoginPage() {
 	return (

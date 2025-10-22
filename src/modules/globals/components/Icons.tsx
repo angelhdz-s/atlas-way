@@ -1,23 +1,18 @@
-import { IconProps, IconTypes } from "@/modules/globals/types.d";
+import { IconProps, IconTypes } from '@/modules/globals/types.d';
 
-export const defaultIconStrokeWidth = "2";
-export const defaultIconSizeClass = "size-6";
+export const defaultIconStrokeWidth = '2';
+export const defaultIconSizeClass = 'size-6';
 
 export function DefaultIcon({
 	Icon,
-	className = "",
+	className = '',
 	strokeWidth = defaultIconStrokeWidth,
 }: {
 	Icon: IconTypes;
 	className?: string;
 	strokeWidth?: string;
 }) {
-	return (
-		<Icon
-			className={`${defaultIconSizeClass} ${className}`}
-			strokeWidth={strokeWidth}
-		/>
-	);
+	return <Icon className={`${defaultIconSizeClass} ${className}`} strokeWidth={strokeWidth} />;
 }
 
 function MainSvgBody({
@@ -50,35 +45,22 @@ function MainSolidSvgBody({
 	children: React.ReactNode;
 }) {
 	return (
-		<svg
-			fill="currentColor"
-			width={24}
-			height={24}
-			viewBox="0 0 24 24"
-			className={className}
-		>
+		<svg fill="currentColor" width={24} height={24} viewBox="0 0 24 24" className={className}>
 			{children}
 		</svg>
 	);
 }
 
-export function ArrowUp({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function ArrowUp({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path
-				strokeLinecap="round"
-				strokeLinejoin="round"
-				d="m4.5 15.75 7.5-7.5 7.5 7.5"
-			/>
+			<path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
 		</MainSvgBody>
 	);
 }
 
 export function ArrowsLeftRight({
-	className = "",
+	className = '',
 	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
@@ -92,10 +74,7 @@ export function ArrowsLeftRight({
 	);
 }
 
-export function Barbell({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Barbell({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M2 12h1" />
@@ -109,10 +88,7 @@ export function Barbell({
 	);
 }
 
-export function LayoutSidebar({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function LayoutSidebar({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
@@ -121,10 +97,7 @@ export function LayoutSidebar({
 	);
 }
 
-export function Bell({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Bell({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
@@ -133,10 +106,7 @@ export function Bell({
 	);
 }
 
-export function BellRinging({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function BellRinging({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M10 5a2 2 0 0 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
@@ -147,10 +117,7 @@ export function BellRinging({
 	);
 }
 
-export function BellOff({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function BellOff({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path
@@ -162,10 +129,7 @@ export function BellOff({
 	);
 }
 
-export function BellZ({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function BellZ({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
@@ -175,10 +139,7 @@ export function BellZ({
 	);
 }
 
-export function BarbellOff({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function BarbellOff({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M2 12h1" />
@@ -193,10 +154,7 @@ export function BarbellOff({
 	);
 }
 
-export function CalendarWeek({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function CalendarWeek({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
@@ -215,7 +173,7 @@ export function CalendarWeek({
 }
 
 export function Circle({
-	className = "",
+	className = '',
 	strokeWidth = defaultIconStrokeWidth,
 	porcentage = 0,
 	animation = false,
@@ -254,10 +212,7 @@ export function Circle({
 	);
 }
 
-export function CircleCheck({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function CircleCheck({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
@@ -266,10 +221,7 @@ export function CircleCheck({
 	);
 }
 
-export function CircleOutline({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function CircleOutline({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
@@ -277,10 +229,7 @@ export function CircleOutline({
 	);
 }
 
-export function MapRoute({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function MapRoute({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M3 7l6 -3l6 3l6 -3v13l-6 3l-6 -3l-6 3v-13" />
@@ -292,10 +241,7 @@ export function MapRoute({
 	);
 }
 
-export function Alarm({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Alarm({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M12 13m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
@@ -306,10 +252,7 @@ export function Alarm({
 	);
 }
 
-export function Cog({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Cog({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
@@ -318,10 +261,7 @@ export function Cog({
 	);
 }
 
-export function DeviceDesktop({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function DeviceDesktop({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10z" />
@@ -332,10 +272,7 @@ export function DeviceDesktop({
 	);
 }
 
-export function Edit({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Edit({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
@@ -345,10 +282,7 @@ export function Edit({
 	);
 }
 
-export function AlertTriangle({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function AlertTriangle({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M12 9v4" />
@@ -358,10 +292,7 @@ export function AlertTriangle({
 	);
 }
 
-export function FaceHappy({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function FaceHappy({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path
@@ -373,10 +304,7 @@ export function FaceHappy({
 	);
 }
 
-export function Forward({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Forward({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M3 5v14l8 -7z" />
@@ -385,10 +313,7 @@ export function Forward({
 	);
 }
 
-export function Home({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Home({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M5 12l-2 0l9 -9l9 9l-2 0" />
@@ -399,7 +324,7 @@ export function Home({
 }
 
 export function InformationCircle({
-	className = "",
+	className = '',
 	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
@@ -411,10 +336,7 @@ export function InformationCircle({
 	);
 }
 
-export function Language({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Language({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M4 5h7" />
@@ -426,10 +348,7 @@ export function Language({
 	);
 }
 
-export function Heart({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Heart({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
@@ -437,10 +356,7 @@ export function Heart({
 	);
 }
 
-export function Moon({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Moon({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
@@ -448,10 +364,7 @@ export function Moon({
 	);
 }
 
-export function Dots({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Dots({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
@@ -462,7 +375,7 @@ export function Dots({
 }
 
 export function DeviceDesktopAnalytics({
-	className = "",
+	className = '',
 	strokeWidth = defaultIconStrokeWidth,
 }: IconProps) {
 	return (
@@ -479,10 +392,7 @@ export function DeviceDesktopAnalytics({
 	);
 }
 
-export function Scale({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Scale({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M7 20l10 0" />
@@ -494,10 +404,7 @@ export function Scale({
 	);
 }
 
-export function Sun({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Sun({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" />
@@ -513,10 +420,7 @@ export function Sun({
 	);
 }
 
-export function Trash({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Trash({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M4 7l16 0" />
@@ -528,10 +432,7 @@ export function Trash({
 	);
 }
 
-export function TrendingDown({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function TrendingDown({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M3 7l6 6l4 -4l8 8" />
@@ -540,10 +441,7 @@ export function TrendingDown({
 	);
 }
 
-export function TrendingUp({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function TrendingUp({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M3 17l6 -6l4 4l8 -8" />
@@ -552,10 +450,7 @@ export function TrendingUp({
 	);
 }
 
-export function Trophy({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Trophy({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M8 21l8 0" />
@@ -568,10 +463,7 @@ export function Trophy({
 	);
 }
 
-export function Hammer({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Hammer({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M11.414 10l-7.383 7.418a2.091 2.091 0 0 0 0 2.967a2.11 2.11 0 0 0 2.976 0l7.407 -7.385" />
@@ -580,10 +472,7 @@ export function Hammer({
 	);
 }
 
-export function XCircle({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function XCircle({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
@@ -592,10 +481,7 @@ export function XCircle({
 	);
 }
 
-export function XMark({
-	className = "",
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function XMark({ className = '', strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M18 6l-12 12" />
@@ -604,10 +490,7 @@ export function XMark({
 	);
 }
 
-export function ClipboardList({
-	className,
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function ClipboardList({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
@@ -620,10 +503,7 @@ export function ClipboardList({
 	);
 }
 
-export function Man({
-	className,
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Man({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M10 16v5" />
@@ -636,10 +516,7 @@ export function Man({
 	);
 }
 
-export function ChartPie({
-	className,
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function ChartPie({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8" />
@@ -648,10 +525,7 @@ export function ChartPie({
 	);
 }
 
-export function ReportAnalytics({
-	className,
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function ReportAnalytics({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
@@ -663,10 +537,7 @@ export function ReportAnalytics({
 	);
 }
 
-export function Flame({
-	className,
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Flame({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.621 -2.333 5.588c0 3.704 3.134 6.706 7 6.706s7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235" />
@@ -674,10 +545,7 @@ export function Flame({
 	);
 }
 
-export function CirclePlus({
-	className,
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function CirclePlus({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
@@ -687,10 +555,7 @@ export function CirclePlus({
 	);
 }
 
-export function CalendarClock({
-	className,
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function CalendarClock({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -704,10 +569,7 @@ export function CalendarClock({
 	);
 }
 
-export function MapPlus({
-	className,
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function MapPlus({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -720,10 +582,7 @@ export function MapPlus({
 	);
 }
 
-export function Search({
-	className,
-	strokeWidth = defaultIconStrokeWidth,
-}: IconProps) {
+export function Search({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
 			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -735,7 +594,7 @@ export function Search({
 
 /* MARK: Solid Icons */
 
-export function SolidCircleCheck({ className = "" }: { className?: string }) {
+export function SolidCircleCheck({ className = '' }: { className?: string }) {
 	return (
 		<MainSolidSvgBody className={className}>
 			<path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-1.293 5.953a1 1 0 0 0 -1.32 -.083l-.094 .083l-3.293 3.292l-1.293 -1.292l-.094 -.083a1 1 0 0 0 -1.403 1.403l.083 .094l2 2l.094 .083a1 1 0 0 0 1.226 0l.094 -.083l4 -4l.083 -.094a1 1 0 0 0 -.083 -1.32z" />
@@ -743,7 +602,7 @@ export function SolidCircleCheck({ className = "" }: { className?: string }) {
 	);
 }
 
-export function SolidCircleX({ className = "" }: { className?: string }) {
+export function SolidCircleX({ className = '' }: { className?: string }) {
 	return (
 		<MainSolidSvgBody className={className}>
 			<path d="M17 3.34a10 10 0 1 1 -14.995 8.984l-.005 -.324l.005 -.324a10 10 0 0 1 14.995 -8.336zm-6.489 5.8a1 1 0 0 0 -1.218 1.567l1.292 1.293l-1.292 1.293l-.083 .094a1 1 0 0 0 1.497 1.32l1.293 -1.292l1.293 1.292l.094 .083a1 1 0 0 0 1.32 -1.497l-1.292 -1.293l1.292 -1.293l.083 -.094a1 1 0 0 0 -1.497 -1.32l-1.293 1.292l-1.293 -1.292l-.094 -.083z" />

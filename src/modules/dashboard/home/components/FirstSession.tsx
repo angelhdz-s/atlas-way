@@ -1,12 +1,10 @@
-import Image from "next/image";
-import { CardTitle } from "../../card/components/CardTitle";
-import { ImageBackground } from "./ImageBackground";
+import Image from 'next/image';
+import { CardTitle } from '../../card/components/CardTitle';
+import { ImageBackground } from './ImageBackground';
 
-export function FirstSession({ className = "" }: { className?: string }) {
+export function FirstSession({ className = '' }: { className?: string }) {
 	return (
-		<article
-			className={`relative dashboard-card-default overflow-hidden ${className}`}
-		>
+		<article className={`relative dashboard-card-default overflow-hidden ${className}`}>
 			<CardTitle title="Create Your Sessions" />
 			<ImageBackground>
 				<Image

@@ -1,17 +1,13 @@
-import {
-	CircleOutline,
-	SolidCircleCheck,
-	SolidCircleX,
-} from "@/modules/globals/components/Icons";
-import { WEEK_DAYS } from "@/modules/globals/constants/date";
-import { getNextDates, getSessionFromDate } from "@/modules/globals/lib/dates";
-import { StatusDayType } from "@/modules/globals/mocks/routines";
-import { TODAY } from "@/modules/globals/mocks/tracking";
-import { IconTypes, SolidIconTypes } from "@/modules/globals/types";
-import { CardTitle } from "../../dashboard/card/components/CardTitle";
-import { getStatusTextColorClass } from "@/modules/globals/lib/get-classes";
+import { CircleOutline, SolidCircleCheck, SolidCircleX } from '@/modules/globals/components/Icons';
+import { WEEK_DAYS } from '@/modules/globals/constants/date';
+import { getNextDates, getSessionFromDate } from '@/modules/globals/lib/dates';
+import { StatusDayType } from '@/modules/globals/mocks/routines';
+import { TODAY } from '@/modules/globals/mocks/tracking';
+import { IconTypes, SolidIconTypes } from '@/modules/globals/types';
+import { CardTitle } from '../../dashboard/card/components/CardTitle';
+import { getStatusTextColorClass } from '@/modules/globals/lib/get-classes';
 
-const ICON_SIZE_CLASS = "size-7";
+const ICON_SIZE_CLASS = 'size-7';
 
 type CurrentWeekStatusDays = {
 	day: number;
@@ -26,9 +22,7 @@ function getCurrentWeekStatusDays(): CurrentWeekStatusDays[] {
 
 	const dateCopy = new Date(TODAY);
 
-	const newInitialDate = new Date(
-		dateCopy.setDate(TODAY.getDate() - dayOfTheWeek),
-	);
+	const newInitialDate = new Date(dateCopy.setDate(TODAY.getDate() - dayOfTheWeek));
 
 	const datesArr = [newInitialDate, ...getNextDates(newInitialDate, 6)];
 
@@ -40,20 +34,12 @@ function getCurrentWeekStatusDays(): CurrentWeekStatusDays[] {
 	return dates;
 }
 
-function StatusDayIcon({
-	className = "",
-	icon: Icon,
-}: {
-	className: string;
-	icon: IconTypes;
-}) {
-	return (
-		<Icon className={`${ICON_SIZE_CLASS} ${className}`} strokeWidth="1.5" />
-	);
+function StatusDayIcon({ className = '', icon: Icon }: { className: string; icon: IconTypes }) {
+	return <Icon className={`${ICON_SIZE_CLASS} ${className}`} strokeWidth="1.5" />;
 }
 
 function StatusDaySolidIcon({
-	className = "",
+	className = '',
 	icon: Icon,
 }: {
 	className?: string;
@@ -62,28 +48,22 @@ function StatusDaySolidIcon({
 	return <Icon className={`${ICON_SIZE_CLASS} ${className}`} />;
 }
 
-function StatusDay({
-	status,
-	className,
-}: {
-	status: StatusDayType;
-	className?: string;
-}) {
-	if (status === "completed")
+function StatusDay({ status, className }: { status: StatusDayType; className?: string }) {
+	if (status === 'completed')
 		return (
 			<span className={` ${className}`}>
 				<StatusDaySolidIcon className="text-complete" icon={SolidCircleCheck} />
 			</span>
 		);
 
-	if (status === "canceled")
+	if (status === 'canceled')
 		return (
 			<span className={` ${className}`}>
 				<StatusDaySolidIcon className="text-cancel" icon={SolidCircleX} />
 			</span>
 		);
 
-	if (status === "current")
+	if (status === 'current')
 		return (
 			<span className={` ${className}`}>
 				<StatusDayIcon className="text-accent" icon={CircleOutline} />
@@ -98,7 +78,7 @@ function StatusDay({
 	);
 }
 
-export function CurrentWeekStatus({ className = "" }: { className?: string }) {
+export function CurrentWeekStatus({ className = '' }: { className?: string }) {
 	const currentWeekStatusDays = getCurrentWeekStatusDays();
 
 	return (
@@ -111,13 +91,9 @@ export function CurrentWeekStatus({ className = "" }: { className?: string }) {
 					const dayName = WEEK_DAYS[day].initial;
 					const className = getStatusTextColorClass(status);
 					return (
-						<div
-							key={day}
-							className="flex flex-col justify-center"
-							title={title}
-						>
+						<div key={day} className="flex flex-col justify-center" title={title}>
 							<span
-								className={`text-center text-sm font-black ${className || "text-foreground/75"}`}
+								className={`text-center text-sm font-black ${className || 'text-foreground/75'}`}
 							>
 								{dayName}
 							</span>

@@ -1,11 +1,8 @@
-import styles from "@/modules/calendar/components/DateDropdownList.module.css";
-import {
-	DropdownList,
-	DropdownListProps,
-} from "@/modules/globals/components/DropdownList";
+import styles from '@/modules/calendar/components/DateDropdownList.module.css';
+import { DropdownList, DropdownListProps } from '@/modules/globals/components/DropdownList';
 
 export function DateDropdownlist({
-	className = "",
+	className = '',
 	values,
 	selectedValue,
 	onChange,

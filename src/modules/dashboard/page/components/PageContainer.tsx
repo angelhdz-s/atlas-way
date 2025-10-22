@@ -1,5 +1,5 @@
 export function PageContainer({
-	className = "",
+	className = '',
 	children,
 }: {
 	className?: string;

@@ -1,5 +1,5 @@
 export function Imagotype({
-	className = "",
+	className = '',
 	isotypeSize = 32,
 	closed = false,
 }: {
@@ -15,20 +15,9 @@ export function Imagotype({
 	);
 }
 
-export function Logo({
-	className = "",
-	size = 24,
-}: {
-	className?: string;
-	size?: number;
-}) {
+export function Logo({ className = '', size = 24 }: { className?: string; size?: number }) {
 	return (
-		<svg
-			viewBox="0 -0.5 22 23"
-			height={size}
-			width={size}
-			className={className}
-		>
+		<svg viewBox="0 -0.5 22 23" height={size} width={size} className={className}>
 			<path
 				fillRule="evenodd"
 				fill="currentColor"

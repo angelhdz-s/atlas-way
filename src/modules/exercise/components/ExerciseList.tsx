@@ -1,12 +1,12 @@
-import { XMark } from "@/modules/globals/components/Icons";
+import { XMark } from '@/modules/globals/components/Icons';
 import {
 	getGridColsClassFromWithStatus,
 	getStatusTextColorClass,
-} from "@/modules/globals/lib/get-classes";
-import { StatusDayType } from "@/modules/globals/mocks/routines";
-import { StatusIcon } from "@/modules/status/components/StatusIcons";
+} from '@/modules/globals/lib/get-classes';
+import { StatusDayType } from '@/modules/globals/mocks/routines';
+import { StatusIcon } from '@/modules/status/components/StatusIcons';
 
-const iconSize = "size-4.5";
+const iconSize = 'size-4.5';
 
 type ExerciseRowType = {
 	status: StatusDayType;
@@ -19,7 +19,7 @@ type ExerciseRowType = {
 export function ExerciseRow({
 	exercise,
 	withStatus = false,
-	className = "",
+	className = '',
 }: {
 	exercise: ExerciseRowType;
 	withStatus?: boolean;

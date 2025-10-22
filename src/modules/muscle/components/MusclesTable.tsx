@@ -3,14 +3,14 @@ import {
 	BodySectionsKeys,
 	MUSCLES,
 	MuscleType,
-} from "@/modules/globals/constants/db";
+} from '@/modules/globals/constants/db';
 import {
 	DashboardCard,
 	DashboardCardFooter,
 	DashboardCardHeader,
 	DashboardCardSubHeader,
 	DashboardCardTag,
-} from "../../dashboard/components/Card";
+} from '../../dashboard/components/Card';
 
 function Muscles({ muscles }: { muscles: MuscleType[] }) {
 	return (
@@ -38,8 +38,8 @@ export default function MusclesTable() {
 					<DashboardCardSubHeader
 						description={`Muscles in the ${section} section`}
 						counters={[
-							"3 routines",
-							"5 exercises",
+							'3 routines',
+							'5 exercises',
 							`${getMusclesByBodySection(section as keyof typeof BODY_SECTIONS).length} muscles`,
 						]}
 					></DashboardCardSubHeader>
@@ -47,7 +47,7 @@ export default function MusclesTable() {
 				<DashboardCardFooter>
 					<Muscles
 						muscles={getMusclesByBodySection(
-							section as keyof typeof BODY_SECTIONS,
+							section as keyof typeof BODY_SECTIONS
 						).sort((a, b) => a.name.localeCompare(b.name))}
 					/>
 				</DashboardCardFooter>

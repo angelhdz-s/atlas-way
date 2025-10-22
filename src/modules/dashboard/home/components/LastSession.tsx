@@ -1,11 +1,9 @@
-import { SolidCircleCheck } from "@/modules/globals/components/Icons";
-import { CardTitle } from "../../card/components/CardTitle";
+import { SolidCircleCheck } from '@/modules/globals/components/Icons';
+import { CardTitle } from '../../card/components/CardTitle';
 
-export function LastSession({ className = "" }: { className?: string }) {
+export function LastSession({ className = '' }: { className?: string }) {
 	return (
-		<article
-			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
-		>
+		<article className={`flex flex-col gap-4 dashboard-card-default ${className}`}>
 			<CardTitle title="Last Sessions" />
 			<main className="flex flex-col gap-4">
 				<header className="flex items-center">

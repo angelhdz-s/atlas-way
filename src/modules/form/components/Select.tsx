@@ -1,8 +1,8 @@
-import { InputClasses } from "../constants/classes";
+import { InputClasses } from '../constants/classes';
 
-import styles from "@/modules/form/components/Select.module.css";
-import { SelectOption, SelectOptionValue } from "../types";
-import { ErrorMessage } from "./ErrorMessage";
+import styles from '@/modules/form/components/Select.module.css';
+import { SelectOption, SelectOptionValue } from '../types';
+import { ErrorMessage } from './ErrorMessage';
 
 type multipleSelectedType =
 	| {
@@ -24,10 +24,7 @@ type SelectProps = {
 	onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 } & multipleSelectedType;
 
-function selectedValue(
-	multiple: boolean,
-	selected?: SelectOptionValue | SelectOptionValue[],
-) {
+function selectedValue(multiple: boolean, selected?: SelectOptionValue | SelectOptionValue[]) {
 	if (multiple) {
 		if (selected?.length === 0) return undefined;
 		return selected as SelectOptionValue[];
@@ -38,7 +35,7 @@ function selectedValue(
 export function Select({
 	options,
 	name,
-	className = "",
+	className = '',
 	multiple,
 	disabled,
 	selected,

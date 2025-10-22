@@ -1,7 +1,7 @@
-import { Box } from "@/modules/form/components/Box";
-import { useMultipleSelectOptionsBox } from "@/modules/form/hooks/useMultipleSelectOptionsBox";
-import { SelectOption } from "@/modules/form/types";
-import { CirclePlus, Search } from "@/modules/globals/components/Icons";
+import { Box } from '@/modules/form/components/Box';
+import { useMultipleSelectOptionsBox } from '@/modules/form/hooks/useMultipleSelectOptionsBox';
+import { SelectOption } from '@/modules/form/types';
+import { CirclePlus, Search } from '@/modules/globals/components/Icons';
 
 function SelectOptionBox({
 	option,
@@ -13,18 +13,14 @@ function SelectOptionBox({
 	onSelect: (value: SelectOption) => void;
 }) {
 	const isActiveClass = isSelected
-		? "border-complete text-complete font-medium"
-		: "border-subtle/20";
+		? 'border-complete text-complete font-medium'
+		: 'border-subtle/20';
 	return (
 		<label
 			className={`cursor-pointer w-fit rounded-full border px-3 py-1 leading-1 hover:border-complete hover:text-complete ${isActiveClass}`}
 		>
 			<span className="text-sm">{option.label}</span>
-			<input
-				className="hidden"
-				type="checkbox"
-				onChange={() => onSelect(option)}
-			/>
+			<input className="hidden" type="checkbox" onChange={() => onSelect(option)} />
 		</label>
 	);
 }

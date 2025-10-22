@@ -1,10 +1,10 @@
-import { ExerciseRow } from "@/modules/exercise/components/ExerciseList";
+import { ExerciseRow } from '@/modules/exercise/components/ExerciseList';
 import {
 	getGridColsClassFromWithStatus,
 	getStatusTextColorClass,
-} from "@/modules/globals/lib/get-classes";
-import { StatusDayType } from "@/modules/globals/mocks/routines";
-import { StatusIcon } from "@/modules/status/components/StatusIcons";
+} from '@/modules/globals/lib/get-classes';
+import { StatusDayType } from '@/modules/globals/mocks/routines';
+import { StatusIcon } from '@/modules/status/components/StatusIcons';
 
 export type exerciseType = {
 	id: number;
@@ -36,9 +36,7 @@ export function SessionDetails({
 	const withStatusGridClass = getGridColsClassFromWithStatus(withStatus);
 	return (
 		<>
-			<header
-				className={`flex items-center gap-2 justify-between ${statusTextColorClass}`}
-			>
+			<header className={`flex items-center gap-2 justify-between ${statusTextColorClass}`}>
 				<main className="flex items-center gap-2">
 					<h4 className="text-lg">{name}</h4>
 					{withStatus && (
@@ -66,11 +64,7 @@ export function SessionDetails({
 						<span>Weight</span>
 					</li>
 					{exercises.map((exercise, index) => (
-						<ExerciseRow
-							withStatus={withStatus}
-							exercise={exercise}
-							key={index}
-						/>
+						<ExerciseRow withStatus={withStatus} exercise={exercise} key={index} />
 					))}
 				</ul>
 			</main>

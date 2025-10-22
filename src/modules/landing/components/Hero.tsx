@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { ArrowUp } from "@/modules/globals/components/Icons";
+import Link from 'next/link';
+import { ArrowUp } from '@/modules/globals/components/Icons';
 
 export function Hero() {
 	return (
@@ -9,7 +9,7 @@ export function Hero() {
 			<main className="relative z-1 max-w-360 w-full mx-auto flex justify-center ">
 				<header className="flex flex-col items-center gap-8 text-center max-w-5xl">
 					<h1 className="text-7xl leading-[1] font-bold ld-main-fg text-pretty animate-fade">
-						Manage your training to{" "}
+						Manage your training to{' '}
 						<span className="bg-gradient-to-b from-50% to-100% from-accent to-tertiary text-transparent bg-clip-text light:from-0% light:to-80%">
 							achieve your goals
 						</span>
@@ -17,9 +17,9 @@ export function Hero() {
 					</h1>
 
 					<p className="text-lg font-normal animate-fade-down animate-delay-100 animate-ease-out">
-						AtlasWay is a free and open-source web application to manage your
-						training routines, sessions and exercises. It is designed to help
-						you stay organized and focused on your fitness journey.
+						AtlasWay is a free and open-source web application to manage your training
+						routines, sessions and exercises. It is designed to help you stay organized
+						and focused on your fitness journey.
 					</p>
 
 					<footer className="flex items-center gap-4 animate-fade-down animate-delay-200 animate-ease-out">

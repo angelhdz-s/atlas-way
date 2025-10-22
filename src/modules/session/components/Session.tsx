@@ -1,4 +1,4 @@
-import { Barbell } from "@/modules/globals/components/Icons";
+import { Barbell } from '@/modules/globals/components/Icons';
 import {
 	DashboardCard,
 	DashboardCardButton,
@@ -7,8 +7,8 @@ import {
 	DashboardCardMain,
 	DashboardCardSubHeader,
 	DashboardCardTags,
-} from "../../dashboard/components/Card";
-import { ExerciseType, SessionDayType } from "@/modules/globals/mocks/sessions";
+} from '../../dashboard/components/Card';
+import { ExerciseType, SessionDayType } from '@/modules/globals/mocks/sessions';
 
 function ExercisesList({ exercises }: { exercises: ExerciseType[] }) {
 	return (
@@ -65,7 +65,7 @@ export function Session({ data }: { data: SessionDayType }) {
 					counters={[
 						date,
 						`${exercises.length} exercises`,
-						`${routines} ${routines === 1 ? "routine" : "routines"}`,
+						`${routines} ${routines === 1 ? 'routine' : 'routines'}`,
 					]}
 					description={description}
 				/>
@@ -73,9 +73,7 @@ export function Session({ data }: { data: SessionDayType }) {
 
 			<DashboardCardMain>
 				<DashboardCardTags values={tags} />
-				<ExercisesList
-					exercises={exercises.sort((a, b) => a.name.localeCompare(b.name))}
-				/>
+				<ExercisesList exercises={exercises.sort((a, b) => a.name.localeCompare(b.name))} />
 			</DashboardCardMain>
 			<DashboardCardFooter>
 				<DashboardCardButton>

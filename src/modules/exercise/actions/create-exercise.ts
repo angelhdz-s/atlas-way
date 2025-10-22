@@ -1,64 +1,42 @@
-"use server";
+'use server';
 
-import { ActionResponseType } from "@/modules/globals/types";
-import { PrismaClient } from "@/prisma/client";
-import { getUserId } from "@/modules/user/actions/users";
+import { ActionResponseType } from '@/modules/globals/types';
+import { PrismaClient } from '@/prisma/client';
+import { getUserId } from '@/modules/user/actions/users';
 import {
 	ExerciseForm,
 	exerciseFormSchema,
 	ExerciseInitialStatsType,
 	ExerciseType,
-} from "../config/exercise-schema";
+} from '../config/exercise-schema';
 
 const prisma = new PrismaClient();
 
-export async function createExerciseAction(
-	data: ExerciseForm,
-): Promise<ActionResponseType> {
+export async function createExerciseAction(data: ExerciseForm): Promise<ActionResponseType> {
 	await new Promise((resolve) => setTimeout(resolve, 300));
 	const error = await createExercise(data);
 	if (error) return { success: false, message: error };
-	return { success: true, message: "Exercise created successfully" };
+	return { success: true, message: 'Exercise created successfully' };
 }
 
-export async function createExercise(
-	data: ExerciseForm,
-): Promise<string | null> {
+export async function createExercise(data: ExerciseForm): Promise<string | null> {
 	const result = exerciseFormSchema.safeParse(data);
 	if (!result.success) {
-		return result.error.issues.map((issue) => issue.message).join(", ");
+		return result.error.issues.map((issue) => issue.message).join(', ');
 	}
 
 	const exerciseId = crypto.randomUUID();
 	const userId = await getUserId();
 	if (!userId?.id) {
-		return "User not found";
+		return 'User not found';
 	}
-
-	console.log({
-		data: {
-			id: exerciseId,
-			userId: userId.id,
-			name: data.exercise.name,
-			description: data.exercise.description,
-			muscles: data.exercise.muscles,
-			exerciseId: exerciseId,
-			sets: data.initialStats?.sets,
-			reps: data.initialStats?.reps,
-			weight: data.initialStats?.weight,
-		},
-	});
 
 	await newExercise(data, exerciseId, userId.id);
 
 	return null;
 }
 
-async function newExercise(
-	data: ExerciseForm,
-	exerciseId: string,
-	userId: string,
-) {
+async function newExercise(data: ExerciseForm, exerciseId: string, userId: string) {
 	const { exercise: exerciseData, initialStats: initialStatsData } = data;
 	try {
 		if (!initialStatsData?.sets && !initialStatsData?.reps) {
@@ -70,14 +48,10 @@ async function newExercise(
 			createExerciseInitialStatsPrisma(exerciseId, initialStatsData),
 		]);
 	} catch {
-		return "Error creating exercise";
+		return 'Error creating exercise';
 	}
 }
-function createExercisePrisma(
-	exerciseId: string,
-	userId: string,
-	data: ExerciseType,
-) {
+function createExercisePrisma(exerciseId: string, userId: string, data: ExerciseType) {
 	const musclesConnect = data.muscles.map((muscle) => ({
 		id: Number(muscle.id),
 	}));
@@ -94,10 +68,7 @@ function createExercisePrisma(
 	});
 }
 
-function createExerciseInitialStatsPrisma(
-	exerciseId: string,
-	data: ExerciseInitialStatsType,
-) {
+function createExerciseInitialStatsPrisma(exerciseId: string, data: ExerciseInitialStatsType) {
 	return prisma.exerciseInitialStats.create({
 		data: {
 			id: crypto.randomUUID(),

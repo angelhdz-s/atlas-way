@@ -1,12 +1,8 @@
-"use client";
+'use client';
 
-import CloseButton from "@/modules/globals/components/modal/CloseButton";
+import CloseButton from '@/modules/globals/components/modal/CloseButton';
 
-export function ModalFormButtons({
-	isPending = false,
-}: {
-	isPending?: boolean;
-}) {
+export function ModalFormButtons({ isPending = false }: { isPending?: boolean }) {
 	// const router = useRouter();
 
 	const handleSubmit = () => {
@@ -16,7 +12,7 @@ export function ModalFormButtons({
 		<>
 			<button
 				type="submit"
-				className={`bg-blue-600 border-blue-600 text-main-foreground ${isPending ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
+				className={`bg-blue-600 border-blue-600 text-main-foreground ${isPending ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
 				onClick={handleSubmit}
 			>
 				Create

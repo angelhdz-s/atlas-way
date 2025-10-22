@@ -3,9 +3,9 @@ import {
 	MONTH_DAYS,
 	MONTH_LIMITS,
 	MonthDisplacement,
-} from "@/modules/globals/constants/date";
-import { StatusDayType } from "@/modules/globals/mocks/routines";
-import { NextSessionType, SESSIONS } from "@/modules/globals/mocks/sessions";
+} from '@/modules/globals/constants/date';
+import { StatusDayType } from '@/modules/globals/mocks/routines';
+import { NextSessionType, SESSIONS } from '@/modules/globals/mocks/sessions';
 import {
 	getRestDay,
 	NextRestDayPlanifiedType,
@@ -14,7 +14,7 @@ import {
 	TrackedDayType,
 	TRACKING_DAYS_OFFSET,
 	TRACKING_DAYS,
-} from "@/modules/globals/mocks/tracking";
+} from '@/modules/globals/mocks/tracking';
 
 export function getTrackingDates() {
 	return [
@@ -24,10 +24,7 @@ export function getTrackingDates() {
 	];
 }
 
-export function getOffsetDates(
-	date: Date,
-	offsetDays: number = TRACKING_DAYS_OFFSET,
-) {
+export function getOffsetDates(date: Date, offsetDays: number = TRACKING_DAYS_OFFSET) {
 	const dates = [];
 
 	for (let i = 1; i <= offsetDays; i++) {
@@ -59,14 +56,11 @@ export function getNextDate(date: Date, days: number): Date {
 	return lastDate;
 }
 
-export type SessionsTypes =
-	| TrackedDayType
-	| NextRestDayPlanifiedType
-	| NextSessionType;
+export type SessionsTypes = TrackedDayType | NextRestDayPlanifiedType | NextSessionType;
 
 export function getSessionFromDate(date: Date): SessionsTypes {
 	const trackedDate = TRACKED_DAYS.find(
-		(day) => getISOStringDate(day.date) === getISOStringDate(date),
+		(day) => getISOStringDate(day.date) === getISOStringDate(date)
 	);
 
 	if (trackedDate) {
@@ -78,11 +72,11 @@ export function getSessionFromDate(date: Date): SessionsTypes {
 	const session = SESSIONS.find((session) => session.weekDay === weekDay);
 
 	if (session) {
-		const status = isToday(date) ? "current" : "next";
+		const status = isToday(date) ? 'current' : 'next';
 		return {
 			...session,
 			status,
-			type: "TRAINING",
+			type: 'TRAINING',
 		};
 	}
 
@@ -90,7 +84,7 @@ export function getSessionFromDate(date: Date): SessionsTypes {
 }
 
 export function getISOStringDate(date: Date): string {
-	return date.toISOString().split("T")[0];
+	return date.toISOString().split('T')[0];
 }
 
 export function isToday(date: Date): boolean {
@@ -107,26 +101,22 @@ function isLeapYear(year: number): boolean {
 
 export type CalendarDayType = {
 	date: Date;
-	type: StatusDayType | "out";
+	type: StatusDayType | 'out';
 	monthDay: number;
 };
 
-function getCalendarDay(
-	date: Date,
-	month: number,
-	out = false,
-): CalendarDayType {
+function getCalendarDay(date: Date, month: number, out = false): CalendarDayType {
 	if (out) {
 		return {
 			date,
-			type: "out",
+			type: 'out',
 			monthDay: date.getDate(),
 		};
 	}
 
 	return {
 		date,
-		type: "next",
+		type: 'next',
 		monthDay: date.getDate(),
 	};
 }
@@ -146,11 +136,7 @@ export function getCalendarDays(date: Date): CalendarDayType[] {
 		const lastMonthYear = lastMonth == 11 ? year - 1 : year;
 		const lastMonthDays = getMonthDays(lastMonthYear, lastMonth);
 		for (let i = 0; i <= daysOffset; i++) {
-			const day = new Date(
-				lastMonthYear,
-				lastMonth,
-				lastMonthDays - daysOffset + i,
-			);
+			const day = new Date(lastMonthYear, lastMonth, lastMonthDays - daysOffset + i);
 			days.push(getCalendarDay(day, month, true));
 		}
 	}
@@ -181,15 +167,12 @@ export function getCalendarStatusDay(date: Date) {
 	const { status, type } = getSessionFromDate(date);
 	return {
 		status,
-		trainingDay: type === "TRAINING",
+		trainingDay: type === 'TRAINING',
 	};
 }
 
-function getPrevNextMonth(
-	month: number,
-	displacement: MonthDisplacement,
-): number {
-	if (displacement === "previous")
+function getPrevNextMonth(month: number, displacement: MonthDisplacement): number {
+	if (displacement === 'previous')
 		return month === MONTH_LIMITS.previous ? MONTH_LIMITS.next : month - 1;
 	return month === MONTH_LIMITS.next ? MONTH_LIMITS.previous : month + 1;
 }
@@ -197,10 +180,9 @@ function getPrevNextMonth(
 function getPrevNextMonthYear(
 	month: number,
 	year: number,
-	displacement: MonthDisplacement,
+	displacement: MonthDisplacement
 ): number {
-	if (displacement === "previous")
-		return month === MONTH_LIMITS.next ? year - 1 : year;
+	if (displacement === 'previous') return month === MONTH_LIMITS.next ? year - 1 : year;
 
 	return month === MONTH_LIMITS.previous ? year + 1 : year;
 }
@@ -209,10 +191,7 @@ function getPrevNextMonthDay(month: number, day: number): number {
 	return day > MONTH_DAYS[month] ? MONTH_DAYS[month] : day;
 }
 
-export function getPreviousNextMonthDate(
-	prevDate: Date,
-	config: MonthDisplacement = "next",
-) {
+export function getPreviousNextMonthDate(prevDate: Date, config: MonthDisplacement = 'next') {
 	const [prevMonth, prevYear, prevDay] = [
 		prevDate.getMonth(),
 		prevDate.getFullYear(),
@@ -228,17 +207,14 @@ export function getPrevAndNextDate(date: Date) {
 	return [getPastDate(date, 1), getNextDate(date, 1)];
 }
 
-export function getPreviousNextYearDate(
-	prevDate: Date,
-	config: MonthDisplacement = "next",
-) {
+export function getPreviousNextYearDate(prevDate: Date, config: MonthDisplacement = 'next') {
 	const [prevYear, currentMonth, prevDay] = [
 		prevDate.getFullYear(),
 		prevDate.getMonth(),
 		prevDate.getDate(),
 	];
 
-	const newYear = config === "next" ? prevYear + 1 : prevYear - 1;
+	const newYear = config === 'next' ? prevYear + 1 : prevYear - 1;
 
 	if (currentMonth === 1 && prevDay === 29) {
 		const newDay = isLeapYear(newYear) ? 29 : 28;

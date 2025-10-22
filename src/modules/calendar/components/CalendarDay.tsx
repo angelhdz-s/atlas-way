@@ -2,8 +2,8 @@ import {
 	CalendarDayType,
 	getCalendarStatusDay,
 	getISOStringDate,
-} from "@/modules/globals/lib/dates";
-import { BarbellOff } from "@/modules/globals/components/Icons";
+} from '@/modules/globals/lib/dates';
+import { BarbellOff } from '@/modules/globals/components/Icons';
 
 function CalendarDayItem({
 	children,
@@ -15,13 +15,8 @@ function CalendarDayItem({
 	onClick?: () => void;
 }) {
 	return (
-		<button
-			onClick={onClick}
-			className="cursor-pointer w-full flex justify-center"
-		>
-			<div
-				className={`flex items-center justify-center rounded-full size-6 ${className}`}
-			>
+		<button onClick={onClick} className="cursor-pointer w-full flex justify-center">
+			<div className={`flex items-center justify-center rounded-full size-6 ${className}`}>
 				{children}
 			</div>
 		</button>
@@ -34,34 +29,22 @@ type CalendarDayTypeProps = {
 	onClick?: () => void;
 };
 
-function CalendarDayCompleted({
-	day,
-	isSelected = false,
-	onClick,
-}: CalendarDayTypeProps) {
+function CalendarDayCompleted({ day, isSelected = false, onClick }: CalendarDayTypeProps) {
 	return (
 		<CalendarDayItem
 			onClick={onClick}
-			className={
-				isSelected ? "text-main-foreground bg-green-600" : "bg-green-600/50"
-			}
+			className={isSelected ? 'text-main-foreground bg-green-600' : 'bg-green-600/50'}
 		>
 			{day}
 		</CalendarDayItem>
 	);
 }
 
-function CalendarDayCanceled({
-	day,
-	isSelected = false,
-	onClick,
-}: CalendarDayTypeProps) {
+function CalendarDayCanceled({ day, isSelected = false, onClick }: CalendarDayTypeProps) {
 	return (
 		<CalendarDayItem
 			onClick={onClick}
-			className={
-				isSelected ? "text-main-foreground bg-red-600" : "bg-red-600/50"
-			}
+			className={isSelected ? 'text-main-foreground bg-red-600' : 'bg-red-600/50'}
 		>
 			{day}
 		</CalendarDayItem>
@@ -78,9 +61,9 @@ function CalendarDayCurrent({
 	return (
 		<CalendarDayItem
 			onClick={onClick}
-			className={`${isSelected ? "text-full-black bg-main-foreground light:text-main-foreground light:bg-full-black" : "bg-subtle/20"}`}
+			className={`${isSelected ? 'text-full-black bg-main-foreground light:text-main-foreground light:bg-full-black' : 'bg-subtle/20'}`}
 		>
-			<BarbellOff className="size-4.5" strokeWidth={isSelected ? "2" : "1.5"} />
+			<BarbellOff className="size-4.5" strokeWidth={isSelected ? '2' : '1.5'} />
 		</CalendarDayItem>
 	);
 }
@@ -120,7 +103,7 @@ export function CalendarDay({
 }) {
 	const { type, monthDay, date } = day;
 
-	if (type === "out") {
+	if (type === 'out') {
 		return (
 			<CalendarDayItem onClick={onClick} className="opacity-50">
 				{monthDay}
@@ -132,11 +115,7 @@ export function CalendarDay({
 
 	if (date < initialDate) {
 		return isSelected ? (
-			<CalendarDayNormalSelected
-				onClick={onClick}
-				day={monthDay}
-				isSelected={isSelected}
-			/>
+			<CalendarDayNormalSelected onClick={onClick} day={monthDay} isSelected={isSelected} />
 		) : (
 			<CalendarDayItem onClick={onClick}>{monthDay}</CalendarDayItem>
 		);
@@ -144,38 +123,21 @@ export function CalendarDay({
 
 	const { status, trainingDay } = getCalendarStatusDay(date);
 
-	if (status === "completed")
-		return (
-			<CalendarDayCompleted
-				onClick={onClick}
-				day={monthDay}
-				isSelected={isSelected}
-			/>
-		);
+	if (status === 'completed')
+		return <CalendarDayCompleted onClick={onClick} day={monthDay} isSelected={isSelected} />;
 
-	if (status === "canceled")
-		return (
-			<CalendarDayCanceled
-				onClick={onClick}
-				day={monthDay}
-				isSelected={isSelected}
-			/>
-		);
+	if (status === 'canceled')
+		return <CalendarDayCanceled onClick={onClick} day={monthDay} isSelected={isSelected} />;
 
-	if (status === "current")
+	if (status === 'current')
 		return <CalendarDayCurrent onClick={onClick} isSelected={isSelected} />;
 
 	if (isSelected)
 		return (
-			<CalendarDayNormalSelected
-				onClick={onClick}
-				day={monthDay}
-				isSelected={isSelected}
-			/>
+			<CalendarDayNormalSelected onClick={onClick} day={monthDay} isSelected={isSelected} />
 		);
 
-	if (trainingDay)
-		return <CalendarDayNextTraining onClick={onClick} day={monthDay} />;
+	if (trainingDay) return <CalendarDayNextTraining onClick={onClick} day={monthDay} />;
 
 	return <CalendarDayItem onClick={onClick}>{monthDay}</CalendarDayItem>;
 }

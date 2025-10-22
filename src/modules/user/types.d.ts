@@ -1,3 +1,3 @@
-import { Users } from "@/prisma/client";
+import { Users } from '@/prisma/client';
 
-export type UsersWithoutId = Omit<Users, "id">;
+export type UsersWithoutId = Omit<Users, 'id'>;

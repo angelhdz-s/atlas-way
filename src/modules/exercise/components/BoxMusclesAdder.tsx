@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Box } from "@/modules/form/components/Box";
-import { SelectOption } from "@/modules/form/types";
+import { useState } from 'react';
+import { Box } from '@/modules/form/components/Box';
+import { SelectOption } from '@/modules/form/types';
 
 function BoxOption({
 	option,
@@ -11,17 +11,13 @@ function BoxOption({
 	isSelected?: boolean;
 	onSelect: (value: SelectOption) => void;
 }) {
-	const isActiveClass = isSelected ? "bg-primary text-white" : "";
+	const isActiveClass = isSelected ? 'bg-primary text-white' : '';
 	return (
 		<label
 			className={`w-fit rounded-full border border-subtle/10 px-3 py-1 leading-1 ${isActiveClass}`}
 		>
 			<span className="text-sm">{option.label}</span>
-			<input
-				className="hidden"
-				type="checkbox"
-				onChange={() => onSelect(option)}
-			/>
+			<input className="hidden" type="checkbox" onChange={() => onSelect(option)} />
 		</label>
 	);
 }
@@ -33,12 +29,10 @@ export function BoxMusclesAdder({
 	options: SelectOption[];
 	onAdd: (options: SelectOption[]) => void;
 }) {
-	const [search, setSearch] = useState<string>("");
+	const [search, setSearch] = useState<string>('');
 	const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>([]);
 
-	const filteredOptions = options.filter((option) =>
-		option.label.toLowerCase().includes(search),
-	);
+	const filteredOptions = options.filter((option) => option.label.toLowerCase().includes(search));
 
 	const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearch(e.target.value);
@@ -46,9 +40,7 @@ export function BoxMusclesAdder({
 
 	const handleSelectOption = (value: SelectOption) => {
 		if (selectedOptions.includes(value)) {
-			setSelectedOptions((prev) =>
-				prev.filter((selected) => selected !== value),
-			);
+			setSelectedOptions((prev) => prev.filter((selected) => selected !== value));
 		} else {
 			setSelectedOptions((prev) => [...prev, value]);
 		}

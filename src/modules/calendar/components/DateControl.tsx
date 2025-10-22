@@ -1,5 +1,5 @@
-import { ArrowUp } from "@/modules/globals/components/Icons";
-import { ArrowButton } from "./ArrowButton";
+import { ArrowUp } from '@/modules/globals/components/Icons';
+import { ArrowButton } from './ArrowButton';
 
 type DateControlProps = {
 	className?: string;
@@ -8,10 +8,10 @@ type DateControlProps = {
 	onRightClick?: () => void;
 };
 
-const iconSize = "size-4";
+const iconSize = 'size-4';
 
 export function DateControl({
-	className = "",
+	className = '',
 	children,
 	onLeftClick,
 	onRightClick,

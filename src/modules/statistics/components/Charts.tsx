@@ -1,4 +1,4 @@
-"use client";
+'use client';
 type Point = { x: number; y: number };
 
 export function LineChart({
@@ -22,10 +22,8 @@ export function LineChart({
 	const maxX = Math.max(...data.map((d) => d.x));
 	const maxY = Math.max(...data.map((d) => d.y));
 
-	const scaleX = (val: number) =>
-		padding + (val / maxX) * (width - padding * 2);
-	const scaleY = (val: number) =>
-		height - padding - (val / maxY) * (height - padding * 2);
+	const scaleX = (val: number) => padding + (val / maxX) * (width - padding * 2);
+	const scaleY = (val: number) => height - padding - (val / maxY) * (height - padding * 2);
 
 	const pathD = data
 		.map((p, i) => {
@@ -33,7 +31,7 @@ export function LineChart({
 			const y = scaleY(p.y);
 			return i === 0 ? `M ${x},${y}` : `L ${x},${y}`;
 		})
-		.join(" ");
+		.join(' ');
 
 	return (
 		<svg
@@ -52,16 +50,8 @@ export function LineChart({
 						fill="freeze"
 					/>
 
-					<stop
-						offset="0%"
-						stopColor="currentColor"
-						className="text-primary"
-					></stop>
-					<stop
-						offset="100%"
-						stopColor="currentColor"
-						className="text-secondary/0"
-					/>
+					<stop offset="0%" stopColor="currentColor" className="text-primary"></stop>
+					<stop offset="100%" stopColor="currentColor" className="text-secondary/0" />
 				</linearGradient>
 			</defs>
 
@@ -162,11 +152,8 @@ export function BarCharts({
 	const maxY = Math.max(...data.map((d) => d.y));
 
 	const X = (i: number) =>
-		i === 0
-			? padding
-			: padding + i * (barWidth + freeWidth / (data.length - 1));
-	const scaleY = (val: number) =>
-		height - padding - (val / maxY) * absoluteHeight;
+		i === 0 ? padding : padding + i * (barWidth + freeWidth / (data.length - 1));
+	const scaleY = (val: number) => height - padding - (val / maxY) * absoluteHeight;
 
 	return (
 		<svg
@@ -177,11 +164,7 @@ export function BarCharts({
 		>
 			<defs>
 				<linearGradient id="barGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-					<stop
-						offset="0%"
-						stopColor="currentColor"
-						className="text-primary/50"
-					></stop>
+					<stop offset="0%" stopColor="currentColor" className="text-primary/50"></stop>
 					<stop
 						offset="100%"
 						stopColor="currentColor"
@@ -190,16 +173,8 @@ export function BarCharts({
 					/>
 				</linearGradient>
 				<linearGradient id="strokeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-					<stop
-						offset="10%"
-						stopColor="currentColor"
-						className="text-primary"
-					/>
-					<stop
-						offset="80%"
-						stopColor="currentColor"
-						className="text-primary/5"
-					/>
+					<stop offset="10%" stopColor="currentColor" className="text-primary" />
+					<stop offset="80%" stopColor="currentColor" className="text-primary/5" />
 					<stop
 						offset="100%"
 						stopColor="currentColor"

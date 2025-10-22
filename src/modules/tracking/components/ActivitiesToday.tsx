@@ -1,57 +1,52 @@
-import { CardTitle } from "@/modules/dashboard/card/components/CardTitle";
-import { CirclePlus } from "@/modules/globals/components/Icons";
-import {
-	SessionDetails,
-	SessionDetailsType,
-} from "../../session/components/SessionDetails";
-import { SubtleCard } from "@/modules/globals/components/SubtleCard";
+import { CardTitle } from '@/modules/dashboard/card/components/CardTitle';
+import { CirclePlus } from '@/modules/globals/components/Icons';
+import { SessionDetails, SessionDetailsType } from '../../session/components/SessionDetails';
+import { SubtleCard } from '@/modules/globals/components/SubtleCard';
 
 const session = {
 	id: 1,
-	name: "Push Day",
-	description: "Take it easy today!",
+	name: 'Push Day',
+	description: 'Take it easy today!',
 	exercises: [
 		{
 			id: 1,
-			name: "Push Ups",
+			name: 'Push Ups',
 			sets: 3,
 			reps: 10,
 			weight: 0,
-			status: "next",
+			status: 'next',
 		},
 		{
 			id: 2,
-			name: "Shoulder Press",
+			name: 'Shoulder Press',
 			sets: 3,
 			reps: 12,
 			weight: 20,
-			status: "next",
+			status: 'next',
 		},
 		{
 			id: 3,
-			name: "Tricep Dips",
+			name: 'Tricep Dips',
 			sets: 3,
 			reps: 10,
 			weight: 10,
-			status: "next",
+			status: 'next',
 		},
 		{
 			id: 4,
-			name: "Lateral Raises",
+			name: 'Lateral Raises',
 			sets: 3,
 			reps: 15,
 			weight: 5,
-			status: "next",
+			status: 'next',
 		},
 	],
-	status: "next",
+	status: 'next',
 } as SessionDetailsType;
 
 export function ActivitiesToday({ className }: { className?: string }) {
 	return (
-		<article
-			className={`flex flex-col gap-4 dashboard-card-default ${className}`}
-		>
+		<article className={`flex flex-col gap-4 dashboard-card-default ${className}`}>
 			<header>
 				<CardTitle title="Today's Challenge" />
 			</header>

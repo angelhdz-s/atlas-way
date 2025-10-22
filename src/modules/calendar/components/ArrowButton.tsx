@@ -1,5 +1,5 @@
 export function ArrowButton({
-	className = "",
+	className = '',
 	children,
 	onClick,
 }: {

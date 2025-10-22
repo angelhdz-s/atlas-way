@@ -1,18 +1,12 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { BoxMusclesAdder } from "@/modules/exercise/components/BoxMusclesAdder";
-import { Box } from "@/modules/form/components/Box";
-import { SelectOption } from "@/modules/form/types";
-import { CirclePlus, Trash, XMark } from "@/modules/globals/components/Icons";
+import { useState } from 'react';
+import { BoxMusclesAdder } from '@/modules/exercise/components/BoxMusclesAdder';
+import { Box } from '@/modules/form/components/Box';
+import { SelectOption } from '@/modules/form/types';
+import { CirclePlus, Trash, XMark } from '@/modules/globals/components/Icons';
 
-function BoxOption({
-	label,
-	onCrossClick,
-}: {
-	label: string;
-	onCrossClick?: () => void;
-}) {
+function BoxOption({ label, onCrossClick }: { label: string; onCrossClick?: () => void }) {
 	return (
 		<div className="flex items-center bg-sec-background border border-subtle/10 rounded-full px-2 w-fit">
 			{label}
@@ -33,9 +27,7 @@ export function MusclesSelection({ options }: { options: SelectOption[] }) {
 	const [selectedMuscles, setSelectedMuscles] = useState<SelectOption[]>([]);
 	const [isSelecting, setIsSelecting] = useState(false);
 
-	const filteredOptions = options.filter(
-		(option) => !selectedMuscles.includes(option),
-	);
+	const filteredOptions = options.filter((option) => !selectedMuscles.includes(option));
 
 	const handleAddMuscle = () => {
 		setIsSelecting(true);
@@ -51,9 +43,7 @@ export function MusclesSelection({ options }: { options: SelectOption[] }) {
 	};
 
 	const handleRemoveMusclesSelected = (option: SelectOption) => {
-		setSelectedMuscles((prev) =>
-			prev.filter((muscle) => muscle.value !== option.value),
-		);
+		setSelectedMuscles((prev) => prev.filter((muscle) => muscle.value !== option.value));
 	};
 
 	return (
@@ -90,7 +80,7 @@ export function MusclesSelection({ options }: { options: SelectOption[] }) {
 				<input
 					type="hidden"
 					name="muscles"
-					value={selectedMuscles.map((muscle) => muscle.value).join(",")}
+					value={selectedMuscles.map((muscle) => muscle.value).join(',')}
 				/>
 			</div>
 			{isSelecting && (
