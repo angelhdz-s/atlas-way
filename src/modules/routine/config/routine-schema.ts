@@ -1,4 +1,10 @@
-import z from 'zod/v3';
+import { ROUTINE_CYCLES } from '@/modules/globals/seed/cycle-types';
+import { z } from 'zod/v3';
+
+export const routineCycleLiterals = ROUTINE_CYCLES.map((cycle) => cycle.id);
+const routineCycleSchema = z.enum([routineCycleLiterals[0], ...routineCycleLiterals.slice(1)], {
+	message: 'Invalid option',
+});
 
 export const routineFormSchema = z.object({
 	name: z
@@ -9,7 +15,7 @@ export const routineFormSchema = z.object({
 		.string({ message: 'Description must be a string' })
 		.max(255, 'Description must be at most 255 characters long')
 		.optional(),
-	cycle: z.enum(['normal', 'custom'], { message: 'Invalid option' }),
+	cycle: routineCycleSchema,
 	initialDate: z.date({ message: 'Initial date is required' }),
 	days: z
 		.number({ message: 'Days must be a number' })
