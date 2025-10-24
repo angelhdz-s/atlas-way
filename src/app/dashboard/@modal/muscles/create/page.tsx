@@ -1,5 +1,5 @@
-import { RoutineForm } from '@/modules/routine/components/RoutineModalForm';
+import { RoutineModalForm } from '@/modules/routine/components/RoutineModalForm';
 
 export default function CreateMusclePage() {
-	return <RoutineForm title="New Muscle" />;
+	return <RoutineModalForm title="New Muscle" />;
 }

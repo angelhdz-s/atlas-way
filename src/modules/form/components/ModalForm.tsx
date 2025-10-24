@@ -12,10 +12,10 @@ export function ModalForm({
 	title: string;
 }) {
 	return (
-		<div className={`w-96 ${className}`}>
-			<header className="text-2xl mb-4 font-funnel-display ld-main-fg">{title}</header>
+		<div className={`flex flex-col gap-2 w-96 ${className}`}>
+			<header className="text-2xl font-funnel-display ld-main-fg font-medium">{title}</header>
 			<main className="font-light">
-				<form action={action} onSubmit={onSubmit} className="flex flex-col gap-2">
+				<form action={action} onSubmit={onSubmit} className="flex flex-col gap-4">
 					{children}
 				</form>
 			</main>
