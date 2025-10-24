@@ -52,17 +52,17 @@ export function RoutineModalForm({ title }: { title: string }) {
 						placeholder="A workout routine for the whole body"
 					/>
 				</Label>
-				<LabelGroup title="Cycle" className="flex">
-					<RadiobuttonGroup
-						{...register('cycle')}
-						checked={'week'}
-						options={daysOptions}
-						onChange={handleOnChange}
-						error={errors.cycle?.message}
-						className="flex items-center gap-2"
-					/>
-				</LabelGroup>
 				<div className="grid grid-cols-2 gap-2">
+					<LabelGroup title="Cycle" className="w-full">
+						<RadiobuttonGroup
+							{...register('cycle')}
+							checked={'week'}
+							options={daysOptions}
+							onChange={handleOnChange}
+							error={errors.cycle?.message}
+							className="flex items-center gap-2"
+						/>
+					</LabelGroup>
 					<Label title="Days" className="w-fit">
 						<InputNumber
 							{...register('days', inputNumberConfig)}
@@ -72,15 +72,15 @@ export function RoutineModalForm({ title }: { title: string }) {
 							error={errors.days?.message}
 						/>
 					</Label>
-					<Label title="Initial Date" className="w-fit">
-						<InputDate
-							{...register('initialDate', {
-								setValueAs: (value) => (value ? new Date(value) : undefined),
-							})}
-							error={errors.initialDate?.message}
-						/>
-					</Label>
 				</div>
+				<Label title="Initial Date" className="w-fit">
+					<InputDate
+						{...register('initialDate', {
+							setValueAs: (value) => (value ? new Date(value) : undefined),
+						})}
+						error={errors.initialDate?.message}
+					/>
+				</Label>
 			</section>
 			<footer className="flex gap-2 *:px-4 *:py-2 *:rounded *:w-full *:border-2">
 				<ModalFormButtons isPending={isSubmitting} />
