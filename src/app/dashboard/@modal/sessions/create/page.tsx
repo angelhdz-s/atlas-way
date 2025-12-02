@@ -1,5 +1,5 @@
 import { getExercisesIdName } from '@/modules/exercise/actions/get-exercises';
-import { ModalSessionForm } from '@/modules/session/components/ModalSessionForm';
+import { SessionModalForm } from '@/modules/session/components/SessionModalForm';
 
 export default async function CreateSessionPage() {
 	const exercises = await getExercisesIdName();
@@ -7,5 +7,5 @@ export default async function CreateSessionPage() {
 		value: exercise.id.toString(),
 		label: exercise.name,
 	}));
-	return <ModalSessionForm title="New Session" exercises={formattedExercises} />;
+	return <SessionModalForm title="New Session" exercises={formattedExercises} />;
 }
