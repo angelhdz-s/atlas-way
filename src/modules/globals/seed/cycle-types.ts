@@ -1,16 +1,12 @@
-import { RoutineCycleTypes } from '@/prisma/client';
+import { Prisma } from '../../../prisma/client';
 
-export const ROUTINE_CYCLES: RoutineCycleTypes[] = [
+export const ROUTINE_CYCLES: Prisma.RoutineCycleTypesCreateManyInput[] = [
 	{
 		id: 'week',
 		name: 'Week',
-		createdAt: new Date(),
-		updatedAt: new Date(),
 	},
 	{
 		id: 'custom',
 		name: 'Custom',
-		createdAt: new Date(),
-		updatedAt: new Date(),
 	},
 ];

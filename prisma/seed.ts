@@ -1,5 +1,4 @@
-import { ROUTINE_CYCLES } from '@/modules/globals/seed/cycle-types';
-import { createId } from '../node_modules/@paralleldrive/cuid2';
+import { ROUTINE_CYCLES } from '../src/modules/globals/seed/cycle-types';
 import { DAY_TYPES } from '../src/modules/globals/seed/day-types';
 import { BODY_SECTIONS } from '../src/modules/muscle/seed/body-sections';
 import { MUSCLES } from '../src/modules/muscle/seed/muscles';
@@ -10,10 +9,8 @@ import { PrismaClient } from '../src/prisma/client';
 
 const prisma = new PrismaClient();
 async function main() {
-	const usersWithId = USERS.map((user) => ({ ...user, id: createId() }));
-
 	await prisma.$transaction([
-		prisma.users.createMany({ data: usersWithId }),
+		prisma.users.createMany({ data: USERS }),
 		prisma.routineCycleTypes.createMany({ data: ROUTINE_CYCLES }),
 		prisma.status.createMany({ data: STATUS }),
 		prisma.dayTypes.createMany({ data: DAY_TYPES }),
