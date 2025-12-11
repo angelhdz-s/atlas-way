@@ -11,15 +11,14 @@ export class MuscleMapper {
 			createdAt: data.createdAt,
 			updatedAt: data.updatedAt,
 			userId: data.userId,
-			muscleGroupId: data.muscularGroupId,
+			muscularGroupId: data.muscularGroupId,
 		};
-
 		return new Muscle(muscle);
 	}
 
 	static toPersistenceCreate(data: NewMuscle): Prisma.MusclesCreateManyInput {
 		return {
-			muscularGroupId: data.muscleGroupId,
+			muscularGroupId: data.muscularGroupId,
 			userId: data.userId,
 			name: data.name,
 			description: data.description,

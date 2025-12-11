@@ -2,7 +2,6 @@ import { MuscleProps, NewMuscleProps, UpdateMuscleProps } from './muscle.schema'
 
 export class Muscle {
 	constructor(private muscle: MuscleProps) {}
-
 	get id() {
 		return this.muscle.id;
 	}
@@ -22,8 +21,8 @@ export class Muscle {
 		return this.muscle.userId;
 	}
 
-	get muscleGroupId() {
-		return this.muscle.muscleGroupId;
+	get muscularGroupId() {
+		return this.muscle.muscularGroupId;
 	}
 }
 
@@ -41,9 +40,8 @@ export class NewMuscle {
 	get userId() {
 		return this.muscle.userId;
 	}
-
-	get muscleGroupId() {
-		return this.muscle.muscleGroupId;
+	get muscularGroupId() {
+		return this.muscle.muscularGroupId;
 	}
 }
 
