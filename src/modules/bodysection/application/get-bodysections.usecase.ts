@@ -1,6 +1,6 @@
 import { IBodySectionRepository } from '../domain/bodysection.repository';
 
-export class GetBodySectionsUseCase {
+export class GetAllBodySectionsUseCase {
 	constructor(private repository: IBodySectionRepository) {}
 
 	async execute() {
