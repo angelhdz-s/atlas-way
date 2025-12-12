@@ -1,9 +1,10 @@
 'use server';
 
 import { GetCurrentUserUseCase } from '@/modules/user/application/get-current-user.usecase';
-import { UserActionResponse } from '@/modules/user/contracts/user.action.types';
+import { User } from '@/modules/user/domain/user.entity';
 import { UserPrismaRepository } from '@/modules/user/infrastructure/user.prisma.repository';
-export async function getUser(): UserActionResponse {
+import { ActionResponse } from '@/shared/contracts/actions.response';
+export async function getUser(): ActionResponse<User | null> {
 	const repo = new UserPrismaRepository();
 	const currentUser = new GetCurrentUserUseCase(repo);
 
