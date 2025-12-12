@@ -1,9 +1,5 @@
-'use client';
-
 import { IconTypes } from '@/modules/globals/types.d';
-import { useSidebar } from '@/modules/sidebar/hooks/useSidebar';
 import { NavIconSize } from '@/modules/sidebar/components/nav/NavConstants';
-import { NavLinkBody } from '@/modules/sidebar/components/nav/NavLinkBody';
 import { SubLink } from '@/modules/sidebar/components/nav/SubLink';
 
 export function NavLinks({ children }: { children: React.ReactNode }) {
@@ -19,14 +15,12 @@ export function NavLink({
 	children: React.ReactNode;
 	Icon: IconTypes;
 }) {
-	const { isOpen } = useSidebar();
 	return (
 		<div className="relative group">
 			<SubLink href={href}>
 				<NavIconSize Icon={Icon} />
-				{isOpen && children}
+				{children}
 			</SubLink>
-			{!isOpen && <NavLinkBody title={children} />}
 		</div>
 	);
 }

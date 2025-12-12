@@ -1,16 +1,14 @@
 export function Imagotype({
 	className = '',
 	isotypeSize = 32,
-	closed = false,
 }: {
 	className?: string;
 	isotypeSize?: number;
-	closed?: boolean;
 }) {
 	return (
 		<div className={`flex tracking-tight gap-2 font-bold ${className}`}>
 			<Logo className="text-primary" size={isotypeSize} />
-			{!closed && <span className="text-2xl ld-main-fg">AtlasWay</span>}
+			<span className="text-2xl ld-main-fg">AtlasWay</span>
 		</div>
 	);
 }
