@@ -2,6 +2,7 @@ import { prisma } from '@/shared/infrastructure/prisma/client';
 import { Muscle, NewMuscle, UpdateMuscle } from '../domain/muscle.entity';
 import { IMuscleRepository } from '../domain/muscle.repository';
 import { MuscleMapper } from './muscle.mapper';
+import { BodySection } from '@/modules/bodysection/domain/bodysection.entity';
 
 export class MusclePrismaRepository implements IMuscleRepository {
 	async create(data: NewMuscle): Promise<Muscle> {
@@ -32,5 +33,17 @@ export class MusclePrismaRepository implements IMuscleRepository {
 			where: { id },
 		});
 		return muscle ? MuscleMapper.toDomain(muscle) : null;
+	}
+	async findAllByMuscularGroupId(id: Muscle['muscularGroupId']): Promise<Muscle[]> {
+		const muscles = await prisma.muscles.findMany({ where: { muscularGroupId: id } });
+		const domainMuscles = muscles.map((muscle) => MuscleMapper.toDomain(muscle));
+		return domainMuscles;
+	}
+	async findAllByBodySection(id: BodySection['id']): Promise<Muscle[]> {
+		const muscles = await prisma.muscles.findMany({
+			where: { muscularGroup: { bodySectionId: id } },
+		});
+		const domainMuscles = muscles.map((muscle) => MuscleMapper.toDomain(muscle));
+		return domainMuscles;
 	}
 }
