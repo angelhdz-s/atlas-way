@@ -3,7 +3,7 @@ import { IMuscleRepository } from '../domain/muscle.repository';
 export class GetAllMuscleUseCase {
 	constructor(private repository: IMuscleRepository) {}
 
-	async getAll() {
+	async execute() {
 		return await this.repository.findAll();
 	}
 }

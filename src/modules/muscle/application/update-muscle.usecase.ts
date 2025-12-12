@@ -1,10 +1,11 @@
+import { UpdateMuscle } from '../domain/muscle.entity';
 import { IMuscleRepository } from '../domain/muscle.repository';
-import { UpdateMuscleProps } from '../domain/muscle.schema';
+import { MuscleProps, UpdateMuscleProps } from '../domain/muscle.schema';
 
 export class CrateMuscleUseCase {
 	constructor(private repository: IMuscleRepository) {}
 
-	async create(id: string, data: UpdateMuscleProps) {
+	async execute(id: MuscleProps['id'], data: UpdateMuscle) {
 		return await this.repository.update(id, data);
 	}
 }
