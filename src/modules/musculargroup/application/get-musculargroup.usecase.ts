@@ -1,6 +1,6 @@
 import { IMuscularGroupRepository } from '../domain/musculargroup.repository';
 
-export class GetMuscularGroupUseCase {
+export class GetAllMuscularGroupUseCase {
 	constructor(private repository: IMuscularGroupRepository) {}
 
 	async execute() {
