@@ -1,36 +1,15 @@
-export function MuscularGroupsTable() {
-	const MUSCULAR_GROUPS = [
-		{
-			id: 1,
-			name: 'Chest',
-			bodySection: 'Torso',
-			date: '2023-10-01',
-		},
-		{
-			id: 2,
-			name: 'Back',
-			bodySection: 'Torso',
-			date: '2023-10-02',
-		},
-		{
-			id: 3,
-			name: 'Quads',
-			bodySection: 'Legs',
-			date: '2023-10-03',
-		},
-		{
-			id: 4,
-			name: 'Biceps',
-			bodySection: 'Arms',
-			date: '2023-10-04',
-		},
-		{
-			id: 5,
-			name: 'Shoulders',
-			bodySection: 'Arms',
-			date: '2023-10-05',
-		},
-	];
+import { getBodySections } from '@/app/_actions/bodysection.actions';
+import { getMuscularGroups } from '@/app/_actions/musculargroup.actions';
+import { BodySection } from '@/modules/bodysection/domain/bodysection.entity';
+
+export async function MuscularGroupsTable() {
+	const { data: muscularGroups } = await getMuscularGroups();
+	const { data: bodySections } = await getBodySections();
+
+	const findBodySection = (id: BodySection['id']) => {
+		return bodySections.find((bodySection) => bodySection.id === id);
+	};
+
 	return (
 		<div className="bg-zinc-900/50 p-4 rounded-lg shadow-md">
 			<header>
@@ -45,12 +24,12 @@ export function MuscularGroupsTable() {
 					</tr>
 				</thead>
 				<tbody>
-					{MUSCULAR_GROUPS.map(({ id, name, bodySection, date }) => {
+					{muscularGroups.map(({ id, name, bodySectionId, createdAt }) => {
 						return (
-							<tr key={id} className="*:px-2 *:py-1 border-t-[1px] border-zinc-700">
+							<tr key={id} className="*:px-2 *:py-1 border-t-px border-zinc-700">
 								<td>{name}</td>
-								<td>{bodySection}</td>
-								<td>{date}</td>
+								<td>{findBodySection(bodySectionId)?.name ?? 'Unknown'}</td>
+								<td>{createdAt.toISOString()}</td>
 							</tr>
 						);
 					})}

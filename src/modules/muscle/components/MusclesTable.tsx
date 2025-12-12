@@ -11,8 +11,13 @@ import {
 	DashboardCardSubHeader,
 	DashboardCardTag,
 } from '../../dashboard/components/Card';
+import { getBodySections } from '@/app/_actions/bodysection.actions';
+import { getMuscles, getMusclesByBodySection } from '@/app/_actions/muscle.actions';
+import { BodySectionProps } from '@/modules/bodysection/domain/bodysection.schema';
+import { BodySection } from '@/modules/bodysection/domain/bodysection.entity';
 
-function Muscles({ muscles }: { muscles: MuscleType[] }) {
+async function Muscles({ bodySectionId }: { bodySectionId: BodySectionProps['id'] }) {
+	const { data: muscles } = await getMuscles();
 	return (
 		<ul className="flex flex-wrap gap-2">
 			{muscles.map(({ name }, key) => (
@@ -22,34 +27,36 @@ function Muscles({ muscles }: { muscles: MuscleType[] }) {
 	);
 }
 
-function getMusclesByBodySection(bodySection: BodySectionsKeys) {
-	return Object.values(MUSCLES).filter((muscle) => {
-		return muscle.bodySection === BODY_SECTIONS[bodySection];
-	});
-}
+export default async function MusclesTable() {
+	const { data: bodySections } = await getBodySections();
+	const muscleCounts: { length: number; bodySectionId: BodySection['id'] }[] = [];
 
-export default function MusclesTable() {
-	const bodySections = Object.keys(BODY_SECTIONS);
+	for (const section of bodySections) {
+		const { data: muscles } = await getMusclesByBodySection(section.id);
+		muscleCounts.push({
+			length: muscles.length,
+			bodySectionId: section.id,
+		});
+	}
+	return bodySections.map((section) => {
+		const muscleCount = muscleCounts.find(
+			(musclCount) => musclCount.bodySectionId === section.id
+		);
 
-	return bodySections.map((section, index) => {
 		return (
-			<DashboardCard key={index}>
-				<DashboardCardHeader title={BODY_SECTIONS[section as BodySectionsKeys]}>
+			<DashboardCard key={section.id}>
+				<DashboardCardHeader title={section.name}>
 					<DashboardCardSubHeader
-						description={`Muscles in the ${section} section`}
+						description={`Muscles in the ${section.name} section`}
 						counters={[
 							'3 routines',
 							'5 exercises',
-							`${getMusclesByBodySection(section as keyof typeof BODY_SECTIONS).length} muscles`,
+							`${muscleCount?.length ?? 0} muscles`,
 						]}
 					></DashboardCardSubHeader>
 				</DashboardCardHeader>
 				<DashboardCardFooter>
-					<Muscles
-						muscles={getMusclesByBodySection(
-							section as keyof typeof BODY_SECTIONS
-						).sort((a, b) => a.name.localeCompare(b.name))}
-					/>
+					<Muscles bodySectionId={section.id} />
 				</DashboardCardFooter>
 			</DashboardCard>
 		);
