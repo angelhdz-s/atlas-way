@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Imagotype } from '@/modules/globals/components/AtlasWayLogo';
 import { ToggleTheme } from '@/modules/globals/components/ToggleTheme';
+import { SessionButtons } from '@/modules/auth/ui/components/SessionButtons';
 
 export function Header({ className = '' }: { className?: string }) {
 	return (
@@ -27,12 +28,7 @@ export function Header({ className = '' }: { className?: string }) {
 					</nav>
 					<div className="flex items-center gap-2">
 						<ToggleTheme className="btn-md" />
-						<Link
-							href="/login"
-							className="rounded-full btn-md btn-primary-outline py-1.5"
-						>
-							Log In
-						</Link>
+						<SessionButtons />
 					</div>
 				</div>
 			</main>
