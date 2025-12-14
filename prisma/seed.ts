@@ -4,12 +4,13 @@ import { BODY_SECTIONS } from '../src/modules/muscle/seed/body-sections';
 import { MUSCLES } from '../src/modules/muscle/seed/muscles';
 import { MUSCULAR_GROUPS } from '../src/modules/muscle/seed/muscular-groups';
 import { STATUS } from '../src/modules/status/seed/status';
-import { USERS } from '../src/modules/user/seed/users';
+import { ROLES, USERS } from '../src/modules/user/seed/users';
 import { PrismaClient } from '../src/prisma/client';
 
 const prisma = new PrismaClient();
 async function main() {
 	await prisma.$transaction([
+		prisma.roles.createMany({ data: ROLES }),
 		prisma.users.createMany({ data: USERS }),
 		prisma.routineCycleTypes.createMany({ data: ROUTINE_CYCLES }),
 		prisma.status.createMany({ data: STATUS }),
