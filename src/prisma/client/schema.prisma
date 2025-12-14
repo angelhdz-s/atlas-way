@@ -1,14 +1,22 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/prisma/client"
+  provider   = "prisma-client-js"
+  engineType = "binary"
+  output     = "../src/prisma/client"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 // MARK: User Plan
+
+model Roles {
+  id        String   @id
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      Users[]
+}
 
 model Users {
   id            String          @id @default(cuid())
@@ -16,6 +24,8 @@ model Users {
   name          String
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
+  roleId        String          @default("base")
+  role          Roles           @relation(fields: [roleId], references: [id])
   routines      Routines[]
   sessions      Sessions[]
   exercises     Exercises[]
