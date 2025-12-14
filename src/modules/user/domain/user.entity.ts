@@ -26,10 +26,6 @@ export class User {
 export class NewUser {
 	constructor(private props: NewUserProps) {}
 
-	get id() {
-		return this.props.id;
-	}
-
 	get name() {
 		return this.props.name;
 	}

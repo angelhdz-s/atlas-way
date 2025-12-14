@@ -16,7 +16,6 @@ export const UserSchema = z.object({
 export type UserProps = z.infer<typeof UserSchema>;
 
 export const NewUserSchema = z.object({
-	id: userIdRule,
 	name: userNameRule,
 	email: emailRule,
 });
