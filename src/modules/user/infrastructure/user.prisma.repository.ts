@@ -2,13 +2,13 @@ import { NewUser, UpdateUser, User } from '@/modules/user/domain/user.entity';
 import { IUserRepository } from '@/modules/user/domain/user.repository';
 import { prisma } from '@/shared/infrastructure/prisma/client';
 import { UserMapper } from '@/modules/user/infrastructure/user.mapper';
-import { randomUUID } from 'crypto';
+import { createId } from '@paralleldrive/cuid2';
 
 export class UserPrismaRepository implements IUserRepository {
 	async create(data: NewUser): Promise<User> {
 		const persistenceData = UserMapper.toPersistence(data);
 
-		const userId = randomUUID();
+		const userId = createId();
 		persistenceData.id = userId;
 
 		const created = await prisma.users.create({
@@ -23,7 +23,7 @@ export class UserPrismaRepository implements IUserRepository {
 		if (exists) return null;
 
 		const persistenceData = UserMapper.toPersistence(data);
-		const userId = randomUUID();
+		const userId = createId();
 		persistenceData.id = userId;
 
 		const created = await prisma.users.create({
