@@ -7,7 +7,7 @@ import { MuscularGroupsTable } from '@/modules/muscle/components/MuscularGroupsT
 export default function MuscularGroupsPage() {
 	return (
 		<PageContainer>
-			<PageHeader title="Muscles and Muscular Groups" />
+			<PageHeader title="Muscles" />
 			<PageContent className="flex flex-col gap-8">
 				<section className="flex flex-wrap gap-4">
 					<MusclesTable />

@@ -1,8 +1,8 @@
+import { getMuscles } from '@/app/_actions/muscle.actions';
 import { ModalExerciseForm } from '@/modules/exercise/components/ModalExerciseForm';
-import { getMuscleIdName } from '@/modules/muscle/actions/getMuscles';
 
 export default async function CreateExercisePage() {
-	const muscles = await getMuscleIdName();
+	const { data: muscles } = await getMuscles();
 	const muscleOptions = muscles.map((muscle) => ({
 		value: muscle.id.toString(),
 		label: muscle.name,
