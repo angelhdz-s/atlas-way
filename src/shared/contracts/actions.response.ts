@@ -3,3 +3,9 @@ export type ActionResponse<T> = Promise<{
 	message: string;
 	data: T;
 }>;
+
+export type ActionResponseProps<T> = {
+	success: boolean;
+	message: string;
+	data: T;
+};
