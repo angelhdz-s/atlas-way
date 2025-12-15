@@ -1,62 +1,34 @@
 import {
-	BODY_SECTIONS,
-	BodySectionsKeys,
-	MUSCLES,
-	MuscleType,
-} from '@/modules/globals/constants/db';
-import {
 	DashboardCard,
 	DashboardCardFooter,
 	DashboardCardHeader,
 	DashboardCardSubHeader,
 	DashboardCardTag,
 } from '../../dashboard/components/Card';
-import { getBodySections } from '@/app/_actions/bodysection.actions';
-import { getMuscles, getMusclesByBodySection } from '@/app/_actions/muscle.actions';
-import { BodySectionProps } from '@/modules/bodysection/domain/bodysection.schema';
-import { BodySection } from '@/modules/bodysection/domain/bodysection.entity';
-
-async function Muscles({ bodySectionId }: { bodySectionId: BodySectionProps['id'] }) {
-	const { data: muscles } = await getMuscles();
-	return (
-		<ul className="flex flex-wrap gap-2">
-			{muscles.map(({ name }, key) => (
-				<DashboardCardTag key={key} tag={{ value: name, selected: false }} />
-			))}
-		</ul>
-	);
-}
+import { getBodySectionsWithMuscularGroups } from '@/app/_actions/bodysection.actions';
 
 export default async function MusclesTable() {
-	const { data: bodySections } = await getBodySections();
-	const muscleCounts: { length: number; bodySectionId: BodySection['id'] }[] = [];
+	const { data: bodySections } = await getBodySectionsWithMuscularGroups();
 
-	for (const section of bodySections) {
-		const { data: muscles } = await getMusclesByBodySection(section.id);
-		muscleCounts.push({
-			length: muscles.length,
-			bodySectionId: section.id,
-		});
-	}
 	return bodySections.map((section) => {
-		const muscleCount = muscleCounts.find(
-			(musclCount) => musclCount.bodySectionId === section.id
-		);
-
 		return (
 			<DashboardCard key={section.id}>
 				<DashboardCardHeader title={section.name}>
 					<DashboardCardSubHeader
-						description={`Muscles in the ${section.name} section`}
+						description={`Muscular groups:`}
 						counters={[
 							'3 routines',
 							'5 exercises',
-							`${muscleCount?.length ?? 0} muscles`,
+							`${section.muscularGroups?.length ?? 0} muscles`,
 						]}
 					></DashboardCardSubHeader>
 				</DashboardCardHeader>
 				<DashboardCardFooter>
-					<Muscles bodySectionId={section.id} />
+					<ul className="flex flex-wrap gap-2">
+						{section.muscularGroups.map(({ name, id }) => (
+							<DashboardCardTag key={id} tag={{ value: name, selected: false }} />
+						))}
+					</ul>
 				</DashboardCardFooter>
 			</DashboardCard>
 		);
