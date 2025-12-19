@@ -1,73 +1,81 @@
-import { NewUser, UpdateUser, User } from '@/modules/user/domain/user.entity';
+import { User } from '@/modules/user/domain/user.entity';
 import { IUserRepository } from '@/modules/user/domain/user.repository';
 import { prisma } from '@/shared/infrastructure/prisma/client';
 import { UserMapper } from '@/modules/user/infrastructure/user.mapper';
-import { createId } from '@paralleldrive/cuid2';
+import { Failure, Success } from '@/shared/domain/result';
+import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 
 export class UserPrismaRepository implements IUserRepository {
-	async create(data: NewUser): Promise<User> {
+	async create(data: User) {
 		const persistenceData = UserMapper.toPersistence(data);
 
-		const userId = createId();
-		persistenceData.id = userId;
-
-		const created = await prisma.users.create({
-			data: persistenceData,
-		});
-
-		return UserMapper.toDomain(created);
+		try {
+			const created = await prisma.users.create({
+				data: persistenceData,
+			});
+			const domainUser = UserMapper.toDomain(created);
+			return Success(domainUser);
+		} catch {
+			return Failure(new PrismaError('Unavailable create service'));
+		}
 	}
 
-	async createIfNotExists(data: NewUser): Promise<User | null> {
-		const exists = await prisma.users.findUnique({ where: { email: data.email } });
-		if (exists) return null;
-
+	async update(data: User) {
 		const persistenceData = UserMapper.toPersistence(data);
-		const userId = createId();
-		persistenceData.id = userId;
+		try {
+			const updated = await prisma.users.update({
+				data: persistenceData,
+				where: { id: persistenceData.id },
+			});
 
-		const created = await prisma.users.create({
-			data: persistenceData,
-		});
-
-		return UserMapper.toDomain(created);
+			const domainUser = UserMapper.toDomain(updated);
+			return Success(domainUser);
+		} catch {
+			return Failure(new PrismaError('Unavailable update service'));
+		}
 	}
 
-	async update(id: User['id'], data: UpdateUser): Promise<User> {
-		const persistenceData = UserMapper.toPersistenceUpdate(data);
-		const updated = await prisma.users.update({
-			data: persistenceData,
-			where: { id },
-		});
-
-		return UserMapper.toDomain(updated);
+	async currentUser() {
+		try {
+			const user = await prisma.users.findFirst();
+			return Success(user ? UserMapper.toDomain(user) : null);
+		} catch {
+			return Failure(new PrismaError('Unavailable prisma service'));
+		}
 	}
 
-	async currentUser(): Promise<User | null> {
-		const user = await prisma.users.findFirst();
-		return user ? UserMapper.toDomain(user) : null;
+	async findAll() {
+		try {
+			const users = await prisma.users.findMany();
+			const domainUsers = users.map((user) => UserMapper.toDomain(user));
+			return Success(domainUsers);
+		} catch (error) {
+			return Failure(new PrismaError('Unavailable prisma service'));
+		}
 	}
 
-	async findAll(): Promise<User[]> {
-		const users = await prisma.users.findMany();
-		const domainUsers = users.map((user) => UserMapper.toDomain(user));
-		return domainUsers;
+	async findById(id: User['id']) {
+		try {
+			const user = await prisma.users.findUnique({
+				where: {
+					id,
+				},
+			});
+			return Success(user ? UserMapper.toDomain(user) : null);
+		} catch (error) {
+			return Failure(new PrismaError('Unavailable prisma service'));
+		}
 	}
-
-	async findById(id: User['id']): Promise<User | null> {
-		const user = await prisma.users.findUnique({
-			where: {
-				id,
-			},
-		});
-		return user ? UserMapper.toDomain(user) : null;
-	}
-	async findByEmail(email: User['email']): Promise<User | null> {
-		const user = await prisma.users.findUnique({
-			where: {
-				email,
-			},
-		});
-		return user ? UserMapper.toDomain(user) : null;
+	async findByEmail(email: User['email']) {
+		try {
+			const user = await prisma.users.findUnique({
+				where: {
+					email,
+				},
+			});
+			return Success(user ? UserMapper.toDomain(user) : null);
+		} catch (error) {
+			return Failure(new PrismaError('Unavailable prisma service'));
+		}
 	}
 }
