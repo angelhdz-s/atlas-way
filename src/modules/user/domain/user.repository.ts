@@ -1,12 +1,12 @@
-import { NewUser, UpdateUser, User } from './user.entity';
+import { RepositoryResult } from '@/shared/domain/repository.result';
+import { User } from './user.entity';
+import { UserProps } from './user.types';
 
 export interface IUserRepository {
-	create: (data: NewUser) => Promise<User>;
-	createIfNotExists: (data: NewUser) => Promise<User | null>;
-	update: (id: string, data: UpdateUser) => Promise<User>;
-	findAll: () => Promise<User[]>;
-	findById: (id: string) => Promise<User | null>;
-	findByEmail: (email: string) => Promise<User | null>;
-
-	currentUser: () => Promise<User | null>;
+	create: (data: User) => RepositoryResult<User>;
+	update: (data: User) => RepositoryResult<User | null>;
+	findAll: () => RepositoryResult<User[]>;
+	findById: (id: UserProps['id']) => RepositoryResult<User | null>;
+	findByEmail: (email: UserProps['email']) => RepositoryResult<User | null>;
+	currentUser: () => RepositoryResult<User | null>;
 }

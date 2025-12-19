@@ -1,48 +1,32 @@
-import { NewUserProps, UpdateUserProps, UserProps } from './user.schema';
+import { UserProps } from './user.types';
 
 export class User {
 	constructor(private props: UserProps) {}
-
 	get id() {
 		return this.props.id;
 	}
-
 	get name() {
 		return this.props.name;
 	}
-
 	get email() {
 		return this.props.email;
 	}
-
 	get createdAt() {
 		return this.props.createdAt;
 	}
-
 	get updatedAt() {
 		return this.props.updatedAt;
 	}
-}
-export class NewUser {
-	constructor(private props: NewUserProps) {}
-
-	get name() {
-		return this.props.name;
+	get roleId() {
+		return this.props.roleId;
 	}
-
-	get email() {
-		return this.props.email;
+	changeName(name: UserProps['name']) {
+		this.props.name = name;
 	}
-}
-
-export class UpdateUser {
-	constructor(private props: UpdateUserProps) {}
-
-	get name() {
-		return this.props.name;
+	changeEmail(email: UserProps['email']) {
+		this.props.email = email;
 	}
-
-	get email() {
-		return this.props.email;
+	static create(id: UserProps['id'], data: Omit<UserProps, 'id' | 'createdAt' | 'updatedAt'>) {
+		return new User({ ...data, createdAt: new Date(), updatedAt: new Date(), id });
 	}
 }
