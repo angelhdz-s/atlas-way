@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { BoxMusclesAdder } from '@/modules/exercise/components/BoxMusclesAdder';
+import { BoxMusclesAdder } from '@/modules/exercise/presentation/ui/components/BoxMusclesAdder';
 import { Box } from '@/modules/form/components/Box';
 import { SelectOption } from '@/modules/form/types';
 import { CirclePlus, Trash, XMark } from '@/modules/globals/components/Icons';

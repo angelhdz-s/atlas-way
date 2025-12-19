@@ -3,7 +3,7 @@ import {
 	DESCRIPTION_MIN_LENGTH,
 	NAME_MAX_LENGTH,
 	NAME_MIN_LENGTH,
-} from '@/modules/exercise/constants/exercise-data';
+} from '@/modules/exercise/domain/constants/exercise-data';
 import {
 	isNumber,
 	isString,

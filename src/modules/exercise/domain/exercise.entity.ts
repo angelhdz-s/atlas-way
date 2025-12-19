@@ -1,8 +1,7 @@
-import { ExerciseProps, NewExerciseProps, UpdateExerciseProps } from './exercise.schema';
+import { ExerciseProps } from './exercise.types';
 
 export class Exercise {
 	constructor(private data: ExerciseProps) {}
-
 	get id() {
 		return this.data.id;
 	}
@@ -18,37 +17,29 @@ export class Exercise {
 	get updatedAt() {
 		return this.data.updatedAt;
 	}
-
 	get userId() {
 		return this.data.userId;
 	}
-}
-
-export class NewExercise {
-	constructor(private data: NewExerciseProps) {}
-
-	get id() {
-		return this.data.id;
+	changeName(name: ExerciseProps['name']) {
+		return (this.data.name = name);
 	}
-	get name() {
-		return this.data.name;
-	}
-	get description() {
-		return this.data.description;
+	changeDescription(description: ExerciseProps['description']) {
+		this.data.description = description;
 	}
 
-	get userId() {
-		return this.data.userId;
+	changeId(description: ExerciseProps['description']) {
+		this.data.description = description;
 	}
-}
 
-export class UpdateExercise {
-	constructor(private data: UpdateExerciseProps) {}
-
-	get name() {
-		return this.data.name;
-	}
-	get description() {
-		return this.data.description;
+	static create(
+		id: ExerciseProps['id'],
+		data: Omit<ExerciseProps, 'id' | 'createdAt' | 'updatedAt'>
+	) {
+		return new Exercise({
+			...data,
+			createdAt: new Date(),
+			updatedAt: new Date(),
+			id,
+		});
 	}
 }

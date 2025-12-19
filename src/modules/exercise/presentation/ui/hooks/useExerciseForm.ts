@@ -1,10 +1,10 @@
 'use client';
 
 import { useFieldArray } from 'react-hook-form';
-import { createExerciseAction } from '@/modules/exercise/actions/create-exercise';
-import { exerciseFormSchema } from '@/modules/exercise/config/exercise-schema';
 import { SelectOption } from '@/modules/form/types';
 import { useFormHook } from '@/modules/form/hooks/useFormHook';
+import { exerciseFormSchema } from '../schemas/exercise.schema';
+import { createExerciseAction } from '@/app/_actions/exercise.actions';
 export function useExerciseForm({
 	onSuccess,
 }: {

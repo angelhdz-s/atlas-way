@@ -7,19 +7,17 @@ export const exerciseSchema = z.object({
 	description: z.string().optional(),
 	muscles: z.array(z.object({ id: z.string() })).nonempty('Select at least one muscle'),
 });
-
-export type ExerciseType = z.infer<typeof exerciseSchema>;
+export type ExerciseProps = z.infer<typeof exerciseSchema>;
 
 export const exerciseInitialStatsSchema = z.object({
 	sets: z.number().min(1, 'Sets must be at least 1').optional(),
 	reps: z.number().min(1, 'Reps must be at least 1').optional(),
 	weight: z.number().min(0, 'Weight must be at least 0').optional(),
 });
-
-export type ExerciseInitialStatsType = z.infer<typeof exerciseInitialStatsSchema>;
+export type ExerciseInitialStatsProps = z.infer<typeof exerciseInitialStatsSchema>;
 
 export const exerciseFormSchema = z.object({
 	exercise: exerciseSchema,
 	initialStats: exerciseInitialStatsSchema.optional(),
 });
-export type ExerciseForm = z.infer<typeof exerciseFormSchema>;
+export type ExerciseFormProps = z.infer<typeof exerciseFormSchema>;

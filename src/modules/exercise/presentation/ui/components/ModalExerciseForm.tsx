@@ -1,6 +1,6 @@
 'use client';
 
-import { useExerciseForm } from '@/modules/exercise/hooks/useExerciseForm';
+import { useExerciseForm } from '@/modules/exercise/presentation/ui/hooks/useExerciseForm';
 import { InputNumber } from '@/modules/form/components/InputNumber';
 import { InputText } from '@/modules/form/components/InputText';
 import { Label } from '@/modules/form/components/LabelInput';

@@ -1,14 +1,13 @@
-import { Prisma, Exercises as PrismaExercise } from '@/prisma/client';
 import {
-	Exercise as DomainExercise,
-	Exercise,
-	NewExercise,
-	UpdateExercise,
-} from '../domain/exercise.entity';
-import { ExerciseProps } from '../domain/exercise.schema';
+	ExerciseInitialStats as PrismaExerciseInitialStats,
+	Prisma,
+	Exercises as PrismaExercise,
+} from '@/prisma/client';
+import { Exercise } from '../domain/exercise.entity';
+import { ExerciseProps } from '../domain/exercise.types';
 
 export class ExerciseMapper {
-	static toDomain(data: PrismaExercise): DomainExercise {
+	static toDomain(data: PrismaExercise): Exercise {
 		const props: ExerciseProps = {
 			id: data.id,
 			name: data.name,
@@ -20,20 +19,14 @@ export class ExerciseMapper {
 
 		return new Exercise(props);
 	}
-	static toPersistenceCreate(data: NewExercise): Prisma.ExercisesCreateManyInput {
+	static toPersistence(data: Exercise): PrismaExercise {
 		return {
 			id: data.id,
 			name: data.name,
 			description: data.description,
+			createdAt: data.createdAt,
+			updatedAt: data.updatedAt,
 			userId: data.userId,
 		};
-	}
-	static toPersistenceUpdate(data: UpdateExercise): Prisma.ExercisesUpdateInput {
-		const exercise: Prisma.ExercisesUpdateInput = {};
-
-		if (data.description) exercise.description = data.description;
-		if (data.name) exercise.name = data.name;
-
-		return exercise;
 	}
 }
