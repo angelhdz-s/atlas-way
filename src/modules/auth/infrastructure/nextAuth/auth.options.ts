@@ -1,8 +1,7 @@
-import { CreateIfNotExistsUserUseCase } from '@/modules/user/application/create-if-not-exists-user.usecase';
-import { NewUser } from '@/modules/user/domain/user.entity';
-import { UserPrismaRepository } from '@/modules/user/infrastructure/user.prisma.repository';
 import GoogleProvider from 'next-auth/providers/google';
-import { User } from 'next-auth';
+import { User as NextAuthUser } from 'next-auth';
+import { Containers } from '@/di/containers';
+import { CreateUserInput } from '@/modules/user/application/dtos/create-user.dto';
 
 export const authOptions = {
 	providers: [
@@ -12,18 +11,18 @@ export const authOptions = {
 		}),
 	],
 	events: {
-		async signIn({ user }: { user: User }) {
+		async signIn({ user }: { user: NextAuthUser }) {
 			if (!user.email || !user.name) return;
 
-			const userRepo = new UserPrismaRepository();
-			const registerUser = new CreateIfNotExistsUserUseCase(userRepo);
+			const registerUser = Containers.User.CreateIfNotExistsUserUseCase;
 
-			const domainUser = new NewUser({
+			const newUser: CreateUserInput = {
 				email: user.email,
 				name: user.name,
-			});
+				roleId: 'base',
+			};
 
-			await registerUser.execute(domainUser);
+			await registerUser.execute(newUser);
 		},
 	},
 	secret: process.env.NEXTAUTH_SECRET,
