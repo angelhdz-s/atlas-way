@@ -5,7 +5,7 @@ import { SettingsButton } from '@/modules/globals/components/SettingsButton';
 import { UserInfo } from '../../user/ui/components/UserInfo';
 import { NotificationsButton } from '../../notification/components/NotificationsButton';
 import Link from 'next/link';
-import { Imagotype } from '@/modules/globals/components/AtlasWayLogo';
+import { Imagotype } from '@/modules/globals/components/AppLogo';
 
 export function Header({ className = '' }: { className?: string }) {
 	return (

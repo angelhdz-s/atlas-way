@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { Imagotype } from '@/modules/globals/components/AtlasWayLogo';
 import { ToggleTheme } from '@/modules/globals/components/ToggleTheme';
 import { SessionButtons } from '@/modules/auth/ui/components/SessionButtons';
+import { Imagotype } from '@/modules/globals/components/AppLogo';
 
 export function Header({ className = '' }: { className?: string }) {
 	return (
