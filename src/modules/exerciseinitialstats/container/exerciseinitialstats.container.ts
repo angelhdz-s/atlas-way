@@ -2,25 +2,25 @@ import { CreateExerciseInitialStats } from '../application/usecases/create-exerc
 import { GetAllExerciseInitialStats } from '../application/usecases/get-all-exerciseinitialstats';
 import { GetExerciseInitialStatsByExerciseId } from '../application/usecases/get-exerciseinitialstats-by-exercise-id';
 import { GetExerciseInitialStatsById } from '../application/usecases/get-exerciseinitialstats-by-id';
-import { ExerciseInitialStatsPrismaRepository } from '../infrastructure/exerciseinitialstats.prisma.repository';
+import { ExerciseInitialStatsPrismaRepository } from '../infrastructure/prisma/exerciseinitialstats.prisma.repository';
 import { IdGeneratorContainer } from '@/shared/container/id-generator.container';
 import { UpdateExerciseInitialStats } from '../application/usecases/update-exerciseinitialstats';
 
-export const repoExerciseInitialStats = new ExerciseInitialStatsPrismaRepository();
+export const exerciseInitialStatsRepo = new ExerciseInitialStatsPrismaRepository();
 
-const GetAllExerciseInitialStatsUseCase = new GetAllExerciseInitialStats(repoExerciseInitialStats);
+const GetAllExerciseInitialStatsUseCase = new GetAllExerciseInitialStats(exerciseInitialStatsRepo);
 const GetExerciseInitialStatsByIdUseCase = new GetExerciseInitialStatsById(
-	repoExerciseInitialStats
+	exerciseInitialStatsRepo
 );
 const GetExerciseInitialStatsByExerciseIdUseCase = new GetExerciseInitialStatsByExerciseId(
-	repoExerciseInitialStats
+	exerciseInitialStatsRepo
 );
 
 const CreateExerciseInitialStatsUseCase = new CreateExerciseInitialStats(
-	repoExerciseInitialStats,
+	exerciseInitialStatsRepo,
 	IdGeneratorContainer
 );
-const UpdateExerciseInitialStatsUseCase = new UpdateExerciseInitialStats(repoExerciseInitialStats);
+const UpdateExerciseInitialStatsUseCase = new UpdateExerciseInitialStats(exerciseInitialStatsRepo);
 
 export const ExerciseInitialStatsContainer = {
 	GetAllExerciseInitialStatsUseCase,
