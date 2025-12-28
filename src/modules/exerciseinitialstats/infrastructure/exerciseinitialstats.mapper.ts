@@ -1,16 +1,9 @@
-import { Prisma, ExerciseInitialStats as PrismaExerciseInitialStats } from '@/prisma/client';
-import {
-	ExerciseInitialStats as DomainPrismaExerciseInitialStats,
-	NewExerciseInitialStats,
-	UpdateExerciseInitialStats,
-} from '../domain/exerciseinitialstats.entity';
-import {
-	ExerciseInitialStatsProps,
-	UpdateExerciseInitialStatsProps,
-} from '../domain/exerciseinitialstats.schema';
+import { ExerciseInitialStats as PrismaExerciseInitialStats } from '@/prisma/client';
+import { ExerciseInitialStats } from '../domain/exerciseinitialstats.entity';
+import { ExerciseInitialStatsProps } from '../domain/exerciseinitialstats.types';
 
 export class ExerciseInitialStatsMapper {
-	static toDomain(data: PrismaExerciseInitialStats): DomainPrismaExerciseInitialStats {
+	static toDomain(data: PrismaExerciseInitialStats): ExerciseInitialStats {
 		const exerciseStats: ExerciseInitialStatsProps = {
 			id: data.id,
 			sets: data.sets,
@@ -21,30 +14,18 @@ export class ExerciseInitialStatsMapper {
 			exerciseId: data.exerciseId,
 		};
 
-		return new DomainPrismaExerciseInitialStats(exerciseStats);
+		return new ExerciseInitialStats(exerciseStats);
 	}
 
-	static toPersistenceCreate(
-		data: NewExerciseInitialStats
-	): Prisma.ExerciseInitialStatsCreateManyInput {
+	static toPersistence(data: ExerciseInitialStats): PrismaExerciseInitialStats {
 		return {
 			id: data.id,
 			sets: data.sets,
 			reps: data.reps,
 			weight: data.weight,
+			createdAt: data.createdAt,
+			updatedAt: data.updatedAt,
 			exerciseId: data.exerciseId,
 		};
-	}
-
-	static toPersistenceUpdate(
-		data: UpdateExerciseInitialStats
-	): Prisma.ExerciseInitialStatsUpdateInput {
-		const exerciseStats: UpdateExerciseInitialStatsProps = {};
-
-		if (data.sets) exerciseStats.sets = data.sets;
-		if (data.reps) exerciseStats.reps = data.reps;
-		if (data.weight) exerciseStats.weight = data.weight;
-
-		return exerciseStats;
 	}
 }

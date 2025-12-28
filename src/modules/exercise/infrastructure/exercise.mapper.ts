@@ -1,8 +1,4 @@
-import {
-	ExerciseInitialStats as PrismaExerciseInitialStats,
-	Prisma,
-	Exercises as PrismaExercise,
-} from '@/prisma/client';
+import { Exercises as PrismaExercise } from '@/prisma/client';
 import { Exercise } from '../domain/exercise.entity';
 import { ExerciseProps } from '../domain/exercise.types';
 

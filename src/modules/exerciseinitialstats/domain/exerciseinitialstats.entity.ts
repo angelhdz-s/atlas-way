@@ -1,8 +1,5 @@
-import {
-	ExerciseInitialStatsProps,
-	NewExerciseInitialStatsProps,
-	UpdateExerciseInitialStatsProps,
-} from './exerciseinitialstats.schema';
+import { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
+import { ExerciseInitialStatsProps } from './exerciseinitialstats.types';
 
 export class ExerciseInitialStats {
 	constructor(private data: ExerciseInitialStatsProps) {}
@@ -27,36 +24,27 @@ export class ExerciseInitialStats {
 	get exerciseId() {
 		return this.data.exerciseId;
 	}
-}
 
-export class NewExerciseInitialStats {
-	constructor(private data: NewExerciseInitialStatsProps) {}
-	get id() {
-		return this.data.id;
+	changeSets(sets: ExerciseInitialStatsProps['sets']) {
+		return (this.data.sets = sets);
 	}
-	get sets() {
-		return this.data.sets;
+	changeReps(reps: ExerciseInitialStatsProps['reps']) {
+		this.data.reps = reps;
 	}
-	get reps() {
-		return this.data.reps;
-	}
-	get weight() {
-		return this.data.weight;
-	}
-	get exerciseId() {
-		return this.data.exerciseId;
-	}
-}
 
-export class UpdateExerciseInitialStats {
-	constructor(private data: UpdateExerciseInitialStatsProps) {}
-	get sets() {
-		return this.data.sets;
+	changeWeight(weight: ExerciseInitialStatsProps['weight']) {
+		this.data.weight = weight;
 	}
-	get reps() {
-		return this.data.reps;
-	}
-	get weight() {
-		return this.data.weight;
+
+	static create(
+		id: ExerciseInitialStatsProps['id'],
+		data: Omit<ExerciseInitialStatsProps, 'id' | 'createdAt' | 'updatedAt'>
+	) {
+		return new ExerciseInitialStats({
+			...data,
+			createdAt: new Date(),
+			updatedAt: new Date(),
+			id,
+		});
 	}
 }

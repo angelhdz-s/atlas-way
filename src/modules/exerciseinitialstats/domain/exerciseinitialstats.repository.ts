@@ -1,18 +1,12 @@
-import {
-	ExerciseInitialStats,
-	NewExerciseInitialStats,
-	UpdateExerciseInitialStats,
-} from './exerciseinitialstats.entity';
+import { RepositoryResult } from '@/shared/domain/repository.result';
+import { ExerciseInitialStats } from './exerciseinitialstats.entity';
 
-export interface IExerciseInitialStats {
-	create: (data: NewExerciseInitialStats) => Promise<ExerciseInitialStats>;
-	update: (
-		id: ExerciseInitialStats['id'],
-		data: UpdateExerciseInitialStats
-	) => Promise<ExerciseInitialStats>;
-	findAll: () => Promise<ExerciseInitialStats[]>;
-	findById: (id: ExerciseInitialStats['id']) => Promise<ExerciseInitialStats | null>;
+export interface IExerciseInitialStatsRepository {
+	create: (data: ExerciseInitialStats) => RepositoryResult<ExerciseInitialStats>;
+	update: (data: ExerciseInitialStats) => RepositoryResult<ExerciseInitialStats>;
+	findAll: () => RepositoryResult<ExerciseInitialStats[]>;
+	findById: (id: ExerciseInitialStats['id']) => RepositoryResult<ExerciseInitialStats | null>;
 	findByExerciseId: (
 		exerciseId: ExerciseInitialStats['exerciseId']
-	) => Promise<ExerciseInitialStats | null>;
+	) => RepositoryResult<ExerciseInitialStats | null>;
 }
