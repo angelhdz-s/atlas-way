@@ -1,4 +1,4 @@
-import { getUser } from '@/app/_actions/user.actions';
+import { getUser } from '@/modules/user/presentation/user.actions';
 
 export async function UserSetting() {
 	const { data: user } = await getUser();
