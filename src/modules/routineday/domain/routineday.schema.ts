@@ -1,5 +1,5 @@
 import { z } from 'zod/v4';
-import { routineIdRule } from '@/modules/routine/domain/routine.schema';
+import { routineIdRule } from '@/modules/routine/domain/routine.types';
 import { sessionIdRule } from '@/modules/session/domain/session.schema';
 import { uuidRule } from '@/shared/domain/schemas/primitives';
 import { createdAtRule, updatedAtRule } from '@/shared/domain/schemas/timestamps';
