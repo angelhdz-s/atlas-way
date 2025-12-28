@@ -1,5 +1,7 @@
+import { ExerciseInitialStatsProps } from '../../domain/exerciseinitialstats.types';
+
 export type UpdateExerciseInitialStatsInput = {
-	sets?: number;
-	reps?: number;
-	weight?: number;
+	sets?: ExerciseInitialStatsProps['sets'];
+	reps?: ExerciseInitialStatsProps['reps'];
+	weight?: ExerciseInitialStatsProps['weight'];
 };
