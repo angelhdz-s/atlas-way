@@ -1,5 +1,5 @@
-import { getBodySections } from '@/app/_actions/bodysection.actions';
-import { getMuscularGroups } from '@/app/_actions/musculargroup.actions';
+import { getBodySections } from '@/modules/bodysection/presentation/bodysection.actions';
+import { getMuscularGroups } from '@/modules/musculargroup/presentation/musculargroup.actions';
 import { BodySection } from '@/modules/bodysection/domain/bodysection.entity';
 
 export async function MuscularGroupsTable() {

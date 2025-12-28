@@ -1,56 +1,39 @@
-import { MuscleProps, NewMuscleProps, UpdateMuscleProps } from './muscle.schema';
+import { MuscleProps } from './muscle.types';
 
 export class Muscle {
-	constructor(private muscle: MuscleProps) {}
+	constructor(private data: MuscleProps) {}
 	get id() {
-		return this.muscle.id;
+		return this.data.id;
 	}
 	get name() {
-		return this.muscle.name;
+		return this.data.name;
 	}
 	get description() {
-		return this.muscle.description;
+		return this.data.description;
 	}
 	get createdAt() {
-		return this.muscle.createdAt;
+		return this.data.createdAt;
 	}
 	get updatedAt() {
-		return this.muscle.updatedAt;
+		return this.data.updatedAt;
 	}
 	get userId() {
-		return this.muscle.userId;
-	}
-
-	get muscularGroupId() {
-		return this.muscle.muscularGroupId;
-	}
-}
-
-export class NewMuscle {
-	constructor(private muscle: NewMuscleProps) {}
-	get id() {
-		return this.muscle.id;
-	}
-	get name() {
-		return this.muscle.name;
-	}
-	get description() {
-		return this.muscle.description;
-	}
-	get userId() {
-		return this.muscle.userId;
+		return this.data.userId;
 	}
 	get muscularGroupId() {
-		return this.muscle.muscularGroupId;
+		return this.data.muscularGroupId;
 	}
-}
+	changeName(name: MuscleProps['name']) {
+		this.data.name = name;
+	}
+	changeDescription(description: MuscleProps['name']) {
+		this.data.description = description;
+	}
 
-export class UpdateMuscle {
-	constructor(private muscle: UpdateMuscleProps) {}
-	get name() {
-		return this.muscle.name;
-	}
-	get description() {
-		return this.muscle.description;
+	static create(
+		id: MuscleProps['id'],
+		data: Omit<MuscleProps, 'id' | 'createdAt' | 'updatedAt'>
+	) {
+		return new Muscle({ ...data, id, createdAt: new Date(), updatedAt: new Date() });
 	}
 }

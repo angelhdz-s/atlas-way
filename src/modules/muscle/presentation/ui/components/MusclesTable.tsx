@@ -5,7 +5,7 @@ import {
 	DashboardCardSubHeader,
 	DashboardCardTag,
 } from '../../dashboard/components/Card';
-import { getBodySectionsWithMuscularGroups } from '@/app/_actions/bodysection.actions';
+import { getBodySectionsWithMuscularGroups } from '@/modules/bodysection/presentation/bodysection.actions';
 
 export default async function MusclesTable() {
 	const { data: bodySections } = await getBodySectionsWithMuscularGroups();

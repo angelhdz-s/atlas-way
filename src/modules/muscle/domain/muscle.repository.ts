@@ -1,11 +1,8 @@
-import { MuscularGroup } from '@/modules/musculargroup/domain/musculargroup.entity';
-import { Muscle, NewMuscle, UpdateMuscle } from './muscle.entity';
+import { Muscle } from './muscle.entity';
+import { RepositoryResult } from '@/shared/domain/repository.result';
+import { MuscleProps } from './muscle.types';
 
 export interface IMuscleRepository {
-	create: (data: NewMuscle) => Promise<Muscle>;
-	update: (id: number, data: UpdateMuscle) => Promise<Muscle>;
-	findAll: () => Promise<Muscle[]>;
-	findById: (id: number) => Promise<Muscle | null>;
-	findAllByMuscularGroupId: (id: Muscle['muscularGroupId']) => Promise<Muscle[]>;
-	findAllByBodySection: (id: MuscularGroup['bodySectionId']) => Promise<Muscle[]>;
+	findAll: () => RepositoryResult<Muscle[]>;
+	findById: (id: MuscleProps['id']) => RepositoryResult<Muscle | null>;
 }
