@@ -1,5 +1,5 @@
-import { UserLogout } from '@/modules/user/ui/components/UserLogout';
-import { getCurrentSession } from '../../infrastructure/nextAuth/auth.currentsession';
+import { UserLogout } from '@/modules/user/presentation/ui/components/UserLogout';
+import { getCurrentSession } from '../../../infrastructure/next-auth/next-auth.currentsession';
 import { LogInButton } from './LogInButton';
 import { LogOutButton } from './LogOutButton';
 

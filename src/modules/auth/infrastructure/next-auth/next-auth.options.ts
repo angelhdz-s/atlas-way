@@ -1,5 +1,5 @@
 import GoogleProvider from 'next-auth/providers/google';
-import { User as NextAuthUser } from 'next-auth';
+import { User as NextAuthUser, TokenSet } from 'next-auth';
 import { Containers } from '@/di/containers';
 import { CreateUserInput } from '@/modules/user/application/dtos/create-user.dto';
 
@@ -10,6 +10,7 @@ export const authOptions = {
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
 		}),
 	],
+	secret: process.env.NEXTAUTH_SECRET,
 	events: {
 		async signIn({ user }: { user: NextAuthUser }) {
 			if (!user.email || !user.name) return;
@@ -25,5 +26,4 @@ export const authOptions = {
 			await registerUser.execute(newUser);
 		},
 	},
-	secret: process.env.NEXTAUTH_SECRET,
 };
