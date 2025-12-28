@@ -1,6 +1,6 @@
 export type BodySectionProps = {
-	id: number;
-	name: string;
-	createdAt: Date;
-	updatedAt: Date;
+	readonly id: number;
+	readonly name: string;
+	readonly createdAt: Date;
+	readonly updatedAt: Date;
 };
