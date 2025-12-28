@@ -1,7 +1,8 @@
-import { BodySection, BodySectionWithMuscularGroups } from './bodysection.entity';
+import { RepositoryResult } from '@/shared/domain/repository.result';
+import { BodySection } from './bodysection.entity';
+import { BodySectionProps } from './bodysection.types';
 
 export interface IBodySectionRepository {
-	findAll: () => Promise<BodySection[]>;
-	findById: (id: number) => Promise<BodySection | null>;
-	findAllWithMuscularGroups: () => Promise<BodySectionWithMuscularGroups[]>;
+	findAll: () => RepositoryResult<BodySection[]>;
+	findById: (id: BodySectionProps['id']) => RepositoryResult<BodySection | null>;
 }
