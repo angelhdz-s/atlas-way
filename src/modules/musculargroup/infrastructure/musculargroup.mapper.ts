@@ -1,6 +1,6 @@
 import { MuscularGroups as PrismaMuscularGroup } from '@/prisma/client';
 import { MuscularGroup as DomainMuscularGroup } from '../domain/musculargroup.entity';
-import { MuscularGroupProps } from '../domain/musculargroup.schema';
+import { MuscularGroupProps } from '../domain/musculargroup.types';
 
 export class MuscularGroupMapper {
 	static toDomain(data: PrismaMuscularGroup): DomainMuscularGroup {

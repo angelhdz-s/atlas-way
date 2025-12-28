@@ -1,30 +1,12 @@
-import { GetAllMuscularGroupUseCase } from '@/modules/musculargroup/application/get-musculargroup.usecase';
-import { GetAllMuscularGroupByBodySectionUseCase } from '@/modules/musculargroup/application/get-musculargroups-by-bodysection.usecase';
+import { Containers } from '@/di/containers';
 import { MuscularGroup } from '@/modules/musculargroup/domain/musculargroup.entity';
-import { MuscularGroupPrismaReporitory } from '@/modules/musculargroup/infrastructure/musculargroup.prisma.repository';
-import { ActionResponse } from '@/shared/contracts/actions.response';
+import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts/actions.response';
 
 export async function getMuscularGroups(): ActionResponse<MuscularGroup[]> {
-	const repo = new MuscularGroupPrismaReporitory();
-	const usecase = new GetAllMuscularGroupUseCase(repo);
+	const usecase = Containers.MuscularGroup.GetAllMuscularGroupsUseCase;
 	const musculargroups = await usecase.execute();
 
-	return {
-		success: true,
-		message: 'Muscular groups were obtained successfully',
-		data: musculargroups,
-	};
-}
+	if (!musculargroups.success) return ActionFailure(musculargroups.error.message);
 
-export async function getMuscularGroupsByBodySection(
-	id: MuscularGroup['bodySectionId']
-): ActionResponse<MuscularGroup[]> {
-	const repo = new MuscularGroupPrismaReporitory();
-	const usecase = new GetAllMuscularGroupByBodySectionUseCase(repo);
-	const musculargroups = await usecase.execute(id);
-	return {
-		success: true,
-		message: 'Muscular groups were obtained successfully',
-		data: musculargroups,
-	};
+	return ActionSuccess(musculargroups.data, 'Muscular groups were obtained successfully');
 }
