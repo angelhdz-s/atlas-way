@@ -4,6 +4,7 @@ import { ExerciseContainer } from '@/modules/exercise/container/exercise.contain
 import { ExerciseInitialStatsContainer } from '@/modules/exerciseinitialstats/container/exerciseinitialstats.container';
 import { MuscleContainer } from '@/modules/muscle/container/muscle.container';
 import { MuscularGroupContainer } from '@/modules/musculargroup/container/musculargroup.container';
+import { RoutineContainer } from '@/modules/routine/container/routine.container';
 import { UserContainer } from '@/modules/user/container/user.container';
 
 export const Containers = {
@@ -14,4 +15,5 @@ export const Containers = {
 	Muscle: MuscleContainer,
 	Exercise: ExerciseContainer,
 	ExerciseInitialStats: ExerciseInitialStatsContainer,
+	Routine: RoutineContainer,
 };

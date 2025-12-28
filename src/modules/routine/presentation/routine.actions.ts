@@ -1,11 +1,10 @@
 'use server';
 
 import { ActionResponseType } from '@/modules/globals/types';
-import { RoutineForm, routineFormSchema } from '../config/routine-schema';
+import { RoutineForm, routineFormSchema } from './ui/config/routine-schema';
 import { PrismaClient } from '@/prisma/client';
-import { getUser } from '@/modules/user/actions/users';
-
-const prisma = new PrismaClient();
+import { getUser } from '@/modules/user/presentation/user.actions';
+import { prisma } from '@/shared/infrastructure/prisma/client';
 
 export async function createRoutineAction(data: RoutineForm): Promise<ActionResponseType> {
 	const parsedData = routineFormSchema.safeParse(data);
@@ -26,7 +25,10 @@ export async function createRoutine(data: RoutineForm): Promise<string | null> {
 	}
 
 	const user = await getUser();
-	if (!user) {
+	if (!user.success) {
+		return user.message;
+	}
+	if (!user.data) {
 		return 'User not found';
 	}
 	const routineId = crypto.randomUUID();
@@ -37,7 +39,7 @@ export async function createRoutine(data: RoutineForm): Promise<string | null> {
 				id: routineId,
 				name: data.name,
 				description: data.description,
-				userId: user.id,
+				userId: user.data.id,
 				initialDate: data.initialDate,
 				routineCycleId: data.cycle,
 			},

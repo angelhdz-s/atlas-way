@@ -1,8 +1,10 @@
-import { NewRoutine, Routine, UpdateRoutine } from './routine.entity';
+import { RepositoryResult } from '@/shared/domain/repository.result';
+import { Routine } from './routine.entity';
+import { RoutineProps } from './routine.types';
 
 export interface IRoutineRepository {
-	create: (data: NewRoutine) => Promise<Routine>;
-	update: (id: string, data: UpdateRoutine) => Promise<Routine>;
-	findaAll: () => Promise<Routine[]>;
-	findById: (id: string) => Promise<Routine | null>;
+	create: (data: Routine) => RepositoryResult<Routine>;
+	update: (data: Routine) => RepositoryResult<Routine>;
+	findaAll: () => RepositoryResult<Routine[]>;
+	findById: (id: RoutineProps['id']) => RepositoryResult<Routine | null>;
 }

@@ -1,4 +1,4 @@
-import { NewRoutineProps, RoutineProps, UpdateRoutineProps } from './routine.schema';
+import { RoutineProps } from './routine.types';
 
 export class Routine {
 	constructor(private data: RoutineProps) {}
@@ -27,71 +27,31 @@ export class Routine {
 	get updatedAt() {
 		return this.data.updatedAt;
 	}
-
 	get userId() {
 		return this.data.userId;
 	}
 	get routineCycleId() {
 		return this.data.routineCycleId;
 	}
-}
-
-export class NewRoutine {
-	constructor(private data: NewRoutineProps) {}
-
-	get id() {
-		return this.data.id;
+	changeName(name: string) {
+		this.data.name = name;
 	}
-
-	get name() {
-		return this.data.name;
+	changeDescription(description: string) {
+		this.data.description = description;
 	}
-
-	get description() {
-		return this.data.description;
+	changeActive(active: boolean) {
+		this.data.active = active;
 	}
-
-	get days() {
-		return this.data.days;
+	changeDays(days: number) {
+		this.data.days = days;
 	}
-
-	get active() {
-		return this.data.active;
+	changeInitialDate(initialDate: Date) {
+		this.data.initialDate = initialDate;
 	}
-
-	get initialDate() {
-		return this.data.initialDate;
-	}
-
-	get userId() {
-		return this.data.userId;
-	}
-
-	get routineCycleId() {
-		return this.data.routineCycleId;
-	}
-}
-
-export class UpdateRoutine {
-	constructor(private data: UpdateRoutineProps) {}
-
-	get name() {
-		return this.data.name;
-	}
-
-	get description() {
-		return this.data.description;
-	}
-
-	get days() {
-		return this.data.days;
-	}
-
-	get active() {
-		return this.data.active;
-	}
-
-	get initialDate() {
-		return this.data.initialDate;
+	static create(
+		id: RoutineProps['id'],
+		data: Omit<RoutineProps, 'id' | 'createdAt' | 'updatedAt'>
+	) {
+		return new Routine({ ...data, id, createdAt: new Date(), updatedAt: new Date() });
 	}
 }
