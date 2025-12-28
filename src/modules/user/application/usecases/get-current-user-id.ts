@@ -5,7 +5,7 @@ import { Failure, Success } from '@/shared/domain/result';
 import { UserNotFoundError } from '../../domain/errors/user.errors';
 import { SessionNotFoundError } from '@/modules/auth/domain/errors/auth.errors';
 
-export class GetCurrentUser implements UseCase {
+export class GetCurrentUserId implements UseCase {
 	constructor(
 		private repository: IUserRepository,
 		private authRepo: IAuthRepository
@@ -18,6 +18,6 @@ export class GetCurrentUser implements UseCase {
 		const { email } = session.data;
 		const user = await this.repository.findByEmail(email);
 		if (!user.success || !user.data) return Failure(new UserNotFoundError('User not found'));
-		return Success(user.data);
+		return Success(user.data.id);
 	}
 }

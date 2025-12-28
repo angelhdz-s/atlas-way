@@ -35,15 +35,6 @@ export class UserPrismaRepository implements IUserRepository {
 		}
 	}
 
-	async currentUser() {
-		try {
-			const user = await prisma.users.findFirst();
-			return Success(user ? UserMapper.toDomain(user) : null);
-		} catch {
-			return Failure(new PrismaError('Unavailable prisma service'));
-		}
-	}
-
 	async findAll() {
 		try {
 			const users = await prisma.users.findMany();

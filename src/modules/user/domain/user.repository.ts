@@ -8,5 +8,4 @@ export interface IUserRepository {
 	findAll: () => RepositoryResult<User[]>;
 	findById: (id: UserProps['id']) => RepositoryResult<User | null>;
 	findByEmail: (email: UserProps['email']) => RepositoryResult<User | null>;
-	currentUser: () => RepositoryResult<User | null>;
 }

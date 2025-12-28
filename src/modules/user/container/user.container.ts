@@ -3,21 +3,21 @@ import { CreateUser } from '../application/usecases/create-user';
 import { GetAllUsers } from '../application/usecases/get-all-users';
 import { GetUserByEmail } from '../application/usecases/get-user-by-email';
 import { GetUserById } from '../application/usecases/get-user-by-id';
-import { UserPrismaRepository } from '../infrastructure/user.prisma.repository';
 import { UpdateUser } from '../application/usecases/update-user';
 import { CreateIfNotExistsUser } from '../application/usecases/create-if-not-exists-user';
+import { GetCurrentUser } from '../application/usecases/get-current-user';
+import { GetCurrentUserId } from '../application/usecases/get-current-user-id';
+import { userRepo } from '../infrastructure/user.config';
+import { authRepo } from '@/modules/auth/container/auth.container';
 
-const UserDependencyRepository = new UserPrismaRepository();
-
-const CreateIfNotExistsUserUseCase = new CreateIfNotExistsUser(
-	UserDependencyRepository,
-	IdGeneratorContainer
-);
-const CreateUserUseCase = new CreateUser(UserDependencyRepository, IdGeneratorContainer);
-const UpdateUserUseCase = new UpdateUser(UserDependencyRepository);
-const GetAllUsersUseCase = new GetAllUsers(UserDependencyRepository);
-const GetUserByIdUseCase = new GetUserById(UserDependencyRepository);
-const GetUserByeEmailUseCase = new GetUserByEmail(UserDependencyRepository);
+const CreateIfNotExistsUserUseCase = new CreateIfNotExistsUser(userRepo, IdGeneratorContainer);
+const CreateUserUseCase = new CreateUser(userRepo, IdGeneratorContainer);
+const UpdateUserUseCase = new UpdateUser(userRepo);
+const GetAllUsersUseCase = new GetAllUsers(userRepo);
+const GetUserByIdUseCase = new GetUserById(userRepo);
+const GetUserByeEmailUseCase = new GetUserByEmail(userRepo);
+const GetCurrentUserUseCase = new GetCurrentUser(userRepo, authRepo);
+const GetCurrentUserIdUseCase = new GetCurrentUserId(userRepo, authRepo);
 
 export const UserContainer = {
 	CreateUserUseCase,
@@ -26,4 +26,6 @@ export const UserContainer = {
 	GetAllUsersUseCase,
 	GetUserByIdUseCase,
 	GetUserByeEmailUseCase,
+	GetCurrentUserUseCase,
+	GetCurrentUserIdUseCase,
 };
