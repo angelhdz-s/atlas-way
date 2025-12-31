@@ -6,7 +6,7 @@ import { RoutineDays } from '../../domain/routinedays.entity';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 
-export class RoutineDayPrismaRepository implements IRoutineDaysRepository {
+export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 	async create(data: RoutineDays) {
 		try {
 			const routineDayPersistence = RoutineDaysMapper.toPersistence(data);
