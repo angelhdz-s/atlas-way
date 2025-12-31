@@ -1,6 +1,6 @@
+import { UpdateDto } from '@/shared/application/dtos/create.types';
 import { UserProps } from '../../domain/user.types';
 
-export type UpdateUserInput = {
-	name?: UserProps['name'];
-	email?: UserProps['email'];
-};
+type UpdateProps = Pick<UserProps, 'name' | 'email'>;
+
+export type UpdateUserInput = UpdateDto<UpdateProps>;

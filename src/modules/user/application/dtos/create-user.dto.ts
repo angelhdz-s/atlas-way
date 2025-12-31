@@ -1,3 +1,4 @@
+import { CreateDto } from '@/shared/application/dtos/create.types';
 import { UserProps } from '../../domain/user.types';
 
-export type CreateUserInput = Pick<UserProps, 'name' | 'email' | 'roleId'>;
+export type CreateUserInput = CreateDto<UserProps>;
