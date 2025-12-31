@@ -5,6 +5,7 @@ import { ExerciseInitialStatsContainer } from '@/modules/exerciseinitialstats/co
 import { MuscleContainer } from '@/modules/muscle/container/muscle.container';
 import { MuscularGroupContainer } from '@/modules/musculargroup/container/musculargroup.container';
 import { RoutineContainer } from '@/modules/routine/container/routine.container';
+import { SessionContainer } from '@/modules/session/container/session.container';
 import { UserContainer } from '@/modules/user/container/user.container';
 
 export const Containers = {
@@ -16,4 +17,6 @@ export const Containers = {
 	Exercise: ExerciseContainer,
 	ExerciseInitialStats: ExerciseInitialStatsContainer,
 	Routine: RoutineContainer,
+	RoutineDays: RoutineContainer,
+	Session: SessionContainer,
 };

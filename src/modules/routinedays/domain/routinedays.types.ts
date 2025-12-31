@@ -1,5 +1,5 @@
 import { RoutineProps } from '@/modules/routine/domain/routine.types';
-import { SessionProps } from '@/modules/session/domain/session.schema';
+import { SessionProps } from '@/modules/session/domain/session.types';
 
 export type RoutineDaysProps = {
 	readonly id: string;

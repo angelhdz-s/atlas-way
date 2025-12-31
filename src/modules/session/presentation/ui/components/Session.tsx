@@ -7,7 +7,7 @@ import {
 	DashboardCardMain,
 	DashboardCardSubHeader,
 	DashboardCardTags,
-} from '../../dashboard/components/Card';
+} from '../../../../dashboard/components/Card';
 import { ExerciseType, SessionDayType } from '@/modules/globals/mocks/sessions';
 
 function ExercisesList({ exercises }: { exercises: ExerciseType[] }) {

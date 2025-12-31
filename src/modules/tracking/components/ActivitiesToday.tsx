@@ -1,6 +1,9 @@
 import { CardTitle } from '@/modules/dashboard/card/components/CardTitle';
 import { CirclePlus } from '@/modules/globals/components/Icons';
-import { SessionDetails, SessionDetailsType } from '../../session/components/SessionDetails';
+import {
+	SessionDetails,
+	SessionDetailsType,
+} from '../../session/presentation/ui/components/SessionDetails';
 import { SubtleCard } from '@/modules/globals/components/SubtleCard';
 
 const session = {

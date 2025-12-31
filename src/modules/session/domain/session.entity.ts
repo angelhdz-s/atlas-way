@@ -1,4 +1,4 @@
-import { NewSessionProps, SessionProps, UpdateSessionProps } from './session.schema';
+import { SessionProps } from './session.types';
 
 export class Session {
 	constructor(private data: SessionProps) {}
@@ -6,56 +6,36 @@ export class Session {
 	get id() {
 		return this.data.id;
 	}
-
 	get name() {
 		return this.data.name;
 	}
-
 	get description() {
 		return this.data.description;
 	}
-
 	get createdAt() {
 		return this.data.createdAt;
 	}
-
 	get updatedAt() {
 		return this.data.updatedAt;
 	}
-
 	get userId() {
 		return this.data.userId;
 	}
-}
-
-export class NewSession {
-	constructor(private data: NewSessionProps) {}
-
-	get id() {
-		return this.data.id;
+	changeName(name: SessionProps['name']) {
+		this.data.name = name;
 	}
-
-	get name() {
-		return this.data.name;
+	changeDescription(description: SessionProps['description']) {
+		this.data.description = description;
 	}
-
-	get description() {
-		return this.data.description;
-	}
-
-	get userId() {
-		return this.data.userId;
-	}
-}
-
-export class UpdateSession {
-	constructor(private data: UpdateSessionProps) {}
-
-	get name() {
-		return this.data.name;
-	}
-
-	get description() {
-		return this.data.description;
+	static create(
+		id: SessionProps['id'],
+		data: Omit<SessionProps, 'id' | 'createdAt' | 'updatedAt'>
+	) {
+		return new Session({
+			...data,
+			id,
+			createdAt: new Date(),
+			updatedAt: new Date(),
+		});
 	}
 }

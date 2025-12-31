@@ -1,9 +1,10 @@
-import { NewSession, Session, UpdateSession } from './session.entity';
-import { SessionProps } from './session.schema';
+import { RepositoryResult } from '@/shared/domain/repository.result';
+import { Session } from './session.entity';
+import { SessionProps } from './session.types';
 
 export interface ISessionReporitory {
-	create: (data: NewSession) => Promise<Session>;
-	update: (id: SessionProps['id'], data: UpdateSession) => Promise<Session>;
-	findAll: () => Promise<Session[]>;
-	findById: (id: SessionProps['id']) => Promise<Session | null>;
+	create: (data: Session) => RepositoryResult<Session>;
+	update: (data: Session) => RepositoryResult<Session>;
+	findAll: () => RepositoryResult<Session[]>;
+	findById: (id: SessionProps['id']) => RepositoryResult<Session | null>;
 }

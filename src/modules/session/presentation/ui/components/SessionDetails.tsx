@@ -1,4 +1,4 @@
-import { ExerciseRow } from '@/modules/exercise/components/ExerciseList';
+import { ExerciseRow } from '@/modules/exercise/presentation/ui/components/ExerciseList';
 import {
 	getGridColsClassFromWithStatus,
 	getStatusTextColorClass,

@@ -1,6 +1,6 @@
 'use client';
 
-import { createSessionAction } from '@/modules/session/actions/create-session';
+import { createSessionAction } from '@/modules/session/presentation/actions/create-session';
 import { useFieldArray } from 'react-hook-form';
 import { SelectOption } from '@/modules/form/types';
 import { useFormHook } from '@/modules/form/hooks/useFormHook';
