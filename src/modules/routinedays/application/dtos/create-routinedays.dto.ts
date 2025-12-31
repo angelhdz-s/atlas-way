@@ -1,6 +1,4 @@
+import { CreateDto } from '@/shared/application/dtos/create.types';
 import { RoutineDaysProps } from '../../domain/routinedays.types';
 
-export type CreateRoutineDaysInput = Pick<
-	RoutineDaysProps,
-	'name' | 'dayNumber' | 'routineId' | 'sessionId'
->;
+export type CreateRoutineDaysInput = CreateDto<RoutineDaysProps>;

@@ -1,6 +1,4 @@
+import { CreateDto } from '@/shared/application/dtos/create.types';
 import { RoutineProps } from '../../domain/routine.types';
 
-export type CreateRoutineInput = Pick<
-	RoutineProps,
-	'name' | 'description' | 'active' | 'initialDate' | 'days' | 'userId' | 'routineCycleId'
->;
+export type CreateRoutineInput = CreateDto<RoutineProps>;

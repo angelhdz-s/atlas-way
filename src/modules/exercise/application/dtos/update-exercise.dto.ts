@@ -1,6 +1,5 @@
 import { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
+import { UpdateDto } from '@/shared/application/dtos/create.types';
 
-export type UpdateExerciseInput = {
-	name?: ExerciseProps['name'];
-	description?: ExerciseProps['description'];
-};
+type UpdateProps = Pick<ExerciseProps, 'name' | 'description'>;
+export type UpdateExerciseInput = UpdateDto<UpdateProps>;

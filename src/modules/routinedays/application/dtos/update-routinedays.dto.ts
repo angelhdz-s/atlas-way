@@ -1,6 +1,5 @@
+import { UpdateDto } from '@/shared/application/dtos/create.types';
 import { RoutineDaysProps } from '../../domain/routinedays.types';
 
-export type UpdateProps = Pick<RoutineDaysProps, 'name' | 'dayNumber'>;
-export type UpdateRoutineDaysInput = {
-	[K in keyof UpdateProps]?: UpdateProps[K];
-};
+type UpdateProps = Pick<RoutineDaysProps, 'name' | 'dayNumber'>;
+export type UpdateRoutineDaysInput = UpdateDto<UpdateProps>;
