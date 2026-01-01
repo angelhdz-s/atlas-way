@@ -1,9 +1,9 @@
 'use client';
 
-import { InputNumber } from '@/modules/form/components/InputNumber';
-import { Label } from '@/modules/form/components/LabelInput';
-import { Select } from '@/modules/form/components/Select';
-import { SelectOption } from '@/modules/form/types';
+import { InputNumber } from '@/presentation/modules/form/components/InputNumber';
+import { Label } from '@/presentation/modules/form/components/LabelInput';
+import { Select } from '@/presentation/modules/form/components/Select';
+import { SelectOption } from '@/presentation/modules/form/types';
 
 export function RoutineModalFormStep2({
 	title,

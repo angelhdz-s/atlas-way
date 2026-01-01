@@ -1,6 +1,6 @@
 import { Footer } from '@/modules/dashboard/components/Footer';
 import { Header } from '@/modules/dashboard/components/Header';
-import { Sidebar } from '@/modules/sidebar/components/Sidebar';
+import { Sidebar } from '@/presentation/modules/sidebar/components/Sidebar';
 
 export default async function Layout({
 	children,

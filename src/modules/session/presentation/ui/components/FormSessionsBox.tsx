@@ -1,4 +1,4 @@
-import { Box } from '@/modules/form/components/Box';
+import { Box } from '@/presentation/modules/form/components/Box';
 import { useState } from 'react';
 import { SessionsFormDataWithExercises } from '../types';
 import Link from 'next/link';

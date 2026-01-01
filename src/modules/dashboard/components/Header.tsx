@@ -2,8 +2,8 @@ import { Breadcrumb } from './Breadcrumb';
 import { ToggleTheme } from '@/modules/globals/components/ToggleTheme';
 import { LangButton } from '@/modules/globals/components/LangButton';
 import { SettingsButton } from '@/modules/globals/components/SettingsButton';
-import { UserInfo } from '../../user/ui/components/UserInfo';
-import { NotificationsButton } from '../../notification/components/NotificationsButton';
+import { UserInfo } from '../../user/presentation/ui/components/UserInfo';
+import { NotificationsButton } from '../../notification/presentation/ui/components/NotificationsButton';
 import Link from 'next/link';
 import { Imagotype } from '@/modules/globals/components/AppLogo';
 

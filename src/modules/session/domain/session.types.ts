@@ -1,10 +1,10 @@
 import { UserProps } from '@/modules/user/domain/user.types';
 
 export type SessionProps = {
-	id: string;
+	readonly id: string;
 	name: string;
 	description: string | null;
-	createdAt: Date;
-	updatedAt: Date;
-	userId: UserProps['id'];
+	readonly createdAt: Date;
+	readonly updatedAt: Date;
+	readonly userId: UserProps['id'];
 };

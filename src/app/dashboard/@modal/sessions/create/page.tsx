@@ -1,5 +1,5 @@
 import { getExercisesIdName } from '@/modules/exercise/actions/get-exercises';
-import { SessionModalForm } from '@/modules/session/components/SessionModalForm';
+import { SessionModalForm } from '@/modules/session/presentation/ui/components/SessionModalForm';
 
 export default async function CreateSessionPage() {
 	const exercises = await getExercisesIdName();

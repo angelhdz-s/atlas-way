@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { getPrevAndNextDate } from '@/modules/globals/lib/dates';
-import { CalendarContext } from '../../calendar/contexts/calendar-context';
+import { CalendarContext } from '../../../presentation/modules/calendar/contexts/calendar-context';
 import { TrackingDay } from './TrackingDay';
 
 export function SessionsDetails({ className }: { className?: string }) {

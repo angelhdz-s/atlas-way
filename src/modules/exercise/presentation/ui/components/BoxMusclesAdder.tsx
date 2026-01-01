@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Box } from '@/modules/form/components/Box';
-import { SelectOption } from '@/modules/form/types';
+import { Box } from '@/presentation/modules/form/components/Box';
+import { SelectOption } from '@/presentation/modules/form/types';
 
 function BoxOption({
 	option,

@@ -1,7 +1,7 @@
 'use client';
 
-import { Box } from '@/modules/form/components/Box';
-import { Label } from '@/modules/form/components/LabelInput';
+import { Box } from '@/presentation/modules/form/components/Box';
+import { Label } from '@/presentation/modules/form/components/LabelInput';
 import { CirclePlus } from '@/modules/globals/components/Icons';
 import Link from 'next/link';
 

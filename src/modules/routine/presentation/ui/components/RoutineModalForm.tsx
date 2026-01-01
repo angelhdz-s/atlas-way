@@ -1,19 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { InputNumber } from '@/modules/form/components/InputNumber';
-import { InputText } from '@/modules/form/components/InputText';
-import { Label, LabelGroup } from '@/modules/form/components/LabelInput';
-import { ModalFormButtons } from '@/modules/form/components/ModalFormButtons';
-import { TextArea } from '@/modules/form/components/TextArea';
+import { InputNumber } from '@/presentation/modules/form/components/InputNumber';
+import { InputText } from '@/presentation/modules/form/components/InputText';
+import { Label, LabelGroup } from '@/presentation/modules/form/components/LabelInput';
+import { ModalFormButtons } from '@/presentation/modules/form/components/ModalFormButtons';
+import { TextArea } from '@/presentation/modules/form/components/TextArea';
 import { createRoutineAction } from '../actions/create-routine';
 import { routineFormSchema } from '../config/routine-schema';
-import { inputNumberConfig } from '@/modules/form/config/input-config';
+import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
 import { daysOptions } from '../config/form';
-import { useFormHook } from '@/modules/form/hooks/useFormHook';
-import { InputDate } from '@/modules/form/components/InputDate';
-import { ModalForm } from '@/modules/form/components/ModalForm';
-import { RadiobuttonGroup } from '@/modules/form/components/RadiobuttonGroup';
+import { useFormHook } from '@/presentation/modules/form/hooks/useFormHook';
+import { InputDate } from '@/presentation/modules/form/components/InputDate';
+import { ModalForm } from '@/presentation/modules/form/components/ModalForm';
+import { RadiobuttonGroup } from '@/presentation/modules/form/components/RadiobuttonGroup';
 import { useRouter } from 'next/navigation';
 
 export function RoutineModalForm({ title }: { title: string }) {

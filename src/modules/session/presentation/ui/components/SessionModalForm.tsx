@@ -1,13 +1,13 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ModalForm } from '@/modules/form/components/ModalForm';
-import { ModalFormButtons } from '@/modules/form/components/ModalFormButtons';
-import { SelectOption } from '@/modules/form/types';
-import { Label } from '@/modules/form/components/LabelInput';
-import { InputText } from '@/modules/form/components/InputText';
-import { TextArea } from '@/modules/form/components/TextArea';
-import { MultipleSelectBox } from '@/modules/form/components/MultipleSelectBox';
+import { ModalForm } from '@/presentation/modules/form/components/ModalForm';
+import { ModalFormButtons } from '@/presentation/modules/form/components/ModalFormButtons';
+import { SelectOption } from '@/presentation/modules/form/types';
+import { Label } from '@/presentation/modules/form/components/LabelInput';
+import { InputText } from '@/presentation/modules/form/components/InputText';
+import { TextArea } from '@/presentation/modules/form/components/TextArea';
+import { MultipleSelectBox } from '@/presentation/modules/form/components/MultipleSelectBox';
 import { useSessionForm } from '../hooks/useSessionForm';
 
 export function SessionModalForm({

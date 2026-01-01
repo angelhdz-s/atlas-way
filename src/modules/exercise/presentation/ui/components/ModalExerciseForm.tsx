@@ -1,15 +1,15 @@
 'use client';
 
 import { useExerciseForm } from '@/modules/exercise/presentation/ui/hooks/useExerciseForm';
-import { InputNumber } from '@/modules/form/components/InputNumber';
-import { InputText } from '@/modules/form/components/InputText';
-import { Label } from '@/modules/form/components/LabelInput';
-import { ModalForm } from '@/modules/form/components/ModalForm';
-import { ModalFormButtons } from '@/modules/form/components/ModalFormButtons';
-import { MultipleSelectBox } from '@/modules/form/components/MultipleSelectBox';
-import { TextArea } from '@/modules/form/components/TextArea';
-import { inputNumberConfig } from '@/modules/form/config/input-config';
-import { SelectOption } from '@/modules/form/types';
+import { InputNumber } from '@/presentation/modules/form/components/InputNumber';
+import { InputText } from '@/presentation/modules/form/components/InputText';
+import { Label } from '@/presentation/modules/form/components/LabelInput';
+import { ModalForm } from '@/presentation/modules/form/components/ModalForm';
+import { ModalFormButtons } from '@/presentation/modules/form/components/ModalFormButtons';
+import { MultipleSelectBox } from '@/presentation/modules/form/components/MultipleSelectBox';
+import { TextArea } from '@/presentation/modules/form/components/TextArea';
+import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
+import { SelectOption } from '@/presentation/modules/form/types';
 import { useRouter } from 'next/navigation';
 
 export function ModalExerciseForm({ title, muscles }: { title: string; muscles: SelectOption[] }) {

@@ -3,7 +3,7 @@ import { SESSIONS } from '@/modules/globals/mocks/sessions';
 import { PageContainer } from '@/modules/dashboard/page/components/PageContainer';
 import { PageContent } from '@/modules/dashboard/page/components/PageContent';
 import { PageHeader } from '@/modules/dashboard/page/components/PageHeader';
-import { Session } from '@/modules/session/components/Session';
+import { Session } from '@/modules/session/presentation/ui/components/Session';
 import { ClipboardList } from '@/modules/globals/components/Icons';
 
 export default function SessionsPage() {

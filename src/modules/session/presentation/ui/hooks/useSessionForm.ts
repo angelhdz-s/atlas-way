@@ -2,8 +2,8 @@
 
 import { createSessionAction } from '@/modules/session/presentation/actions/create-session';
 import { useFieldArray } from 'react-hook-form';
-import { SelectOption } from '@/modules/form/types';
-import { useFormHook } from '@/modules/form/hooks/useFormHook';
+import { SelectOption } from '@/presentation/modules/form/types';
+import { useFormHook } from '@/presentation/modules/form/hooks/useFormHook';
 import { sessionFormSchema } from '../config/session-schema';
 
 export function useSessionForm({
