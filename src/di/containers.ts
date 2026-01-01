@@ -4,6 +4,7 @@ import { ExerciseContainer } from '@/modules/exercise/container/exercise.contain
 import { ExerciseInitialStatsContainer } from '@/modules/exerciseinitialstats/container/exerciseinitialstats.container';
 import { MuscleContainer } from '@/modules/muscle/container/muscle.container';
 import { MuscularGroupContainer } from '@/modules/musculargroup/container/musculargroup.container';
+import { NotificationContainer } from '@/modules/notification/container/notification.container';
 import { RoutineContainer } from '@/modules/routine/container/routine.container';
 import { SessionContainer } from '@/modules/session/container/session.container';
 import { UserContainer } from '@/modules/user/container/user.container';
@@ -11,6 +12,7 @@ import { UserContainer } from '@/modules/user/container/user.container';
 export const Containers = {
 	Auth: AuthContainer,
 	User: UserContainer,
+	Notification: NotificationContainer,
 	BodySections: BodySectionContainer,
 	MuscularGroup: MuscularGroupContainer,
 	Muscle: MuscleContainer,
