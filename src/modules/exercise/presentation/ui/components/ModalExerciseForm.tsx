@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useExerciseForm } from '@/modules/exercise/presentation/ui/hooks/useExerciseForm';
 import { InputNumber } from '@/presentation/modules/form/components/InputNumber';
 import { InputText } from '@/presentation/modules/form/components/InputText';
@@ -10,7 +11,6 @@ import { MultipleSelectBox } from '@/presentation/modules/form/components/Multip
 import { TextArea } from '@/presentation/modules/form/components/TextArea';
 import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
 import { SelectOption } from '@/presentation/modules/form/types';
-import { useRouter } from 'next/navigation';
 
 export function ModalExerciseForm({ title, muscles }: { title: string; muscles: SelectOption[] }) {
 	const router = useRouter();
