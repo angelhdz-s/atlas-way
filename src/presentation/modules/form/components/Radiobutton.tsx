@@ -5,7 +5,7 @@ function RadiobuttonMark({ isChecked }: { isChecked: boolean }) {
 	const backgroundColor = isChecked ? 'bg-foreground' : 'bg-transparent';
 	return (
 		<div
-			className={`relative block size-4 rounded-full border-1 transition-colors ${borderColor}`}
+			className={`relative block size-4 rounded-full border transition-colors ${borderColor}`}
 		>
 			<div
 				className={`absolute inset-0 m-auto size-2 rounded-full transition-colors ${backgroundColor}`}
@@ -41,7 +41,7 @@ export function Radiobutton({
 
 	return (
 		<label
-			className={`flex items-center gap-2 h-10 py-1 px-2 rounded border-1 transition-colors ${labelCheckedClass} ${className}`}
+			className={`flex items-center gap-2 h-10 py-1 px-2 rounded border transition-colors ${labelCheckedClass} ${className}`}
 		>
 			<RadiobuttonMark isChecked={isChecked} />
 			<input

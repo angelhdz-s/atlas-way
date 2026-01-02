@@ -80,7 +80,7 @@ html[data-theme='light'] {
 	/* Button Colors */
 
 	.pil-btn {
-		@apply flex items-center gap-2 rounded-full border-1 px-4 py-2
+		@apply flex items-center gap-2 rounded-full border px-4 py-2
 		bg-subtle/10 border-subtle/20 
 		hover:bg-primary transition-colors;
 	}
@@ -152,7 +152,7 @@ html[data-theme='light'] {
 
 	.dashboard-card-border,
 	.dashboard-card-default {
-		@apply border-1 border-foreground/10;
+		@apply border border-foreground/10;
 	}
 }
 

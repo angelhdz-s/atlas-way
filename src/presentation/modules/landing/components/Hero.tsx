@@ -8,9 +8,9 @@ export function Hero() {
 		<section className="relative grid place-items-center h-160 py-16 mb-16">
 			<main className="relative z-1 max-w-360 w-full mx-auto flex justify-center ">
 				<header className="flex flex-col items-center gap-8 text-center max-w-5xl">
-					<h1 className="text-7xl leading-[1] font-bold ld-main-fg text-pretty animate-fade">
+					<h1 className="text-7xl leading-none font-bold ld-main-fg text-pretty animate-fade">
 						Manage your training to{' '}
-						<span className="bg-gradient-to-b from-50% to-100% from-accent to-tertiary text-transparent bg-clip-text light:from-0% light:to-80%">
+						<span className="bg-linear-to-b from-50% to-100% from-accent to-tertiary text-transparent bg-clip-text light:from-0% light:to-80%">
 							achieve your goals
 						</span>
 						: routines, sessions and exercises

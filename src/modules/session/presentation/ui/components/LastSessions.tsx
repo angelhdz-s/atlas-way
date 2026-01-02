@@ -97,7 +97,7 @@ export function LastSessions({ className }: { className?: string }) {
 		<ul className={`flex flex-col gap-1 w-full ${className}`}>
 			{LAST_SESSIONS.map((session) => (
 				<SessionListItem
-					className="rounded-lg p-2 border-1 border-foreground/5"
+					className="rounded-lg p-2 border border-foreground/5"
 					session={session}
 					key={session.id}
 				/>

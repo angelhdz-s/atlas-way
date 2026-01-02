@@ -84,7 +84,7 @@ function ListDayItem({
 	const { className, title, Icon } = getDayAttributes(status, type);
 	return (
 		<li
-			className={`rounded w-17 h-8 flex items-center gap-1 px-2 text-center justify-center border-1 transition-colors ${className}`}
+			className={`rounded w-17 h-8 flex items-center gap-1 px-2 text-center justify-center border transition-colors ${className}`}
 			title={title}
 		>
 			{name}

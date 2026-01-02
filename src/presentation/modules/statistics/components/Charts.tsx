@@ -38,7 +38,7 @@ export function LineChart({
 			viewBox={`0 0 ${width} ${height}`}
 			width={width}
 			height={height}
-			className="bg-subtle/[0.05]"
+			className="bg-subtle/5"
 		>
 			<defs>
 				<linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="0%">
@@ -160,7 +160,7 @@ export function BarCharts({
 			viewBox={`0 0 ${width} ${height}`}
 			width={width}
 			height={height}
-			className="bg-subtle/[0.05]"
+			className="bg-subtle/5"
 		>
 			<defs>
 				<linearGradient id="barGradient" x1="0%" y1="0%" x2="0%" y2="100%">

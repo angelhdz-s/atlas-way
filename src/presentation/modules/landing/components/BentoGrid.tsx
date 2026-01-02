@@ -22,7 +22,7 @@ import { IconTypes } from '@/presentation/globals/types';
 
 function IconBubble({ className = '', Icon }: { className?: string; Icon: IconTypes }) {
 	return (
-		<figure className={`border-1 p-1 w-fit rounded-full ${className}`}>
+		<figure className={`border p-1 w-fit rounded-full ${className}`}>
 			<Icon className="size-8" strokeWidth="1" />
 		</figure>
 	);
@@ -35,7 +35,7 @@ export function BentoGrid({ className = '' }: { className?: string }) {
 			<main className="grid grid-cols-4 gap-6 *:relative *:rounded-lg *:min-h-32 *:shadow-2xl *:light:shadow-lg *:shadow-black/10 *:light:shadow-slate-400/20">
 				<article className="relative row-span-2 p-4 bg-radial-[200%_100%_at_120%_-10%]  from-accent/30 to-sec-background from-[-50%] to-50% light:to-light-sec-background">
 					<main className="relative z-3 flex flex-col gap-4 h-full">
-						<header className="font-medium ld-main-fg text-2xl max-w-45 flex-1 leading-[1]">
+						<header className="font-medium ld-main-fg text-2xl max-w-45 flex-1 leading-none">
 							Start Your Journey Now
 						</header>
 						<footer className="text-base font-light leading-[1.2]">
@@ -63,7 +63,7 @@ export function BentoGrid({ className = '' }: { className?: string }) {
 				</article>
 
 				<article className="relative bg-zinc-900 light:bg-accent row-span-2 flex flex-col gap-4 pt-3">
-					<main className="relative ld-main-fg text-2xl z-3 px-4 leading-[1] text-right">
+					<main className="relative ld-main-fg text-2xl z-3 px-4 leading-none text-right">
 						Schedule Your Sessions
 					</main>
 					<footer className="relative flex-1 h-full rounded-b-lg overflow-hidden opacity-40">
@@ -89,7 +89,7 @@ export function BentoGrid({ className = '' }: { className?: string }) {
 					/>
 				</article>
 
-				<article className="relative bg-gradient-to-br from-sec-background light:from-light-sec-background to-accent/30 from-50% to-150% row-span-2 p-4">
+				<article className="relative bg-linear-to-br from-sec-background light:from-light-sec-background to-accent/30 from-50% to-150% row-span-2 p-4">
 					<main className="relative z-3">
 						<p className="text-xl text-main-foreground light:text-light-main-foreground">
 							Flexible routines to fit your lifestyle.

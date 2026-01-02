@@ -12,7 +12,7 @@ export function Calendar() {
 	const { days } = useCalendar({ selectedDate, setCurrentDate });
 
 	return (
-		<main className="flex flex-col gap-2 p-4 border-1 border-foreground/10 rounded-xl text-sm font-light w-full min-w-60">
+		<main className="flex flex-col gap-2 p-4 border border-foreground/10 rounded-xl text-sm font-light w-full min-w-60">
 			<header className="w-full">
 				<ul className="font-bold grid grid-cols-7 gap-2 text-center w-full">
 					<li>S</li>

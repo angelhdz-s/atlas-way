@@ -49,7 +49,7 @@ export function Select({
 		<>
 			<select
 				name={name}
-				className={`${InputClasses} [appearance:none] ${styles.select} ${className}`}
+				className={`${InputClasses} appearance-none ${styles.select} ${className}`}
 				multiple={multiple}
 				disabled={disabled}
 				defaultValue={defaultValue}

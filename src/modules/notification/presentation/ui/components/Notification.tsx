@@ -15,7 +15,7 @@ export function Notification({
 
 	return (
 		<article
-			className={`cursor-pointer px-4 py-1 border-1 hover:border-foreground/50 rounded ${notificationClass} ${className}`}
+			className={`cursor-pointer px-4 py-1 border hover:border-foreground/50 rounded ${notificationClass} ${className}`}
 		>
 			<Link href={url || '/dashboard/notifications'} className="flex items-center gap-4">
 				<div className="grid place-content-center my-auto">

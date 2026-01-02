@@ -66,7 +66,7 @@ export function DateSelector({ className = '' }: { className?: string }) {
 	} = useCalendar({ selectedDate, setCurrentDate });
 	return (
 		<section
-			className={`rounded-xl p-6 border-1 border-foreground/10 flex-1 flex justify-center items-center flex-col gap-4 w-full ${className}`}
+			className={`rounded-xl p-6 border border-foreground/10 flex-1 flex justify-center items-center flex-col gap-4 w-full ${className}`}
 		>
 			<header className="text-4xl font-medium font-funnel-display ld-main-fg">
 				<h2>Friday, July 5</h2>

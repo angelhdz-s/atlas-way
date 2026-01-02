@@ -24,7 +24,7 @@ function ExercisesList({ exercises }: { exercises: ExerciseType[] }) {
 			</li>
 			{exercises.map(({ name, sets, reps, weight }, index) => (
 				<li
-					className="relative before:absolute before:w-full before:h-[2px] before:top-[-1px] before:left-0 before:bg-subtle/20"
+					className="relative before:absolute before:w-full before:h-[2px] before:-top-px before:left-0 before:bg-subtle/20"
 					key={index}
 				>
 					<ul className="font-light grid grid-cols-[1rem_1fr_3rem_3rem_3rem] gap-1">
