@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { PageContainer } from '@/modules/dashboard/page/components/PageContainer';
-import { PageContent } from '@/modules/dashboard/page/components/PageContent';
-import { PageHeader } from '@/modules/dashboard/page/components/PageHeader';
-import { MapPlus } from '@/modules/globals/components/Icons';
-import { ROUTINES } from '@/modules/globals/mocks/routines';
-import { Routine } from '@/modules/routine/components/Routine';
+import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
+import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
+import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
+import { MapPlus } from '@/presentation/globals/components/Icons';
+import { ROUTINES } from '@/presentation/globals/mocks/routines';
+import { Routine } from '@/modules/routine/presentation/ui/components/Routine';
 
 export default function RoutinesPage() {
 	return (

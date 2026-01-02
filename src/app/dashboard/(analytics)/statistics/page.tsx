@@ -1,8 +1,8 @@
-import { PageContainer } from '@/modules/dashboard/page/components/PageContainer';
-import { PageContent } from '@/modules/dashboard/page/components/PageContent';
-import { PageHeader } from '@/modules/dashboard/page/components/PageHeader';
-import { BarCharts, LineChart } from '@/modules/statistics/components/Charts';
-import { StatisticCircle } from '@/modules/statistics/components/StatisticCircle';
+import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
+import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
+import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
+import { BarCharts, LineChart } from '@/presentation/modules/statistics/components/Charts';
+import { StatisticCircle } from '@/presentation/modules/statistics/components/StatisticCircle';
 
 export default function StatisticsPage() {
 	return (

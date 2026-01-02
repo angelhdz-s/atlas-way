@@ -1,4 +1,8 @@
-import { CircleOutline, SolidCircleCheck, SolidCircleX } from '../../globals/components/Icons';
+import {
+	CircleOutline,
+	SolidCircleCheck,
+	SolidCircleX,
+} from '@/presentation/globals/components/Icons';
 
 export function CompletedIcon({ className }: { className?: string }) {
 	return <SolidCircleCheck className={`${className} text-complete`} />;

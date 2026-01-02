@@ -1,22 +1,16 @@
-import { BodySections } from '@/prisma/client';
+import { Prisma } from '../../../prisma/client';
 
-export const BODY_SECTIONS: BodySections[] = [
+export const BODY_SECTIONS: Prisma.BodySectionsCreateManyInput[] = [
 	{
 		id: 1,
 		name: 'Torso',
-		createdAt: new Date(),
-		updatedAt: new Date(),
 	},
 	{
 		id: 2,
 		name: 'Arms',
-		createdAt: new Date(),
-		updatedAt: new Date(),
 	},
 	{
 		id: 3,
 		name: 'Legs',
-		createdAt: new Date(),
-		updatedAt: new Date(),
 	},
 ];

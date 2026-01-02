@@ -1,17 +1,20 @@
 'use client';
 
 import { useContext } from 'react';
-import { Calendar } from '@/modules/calendar/components/Calendar';
-import { CalendarProvider } from '@/modules/calendar/components/CalendarProvider';
-import { MonthDateSelector } from '@/modules/calendar/components/MonthDateSelector';
-import { YearDateSelector } from '@/modules/calendar/components/YearDateSelector';
-import { CalendarContext } from '@/modules/calendar/contexts/calendar-context';
-import { CardTitle } from '@/modules/dashboard/card/components/CardTitle';
-import { CalendarClock } from '@/modules/globals/components/Icons';
-import { SubtleCard } from '@/modules/globals/components/SubtleCard';
-import { getSessionFromDate } from '@/modules/globals/lib/dates';
-import { LastSessions } from '@/modules/session/components/LastSessions';
-import { SessionDetails, SessionDetailsType } from '@/modules/session/components/SessionDetails';
+import { Calendar } from '@/presentation/modules/calendar/components/Calendar';
+import { CalendarProvider } from '@/presentation/modules/calendar/components/CalendarProvider';
+import { MonthDateSelector } from '@/presentation/modules/calendar/components/MonthDateSelector';
+import { YearDateSelector } from '@/presentation/modules/calendar/components/YearDateSelector';
+import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { CalendarClock } from '@/presentation/globals/components/Icons';
+import { SubtleCard } from '@/presentation/globals/components/SubtleCard';
+import { getSessionFromDate } from '@/presentation/globals/lib/dates';
+import { LastSessions } from '@/modules/session/presentation/ui/components/LastSessions';
+import {
+	SessionDetails,
+	SessionDetailsType,
+} from '@/modules/session/presentation/ui/components/SessionDetails';
 
 const session = {
 	id: 1,
@@ -73,7 +76,7 @@ export function SessionsHistory({ className }: { className?: string }) {
 							<MonthDateSelector />
 							<YearDateSelector />
 						</header>
-						<SubtleCard className="border-1 border-subtle/10 rounded-lg">
+						<SubtleCard className="border border-subtle/10 rounded-lg">
 							<SessionDetails session={session} />
 						</SubtleCard>
 					</section>

@@ -1,5 +1,5 @@
-import { CardTitle } from '../../dashboard/card/components/CardTitle';
-import { LineChart } from '../../statistics/components/Charts';
+import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
+import { LineChart } from '../../../presentation/modules/statistics/components/Charts';
 
 export function SessionsChart({ className }: { className?: string }) {
 	return (

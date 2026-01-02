@@ -1,5 +1,5 @@
-import { ExerciseForm } from '@/modules/exercise/components/ModalExerciseForm';
+import { ModalExerciseForm } from '@/modules/exercise/presentation/ui/components/ModalExerciseForm';
 
 export default function AddExerciseToSessionPage() {
-	return <ExerciseForm />;
+	return <ModalExerciseForm muscles={[]} title="Exercise" />;
 }

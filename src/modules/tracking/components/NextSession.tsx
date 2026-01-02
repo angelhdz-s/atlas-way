@@ -1,5 +1,8 @@
-import { CardTitle } from '../../dashboard/card/components/CardTitle';
-import { SessionDetails, SessionDetailsType } from '../../session/components/SessionDetails';
+import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
+import {
+	SessionDetails,
+	SessionDetailsType,
+} from '../../session/presentation/ui/components/SessionDetails';
 
 const session = {
 	id: 1,

@@ -1,4 +1,4 @@
-import { CardTitle } from '../../dashboard/card/components/CardTitle';
+import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
 import styles from './CurrentGoals.module.css';
 
 function PercentageBar({ value, target }: { value: number; target: number }) {

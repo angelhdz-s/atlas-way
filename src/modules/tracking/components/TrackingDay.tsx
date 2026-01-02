@@ -1,6 +1,6 @@
-import { DAYS, DayWeeksType } from '@/modules/globals/config/defaults';
-import { getISOStringDate, getSessionFromDate } from '@/modules/globals/lib/dates';
-import { TODAY } from '@/modules/globals/mocks/tracking';
+import { DAYS, DayWeeksType } from '@/presentation/globals/config/defaults';
+import { getISOStringDate, getSessionFromDate } from '@/presentation/globals/lib/dates';
+import { TODAY } from '@/presentation/globals/mocks/tracking';
 import {
 	BarbellOff,
 	Circle,
@@ -8,8 +8,9 @@ import {
 	CircleOutline,
 	Alarm,
 	XCircle,
-} from '@/modules/globals/components/Icons';
-import { IconTypes } from '@/modules/globals/types';
+	AlertTriangle,
+} from '@/presentation/globals/components/Icons';
+import { IconTypes } from '@/presentation/globals/types';
 
 const STATUS_ICONS = {
 	completed: CircleCheck,
@@ -51,7 +52,7 @@ function WeekDayTooltip({ date }: { date: Date }) {
 		after:absolute after:z-0 after:size-2 after:bg-sec-background light:after:bg-light-sec-background after:inset-0 after:mx-auto after:-bottom-1 after:top-auto after:rotate-45
 		"
 		>
-			<span className="block w-fit py-1.5 leading-[1] text-xs text-zinc-400 font-medium">
+			<span className="block w-fit py-1.5 leading-none text-xs text-zinc-400 font-medium">
 				{dayOfWeek}
 			</span>
 		</div>
@@ -82,7 +83,7 @@ export function TrackingDay({
 
 	return (
 		<article
-			className={`group relative w-full rounded-md flex flex-col group border-1 border-subtle/20 hover:border-zinc-900 transition-colors ${main ? 'min-h-54' : 'min-h-48'} ${className} ${dayTypeClass}`}
+			className={`group relative w-full rounded-md flex flex-col group border border-subtle/20 hover:border-zinc-900 transition-colors ${main ? 'min-h-54' : 'min-h-48'} ${className} ${dayTypeClass}`}
 		>
 			<header
 				className={`flex items-center justify-between bg-zinc-900/80 ${main ? 'text-base px-4 h-10' : 'text-sm px-2 h-8'} group-hover:ld-main-fg transition-colors rounded-t`}
@@ -93,7 +94,7 @@ export function TrackingDay({
 				<aside className="flex items-center gap-1">
 					<span className="whitespace-nowrap">{dateString}</span>
 					<button type="button" className=" h-full cursor-pointer">
-						<DefaultStatusIcon Icon={STATUS_ICONS[session.status]} />
+						<DefaultStatusIcon Icon={AlertTriangle} />
 					</button>
 				</aside>
 			</header>
@@ -133,7 +134,7 @@ export function TrackingDay({
 						</div>
 					</div>
 				)}
-				<div className="absolute mask-radial-at-top mask-radial-[50%_50%] mask-radial-from-0% mask-radial-to-250% inset-0 transition-opacity opacity-[0.05] group-hover:opacity-[0.15] bg-[url('/backgrounds/grid.svg')] [background-size:50px]"></div>
+				<div className="absolute mask-radial-at-top mask-radial-[50%_50%] mask-radial-from-0% mask-radial-to-250% inset-0 transition-opacity opacity-[0.05] group-hover:opacity-[0.15] bg-[url('/backgrounds/grid.svg')] bg-size-[50px]"></div>
 			</main>
 			<WeekDayTooltip date={date} />
 		</article>
