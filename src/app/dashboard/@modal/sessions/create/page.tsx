@@ -1,11 +1,8 @@
-import { getExercisesIdName } from '@/modules/exercise/actions/get-exercises';
 import { SessionModalForm } from '@/modules/session/presentation/ui/components/SessionModalForm';
+import { SelectOption } from '@/presentation/modules/form/types';
 
 export default async function CreateSessionPage() {
-	const exercises = await getExercisesIdName();
-	const formattedExercises = exercises.map((exercise) => ({
-		value: exercise.id.toString(),
-		label: exercise.name,
-	}));
-	return <SessionModalForm title="New Session" exercises={formattedExercises} />;
+	const exercises: SelectOption[] = [];
+
+	return <SessionModalForm title="New Session" exercises={exercises} />;
 }
