@@ -4,6 +4,7 @@ import { useFieldArray } from 'react-hook-form';
 import { SelectOption } from '@/presentation/modules/form/types';
 import { useFormHook } from '@/presentation/modules/form/hooks/useFormHook';
 import { sessionFormSchema } from '../config/session-schema';
+import { createSessionAction } from '../../session.actions';
 
 export function useSessionForm({
 	onSuccess,
