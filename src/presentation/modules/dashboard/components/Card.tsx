@@ -9,12 +9,10 @@ export function Card({
 }
 
 const CARD_TYPE_CLASSES = {
-	default: 'bg-background light:bg-light-sec-background border-1 border-foreground/10',
-	disabled:
-		'bg-background light:bg-light-sec-background border-1 border-foreground/10 opacity-50',
-	main: 'bg-primary text-light-main-foreground light:text-main-foreground border-1 border-primary',
-	special:
-		'bg-accent text-light-main-foreground light:text-main-foreground border-1 border-accent',
+	default: 'bg-background light:bg-light-sec-background border border-foreground/10',
+	disabled: 'bg-background light:bg-light-sec-background border border-foreground/10 opacity-50',
+	main: 'bg-primary text-light-main-foreground light:text-main-foreground border border-primary',
+	special: 'bg-accent text-light-main-foreground light:text-main-foreground border border-accent',
 };
 
 export type CardHighlightType = keyof typeof CARD_TYPE_CLASSES;
@@ -48,7 +46,7 @@ export function DashboardCard({
 		<article
 			className={`
 				p-8 
-			shadow-xl shadow-black/[0.05] flex flex-col gap-6 rounded-xl tracking-tight ${widthClass} ${className}
+			shadow-xl shadow-black/5 flex flex-col gap-6 rounded-xl tracking-tight ${widthClass} ${className}
 				`}
 		>
 			{children}
@@ -82,7 +80,7 @@ function StatisticsSeparator({ value }: { value?: string }) {
 	return (
 		<>
 			<li className="flex items-center">
-				<span className="block w-[1px] h-4 bg-subtle/50"></span>
+				<span className="block w-px h-4 bg-subtle/50"></span>
 			</li>
 			<li>{value}</li>
 		</>

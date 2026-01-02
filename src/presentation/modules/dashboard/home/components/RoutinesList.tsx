@@ -1,4 +1,4 @@
-import { Barbell, Alarm } from '@/modules/globals/components/Icons';
+import { Barbell, Alarm } from '@/presentation/globals/components/Icons';
 import { CardTitle } from '../../card/components/CardTitle';
 
 export function RoutinesList({ className = '' }: { className?: string }) {
@@ -11,7 +11,7 @@ export function RoutinesList({ className = '' }: { className?: string }) {
 						<header className="">
 							<h4 className="text-base ld-main-fg">1. Push, Pull, Legs</h4>
 						</header>
-						<ul className="*:leading-[1] text-foreground/70 text-sm flex flex-col gap-1">
+						<ul className="*:leading-none text-foreground/70 text-sm flex flex-col gap-1">
 							<li className="flex gap-2 items-center">
 								<Alarm className="size-4" strokeWidth="1.5" />
 								<span className="font-light">3 Sessions</span>
@@ -26,7 +26,7 @@ export function RoutinesList({ className = '' }: { className?: string }) {
 						<header className="">
 							<h4 className="text-base ld-main-fg">2. Full Body</h4>
 						</header>
-						<ul className="*:leading-[1] text-foreground/70 text-sm flex flex-col gap-1">
+						<ul className="*:leading-none text-foreground/70 text-sm flex flex-col gap-1">
 							<li className="flex gap-2 items-center">
 								<Alarm className="size-4" strokeWidth="1.5" />
 								<span className="font-light">1 Session</span>

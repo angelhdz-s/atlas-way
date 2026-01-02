@@ -1,11 +1,11 @@
 import { Breadcrumb } from './Breadcrumb';
-import { ToggleTheme } from '@/modules/globals/components/ToggleTheme';
-import { LangButton } from '@/modules/globals/components/LangButton';
-import { SettingsButton } from '@/modules/globals/components/SettingsButton';
-import { UserInfo } from '../../user/presentation/ui/components/UserInfo';
-import { NotificationsButton } from '../../notification/presentation/ui/components/NotificationsButton';
+import { ToggleTheme } from '@/presentation/globals/components/ToggleTheme';
+import { LangButton } from '@/presentation/globals/components/LangButton';
+import { SettingsButton } from '@/presentation/globals/components/SettingsButton';
+import { UserInfo } from '../../../../modules/user/presentation/ui/components/UserInfo';
+import { NotificationsButton } from '../../../../modules/notification/presentation/ui/components/NotificationsButton';
 import Link from 'next/link';
-import { Imagotype } from '@/modules/globals/components/AppLogo';
+import { Imagotype } from '@/presentation/globals/components/AppLogo';
 
 export function Header({ className = '' }: { className?: string }) {
 	return (

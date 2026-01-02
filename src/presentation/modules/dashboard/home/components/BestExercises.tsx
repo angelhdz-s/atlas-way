@@ -14,22 +14,22 @@ export function BestExercises({ className = '' }: { className?: string }) {
 						</tr>
 					</thead>
 					<tbody>
-						<tr className="*:py-0.5 *:leading-[1] *:px-1 font-light">
+						<tr className="*:py-0.5 *:leading-none *:px-1 font-light">
 							<td>1</td>
 							<td>Biceps Curl</td>
 							<td className="text-accent">10% improvement</td>
 						</tr>
-						<tr className="*:py-0.5 *:leading-[1] *:px-1 font-light">
+						<tr className="*:py-0.5 *:leading-none *:px-1 font-light">
 							<td>2</td>
 							<td>Bulgarians</td>
 							<td className="text-accent">7% improvement</td>
 						</tr>
-						<tr className="*:py-0.5 *:leading-[1] *:px-1 font-light">
+						<tr className="*:py-0.5 *:leading-none *:px-1 font-light">
 							<td>3</td>
 							<td>Dips</td>
 							<td className="text-accent">5% improvement</td>
 						</tr>
-						<tr className="*:py-0.5 *:leading-[1] *:px-1 font-light">
+						<tr className="*:py-0.5 *:leading-none *:px-1 font-light">
 							<td>4</td>
 							<td>Pull Ups</td>
 							<td className="text-accent">2% improvement</td>

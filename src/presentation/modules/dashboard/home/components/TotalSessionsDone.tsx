@@ -8,7 +8,7 @@ export function TotalSessionsDone({ className = '' }: { className?: string }) {
 				<span className="tracking-tighter text-8xl font-medium font-funnel-display text-accent">
 					120
 				</span>
-				<span className="leading-[1] text-base font-light text-foreground/50">
+				<span className="leading-none text-base font-light text-foreground/50">
 					Sessions
 				</span>
 			</main>

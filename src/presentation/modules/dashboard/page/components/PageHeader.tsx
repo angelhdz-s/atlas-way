@@ -12,7 +12,7 @@ export function PageHeader({
 	return (
 		<header className={`w-full ld-main-fg ${className}`}>
 			<main className="w-full flex items-center gap-2">
-				<h1 className="flex-1 ld-main-fg-gradient text-4xl leading-[1] font-bold tracking-tight font-funnel-display pb-1">
+				<h1 className="flex-1 ld-main-fg-gradient text-4xl leading-none font-bold tracking-tight font-funnel-display pb-1">
 					{title}
 				</h1>
 				<aside>{children}</aside>

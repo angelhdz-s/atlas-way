@@ -1,4 +1,9 @@
-import { Barbell, MapRoute, Alarm, SolidCircleCheck } from '@/modules/globals/components/Icons';
+import {
+	Barbell,
+	MapRoute,
+	Alarm,
+	SolidCircleCheck,
+} from '@/presentation/globals/components/Icons';
 
 export function MainCard({ className = '' }: { className?: string }) {
 	return (
