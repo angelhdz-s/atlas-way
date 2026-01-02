@@ -1,5 +1,5 @@
-import { RoutineForm } from '@/modules/routine/components/RoutineModalForm';
+import { RoutineModalForm } from '@/modules/routine/presentation/ui/components/RoutineModalForm';
 
 export default function CreateRoutineSessionsPage() {
-	return <RoutineForm title="New Routine" />;
+	return <RoutineModalForm title="New Routine" />;
 }
