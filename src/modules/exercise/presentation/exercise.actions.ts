@@ -5,7 +5,6 @@ import {
 	exerciseFormSchema,
 } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
 import { ActionResponse, ActionResponseProps } from '@/shared/contracts/actions.response';
-import { getUserIdByEmail } from '../../user/presentation/user.actions';
 export async function createExerciseAction(
 	data: ExerciseFormProps
 ): ActionResponse<Exercise | null> {
@@ -26,10 +25,6 @@ export async function createExerciseAction(
 		response.message = 'User session not found';
 		return response;
 	}
-
-	const { initialStats, exercise } = result.data;
-
-	const { data: userId } = await getUserIdByEmail(session.user.email);
 
 	// TODO
 	// Create exercise and return it

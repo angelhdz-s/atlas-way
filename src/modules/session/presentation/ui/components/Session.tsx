@@ -1,4 +1,4 @@
-import { Barbell } from '@/modules/globals/components/Icons';
+import { Barbell } from '@/presentation/globals/components/Icons';
 import {
 	DashboardCard,
 	DashboardCardButton,
@@ -7,8 +7,8 @@ import {
 	DashboardCardMain,
 	DashboardCardSubHeader,
 	DashboardCardTags,
-} from '../../../../dashboard/components/Card';
-import { ExerciseType, SessionDayType } from '@/modules/globals/mocks/sessions';
+} from '../../../../../presentation/modules/dashboard/components/Card';
+import { ExerciseType, SessionDayType } from '@/presentation/globals/mocks/sessions';
 
 function ExercisesList({ exercises }: { exercises: ExerciseType[] }) {
 	return (

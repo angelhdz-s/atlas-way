@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { ToggleTheme } from '@/modules/globals/components/ToggleTheme';
+import { ToggleTheme } from '@/presentation/globals/components/ToggleTheme';
 import { SessionButtons } from '@/modules/auth/presentation/ui/components/SessionButtons';
-import { Imagotype } from '@/modules/globals/components/AppLogo';
+import { Imagotype } from '@/presentation/globals/components/AppLogo';
 
 export function Header({ className = '' }: { className?: string }) {
 	return (

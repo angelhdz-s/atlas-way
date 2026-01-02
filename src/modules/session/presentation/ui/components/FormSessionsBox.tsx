@@ -1,8 +1,8 @@
 import { Box } from '@/presentation/modules/form/components/Box';
 import { useState } from 'react';
-import { SessionsFormDataWithExercises } from '../types';
+import { SessionsFormDataWithExercises } from '@/modules/session/presentation/types';
 import Link from 'next/link';
-import { CirclePlus } from '@/modules/globals/components/Icons';
+import { CirclePlus } from '@/presentation/globals/components/Icons';
 
 export function FormSessionsBox() {
 	const [sessions, setSessions] = useState<SessionsFormDataWithExercises[]>([]);

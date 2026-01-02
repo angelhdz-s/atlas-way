@@ -4,11 +4,20 @@ import {
 	DashboardCardHeader,
 	DashboardCardSubHeader,
 	DashboardCardTag,
-} from '../../dashboard/components/Card';
-import { getBodySectionsWithMuscularGroups } from '@/modules/bodysection/presentation/bodysection.actions';
+} from '@/presentation/modules/dashboard/components/Card';
 
 export default async function MusclesTable() {
-	const { data: bodySections } = await getBodySectionsWithMuscularGroups();
+	const bodySections = [
+		{
+			id: 1,
+			name: 'Torso',
+			muscularGroups: [
+				{ id: 1, name: 'Chest' },
+				{ id: 2, name: 'Abs' },
+				{ id: 3, name: 'Back' },
+			],
+		},
+	];
 
 	return bodySections.map((section) => {
 		return (

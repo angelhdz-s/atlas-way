@@ -6,7 +6,7 @@ import { InputText } from '@/presentation/modules/form/components/InputText';
 import { Label, LabelGroup } from '@/presentation/modules/form/components/LabelInput';
 import { ModalFormButtons } from '@/presentation/modules/form/components/ModalFormButtons';
 import { TextArea } from '@/presentation/modules/form/components/TextArea';
-import { createRoutineAction } from '../actions/create-routine';
+import { createRoutineAction } from '@/modules/routine/presentation/routine.actions';
 import { routineFormSchema } from '../config/routine-schema';
 import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
 import { daysOptions } from '../config/form';

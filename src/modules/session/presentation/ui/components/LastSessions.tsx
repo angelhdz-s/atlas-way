@@ -1,6 +1,6 @@
-import { TypeDayIcon } from '@/modules/globals/components/day-type/TypeDayIcon';
+import { TypeDayIcon } from '@/presentation/globals/components/day-type/TypeDayIcon';
 import { StatusIcon } from '@/modules/status/components/StatusIcons';
-import { getStatusTextColorClass } from '@/modules/globals/lib/get-classes';
+import { getStatusTextColorClass } from '@/presentation/globals/lib/get-classes';
 
 type SessionTrainingDayType = {
 	id: number;

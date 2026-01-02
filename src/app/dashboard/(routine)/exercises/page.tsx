@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { PageContainer } from '@/modules/dashboard/page/components/PageContainer';
-import { PageContent } from '@/modules/dashboard/page/components/PageContent';
-import { PageHeader } from '@/modules/dashboard/page/components/PageHeader';
-import {} from '@/modules/globals/mocks/sessions';
-import { BODY_SECTIONS, EXERCISES, ExerciseType } from '@/modules/globals/constants/db';
+import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
+import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
+import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
+import {} from '@/presentation/globals/mocks/sessions';
+import { BODY_SECTIONS, EXERCISES, ExerciseType } from '@/presentation/globals/constants/db';
 import {
 	DashboardCard,
 	DashboardCardButton,
@@ -12,8 +12,8 @@ import {
 	DashboardCardMain,
 	DashboardCardSubHeader,
 	DashboardCardTag,
-} from '@/modules/dashboard/components/Card';
-import { Barbell } from '@/modules/globals/components/Icons';
+} from '@/presentation/modules/dashboard/components/Card';
+import { Barbell } from '@/presentation/globals/components/Icons';
 
 function Exercises({ exercises }: { exercises: ExerciseType[] }) {
 	return exercises

@@ -2,8 +2,13 @@
 
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { THEME } from '@/modules/globals/constants/client';
-import { DefaultIcon, defaultIconSizeClass, Moon, Sun } from '@/modules/globals/components/Icons';
+import { THEME } from '@/presentation/globals/constants/client';
+import {
+	DefaultIcon,
+	defaultIconSizeClass,
+	Moon,
+	Sun,
+} from '@/presentation/globals/components/Icons';
 
 export function ToggleTheme({ className = '' }: { className?: string }) {
 	const [mount, setMount] = useState(false);

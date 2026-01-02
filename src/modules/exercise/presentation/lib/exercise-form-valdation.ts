@@ -9,7 +9,7 @@ import {
 	isString,
 	isStringInRange,
 	isStringLength,
-} from '@/modules/globals/lib/validation';
+} from '@/presentation/globals/lib/validation';
 
 export function validateExerciseName(name: string) {
 	if (!name || !isString(name) || isStringLength(name, 0)) return 'Name is required';

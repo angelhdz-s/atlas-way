@@ -1,10 +1,10 @@
-import { CardTitle } from '@/modules/dashboard/card/components/CardTitle';
-import { CirclePlus } from '@/modules/globals/components/Icons';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { CirclePlus } from '@/presentation/globals/components/Icons';
 import {
 	SessionDetails,
 	SessionDetailsType,
 } from '../../session/presentation/ui/components/SessionDetails';
-import { SubtleCard } from '@/modules/globals/components/SubtleCard';
+import { SubtleCard } from '@/presentation/globals/components/SubtleCard';
 
 const session = {
 	id: 1,

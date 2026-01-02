@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { BoxMusclesAdder } from '@/modules/exercise/presentation/ui/components/BoxMusclesAdder';
 import { Box } from '@/presentation/modules/form/components/Box';
 import { SelectOption } from '@/presentation/modules/form/types';
-import { CirclePlus, Trash, XMark } from '@/modules/globals/components/Icons';
+import { CirclePlus, Trash, XMark } from '@/presentation/globals/components/Icons';
 
 function BoxOption({ label, onCrossClick }: { label: string; onCrossClick?: () => void }) {
 	return (

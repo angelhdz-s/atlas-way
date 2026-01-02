@@ -3,9 +3,9 @@ import {
 	MONTH_DAYS,
 	MONTH_LIMITS,
 	MonthDisplacement,
-} from '@/modules/globals/constants/date';
-import { StatusDayType } from '@/modules/globals/mocks/routines';
-import { NextSessionType, SESSIONS } from '@/modules/globals/mocks/sessions';
+} from '@/presentation/globals/constants/date';
+import { StatusDayType } from '@/presentation/globals/mocks/routines';
+import { NextSessionType, SESSIONS } from '@/presentation/globals/mocks/sessions';
 import {
 	getRestDay,
 	NextRestDayPlanifiedType,
@@ -14,7 +14,7 @@ import {
 	TrackedDayType,
 	TRACKING_DAYS_OFFSET,
 	TRACKING_DAYS,
-} from '@/modules/globals/mocks/tracking';
+} from '@/presentation/globals/mocks/tracking';
 
 export function getTrackingDates() {
 	return [

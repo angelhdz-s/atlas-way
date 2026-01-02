@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { Prettify, Toast } from '@/modules/globals/types.d';
+import { Prettify, Toast } from '@/presentation/globals/types.d';
 
 type ToastOptions = Prettify<Partial<Omit<Toast, 'id' | 'message'>>>;
 interface ToastContextType {

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import styles from '@/modules/sidebar/components/Sidebar.module.css';
+import styles from '@/presentation/modules/sidebar/components/Sidebar.module.css';
 
 const isActiveLink = (path: string, href: string) => {
 	return path === href || (path.startsWith(href) && href !== '/' && href !== '/dashboard');

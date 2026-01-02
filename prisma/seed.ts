@@ -1,6 +1,6 @@
 import { prisma } from '../src/shared/infrastructure/prisma/client';
-import { ROUTINE_CYCLES } from '../src/modules/globals/seed/cycle-types';
-import { DAY_TYPES } from '../src/modules/globals/seed/day-types';
+import { ROUTINE_CYCLES } from '../src/presentation/globals/seed/cycle-types';
+import { DAY_TYPES } from '../src/presentation/globals/seed/day-types';
 import { BODY_SECTIONS } from '../src/modules/muscle/seed/body-sections';
 import { MUSCLES } from '../src/modules/muscle/seed/muscles';
 import { MUSCULAR_GROUPS } from '../src/modules/muscle/seed/muscular-groups';

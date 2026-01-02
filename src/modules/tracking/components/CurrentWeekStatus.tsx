@@ -1,11 +1,15 @@
-import { CircleOutline, SolidCircleCheck, SolidCircleX } from '@/modules/globals/components/Icons';
-import { WEEK_DAYS } from '@/modules/globals/constants/date';
-import { getNextDates, getSessionFromDate } from '@/modules/globals/lib/dates';
-import { StatusDayType } from '@/modules/globals/mocks/routines';
-import { TODAY } from '@/modules/globals/mocks/tracking';
-import { IconTypes, SolidIconTypes } from '@/modules/globals/types';
-import { CardTitle } from '../../dashboard/card/components/CardTitle';
-import { getStatusTextColorClass } from '@/modules/globals/lib/get-classes';
+import {
+	CircleOutline,
+	SolidCircleCheck,
+	SolidCircleX,
+} from '@/presentation/globals/components/Icons';
+import { WEEK_DAYS } from '@/presentation/globals/constants/date';
+import { getNextDates, getSessionFromDate } from '@/presentation/globals/lib/dates';
+import { StatusDayType } from '@/presentation/globals/mocks/routines';
+import { TODAY } from '@/presentation/globals/mocks/tracking';
+import { IconTypes, SolidIconTypes } from '@/presentation/globals/types';
+import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
+import { getStatusTextColorClass } from '@/presentation/globals/lib/get-classes';
 
 const ICON_SIZE_CLASS = 'size-7';
 

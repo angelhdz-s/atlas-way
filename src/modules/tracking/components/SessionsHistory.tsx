@@ -6,10 +6,10 @@ import { CalendarProvider } from '@/presentation/modules/calendar/components/Cal
 import { MonthDateSelector } from '@/presentation/modules/calendar/components/MonthDateSelector';
 import { YearDateSelector } from '@/presentation/modules/calendar/components/YearDateSelector';
 import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
-import { CardTitle } from '@/modules/dashboard/card/components/CardTitle';
-import { CalendarClock } from '@/modules/globals/components/Icons';
-import { SubtleCard } from '@/modules/globals/components/SubtleCard';
-import { getSessionFromDate } from '@/modules/globals/lib/dates';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { CalendarClock } from '@/presentation/globals/components/Icons';
+import { SubtleCard } from '@/presentation/globals/components/SubtleCard';
+import { getSessionFromDate } from '@/presentation/globals/lib/dates';
 import { LastSessions } from '@/modules/session/presentation/ui/components/LastSessions';
 import {
 	SessionDetails,

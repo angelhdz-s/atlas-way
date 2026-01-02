@@ -1,7 +1,7 @@
 import { Box } from '@/presentation/modules/form/components/Box';
 import { useMultipleSelectOptionsBox } from '@/presentation/modules/form/hooks/useMultipleSelectOptionsBox';
 import { SelectOption } from '@/presentation/modules/form/types';
-import { CirclePlus, Search } from '@/modules/globals/components/Icons';
+import { CirclePlus, Search } from '@/presentation/globals/components/Icons';
 
 function SelectOptionBox({
 	option,

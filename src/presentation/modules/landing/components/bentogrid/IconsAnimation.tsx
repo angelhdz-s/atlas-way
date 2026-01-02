@@ -11,9 +11,9 @@ import {
 	Scale,
 	TrendingUp,
 	Trophy,
-} from '@/modules/globals/components/Icons';
-import { IconTypes } from '@/modules/globals/types.d';
-import styles from '@/modules/landing/components/bentogrid/IconsAnimation.module.css';
+} from '@/presentation/globals/components/Icons';
+import { IconTypes } from '@/presentation/globals/types.d';
+import styles from './IconsAnimation.module.css';
 import { useEffect, useState } from 'react';
 
 const ICONS: IconTypes[] = [

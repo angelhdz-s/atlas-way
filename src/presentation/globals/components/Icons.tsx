@@ -1,4 +1,4 @@
-import { IconProps, IconTypes } from '@/modules/globals/types.d';
+import { IconProps, IconTypes } from '@/presentation/globals/types.d';
 
 export const defaultIconStrokeWidth = '2';
 export const defaultIconSizeClass = 'size-6';

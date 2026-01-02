@@ -1,4 +1,4 @@
-import { IconTypes } from '@/modules/globals/types.d';
+import { IconTypes } from '@/presentation/globals/types.d';
 import { NavIconSize } from '@/presentation/modules/sidebar/components/nav/NavConstants';
 import { SubLink } from '@/presentation/modules/sidebar/components/nav/SubLink';
 

@@ -1,9 +1,9 @@
-import { XMark } from '@/modules/globals/components/Icons';
+import { XMark } from '@/presentation/globals/components/Icons';
 import {
 	getGridColsClassFromWithStatus,
 	getStatusTextColorClass,
-} from '@/modules/globals/lib/get-classes';
-import { StatusDayType } from '@/modules/globals/mocks/routines';
+} from '@/presentation/globals/lib/get-classes';
+import { StatusDayType } from '@/presentation/globals/mocks/routines';
 import { StatusIcon } from '@/modules/status/components/StatusIcons';
 
 const iconSize = 'size-4.5';

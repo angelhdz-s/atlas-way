@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowUp } from '@/modules/globals/components/Icons';
+import { ArrowUp } from '@/presentation/globals/components/Icons';
 
 export function Hero() {
 	return (

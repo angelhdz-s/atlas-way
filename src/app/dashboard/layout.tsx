@@ -1,5 +1,5 @@
-import { Footer } from '@/modules/dashboard/components/Footer';
-import { Header } from '@/modules/dashboard/components/Header';
+import { Footer } from '@/presentation/modules/dashboard/components/Footer';
+import { Header } from '@/presentation/modules/dashboard/components/Header';
 import { Sidebar } from '@/presentation/modules/sidebar/components/Sidebar';
 
 export default async function Layout({

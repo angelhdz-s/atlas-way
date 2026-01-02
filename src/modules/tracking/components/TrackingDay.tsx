@@ -1,6 +1,6 @@
-import { DAYS, DayWeeksType } from '@/modules/globals/config/defaults';
-import { getISOStringDate, getSessionFromDate } from '@/modules/globals/lib/dates';
-import { TODAY } from '@/modules/globals/mocks/tracking';
+import { DAYS, DayWeeksType } from '@/presentation/globals/config/defaults';
+import { getISOStringDate, getSessionFromDate } from '@/presentation/globals/lib/dates';
+import { TODAY } from '@/presentation/globals/mocks/tracking';
 import {
 	BarbellOff,
 	Circle,
@@ -8,8 +8,9 @@ import {
 	CircleOutline,
 	Alarm,
 	XCircle,
-} from '@/modules/globals/components/Icons';
-import { IconTypes } from '@/modules/globals/types';
+	AlertTriangle,
+} from '@/presentation/globals/components/Icons';
+import { IconTypes } from '@/presentation/globals/types';
 
 const STATUS_ICONS = {
 	completed: CircleCheck,
@@ -93,7 +94,7 @@ export function TrackingDay({
 				<aside className="flex items-center gap-1">
 					<span className="whitespace-nowrap">{dateString}</span>
 					<button type="button" className=" h-full cursor-pointer">
-						<DefaultStatusIcon Icon={STATUS_ICONS[session.status]} />
+						<DefaultStatusIcon Icon={AlertTriangle} />
 					</button>
 				</aside>
 			</header>

@@ -1,6 +1,5 @@
-import { getUser } from '@/modules/user/presentation/user.actions';
 import { getCurrentSession } from '@/modules/auth/infrastructure/next-auth/next-auth.currentsession';
-import { Dots } from '@/modules/globals/components/Icons';
+import { Dots } from '@/presentation/globals/components/Icons';
 import { UserAvatar } from './UserAvatar';
 
 export async function UserInfo({ className = '' }: { className?: string }) {

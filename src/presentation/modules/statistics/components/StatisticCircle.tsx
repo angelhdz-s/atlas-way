@@ -1,4 +1,4 @@
-import { Circle } from '@/modules/globals/components/Icons';
+import { Circle } from '@/presentation/globals/components/Icons';
 
 export function StatisticCircle({
 	title,

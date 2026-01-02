@@ -1,7 +1,7 @@
 import { SubLink } from '@/presentation/modules/sidebar/components/nav/SubLink';
 import { NavIconSize } from '@/presentation/modules/sidebar/components/nav/NavConstants';
 import { NotificationsCounter } from '@/modules/notification/presentation/ui/components/NotificationsCounter';
-import { Bell } from '@/modules/globals/components/Icons';
+import { Bell } from '@/presentation/globals/components/Icons';
 
 export function NavLinkNotification({ href }: { href: string }) {
 	const notificationsCount = 5;

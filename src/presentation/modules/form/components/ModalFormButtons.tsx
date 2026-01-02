@@ -1,6 +1,6 @@
 'use client';
 
-import CloseButton from '@/modules/globals/components/modal/CloseButton';
+import CloseButton from '@/presentation/globals/components/modal/CloseButton';
 
 export function ModalFormButtons({ isPending = false }: { isPending?: boolean }) {
 	// const router = useRouter();

@@ -1,4 +1,4 @@
-import { MONTH_NAMES, WEEK_DAYS } from '@/modules/globals/constants/date';
+import { MONTH_NAMES, WEEK_DAYS } from '@/presentation/globals/constants/date';
 
 export function SidebarFooter({ className = '' }: { className?: string }) {
 	const date = new Date();

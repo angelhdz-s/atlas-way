@@ -1,5 +1,4 @@
-import { UserIcon } from '@/modules/globals/components/Icons';
-import { Session, User } from 'next-auth';
+import { UserIcon } from '@/presentation/globals/components/Icons';
 import Image from 'next/image';
 
 export function UserAvatar({ src, size = 32 }: { src?: string | null; size?: number }) {

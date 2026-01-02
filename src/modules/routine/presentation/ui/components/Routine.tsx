@@ -1,5 +1,5 @@
-import { DAYS, DayWeeksType } from '@/modules/globals/config/defaults';
-import { DayTypeProps, RoutineType, StatusDayType } from '@/modules/globals/mocks/routines';
+import { DAYS, DayWeeksType } from '@/presentation/globals/config/defaults';
+import { DayTypeProps, RoutineType, StatusDayType } from '@/presentation/globals/mocks/routines';
 import {
 	CardHighlightType,
 	DashboardCard,
@@ -9,15 +9,15 @@ import {
 	DashboardCardMain,
 	DashboardCardSubHeader,
 	DashboardCardTags,
-} from '@/modules/dashboard/components/Card';
+} from '@/presentation/modules/dashboard/components/Card';
 import {
 	Barbell,
 	BarbellOff,
 	CalendarWeek,
 	CircleCheck,
 	XCircle,
-} from '@/modules/globals/components/Icons';
-import { IconTypes } from '@/modules/globals/types';
+} from '@/presentation/globals/components/Icons';
+import { IconTypes } from '@/presentation/globals/types';
 
 interface DayObjectType {
 	class: string;

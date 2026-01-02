@@ -1,4 +1,4 @@
-import { ArrowUp } from '@/modules/globals/components/Icons';
+import { ArrowUp } from '@/presentation/globals/components/Icons';
 import { ArrowButton } from './ArrowButton';
 
 type DateControlProps = {

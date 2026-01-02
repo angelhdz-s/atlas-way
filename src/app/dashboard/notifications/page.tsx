@@ -1,8 +1,8 @@
-import { NOTIFICATIONS } from '@/modules/globals/mocks/notifications';
+import { NOTIFICATIONS } from '@/presentation/globals/mocks/notifications';
 import { Notification } from '@/modules/notification/presentation/ui/components/Notification';
-import { PageContainer } from '@/modules/dashboard/page/components/PageContainer';
-import { PageContent } from '@/modules/dashboard/page/components/PageContent';
-import { PageHeader } from '@/modules/dashboard/page/components/PageHeader';
+import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
+import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
+import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
 
 export default function Dashboard() {
 	return (

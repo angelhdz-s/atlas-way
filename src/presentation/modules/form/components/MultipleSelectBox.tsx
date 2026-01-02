@@ -4,7 +4,7 @@ import { Box } from '@/presentation/modules/form/components/Box';
 import { MultipleSelectOptionsBox } from '@/presentation/modules/form/components/MultipleSelectOptionsBox';
 import { useMultipleSelectBox } from '@/presentation/modules/form/hooks/useMultipleSelectBox';
 import { SelectOption } from '@/presentation/modules/form/types';
-import { CirclePlus, Trash, XMark } from '@/modules/globals/components/Icons';
+import { CirclePlus, Trash, XMark } from '@/presentation/globals/components/Icons';
 import { ErrorMessage } from './ErrorMessage';
 
 function SelectedOptions({ label, onCrossClick }: { label: string; onCrossClick?: () => void }) {

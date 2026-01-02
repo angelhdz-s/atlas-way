@@ -1,9 +1,9 @@
 import { prisma } from '@/shared/infrastructure/prisma/client';
-import { ExerciseInitialStatsMapper } from './exerciseinitialstats.mapper';
-import { IExerciseInitialStatsRepository } from '../domain/exerciseinitialstats.repository';
-import { ExerciseInitialStats } from '../domain/exerciseinitialstats.entity';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
+import { IExerciseInitialStatsRepository } from '../../domain/exerciseinitialstats.repository';
+import { ExerciseInitialStatsMapper } from '../exerciseinitialstats.mapper';
+import { ExerciseInitialStats } from '../../domain/exerciseinitialstats.entity';
 
 export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialStatsRepository {
 	async create(data: ExerciseInitialStats) {

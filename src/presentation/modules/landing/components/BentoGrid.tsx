@@ -13,12 +13,12 @@ import {
 	TrendingUp,
 	Trophy,
 	Hammer,
-} from '@/modules/globals/components/Icons';
-import { Border } from '@/modules/globals/components/utils/Border';
+} from '@/presentation/globals/components/Icons';
+import { Border } from '@/presentation/globals/components/utils/Border';
 import Link from 'next/link';
 import { DaysSelection } from './bentogrid/DaysSelection';
 import { IconsAnimation } from './bentogrid/IconsAnimation';
-import { IconTypes } from '@/modules/globals/types';
+import { IconTypes } from '@/presentation/globals/types';
 
 function IconBubble({ className = '', Icon }: { className?: string; Icon: IconTypes }) {
 	return (

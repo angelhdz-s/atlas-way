@@ -2,7 +2,7 @@
 
 import { Box } from '@/presentation/modules/form/components/Box';
 import { Label } from '@/presentation/modules/form/components/LabelInput';
-import { Edit, Trash } from '@/modules/globals/components/Icons';
+import { Edit, Trash } from '@/presentation/globals/components/Icons';
 
 export function RoutineModalFormStep1({ title }: { title: string }) {
 	return (

@@ -1,5 +1,5 @@
 import { SidebarSection } from '@/presentation/modules/sidebar/components/SidebarSection';
-import { ReportAnalytics } from '@/modules/globals/components/Icons';
+import { ReportAnalytics } from '@/presentation/globals/components/Icons';
 import { NavLink, NavLinks } from './nav/NavLink';
 
 export function SidebarAnalyticsSection() {

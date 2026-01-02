@@ -2,8 +2,8 @@ import { ExerciseRow } from '@/modules/exercise/presentation/ui/components/Exerc
 import {
 	getGridColsClassFromWithStatus,
 	getStatusTextColorClass,
-} from '@/modules/globals/lib/get-classes';
-import { StatusDayType } from '@/modules/globals/mocks/routines';
+} from '@/presentation/globals/lib/get-classes';
+import { StatusDayType } from '@/presentation/globals/mocks/routines';
 import { StatusIcon } from '@/modules/status/components/StatusIcons';
 
 export type exerciseType = {

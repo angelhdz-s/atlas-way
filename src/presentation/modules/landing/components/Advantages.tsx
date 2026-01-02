@@ -3,9 +3,9 @@ import {
 	DeviceDesktop,
 	DeviceDesktopAnalytics,
 	Hammer,
-} from '@/modules/globals/components/Icons';
+} from '@/presentation/globals/components/Icons';
 
-import { IconTypes } from '@/modules/globals/types.d';
+import { IconTypes } from '@/presentation/globals/types.d';
 
 function AdvantageFigure({ Icon }: { Icon: IconTypes }) {
 	return (

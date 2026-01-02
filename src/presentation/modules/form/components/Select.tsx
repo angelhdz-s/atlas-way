@@ -1,6 +1,6 @@
 import { InputClasses } from '../constants/classes';
 
-import styles from '@/modules/form/components/Select.module.css';
+import styles from './Select.module.css';
 import { SelectOption, SelectOptionValue } from '../types';
 import { ErrorMessage } from './ErrorMessage';
 

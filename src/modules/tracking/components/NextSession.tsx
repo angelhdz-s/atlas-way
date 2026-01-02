@@ -1,4 +1,4 @@
-import { CardTitle } from '../../dashboard/card/components/CardTitle';
+import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
 import {
 	SessionDetails,
 	SessionDetailsType,

@@ -1,4 +1,4 @@
-import { Prisma, Sessions as PrismaSession } from '@/prisma/client';
+import { Sessions as PrismaSession } from '@/prisma/client';
 import { Session } from '../domain/session.entity';
 import { SessionProps } from '../domain/session.types';
 

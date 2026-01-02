@@ -1,7 +1,7 @@
-import { getPastDate, isToday } from '@/modules/globals/lib/dates';
+import { getPastDate, isToday } from '@/presentation/globals/lib/dates';
 import { ROUTINES, StatusDayType } from './routines';
 import { ExerciseType, LEGS_DAY, PULL_DAY, PUSH_DAY } from './sessions';
-import { minorValue } from '@/modules/globals/lib/utils';
+import { minorValue } from '@/presentation/globals/lib/utils';
 
 type TrainingtDayNameType = 'Training Day';
 type RestDayNameType = 'Rest Day';

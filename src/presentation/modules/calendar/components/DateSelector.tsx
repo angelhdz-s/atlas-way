@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
 import { useCalendar } from '@/presentation/modules/calendar/hooks/useCalendar';
-import { ArrowUp } from '@/modules/globals/components/Icons';
+import { ArrowUp } from '@/presentation/globals/components/Icons';
 
 function ArrowButton({
 	onClick,
