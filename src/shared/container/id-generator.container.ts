@@ -1,3 +1,3 @@
-import { CuidGeneratior } from '../infrastructure/uuid-generator';
+import { UUIDGenerator } from '../infrastructure/uuid-generator';
 
-export const IdGeneratorContainer = new CuidGeneratior();
+export const IdGeneratorContainer = new UUIDGenerator();
