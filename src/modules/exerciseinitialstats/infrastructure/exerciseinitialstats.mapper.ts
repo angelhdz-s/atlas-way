@@ -1,6 +1,7 @@
 import { ExerciseInitialStats as PrismaExerciseInitialStats } from '@/prisma/client';
 import { ExerciseInitialStats } from '../domain/exerciseinitialstats.entity';
 import { ExerciseInitialStatsProps } from '../domain/exerciseinitialstats.types';
+import { ExerciseInitialStatsDTO } from '../application/dtos/exercise-initial-stats.dto';
 
 export class ExerciseInitialStatsMapper {
 	static toDomain(data: PrismaExerciseInitialStats): ExerciseInitialStats {
@@ -26,6 +27,14 @@ export class ExerciseInitialStatsMapper {
 			createdAt: data.createdAt,
 			updatedAt: data.updatedAt,
 			exerciseId: data.exerciseId,
+		};
+	}
+
+	static toDTO(data: ExerciseInitialStats): ExerciseInitialStatsDTO {
+		return {
+			sets: data.sets,
+			reps: data.reps,
+			weight: data.weight,
 		};
 	}
 }
