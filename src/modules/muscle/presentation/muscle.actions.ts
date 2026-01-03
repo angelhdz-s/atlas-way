@@ -1,10 +1,15 @@
-import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts/actions.response';
-import { Muscle } from '../domain/muscle.entity';
-import { Containers } from '@/di/containers';
+'use server';
 
-export async function getMuscles(): ActionResponse<Muscle[]> {
-	const usecase = Containers.Muscle.GetAllMusclesUseCase;
+import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts/actions.response';
+import { getContainer } from '@/di/containers';
+import { MuscleMapper } from '../infrastructure/muscle.mapper';
+import { MuscleDTO } from '@/modules/muscle/application/dtos/muscle.dto';
+
+export async function getAllMuscles(): ActionResponse<MuscleDTO[]> {
+	const container = getContainer();
+	const usecase = container.muscle.GetAllMusclesUseCase;
 	const muscles = await usecase.execute();
 	if (!muscles.success) return ActionFailure(muscles.error.message);
-	return ActionSuccess(muscles.data, 'Muscles were obtained successfully');
+	const musclesDto = muscles.data.map((muscle) => MuscleMapper.toDTO(muscle));
+	return ActionSuccess(musclesDto, 'Muscles were obtained successfully');
 }
