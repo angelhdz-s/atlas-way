@@ -1,15 +1,16 @@
-import { prisma } from '@/shared/infrastructure/prisma/client';
 import { IExerciseRepository } from '../domain/exercise.repository';
 import { ExerciseMapper } from './exercise.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { Exercise } from '../domain/exercise.entity';
 import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
+import { PrismaClient } from '@/prisma/client';
 
 export class ExercisePrismaRepository implements IExerciseRepository {
+	constructor(private readonly prisma: PrismaClient) {}
 	async create(data: Exercise) {
 		const exercisePersistence = ExerciseMapper.toPersistence(data);
 		try {
-			const created = await prisma.exercises.create({ data: exercisePersistence });
+			const created = await this.prisma.exercises.create({ data: exercisePersistence });
 			return Success(ExerciseMapper.toDomain(created));
 		} catch {
 			return Failure(new PrismaError('Unavailable create service'));
@@ -18,7 +19,7 @@ export class ExercisePrismaRepository implements IExerciseRepository {
 	async update(data: Exercise) {
 		const exercisePersistence = ExerciseMapper.toPersistence(data);
 		try {
-			const updated = await prisma.exercises.update({
+			const updated = await this.prisma.exercises.update({
 				data: exercisePersistence,
 				where: { id: exercisePersistence.id },
 			});
@@ -29,7 +30,7 @@ export class ExercisePrismaRepository implements IExerciseRepository {
 	}
 	async findAll() {
 		try {
-			const exercises = await prisma.exercises.findMany();
+			const exercises = await this.prisma.exercises.findMany();
 			const domainExercises = exercises.map((exercise) => ExerciseMapper.toDomain(exercise));
 			return Success(domainExercises);
 		} catch {
@@ -38,7 +39,7 @@ export class ExercisePrismaRepository implements IExerciseRepository {
 	}
 	async findById(id: Exercise['id']) {
 		try {
-			const exercise = await prisma.exercises.findUnique({ where: { id } });
+			const exercise = await this.prisma.exercises.findUnique({ where: { id } });
 			return Success(exercise ? ExerciseMapper.toDomain(exercise) : null);
 		} catch {
 			return Failure(new PrismaError('Unavailable fetching service'));

@@ -1,16 +1,17 @@
 import { User } from '@/modules/user/domain/user.entity';
 import { IUserRepository } from '@/modules/user/domain/user.repository';
-import { prisma } from '@/shared/infrastructure/prisma/client';
 import { UserMapper } from '@/modules/user/infrastructure/user.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
+import { PrismaClient } from '@/prisma/client';
 
 export class UserPrismaRepository implements IUserRepository {
+	constructor(private readonly prisma: PrismaClient) {}
 	async create(data: User) {
 		const persistenceData = UserMapper.toPersistence(data);
 
 		try {
-			const created = await prisma.users.create({
+			const created = await this.prisma.users.create({
 				data: persistenceData,
 			});
 			const domainUser = UserMapper.toDomain(created);
@@ -23,7 +24,7 @@ export class UserPrismaRepository implements IUserRepository {
 	async update(data: User) {
 		const persistenceData = UserMapper.toPersistence(data);
 		try {
-			const updated = await prisma.users.update({
+			const updated = await this.prisma.users.update({
 				data: persistenceData,
 				where: { id: persistenceData.id },
 			});
@@ -37,7 +38,7 @@ export class UserPrismaRepository implements IUserRepository {
 
 	async findAll() {
 		try {
-			const users = await prisma.users.findMany();
+			const users = await this.prisma.users.findMany();
 			const domainUsers = users.map((user) => UserMapper.toDomain(user));
 			return Success(domainUsers);
 		} catch (error) {
@@ -47,7 +48,7 @@ export class UserPrismaRepository implements IUserRepository {
 
 	async findById(id: User['id']) {
 		try {
-			const user = await prisma.users.findUnique({
+			const user = await this.prisma.users.findUnique({
 				where: {
 					id,
 				},
@@ -59,7 +60,7 @@ export class UserPrismaRepository implements IUserRepository {
 	}
 	async findByEmail(email: User['email']) {
 		try {
-			const user = await prisma.users.findUnique({
+			const user = await this.prisma.users.findUnique({
 				where: {
 					email,
 				},
