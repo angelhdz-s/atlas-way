@@ -1,9 +1,9 @@
 import GoogleProvider from 'next-auth/providers/google';
-import { User as NextAuthUser, TokenSet } from 'next-auth';
-import { Containers } from '@/di/containers';
+import { NextAuthOptions, User as NextAuthUser } from 'next-auth';
+import { getContainer } from '@/di/containers';
 import { CreateUserInput } from '@/modules/user/application/dtos/create-user.dto';
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -15,7 +15,9 @@ export const authOptions = {
 		async signIn({ user }: { user: NextAuthUser }) {
 			if (!user.email || !user.name) return;
 
-			const registerUser = Containers.User.CreateIfNotExistsUserUseCase;
+			const containers = getContainer();
+
+			const registerUser = containers.user.CreateIfNotExistsUserUseCase;
 
 			const newUser: CreateUserInput = {
 				email: user.email,

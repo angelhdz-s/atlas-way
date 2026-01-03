@@ -1,7 +1,7 @@
 import { UseCase } from '@/shared/application/usecase';
 import { ISessionReporitory } from '../../domain/session.repository';
 import { SessionProps } from '../../domain/session.types';
-import { UpdateSessionInput } from '../dto/update-session.dto';
+import { UpdateSessionInput } from '../dtos/update-session.dto';
 import { Failure } from '@/shared/domain/result';
 import { SessionNotFoundError } from '../../domain/errors/session.errors';
 
