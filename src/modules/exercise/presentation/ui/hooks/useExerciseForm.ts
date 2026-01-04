@@ -18,7 +18,7 @@ export function useExerciseForm({
 
 	const { fields, replace } = useFieldArray({
 		control,
-		name: 'exercise.muscles',
+		name: 'muscles',
 	});
 
 	const handleOnMusclesChange = (options: SelectOption[]) => {

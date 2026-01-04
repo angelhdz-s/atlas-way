@@ -5,8 +5,11 @@ export const ExerciseSchema = z.object({
 		.min(3, 'Name must be at least 3 characters')
 		.max(50, 'Name must be at most 50 characters'),
 	description: z.string().optional(),
-	muscles: z.array(z.object({ id: z.string() })).nonempty('Select at least one muscle'),
 });
+
+export const MusclesSchema = z
+	.array(z.object({ id: z.string() }))
+	.nonempty('Select at least one muscle');
 export type ExerciseProps = z.infer<typeof ExerciseSchema>;
 
 export const ExerciseInitialStatsSchema = z.object({
@@ -18,6 +21,7 @@ export type ExerciseInitialStatsProps = z.infer<typeof ExerciseInitialStatsSchem
 
 export const ExerciseFormSchema = z.object({
 	exercise: ExerciseSchema,
-	initialStats: ExerciseInitialStatsSchema.optional(),
+	initialStats: ExerciseInitialStatsSchema.or(z.undefined()),
+	muscles: MusclesSchema,
 });
 export type ExerciseFormProps = z.infer<typeof ExerciseFormSchema>;
