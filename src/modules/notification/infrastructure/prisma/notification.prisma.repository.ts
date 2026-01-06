@@ -4,13 +4,14 @@ import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { Failure, Success } from '@/shared/domain/result';
 import { NotificationProps } from '../../domain/notification.types';
 import { NotificationMapper } from '../notification.mapper';
-import { prisma } from '@/shared/infrastructure/prisma/client';
+import { PrismaClient } from '@/prisma/client';
 
 export class NotificationPrismaRepository implements INotification {
+	constructor(private readonly prisma: PrismaClient) {}
 	async create(data: Notification) {
 		const persistence = NotificationMapper.toPersistence(data);
 		try {
-			const created = await prisma.notifications.create({
+			const created = await this.prisma.notifications.create({
 				data: persistence,
 			});
 			const result = NotificationMapper.toDomain(created);
@@ -22,7 +23,7 @@ export class NotificationPrismaRepository implements INotification {
 	async update(data: Notification) {
 		const persistence = NotificationMapper.toPersistence(data);
 		try {
-			const updated = await prisma.notifications.update({
+			const updated = await this.prisma.notifications.update({
 				data: persistence,
 				where: { id: data.id },
 			});
@@ -34,7 +35,7 @@ export class NotificationPrismaRepository implements INotification {
 	}
 	async findAll() {
 		try {
-			const notifications = await prisma.notifications.findMany();
+			const notifications = await this.prisma.notifications.findMany();
 			const domainNotifications = notifications.map((notification) =>
 				NotificationMapper.toDomain(notification)
 			);
@@ -45,7 +46,7 @@ export class NotificationPrismaRepository implements INotification {
 	}
 	async findById(id: NotificationProps['id']) {
 		try {
-			const notification = await prisma.notifications.findUnique({ where: { id } });
+			const notification = await this.prisma.notifications.findUnique({ where: { id } });
 			const result = notification ? NotificationMapper.toDomain(notification) : null;
 			return Success(result);
 		} catch {

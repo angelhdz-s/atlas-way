@@ -7,8 +7,6 @@ export class GetAllExercises implements UseCase {
 	constructor(private repository: IExerciseRepository) {}
 
 	async execute() {
-		const result = await this.repository.findAll();
-		if (!result.success) return Failure(new ExerciseNotFoundError('Error getting exercises'));
-		return Success(result.data);
+		return await this.repository.findAll();
 	}
 }

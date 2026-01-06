@@ -1,15 +1,16 @@
-import { prisma } from '@/shared/infrastructure/prisma/client';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { IExerciseInitialStatsRepository } from '../../domain/exerciseinitialstats.repository';
 import { ExerciseInitialStatsMapper } from '../exerciseinitialstats.mapper';
 import { ExerciseInitialStats } from '../../domain/exerciseinitialstats.entity';
+import { PrismaClient } from '@/prisma/client';
 
 export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialStatsRepository {
+	constructor(private readonly prisma: PrismaClient) {}
 	async create(data: ExerciseInitialStats) {
 		const exerciseStatsPersistence = ExerciseInitialStatsMapper.toPersistence(data);
 		try {
-			const created = await prisma.exerciseInitialStats.create({
+			const created = await this.prisma.exerciseInitialStats.create({
 				data: exerciseStatsPersistence,
 			});
 			const result = new ExerciseInitialStats(created);
@@ -21,7 +22,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 	async update(data: ExerciseInitialStats) {
 		const exerciseStatsPersistence = ExerciseInitialStatsMapper.toPersistence(data);
 		try {
-			const updated = await prisma.exerciseInitialStats.update({
+			const updated = await this.prisma.exerciseInitialStats.update({
 				data: exerciseStatsPersistence,
 				where: { id: exerciseStatsPersistence.id },
 			});
@@ -34,7 +35,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 	}
 	async findAll() {
 		try {
-			const exerciseStats = await prisma.exerciseInitialStats.findMany();
+			const exerciseStats = await this.prisma.exerciseInitialStats.findMany();
 			const exerciseStatsDomain = exerciseStats.map((exerciseStats) =>
 				ExerciseInitialStatsMapper.toDomain(exerciseStats)
 			);
@@ -46,7 +47,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 	}
 	async findById(id: ExerciseInitialStats['id']) {
 		try {
-			const exerciseStats = await prisma.exerciseInitialStats.findUnique({
+			const exerciseStats = await this.prisma.exerciseInitialStats.findUnique({
 				where: { id },
 			});
 			const result = exerciseStats
@@ -59,7 +60,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 	}
 	async findByExerciseId(exerciseId: ExerciseInitialStats['exerciseId']) {
 		try {
-			const exerciseStats = await prisma.exerciseInitialStats.findUnique({
+			const exerciseStats = await this.prisma.exerciseInitialStats.findUnique({
 				where: { exerciseId },
 			});
 			const result = exerciseStats

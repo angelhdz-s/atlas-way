@@ -1,6 +1,7 @@
 import { Routines as PrismaRoutine } from '@/prisma/client';
 import { Routine } from '../domain/routine.entity';
 import { RoutineProps } from '../domain/routine.types';
+import { RoutineDTO } from '../application/dtos/routine.dto';
 
 export class RoutineMapper {
 	static toDomain(data: PrismaRoutine): Routine {
@@ -32,6 +33,18 @@ export class RoutineMapper {
 			updatedAt: data.updatedAt,
 			userId: data.userId,
 			routineCycleId: data.routineCycleId,
+		};
+	}
+
+	static toDTO(data: Routine): RoutineDTO {
+		return {
+			id: data.id,
+			name: data.name,
+			description: data.description,
+			active: data.active,
+			days: data.days,
+			initialDate: data.initialDate,
+			createdAt: data.createdAt,
 		};
 	}
 }

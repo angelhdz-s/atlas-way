@@ -63,14 +63,14 @@ export function ModalExerciseForm({ title, muscles }: { title: string; muscles: 
 					label="Muscles"
 					selectingTitle="Select muscles"
 					options={muscles}
-					error={errors.exercise?.muscles?.message}
+					error={errors.muscles?.message}
 					onOptionsChange={handleOnMusclesChange}
 				>
 					{fields.map((field, index) => (
 						<input
 							type="hidden"
 							key={field.id}
-							{...register(`exercise.muscles.${index}.id`)}
+							{...register(`muscles.${index}.id`)}
 						></input>
 					))}
 				</MultipleSelectBox>

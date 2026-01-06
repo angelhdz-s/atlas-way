@@ -1,13 +1,13 @@
 import { UseCase } from '@/shared/application/usecase';
 import { IRoutineDaysRepository } from '../../domain/routinedays.resporitory';
 import { CreateRoutineDaysInput } from '../dtos/create-routinedays.dto';
-import { CuidGeneratior } from '@/shared/infrastructure/uuid-generator';
+import { UUIDGenerator } from '@/shared/infrastructure/uuid-generator';
 import { RoutineDays } from '../../domain/routinedays.entity';
 
 export class CreateRoutineDays implements UseCase {
 	constructor(
 		private repository: IRoutineDaysRepository,
-		private generator: CuidGeneratior
+		private generator: UUIDGenerator
 	) {}
 	async execute(data: CreateRoutineDaysInput) {
 		const id = this.generator.generate();

@@ -1,14 +1,14 @@
 import { UseCase } from '@/shared/application/usecase';
 import { IUserRepository } from '@/modules/user/domain/user.repository';
 import { CreateUserInput } from '@/modules/user/application/dtos/create-user.dto';
-import { CuidGeneratior } from '@/shared/infrastructure/uuid-generator';
+import { UUIDGenerator } from '@/shared/infrastructure/uuid-generator';
 import { User } from '@/modules/user/domain/user.entity';
 import { Success } from '@/shared/domain/result';
 
 export class CreateIfNotExistsUser implements UseCase {
 	constructor(
 		private repository: IUserRepository,
-		private generator: CuidGeneratior
+		private generator: UUIDGenerator
 	) {}
 	async execute(data: CreateUserInput) {
 		const result = await this.repository.findByEmail(data.email);

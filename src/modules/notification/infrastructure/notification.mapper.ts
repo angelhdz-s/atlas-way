@@ -1,6 +1,7 @@
 import { Notifications as PrismaNotification } from '@/prisma/client';
 import { Notification } from '../domain/notification.entity';
 import { NotificationProps } from '../domain/notification.types';
+import { NotificationDTO } from '../application/dtos/notification.dto';
 
 export class NotificationMapper {
 	static toDomain(data: PrismaNotification): Notification {
@@ -23,6 +24,14 @@ export class NotificationMapper {
 			createdAt: data.createdAt,
 			updatedAt: data.updatedAt,
 			userId: data.userId,
+		};
+	}
+
+	static toDTO(data: Notification): NotificationDTO {
+		return {
+			name: data.name,
+			message: data.message,
+			createdAt: data.createdAt,
 		};
 	}
 }

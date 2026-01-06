@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
-import {} from '@/presentation/globals/mocks/sessions';
 import { BODY_SECTIONS, EXERCISES, ExerciseType } from '@/presentation/globals/constants/db';
 import {
 	DashboardCard,
@@ -14,17 +13,21 @@ import {
 	DashboardCardTag,
 } from '@/presentation/modules/dashboard/components/Card';
 import { Barbell } from '@/presentation/globals/components/Icons';
+import {
+	FullExerciseDTO,
+	getAllUserExercises,
+} from '@/modules/exercise/presentation/exercise.actions';
 
-function Exercises({ exercises }: { exercises: ExerciseType[] }) {
+function Exercises({ exercises }: { exercises: FullExerciseDTO[] }) {
 	return exercises
 		.sort((a, b) => a.name.localeCompare(b.name))
 		.map(({ name, description, muscles }, index) => (
 			<DashboardCard key={index} size="sm">
-				<DashboardCardHeader title={name} decoration="">
-					<DashboardCardSubHeader description={description} />
+				<DashboardCardHeader title={name}>
+					<DashboardCardSubHeader description={description ?? ''} />
 				</DashboardCardHeader>
 				<DashboardCardMain>
-					<ul className="flex items-center flex-wrap gap-1">
+					<ul className="flex flex-row items-center flex-wrap gap-1">
 						{muscles.map((muscle, index) => (
 							<DashboardCardTag
 								key={index}
@@ -43,19 +46,12 @@ function Exercises({ exercises }: { exercises: ExerciseType[] }) {
 		));
 }
 
-function getExercisesByBodySection(bodySection: keyof typeof BODY_SECTIONS) {
-	return Object.values(EXERCISES)
-		.filter((exercise) => {
-			return exercise.muscles.some(
-				(muscle) => muscle.bodySection === BODY_SECTIONS[bodySection]
-			);
-		})
-		.sort((a, b) => a.name.localeCompare(b.name));
-}
-
-export default function ExercisesPage() {
-	const bodySections = Object.keys(BODY_SECTIONS);
-
+export default async function ExercisesPage() {
+	const exercises: FullExerciseDTO[] = [];
+	const exercisesRequest = await getAllUserExercises();
+	if (exercisesRequest.data) {
+		for (const exercise of exercisesRequest.data) exercises.push(exercise);
+	}
 	return (
 		<PageContainer>
 			<PageHeader title="Exercises" className="flex items-center justify-between">
@@ -63,20 +59,8 @@ export default function ExercisesPage() {
 					Create Exercise
 				</Link>
 			</PageHeader>
-			<PageContent className="flex flex-col gap-8">
-				{bodySections.map((section, index) => {
-					const exercises = getExercisesByBodySection(
-						section as keyof typeof BODY_SECTIONS
-					);
-					return (
-						<main key={index} className="flex flex-col gap-4">
-							<h2 className="text-4xl font-bold ld-main-fg">{section}</h2>
-							<main className="flex flex-wrap gap-2">
-								<Exercises exercises={exercises} />
-							</main>
-						</main>
-					);
-				})}
+			<PageContent className="flex flex-wrap gap-8">
+				<Exercises exercises={exercises} />
 			</PageContent>
 		</PageContainer>
 	);
