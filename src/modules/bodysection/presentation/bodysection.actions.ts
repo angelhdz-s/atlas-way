@@ -2,10 +2,11 @@
 
 import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts/actions.response';
 import { BodySection } from '../domain/bodysection.entity';
-import { Containers } from '@/di/containers';
+import { getContainer } from '@/di/containers';
 
 export async function getBodySections(): ActionResponse<BodySection[]> {
-	const usecase = Containers.BodySections.GetAllBodySectionUseCase;
+	const container = getContainer();
+	const usecase = container.bodySection.GetAllBodySectionUseCase;
 
 	const result = await usecase.execute();
 	if (!result.success) return ActionFailure(result.error.message);
