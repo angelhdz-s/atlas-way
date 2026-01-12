@@ -77,8 +77,8 @@ model Sessions {
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   user          Users          @relation(fields: [userId], references: [id])
-  exercises     Exercises[]
   routineDays   RoutineDays[]
+  sessionToExercise SessionsToExercises[]
 }
 
 model Exercises {
@@ -89,10 +89,10 @@ model Exercises {
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   user          Users          @relation(fields: [userId], references: [id])
-  sessions      Sessions[]
   initialStats  ExerciseInitialStats?
   trackedExercise TrackedExercises[]
   exercisesToMuscles ExercisesToMuscles[]
+  sessionToExercise SessionsToExercises[]
 }
 
 model ExerciseInitialStats {
@@ -216,4 +216,13 @@ model ExercisesToMuscles {
   exercise    Exercises @relation(fields: [exerciseId], references: [id])
   muscle      Muscles   @relation(fields: [muscleId], references: [id])
   @@id([exerciseId, muscleId])
+}
+
+model SessionsToExercises {
+  sessionId   String    
+  exerciseId  String    
+  createdAt   DateTime  @default(now())
+  session     Sessions  @relation(fields: [sessionId], references: [id])
+  exercise    Exercises @relation(fields: [exerciseId], references: [id])
+  @@id([sessionId, exerciseId])
 }
