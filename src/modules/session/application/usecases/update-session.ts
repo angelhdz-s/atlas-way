@@ -1,12 +1,12 @@
 import { UseCase } from '@/shared/application/usecase';
-import { ISessionReporitory } from '../../domain/session.repository';
+import { ISessionRepository } from '../../domain/session.repository';
 import { SessionProps } from '../../domain/session.types';
 import { UpdateSessionInput } from '../dtos/update-session.dto';
 import { Failure } from '@/shared/domain/result';
 import { SessionNotFoundError } from '../../domain/errors/session.errors';
 
 export class UpdateSessions implements UseCase {
-	constructor(private repository: ISessionReporitory) {}
+	constructor(private repository: ISessionRepository) {}
 
 	async execute(id: SessionProps['id'], data: UpdateSessionInput) {
 		const existingSession = await this.repository.findById(id);
