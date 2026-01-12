@@ -26,11 +26,7 @@ export class CreateExercise implements UseCase {
 	) {
 		const exerciseId = this.generator.generate();
 
-		const exercise = Exercise.create(exerciseId, {
-			name: exerciseData.name,
-			description: exerciseData.description,
-			userId: exerciseData.userId,
-		});
+		const exercise = Exercise.create(exerciseId, exerciseData);
 
 		const exerciseCreated = await this.repository.create(exercise);
 
