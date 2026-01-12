@@ -1,3 +1,3 @@
 import { ExerciseProps } from '../../domain/exercise.types';
 
-export type ExerciseDTO = Pick<ExerciseProps, 'name' | 'description' | 'createdAt'>;
+export type ExerciseDTO = Pick<ExerciseProps, 'id' | 'name' | 'description' | 'createdAt'>;

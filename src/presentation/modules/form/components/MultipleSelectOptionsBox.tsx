@@ -1,3 +1,5 @@
+'use client';
+
 import { Box } from '@/presentation/modules/form/components/Box';
 import { useMultipleSelectOptionsBox } from '@/presentation/modules/form/hooks/useMultipleSelectOptionsBox';
 import { SelectOption } from '@/presentation/modules/form/types';

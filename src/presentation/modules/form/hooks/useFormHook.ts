@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { ActionResponseType } from '@/presentation/globals/types';
-import { useToast } from '@/presentation/modules/toast/hooks/useToast';
 import { TypeOf, ZodSchema } from 'zod/v3';
 import { useForm } from 'react-hook-form';
+import { ActionResponseType } from '@/presentation/globals/types';
+import { useToast } from '@/presentation/modules/toast/hooks/useToast';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 export type ModalFormHookProps<T extends ZodSchema<any, any>> = {

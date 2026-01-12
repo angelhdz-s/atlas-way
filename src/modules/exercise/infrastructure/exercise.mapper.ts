@@ -29,6 +29,7 @@ export class ExerciseMapper {
 
 	static toDTO(data: Exercise): ExerciseDTO {
 		return {
+			id: data.id,
 			name: data.name,
 			description: data.description,
 			createdAt: data.createdAt,

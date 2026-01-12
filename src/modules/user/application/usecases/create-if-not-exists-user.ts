@@ -12,7 +12,7 @@ export class CreateIfNotExistsUser implements UseCase {
 	) {}
 	async execute(data: CreateUserInput) {
 		const result = await this.repository.findByEmail(data.email);
-		if (result.success) {
+		if (result.success && result.data) {
 			return Success(result.data);
 		}
 

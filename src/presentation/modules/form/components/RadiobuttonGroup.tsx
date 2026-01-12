@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { SelectOption } from '@/presentation/modules/form/types';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';

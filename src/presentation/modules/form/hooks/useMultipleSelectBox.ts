@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
 import { SelectOption } from '@/presentation/modules/form/types';
 

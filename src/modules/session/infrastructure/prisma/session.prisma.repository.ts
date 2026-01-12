@@ -1,12 +1,12 @@
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { Session } from '../../domain/session.entity';
-import { ISessionReporitory } from '../../domain/session.repository';
+import { ISessionRepository } from '../../domain/session.repository';
 import { SessionMapper } from '../session.mapper';
 import { SessionProps } from '../../domain/session.types';
 import { PrismaClient } from '@/prisma/client';
 
-export class SessionPrismaRepository implements ISessionReporitory {
+export class SessionPrismaRepository implements ISessionRepository {
 	constructor(private readonly prisma: PrismaClient) {}
 	async create(data: Session) {
 		try {
