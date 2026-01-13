@@ -1,7 +1,7 @@
-import { DomainError } from '@/shared/domain/errors/domain-error';
+import { TechnicalError } from '../errors/technical.errors';
 
-export class PrismaError extends DomainError {
-	constructor(message: string) {
-		super(message, 'UNAVAILABLE_PRISMA_SERVICE');
+export abstract class PrismaError extends TechnicalError {
+	constructor(message: string | null = null) {
+		super('UNAVAILABLE_PRISMA_SERVICE');
 	}
 }
