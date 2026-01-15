@@ -1,4 +1,4 @@
-import { UUIDGenerator } from '@/shared/infrastructure/uuid-generator';
+import { UUIDGenerator } from '@/shared/infrastructure/generators/uuid-generator';
 import { ExerciseInitialStats } from '../../domain/exerciseinitialstats.entity';
 import { IExerciseInitialStatsRepository } from '../../domain/exerciseinitialstats.repository';
 import { CreateExerciseInitialStatsInput } from '../dtos/create-exercise-initial-stats.dto';

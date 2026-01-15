@@ -1,7 +1,7 @@
 import { UseCase } from '@/shared/application/usecase';
 import { IUserRepository } from '@/modules/user/domain/user.repository';
 import { CreateUserInput } from '@/modules/user/application/dtos/create-user.dto';
-import { UUIDGenerator } from '@/shared/infrastructure/uuid-generator';
+import { UUIDGenerator } from '@/shared/infrastructure/generators/uuid-generator';
 import { User } from '@/modules/user/domain/user.entity';
 import { Success } from '@/shared/domain/result';
 

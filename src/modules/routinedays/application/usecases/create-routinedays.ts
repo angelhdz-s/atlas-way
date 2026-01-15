@@ -1,7 +1,7 @@
 import { UseCase } from '@/shared/application/usecase';
 import { IRoutineDaysRepository } from '../../domain/routinedays.resporitory';
 import { CreateRoutineDaysInput } from '../dtos/create-routinedays.dto';
-import { UUIDGenerator } from '@/shared/infrastructure/uuid-generator';
+import { UUIDGenerator } from '@/shared/infrastructure/generators/uuid-generator';
 import { RoutineDays } from '../../domain/routinedays.entity';
 
 export class CreateRoutineDays implements UseCase {

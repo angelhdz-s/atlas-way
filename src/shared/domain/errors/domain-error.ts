@@ -10,3 +10,12 @@ export abstract class DomainError extends Error {
 		this.code = code;
 	}
 }
+
+export class TechnicalError extends DomainError {
+	constructor(
+		readonly message: string,
+		readonly code: string | DomainErrorCode
+	) {
+		super(message, code);
+	}
+}
