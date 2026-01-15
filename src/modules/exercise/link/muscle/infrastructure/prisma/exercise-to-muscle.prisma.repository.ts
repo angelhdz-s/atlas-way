@@ -1,9 +1,9 @@
 import { Failure, Success } from '@/shared/domain/result';
-import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { PrismaClient } from '@/prisma/client';
 import { IExerciseToMuscleRepository } from '@/modules/exercise/link/muscle/domain/exercise-to-muscle.repository';
 import { ExerciseToMuscle } from '@/modules/exercise/link/muscle/domain/exercise-to-muscle.entity';
 import { ExerciseToMuscleMapper } from '@/modules/exercise/link/muscle/infrastructure/exercise-to-muscle.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
 
 export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleRepository {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -15,8 +15,8 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
 			});
 			const result = ExerciseToMuscleMapper.toDomain(created);
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't create relation Exercise-Muscle"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findAll() {
@@ -26,8 +26,8 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
 				ExerciseToMuscleMapper.toDomain(exercise)
 			);
 			return Success(domainExercises);
-		} catch {
-			return Failure(new PrismaError("Can't create find all relations Exercise-Muscle"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findByExerciseId(exerciseId: ExerciseToMuscle['exerciseId']) {
@@ -37,8 +37,8 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
 			});
 			const result = exercises.map((exercise) => ExerciseToMuscleMapper.toDomain(exercise));
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError('Unavailable fetching service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findByMuscleId(muscleId: ExerciseToMuscle['muscleId']) {
@@ -48,8 +48,8 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
 			});
 			const result = exercises.map((exercise) => ExerciseToMuscleMapper.toDomain(exercise));
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError('Unavailable fetching service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 
@@ -71,8 +71,8 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
 			});
 			const result = exercise ? ExerciseToMuscleMapper.toDomain(exercise) : null;
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError('Unavailable fetching service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 }

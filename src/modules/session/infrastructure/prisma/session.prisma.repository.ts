@@ -1,10 +1,10 @@
 import { Failure, Success } from '@/shared/domain/result';
-import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { Session } from '../../domain/session.entity';
 import { ISessionRepository } from '../../domain/session.repository';
 import { SessionMapper } from '../session.mapper';
 import { SessionProps } from '../../domain/session.types';
 import { PrismaClient } from '@/prisma/client';
+import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
 
 export class SessionPrismaRepository implements ISessionRepository {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -14,8 +14,8 @@ export class SessionPrismaRepository implements ISessionRepository {
 			const created = await this.prisma.sessions.create({ data: sessionPersistence });
 			const result = SessionMapper.toDomain(created);
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't create Session"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async update(data: Session) {
@@ -27,8 +27,8 @@ export class SessionPrismaRepository implements ISessionRepository {
 			});
 			const result = SessionMapper.toDomain(updated);
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't update Session"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findAll() {
@@ -36,8 +36,8 @@ export class SessionPrismaRepository implements ISessionRepository {
 			const sessions = await this.prisma.sessions.findMany();
 			const sessionsDomain = sessions.map((session) => SessionMapper.toDomain(session));
 			return Success(sessionsDomain);
-		} catch {
-			return Failure(new PrismaError("Can't create Session"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findById(id: SessionProps['id']) {
@@ -45,8 +45,8 @@ export class SessionPrismaRepository implements ISessionRepository {
 			const session = await this.prisma.sessions.findUnique({ where: { id } });
 			const result = session ? SessionMapper.toDomain(session) : null;
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't create Session"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 }

@@ -1,10 +1,10 @@
 import { PrismaClient } from '@/prisma/client';
 import { Failure, Success } from '@/shared/domain/result';
-import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { ISessionToExerciseRepository } from '../../domain/session-to-exercise.repository';
 import { SessionToExercise } from '../../domain/session-to-exercise.entity';
 import { SessionToExerciseMapper } from '../session-to-exercise.mapper';
 import { SessionToExerciseProps } from '../../domain/session-to-exercise.types';
+import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
 
 export class SessionToExercisePrismaRepository implements ISessionToExerciseRepository {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -16,8 +16,8 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
 			});
 			const result = SessionToExerciseMapper.toDomain(created);
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't create Session-Exercise"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findAll() {
@@ -27,8 +27,8 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
 				SessionToExerciseMapper.toDomain(session)
 			);
 			return Success(sessionsDomain);
-		} catch {
-			return Failure(new PrismaError("Can't find all Sessions-Exercises"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async listBySessionId(sessionId: SessionToExerciseProps['sessionId']) {
@@ -40,8 +40,8 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
 				SessionToExerciseMapper.toDomain(session)
 			);
 			return Success(sessionsDomain);
-		} catch {
-			return Failure(new PrismaError("Can't list Session-Exercise by Session id"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async listByExerciseId(exerciseId: SessionToExerciseProps['exerciseId']) {
@@ -53,8 +53,8 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
 				SessionToExerciseMapper.toDomain(session)
 			);
 			return Success(sessionsDomain);
-		} catch {
-			return Failure(new PrismaError("Can't list Session-Exercise by Exercise id"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 
@@ -76,8 +76,8 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
 			});
 			const result = session ? SessionToExerciseMapper.toDomain(session) : null;
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't find Session-Exercise by ids"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 }

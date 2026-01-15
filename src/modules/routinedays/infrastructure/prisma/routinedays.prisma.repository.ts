@@ -3,8 +3,8 @@ import { RoutineDaysProps } from '../../domain/routinedays.types';
 import { RoutineDaysMapper } from '../routinedays.mapper';
 import { RoutineDays } from '../../domain/routinedays.entity';
 import { Failure, Success } from '@/shared/domain/result';
-import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { PrismaClient } from '@/prisma/client';
+import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
 
 export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -14,8 +14,8 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 			const created = await this.prisma.routineDays.create({ data: routineDayPersistence });
 			const result = RoutineDaysMapper.toDomain(created);
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't create Routine Days"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async update(data: RoutineDays) {
@@ -27,8 +27,8 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 			});
 			const result = RoutineDaysMapper.toDomain(updated);
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't update Routine Days"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findAll() {
@@ -38,8 +38,8 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 				RoutineDaysMapper.toDomain(routineDay)
 			);
 			return Success(routineDaysDomain);
-		} catch {
-			return Failure(new PrismaError("Can't find all Routine Days"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findById(id: RoutineDaysProps['id']) {
@@ -47,8 +47,8 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 			const routineDay = await this.prisma.routineDays.findUnique({ where: { id } });
 			const result = routineDay ? RoutineDaysMapper.toDomain(routineDay) : null;
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't find Routine Days by id"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 }

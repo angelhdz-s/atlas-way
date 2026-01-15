@@ -2,9 +2,9 @@ import { IExerciseRepository } from '@/modules/exercise/domain/exercise.reposito
 import { ExerciseMapper } from '@/modules/exercise/infrastructure/exercise.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { Exercise } from '@/modules/exercise/domain/exercise.entity';
-import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { PrismaClient } from '@/prisma/client';
 import { ExerciseProps } from '../../domain/exercise.types';
+import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
 
 export class ExercisePrismaRepository implements IExerciseRepository {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -13,8 +13,8 @@ export class ExercisePrismaRepository implements IExerciseRepository {
 		try {
 			const created = await this.prisma.exercises.create({ data: exercisePersistence });
 			return Success(ExerciseMapper.toDomain(created));
-		} catch {
-			return Failure(new PrismaError('Unavailable create service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async update(data: Exercise) {
@@ -25,8 +25,8 @@ export class ExercisePrismaRepository implements IExerciseRepository {
 				where: { id: exercisePersistence.id },
 			});
 			return Success(ExerciseMapper.toDomain(updated));
-		} catch {
-			return Failure(new PrismaError('Unavailable update service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findAll() {
@@ -34,16 +34,16 @@ export class ExercisePrismaRepository implements IExerciseRepository {
 			const exercises = await this.prisma.exercises.findMany();
 			const domainExercises = exercises.map((exercise) => ExerciseMapper.toDomain(exercise));
 			return Success(domainExercises);
-		} catch {
-			return Failure(new PrismaError('Unavailable fetching service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findById(id: ExerciseProps['id']) {
 		try {
 			const exercise = await this.prisma.exercises.findUnique({ where: { id } });
 			return Success(exercise ? ExerciseMapper.toDomain(exercise) : null);
-		} catch {
-			return Failure(new PrismaError('Unavailable fetching service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findAllByUserId(userId: ExerciseProps['userId']) {
@@ -51,8 +51,8 @@ export class ExercisePrismaRepository implements IExerciseRepository {
 			const exercises = await this.prisma.exercises.findMany({ where: { userId } });
 			const domainExercises = exercises.map((exercise) => ExerciseMapper.toDomain(exercise));
 			return Success(domainExercises);
-		} catch {
-			return Failure(new PrismaError('Unavailable fetching service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 }

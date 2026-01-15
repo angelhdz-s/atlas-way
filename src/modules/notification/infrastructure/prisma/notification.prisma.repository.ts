@@ -1,10 +1,10 @@
 import { Notification } from '../../domain/notification.entity';
 import { INotification } from '../../domain/notification.repository';
-import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { Failure, Success } from '@/shared/domain/result';
 import { NotificationProps } from '../../domain/notification.types';
 import { NotificationMapper } from '../notification.mapper';
 import { PrismaClient } from '@/prisma/client';
+import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
 
 export class NotificationPrismaRepository implements INotification {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -16,8 +16,8 @@ export class NotificationPrismaRepository implements INotification {
 			});
 			const result = NotificationMapper.toDomain(created);
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't create notification"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async update(data: Notification) {
@@ -29,8 +29,8 @@ export class NotificationPrismaRepository implements INotification {
 			});
 			const result = NotificationMapper.toDomain(updated);
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't updated notification"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findAll() {
@@ -40,8 +40,8 @@ export class NotificationPrismaRepository implements INotification {
 				NotificationMapper.toDomain(notification)
 			);
 			return Success(domainNotifications);
-		} catch {
-			return Failure(new PrismaError("Can't find all notifications"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findById(id: NotificationProps['id']) {
@@ -49,8 +49,8 @@ export class NotificationPrismaRepository implements INotification {
 			const notification = await this.prisma.notifications.findUnique({ where: { id } });
 			const result = notification ? NotificationMapper.toDomain(notification) : null;
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't find notification by id"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 }

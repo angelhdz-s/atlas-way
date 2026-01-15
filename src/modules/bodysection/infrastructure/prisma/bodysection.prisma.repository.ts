@@ -1,8 +1,8 @@
 import { IBodySectionRepository } from '../../domain/bodysection.repository';
 import { BodySectionMapper } from '../bodysection.mapper';
 import { Failure, Success } from '@/shared/domain/result';
-import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { PrismaClient } from '@/prisma/client';
+import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
 
 export class BodySectionPrismaReporisoty implements IBodySectionRepository {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -13,8 +13,8 @@ export class BodySectionPrismaReporisoty implements IBodySectionRepository {
 				BodySectionMapper.toDomain(bodySection)
 			);
 			return Success(bodySectionsDomain);
-		} catch {
-			return Failure(new PrismaError('Error fetching bodysections'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findById(id: number) {
@@ -22,8 +22,8 @@ export class BodySectionPrismaReporisoty implements IBodySectionRepository {
 			const bodySection = await this.prisma.bodySections.findUnique({ where: { id } });
 			const result = bodySection ? BodySectionMapper.toDomain(bodySection) : null;
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError('Error fetching bodysections'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 }
