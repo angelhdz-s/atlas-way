@@ -1,8 +1,8 @@
 import { IAuthRepository } from '../../domain/auth.respository';
 import { getCurrentSession } from './next-auth.currentsession';
 import { Failure, Success } from '@/shared/domain/result';
-import { AutenticationServiceUnavailable } from '../../domain/errors/auth.errors';
 import { AuthMapper } from '../auth.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
 
 export class NextAuthRepository implements IAuthRepository {
 	async getSession() {
@@ -11,10 +11,8 @@ export class NextAuthRepository implements IAuthRepository {
 			if (!session?.user) return Success(null);
 			const domainSession = AuthMapper.toDomain(session);
 			return Success(domainSession);
-		} catch {
-			return Failure(
-				new AutenticationServiceUnavailable('Autentication service unavailable')
-			);
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 }

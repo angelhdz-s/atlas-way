@@ -2,8 +2,8 @@ import { User } from '@/modules/user/domain/user.entity';
 import { IUserRepository } from '@/modules/user/domain/user.repository';
 import { UserMapper } from '@/modules/user/infrastructure/user.mapper';
 import { Failure, Success } from '@/shared/domain/result';
-import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { PrismaClient } from '@/prisma/client';
+import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
 
 export class UserPrismaRepository implements IUserRepository {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -16,8 +16,8 @@ export class UserPrismaRepository implements IUserRepository {
 			});
 			const domainUser = UserMapper.toDomain(created);
 			return Success(domainUser);
-		} catch {
-			return Failure(new PrismaError('Unavailable create service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 
@@ -31,8 +31,8 @@ export class UserPrismaRepository implements IUserRepository {
 
 			const domainUser = UserMapper.toDomain(updated);
 			return Success(domainUser);
-		} catch {
-			return Failure(new PrismaError('Unavailable update service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 
@@ -41,8 +41,8 @@ export class UserPrismaRepository implements IUserRepository {
 			const users = await this.prisma.users.findMany();
 			const domainUsers = users.map((user) => UserMapper.toDomain(user));
 			return Success(domainUsers);
-		} catch (error) {
-			return Failure(new PrismaError('Unavailable prisma service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 
@@ -54,8 +54,8 @@ export class UserPrismaRepository implements IUserRepository {
 				},
 			});
 			return Success(user ? UserMapper.toDomain(user) : null);
-		} catch (error) {
-			return Failure(new PrismaError('Unavailable prisma service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findByEmail(email: User['email']) {
@@ -66,8 +66,8 @@ export class UserPrismaRepository implements IUserRepository {
 				},
 			});
 			return Success(user ? UserMapper.toDomain(user) : null);
-		} catch (error) {
-			return Failure(new PrismaError('Unavailable prisma service'));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 }

@@ -2,8 +2,8 @@ import { IRoutineRepository } from '../../domain/routine.repository';
 import { RoutineMapper } from '../routine.mapper';
 import { Routine } from '../../domain/routine.entity';
 import { Failure, Success } from '@/shared/domain/result';
-import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { PrismaClient } from '@/prisma/client';
+import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
 
 export class RoutinePrismaRepository implements IRoutineRepository {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -13,8 +13,8 @@ export class RoutinePrismaRepository implements IRoutineRepository {
 			const created = await this.prisma.routines.create({ data: routinePersistence });
 			const result = RoutineMapper.toDomain(created);
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't create Routine"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async update(data: Routine) {
@@ -26,8 +26,8 @@ export class RoutinePrismaRepository implements IRoutineRepository {
 			});
 			const result = RoutineMapper.toDomain(created);
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't update Routine"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findaAll() {
@@ -35,8 +35,8 @@ export class RoutinePrismaRepository implements IRoutineRepository {
 			const routines = await this.prisma.routines.findMany();
 			const routinesDomain = routines.map((routine) => RoutineMapper.toDomain(routine));
 			return Success(routinesDomain);
-		} catch {
-			return Failure(new PrismaError("Can't find all Routines"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findById(id: string) {
@@ -44,8 +44,8 @@ export class RoutinePrismaRepository implements IRoutineRepository {
 			const routine = await this.prisma.routines.findUnique({ where: { id } });
 			const result = routine ? RoutineMapper.toDomain(routine) : null;
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't find Routine by id"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 }

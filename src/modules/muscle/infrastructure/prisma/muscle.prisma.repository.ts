@@ -1,8 +1,8 @@
 import { MuscleMapper } from '../muscle.mapper';
 import { Failure, Success } from '@/shared/domain/result';
-import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { IMuscleRepository } from '../../domain/muscle.repository';
 import { PrismaClient } from '@/prisma/client';
+import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
 
 export class MusclePrismaRepository implements IMuscleRepository {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -11,8 +11,8 @@ export class MusclePrismaRepository implements IMuscleRepository {
 			const muscles = await this.prisma.muscles.findMany();
 			const domainMuscles = muscles.map((muscle) => MuscleMapper.toDomain(muscle));
 			return Success(domainMuscles);
-		} catch {
-			return Failure(new PrismaError("Can't find all Muscles"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findById(id: number) {
@@ -22,8 +22,8 @@ export class MusclePrismaRepository implements IMuscleRepository {
 			});
 			const result = muscle ? MuscleMapper.toDomain(muscle) : null;
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't find Muscle by id"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 }

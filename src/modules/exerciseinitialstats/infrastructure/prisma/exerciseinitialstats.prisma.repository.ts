@@ -1,9 +1,9 @@
 import { Failure, Success } from '@/shared/domain/result';
-import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { IExerciseInitialStatsRepository } from '../../domain/exerciseinitialstats.repository';
 import { ExerciseInitialStatsMapper } from '../exerciseinitialstats.mapper';
 import { ExerciseInitialStats } from '../../domain/exerciseinitialstats.entity';
 import { PrismaClient } from '@/prisma/client';
+import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
 
 export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialStatsRepository {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -15,8 +15,8 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 			});
 			const result = new ExerciseInitialStats(created);
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't create Exercise Initial Stats"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async update(data: ExerciseInitialStats) {
@@ -29,8 +29,8 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 
 			const result = new ExerciseInitialStats(updated);
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't update Exercise Initial Stats"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findAll() {
@@ -41,8 +41,8 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 			);
 
 			return Success(exerciseStatsDomain);
-		} catch {
-			return Failure(new PrismaError("Can't find all Exercise Initial Stats"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findById(id: ExerciseInitialStats['id']) {
@@ -54,8 +54,8 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 				? ExerciseInitialStatsMapper.toDomain(exerciseStats)
 				: null;
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't find Exercise Initial Stats by id"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 	async findByExerciseId(exerciseId: ExerciseInitialStats['exerciseId']) {
@@ -67,8 +67,8 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 				? ExerciseInitialStatsMapper.toDomain(exerciseStats)
 				: null;
 			return Success(result);
-		} catch {
-			return Failure(new PrismaError("Can't find Exercise Initial Stats by Exercise id"));
+		} catch (e) {
+			return Failure(GlobalErrorMapper.toDomainError(e));
 		}
 	}
 }
