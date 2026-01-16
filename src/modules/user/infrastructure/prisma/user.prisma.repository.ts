@@ -3,7 +3,7 @@ import { IUserRepository } from '@/modules/user/domain/user.repository';
 import { UserMapper } from '@/modules/user/infrastructure/user.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
 
 export class UserPrismaRepository implements IUserRepository {
 	constructor(private readonly prisma: PrismaClient) {}

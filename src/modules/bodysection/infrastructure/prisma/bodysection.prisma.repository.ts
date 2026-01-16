@@ -2,7 +2,7 @@ import { IBodySectionRepository } from '../../domain/bodysection.repository';
 import { BodySectionMapper } from '../bodysection.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
 
 export class BodySectionPrismaReporisoty implements IBodySectionRepository {
 	constructor(private readonly prisma: PrismaClient) {}

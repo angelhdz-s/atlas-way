@@ -4,7 +4,7 @@ import { MuscularGroupMapper } from '../musculargroup.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { MuscularGroupProps } from '../../domain/musculargroup.types';
-import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
 
 export class MuscularGroupPrismaReporitory implements IMuscularGroupRepository {
 	async findAll() {

@@ -4,7 +4,7 @@ import { ISessionRepository } from '../../domain/session.repository';
 import { SessionMapper } from '../session.mapper';
 import { SessionProps } from '../../domain/session.types';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
 
 export class SessionPrismaRepository implements ISessionRepository {
 	constructor(private readonly prisma: PrismaClient) {}
