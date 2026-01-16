@@ -1,17 +1,14 @@
 import { DomainError, TechnicalError } from '../domain/errors/domain-error';
-import { NextAuthErrorHandler } from './nextauth/errors/next-auth.error.handler';
-import { PrismaErrorHandler } from './prisma/errors/prisma.error.handler';
+import { ITechnicalErrorHandler } from './errors/technicalErrorsHanlder.interface';
 
 export class GlobalErrorMapper {
-	static toDomainError(error: unknown): DomainError {
-		const nextAuthHandler = new NextAuthErrorHandler();
-		const nextAuthError = nextAuthHandler.handle(error);
-		if (nextAuthError) return nextAuthError;
+	constructor(private handlers: ITechnicalErrorHandler[]) {}
 
-		const prismaHandler = new PrismaErrorHandler();
-		const prismaError = prismaHandler.handle(error);
-		if (prismaError) return prismaError;
-
+	handle(error: unknown): DomainError {
+		for (const handler of this.handlers) {
+			const domainError = handler.handle(error);
+			if (domainError) return domainError;
+		}
 		return new TechnicalError('Unavailable service', 'UNAVAILABLE_SERVICE');
 	}
 }
