@@ -3,7 +3,7 @@ import { IExerciseInitialStatsRepository } from '../../domain/exerciseinitialsta
 import { ExerciseInitialStatsMapper } from '../exerciseinitialstats.mapper';
 import { ExerciseInitialStats } from '../../domain/exerciseinitialstats.entity';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
+import { globalErrorMapper } from '@/shared/infrastructure/globalErrorMapper.container';
 
 export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialStatsRepository {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -16,7 +16,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 			const result = new ExerciseInitialStats(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 	async update(data: ExerciseInitialStats) {
@@ -30,7 +30,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 			const result = new ExerciseInitialStats(updated);
 			return Success(result);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 	async findAll() {
@@ -42,7 +42,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 
 			return Success(exerciseStatsDomain);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 	async findById(id: ExerciseInitialStats['id']) {
@@ -55,7 +55,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 				: null;
 			return Success(result);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 	async findByExerciseId(exerciseId: ExerciseInitialStats['exerciseId']) {
@@ -68,7 +68,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 				: null;
 			return Success(result);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 }

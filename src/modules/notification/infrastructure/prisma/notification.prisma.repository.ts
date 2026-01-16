@@ -4,7 +4,7 @@ import { Failure, Success } from '@/shared/domain/result';
 import { NotificationProps } from '../../domain/notification.types';
 import { NotificationMapper } from '../notification.mapper';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
+import { globalErrorMapper } from '@/shared/infrastructure/globalErrorMapper.container';
 
 export class NotificationPrismaRepository implements INotification {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -17,7 +17,7 @@ export class NotificationPrismaRepository implements INotification {
 			const result = NotificationMapper.toDomain(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 	async update(data: Notification) {
@@ -30,7 +30,7 @@ export class NotificationPrismaRepository implements INotification {
 			const result = NotificationMapper.toDomain(updated);
 			return Success(result);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 	async findAll() {
@@ -41,7 +41,7 @@ export class NotificationPrismaRepository implements INotification {
 			);
 			return Success(domainNotifications);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 	async findById(id: NotificationProps['id']) {
@@ -50,7 +50,7 @@ export class NotificationPrismaRepository implements INotification {
 			const result = notification ? NotificationMapper.toDomain(notification) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 }

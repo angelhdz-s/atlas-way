@@ -4,7 +4,7 @@ import { MuscularGroupMapper } from '../musculargroup.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaError } from '@/shared/infrastructure/prisma/prisma.errors';
 import { MuscularGroupProps } from '../../domain/musculargroup.types';
-import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
+import { globalErrorMapper } from '@/shared/infrastructure/globalErrorMapper.container';
 
 export class MuscularGroupPrismaReporitory implements IMuscularGroupRepository {
 	async findAll() {
@@ -15,7 +15,7 @@ export class MuscularGroupPrismaReporitory implements IMuscularGroupRepository {
 			);
 			return Success(muscularGroupsDomain);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 	async findById(id: MuscularGroupProps['id']) {
@@ -24,7 +24,7 @@ export class MuscularGroupPrismaReporitory implements IMuscularGroupRepository {
 			const result = muscularGroup ? MuscularGroupMapper.toDomain(muscularGroup) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 }

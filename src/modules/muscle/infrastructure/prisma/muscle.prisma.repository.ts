@@ -2,7 +2,7 @@ import { MuscleMapper } from '../muscle.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { IMuscleRepository } from '../../domain/muscle.repository';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
+import { globalErrorMapper } from '@/shared/infrastructure/globalErrorMapper.container';
 
 export class MusclePrismaRepository implements IMuscleRepository {
 	constructor(private readonly prisma: PrismaClient) {}
@@ -12,7 +12,7 @@ export class MusclePrismaRepository implements IMuscleRepository {
 			const domainMuscles = muscles.map((muscle) => MuscleMapper.toDomain(muscle));
 			return Success(domainMuscles);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 	async findById(id: number) {
@@ -23,7 +23,7 @@ export class MusclePrismaRepository implements IMuscleRepository {
 			const result = muscle ? MuscleMapper.toDomain(muscle) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(globalErrorMapper.handle(e));
 		}
 	}
 }
