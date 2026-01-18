@@ -1,4 +1,4 @@
-import { AuthContainer } from '@/modules/auth/auth.container';
+import { makeAuthModule } from '@/modules/auth/auth.container';
 import { makeBodySectionModule } from '@/modules/bodysection/bodysection.container';
 import { makeExerciseModule } from '@/modules/exercise/exercise.container';
 import { makeExerciseToMuscleModuel } from '@/modules/exercise/link/muscle/exercise-to-muscle.container';
@@ -11,7 +11,7 @@ import { makeUserModule } from '@/modules/user/user.container';
 
 export const getContainer = () => {
 	return {
-		auth: AuthContainer,
+		auth: makeAuthModule(),
 		user: makeUserModule(),
 		notification: makeNotificationModule(),
 		bodySection: makeBodySectionModule(),
