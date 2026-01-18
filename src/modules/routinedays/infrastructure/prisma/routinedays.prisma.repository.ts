@@ -4,10 +4,13 @@ import { RoutineDaysMapper } from '../routinedays.mapper';
 import { RoutineDays } from '../../domain/routinedays.entity';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
-import { globalErrorMapper } from '@/shared/infrastructure/globalErrorMapper.container';
+import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
 
 export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
-	constructor(private readonly prisma: PrismaClient) {}
+	constructor(
+		private readonly prisma: PrismaClient,
+		private readonly errorMapper: GlobalErrorMapper
+	) {}
 	async create(data: RoutineDays) {
 		try {
 			const routineDayPersistence = RoutineDaysMapper.toPersistence(data);
@@ -15,7 +18,7 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 			const result = RoutineDaysMapper.toDomain(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(globalErrorMapper.handle(e));
+			return Failure(this.errorMapper.handle(e));
 		}
 	}
 	async update(data: RoutineDays) {
@@ -28,7 +31,7 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 			const result = RoutineDaysMapper.toDomain(updated);
 			return Success(result);
 		} catch (e) {
-			return Failure(globalErrorMapper.handle(e));
+			return Failure(this.errorMapper.handle(e));
 		}
 	}
 	async findAll() {
@@ -39,7 +42,7 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 			);
 			return Success(routineDaysDomain);
 		} catch (e) {
-			return Failure(globalErrorMapper.handle(e));
+			return Failure(this.errorMapper.handle(e));
 		}
 	}
 	async findById(id: RoutineDaysProps['id']) {
@@ -48,7 +51,7 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 			const result = routineDay ? RoutineDaysMapper.toDomain(routineDay) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(globalErrorMapper.handle(e));
+			return Failure(this.errorMapper.handle(e));
 		}
 	}
 }
