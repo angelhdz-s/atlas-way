@@ -3,10 +3,13 @@ import { RoutineMapper } from '../routine.mapper';
 import { Routine } from '../../domain/routine.entity';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/glolabError.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
 
 export class RoutinePrismaRepository implements IRoutineRepository {
-	constructor(private readonly prisma: PrismaClient) {}
+	constructor(
+		private readonly prisma: PrismaClient,
+		private readonly errorMapper: GlobalErrorMapper
+	) {}
 	async create(data: Routine) {
 		const routinePersistence = RoutineMapper.toPersistence(data);
 		try {
@@ -14,7 +17,7 @@ export class RoutinePrismaRepository implements IRoutineRepository {
 			const result = RoutineMapper.toDomain(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(this.errorMapper.handle(e));
 		}
 	}
 	async update(data: Routine) {
@@ -27,7 +30,7 @@ export class RoutinePrismaRepository implements IRoutineRepository {
 			const result = RoutineMapper.toDomain(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(this.errorMapper.handle(e));
 		}
 	}
 	async findaAll() {
@@ -36,7 +39,7 @@ export class RoutinePrismaRepository implements IRoutineRepository {
 			const routinesDomain = routines.map((routine) => RoutineMapper.toDomain(routine));
 			return Success(routinesDomain);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(this.errorMapper.handle(e));
 		}
 	}
 	async findById(id: string) {
@@ -45,7 +48,7 @@ export class RoutinePrismaRepository implements IRoutineRepository {
 			const result = routine ? RoutineMapper.toDomain(routine) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(GlobalErrorMapper.toDomainError(e));
+			return Failure(this.errorMapper.handle(e));
 		}
 	}
 }
