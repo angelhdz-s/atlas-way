@@ -7,7 +7,7 @@ export abstract class DomainError extends Error {
 }
 
 export class TechnicalError extends DomainError {
-	constructor(readonly code: string | DomainErrorCode) {
-		super(code);
+	constructor() {
+		super('TECHNICAL_ERROR');
 	}
 }
