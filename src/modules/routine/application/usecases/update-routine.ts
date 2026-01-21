@@ -12,7 +12,7 @@ export class UpdateRoutine implements UseCase {
 		const updating = await this.repository.findById(id);
 		if (!updating.success || !updating.data) {
 			if (!updating.success) return Failure(updating.error);
-			return Failure(new RoutineNotFoundError('Routine not found'));
+			return Failure(new RoutineNotFoundError());
 		}
 
 		const routine = updating.data;

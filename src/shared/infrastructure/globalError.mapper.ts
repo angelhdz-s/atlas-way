@@ -9,6 +9,6 @@ export class GlobalErrorMapper {
 			const domainError = handler.handle(error);
 			if (domainError) return domainError;
 		}
-		return new TechnicalError('Unavailable service', 'UNAVAILABLE_SERVICE');
+		return new TechnicalError('UNAVAILABLE_SERVICE');
 	}
 }

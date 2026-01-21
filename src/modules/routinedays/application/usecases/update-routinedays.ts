@@ -13,7 +13,7 @@ export class UpdateRoutineDays implements UseCase {
 
 		if (!existingRoutineDays.success || !existingRoutineDays.data) {
 			if (!existingRoutineDays.success) return Failure(existingRoutineDays.error);
-			return Failure(new RoutineDaysNotFoundError('Routine Days not found'));
+			return Failure(new RoutineDaysNotFoundError());
 		}
 
 		const routineDays = existingRoutineDays.data;
