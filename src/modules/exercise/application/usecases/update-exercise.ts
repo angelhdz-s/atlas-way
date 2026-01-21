@@ -10,8 +10,7 @@ export class UpdateExercise implements UseCase {
 
 	async execute(id: Exercise['id'], data: UpdateExerciseInput) {
 		const result = await this.repository.findById(id);
-		if (!result.success || !result.data)
-			return Failure(new ExerciseNotFoundError('Exercise not found'));
+		if (!result.success || !result.data) return Failure(new ExerciseNotFoundError());
 
 		const exercise = result.data;
 

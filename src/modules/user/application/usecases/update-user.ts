@@ -11,8 +11,7 @@ export class UpdateUser implements UseCase {
 	async execute(id: UserProps['id'], data: UpdateUserInput) {
 		const result = await this.repository.findById(id);
 
-		if (!result.success || !result.data)
-			return Failure(new UserNotFoundError('User not found'));
+		if (!result.success || !result.data) return Failure(new UserNotFoundError());
 		const user = result.data;
 
 		if (data.name) user.changeName(data.name);

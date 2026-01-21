@@ -13,7 +13,7 @@ export class UpdateNotification implements UseCase {
 
 		if (!existingNotification.success || !existingNotification.data) {
 			if (!existingNotification.success) return Failure(existingNotification.error);
-			return Failure(new NotificationNotFoundError('Notification not found'));
+			return Failure(new NotificationNotFoundError());
 		}
 
 		const notification = existingNotification.data;

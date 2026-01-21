@@ -11,9 +11,7 @@ export class UpdateExerciseInitialStats implements UseCase {
 		const existingData = await this.repo.findById(id);
 		if (!existingData.success || !existingData.data) {
 			if (!existingData.success) return Failure(existingData.error);
-			return Failure(
-				new ExcerciseInitialStatsNotFoundError('Exercise Initial Stats Not Found')
-			);
+			return Failure(new ExcerciseInitialStatsNotFoundError());
 		}
 
 		const domainExerciseIS = existingData.data;

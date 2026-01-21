@@ -13,7 +13,7 @@ export class UpdateSessions implements UseCase {
 
 		if (!existingSession.success || !existingSession.data) {
 			if (!existingSession.success) return Failure(existingSession.error);
-			return Failure(new SessionNotFoundError('Session not found'));
+			return Failure(new SessionNotFoundError());
 		}
 
 		const session = existingSession.data;
