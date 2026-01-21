@@ -17,4 +17,5 @@ export type DomainErrorCode =
 	| RoutineErrorCode
 	| RoutineDaysErrorCode
 	| SessionErrorCode
-	| UserErrorCode;
+	| UserErrorCode
+	| 'TECHNICAL_ERROR';
