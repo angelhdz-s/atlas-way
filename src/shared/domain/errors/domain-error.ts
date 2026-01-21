@@ -1,13 +1,13 @@
-import { DomainErrorCode } from './domain-errors.codes';
+import { DomainErrorCode } from './domain.error.code';
 
 export abstract class DomainError extends Error {
-	constructor(code: string | DomainErrorCode) {
+	constructor(code: DomainErrorCode) {
 		super(code);
 	}
 }
 
 export class TechnicalError extends DomainError {
-	constructor(readonly code: string | DomainErrorCode) {
-		super(code);
+	constructor() {
+		super('TECHNICAL_ERROR');
 	}
 }
