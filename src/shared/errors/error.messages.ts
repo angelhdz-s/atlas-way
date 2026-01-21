@@ -1,4 +1,4 @@
-import { DomainErrorCode } from '../domain/errors/domain-errors.codes';
+import { DomainErrorCode } from '../domain/errors/domain.error.codes';
 import { TechnicalErrorCodes } from '../infrastructure/errors/technicalErrors.codes';
 
 export const errorMessages: Record<DomainErrorCode | TechnicalErrorCodes, string> = {
