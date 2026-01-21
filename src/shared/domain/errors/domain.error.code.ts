@@ -1,5 +1,6 @@
 import { AuthErrorCode } from '@/modules/auth/domain/errors/auth.error.code';
 import { ExerciseErrorCode } from '@/modules/exercise/domain/errors/exercise.error.code';
+import { ExerciseToMuscleErrorCode } from '@/modules/exercise/link/muscle/domain/errors/exercise-to-muscle.error.code';
 import { ExerciseInitialStatsErrorCode } from '@/modules/exerciseinitialstats/domain/errors/exerciseinitialstats.error.code';
 import { MuscleErrorCode } from '@/modules/muscle/domain/errors/muscle.error.code';
 import { NotificationErrorCode } from '@/modules/notification/domain/errors/notification.error.code';
@@ -12,6 +13,7 @@ export type DomainErrorCode =
 	| AuthErrorCode
 	| ExerciseErrorCode
 	| ExerciseInitialStatsErrorCode
+	| ExerciseToMuscleErrorCode
 	| MuscleErrorCode
 	| NotificationErrorCode
 	| RoutineErrorCode
