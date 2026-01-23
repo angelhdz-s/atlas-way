@@ -3,7 +3,7 @@ import { MuscularGroupMapper } from '../musculargroup.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { MuscularGroupProps } from '../../domain/musculargroup.types';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
 
 export class MuscularGroupPrismaReporitory implements IMuscularGroupRepository {
 	constructor(

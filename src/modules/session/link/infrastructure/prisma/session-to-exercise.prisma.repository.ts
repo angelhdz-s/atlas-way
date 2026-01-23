@@ -4,7 +4,7 @@ import { ISessionToExerciseRepository } from '../../domain/session-to-exercise.r
 import { SessionToExercise } from '../../domain/session-to-exercise.entity';
 import { SessionToExerciseMapper } from '../session-to-exercise.mapper';
 import { SessionToExerciseProps } from '../../domain/session-to-exercise.types';
-import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
 
 export class SessionToExercisePrismaRepository implements ISessionToExerciseRepository {
 	constructor(

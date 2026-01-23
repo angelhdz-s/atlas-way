@@ -2,7 +2,7 @@ import { IAuthRepository } from '../../domain/auth.respository';
 import { getCurrentSession } from './next-auth.currentsession';
 import { Failure, Success } from '@/shared/domain/result';
 import { AuthMapper } from '../auth.mapper';
-import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
 
 export class NextAuthRepository implements IAuthRepository {
 	constructor(private errorMapper: GlobalErrorMapper) {}

@@ -3,7 +3,7 @@ import { RoutineMapper } from '../routine.mapper';
 import { Routine } from '../../domain/routine.entity';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
 
 export class RoutinePrismaRepository implements IRoutineRepository {
 	constructor(
