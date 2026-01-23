@@ -4,7 +4,7 @@ import { Failure, Success } from '@/shared/domain/result';
 import { Exercise } from '@/modules/exercise/domain/exercise.entity';
 import { PrismaClient } from '@/prisma/client';
 import { ExerciseProps } from '../../domain/exercise.types';
-import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
 
 export class ExercisePrismaRepository implements IExerciseRepository {
 	constructor(

@@ -1,5 +1,5 @@
 import { DomainError, TechnicalError } from '../domain/errors/domain-error';
-import { ITechnicalErrorHandler } from './errors/technicalErrorsHanlder.interface';
+import { ITechnicalErrorHandler } from './errors/technical-errors-handler.interface';
 
 export class GlobalErrorMapper {
 	constructor(private handlers: ITechnicalErrorHandler[]) {}

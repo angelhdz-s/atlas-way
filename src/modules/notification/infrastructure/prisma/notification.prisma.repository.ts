@@ -4,7 +4,7 @@ import { Failure, Success } from '@/shared/domain/result';
 import { NotificationProps } from '../../domain/notification.types';
 import { NotificationMapper } from '../notification.mapper';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
 
 export class NotificationPrismaRepository implements INotification {
 	constructor(

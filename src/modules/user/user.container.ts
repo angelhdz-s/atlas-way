@@ -9,8 +9,8 @@ import { GetCurrentUser } from './application/usecases/get-current-user';
 import { GetCurrentUserId } from './application/usecases/get-current-user-id';
 import { UserPrismaRepository } from './infrastructure/prisma/user.prisma.repository';
 import { prisma } from '@/shared/infrastructure/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/globalError.mapper';
-import { errorHandlersContainer } from '@/shared/infrastructure/errors/errorHandler.container';
+import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
+import { errorHandlersContainer } from '@/shared/infrastructure/errors/error-handler.container';
 import { NextAuthRepository } from '../auth/infrastructure/next-auth/next-auth.repository';
 
 export const makeUserModule = () => {
