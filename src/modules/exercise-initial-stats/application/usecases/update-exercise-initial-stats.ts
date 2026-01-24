@@ -8,13 +8,14 @@ import { ExcerciseInitialStatsNotFoundError } from '../../domain/errors/exercise
 export class UpdateExerciseInitialStats implements UseCase {
 	constructor(private repo: IExerciseInitialStatsRepository) {}
 	async execute(id: ExerciseInitialStatsProps['id'], data: UpdateExerciseInitialStatsInput) {
-		const existingData = await this.repo.findById(id);
-		if (!existingData.success || !existingData.data) {
-			if (!existingData.success) return Failure(existingData.error);
+		const exerciseInitialStatsResult = await this.repo.findById(id);
+		if (!exerciseInitialStatsResult.success || !exerciseInitialStatsResult.data) {
+			if (!exerciseInitialStatsResult.success)
+				return Failure(exerciseInitialStatsResult.error);
 			return Failure(new ExcerciseInitialStatsNotFoundError());
 		}
 
-		const domainExerciseIS = existingData.data;
+		const domainExerciseIS = exerciseInitialStatsResult.data;
 
 		if (data.sets) domainExerciseIS.changeSets(data.sets);
 		if (data.reps) domainExerciseIS.changeReps(data.reps);

@@ -9,13 +9,13 @@ export class UpdateRoutine implements UseCase {
 	constructor(private repository: IRoutineRepository) {}
 
 	async execute(id: RoutineProps['id'], data: UpdateRoutineInput) {
-		const updating = await this.repository.findById(id);
-		if (!updating.success || !updating.data) {
-			if (!updating.success) return Failure(updating.error);
+		const routineResult = await this.repository.findById(id);
+		if (!routineResult.success || !routineResult.data) {
+			if (!routineResult.success) return Failure(routineResult.error);
 			return Failure(new RoutineNotFoundError());
 		}
 
-		const routine = updating.data;
+		const routine = routineResult.data;
 
 		if (data.name) routine.changeName(data.name);
 		if (data.description) routine.changeDescription(data.description);

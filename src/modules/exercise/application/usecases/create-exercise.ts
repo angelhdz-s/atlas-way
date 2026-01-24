@@ -10,6 +10,7 @@ import { MuscleProps } from '@/modules/muscle/domain/muscle.types';
 import { IExerciseToMuscleRepository } from '@/modules/exercise/link/muscle/domain/exercise-to-muscle.repository';
 import { LinkExerciseToMuscleInput } from '@/modules/exercise/link/muscle/application/dtos/link-exercise-to-muscle.dto';
 import { ExerciseToMuscle } from '@/modules/exercise/link/muscle/domain/exercise-to-muscle.entity';
+import { Failure } from '@/shared/domain/result';
 
 export class CreateExercise implements UseCase {
 	constructor(
@@ -25,33 +26,34 @@ export class CreateExercise implements UseCase {
 		statsData: CreateExerciseInitialStatsWithoutExerciseIdInput | null = null
 	) {
 		const exerciseId = this.generator.generate();
-
-		const exercise = Exercise.create(exerciseId, exerciseData);
-
-		const exerciseCreated = await this.repository.create(exercise);
+		const newExercise = Exercise.create(exerciseId, exerciseData);
+		const exerciseResult = await this.repository.create(newExercise);
 
 		for (const muscleId of muscleIds) {
 			const newMuscleLinkProps: LinkExerciseToMuscleInput = {
 				muscleId,
 				exerciseId,
 			};
-			const exerciseToMuscle = ExerciseToMuscle.create(newMuscleLinkProps);
-			await this.linkRepository.create(exerciseToMuscle);
+			const newExerciseToMuscle = ExerciseToMuscle.create(newMuscleLinkProps);
+			const exerciseToMuscleResult = await this.linkRepository.create(newExerciseToMuscle);
+			if (!exerciseToMuscleResult.success) return Failure(exerciseToMuscleResult.error);
 		}
 
-		if (!statsData) return exerciseCreated;
+		if (!statsData) return exerciseResult;
 
 		const statsId = this.generator.generate();
 
-		const stats = ExerciseInitialStats.create(statsId, {
+		const newExerciseInitialStats = ExerciseInitialStats.create(statsId, {
 			sets: statsData.sets,
 			reps: statsData.reps,
 			weight: statsData.weight,
 			exerciseId,
 		});
 
-		await this.statsRepository.create(stats);
+		const exerciseInitialStatsResult =
+			await this.statsRepository.create(newExerciseInitialStats);
+		if (!exerciseInitialStatsResult.success) return Failure(exerciseInitialStatsResult.error);
 
-		return exerciseCreated;
+		return exerciseResult;
 	}
 }

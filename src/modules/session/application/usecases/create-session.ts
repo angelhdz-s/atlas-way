@@ -19,8 +19,8 @@ export class CreateSession implements UseCase {
 	async execute(data: CreateSessionInput, exerciseIds: ExerciseProps['id'][] | null = null) {
 		const sessionId = this.generator.generate();
 		const newSession = Session.create(sessionId, data);
-		const sessionCreateResult = await this.repository.create(newSession);
-		if (!exerciseIds || !sessionCreateResult.success) return sessionCreateResult;
+		const sessionResult = await this.repository.create(newSession);
+		if (!exerciseIds || !sessionResult.success) return sessionResult;
 
 		for (const exerciseId of exerciseIds) {
 			const newSessionLinkProps: CreateSessionToExerciseInput = {
@@ -28,10 +28,10 @@ export class CreateSession implements UseCase {
 				exerciseId,
 			};
 			const newSessionToExercise = SessionToExercise.create(newSessionLinkProps);
-			const createResult = await this.linkRepository.create(newSessionToExercise);
-			if (!createResult.success) return Failure(createResult.error);
+			const sessionToExerciseResult = await this.linkRepository.create(newSessionToExercise);
+			if (!sessionToExerciseResult.success) return Failure(sessionToExerciseResult.error);
 		}
 
-		return sessionCreateResult;
+		return sessionResult;
 	}
 }

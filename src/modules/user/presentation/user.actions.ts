@@ -25,12 +25,12 @@ export async function getCurrentUser(): ActionResponse<User> {
 
 export async function getCurrentUserId(): ActionResponse<UserProps['id']> {
 	const container = getContainer();
-	const usecase = container.user.GetCurrentUserIdUseCase;
+	const getCurrentUserId = container.user.GetCurrentUserIdUseCase;
 
-	const result = await usecase.execute();
+	const userIdResult = await getCurrentUserId.execute();
 
-	if (!result.success) return ActionFailure(result.error.message);
-	if (!result.data) return ActionFailure('User not found');
+	if (!userIdResult.success) return ActionFailure(userIdResult.error.message);
+	if (!userIdResult.data) return ActionFailure('User not found');
 
-	return ActionSuccess(result.data, 'User found');
+	return ActionSuccess(userIdResult.data, 'User found');
 }

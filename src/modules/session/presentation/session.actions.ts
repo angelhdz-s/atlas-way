@@ -42,9 +42,9 @@ export async function createSession(
 ): ActionResponse<SessionDTO> {
 	const container = getContainer();
 	const createSession = container.session.CreateSessionUseCase;
-	const createResult = await createSession.execute(sessionData, exerciseIds);
-	if (!createResult.success) return ActionFailure(createResult.error.message);
-	const sessionDTO = SessionMapper.toDTO(createResult.data);
+	const sessionResult = await createSession.execute(sessionData, exerciseIds);
+	if (!sessionResult.success) return ActionFailure(sessionResult.error.message);
+	const sessionDTO = SessionMapper.toDTO(sessionResult.data);
 	console.log(exerciseIds);
 	return ActionSuccess(sessionDTO, 'Session created successfully');
 }
