@@ -1,4 +1,4 @@
-import { ITechnicalErrorHandler } from '../../errors/technical-errors-handler.interface';
+import { ITechnicalErrorHandler } from '../../errors/error-handler.repository';
 
 export class NextAuthErrorHandler implements ITechnicalErrorHandler {
 	handle(error: unknown) {

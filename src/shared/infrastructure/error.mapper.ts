@@ -1,8 +1,15 @@
 import { DomainError, TechnicalError } from '../domain/errors/domain-error';
-import { ITechnicalErrorHandler } from './errors/technical-errors-handler.interface';
+import { IErrorHandler } from './errors/error-handler.repository';
+import { NextAuthErrorHandler } from './nextauth/errors/next-auth.error.handler';
+import { PrismaErrorHandler } from './prisma/errors/prisma.error.handler';
+
+export const errorHandlersContainer: IErrorHandler[] = [
+	new NextAuthErrorHandler(),
+	new PrismaErrorHandler(),
+];
 
 export class GlobalErrorMapper {
-	constructor(private handlers: ITechnicalErrorHandler[]) {}
+	constructor(private handlers: IErrorHandler[]) {}
 
 	handle(error: unknown): DomainError {
 		for (const handler of this.handlers) {
@@ -12,3 +19,5 @@ export class GlobalErrorMapper {
 		return new TechnicalError();
 	}
 }
+
+export const globalErrorMapper = new GlobalErrorMapper(errorHandlersContainer);

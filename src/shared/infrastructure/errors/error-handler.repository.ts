@@ -1,5 +1,5 @@
 import { DomainError } from '@/shared/domain/errors/domain-error';
 
-export interface ITechnicalErrorHandler {
+export interface IErrorHandler {
 	handle: (error: unknown) => DomainError | null;
 }
