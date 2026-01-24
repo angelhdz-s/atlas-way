@@ -1,6 +1,6 @@
 import { RepositoryResult } from '@/shared/domain/repository.result';
-import { RoutineDaysProps } from './routinedays.types';
-import { RoutineDays } from './routinedays.entity';
+import { RoutineDaysProps } from './routine-days.types';
+import { RoutineDays } from './routine-days.entity';
 
 export interface IRoutineDaysRepository {
 	create: (data: RoutineDays) => RepositoryResult<RoutineDays>;

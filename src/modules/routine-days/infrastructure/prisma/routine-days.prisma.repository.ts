@@ -1,7 +1,7 @@
-import { IRoutineDaysRepository } from '../../domain/routinedays.resporitory';
-import { RoutineDaysProps } from '../../domain/routinedays.types';
-import { RoutineDaysMapper } from '../routinedays.mapper';
-import { RoutineDays } from '../../domain/routinedays.entity';
+import { IRoutineDaysRepository } from '../../domain/routine-days.resporitory';
+import { RoutineDaysProps } from '../../domain/routine-days.types';
+import { RoutineDaysMapper } from '../routine-days.mapper';
+import { RoutineDays } from '../../domain/routine-days.entity';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
 import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';

@@ -1,7 +1,7 @@
 import { RoutineDays as PrismaRoutineDays } from '@/prisma/client';
-import { RoutineDays } from '../domain/routinedays.entity';
-import { RoutineDaysProps } from '../domain/routinedays.types';
-import { RoutineDaysDTO } from '../application/dtos/routinedays.dto';
+import { RoutineDays } from '../domain/routine-days.entity';
+import { RoutineDaysProps } from '../domain/routine-days.types';
+import { RoutineDaysDTO } from '../application/dtos/routine-days.dto';
 
 export class RoutineDaysMapper {
 	static toDomain(data: PrismaRoutineDays): RoutineDays {

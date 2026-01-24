@@ -1,4 +1,4 @@
-import { RoutineDaysProps } from './routinedays.types';
+import { RoutineDaysProps } from './routine-days.types';
 
 export class RoutineDays {
 	constructor(private data: RoutineDaysProps) {}

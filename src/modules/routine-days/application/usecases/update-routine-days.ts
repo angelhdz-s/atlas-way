@@ -1,8 +1,8 @@
 import { Failure } from '@/shared/domain/result';
-import { IRoutineDaysRepository } from '../../domain/routinedays.resporitory';
-import { RoutineDaysProps } from '../../domain/routinedays.types';
-import { UpdateRoutineDaysInput } from '../dtos/update-routinedays.dto';
-import { RoutineDaysNotFoundError } from '../../domain/errors/routinedays.errors';
+import { IRoutineDaysRepository } from '../../domain/routine-days.resporitory';
+import { RoutineDaysProps } from '../../domain/routine-days.types';
+import { UpdateRoutineDaysInput } from '../dtos/update-routine-days.dto';
+import { RoutineDaysNotFoundError } from '../../domain/errors/routine-days.errors';
 import { UseCase } from '@/shared/application/usecase';
 
 export class UpdateRoutineDays implements UseCase {

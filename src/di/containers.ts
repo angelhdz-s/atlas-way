@@ -6,7 +6,7 @@ import { makeMuscleModule } from '@/modules/muscle/muscle.container';
 import { makeMuscularGroupModule } from '@/modules/muscular-group/muscular-group.container';
 import { makeNotificationModule } from '@/modules/notification/notification.container';
 import { makeRoutineModule } from '@/modules/routine/routine.container';
-import { makeRoutineDaysContainer } from '@/modules/routinedays/routinedays.container';
+import { makeRoutineDaysContainer } from '@/modules/routine-days/routine-days.container';
 import { makeSessionModule } from '@/modules/session/session.container';
 import { makeUserModule } from '@/modules/user/user.container';
 
