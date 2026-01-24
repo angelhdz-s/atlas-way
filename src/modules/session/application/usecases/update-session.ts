@@ -9,14 +9,14 @@ export class UpdateSessions implements UseCase {
 	constructor(private repository: ISessionRepository) {}
 
 	async execute(id: SessionProps['id'], data: UpdateSessionInput) {
-		const existingSession = await this.repository.findById(id);
+		const sessionResult = await this.repository.findById(id);
 
-		if (!existingSession.success || !existingSession.data) {
-			if (!existingSession.success) return Failure(existingSession.error);
+		if (!sessionResult.success || !sessionResult.data) {
+			if (!sessionResult.success) return Failure(sessionResult.error);
 			return Failure(new SessionNotFoundError());
 		}
 
-		const session = existingSession.data;
+		const session = sessionResult.data;
 
 		if (data.name) session.changeName(data.name);
 		if (data.description) session.changeDescription(data.description);

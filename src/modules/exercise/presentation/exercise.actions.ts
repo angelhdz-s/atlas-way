@@ -20,43 +20,45 @@ export type FullExerciseDTO = ExerciseDTO & { muscles: MuscleDTO[] };
 export async function createExerciseAction(
 	data: ExerciseFormProps
 ): ActionResponse<ExerciseDTO | null> {
-	const result = ExerciseFormSchema.safeParse(data);
+	const exerciseParseResult = ExerciseFormSchema.safeParse(data);
 
-	if (!result.success) {
-		return ActionFailure(result.error.message);
+	if (!exerciseParseResult.success) {
+		return ActionFailure(exerciseParseResult.error.message);
 	}
+	const parsedExercise = exerciseParseResult.data;
 
-	const userId = await getCurrentUserId();
-	if (!userId.success || !userId.data) return ActionFailure(userId.message);
+	const userIdResult = await getCurrentUserId();
+	if (!userIdResult.success || !userIdResult.data) return ActionFailure(userIdResult.message);
+	const userId = userIdResult.data;
 
 	const container = getContainer();
-	const exerciseUseCase = container.exercise.CreateExerciseUseCase;
+	const createExercise = container.exercise.CreateExerciseUseCase;
 
 	const exercise: CreateExerciseInput = {
-		name: result.data.exercise.name,
-		description: result.data.exercise.description ?? null,
-		userId: userId.data,
+		name: parsedExercise.exercise.name,
+		description: parsedExercise.exercise.description ?? null,
+		userId,
 	};
 
-	const muscles = result.data.muscles.map(({ id }) => Number(id));
+	const muscles = parsedExercise.muscles.map(({ id }) => Number(id));
 
-	if (!result.data.initialStats) {
-		const created = await exerciseUseCase.execute(exercise, muscles);
-		if (!created.success) return ActionFailure(created.error.message);
-		return ActionSuccess(created.data, 'Exercise created successfully');
+	if (!parsedExercise.initialStats) {
+		const createdExercise = await createExercise.execute(exercise, muscles);
+		if (!createdExercise.success) return ActionFailure(createdExercise.error.message);
+		return ActionSuccess(createdExercise.data, 'Exercise created successfully');
 	}
 
 	const stats: CreateExerciseInitialStatsWithoutExerciseIdInput = {
-		sets: result.data.initialStats.sets,
-		reps: result.data.initialStats.reps,
-		weight: result.data.initialStats.weight,
+		sets: parsedExercise.initialStats.sets,
+		reps: parsedExercise.initialStats.reps,
+		weight: parsedExercise.initialStats.weight,
 	};
 
-	const created = await exerciseUseCase.execute(exercise, muscles, stats);
+	const createdExercise = await createExercise.execute(exercise, muscles, stats);
 
-	if (!created.success) return ActionFailure(created.error.message);
+	if (!createdExercise.success) return ActionFailure(createdExercise.error.message);
 
-	const exerciseDTO = ExerciseMapper.toDTO(created.data);
+	const exerciseDTO = ExerciseMapper.toDTO(createdExercise.data);
 	revalidatePath('/dashboard/exercises');
 	return ActionSuccess(exerciseDTO, 'Exercise created successfully');
 }
@@ -70,15 +72,15 @@ export async function getAllUserExercises(
 ): ActionResponse<FullExerciseDTO[] | ExerciseDTO[]> {
 	const container = getContainer();
 
-	const userIdRequest = await getCurrentUserId();
-	if (!userIdRequest.success) return ActionFailure(userIdRequest.message);
-	if (!userIdRequest.data) return ActionFailure('User not found');
-	const userId = userIdRequest.data;
+	const userIdResult = await getCurrentUserId();
+	if (!userIdResult.success) return ActionFailure(userIdResult.message);
+	if (!userIdResult.data) return ActionFailure('User not found');
+	const userId = userIdResult.data;
 
-	const getExercises = container.exercise.GetAllUserExercisesUseCase;
-	const exerciseRequest = await getExercises.execute(userId);
-	if (!exerciseRequest.success) return ActionFailure(exerciseRequest.error.message);
-	const exercises = exerciseRequest.data;
+	const getAllExercises = container.exercise.GetAllUserExercisesUseCase;
+	const exercisesResult = await getAllExercises.execute(userId);
+	if (!exercisesResult.success) return ActionFailure(exercisesResult.error.message);
+	const exercises = exercisesResult.data;
 
 	if (config && !config.includeMuscles)
 		return ActionSuccess(exercises, 'User exercises found successfully');
@@ -86,9 +88,9 @@ export async function getAllUserExercises(
 	const fullExercises: FullExerciseDTO[] = [];
 
 	for (const exercise of exercises) {
-		const musclesRequest = await getAllMusclesByExercise(exercise.id);
-		if (!musclesRequest.success) return ActionFailure(musclesRequest.message);
-		const muscles = musclesRequest.data;
+		const musclesResult = await getAllMusclesByExercise(exercise.id);
+		if (!musclesResult.success) return ActionFailure(musclesResult.message);
+		const muscles = musclesResult.data;
 		const exerciseDTO = ExerciseMapper.toDTO(exercise);
 
 		const fullExercise: FullExerciseDTO = {

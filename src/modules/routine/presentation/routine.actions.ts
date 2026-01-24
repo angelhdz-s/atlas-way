@@ -4,9 +4,9 @@ import { ActionResponseType } from '@/presentation/globals/types';
 import { RoutineForm, routineFormSchema } from './ui/config/routine-schema';
 
 export async function createRoutineAction(data: RoutineForm): Promise<ActionResponseType> {
-	const parsedData = routineFormSchema.safeParse(data);
-	if (!parsedData.success) {
-		const errors = parsedData.error;
+	const parsedRoutine = routineFormSchema.safeParse(data);
+	if (!parsedRoutine.success) {
+		const errors = parsedRoutine.error;
 		console.log(errors);
 		return { success: false, message: 'Invalid form data' };
 	}
@@ -16,9 +16,9 @@ export async function createRoutineAction(data: RoutineForm): Promise<ActionResp
 }
 
 export async function createRoutine(data: RoutineForm): Promise<string | null> {
-	const result = routineFormSchema.safeParse(data);
-	if (!result.success) {
-		return result.error.issues.map((issue) => issue.message).join(', ');
+	const parsedRoutineForm = routineFormSchema.safeParse(data);
+	if (!parsedRoutineForm.success) {
+		return parsedRoutineForm.error.issues.map((issue) => issue.message).join(', ');
 	}
 
 	return null;

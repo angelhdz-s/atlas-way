@@ -6,10 +6,10 @@ import { getContainer } from '@/di/containers';
 
 export async function getBodySections(): ActionResponse<BodySection[]> {
 	const container = getContainer();
-	const usecase = container.bodySection.GetAllBodySectionUseCase;
+	const getAllBodySections = container.bodySection.GetAllBodySectionUseCase;
 
-	const result = await usecase.execute();
-	if (!result.success) return ActionFailure(result.error.message);
+	const bodySectionsResult = await getAllBodySections.execute();
+	if (!bodySectionsResult.success) return ActionFailure(bodySectionsResult.error.message);
 
-	return ActionSuccess(result.data, 'Body sections were obtained');
+	return ActionSuccess(bodySectionsResult.data, 'Body sections were obtained');
 }
