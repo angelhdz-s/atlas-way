@@ -5,7 +5,7 @@ import { GetExerciseToMuscleByExerciseAndMuscleId } from './application/use-case
 import { GetExercisesToMusclesByExerciseId } from './application/use-cases/get-exercise-to-muscle-by-exercise-id';
 import { GetExercisesToMusclesByMuscleId } from './application/use-cases/get-exercise-to-muscle-by-muscle-id';
 import { LinkExerciseToMuscle } from './application/use-cases/link-exercise-to-muscle';
-import { globalErrorMapper } from '@/shared/infrastructure/error.mapper.container';
+import { globalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
 
 export const makeExerciseToMuscleModuel = () => {
 	const repo = new ExerciseToMusclePrismaRepository(prisma, globalErrorMapper);

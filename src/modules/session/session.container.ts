@@ -6,7 +6,7 @@ import { UpdateSessions } from '@/modules/session/application/use-cases/update-s
 import { SessionPrismaRepository } from '@/modules/session/infrastructure/prisma/session.prisma.repository';
 import { prisma } from '@/shared/infrastructure/prisma/client';
 import { SessionToExercisePrismaRepository } from './link/infrastructure/prisma/session-to-exercise.prisma.repository';
-import { globalErrorMapper } from '@/shared/infrastructure/error.mapper.container';
+import { globalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
 
 export const makeSessionModule = () => {
 	const sessionRepo = new SessionPrismaRepository(prisma, globalErrorMapper);

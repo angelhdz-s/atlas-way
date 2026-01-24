@@ -3,7 +3,7 @@ import { IExerciseInitialStatsRepository } from '../../domain/exercise-initial-s
 import { ExerciseInitialStatsMapper } from '../exercise-initial-stats.mapper';
 import { ExerciseInitialStats } from '../../domain/exercise-initial-stats.entity';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
 
 export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialStatsRepository {
 	constructor(

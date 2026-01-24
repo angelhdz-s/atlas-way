@@ -2,7 +2,7 @@ import { MuscleMapper } from '../muscle.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { IMuscleRepository } from '../../domain/muscle.repository';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
 
 export class MusclePrismaRepository implements IMuscleRepository {
 	constructor(

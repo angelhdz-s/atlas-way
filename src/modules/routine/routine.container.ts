@@ -5,7 +5,7 @@ import { GetRoutineById } from '@/modules/routine/application/use-cases/get-rout
 import { RoutinePrismaRepository } from '@/modules/routine/infrastructure/prisma/routine.prisma.repository';
 import { UpdateRoutine } from '@/modules/routine/application/use-cases/update-routine';
 import { prisma } from '@/shared/infrastructure/prisma/client';
-import { globalErrorMapper } from '@/shared/infrastructure/error.mapper.container';
+import { globalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
 
 export const makeRoutineModule = () => {
 	const routineRepo = new RoutinePrismaRepository(prisma, globalErrorMapper);

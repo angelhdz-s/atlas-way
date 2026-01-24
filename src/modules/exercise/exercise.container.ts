@@ -8,7 +8,7 @@ import { IdGeneratorContainer } from '@/shared/container/id-generator.container'
 import { ExerciseInitialStatsPrismaRepository } from '@/modules/exercise-initial-stats/infrastructure/prisma/exercise-initial-stats.prisma.repository';
 import { ExerciseToMusclePrismaRepository } from './link/muscle/infrastructure/prisma/exercise-to-muscle.prisma.repository';
 import { GetAllUserExercises } from './application/use-cases/get-user-exercises';
-import { globalErrorMapper } from '@/shared/infrastructure/error.mapper.container';
+import { globalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
 
 export const makeExerciseModule = () => {
 	const exerciseRepo = new ExercisePrismaRepository(prisma, globalErrorMapper);

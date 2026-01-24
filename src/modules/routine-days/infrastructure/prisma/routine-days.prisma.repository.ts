@@ -4,7 +4,7 @@ import { RoutineDaysMapper } from '../routine-days.mapper';
 import { RoutineDays } from '../../domain/routine-days.entity';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
+import { GlobalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
 
 export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 	constructor(
