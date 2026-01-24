@@ -1,6 +1,6 @@
-import { ITechnicalErrorHandler } from '../../errors/error-handler.repository';
+import { IErrorHandler } from '../../errors/error-handler.repository';
 
-export class PrismaErrorHandler implements ITechnicalErrorHandler {
+export class PrismaErrorHandler implements IErrorHandler {
 	handle(error: unknown) {
 		return null;
 	}
