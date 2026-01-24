@@ -4,10 +4,10 @@ import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts
 
 export async function getMuscularGroups(): ActionResponse<MuscularGroup[]> {
 	const container = getContainer();
-	const usecase = container.muscularGroup.GetAllMuscularGroupsUseCase;
-	const musculargroups = await usecase.execute();
+	const getAllMuscularGroups = container.muscularGroup.GetAllMuscularGroupsUseCase;
+	const muscularGroupsResult = await getAllMuscularGroups.execute();
 
-	if (!musculargroups.success) return ActionFailure(musculargroups.error.message);
+	if (!muscularGroupsResult.success) return ActionFailure(muscularGroupsResult.error.message);
 
-	return ActionSuccess(musculargroups.data, 'Muscular groups were obtained successfully');
+	return ActionSuccess(muscularGroupsResult.data, 'Muscular groups were obtained successfully');
 }

@@ -13,14 +13,14 @@ export async function getUser(): ActionResponse<User | null> {
 
 export async function getCurrentUser(): ActionResponse<User> {
 	const container = getContainer();
-	const usecase = container.user.GetCurrentUserUseCase;
+	const getCurrentUser = container.user.GetCurrentUserUseCase;
 
-	const result = await usecase.execute();
+	const userResult = await getCurrentUser.execute();
 
-	if (!result.success) return ActionFailure(result.error.message);
-	if (!result.data) return ActionFailure('User not found');
+	if (!userResult.success) return ActionFailure(userResult.error.message);
+	if (!userResult.data) return ActionFailure('User not found');
 
-	return ActionSuccess(result.data, 'User found');
+	return ActionSuccess(userResult.data, 'User found');
 }
 
 export async function getCurrentUserId(): ActionResponse<UserProps['id']> {
