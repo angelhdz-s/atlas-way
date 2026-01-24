@@ -1,11 +1,11 @@
 import { prisma } from '@/shared/infrastructure/prisma/client';
-import { CreateExerciseInitialStats } from '@/modules/exercise-initial-stats/application/usecases/create-exercise-initial-stats';
-import { GetAllExerciseInitialStats } from '@/modules/exercise-initial-stats/application/usecases/get-all-exercise-initial-stats';
-import { GetExerciseInitialStatsByExerciseId } from '@/modules/exercise-initial-stats/application/usecases/get-exercise-initial-stats-by-exercise-id';
-import { GetExerciseInitialStatsById } from '@/modules/exercise-initial-stats/application/usecases/get-exercise-initial-stats-by-id';
+import { CreateExerciseInitialStats } from '@/modules/exercise-initial-stats/application/use-cases/create-exercise-initial-stats';
+import { GetAllExerciseInitialStats } from '@/modules/exercise-initial-stats/application/use-cases/get-all-exercise-initial-stats';
+import { GetExerciseInitialStatsByExerciseId } from '@/modules/exercise-initial-stats/application/use-cases/get-exercise-initial-stats-by-exercise-id';
+import { GetExerciseInitialStatsById } from '@/modules/exercise-initial-stats/application/use-cases/get-exercise-initial-stats-by-id';
 import { ExerciseInitialStatsPrismaRepository } from '@/modules/exercise-initial-stats/infrastructure/prisma/exercise-initial-stats.prisma.repository';
 import { IdGeneratorContainer } from '@/shared/container/id-generator.container';
-import { UpdateExerciseInitialStats } from '@/modules/exercise-initial-stats/application/usecases/update-exercise-initial-stats';
+import { UpdateExerciseInitialStats } from '@/modules/exercise-initial-stats/application/use-cases/update-exercise-initial-stats';
 import { globalErrorMapper } from '@/shared/infrastructure/error.mapper.container';
 
 export const makeExerciseInitialStatsModule = () => {

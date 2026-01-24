@@ -1,8 +1,8 @@
 import { IdGeneratorContainer } from '@/shared/container/id-generator.container';
-import { CreateSession } from '@/modules/session/application/usecases/create-session';
-import { GetAllSessions } from '@/modules/session/application/usecases/get-all-sessions';
-import { GetSessionById } from '@/modules/session/application/usecases/get-session-by-id';
-import { UpdateSessions } from '@/modules/session/application/usecases/update-session';
+import { CreateSession } from '@/modules/session/application/use-cases/create-session';
+import { GetAllSessions } from '@/modules/session/application/use-cases/get-all-sessions';
+import { GetSessionById } from '@/modules/session/application/use-cases/get-session-by-id';
+import { UpdateSessions } from '@/modules/session/application/use-cases/update-session';
 import { SessionPrismaRepository } from '@/modules/session/infrastructure/prisma/session.prisma.repository';
 import { prisma } from '@/shared/infrastructure/prisma/client';
 import { SessionToExercisePrismaRepository } from './link/infrastructure/prisma/session-to-exercise.prisma.repository';
