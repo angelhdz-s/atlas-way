@@ -1,4 +1,4 @@
-import { MuscularGroupProps } from '@/modules/musculargroup/domain/musculargroup.types';
+import { MuscularGroupProps } from '@/modules/muscular-group/domain/muscular-group.types';
 import { UserProps } from '@/modules/user/domain/user.types';
 
 export type MuscleProps = {

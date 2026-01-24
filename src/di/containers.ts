@@ -3,10 +3,10 @@ import { makeBodySectionModule } from '@/modules/body-section/body-section.conta
 import { makeExerciseModule } from '@/modules/exercise/exercise.container';
 import { makeExerciseToMuscleModuel } from '@/modules/exercise/link/muscle/exercise-to-muscle.container';
 import { makeMuscleModule } from '@/modules/muscle/muscle.container';
-import { makeMuscularGroupModule } from '@/modules/musculargroup/musculargroup.container';
+import { makeMuscularGroupModule } from '@/modules/muscular-group/muscular-group.container';
 import { makeNotificationModule } from '@/modules/notification/notification.container';
 import { makeRoutineModule } from '@/modules/routine/routine.container';
-import { makeRoutineDaysContainer } from '@/modules/routinedays/routinedays.container';
+import { makeRoutineDaysContainer } from '@/modules/routine-days/routine-days.container';
 import { makeSessionModule } from '@/modules/session/session.container';
 import { makeUserModule } from '@/modules/user/user.container';
 
