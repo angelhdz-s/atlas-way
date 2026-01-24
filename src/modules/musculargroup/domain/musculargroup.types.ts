@@ -1,4 +1,4 @@
-import { BodySectionProps } from '@/modules/bodysection/domain/bodysection.types';
+import { BodySectionProps } from '@/modules/body-section/domain/body-section.types';
 
 export type MuscularGroupProps = {
 	readonly id: number;

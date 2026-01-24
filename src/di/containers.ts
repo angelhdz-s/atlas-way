@@ -1,5 +1,5 @@
 import { makeAuthModule } from '@/modules/auth/auth.container';
-import { makeBodySectionModule } from '@/modules/bodysection/bodysection.container';
+import { makeBodySectionModule } from '@/modules/body-section/body-section.container';
 import { makeExerciseModule } from '@/modules/exercise/exercise.container';
 import { makeExerciseToMuscleModuel } from '@/modules/exercise/link/muscle/exercise-to-muscle.container';
 import { makeMuscleModule } from '@/modules/muscle/muscle.container';

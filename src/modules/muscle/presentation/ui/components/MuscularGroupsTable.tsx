@@ -1,4 +1,4 @@
-import { getBodySections } from '@/modules/bodysection/presentation/bodysection.actions';
+import { getBodySections } from '@/modules/body-section/presentation/body-section.actions';
 
 export async function MuscularGroupsTable() {
 	const musculargroup = [
