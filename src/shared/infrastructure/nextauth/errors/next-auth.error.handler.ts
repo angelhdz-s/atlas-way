@@ -1,4 +1,4 @@
-import { IErrorHandler } from '../../errors/error-handler.repository';
+import { IErrorHandler } from '../../errors/error-handler.types';
 
 export class NextAuthErrorHandler implements IErrorHandler {
 	handle(error: unknown) {
