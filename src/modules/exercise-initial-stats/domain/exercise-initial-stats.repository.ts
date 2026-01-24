@@ -1,5 +1,5 @@
 import { RepositoryResult } from '@/shared/domain/repository.result';
-import { ExerciseInitialStats } from './exerciseinitialstats.entity';
+import { ExerciseInitialStats } from './exercise-initial-stats.entity';
 
 export interface IExerciseInitialStatsRepository {
 	create: (data: ExerciseInitialStats) => RepositoryResult<ExerciseInitialStats>;

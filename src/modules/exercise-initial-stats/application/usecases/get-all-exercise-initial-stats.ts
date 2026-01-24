@@ -1,5 +1,5 @@
 import { UseCase } from '@/shared/application/usecase';
-import { IExerciseInitialStatsRepository } from '../../domain/exerciseinitialstats.repository';
+import { IExerciseInitialStatsRepository } from '../../domain/exercise-initial-stats.repository';
 
 export class GetAllExerciseInitialStats implements UseCase {
 	constructor(private repo: IExerciseInitialStatsRepository) {}

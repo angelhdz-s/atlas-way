@@ -1,5 +1,5 @@
 import { ExerciseInitialStats } from '@/prisma/client';
-import { IExerciseInitialStatsRepository } from '../../domain/exerciseinitialstats.repository';
+import { IExerciseInitialStatsRepository } from '../../domain/exercise-initial-stats.repository';
 import { UseCase } from '@/shared/application/usecase';
 
 export class GetExerciseInitialStatsById implements UseCase {

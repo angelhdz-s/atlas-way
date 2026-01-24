@@ -1,7 +1,7 @@
 import { Failure, Success } from '@/shared/domain/result';
-import { IExerciseInitialStatsRepository } from '../../domain/exerciseinitialstats.repository';
-import { ExerciseInitialStatsMapper } from '../exerciseinitialstats.mapper';
-import { ExerciseInitialStats } from '../../domain/exerciseinitialstats.entity';
+import { IExerciseInitialStatsRepository } from '../../domain/exercise-initial-stats.repository';
+import { ExerciseInitialStatsMapper } from '../exercise-initial-stats.mapper';
+import { ExerciseInitialStats } from '../../domain/exercise-initial-stats.entity';
 import { PrismaClient } from '@/prisma/client';
 import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
 

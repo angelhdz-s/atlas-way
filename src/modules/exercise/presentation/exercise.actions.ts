@@ -7,7 +7,7 @@ import {
 import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts/actions.response';
 import { CreateExerciseInput } from '../application/dtos/create-exercise.dto';
 import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
-import { CreateExerciseInitialStatsWithoutExerciseIdInput } from '@/modules/exerciseinitialstats/application/dtos/create-exercise-initial-stats.dto';
+import { CreateExerciseInitialStatsWithoutExerciseIdInput } from '@/modules/exercise-initial-stats/application/dtos/create-exercise-initial-stats.dto';
 import { getContainer } from '@/di/containers';
 import { ExerciseMapper } from '../infrastructure/exercise.mapper';
 import { ExerciseDTO } from '../application/dtos/exercise.dto';

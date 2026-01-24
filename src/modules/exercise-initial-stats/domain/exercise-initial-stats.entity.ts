@@ -1,5 +1,5 @@
 import { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
-import { ExerciseInitialStatsProps } from './exerciseinitialstats.types';
+import { ExerciseInitialStatsProps } from './exercise-initial-stats.types';
 
 export class ExerciseInitialStats {
 	constructor(private data: ExerciseInitialStatsProps) {}

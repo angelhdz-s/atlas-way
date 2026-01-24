@@ -3,9 +3,9 @@ import { CreateExerciseInput } from '@/modules/exercise/application/dtos/create-
 import { UseCase } from '@/shared/application/usecase';
 import { IdGenerator } from '@/shared/application/id-generator';
 import { Exercise } from '@/modules/exercise/domain/exercise.entity';
-import { IExerciseInitialStatsRepository } from '@/modules/exerciseinitialstats/domain/exerciseinitialstats.repository';
-import { CreateExerciseInitialStatsWithoutExerciseIdInput } from '@/modules/exerciseinitialstats/application/dtos/create-exercise-initial-stats.dto';
-import { ExerciseInitialStats } from '@/modules/exerciseinitialstats/domain/exerciseinitialstats.entity';
+import { IExerciseInitialStatsRepository } from '@/modules/exercise-initial-stats/domain/exercise-initial-stats.repository';
+import { CreateExerciseInitialStatsWithoutExerciseIdInput } from '@/modules/exercise-initial-stats/application/dtos/create-exercise-initial-stats.dto';
+import { ExerciseInitialStats } from '@/modules/exercise-initial-stats/domain/exercise-initial-stats.entity';
 import { MuscleProps } from '@/modules/muscle/domain/muscle.types';
 import { IExerciseToMuscleRepository } from '@/modules/exercise/link/muscle/domain/exercise-to-muscle.repository';
 import { LinkExerciseToMuscleInput } from '@/modules/exercise/link/muscle/application/dtos/link-exercise-to-muscle.dto';

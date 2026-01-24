@@ -1,9 +1,9 @@
 import { UseCase } from '@/shared/application/usecase';
-import { IExerciseInitialStatsRepository } from '../../domain/exerciseinitialstats.repository';
-import { ExerciseInitialStatsProps } from '../../domain/exerciseinitialstats.types';
+import { IExerciseInitialStatsRepository } from '../../domain/exercise-initial-stats.repository';
+import { ExerciseInitialStatsProps } from '../../domain/exercise-initial-stats.types';
 import { UpdateExerciseInitialStatsInput } from '../dtos/update-exercise-initial-stats.dto';
 import { Failure } from '@/shared/domain/result';
-import { ExcerciseInitialStatsNotFoundError } from '../../domain/errors/exerciseinitialstats.errors';
+import { ExcerciseInitialStatsNotFoundError } from '../../domain/errors/exercise-initial-stats.errors';
 
 export class UpdateExerciseInitialStats implements UseCase {
 	constructor(private repo: IExerciseInitialStatsRepository) {}

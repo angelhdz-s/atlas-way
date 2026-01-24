@@ -1,6 +1,6 @@
 import { ExerciseInitialStats as PrismaExerciseInitialStats } from '@/prisma/client';
-import { ExerciseInitialStats } from '../domain/exerciseinitialstats.entity';
-import { ExerciseInitialStatsProps } from '../domain/exerciseinitialstats.types';
+import { ExerciseInitialStats } from '../domain/exercise-initial-stats.entity';
+import { ExerciseInitialStatsProps } from '../domain/exercise-initial-stats.types';
 import { ExerciseInitialStatsDTO } from '../application/dtos/exercise-initial-stats.dto';
 
 export class ExerciseInitialStatsMapper {

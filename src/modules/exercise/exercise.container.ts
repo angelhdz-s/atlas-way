@@ -5,7 +5,7 @@ import { GetExerciseById } from '@/modules/exercise/application/usecases/get-exe
 import { UpdateExercise } from '@/modules/exercise/application/usecases/update-exercise';
 import { ExercisePrismaRepository } from '@/modules/exercise/infrastructure/prisma/exercise.prisma.repository';
 import { IdGeneratorContainer } from '@/shared/container/id-generator.container';
-import { ExerciseInitialStatsPrismaRepository } from '@/modules/exercise-initial-stats/infrastructure/prisma/exerciseinitialstats.prisma.repository';
+import { ExerciseInitialStatsPrismaRepository } from '@/modules/exercise-initial-stats/infrastructure/prisma/exercise-initial-stats.prisma.repository';
 import { ExerciseToMusclePrismaRepository } from './link/muscle/infrastructure/prisma/exercise-to-muscle.prisma.repository';
 import { GetAllUserExercises } from './application/usecases/get-user-exercises';
 import { globalErrorMapper } from '@/shared/infrastructure/error.mapper.container';

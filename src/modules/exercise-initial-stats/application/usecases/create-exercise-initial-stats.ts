@@ -1,6 +1,6 @@
 import { UUIDGenerator } from '@/shared/infrastructure/generators/uuid-generator';
-import { ExerciseInitialStats } from '../../domain/exerciseinitialstats.entity';
-import { IExerciseInitialStatsRepository } from '../../domain/exerciseinitialstats.repository';
+import { ExerciseInitialStats } from '../../domain/exercise-initial-stats.entity';
+import { IExerciseInitialStatsRepository } from '../../domain/exercise-initial-stats.repository';
 import { CreateExerciseInitialStatsInput } from '../dtos/create-exercise-initial-stats.dto';
 import { UseCase } from '@/shared/application/usecase';
 
