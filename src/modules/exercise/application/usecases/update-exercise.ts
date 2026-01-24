@@ -9,10 +9,11 @@ export class UpdateExercise implements UseCase {
 	constructor(private repository: IExerciseRepository) {}
 
 	async execute(id: Exercise['id'], data: UpdateExerciseInput) {
-		const result = await this.repository.findById(id);
-		if (!result.success || !result.data) return Failure(new ExerciseNotFoundError());
+		const exerciseResult = await this.repository.findById(id);
+		if (!exerciseResult.success || !exerciseResult.data)
+			return Failure(new ExerciseNotFoundError());
 
-		const exercise = result.data;
+		const exercise = exerciseResult.data;
 
 		if (data.name) exercise.changeName(data.name);
 		if (data.description) exercise.changeDescription(data.description);

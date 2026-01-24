@@ -9,14 +9,14 @@ export class UpdateRoutineDays implements UseCase {
 	constructor(private repository: IRoutineDaysRepository) {}
 
 	async execute(id: RoutineDaysProps['id'], data: UpdateRoutineDaysInput) {
-		const existingRoutineDays = await this.repository.findById(id);
+		const routineDaysResult = await this.repository.findById(id);
 
-		if (!existingRoutineDays.success || !existingRoutineDays.data) {
-			if (!existingRoutineDays.success) return Failure(existingRoutineDays.error);
+		if (!routineDaysResult.success || !routineDaysResult.data) {
+			if (!routineDaysResult.success) return Failure(routineDaysResult.error);
 			return Failure(new RoutineDaysNotFoundError());
 		}
 
-		const routineDays = existingRoutineDays.data;
+		const routineDays = routineDaysResult.data;
 
 		if (data.name) routineDays.changeName(data.name);
 		if (data.dayNumber) routineDays.changeDayNumber(data.dayNumber);

@@ -9,10 +9,10 @@ export class UpdateUser implements UseCase {
 	constructor(private repository: IUserRepository) {}
 
 	async execute(id: UserProps['id'], data: UpdateUserInput) {
-		const result = await this.repository.findById(id);
+		const userResult = await this.repository.findById(id);
 
-		if (!result.success || !result.data) return Failure(new UserNotFoundError());
-		const user = result.data;
+		if (!userResult.success || !userResult.data) return Failure(new UserNotFoundError());
+		const user = userResult.data;
 
 		if (data.name) user.changeName(data.name);
 		if (data.email) user.changeEmail(data.email);

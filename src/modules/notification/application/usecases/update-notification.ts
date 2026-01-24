@@ -9,14 +9,14 @@ export class UpdateNotification implements UseCase {
 	constructor(private repository: INotification) {}
 
 	async execute(id: NotificationProps['id'], data: UpdateNotificationInput) {
-		const existingNotification = await this.repository.findById(id);
+		const notificationResult = await this.repository.findById(id);
 
-		if (!existingNotification.success || !existingNotification.data) {
-			if (!existingNotification.success) return Failure(existingNotification.error);
+		if (!notificationResult.success || !notificationResult.data) {
+			if (!notificationResult.success) return Failure(notificationResult.error);
 			return Failure(new NotificationNotFoundError());
 		}
 
-		const notification = existingNotification.data;
+		const notification = notificationResult.data;
 
 		if (data.name) notification.changeName(data.name);
 		if (data.message) notification.changeMessage(data.message);
