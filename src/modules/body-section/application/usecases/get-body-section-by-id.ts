@@ -1,5 +1,5 @@
-import { IBodySectionRepository } from '@/modules/bodysection/domain/bodysection.repository';
-import { BodySectionProps } from '@/modules/bodysection/domain/bodysection.types';
+import { IBodySectionRepository } from '@/modules/body-section/domain/body-section.repository';
+import { BodySectionProps } from '@/modules/body-section/domain/body-section.types';
 import { UseCase } from '@/shared/application/usecase';
 
 export class GetBodySectionById implements UseCase {

@@ -1,5 +1,5 @@
-import { IBodySectionRepository } from '../../domain/bodysection.repository';
-import { BodySectionMapper } from '../bodysection.mapper';
+import { IBodySectionRepository } from '../../domain/body-section.repository';
+import { BodySectionMapper } from '../body-section.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
 import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';

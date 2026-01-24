@@ -1,7 +1,7 @@
 import { BodySections as PrismaBodySection } from '@/prisma/client';
-import { BodySection } from '../domain/bodysection.entity';
-import { BodySectionProps } from '../domain/bodysection.types';
-import { BodySectionDTO } from '../application/dtos/bodysection.dto';
+import { BodySection } from '../domain/body-section.entity';
+import { BodySectionProps } from '../domain/body-section.types';
+import { BodySectionDTO } from '../application/dtos/body-section.dto';
 
 export class BodySectionMapper {
 	static toDomain(data: PrismaBodySection): BodySection {

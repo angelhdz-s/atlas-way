@@ -1,6 +1,6 @@
 import { RepositoryResult } from '@/shared/domain/repository.result';
-import { BodySection } from './bodysection.entity';
-import { BodySectionProps } from './bodysection.types';
+import { BodySection } from './body-section.entity';
+import { BodySectionProps } from './body-section.types';
 
 export interface IBodySectionRepository {
 	findAll: () => RepositoryResult<BodySection[]>;

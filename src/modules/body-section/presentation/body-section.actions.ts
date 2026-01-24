@@ -1,7 +1,7 @@
 'use server';
 
 import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts/actions.response';
-import { BodySection } from '../domain/bodysection.entity';
+import { BodySection } from '../domain/body-section.entity';
 import { getContainer } from '@/di/containers';
 
 export async function getBodySections(): ActionResponse<BodySection[]> {

@@ -1,5 +1,5 @@
 import { UseCase } from '@/shared/application/usecase';
-import { IBodySectionRepository } from '../../domain/bodysection.repository';
+import { IBodySectionRepository } from '../../domain/body-section.repository';
 
 export class GetAllBodySections implements UseCase {
 	constructor(private repository: IBodySectionRepository) {}

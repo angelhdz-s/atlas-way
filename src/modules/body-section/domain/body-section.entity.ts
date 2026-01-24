@@ -1,4 +1,4 @@
-import { BodySectionProps } from './bodysection.types';
+import { BodySectionProps } from './body-section.types';
 
 export class BodySection {
 	constructor(private data: BodySectionProps) {}
