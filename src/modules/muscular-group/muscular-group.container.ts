@@ -1,6 +1,6 @@
-import { GetAllMuscularGroups } from '@/modules/musculargroup/application/usecases/get-all-musculargroups';
-import { GetMuscularGroupById } from '@/modules/musculargroup/application/usecases/get-musculargroup-by-id';
-import { MuscularGroupPrismaReporitory } from '@/modules/musculargroup/infrastructure/prisma/musculargroup.prisma.repository';
+import { GetAllMuscularGroups } from '@/modules/muscular-group/application/usecases/get-all-muscular-groups';
+import { GetMuscularGroupById } from '@/modules/muscular-group/application/usecases/get-muscular-group-by-id';
+import { MuscularGroupPrismaReporitory } from '@/modules/muscular-group/infrastructure/prisma/muscular-group.prisma.repository';
 import { globalErrorMapper } from '@/shared/infrastructure/error.mapper.container';
 import { prisma } from '@/shared/infrastructure/prisma/client';
 

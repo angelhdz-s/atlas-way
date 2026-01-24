@@ -1,5 +1,5 @@
 import { getContainer } from '@/di/containers';
-import { MuscularGroup } from '@/modules/musculargroup/domain/musculargroup.entity';
+import { MuscularGroup } from '@/modules/muscular-group/domain/muscular-group.entity';
 import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts/actions.response';
 
 export async function getMuscularGroups(): ActionResponse<MuscularGroup[]> {

@@ -1,6 +1,6 @@
 import { UseCase } from '@/shared/application/usecase';
-import { IMuscularGroupRepository } from '../../domain/musculargroup.repository';
-import { MuscularGroupProps } from '../../domain/musculargroup.types';
+import { IMuscularGroupRepository } from '../../domain/muscular-group.repository';
+import { MuscularGroupProps } from '../../domain/muscular-group.types';
 
 export class GetMuscularGroupById implements UseCase {
 	constructor(private repository: IMuscularGroupRepository) {}

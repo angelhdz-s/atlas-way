@@ -1,4 +1,4 @@
-import { MuscularGroupProps } from './musculargroup.types';
+import { MuscularGroupProps } from './muscular-group.types';
 
 export class MuscularGroup {
 	constructor(private data: MuscularGroupProps) {}

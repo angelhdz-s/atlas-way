@@ -1,7 +1,7 @@
-import { IMuscularGroupRepository } from '../../domain/musculargroup.repository';
-import { MuscularGroupMapper } from '../musculargroup.mapper';
+import { IMuscularGroupRepository } from '../../domain/muscular-group.repository';
+import { MuscularGroupMapper } from '../muscular-group.mapper';
 import { Failure, Success } from '@/shared/domain/result';
-import { MuscularGroupProps } from '../../domain/musculargroup.types';
+import { MuscularGroupProps } from '../../domain/muscular-group.types';
 import { PrismaClient } from '@/prisma/client';
 import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
 

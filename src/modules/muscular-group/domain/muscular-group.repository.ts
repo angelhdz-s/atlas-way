@@ -1,6 +1,6 @@
 import { RepositoryResult } from '@/shared/domain/repository.result';
-import { MuscularGroup } from './musculargroup.entity';
-import { MuscularGroupProps } from './musculargroup.types';
+import { MuscularGroup } from './muscular-group.entity';
+import { MuscularGroupProps } from './muscular-group.types';
 
 export interface IMuscularGroupRepository {
 	findAll: () => RepositoryResult<MuscularGroup[]>;
