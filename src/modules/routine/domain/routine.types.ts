@@ -1,4 +1,4 @@
-import { RoutineCycleTypeProps } from '@/modules/routinecycle/domain/routinecycle.types';
+import { RoutineCycleTypeProps } from '@/modules/routine-cycle/domain/routine-cycle.types';
 import { UserProps } from '@/modules/user/domain/user.types';
 
 export type RoutineProps = {
