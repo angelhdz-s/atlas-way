@@ -5,9 +5,10 @@ import { GetNotificationById } from '@/modules/notification/application/usecases
 import { UpdateNotification } from '@/modules/notification/application/usecases/update-notification';
 import { NotificationPrismaRepository } from '@/modules/notification/infrastructure/prisma/notification.prisma.repository';
 import { prisma } from '@/shared/infrastructure/prisma/client';
+import { globalErrorMapper } from '@/shared/infrastructure/error.mapper.container';
 
 export const makeNotificationModule = () => {
-	const notificationRepo = new NotificationPrismaRepository(prisma);
+	const notificationRepo = new NotificationPrismaRepository(prisma, globalErrorMapper);
 	return {
 		GetAllNotificationsUseCase: new GetAllNotifications(notificationRepo),
 		GetNotificationByIdUseCase: new GetNotificationById(notificationRepo),
