@@ -1,6 +1,10 @@
 'use server';
 
-import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts/actions.response';
+import {
+	ActionFailure,
+	ActionResponse,
+	ActionSuccess,
+} from '@/shared/presentation/action.response';
 import { BodySection } from '../domain/body-section.entity';
 import { getContainer } from '@/di/containers';
 

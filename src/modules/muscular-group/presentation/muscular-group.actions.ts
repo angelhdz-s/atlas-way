@@ -1,6 +1,10 @@
 import { getContainer } from '@/di/containers';
 import { MuscularGroup } from '@/modules/muscular-group/domain/muscular-group.entity';
-import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts/actions.response';
+import {
+	ActionFailure,
+	ActionResponse,
+	ActionSuccess,
+} from '@/shared/presentation/action.response';
 
 export async function getMuscularGroups(): ActionResponse<MuscularGroup[]> {
 	const container = getContainer();

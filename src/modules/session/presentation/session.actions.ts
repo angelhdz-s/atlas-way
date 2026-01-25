@@ -1,6 +1,10 @@
 'use server';
 
-import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts/actions.response';
+import {
+	ActionFailure,
+	ActionResponse,
+	ActionSuccess,
+} from '@/shared/presentation/action.response';
 import { SessionsFormData } from './types';
 import { sessionFormSchema } from './ui/config/session-schema';
 import { CreateSessionInput } from '../application/dtos/create-session.dto';

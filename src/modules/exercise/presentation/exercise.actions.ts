@@ -4,7 +4,11 @@ import {
 	ExerciseFormProps,
 	ExerciseFormSchema,
 } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
-import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts/actions.response';
+import {
+	ActionFailure,
+	ActionResponse,
+	ActionSuccess,
+} from '@/shared/presentation/action.response';
 import { CreateExerciseInput } from '../application/dtos/create-exercise.dto';
 import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
 import { CreateExerciseInitialStatsWithoutExerciseIdInput } from '@/modules/exercise-initial-stats/application/dtos/create-exercise-initial-stats.dto';
