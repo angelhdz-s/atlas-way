@@ -1,5 +1,5 @@
 import { getContainer } from '@/di/containers';
-import { ActionResponse } from '@/shared/contracts/actions.response';
+import { ActionResponse } from '@/shared/presentation/action.response';
 import { AuthSession } from '../domain/errors/auth-session.types';
 
 export async function getSession(): ActionResponse<AuthSession | null> {

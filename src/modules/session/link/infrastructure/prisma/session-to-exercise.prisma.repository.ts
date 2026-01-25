@@ -4,12 +4,12 @@ import { ISessionToExerciseRepository } from '../../domain/session-to-exercise.r
 import { SessionToExercise } from '../../domain/session-to-exercise.entity';
 import { SessionToExerciseMapper } from '../session-to-exercise.mapper';
 import { SessionToExerciseProps } from '../../domain/session-to-exercise.types';
-import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
+import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class SessionToExercisePrismaRepository implements ISessionToExerciseRepository {
 	constructor(
 		private readonly prisma: PrismaClient,
-		private readonly errorMapper: GlobalErrorMapper
+		private readonly errorMapper: InfrastructureErrorTranslator
 	) {}
 	async create(data: SessionToExercise) {
 		try {
@@ -20,7 +20,7 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
 			const result = SessionToExerciseMapper.toDomain(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findAll() {
@@ -31,7 +31,7 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
 			);
 			return Success(sessionsDomain);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async listBySessionId(sessionId: SessionToExerciseProps['sessionId']) {
@@ -44,7 +44,7 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
 			);
 			return Success(sessionsDomain);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async listByExerciseId(exerciseId: SessionToExerciseProps['exerciseId']) {
@@ -57,7 +57,7 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
 			);
 			return Success(sessionsDomain);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 
@@ -80,7 +80,7 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
 			const result = session ? SessionToExerciseMapper.toDomain(session) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 }

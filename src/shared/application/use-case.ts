@@ -1,4 +1,4 @@
-import { DomainError } from '../domain/errors/domain-error';
+import { DomainError } from '../domain/errors/domain.errors';
 import { Result } from '../domain/result';
 
 export interface UseCase {

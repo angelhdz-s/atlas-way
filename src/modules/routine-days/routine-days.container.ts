@@ -5,7 +5,7 @@ import { GetRoutineDaysById } from '@/modules/routine-days/application/use-cases
 import { UpdateRoutineDays } from '@/modules/routine-days/application/use-cases/update-routine-days';
 import { RoutineDaysPrismaRepository } from '@/modules/routine-days/infrastructure/prisma/routine-days.prisma.repository';
 import { prisma } from '@/shared/infrastructure/prisma/client';
-import { globalErrorMapper } from '@/shared/infrastructure/error.mapper.container';
+import { globalErrorMapper } from '@/shared/infrastructure/errors/error.translator';
 
 export const makeRoutineDaysContainer = () => {
 	const routineDaysRepo = new RoutineDaysPrismaRepository(prisma, globalErrorMapper);

@@ -3,12 +3,12 @@ import { MuscularGroupMapper } from '../muscular-group.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { MuscularGroupProps } from '../../domain/muscular-group.types';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
+import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class MuscularGroupPrismaReporitory implements IMuscularGroupRepository {
 	constructor(
 		private readonly prisma: PrismaClient,
-		private readonly errorMapper: GlobalErrorMapper
+		private readonly errorMapper: InfrastructureErrorTranslator
 	) {}
 	async findAll() {
 		try {
@@ -18,7 +18,7 @@ export class MuscularGroupPrismaReporitory implements IMuscularGroupRepository {
 			);
 			return Success(muscularGroupsDomain);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findById(id: MuscularGroupProps['id']) {
@@ -27,7 +27,7 @@ export class MuscularGroupPrismaReporitory implements IMuscularGroupRepository {
 			const result = muscularGroup ? MuscularGroupMapper.toDomain(muscularGroup) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 }

@@ -10,7 +10,7 @@ import { GetCurrentUserId } from './application/use-cases/get-current-user-id';
 import { UserPrismaRepository } from './infrastructure/prisma/user.prisma.repository';
 import { prisma } from '@/shared/infrastructure/prisma/client';
 import { NextAuthRepository } from '../auth/infrastructure/next-auth/next-auth.repository';
-import { globalErrorMapper } from '@/shared/infrastructure/error.mapper.container';
+import { globalErrorMapper } from '@/shared/infrastructure/errors/error.translator';
 
 export const makeUserModule = () => {
 	const userRepo = new UserPrismaRepository(prisma, globalErrorMapper);

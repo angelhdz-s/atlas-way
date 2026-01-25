@@ -1,7 +1,7 @@
-import { ITechnicalErrorHandler } from '../../errors/technical-errors-handler.interface';
+import { IErrorTranslator } from '../../errors/error-translator.types';
 
-export class PrismaErrorHandler implements ITechnicalErrorHandler {
-	handle(error: unknown) {
+export class PrismaErrorHandler implements IErrorTranslator {
+	translate(error: unknown) {
 		return null;
 	}
 }

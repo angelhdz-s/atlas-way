@@ -4,12 +4,12 @@ import { ISessionRepository } from '../../domain/session.repository';
 import { SessionMapper } from '../session.mapper';
 import { SessionProps } from '../../domain/session.types';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
+import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class SessionPrismaRepository implements ISessionRepository {
 	constructor(
 		private readonly prisma: PrismaClient,
-		private readonly errorMapper: GlobalErrorMapper
+		private readonly errorMapper: InfrastructureErrorTranslator
 	) {}
 	async create(data: Session) {
 		try {
@@ -18,7 +18,7 @@ export class SessionPrismaRepository implements ISessionRepository {
 			const result = SessionMapper.toDomain(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async update(data: Session) {
@@ -31,7 +31,7 @@ export class SessionPrismaRepository implements ISessionRepository {
 			const result = SessionMapper.toDomain(updated);
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findAll() {
@@ -40,7 +40,7 @@ export class SessionPrismaRepository implements ISessionRepository {
 			const sessionsDomain = sessions.map((session) => SessionMapper.toDomain(session));
 			return Success(sessionsDomain);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findById(id: SessionProps['id']) {
@@ -49,7 +49,7 @@ export class SessionPrismaRepository implements ISessionRepository {
 			const result = session ? SessionMapper.toDomain(session) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 }

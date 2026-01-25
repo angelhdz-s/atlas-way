@@ -1,7 +1,7 @@
-import { ITechnicalErrorHandler } from '../../errors/technical-errors-handler.interface';
+import { IErrorTranslator } from '../../errors/error-translator.types';
 
-export class NextAuthErrorHandler implements ITechnicalErrorHandler {
-	handle(error: unknown) {
+export class NextAuthErrorHandler implements IErrorTranslator {
+	translate(error: unknown) {
 		return null;
 	}
 }

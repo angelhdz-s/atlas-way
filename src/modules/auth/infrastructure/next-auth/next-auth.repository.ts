@@ -2,10 +2,10 @@ import { IAuthRepository } from '../../domain/auth.respository';
 import { getCurrentSession } from './next-auth.currentsession';
 import { Failure, Success } from '@/shared/domain/result';
 import { AuthMapper } from '../auth.mapper';
-import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
+import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class NextAuthRepository implements IAuthRepository {
-	constructor(private errorMapper: GlobalErrorMapper) {}
+	constructor(private errorMapper: InfrastructureErrorTranslator) {}
 	async getSession() {
 		try {
 			const session = await getCurrentSession();
@@ -13,7 +13,7 @@ export class NextAuthRepository implements IAuthRepository {
 			const domainSession = AuthMapper.toDomain(session);
 			return Success(domainSession);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 }

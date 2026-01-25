@@ -3,12 +3,12 @@ import { IUserRepository } from '@/modules/user/domain/user.repository';
 import { UserMapper } from '@/modules/user/infrastructure/user.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
+import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class UserPrismaRepository implements IUserRepository {
 	constructor(
 		private readonly prisma: PrismaClient,
-		private readonly errorMapper: GlobalErrorMapper
+		private readonly errorMapper: InfrastructureErrorTranslator
 	) {}
 	async create(data: User) {
 		const persistenceData = UserMapper.toPersistence(data);
@@ -20,7 +20,7 @@ export class UserPrismaRepository implements IUserRepository {
 			const domainUser = UserMapper.toDomain(created);
 			return Success(domainUser);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 
@@ -35,7 +35,7 @@ export class UserPrismaRepository implements IUserRepository {
 			const domainUser = UserMapper.toDomain(updated);
 			return Success(domainUser);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 
@@ -45,7 +45,7 @@ export class UserPrismaRepository implements IUserRepository {
 			const domainUsers = users.map((user) => UserMapper.toDomain(user));
 			return Success(domainUsers);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 
@@ -58,7 +58,7 @@ export class UserPrismaRepository implements IUserRepository {
 			});
 			return Success(user ? UserMapper.toDomain(user) : null);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findByEmail(email: User['email']) {
@@ -70,7 +70,7 @@ export class UserPrismaRepository implements IUserRepository {
 			});
 			return Success(user ? UserMapper.toDomain(user) : null);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 }

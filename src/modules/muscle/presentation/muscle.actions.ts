@@ -1,6 +1,10 @@
 'use server';
 
-import { ActionFailure, ActionResponse, ActionSuccess } from '@/shared/contracts/actions.response';
+import {
+	ActionFailure,
+	ActionResponse,
+	ActionSuccess,
+} from '@/shared/presentation/action.response';
 import { getContainer } from '@/di/containers';
 import { MuscleMapper } from '../infrastructure/muscle.mapper';
 import { MuscleDTO } from '@/modules/muscle/application/dtos/muscle.dto';

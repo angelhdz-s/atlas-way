@@ -6,7 +6,10 @@ import { GetExerciseInitialStatsById } from '@/modules/exercise-initial-stats/ap
 import { ExerciseInitialStatsPrismaRepository } from '@/modules/exercise-initial-stats/infrastructure/prisma/exercise-initial-stats.prisma.repository';
 import { IdGeneratorContainer } from '@/shared/container/id-generator.container';
 import { UpdateExerciseInitialStats } from '@/modules/exercise-initial-stats/application/use-cases/update-exercise-initial-stats';
-import { globalErrorMapper } from '@/shared/infrastructure/error.mapper.container';
+import {
+	globalErrorMapper,
+	InfrastructureErrorTranslator,
+} from '@/shared/infrastructure/errors/error.translator';
 
 export const makeExerciseInitialStatsModule = () => {
 	const exerciseInitialStatsRepo = new ExerciseInitialStatsPrismaRepository(

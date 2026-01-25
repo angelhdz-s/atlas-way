@@ -3,12 +3,12 @@ import { RoutineMapper } from '../routine.mapper';
 import { Routine } from '../../domain/routine.entity';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/error.mapper';
+import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class RoutinePrismaRepository implements IRoutineRepository {
 	constructor(
 		private readonly prisma: PrismaClient,
-		private readonly errorMapper: GlobalErrorMapper
+		private readonly errorMapper: InfrastructureErrorTranslator
 	) {}
 	async create(data: Routine) {
 		const routinePersistence = RoutineMapper.toPersistence(data);
@@ -17,7 +17,7 @@ export class RoutinePrismaRepository implements IRoutineRepository {
 			const result = RoutineMapper.toDomain(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async update(data: Routine) {
@@ -30,7 +30,7 @@ export class RoutinePrismaRepository implements IRoutineRepository {
 			const result = RoutineMapper.toDomain(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findaAll() {
@@ -39,7 +39,7 @@ export class RoutinePrismaRepository implements IRoutineRepository {
 			const routinesDomain = routines.map((routine) => RoutineMapper.toDomain(routine));
 			return Success(routinesDomain);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findById(id: string) {
@@ -48,7 +48,7 @@ export class RoutinePrismaRepository implements IRoutineRepository {
 			const result = routine ? RoutineMapper.toDomain(routine) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 }
