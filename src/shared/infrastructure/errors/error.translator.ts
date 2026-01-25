@@ -1,4 +1,4 @@
-import { DomainError, TechnicalError } from '../../domain/errors/domain-error';
+import { DomainError, TechnicalError } from '../../domain/errors/domain.errors';
 import { IErrorTranslator } from './error-translator.types';
 import { NextAuthErrorHandler } from '../nextauth/errors/next-auth.error.handler';
 import { PrismaErrorHandler } from '../prisma/errors/prisma.error.handler';

@@ -1,4 +1,4 @@
-import { DomainError } from '@/shared/domain/errors/domain-error';
+import { DomainError } from '@/shared/domain/errors/domain.errors';
 
 export interface IErrorTranslator {
 	translate: (error: unknown) => DomainError | null;

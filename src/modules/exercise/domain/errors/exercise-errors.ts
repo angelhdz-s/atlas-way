@@ -1,4 +1,4 @@
-import { DomainError } from '@/shared/domain/errors/domain-error';
+import { DomainError } from '@/shared/domain/errors/domain.errors';
 
 export class ExerciseNotFoundError extends DomainError {
 	constructor() {

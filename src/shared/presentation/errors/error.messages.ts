@@ -1,4 +1,4 @@
-import { DomainErrorCode } from '../domain/errors/domain-error-code.types';
+import { DomainErrorCode } from '../../domain/errors/error.types';
 
 export const errorMessages: Record<DomainErrorCode, string> = {
 	EXERCISE_INITIAL_STATS_NOT_FOUND: '',

@@ -1,4 +1,4 @@
-import { DomainError } from '@/shared/domain/errors/domain-error';
+import { DomainError } from '@/shared/domain/errors/domain.errors';
 
 export class MuscleNotFoundError extends DomainError {
 	constructor() {
