@@ -2,12 +2,12 @@ import { IBodySectionRepository } from '../../domain/body-section.repository';
 import { BodySectionMapper } from '../body-section.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
+import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class BodySectionPrismaReporisoty implements IBodySectionRepository {
 	constructor(
 		private readonly prisma: PrismaClient,
-		private readonly errorMapper: GlobalErrorMapper
+		private readonly errorMapper: InfrastructureErrorTranslator
 	) {}
 	async findAll() {
 		try {
@@ -17,7 +17,7 @@ export class BodySectionPrismaReporisoty implements IBodySectionRepository {
 			);
 			return Success(bodySectionsDomain);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findById(id: number) {
@@ -26,7 +26,7 @@ export class BodySectionPrismaReporisoty implements IBodySectionRepository {
 			const result = bodySection ? BodySectionMapper.toDomain(bodySection) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 }

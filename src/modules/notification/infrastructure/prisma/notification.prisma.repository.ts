@@ -4,12 +4,12 @@ import { Failure, Success } from '@/shared/domain/result';
 import { NotificationProps } from '../../domain/notification.types';
 import { NotificationMapper } from '../notification.mapper';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
+import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class NotificationPrismaRepository implements INotification {
 	constructor(
 		private readonly prisma: PrismaClient,
-		private readonly errorMapper: GlobalErrorMapper
+		private readonly errorMapper: InfrastructureErrorTranslator
 	) {}
 	async create(data: Notification) {
 		const persistence = NotificationMapper.toPersistence(data);
@@ -20,7 +20,7 @@ export class NotificationPrismaRepository implements INotification {
 			const result = NotificationMapper.toDomain(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async update(data: Notification) {
@@ -33,7 +33,7 @@ export class NotificationPrismaRepository implements INotification {
 			const result = NotificationMapper.toDomain(updated);
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findAll() {
@@ -44,7 +44,7 @@ export class NotificationPrismaRepository implements INotification {
 			);
 			return Success(domainNotifications);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findById(id: NotificationProps['id']) {
@@ -53,7 +53,7 @@ export class NotificationPrismaRepository implements INotification {
 			const result = notification ? NotificationMapper.toDomain(notification) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 }

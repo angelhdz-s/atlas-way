@@ -5,7 +5,7 @@ import { GetNotificationById } from '@/modules/notification/application/use-case
 import { UpdateNotification } from '@/modules/notification/application/use-cases/update-notification';
 import { NotificationPrismaRepository } from '@/modules/notification/infrastructure/prisma/notification.prisma.repository';
 import { prisma } from '@/shared/infrastructure/prisma/client';
-import { globalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
+import { globalErrorMapper } from '@/shared/infrastructure/errors/error.translator';
 
 export const makeNotificationModule = () => {
 	const notificationRepo = new NotificationPrismaRepository(prisma, globalErrorMapper);

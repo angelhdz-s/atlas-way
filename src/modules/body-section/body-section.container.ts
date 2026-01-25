@@ -1,7 +1,10 @@
 import { GetAllBodySections } from '@/modules/body-section/application/use-cases/get-all-body-sections';
 import { GetBodySectionById } from '@/modules/body-section/application/use-cases/get-body-section-by-id';
 import { BodySectionPrismaReporisoty } from '@/modules/body-section/infrastructure/prisma/body-section.prisma.repository';
-import { globalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
+import {
+	globalErrorMapper,
+	InfrastructureErrorTranslator,
+} from '@/shared/infrastructure/errors/error.translator';
 import { prisma } from '@/shared/infrastructure/prisma/client';
 
 export const makeBodySectionModule = () => {

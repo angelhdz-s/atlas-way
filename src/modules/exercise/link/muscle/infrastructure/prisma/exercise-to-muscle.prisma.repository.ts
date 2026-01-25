@@ -3,12 +3,12 @@ import { PrismaClient } from '@/prisma/client';
 import { IExerciseToMuscleRepository } from '@/modules/exercise/link/muscle/domain/exercise-to-muscle.repository';
 import { ExerciseToMuscle } from '@/modules/exercise/link/muscle/domain/exercise-to-muscle.entity';
 import { ExerciseToMuscleMapper } from '@/modules/exercise/link/muscle/infrastructure/exercise-to-muscle.mapper';
-import { GlobalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
+import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleRepository {
 	constructor(
 		private readonly prisma: PrismaClient,
-		private readonly errorMapper: GlobalErrorMapper
+		private readonly errorMapper: InfrastructureErrorTranslator
 	) {}
 	async create(data: ExerciseToMuscle) {
 		const exercisePersistence = ExerciseToMuscleMapper.toPersistence(data);
@@ -19,7 +19,7 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
 			const result = ExerciseToMuscleMapper.toDomain(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findAll() {
@@ -30,7 +30,7 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
 			);
 			return Success(domainExercises);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findByExerciseId(exerciseId: ExerciseToMuscle['exerciseId']) {
@@ -41,7 +41,7 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
 			const result = exercises.map((exercise) => ExerciseToMuscleMapper.toDomain(exercise));
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findByMuscleId(muscleId: ExerciseToMuscle['muscleId']) {
@@ -52,7 +52,7 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
 			const result = exercises.map((exercise) => ExerciseToMuscleMapper.toDomain(exercise));
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 
@@ -75,7 +75,7 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
 			const result = exercise ? ExerciseToMuscleMapper.toDomain(exercise) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 }

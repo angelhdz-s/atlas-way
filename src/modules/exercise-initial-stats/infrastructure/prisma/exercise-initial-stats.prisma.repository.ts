@@ -3,12 +3,12 @@ import { IExerciseInitialStatsRepository } from '../../domain/exercise-initial-s
 import { ExerciseInitialStatsMapper } from '../exercise-initial-stats.mapper';
 import { ExerciseInitialStats } from '../../domain/exercise-initial-stats.entity';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
+import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialStatsRepository {
 	constructor(
 		private readonly prisma: PrismaClient,
-		private readonly errorMapper: GlobalErrorMapper
+		private readonly errorMapper: InfrastructureErrorTranslator
 	) {}
 	async create(data: ExerciseInitialStats) {
 		const exerciseStatsPersistence = ExerciseInitialStatsMapper.toPersistence(data);
@@ -19,7 +19,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 			const result = new ExerciseInitialStats(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async update(data: ExerciseInitialStats) {
@@ -33,7 +33,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 			const result = new ExerciseInitialStats(updated);
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findAll() {
@@ -45,7 +45,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 
 			return Success(exerciseStatsDomain);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findById(id: ExerciseInitialStats['id']) {
@@ -58,7 +58,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 				: null;
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findByExerciseId(exerciseId: ExerciseInitialStats['exerciseId']) {
@@ -71,7 +71,7 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
 				: null;
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 }

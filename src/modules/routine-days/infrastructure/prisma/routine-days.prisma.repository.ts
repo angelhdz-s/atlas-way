@@ -4,12 +4,12 @@ import { RoutineDaysMapper } from '../routine-days.mapper';
 import { RoutineDays } from '../../domain/routine-days.entity';
 import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
-import { GlobalErrorMapper } from '@/shared/infrastructure/errors/error.mapper';
+import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 	constructor(
 		private readonly prisma: PrismaClient,
-		private readonly errorMapper: GlobalErrorMapper
+		private readonly errorMapper: InfrastructureErrorTranslator
 	) {}
 	async create(data: RoutineDays) {
 		try {
@@ -18,7 +18,7 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 			const result = RoutineDaysMapper.toDomain(created);
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async update(data: RoutineDays) {
@@ -31,7 +31,7 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 			const result = RoutineDaysMapper.toDomain(updated);
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findAll() {
@@ -42,7 +42,7 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 			);
 			return Success(routineDaysDomain);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 	async findById(id: RoutineDaysProps['id']) {
@@ -51,7 +51,7 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
 			const result = routineDay ? RoutineDaysMapper.toDomain(routineDay) : null;
 			return Success(result);
 		} catch (e) {
-			return Failure(this.errorMapper.handle(e));
+			return Failure(this.errorMapper.translate(e));
 		}
 	}
 }
