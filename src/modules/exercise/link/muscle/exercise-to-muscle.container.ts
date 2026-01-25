@@ -7,7 +7,7 @@ import { GetExercisesToMusclesByMuscleId } from './application/use-cases/get-exe
 import { LinkExerciseToMuscle } from './application/use-cases/link-exercise-to-muscle';
 import { globalErrorMapper } from '@/shared/infrastructure/errors/error.translator';
 
-export const makeExerciseToMuscleModuel = () => {
+export const makeExerciseToMuscleModule = () => {
 	const repo = new ExerciseToMusclePrismaRepository(prisma, globalErrorMapper);
 
 	return {
