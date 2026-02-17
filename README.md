@@ -15,7 +15,7 @@ A web app to manage your workout schedules, built with [Next.js](https://nextjs.
 
 Make sure you have installed:
 
-- [Docker](https://docs.docker.com/get-started/)
+- [Docker](https://www.docker.com/)
 - Docker Compose
 
 Verify installation:
