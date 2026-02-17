@@ -1,40 +1,73 @@
 # atlas-way
 
-A web app for manage your work out schedules
+A web app to manage your workout schedules, built with [Next.js](https://nextjs.org).
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Tech Stack
+
+- [Next.js](https://nextjs.org/docs)
+- [Prisma ORM](https://www.prisma.io/docs)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Docker](https://docs.docker.com/)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+Make sure you have installed:
+
+- [Docker](https://docs.docker.com/get-started/)
+- Docker Compose
+
+Verify installation:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+docker --version
+docker compose version
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env` file in the root of the project:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+DATABASE_URL="postgresql://postgres:atlasway@localhost:5432/atlasway"
+```
 
-## Learn More
+> Note: `db` is the service name defined in `docker-compose.yaml`
 
-To learn more about Next.js, take a look at the following resources:
+### Start Everything with Docker Compose
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+docker compose up
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+And to stop containers:
 
-## Deploy on Vercel
+```bash
+docker compose down
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Install Dependencies
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm install
+```
+
+```bash
+# Apply migrations
+pnpm prisma migrate dev
+
+# Generate Prisma Client
+pnpm prisma generate
+
+# Seed the database
+pnpm prisma db seed
+```
+
+### 3. Run Development Server
+
+```bash
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You can start editing the page by modifying `app/page.tsx`.
