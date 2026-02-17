@@ -30,10 +30,16 @@ docker compose version
 Create a `.env` file in the root of the project:
 
 ```env
-DATABASE_URL="postgresql://postgres:atlasway@localhost:5432/atlasway"
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/atlasway"
 ```
 
-> Note: `db` is the service name defined in `docker-compose.yaml`
+For PostgreSQL batabases its `DATABASE_URL` has the following structure:
+
+```
+postgresql://USER:PASSWORD@HOST:PORT/DB
+```
+
+> Note: credentials are in the `db` service defined in `compose.yaml`
 
 ### Start Everything with Docker Compose
 
@@ -47,6 +53,12 @@ And to stop containers:
 docker compose down
 ```
 
+### Updating credentials
+
+To update credentials it's needed to update `compose.yaml` and `DATABASE_URL`.
+
+If you have executed `docker composed up` before, you need to execute `docker compose down -v` to refresh the volume.
+
 ## Install Dependencies
 
 ```bash
@@ -55,10 +67,10 @@ pnpm install
 
 ```bash
 # Apply migrations
-pnpm prisma migrate dev
+pnpx prisma migrate dev
 
 # Generate Prisma Client
-pnpm prisma generate
+pnpx prisma generate
 
 # Seed the database
 pnpm prisma db seed
