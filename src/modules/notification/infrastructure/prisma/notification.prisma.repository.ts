@@ -1,12 +1,12 @@
 import { Notification } from '../../domain/notification.entity';
-import { INotification } from '../../domain/notification.repository';
+import { INotificationRepository } from '../../domain/notification.repository';
 import { Failure, Success } from '@/shared/domain/result';
 import { NotificationProps } from '../../domain/notification.types';
 import { NotificationMapper } from '../notification.mapper';
 import { PrismaClient } from '@/prisma/client';
 import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
-export class NotificationPrismaRepository implements INotification {
+export class NotificationPrismaRepository implements INotificationRepository {
 	constructor(
 		private readonly prisma: PrismaClient,
 		private readonly errorMapper: InfrastructureErrorTranslator
