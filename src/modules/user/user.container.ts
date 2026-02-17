@@ -9,12 +9,12 @@ import { GetCurrentUser } from './application/use-cases/get-current-user';
 import { GetCurrentUserId } from './application/use-cases/get-current-user-id';
 import { UserPrismaRepository } from './infrastructure/prisma/user.prisma.repository';
 import { prisma } from '@/shared/infrastructure/prisma/client';
-import { NextAuthRepository } from '../auth/infrastructure/next-auth/next-auth.repository';
+import { AuthNextAuthRepository } from '../auth/infrastructure/next-auth/auth.next-auth.repository';
 import { globalErrorMapper } from '@/shared/infrastructure/errors/error.translator';
 
 export const makeUserModule = () => {
 	const userRepo = new UserPrismaRepository(prisma, globalErrorMapper);
-	const authRepo = new NextAuthRepository(globalErrorMapper);
+	const authRepo = new AuthNextAuthRepository(globalErrorMapper);
 	return {
 		CreateUserUseCase: new CreateUser(userRepo, IdGeneratorContainer),
 		UpdateUserUseCase: new UpdateUser(userRepo),

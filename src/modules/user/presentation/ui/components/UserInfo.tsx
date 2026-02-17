@@ -1,4 +1,4 @@
-import { getCurrentSession } from '@/modules/auth/infrastructure/next-auth/next-auth.currentsession';
+import { getCurrentSession } from '@/shared/infrastructure/nextauth/next-auth.currentsession';
 import { Dots } from '@/presentation/globals/components/Icons';
 import { UserAvatar } from './UserAvatar';
 

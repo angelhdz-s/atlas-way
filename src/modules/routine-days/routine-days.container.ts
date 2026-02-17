@@ -7,7 +7,7 @@ import { RoutineDaysPrismaRepository } from '@/modules/routine-days/infrastructu
 import { prisma } from '@/shared/infrastructure/prisma/client';
 import { globalErrorMapper } from '@/shared/infrastructure/errors/error.translator';
 
-export const makeRoutineDaysContainer = () => {
+export const makeRoutineDaysModule = () => {
 	const routineDaysRepo = new RoutineDaysPrismaRepository(prisma, globalErrorMapper);
 	return {
 		GetAllRoutineDaysUseCase: new GetAllRoutineDays(routineDaysRepo),

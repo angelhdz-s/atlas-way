@@ -1,10 +1,10 @@
 import { IAuthRepository } from '../../domain/auth.respository';
-import { getCurrentSession } from './next-auth.currentsession';
+import { getCurrentSession } from '../../../../shared/infrastructure/nextauth/next-auth.currentsession';
 import { Failure, Success } from '@/shared/domain/result';
 import { AuthMapper } from '../auth.mapper';
 import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
-export class NextAuthRepository implements IAuthRepository {
+export class AuthNextAuthRepository implements IAuthRepository {
 	constructor(private errorMapper: InfrastructureErrorTranslator) {}
 	async getSession() {
 		try {
