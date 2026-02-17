@@ -5,7 +5,7 @@ import { UseCase } from '@/shared/application/use-case';
 import { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
 import { ISessionToExerciseRepository } from '../../link/domain/session-to-exercise.repository';
 import { SessionToExercise } from '../../link/domain/session-to-exercise.entity';
-import { IdGenerator } from '@/shared/application/id-generator';
+import { IdGeneratorRepository } from '@/shared/application/id-generator';
 import { CreateSessionToExerciseInput } from '../../link/application/dtos/create-session-to-exercise.dto';
 import { Failure } from '@/shared/domain/result';
 
@@ -13,7 +13,7 @@ export class CreateSession implements UseCase {
 	constructor(
 		private repository: ISessionRepository,
 		private linkRepository: ISessionToExerciseRepository,
-		private generator: IdGenerator
+		private generator: IdGeneratorRepository
 	) {}
 
 	async execute(data: CreateSessionInput, exerciseIds: ExerciseProps['id'][] | null = null) {

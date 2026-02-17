@@ -1,4 +1,3 @@
-import { IdGeneratorContainer } from '@/shared/container/id-generator.container';
 import { CreateUser } from './application/use-cases/create-user';
 import { GetAllUsers } from './application/use-cases/get-all-users';
 import { GetUserByEmail } from './application/use-cases/get-user-by-email';
@@ -7,22 +6,32 @@ import { UpdateUser } from './application/use-cases/update-user';
 import { CreateIfNotExistsUser } from './application/use-cases/create-if-not-exists-user';
 import { GetCurrentUser } from './application/use-cases/get-current-user';
 import { GetCurrentUserId } from './application/use-cases/get-current-user-id';
-import { UserPrismaRepository } from './infrastructure/prisma/user.prisma.repository';
-import { prisma } from '@/shared/infrastructure/prisma/client';
-import { AuthNextAuthRepository } from '../auth/infrastructure/next-auth/auth.next-auth.repository';
-import { globalErrorMapper } from '@/shared/infrastructure/errors/error.translator';
+import { IUserRepository } from './domain/user.repository';
+import { IAuthRepository } from '../auth/domain/auth.respository';
+import { IdGeneratorRepository } from '@/shared/application/id-generator';
 
-export const makeUserModule = () => {
-	const userRepo = new UserPrismaRepository(prisma, globalErrorMapper);
-	const authRepo = new AuthNextAuthRepository(globalErrorMapper);
+type Props = {
+	userRepository: IUserRepository;
+	authRepository: IAuthRepository;
+	idGeneratorRepository: IdGeneratorRepository;
+};
+
+export const makeUserModule = ({
+	authRepository,
+	idGeneratorRepository,
+	userRepository,
+}: Props) => {
 	return {
-		CreateUserUseCase: new CreateUser(userRepo, IdGeneratorContainer),
-		UpdateUserUseCase: new UpdateUser(userRepo),
-		CreateIfNotExistsUserUseCase: new CreateIfNotExistsUser(userRepo, IdGeneratorContainer),
-		GetAllUsersUseCase: new GetAllUsers(userRepo),
-		GetUserByIdUseCase: new GetUserById(userRepo),
-		GetUserByeEmailUseCase: new GetUserByEmail(userRepo),
-		GetCurrentUserUseCase: new GetCurrentUser(userRepo, authRepo),
-		GetCurrentUserIdUseCase: new GetCurrentUserId(userRepo, authRepo),
+		CreateUserUseCase: new CreateUser(userRepository, idGeneratorRepository),
+		UpdateUserUseCase: new UpdateUser(userRepository),
+		CreateIfNotExistsUserUseCase: new CreateIfNotExistsUser(
+			userRepository,
+			idGeneratorRepository
+		),
+		GetAllUsersUseCase: new GetAllUsers(userRepository),
+		GetUserByIdUseCase: new GetUserById(userRepository),
+		GetUserByeEmailUseCase: new GetUserByEmail(userRepository),
+		GetCurrentUserUseCase: new GetCurrentUser(userRepository, authRepository),
+		GetCurrentUserIdUseCase: new GetCurrentUserId(userRepository, authRepository),
 	};
 };

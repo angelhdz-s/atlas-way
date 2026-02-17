@@ -2,7 +2,7 @@ import { RepositoryResult } from '@/shared/domain/repository.result';
 import { NotificationProps } from './notification.types';
 import { Notification } from './notification.entity';
 
-export interface INotification {
+export interface INotificationRepository {
 	create: (data: Notification) => RepositoryResult<Notification>;
 	update: (data: Notification) => RepositoryResult<Notification>;
 	findAll: () => RepositoryResult<Notification[]>;

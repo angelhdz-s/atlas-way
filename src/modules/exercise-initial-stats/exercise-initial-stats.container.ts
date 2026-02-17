@@ -3,32 +3,36 @@ import { CreateExerciseInitialStats } from '@/modules/exercise-initial-stats/app
 import { GetAllExerciseInitialStats } from '@/modules/exercise-initial-stats/application/use-cases/get-all-exercise-initial-stats';
 import { GetExerciseInitialStatsByExerciseId } from '@/modules/exercise-initial-stats/application/use-cases/get-exercise-initial-stats-by-exercise-id';
 import { GetExerciseInitialStatsById } from '@/modules/exercise-initial-stats/application/use-cases/get-exercise-initial-stats-by-id';
-import { ExerciseInitialStatsPrismaRepository } from '@/modules/exercise-initial-stats/infrastructure/prisma/exercise-initial-stats.prisma.repository';
-import { IdGeneratorContainer } from '@/shared/container/id-generator.container';
 import { UpdateExerciseInitialStats } from '@/modules/exercise-initial-stats/application/use-cases/update-exercise-initial-stats';
-import {
-	globalErrorMapper,
-	InfrastructureErrorTranslator,
-} from '@/shared/infrastructure/errors/error.translator';
+import { IExerciseInitialStatsRepository } from './domain/exercise-initial-stats.repository';
+import { IdGeneratorRepository } from '@/shared/application/id-generator';
 
-export const makeExerciseInitialStatsModule = () => {
-	const exerciseInitialStatsRepo = new ExerciseInitialStatsPrismaRepository(
-		prisma,
-		globalErrorMapper
-	);
+type Props = {
+	exerciseInitialStatsRepository: IExerciseInitialStatsRepository;
+	idGeneratorRepository: IdGeneratorRepository;
+};
+
+export const makeExerciseInitialStatsModule = ({
+	exerciseInitialStatsRepository,
+	idGeneratorRepository,
+}: Props) => {
 	return {
-		GetAllExerciseInitialStatsUseCase: new GetAllExerciseInitialStats(exerciseInitialStatsRepo),
+		GetAllExerciseInitialStatsUseCase: new GetAllExerciseInitialStats(
+			exerciseInitialStatsRepository
+		),
 		GetExerciseInitialStatsByIdUseCase: new GetExerciseInitialStatsById(
-			exerciseInitialStatsRepo
+			exerciseInitialStatsRepository
 		),
 		GetExerciseInitialStatsByExerciseIdUseCase: new GetExerciseInitialStatsByExerciseId(
-			exerciseInitialStatsRepo
+			exerciseInitialStatsRepository
 		),
 
 		CreateExerciseInitialStatsUseCase: new CreateExerciseInitialStats(
-			exerciseInitialStatsRepo,
-			IdGeneratorContainer
+			exerciseInitialStatsRepository,
+			idGeneratorRepository
 		),
-		UpdateExerciseInitialStatsUseCase: new UpdateExerciseInitialStats(exerciseInitialStatsRepo),
+		UpdateExerciseInitialStatsUseCase: new UpdateExerciseInitialStats(
+			exerciseInitialStatsRepository
+		),
 	};
 };

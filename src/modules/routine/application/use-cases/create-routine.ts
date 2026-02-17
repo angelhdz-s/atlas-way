@@ -1,13 +1,13 @@
 import { UseCase } from '@/shared/application/use-case';
 import { IRoutineRepository } from '../../domain/routine.repository';
 import { CreateRoutineInput } from '../dtos/create-routine.dto';
-import { UUIDGenerator } from '@/shared/infrastructure/generators/uuid-generator';
 import { Routine } from '../../domain/routine.entity';
+import { IdGeneratorRepository } from '@/shared/application/id-generator';
 
 export class CreateRoutine implements UseCase {
 	constructor(
 		private repository: IRoutineRepository,
-		private generator: UUIDGenerator
+		private generator: IdGeneratorRepository
 	) {}
 
 	async execute(data: CreateRoutineInput) {

@@ -4,7 +4,7 @@ import { Failure, Success } from '@/shared/domain/result';
 import { PrismaClient } from '@/prisma/client';
 import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
-export class BodySectionPrismaReporisoty implements IBodySectionRepository {
+export class BodySectionPrismaRepository implements IBodySectionRepository {
 	constructor(
 		private readonly prisma: PrismaClient,
 		private readonly errorMapper: InfrastructureErrorTranslator

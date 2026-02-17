@@ -1,12 +1,12 @@
 import { GetCurrentSession } from '@/modules/auth/application/use-cases/get-current-session';
-import { AuthNextAuthRepository } from '@/modules/auth/infrastructure/next-auth/auth.next-auth.repository';
-import { errorHandlersContainer } from '@/shared/infrastructure/errors/error.translator';
-import { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
+import { IAuthRepository } from './domain/auth.respository';
 
-export const makeAuthModule = () => {
-	const errorMapper = new InfrastructureErrorTranslator(errorHandlersContainer);
-	const authRepo = new AuthNextAuthRepository(errorMapper);
+type Props = {
+	authRepository: IAuthRepository;
+};
+
+export const makeAuthModule = ({ authRepository }: Props) => {
 	return {
-		GetCurrentSessionUseCase: new GetCurrentSession(authRepo),
+		GetCurrentSessionUseCase: new GetCurrentSession(authRepository),
 	};
 };

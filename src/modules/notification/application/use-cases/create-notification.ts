@@ -1,13 +1,13 @@
 import { UseCase } from '@/shared/application/use-case';
-import { INotification } from '../../domain/notification.repository';
+import { INotificationRepository } from '../../domain/notification.repository';
 import { CreateNotificationInput } from '../dtos/create-notification.dto';
-import { UUIDGenerator } from '@/shared/infrastructure/generators/uuid-generator';
 import { Notification } from '../../domain/notification.entity';
+import { IdGeneratorRepository } from '@/shared/application/id-generator';
 
 export class CreateNotification implements UseCase {
 	constructor(
-		private repository: INotification,
-		private generator: UUIDGenerator
+		private repository: INotificationRepository,
+		private generator: IdGeneratorRepository
 	) {}
 
 	async execute(data: CreateNotificationInput) {

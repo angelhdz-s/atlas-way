@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
-import { BODY_SECTIONS, EXERCISES, ExerciseType } from '@/presentation/globals/constants/db';
 import {
 	DashboardCard,
 	DashboardCardButton,
@@ -50,7 +49,9 @@ export default async function ExercisesPage() {
 	const exercises: FullExerciseDTO[] = [];
 	const exercisesRequest = await getAllUserExercises();
 	if (exercisesRequest.data) {
-		for (const exercise of exercisesRequest.data) exercises.push(exercise);
+		for (const exercise of exercisesRequest.data) {
+			if (exercise) exercises.push(exercise);
+		}
 	}
 	return (
 		<PageContainer>

@@ -1,12 +1,12 @@
 import { UseCase } from '@/shared/application/use-case';
-import { INotification } from '../../domain/notification.repository';
+import { INotificationRepository } from '../../domain/notification.repository';
 import { NotificationProps } from '../../domain/notification.types';
 import { UpdateNotificationInput } from '../dtos/update-notification.dto';
 import { Failure } from '@/shared/domain/result';
 import { NotificationNotFoundError } from '../../domain/errors/notification.errors';
 
 export class UpdateNotification implements UseCase {
-	constructor(private repository: INotification) {}
+	constructor(private repository: INotificationRepository) {}
 
 	async execute(id: NotificationProps['id'], data: UpdateNotificationInput) {
 		const notificationResult = await this.repository.findById(id);

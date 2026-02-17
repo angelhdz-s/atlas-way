@@ -73,7 +73,7 @@ type UserExercisesConfig = {
 
 export async function getAllUserExercises(
 	config: UserExercisesConfig = null
-): ActionResponse<FullExerciseDTO[] | ExerciseDTO[]> {
+): ActionResponse<FullExerciseDTO[]> {
 	const container = getContainer();
 
 	const userIdResult = await getCurrentUserId();
@@ -85,9 +85,6 @@ export async function getAllUserExercises(
 	const exercisesResult = await getAllExercises.execute(userId);
 	if (!exercisesResult.success) return ActionFailure(exercisesResult.error.message);
 	const exercises = exercisesResult.data;
-
-	if (config && !config.includeMuscles)
-		return ActionSuccess(exercises, 'User exercises found successfully');
 
 	const fullExercises: FullExerciseDTO[] = [];
 

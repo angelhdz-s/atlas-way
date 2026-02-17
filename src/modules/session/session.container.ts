@@ -1,24 +1,29 @@
-import { IdGeneratorContainer } from '@/shared/container/id-generator.container';
 import { CreateSession } from '@/modules/session/application/use-cases/create-session';
 import { GetAllSessions } from '@/modules/session/application/use-cases/get-all-sessions';
 import { GetSessionById } from '@/modules/session/application/use-cases/get-session-by-id';
 import { UpdateSessions } from '@/modules/session/application/use-cases/update-session';
-import { SessionPrismaRepository } from '@/modules/session/infrastructure/prisma/session.prisma.repository';
-import { prisma } from '@/shared/infrastructure/prisma/client';
-import { SessionToExercisePrismaRepository } from './link/infrastructure/prisma/session-to-exercise.prisma.repository';
-import { globalErrorMapper } from '@/shared/infrastructure/errors/error.translator';
+import { ISessionRepository } from './domain/session.repository';
+import { ISessionToExerciseRepository } from './link/domain/session-to-exercise.repository';
+import { IdGeneratorRepository } from '@/shared/application/id-generator';
+type Props = {
+	sessionRepository: ISessionRepository;
+	sessionToExerciseRepository: ISessionToExerciseRepository;
+	idGeneratorRepository: IdGeneratorRepository;
+};
 
-export const makeSessionModule = () => {
-	const sessionRepo = new SessionPrismaRepository(prisma, globalErrorMapper);
-	const sessionToExerciseRepo = new SessionToExercisePrismaRepository(prisma, globalErrorMapper);
+export const makeSessionModule = ({
+	idGeneratorRepository,
+	sessionRepository,
+	sessionToExerciseRepository,
+}: Props) => {
 	return {
-		GetAllSessionsUseCase: new GetAllSessions(sessionRepo),
-		GetSessionByIdUseCase: new GetSessionById(sessionRepo),
 		CreateSessionUseCase: new CreateSession(
-			sessionRepo,
-			sessionToExerciseRepo,
-			IdGeneratorContainer
+			sessionRepository,
+			sessionToExerciseRepository,
+			idGeneratorRepository
 		),
-		UpdateSessionUseCase: new UpdateSessions(sessionRepo),
+		GetAllSessionsUseCase: new GetAllSessions(sessionRepository),
+		GetSessionByIdUseCase: new GetSessionById(sessionRepository),
+		UpdateSessionUseCase: new UpdateSessions(sessionRepository),
 	};
 };
