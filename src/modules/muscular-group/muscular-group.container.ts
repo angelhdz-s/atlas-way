@@ -1,13 +1,14 @@
 import { GetAllMuscularGroups } from '@/modules/muscular-group/application/use-cases/get-all-muscular-groups';
 import { GetMuscularGroupById } from '@/modules/muscular-group/application/use-cases/get-muscular-group-by-id';
-import { MuscularGroupPrismaReporitory } from '@/modules/muscular-group/infrastructure/prisma/muscular-group.prisma.repository';
-import { globalErrorMapper } from '@/shared/infrastructure/errors/error.translator';
-import { prisma } from '@/shared/infrastructure/prisma/client';
+import { IMuscularGroupRepository } from './domain/muscular-group.repository';
 
-export const makeMuscularGroupModule = () => {
-	const muscularGroupRepo = new MuscularGroupPrismaReporitory(prisma, globalErrorMapper);
+type Props = {
+	muscularGroupRepository: IMuscularGroupRepository;
+};
+
+export const makeMuscularGroupModule = ({ muscularGroupRepository }: Props) => {
 	return {
-		GetAllMuscularGroupsUseCase: new GetAllMuscularGroups(muscularGroupRepo),
-		GetMuscularGroupByIdUseCase: new GetMuscularGroupById(muscularGroupRepo),
+		GetAllMuscularGroupsUseCase: new GetAllMuscularGroups(muscularGroupRepository),
+		GetMuscularGroupByIdUseCase: new GetMuscularGroupById(muscularGroupRepository),
 	};
 };

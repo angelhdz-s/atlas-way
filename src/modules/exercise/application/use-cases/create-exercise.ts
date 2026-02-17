@@ -1,7 +1,7 @@
 import { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
 import { CreateExerciseInput } from '@/modules/exercise/application/dtos/create-exercise.dto';
 import { UseCase } from '@/shared/application/use-case';
-import { IdGenerator } from '@/shared/application/id-generator';
+import { IdGeneratorRepository } from '@/shared/application/id-generator';
 import { Exercise } from '@/modules/exercise/domain/exercise.entity';
 import { IExerciseInitialStatsRepository } from '@/modules/exercise-initial-stats/domain/exercise-initial-stats.repository';
 import { CreateExerciseInitialStatsWithoutExerciseIdInput } from '@/modules/exercise-initial-stats/application/dtos/create-exercise-initial-stats.dto';
@@ -17,7 +17,7 @@ export class CreateExercise implements UseCase {
 		private repository: IExerciseRepository,
 		private linkRepository: IExerciseToMuscleRepository,
 		private statsRepository: IExerciseInitialStatsRepository,
-		private generator: IdGenerator
+		private generator: IdGeneratorRepository
 	) {}
 
 	async execute(

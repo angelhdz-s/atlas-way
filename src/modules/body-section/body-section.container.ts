@@ -1,16 +1,14 @@
 import { GetAllBodySections } from '@/modules/body-section/application/use-cases/get-all-body-sections';
 import { GetBodySectionById } from '@/modules/body-section/application/use-cases/get-body-section-by-id';
-import { BodySectionPrismaReporisoty } from '@/modules/body-section/infrastructure/prisma/body-section.prisma.repository';
-import {
-	globalErrorMapper,
-	InfrastructureErrorTranslator,
-} from '@/shared/infrastructure/errors/error.translator';
-import { prisma } from '@/shared/infrastructure/prisma/client';
+import { IBodySectionRepository } from './domain/body-section.repository';
 
-export const makeBodySectionModule = () => {
-	const bodySectionRepo = new BodySectionPrismaReporisoty(prisma, globalErrorMapper);
+type Props = {
+	bodySectionRepository: IBodySectionRepository;
+};
+
+export const makeBodySectionModule = ({ bodySectionRepository }: Props) => {
 	return {
-		GetAllBodySectionUseCase: new GetAllBodySections(bodySectionRepo),
-		GetBodySectionByIdUseCase: new GetBodySectionById(bodySectionRepo),
+		GetAllBodySectionUseCase: new GetAllBodySections(bodySectionRepository),
+		GetBodySectionByIdUseCase: new GetBodySectionById(bodySectionRepository),
 	};
 };
