@@ -5,6 +5,6 @@ services:
         environment:
             - POSTGRES_DB=atlasway
             - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=atlasway
+            - POSTGRES_PASSWORD=postgres
         ports:
-            - '5435:5432'
+            - '5432:5432'
