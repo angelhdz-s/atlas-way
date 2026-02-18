@@ -8,7 +8,7 @@ export function Hero() {
 		<section className="relative grid place-items-center h-160 py-16 mb-16">
 			<main className="relative z-1 max-w-360 w-full mx-auto flex justify-center ">
 				<header className="flex flex-col items-center gap-8 text-center max-w-5xl">
-					<h1 className="text-7xl leading-none font-bold ld-main-fg text-pretty animate-fade">
+					<h1 className="tracking-tight font-funnel-display text-7xl leading-none font-bold ld-main-fg text-pretty animate-fade">
 						Manage your training to{' '}
 						<span className="bg-linear-to-b from-50% to-100% from-accent to-tertiary text-transparent bg-clip-text light:from-0% light:to-80%">
 							achieve your goals
@@ -16,7 +16,7 @@ export function Hero() {
 						: routines, sessions and exercises
 					</h1>
 
-					<p className="text-lg font-normal animate-fade-down animate-delay-100 animate-ease-out">
+					<p className="text-xl font-normal animate-fade-down animate-delay-100 animate-ease-out max-w-4xl">
 						AtlasWay is a free and open-source web application to manage your training
 						routines, sessions and exercises. It is designed to help you stay organized
 						and focused on your fitness journey.

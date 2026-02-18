@@ -9,7 +9,7 @@ export function Sidebar({ className = '' }: { className?: string }) {
 			<main
 				className={`
 					py-2 fixed z-10 left-0 top-(--header-height) h-(--sidebar-height) 
-					flex flex-col ld-sec-bg shadow-2xl shadow-black/5 font-normal font-funnel-display 
+					flex flex-col ld-sec-bg shadow-2xl shadow-black/5 font-normal
 					before:absolute before:inset-0 before:bottom-auto before:h-px before:w-[80%] before:mx-auto before:bg-subtle/10
 					w-(--sidebar-width) gap-4 ${className}`}
 			>

@@ -31,11 +31,13 @@ function IconBubble({ className = '', Icon }: { className?: string; Icon: IconTy
 export function BentoGrid({ className = '' }: { className?: string }) {
 	return (
 		<section className={`w-full max-w-5xl mx-auto my-16 flex flex-col gap-8 ${className}`}>
-			<h2 className="text-4xl font-bold ld-main-fg">Explore Our Features</h2>
+			<h2 className="font-funnel-display text-4xl font-bold ld-main-fg">
+				Explore Our Features
+			</h2>
 			<main className="grid grid-cols-4 gap-6 *:relative *:rounded-lg *:min-h-32 *:shadow-2xl *:light:shadow-lg *:shadow-black/10 *:light:shadow-slate-400/20">
 				<article className="relative row-span-2 p-4 bg-radial-[200%_100%_at_120%_-10%]  from-accent/30 to-sec-background from-[-50%] to-50% light:to-light-sec-background">
 					<main className="relative z-3 flex flex-col gap-4 h-full">
-						<header className="font-medium ld-main-fg text-2xl max-w-45 flex-1 leading-none">
+						<header className="font-funnel-display font-medium ld-main-fg text-2xl max-w-45 flex-1 leading-none">
 							Start Your Journey Now
 						</header>
 						<footer className="text-base font-light leading-[1.2]">
@@ -63,7 +65,7 @@ export function BentoGrid({ className = '' }: { className?: string }) {
 				</article>
 
 				<article className="relative bg-zinc-900 light:bg-accent row-span-2 flex flex-col gap-4 pt-3">
-					<main className="relative ld-main-fg text-2xl z-3 px-4 leading-none text-right">
+					<main className="font-funnel-display relative ld-main-fg text-2xl z-3 px-4 leading-none text-right">
 						Schedule Your Sessions
 					</main>
 					<footer className="relative flex-1 h-full rounded-b-lg overflow-hidden opacity-40">
@@ -79,7 +81,7 @@ export function BentoGrid({ className = '' }: { className?: string }) {
 
 				<article className="relative bg-zinc-900 row-span-2">
 					<main className="relative z-3 grid place-content-center h-full">
-						<header className="max-w-45 text-2xl font-bold text-accent text-center leading-[1.1]">
+						<header className="font-funnel-display max-w-45 text-2xl font-bold text-accent text-center leading-[1.1]">
 							Create Your Own Routines
 						</header>
 					</main>
@@ -91,7 +93,7 @@ export function BentoGrid({ className = '' }: { className?: string }) {
 
 				<article className="relative bg-linear-to-br from-sec-background light:from-light-sec-background to-accent/30 from-50% to-150% row-span-2 p-4">
 					<main className="relative z-3">
-						<p className="text-xl text-main-foreground light:text-light-main-foreground">
+						<p className="font-funnel-display text-xl text-main-foreground light:text-light-main-foreground">
 							Flexible routines to fit your lifestyle.
 						</p>
 					</main>
@@ -120,7 +122,9 @@ export function BentoGrid({ className = '' }: { className?: string }) {
 							</figure>
 						</header>
 						<main className="text-center">
-							<header className="text-xl ld-main-fg font-bold">Reminders</header>
+							<header className="font-funnel-display text-xl ld-main-fg font-bold">
+								Reminders
+							</header>
 							<p className="leading-[1.3] text-zinc-400">
 								Timely reminders for your sessions.
 							</p>
@@ -203,7 +207,9 @@ export function BentoGrid({ className = '' }: { className?: string }) {
 						</header>
 
 						<main className="relative z-1 text-center">
-							<header className="text-xl ld-main-fg font-bold">Statistics</header>
+							<header className="font-funnel-display text-xl ld-main-fg font-bold">
+								Statistics
+							</header>
 							<p className="leading-[1.3] text-zinc-400">
 								Track your progress and performance.
 							</p>

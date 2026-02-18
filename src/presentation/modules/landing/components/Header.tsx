@@ -13,7 +13,7 @@ export function Header({ className = '' }: { className?: string }) {
 							<Imagotype />
 						</Link>
 					</aside>
-					<nav className="ld-main-fg font-funnel-display font-medium text-lg">
+					<nav className="ld-main-fg font-medium text-lg">
 						<ul className="flex items-center gap-16 *:h-full *:w-fit *:grid *:place-items-center text-center">
 							<li>
 								<Link href="/">Home</Link>

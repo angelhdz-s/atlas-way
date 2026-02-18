@@ -5,7 +5,7 @@ export function Try({ className = '' }: { className?: string }) {
 		<section
 			className={`max-w-5xl w-full mx-auto grid place-items-center gap-4 ld-main-fg my-16 ${className}`}
 		>
-			<h2 className="text-2xl font-bold">Try for free</h2>
+			<h2 className="font-funnel-display text-2xl font-bold">Try for free</h2>
 			<main className="*:rounded-4xl *:py-2 *:px-4 *:cursor-pointer flex items-center justify-center gap-4 w-fit">
 				<Link href="/dashboard" className="btn-lg btn-primary">
 					<span className="text-lg font-semibold">Get Started</span>

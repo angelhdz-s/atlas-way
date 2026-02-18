@@ -5,7 +5,7 @@ export function Footer({ className = '' }: { className?: string }) {
 		>
 			<main className="max-w-5xl mx-auto flex items-center justify-between gap-16">
 				<aside>
-					<h5 className="text-2xl">
+					<h5 className="font-funnel-display text-2xl">
 						<strong>AtlasWay</strong> &copy; {new Date().getFullYear()}
 					</h5>
 				</aside>
