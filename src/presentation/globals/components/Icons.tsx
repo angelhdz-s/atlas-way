@@ -558,7 +558,6 @@ export function CirclePlus({ className, strokeWidth = defaultIconStrokeWidth }: 
 export function CalendarClock({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M10.5 21h-4.5a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v3" />
 			<path d="M16 3v4" />
 			<path d="M8 3v4" />
@@ -572,7 +571,6 @@ export function CalendarClock({ className, strokeWidth = defaultIconStrokeWidth 
 export function MapPlus({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M12 18.5l-3 -1.5l-6 3v-13l6 -3l6 3l6 -3v8.5" />
 			<path d="M9 4v13" />
 			<path d="M15 7v8" />
@@ -585,7 +583,6 @@ export function MapPlus({ className, strokeWidth = defaultIconStrokeWidth }: Ico
 export function Search({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
 			<path d="M21 21l-6 -6" />
 		</MainSvgBody>
@@ -595,9 +592,18 @@ export function Search({ className, strokeWidth = defaultIconStrokeWidth }: Icon
 export function UserIcon({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
 	return (
 		<MainSvgBody strokeWidth={strokeWidth} className={className}>
-			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
 			<path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
 			<path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+		</MainSvgBody>
+	);
+}
+
+export function Menu({ className, strokeWidth = defaultIconStrokeWidth }: IconProps) {
+	return (
+		<MainSvgBody strokeWidth={strokeWidth} className={className}>
+			<path d="M4 6l16 0" />
+			<path d="M4 12l16 0" />
+			<path d="M4 18l16 0" />
 		</MainSvgBody>
 	);
 }
