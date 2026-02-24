@@ -3,7 +3,7 @@ import Link from 'next/link';
 export function Try({ className = '' }: { className?: string }) {
 	return (
 		<section
-			className={`max-w-5xl w-full mx-auto grid place-items-center gap-4 ld-main-fg my-16 ${className}`}
+			className={`max-w-5xl w-full mx-auto grid place-items-center gap-4 ld-main-fg md:my-16 ${className}`}
 		>
 			<h2 className="font-funnel-display text-2xl font-bold">Try for free</h2>
 			<main className="*:rounded-4xl *:py-2 *:px-4 *:cursor-pointer flex items-center justify-center gap-4 w-fit">

@@ -3,10 +3,11 @@ export function Footer({ className = '' }: { className?: string }) {
 		<footer
 			className={`w-full mt-16 h-48 bg-zinc-900 flex items-center text-main-foreground ${className}`}
 		>
-			<main className="max-w-5xl mx-auto flex items-center justify-between gap-16">
+			<main className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 md:gap-16">
 				<aside>
-					<h5 className="font-funnel-display text-2xl">
-						<strong>AtlasWay</strong> &copy; {new Date().getFullYear()}
+					<h5 className="text-2xl">
+						<strong className="font-funnel-display">AtlasWay</strong> &copy;{' '}
+						{new Date().getFullYear()}
 					</h5>
 				</aside>
 
