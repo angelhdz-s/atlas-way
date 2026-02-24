@@ -8,14 +8,14 @@ import { Try } from '@/presentation/modules/landing/components/Try';
 export default function Home() {
 	return (
 		<>
-			<Header className="font-funnel-display" />
-			<main className="w-full px-4 lg:px-0 flex flex-col flex-1 font-funnel-display text-lg">
+			<Header />
+			<main className="w-full px-4 lg:px-0 flex flex-col flex-1 text-lg">
 				<Hero />
 				<Advantages />
 				<BentoGrid />
 				<Try />
 			</main>
-			<Footer className="font-funnel-display" />
+			<Footer />
 		</>
 	);
 }

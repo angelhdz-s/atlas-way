@@ -41,8 +41,13 @@
 		transparent
 	);
 
-	--font-funnel-sans: var(--font-funnel-sans);
+	/* Font families */
+
 	--font-funnel-display: var(--font-funnel-display);
+	--font-outfit: var(--font-outfit);
+
+	/* Breakpoints */
+	--breakpoint-xs: 30rem;
 }
 
 html[data-theme='light'] {
@@ -160,7 +165,7 @@ body {
 	position: relative;
 	background: var(--color-background);
 	color: var(--color-foreground);
-	font-family: 'Funnel Sans', sans-serif;
+	font-family: 'Outfit', sans-serif;
 	font-size: 1rem;
 	z-index: 10;
 }

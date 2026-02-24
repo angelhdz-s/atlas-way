@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Funnel_Display, Funnel_Sans } from 'next/font/google';
+import { Funnel_Display, Outfit } from 'next/font/google';
 import { ThemeProvider } from '@/presentation/globals/components/ThemeProvider';
 import { ToastProvider } from '@/presentation/modules/toast/components/ToastProvider';
 import '@/app/globals.css';
@@ -9,8 +9,8 @@ const funnelDisplayFont = Funnel_Display({
 	subsets: ['latin'],
 });
 
-const funnelSansFont = Funnel_Sans({
-	variable: '--font-funnel-sans',
+const outfitFont = Outfit({
+	variable: '--font-outfit',
 	subsets: ['latin'],
 });
 
@@ -27,7 +27,8 @@ export default function RootLayout({
 	return (
 		<html lang="en" data-theme="dark" suppressHydrationWarning>
 			<body
-				className={`scrollbar-y ${funnelDisplayFont.variable} ${funnelSansFont.variable} transition-colors antialiased flex flex-col min-h-dvh h-full overflow-x-hidden`}
+				className={`scrollbar-y transition-colors antialiased flex flex-col min-h-dvh h-full overflow-x-hidden
+					${funnelDisplayFont.variable} ${outfitFont.variable}`}
 			>
 				<ToastProvider>
 					<ThemeProvider>{children}</ThemeProvider>

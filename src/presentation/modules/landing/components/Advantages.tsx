@@ -45,11 +45,11 @@ export function Advantages({ className = '' }: { className?: string }) {
 	return (
 		<section className={`max-w-5xl w-full mx-auto my-16 ${className}`}>
 			<header>
-				<h2 className="text-4xl font-bold ld-main-fg">Why AtlasWay?</h2>
+				<h2 className="font-funnel-display text-4xl font-bold ld-main-fg">Why AtlasWay?</h2>
 			</header>
 
 			<main>
-				<ul className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+				<ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-8">
 					<Advantage
 						tile="Highly Customizable"
 						description="Tailor your workout routines and exercises plans to fit your unique needs."

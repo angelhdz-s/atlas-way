@@ -9,7 +9,7 @@ export function LogInButton() {
 	return (
 		<button
 			type="button"
-			className="rounded-full btn-md btn-primary-outline py-1.5"
+			className="rounded-full btn-md btn-primary-outline py-1.5 whitespace-nowrap "
 			onClick={handleSignIn}
 		>
 			Log in
