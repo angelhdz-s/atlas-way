@@ -49,7 +49,7 @@ export function Advantages({ className = '' }: { className?: string }) {
 			</header>
 
 			<main>
-				<ul className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+				<ul className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-8">
 					<Advantage
 						tile="Highly Customizable"
 						description="Tailor your workout routines and exercises plans to fit your unique needs."
