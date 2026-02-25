@@ -1,11 +1,11 @@
 import { Heart, TrendingUp } from '@/presentation/globals/components/Icons';
-import { StartYourJourney } from './bentogrid/advantages/StartYourJourney';
-import { AtlasWayCard } from './bentogrid/advantages/AtlasWayCard';
-import { ScheduleYourSessions } from './bentogrid/advantages/ScheduleYourSessions';
-import { CreateYourOwnRoutines } from './bentogrid/advantages/CreateYourOwnRoutines';
-import { FlexibleRoutines } from './bentogrid/advantages/FlexibleRoutines';
-import { CarruselIcons } from './bentogrid/advantages/CarruselIcons';
-import { GetStartedCard } from './bentogrid/advantages/GetStartedCard';
+import { StartYourJourney } from './bentogrid/card/StartYourJourney';
+import { AtlasWayCard } from './bentogrid/card/AtlasWayCard';
+import { ScheduleYourSessions } from './bentogrid/card/ScheduleYourSessions';
+import { CreateYourOwnRoutines } from './bentogrid/card/CreateYourOwnRoutines';
+import { FlexibleRoutines } from './bentogrid/card/FlexibleRoutines';
+import { CarruselIcons } from './bentogrid/card/CarruselIcons';
+import { GetStartedCard } from './bentogrid/card/GetStartedCard';
 import { IconHeaderCard } from './bentogrid/IconHeaderCard';
 
 export function BentoGrid({ className = '' }: { className?: string }) {
