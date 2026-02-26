@@ -62,7 +62,7 @@
 	width: 2px;
 	border-radius: 2px;
 	height: 100%;
-	background-color: var(--color-sec-foreground);
+	background-color: var(--color-default);
 	opacity: 0.5;
 	transition: background-color 0.2s ease-out;
 	mask-image: linear-gradient(to top, transparent -20%, black 100%);
@@ -78,5 +78,5 @@
 
 .active {
 	background-color: var(--color-primary);
-	color: var(--color-main-foreground);
+	color: var(--color-strong-dark);
 }

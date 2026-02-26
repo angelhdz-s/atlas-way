@@ -23,17 +23,17 @@ type GoalItemType = {
 function GoalItem({ className = '', goal }: { className?: string; goal: GoalItemType }) {
 	const { name, value, target } = goal;
 
-	const completedClass = value >= target ? 'text-complete' : '';
+	const completedClass = value >= target ? 'fg-complete' : '';
 
 	return (
 		<article
-			className={`flex flex-col gap-1 bg-subtle/5 rounded-lg px-4 py-2 ld-main-fg ${completedClass} ${className}`}
+			className={`flex flex-col gap-1 bg-subtle/5 rounded-lg px-4 py-2 fg-strong ${completedClass} ${className}`}
 		>
 			<header className="flex items-center justify-between gap-2">
 				<h3 className="text-base">{name}</h3>
 				<aside>
 					<span
-						className={`font-light ${completedClass || 'text-foreground/50'}`}
+						className={`font-light ${completedClass || 'text-default/50'}`}
 					>{`${value} / ${target}`}</span>
 				</aside>
 			</header>

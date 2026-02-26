@@ -9,7 +9,7 @@ import { ErrorMessage } from './ErrorMessage';
 
 function SelectedOptions({ label, onCrossClick }: { label: string; onCrossClick?: () => void }) {
 	return (
-		<div className="flex items-center bg-sec-background border border-subtle/10 rounded-full px-2 w-fit">
+		<div className="flex items-center bg-sec-back border border-subtle/10 rounded-full px-2 w-fit">
 			{label}
 			{onCrossClick && (
 				<button
@@ -58,14 +58,14 @@ export function MultipleSelectBox({
 					<aside className="flex flex-col justify-between items-center gap-2">
 						<button
 							type="button"
-							className="block size-fit aspect-square p-1 bg-zinc-900 border border-subtle/20 rounded text-main-foreground hover:bg-zinc-800/80 cursor-pointer transition-colors"
+							className="block size-fit aspect-square p-1 bg-middle border border-bd-default rounded fg-strong hover:bg-back cursor-pointer transition-colors"
 							onClick={handleAddOption}
 						>
 							<CirclePlus strokeWidth="1" />
 						</button>
 						<button
 							type="button"
-							className="block size-fit aspect-square p-1 bg-zinc-900 border border-subtle/20 rounded text-main-foreground hover:bg-zinc-800/80 cursor-pointer transition-colors"
+							className="block size-fit aspect-square p-1 bg-middle border border-bd-default rounded fg-strong hover:bg-back cursor-pointer transition-colors"
 							onClick={removeAllOptionsSelected}
 						>
 							<Trash strokeWidth="1" />
@@ -86,7 +86,7 @@ export function MultipleSelectBox({
 			</div>
 			{isSelecting && (
 				<>
-					<div className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ld-main-bg border border-subtle/10 rounded shadow-lg">
+					<div className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-subtle/10 rounded shadow-lg">
 						<MultipleSelectOptionsBox
 							title={selectingTitle}
 							options={filteredOptions}
@@ -96,7 +96,7 @@ export function MultipleSelectBox({
 					</div>
 					<div
 						onClick={handleCloseSelectOptions}
-						className="fixed inset-0 z-40 bg-black/50"
+						className="fixed inset-0 z-40 bg-black/50 light:bg-black/25"
 					/>
 				</>
 			)}

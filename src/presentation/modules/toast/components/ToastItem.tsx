@@ -43,7 +43,7 @@ export function ToastItem({ toast, onClose }: Props) {
 			</main>
 			<button
 				onClick={onClose}
-				className="text-subtle cursor-pointer hover:opacity-50 transition-opacity"
+				className="fg-muted cursor-pointer hover:opacity-50 transition-opacity"
 			>
 				<XMark className="size-5" />
 			</button>

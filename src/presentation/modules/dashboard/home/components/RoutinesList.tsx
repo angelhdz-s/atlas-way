@@ -9,9 +9,9 @@ export function RoutinesList({ className = '' }: { className?: string }) {
 				<ul className="flex flex-col gap-2">
 					<li className="flex flex-col gap-1">
 						<header className="">
-							<h4 className="text-base ld-main-fg">1. Push, Pull, Legs</h4>
+							<h4 className="text-base fg-strong">1. Push, Pull, Legs</h4>
 						</header>
-						<ul className="*:leading-none text-foreground/70 text-sm flex flex-col gap-1">
+						<ul className="*:leading-none text-default/70 text-sm flex flex-col gap-1">
 							<li className="flex gap-2 items-center">
 								<Alarm className="size-4" strokeWidth="1.5" />
 								<span className="font-light">3 Sessions</span>
@@ -24,9 +24,9 @@ export function RoutinesList({ className = '' }: { className?: string }) {
 					</li>
 					<li className="flex flex-col gap-1">
 						<header className="">
-							<h4 className="text-base ld-main-fg">2. Full Body</h4>
+							<h4 className="text-base fg-strong">2. Full Body</h4>
 						</header>
-						<ul className="*:leading-none text-foreground/70 text-sm flex flex-col gap-1">
+						<ul className="*:leading-none text-default/70 text-sm flex flex-col gap-1">
 							<li className="flex gap-2 items-center">
 								<Alarm className="size-4" strokeWidth="1.5" />
 								<span className="font-light">1 Session</span>

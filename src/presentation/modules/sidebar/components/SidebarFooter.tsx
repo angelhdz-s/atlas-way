@@ -9,9 +9,7 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
 		date.getFullYear(),
 	];
 	return (
-		<footer
-			className={`flex items-center bg-background/50 light:bg-light-background mx-1 rounded p-3 ${className}`}
-		>
+		<footer className={`flex items-center bg-front mx-1 rounded p-3 ${className}`}>
 			<span>{`${dateWeekDay}, ${dateDay} ${dateMonth}, ${dateYear}`}</span>
 		</footer>
 	);

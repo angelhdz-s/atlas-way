@@ -48,8 +48,8 @@ function WeekDayTooltip({ date }: { date: Date }) {
 	return (
 		<div
 			className="
-		absolute rounded-full ld-sec-bg px-4 left-2 bottom-[calc(100%+0.75rem)] w-fit h-fit hidden group-hover:block
-		after:absolute after:z-0 after:size-2 after:bg-sec-background light:after:bg-light-sec-background after:inset-0 after:mx-auto after:-bottom-1 after:top-auto after:rotate-45
+		absolute rounded-full bg-sec px-4 left-2 bottom-[calc(100%+0.75rem)] w-fit h-fit hidden group-hover:block
+		after:absolute after:z-0 after:size-2 after:bg-middle after:inset-0 after:mx-auto after:-bottom-1 after:top-auto after:rotate-45
 		"
 		>
 			<span className="block w-fit py-1.5 leading-none text-xs text-zinc-400 font-medium">
@@ -86,9 +86,9 @@ export function TrackingDay({
 			className={`group relative w-full rounded-md flex flex-col group border border-subtle/20 hover:border-zinc-900 transition-colors ${main ? 'min-h-54' : 'min-h-48'} ${className} ${dayTypeClass}`}
 		>
 			<header
-				className={`flex items-center justify-between bg-zinc-900/80 ${main ? 'text-base px-4 h-10' : 'text-sm px-2 h-8'} group-hover:ld-main-fg transition-colors rounded-t`}
+				className={`flex items-center justify-between bg-zinc-900/80 ${main ? 'text-base px-4 h-10' : 'text-sm px-2 h-8'} group-hover:fg-strong transition-colors rounded-t`}
 			>
-				<span className="flex-1 hover:text-current/50 text-ellipsis overflow-hidden whitespace-nowrap font-medium ld-main-fg pr-2 cursor-pointer">
+				<span className="flex-1 hover:text-current/50 text-ellipsis overflow-hidden whitespace-nowrap font-medium fg-strong pr-2 cursor-pointer">
 					{session.name}
 				</span>
 				<aside className="flex items-center gap-1">

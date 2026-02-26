@@ -6,7 +6,7 @@ export function Hero() {
 		<section className="relative grid place-items-center md:min-h-160 xl:min-h-180 py-16">
 			<main className="relative z-1 max-w-360 w-full mx-auto flex justify-center ">
 				<header className="flex flex-col items-center gap-4 md:gap-8 text-center md:max-w-5xl xl:max-w-7xl">
-					<h1 className="tracking-tight font-funnel-display text-5xl md:text-7xl xl:text-8xl leading-none font-bold ld-main-fg text-pretty animate-fade">
+					<h1 className="tracking-tight font-funnel-display text-5xl md:text-7xl xl:text-8xl leading-none font-bold fg-strong text-pretty animate-fade">
 						Manage your training to{' '}
 						<span className="bg-linear-to-b from-50% to-100% from-accent to-tertiary text-transparent bg-clip-text light:from-0% light:to-80%">
 							achieve your goals

@@ -3,7 +3,7 @@ import { IconTypes } from '@/presentation/globals/types';
 export function Counter({ className, number }: { className?: string; number: number }) {
 	return (
 		<span
-			className={`font-funnel-display text-3xl font-medium p-0.5 text-accent leading-none ${className}`}
+			className={`font-funnel-display text-3xl font-medium p-0.5 fg-accent leading-none ${className}`}
 		>
 			{number}
 		</span>
@@ -11,5 +11,5 @@ export function Counter({ className, number }: { className?: string; number: num
 }
 
 export function CounterIcon({ icon: Icon }: { icon: IconTypes }) {
-	return <Icon className="size-8 text-accent" strokeWidth="2" />;
+	return <Icon className="size-8 fg-accent" strokeWidth="2" />;
 }

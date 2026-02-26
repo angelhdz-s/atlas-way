@@ -41,12 +41,12 @@ const STATUS_DAYS: StatusDayTypes = {
 		icon: CircleCheck,
 	},
 	current: {
-		class: 'bg-green-800 border-green-800 text-main-foreground light:bg-green-600 light:border-green-600',
+		class: 'bg-green-800 border-green-800 fg-strong light:bg-green-600 light:border-green-600',
 		title: 'Current Day',
 		icon: Barbell,
 	},
 	next: {
-		class: 'border-subtle/50 ld-main-fg',
+		class: 'border-subtle/50 fg-strong',
 		title: 'Next Day',
 		icon: CalendarWeek,
 	},

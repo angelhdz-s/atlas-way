@@ -11,7 +11,7 @@ export function Advantages({ className = '' }: { className?: string }) {
 	return (
 		<section className={`max-w-5xl w-full mx-auto my-16 ${className}`}>
 			<header>
-				<h2 className="font-funnel-display text-4xl font-bold ld-main-fg">Why AtlasWay?</h2>
+				<h2 className="font-funnel-display text-4xl font-bold fg-strong">Why AtlasWay?</h2>
 			</header>
 
 			<main>

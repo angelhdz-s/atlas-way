@@ -30,7 +30,7 @@ export function DropdownList({
 
 	return (
 		<select
-			className={`border bg-background ${className}`}
+			className={`border bg-back ${className}`}
 			onChange={handleChange}
 			value={selectedOption}
 		>

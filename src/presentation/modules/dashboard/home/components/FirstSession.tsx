@@ -12,7 +12,7 @@ export function FirstSession({ className = '' }: { className?: string }) {
 					alt="Description of image"
 					width={773}
 					height={876}
-					className="aspect-[773/876]"
+					className="aspect-773/876"
 				/>
 			</ImageBackground>
 		</article>

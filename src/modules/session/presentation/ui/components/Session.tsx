@@ -14,7 +14,7 @@ function ExercisesList({ exercises }: { exercises: ExerciseType[] }) {
 	return (
 		<ul className="flex flex-col gap-1 *:py-0.5">
 			<li>
-				<ul className="grid grid-cols-[1rem_1fr_3rem_3rem_3rem] gap-1 ld-main-fg">
+				<ul className="grid grid-cols-[1rem_1fr_3rem_3rem_3rem] gap-1 fg-strong">
 					<li className="text-left">#</li>
 					<li className="text-left">Exercise</li>
 					<li className="text-center">Sets</li>

@@ -4,9 +4,9 @@ function CalendarHeader({ className = '' }: { className?: string }) {
 	return (
 		<header className={` ${className}`}>
 			<ul className="font-funnel-display font-light grid grid-cols-[1fr_auto_1fr]">
-				<li className="text-foreground/50">July</li>
-				<li className="text-xl ld-main-fg">August 2024</li>
-				<li className="text-foreground/50 text-right">September</li>
+				<li className="text-default/50">July</li>
+				<li className="text-xl fg-strong">August 2024</li>
+				<li className="text-default/50 text-right">September</li>
 			</ul>
 		</header>
 	);
@@ -17,7 +17,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
 		<ul
 			className={`flex items-end justify-around gap-2 text-sm leading-[1.2] *:rounded-lg *:w-full  *:px-3 *:py-1 ${className}`}
 		>
-			<li className="bg-subtle/5 text-xs font-normal flex flex-col items-center gap-2 text-foreground/70">
+			<li className="bg-subtle/5 text-xs font-normal flex flex-col items-center gap-2 text-default/70">
 				<main>
 					<header>Thu</header>
 					<footer>07</footer>
@@ -35,7 +35,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
 					<CircleCheck className="size-5 mx-auto" />
 				</footer>
 			</li>
-			<li className="flex flex-col items-center gap-2 leading-[1.2] bg-subtle/10 text-xl text-accent font-medium">
+			<li className="flex flex-col items-center gap-2 leading-[1.2] bg-subtle/10 text-xl fg-accent font-medium">
 				<main>
 					<header>Sat</header>
 					<footer>09</footer>
@@ -53,7 +53,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
 					<Barbell className="size-5 mx-auto" />
 				</footer>
 			</li>
-			<li className="bg-subtle/5 text-xs font-normal flex flex-col items-center gap-2 text-foreground/70">
+			<li className="bg-subtle/5 text-xs font-normal flex flex-col items-center gap-2 text-default/70">
 				<main>
 					<header>Mon</header>
 					<footer>11</footer>
@@ -70,7 +70,7 @@ function CalendarNextWeek({ className }: { className?: string }) {
 	return (
 		<ul
 			className={`
-				flex items-end justify-around gap-2 text-xs text-foreground/50
+				flex items-end justify-around gap-2 text-xs text-default/50
 				*:rounded-lg *:bg-subtle/5 *:w-full *:px-3 *:py-1
 				*:flex *:flex-col *:items-center *:gap-1 ${className}
 				`}

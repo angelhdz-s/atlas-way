@@ -16,7 +16,7 @@ function ArrowButton({
 		<button
 			onClick={onClick}
 			className={`
-			size-6 cursor-pointer rounded-full hover:text-main-foreground light:hover:text-light:main-foreground
+			size-6 cursor-pointer rounded-full hover:fg-strong
 			grid place-content-center transition-colors
 			${className}
 			`}
@@ -41,11 +41,11 @@ function DateController({
 }: DateControllerProps) {
 	return (
 		<section className={`flex flex-col gap-2 items-center justify-between ${className}`}>
-			<ArrowButton onClick={onPreviousClick} className="text-foreground/25">
+			<ArrowButton onClick={onPreviousClick} className="text-default/25">
 				<ArrowUp className="-mb-1.5 size-8" strokeWidth="2" />
 			</ArrowButton>
-			<span className="text-3xl ld-main-fg font-bold">{children}</span>
-			<ArrowButton onClick={onNextClick} className="text-foreground/25">
+			<span className="text-3xl fg-strong font-bold">{children}</span>
+			<ArrowButton onClick={onNextClick} className="text-default/25">
 				<ArrowUp className="size-8 rotate-180" strokeWidth="2" />
 			</ArrowButton>
 		</section>
@@ -66,9 +66,9 @@ export function DateSelector({ className = '' }: { className?: string }) {
 	} = useCalendar({ selectedDate, setCurrentDate });
 	return (
 		<section
-			className={`rounded-xl p-6 border border-foreground/10 flex-1 flex justify-center items-center flex-col gap-4 w-full ${className}`}
+			className={`rounded-xl p-6 border border-bd-default flex-1 flex justify-center items-center flex-col gap-4 w-full ${className}`}
 		>
-			<header className="text-4xl font-medium font-funnel-display ld-main-fg">
+			<header className="text-4xl font-medium font-funnel-display fg-strong">
 				<h2>Friday, July 5</h2>
 			</header>
 			<main className="flex gap-4">

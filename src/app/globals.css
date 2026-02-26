@@ -10,36 +10,26 @@
 
 @custom-variant light (&:where([data-theme=light], [data-theme=light] *));
 
-@theme {
-	/* Color palette */
+@utility fg-* {
+	color: --value(--color-*);
+}
 
-	--color-primary: #bd1e01; /* Milano Red */
+@theme {
+	/* -- Color palette -- */
+
+	/* Brand Colors */
+
+	--color-primary: #bd1e01;
 	--color-secondary: #bc7700;
 	--color-tertiary: #eb5e31;
 	--color-accent: #e6a737;
+
+	/* Utility Colors */
+
 	--color-subtle: var(--color-zinc-600);
 	--color-full-black: #0a0a0a;
 	--color-complete: var(--color-green-600);
 	--color-cancel: var(--color-red-600);
-
-	/* Dark colors */
-
-	--color-background: #0a0a0a; /* Cod Grey */
-	--color-sec-background: var(--color-zinc-900);
-	--color-main-foreground: var(--color-sky-50);
-	--color-foreground: color-mix(in oklch, var(--color-main-foreground) 70%, transparent);
-	--color-sec-foreground: color-mix(in oklch, var(--color-main-foreground) 40%, transparent);
-
-	/* Light colors */
-
-	--color-light-background: var(--color-slate-200);
-	--color-light-sec-background: var(--color-sky-50);
-	--color-light-main-foreground: var(--color-zinc-900);
-	--color-light-sec-foreground: color-mix(
-		in oklch,
-		var(--color-light-main-foreground) 60%,
-		transparent
-	);
 
 	/* Font families */
 
@@ -48,40 +38,84 @@
 
 	/* Breakpoints */
 	--breakpoint-xs: 30rem;
+
+	/* Static versions */
+	/* 
+	
+	These will be static (don't change with the current dark/light theme): 
+	they have an ending with the theme color -dark and -light.
+
+	For example:
+	[--color-back-dark]: is the static version of "--color-back" but from the dark theme
+	[--color-back-light]: is the static light version of "--color-back"
+	
+	*/
+
+	/* Dark */
+	--color-back-dark: #0a0a0a;
+	--color-middle-dark: #101010;
+	--color-front-dark: #1a1a1a;
+
+	--color-strong-dark: #fafafa;
+	--color-default-dark: #c0c0c0;
+	--color-muted-dark: #a0a0a0;
+
+	--color-bd-strong-dark: #404040;
+	--color-bd-default-dark: #272727;
+	--color-bd-muted-dark: #1a1a1a;
+
+	/* Light */
+	--color-back-light: var(--color-slate-200);
+	--color-middle-light: var(--color-slate-50);
+	--color-front-light: #eaeafa;
+
+	--color-strong-light: #050505;
+	--color-default-light: #2a2a2a;
+	--color-muted-light: #4a4a4a;
+
+	--color-bd-strong-light: #d0d0d0;
+	--color-bd-default-light: #d9d9d9;
+	--color-bd-muted-light: #e0e0e0;
+
+	/* Dynamic Colors */
+
+	/* Background Colors */
+	--color-back: var(--color-back-dark);
+	--color-middle: var(--color-middle-dark);
+	--color-front: var(--color-front-dark);
+
+	/* Foreground Colors */
+	--color-strong: var(--color-strong-dark);
+	--color-default: var(--color-default-dark);
+	--color-muted: var(--color-muted-dark);
+
+	/* Border Colors */
+	--color-bd-strong: var(--color-bd-strong-dark);
+	--color-bd-default: var(--color-bd-default-dark);
+	--color-bd-muted: var(--color-bd-muted-dark);
 }
 
+/* Light Color Versions */
+
 html[data-theme='light'] {
-	--color-background: var(--color-slate-200);
-	--color-foreground: color-mix(in oklch, var(--color-light-main-foreground) 70%, transparent);
+	--color-back: var(--color-back-light);
+	--color-middle: var(--color-middle-light);
+	--color-front: var(--color-front-light);
+
+	/* Foreground Colors */
+
+	--color-strong: var(--color-strong-light);
+	--color-default: var(--color-default-light);
+	--color-muted: var(--color-muted-light);
+
+	/* Border Colors */
+
+	--color-bd-strong: var(--color-bd-strong-light);
+	--color-bd-default: var(--color-bd-default-light);
+	--color-bd-muted: var(--color-bd-muted-light);
 }
 
 @layer components {
-	/* Backgrounds */
-
-	.ld-sec-bg {
-		@apply bg-sec-background light:bg-light-sec-background transition-colors;
-	}
-
-	.ld-sec-fg {
-		@apply text-sec-foreground light:text-light-sec-foreground transition-colors;
-	}
-
-	.ld-sub-fg {
-		@apply text-zinc-500 light:text-zinc-400 transition-colors;
-	}
-
-	/* Foregrounds */
-
-	.ld-main-fg {
-		@apply text-main-foreground light:text-light-main-foreground transition-colors;
-	}
-
-	.ld-main-fg-gradient {
-		@apply text-transparent w-fit bg-linear-to-t from-0% to-50% from-foreground to-main-foreground light:from-light-main-foreground light:to-light-main-foreground/80 light:from-50% light:to-100% bg-clip-text transition-colors;
-	}
-
-	/* Buttons */
-
 	/* Button Colors */
 
 	.pil-btn {
@@ -92,39 +126,39 @@ html[data-theme='light'] {
 
 	.btn-primary {
 		@apply cursor-pointer font-normal
-		bg-primary text-main-foreground 
+		bg-primary fg-strong-dark 
 		hover:bg-primary/90 
 		transition-colors;
 	}
 
 	.btn-primary-outline {
 		@apply cursor-pointer font-normal
-		bg-transparent outline-2 -outline-offset-2 outline-primary text-main-foreground
-		hover:bg-primary/10 hover:text-main-foreground
-		light:text-light-main-foreground light:hover:text-light-main-foreground light:hover:outline-primary/60
+		bg-transparent outline-2 -outline-offset-2 outline-primary fg-strong
+		hover:bg-primary/10
+		light:hover:outline-primary/60
 		transition-colors;
 	}
 
 	.btn-secondary {
 		@apply cursor-pointer font-normal
-		bg-secondary text-main-foreground
+		bg-secondary fg-strong
 		hover:bg-secondary/90 transition-colors;
 	}
 
 	.btn-accent {
 		@apply cursor-pointer font-normal
-		bg-accent text-main-foreground
+		bg-accent text-strong
 		hover:bg-accent/90 transition-colors;
 	}
 
 	.btn-subtle {
 		@apply cursor-pointer font-normal 
-		bg-subtle/20 text-main-foreground light:text-light-main-foreground
+		bg-subtle/20 fg-strong
 		hover:bg-subtle/30 transition-colors;
 	}
 
 	.btn-subtle-outline {
-		@apply bg-transparent border border-secondary text-secondary hover:bg-secondary hover:text-main-foreground transition-colors;
+		@apply bg-transparent border border-secondary fg-secondary hover:bg-secondary hover:fg-strong transition-colors;
 	}
 
 	/* Button Sizes */
@@ -152,19 +186,19 @@ html[data-theme='light'] {
 
 	.dashboard-card-bg,
 	.dashboard-card-default {
-		@apply bg-background light:bg-light-sec-background;
+		@apply bg-middle;
 	}
 
 	.dashboard-card-border,
 	.dashboard-card-default {
-		@apply border border-foreground/10;
+		@apply border border-bd-muted;
 	}
 }
 
 body {
 	position: relative;
-	background: var(--color-background);
-	color: var(--color-foreground);
+	background: var(--color-back);
+	color: var(--color-default);
 	font-family: 'Outfit', sans-serif;
 	font-size: 1rem;
 	z-index: 10;

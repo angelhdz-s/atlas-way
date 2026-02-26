@@ -9,7 +9,7 @@ export async function MuscularGroupsTable() {
 	return (
 		<div className="bg-zinc-900/50 p-4 rounded-lg shadow-md">
 			<header>
-				<h2 className="text-xl font-bold mb-2 pl-2 ld-main-fg">Muscular Groups</h2>
+				<h2 className="text-xl font-bold mb-2 pl-2 fg-strong">Muscular Groups</h2>
 			</header>
 			<table className="w-full text-left">
 				<thead>

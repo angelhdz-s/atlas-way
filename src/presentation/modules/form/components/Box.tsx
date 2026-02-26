@@ -5,9 +5,7 @@ type BoxProps = {
 
 export function Box({ className, children }: BoxProps) {
 	return (
-		<div
-			className={`p-2 w-full bg-background/50 rounded-lg border border-subtle/20 ${className}`}
-		>
+		<div className={`p-2 w-full bg-back rounded-lg border border-bd-muted ${className}`}>
 			{children}
 		</div>
 	);

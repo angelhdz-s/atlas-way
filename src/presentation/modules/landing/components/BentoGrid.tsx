@@ -11,7 +11,7 @@ import { IconHeaderCard } from './bentogrid/card/IconHeaderCard';
 export function BentoGrid({ className = '' }: { className?: string }) {
 	return (
 		<section className={`w-full max-w-5xl mx-auto my-16 flex flex-col gap-8 ${className}`}>
-			<h2 className="font-funnel-display text-4xl font-bold ld-main-fg">
+			<h2 className="font-funnel-display text-4xl font-bold fg-strong">
 				Explore Our Features
 			</h2>
 			<main className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-2">

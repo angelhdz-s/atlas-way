@@ -12,13 +12,13 @@ export function FormSessionsBox() {
 				{sessions.length > 0 ? (
 					sessions.map((session, index) => <p key={index}>{session.name}</p>)
 				) : (
-					<p className="font-light text-base text-foreground/50">No sessions added</p>
+					<p className="font-light text-base text-default/50">No sessions added</p>
 				)}
 			</main>
 			<aside>
 				<Link
 					href="/dashboard/routines/create/sessions"
-					className="block aspect-square p-1 bg-zinc-900 border border-subtle/20 rounded text-main-foreground hover:bg-zinc-800/80 cursor-pointer transition-colors"
+					className="block aspect-square p-1 bg-zinc-900 border border-subtle/20 rounded fg-strong hover:bg-zinc-800/80 cursor-pointer transition-colors"
 				>
 					<CirclePlus strokeWidth="1" />
 				</Link>

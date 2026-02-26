@@ -84,7 +84,7 @@ function SessionListItem({
 				<StatusIcon status={status} className="size-5" />
 				{name}
 			</span>
-			<span className="flex items-center gap-4 text-foreground/50 font-light text-sm text-right">
+			<span className="flex items-center gap-4 text-default/50 font-light text-sm text-right">
 				{date}
 				<TypeDayIcon type={type} className="size-5" />
 			</span>
@@ -97,7 +97,7 @@ export function LastSessions({ className }: { className?: string }) {
 		<ul className={`flex flex-col gap-1 w-full ${className}`}>
 			{LAST_SESSIONS.map((session) => (
 				<SessionListItem
-					className="rounded-lg p-2 border border-foreground/5"
+					className="rounded-lg p-2 border border-bd-default"
 					session={session}
 					key={session.id}
 				/>

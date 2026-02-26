@@ -11,10 +11,10 @@ function BoxOption({
 	isSelected?: boolean;
 	onSelect: (value: SelectOption) => void;
 }) {
-	const isActiveClass = isSelected ? 'bg-primary text-white' : '';
+	const isActiveClass = isSelected ? 'bg-primary fg-white' : '';
 	return (
 		<label
-			className={`w-fit rounded-full border border-subtle/10 px-3 py-1 leading-1 ${isActiveClass}`}
+			className={`w-fit rounded-full border border-bd-muted px-3 py-1 leading-1 ${isActiveClass}`}
 		>
 			<span className="text-sm">{option.label}</span>
 			<input className="hidden" type="checkbox" onChange={() => onSelect(option)} />
@@ -56,7 +56,7 @@ export function BoxMusclesAdder({
 				<h2 className="text-lg font-medium mb-2">Select Muscles</h2>
 			</header>
 			<input
-				className="rounded-full w-full px-4 py-1 mb-2 bg-background/30 text-base font-light outline-none"
+				className="rounded-full w-full px-4 py-1 mb-2 bg-back/30 text-base font-light outline-none"
 				type="search"
 				value={search}
 				placeholder="Search muscles..."
@@ -76,7 +76,7 @@ export function BoxMusclesAdder({
 				<button
 					type="button"
 					onClick={handleAddOptions}
-					className="flex-1 bg-primary text-white px-4 py-2 rounded hover:bg-primary/90"
+					className="flex-1 bg-primary fg-white px-4 py-2 rounded hover:bg-primary/90"
 				>
 					Add
 				</button>

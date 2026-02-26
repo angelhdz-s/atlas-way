@@ -14,7 +14,7 @@ export function RoutineModalFormStep2({
 }) {
 	return (
 		<section>
-			<header className="ld-main-fg">{title}</header>
+			<header className="fg-strong">{title}</header>
 			<main className="flex items-center gap-2">
 				<Label className="w-full" title="Days Plan">
 					<Select name="days" options={daysOptions} multiple={false} />

@@ -72,7 +72,7 @@ export function SessionsHistory({ className }: { className?: string }) {
 					</section>
 					<section className="flex flex-col gap-4">
 						<header className="flex items-center gap-2">
-							<CalendarClock className="text-subtle" strokeWidth="1.5" />
+							<CalendarClock className="fg-muted" strokeWidth="1.5" />
 							<MonthDateSelector />
 							<YearDateSelector />
 						</header>

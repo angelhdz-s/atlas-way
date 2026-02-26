@@ -7,7 +7,7 @@ import { Edit, Trash } from '@/presentation/globals/components/Icons';
 export function RoutineModalFormStep1({ title }: { title: string }) {
 	return (
 		<form>
-			<header className="ld-main-fg">{title}</header>
+			<header className="fg-strong">{title}</header>
 			<section className="flex flex-col gap-2">
 				<Label title="Sessiones">
 					<Box>
