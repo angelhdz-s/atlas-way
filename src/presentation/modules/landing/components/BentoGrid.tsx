@@ -6,7 +6,7 @@ import { CreateYourOwnRoutines } from './bentogrid/card/CreateYourOwnRoutines';
 import { FlexibleRoutines } from './bentogrid/card/FlexibleRoutines';
 import { CarruselIcons } from './bentogrid/card/CarruselIcons';
 import { GetStartedCard } from './bentogrid/card/GetStartedCard';
-import { IconHeaderCard } from './bentogrid/IconHeaderCard';
+import { IconHeaderCard } from './bentogrid/card/IconHeaderCard';
 
 export function BentoGrid({ className = '' }: { className?: string }) {
 	return (
@@ -14,13 +14,7 @@ export function BentoGrid({ className = '' }: { className?: string }) {
 			<h2 className="font-funnel-display text-4xl font-bold ld-main-fg">
 				Explore Our Features
 			</h2>
-			<main
-				className="grid grid-cols-1 xs:grid-cols-2 
-				md:grid-cols-4 gap-2
-				*:relative *:rounded-lg *:md:min-h-32 *:shadow-2xl 
-				*:light:shadow-lg *:shadow-black/10 
-				*:light:shadow-slate-400/20"
-			>
+			<main className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-2">
 				<StartYourJourney />
 
 				<AtlasWayCard />
