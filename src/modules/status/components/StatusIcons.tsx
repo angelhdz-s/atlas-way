@@ -5,11 +5,11 @@ import {
 } from '@/presentation/globals/components/Icons';
 
 export function CompletedIcon({ className }: { className?: string }) {
-	return <SolidCircleCheck className={`${className} text-complete`} />;
+	return <SolidCircleCheck className={`${className} fg-complete`} />;
 }
 
 export function CanceledIcon({ className }: { className?: string }) {
-	return <SolidCircleX className={`${className} text-cancel`} />;
+	return <SolidCircleX className={`${className} fg-cancel`} />;
 }
 
 export function PendingIcon({ className }: { className?: string }) {

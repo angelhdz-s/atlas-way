@@ -1,9 +1,7 @@
 export function Footer({ className = '' }: { className?: string }) {
 	return (
-		<footer
-			className={`w-full mt-16 h-48 bg-zinc-900 flex items-center text-main-foreground ${className}`}
-		>
-			<main className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 md:gap-16">
+		<footer className={`w-full mt-16 h-48 bg-middle flex items-center ${className}`}>
+			<main className="fg-strong max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 md:gap-16">
 				<aside>
 					<h5 className="text-2xl">
 						<strong className="font-funnel-display">AtlasWay</strong> &copy;{' '}

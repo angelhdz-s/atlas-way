@@ -13,7 +13,7 @@ export async function UserInfo({ className = '' }: { className?: string }) {
 					<UserAvatar src={user?.image} size={36} />
 				</figure>
 				<header className={`leading-none`}>
-					<h4 className="text-left text-sm h-5 -mb-1 font-normal overflow-hidden whitespace-nowrap text-ellipsis ld-main-fg">
+					<h4 className="text-left text-sm h-5 -mb-1 font-normal overflow-hidden whitespace-nowrap text-ellipsis fg-strong">
 						{user?.name || 'Unknown User'}
 					</h4>
 					<p className="text-sm font-light overflow-y-clip overflow-hidden whitespace-nowrap text-ellipsis">

@@ -47,7 +47,7 @@ export function SessionDetails({
 				</main>
 				{session.date && (
 					<aside>
-						<span className="bg-subtle/5 text-foreground/50 text-sm py-1 px-3 rounded-full">
+						<span className="bg-subtle/5 text-default/50 text-sm py-1 px-3 rounded-full">
 							{session.date}
 						</span>
 					</aside>
@@ -56,7 +56,7 @@ export function SessionDetails({
 			<main className="font-light">
 				<ul>
 					<li
-						className={`grid gap-1 w-full text-sm font-light text-foreground/50 text-center ${withStatusGridClass}`}
+						className={`grid gap-1 w-full text-sm font-light text-default/50 text-center ${withStatusGridClass}`}
 					>
 						{withStatus && <span></span>}
 						<span className="text-left">Exercise</span>

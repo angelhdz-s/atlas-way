@@ -27,7 +27,8 @@ export default function RootLayout({
 	return (
 		<html lang="en" data-theme="dark" suppressHydrationWarning>
 			<body
-				className={`scrollbar-y transition-colors antialiased flex flex-col min-h-dvh h-full overflow-x-hidden
+				className={`scrollbar-y transition-colors antialiased 
+					flex flex-col min-h-dvh h-full overflow-x-hidden
 					${funnelDisplayFont.variable} ${outfitFont.variable}`}
 			>
 				<ToastProvider>

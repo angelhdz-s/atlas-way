@@ -4,7 +4,7 @@ type ModalFormProps = {
 };
 export function ModalFormHeader({ title, className = '' }: ModalFormProps) {
 	return (
-		<header className={`font-funnel-display ld-main-fg font-medium text-2xl ${className}`}>
+		<header className={`font-funnel-display fg-strong font-medium text-2xl ${className}`}>
 			{title}
 		</header>
 	);

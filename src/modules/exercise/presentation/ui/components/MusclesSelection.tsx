@@ -8,7 +8,7 @@ import { CirclePlus, Trash, XMark } from '@/presentation/globals/components/Icon
 
 function BoxOption({ label, onCrossClick }: { label: string; onCrossClick?: () => void }) {
 	return (
-		<div className="flex items-center bg-sec-background border border-subtle/10 rounded-full px-2 w-fit">
+		<div className="flex items-center bg-middle border border-bd-strong rounded-full px-2 w-fit">
 			{label}
 			{onCrossClick && (
 				<button
@@ -54,14 +54,14 @@ export function MusclesSelection({ options }: { options: SelectOption[] }) {
 					<aside className="flex flex-col justify-between items-center gap-2">
 						<button
 							type="button"
-							className="block size-fit aspect-square p-1 bg-zinc-900 border border-subtle/20 rounded text-main-foreground hover:bg-zinc-800/80 cursor-pointer transition-colors"
+							className="block size-fit aspect-square p-1 bg-zinc-900 border border-subtle/20 rounded fg-strong hover:bg-zinc-800/80 cursor-pointer transition-colors"
 							onClick={handleAddMuscle}
 						>
 							<CirclePlus strokeWidth="1" />
 						</button>
 						<button
 							type="button"
-							className="block size-fit aspect-square p-1 bg-zinc-900 border border-subtle/20 rounded text-main-foreground hover:bg-zinc-800/80 cursor-pointer transition-colors"
+							className="block size-fit aspect-square p-1 bg-zinc-900 border border-subtle/20 rounded fg-strong hover:bg-zinc-800/80 cursor-pointer transition-colors"
 							onClick={removeAllMusclesSelected}
 						>
 							<Trash strokeWidth="1" />

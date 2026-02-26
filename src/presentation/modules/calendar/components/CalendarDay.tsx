@@ -33,7 +33,7 @@ function CalendarDayCompleted({ day, isSelected = false, onClick }: CalendarDayT
 	return (
 		<CalendarDayItem
 			onClick={onClick}
-			className={isSelected ? 'text-main-foreground bg-green-600' : 'bg-green-600/50'}
+			className={isSelected ? 'fg-strong bg-green-600' : 'bg-green-600/50'}
 		>
 			{day}
 		</CalendarDayItem>
@@ -44,7 +44,7 @@ function CalendarDayCanceled({ day, isSelected = false, onClick }: CalendarDayTy
 	return (
 		<CalendarDayItem
 			onClick={onClick}
-			className={isSelected ? 'text-main-foreground bg-red-600' : 'bg-red-600/50'}
+			className={isSelected ? 'fg-strong bg-red-600' : 'bg-red-600/50'}
 		>
 			{day}
 		</CalendarDayItem>
@@ -61,7 +61,7 @@ function CalendarDayCurrent({
 	return (
 		<CalendarDayItem
 			onClick={onClick}
-			className={`${isSelected ? 'text-full-black bg-main-foreground light:text-main-foreground light:bg-full-black' : 'bg-subtle/20'}`}
+			className={`${isSelected ? 'bg-strong fg-strong-light light:fg-strong-dark' : 'bg-subtle/20'}`}
 		>
 			<BarbellOff className="size-4.5" strokeWidth={isSelected ? '2' : '1.5'} />
 		</CalendarDayItem>
@@ -70,10 +70,7 @@ function CalendarDayCurrent({
 
 function CalendarDayNormalSelected({ day, onClick }: CalendarDayTypeProps) {
 	return (
-		<CalendarDayItem
-			onClick={onClick}
-			className="font-bold bg-main-foreground text-full-black light:bg-light-main-foreground light:text-main-foreground"
-		>
+		<CalendarDayItem onClick={onClick} className="bg-strong fg-full-black light:fg-strong-dark">
 			{day}
 		</CalendarDayItem>
 	);
@@ -83,7 +80,7 @@ function CalendarDayNextTraining({ day, onClick }: CalendarDayTypeProps) {
 	return (
 		<CalendarDayItem
 			onClick={onClick}
-			className={`ld-main-fg outline-1 outline-offset-1 outline-foreground/20`}
+			className={`fg-strong outline-1 outline-offset-1 outline-bd-default`}
 		>
 			{day}
 		</CalendarDayItem>

@@ -9,10 +9,10 @@ export function Card({
 }
 
 const CARD_TYPE_CLASSES = {
-	default: 'bg-background light:bg-light-sec-background border border-foreground/10',
-	disabled: 'bg-background light:bg-light-sec-background border border-foreground/10 opacity-50',
-	main: 'bg-primary text-light-main-foreground light:text-main-foreground border border-primary',
-	special: 'bg-accent text-light-main-foreground light:text-main-foreground border border-accent',
+	default: 'bg-back border border-bd-default',
+	disabled: 'bg-back border border-bd-default opacity-50',
+	main: 'bg-primary fg-strong-light light:fg-strong-dark border border-primary',
+	special: 'bg-accent fg-strong-light light:fg-strong-dark border border-accent',
 };
 
 export type CardHighlightType = keyof typeof CARD_TYPE_CLASSES;
@@ -66,7 +66,7 @@ export function DashboardCardHeader({
 	return (
 		<header>
 			<main className="flex items-center justify-between gap-2">
-				<h2 className="text-3xl font-funnel-display font-medium ld-main-fg whitespace-nowrap text-ellipsis overflow-hidden tracking-tight pr-1 pb-1">
+				<h2 className="text-3xl font-funnel-display font-medium fg-strong whitespace-nowrap text-ellipsis overflow-hidden tracking-tight pr-1 pb-1">
 					{title}
 				</h2>
 				{decoration}
@@ -109,7 +109,7 @@ export function DashboardCardSubHeader({
 	return (
 		<footer className="flex flex-col gap-1 text-lg font-light">
 			{counters && counters.length > 0 && (
-				<main className="ld-sub-fg">
+				<main className="fg-muted">
 					<ul className="text-base flex justify-between gap-2">
 						<StatisticsTags counters={counters} />
 					</ul>
@@ -156,7 +156,7 @@ export function DashboardCardTags({ values }: { values: DashboardCardTagType[] }
 export function DashboardCardTag({ tag }: { tag: DashboardCardTagType }) {
 	const { value, selected } = tag;
 	const className = selected
-		? 'bg-accent text-light-main-foreground light:text-main-foreground'
-		: 'bg-foreground/10 ld-main-fg';
+		? 'bg-accent fg-strong-light light:fg-strong-dark'
+		: 'bg-front fg-strong';
 	return <li className={`px-3 py-1 rounded-full text-sm font-light ${className}`}>{value}</li>;
 }

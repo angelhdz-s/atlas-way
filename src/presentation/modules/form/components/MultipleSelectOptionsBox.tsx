@@ -15,11 +15,11 @@ function SelectOptionBox({
 	onSelect: (value: SelectOption) => void;
 }) {
 	const isActiveClass = isSelected
-		? 'border-complete text-complete font-medium'
+		? 'border-complete fg-complete font-medium'
 		: 'border-subtle/20';
 	return (
 		<label
-			className={`cursor-pointer w-fit rounded-full border px-3 py-1 leading-1 hover:border-complete hover:text-complete ${isActiveClass}`}
+			className={`cursor-pointer w-fit rounded-full border px-3 py-1 leading-1 hover:border-complete hover:fg-complete ${isActiveClass}`}
 		>
 			<span className="text-sm">{option.label}</span>
 			<input className="hidden" type="checkbox" onChange={() => onSelect(option)} />
@@ -49,11 +49,11 @@ export function MultipleSelectOptionsBox({
 	} = useMultipleSelectOptionsBox({ options, onAdd, onClose });
 
 	return (
-		<div className="flex flex-col gap-2 bg-zinc-900 p-4 border border-subtle/20 rounded-lg w-120">
+		<div className="flex flex-col gap-2 bg-middle p-4 border border-subtle/20 rounded-lg w-120">
 			<header className="flex flex-col gap-1">
 				<h5 className="text-xl font-medium mb-2">{title}</h5>
-				<label className="flex items-center gap-2 rounded-full w-full px-4 py-2 mb-2 bg-background/30 text-base font-light outline-none">
-					<Search className="size-5 text-subtle" strokeWidth="2" />
+				<label className="flex items-center gap-2 rounded-full w-full px-4 py-2 mb-2 bg-back/30 text-base font-light outline-none">
+					<Search className="size-5 fg-muted" strokeWidth="2" />
 					<input
 						type="search"
 						className="outline-none appearance-none w-full"
@@ -77,7 +77,7 @@ export function MultipleSelectOptionsBox({
 				<button
 					type="button"
 					onClick={handleAddOptions}
-					className="font-medium text-complete border border-complete px-4 py-2 rounded hover:bg-complete/50 hover:text-main-foreground"
+					className="font-medium fg-complete border border-complete px-4 py-2 rounded hover:bg-complete/50 hover:fg-strong"
 				>
 					<CirclePlus className="size-5" strokeWidth="2" />
 					Add
@@ -85,7 +85,7 @@ export function MultipleSelectOptionsBox({
 				<button
 					type="button"
 					onClick={handleClose}
-					className="font-medium text-subtle border border-subtle/20 px-4 py-2 rounded hover:border-subtle/50 hover:text-foreground"
+					className="font-medium fg-muted border border-subtle/20 px-4 py-2 rounded hover:border-subtle/50 hover:fg-default"
 				>
 					Cancel
 				</button>

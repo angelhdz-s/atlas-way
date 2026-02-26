@@ -56,28 +56,28 @@ function StatusDay({ status, className }: { status: StatusDayType; className?: s
 	if (status === 'completed')
 		return (
 			<span className={` ${className}`}>
-				<StatusDaySolidIcon className="text-complete" icon={SolidCircleCheck} />
+				<StatusDaySolidIcon className="fg-complete" icon={SolidCircleCheck} />
 			</span>
 		);
 
 	if (status === 'canceled')
 		return (
 			<span className={` ${className}`}>
-				<StatusDaySolidIcon className="text-cancel" icon={SolidCircleX} />
+				<StatusDaySolidIcon className="fg-cancel" icon={SolidCircleX} />
 			</span>
 		);
 
 	if (status === 'current')
 		return (
 			<span className={` ${className}`}>
-				<StatusDayIcon className="text-accent" icon={CircleOutline} />
+				<StatusDayIcon className="fg-accent" icon={CircleOutline} />
 			</span>
 		);
 
 	// default return if status === "next"
 	return (
 		<span className={`${className}`}>
-			<StatusDayIcon className="text-foreground/25" icon={CircleOutline} />
+			<StatusDayIcon className="text-default/25" icon={CircleOutline} />
 		</span>
 	);
 }
@@ -97,7 +97,7 @@ export function CurrentWeekStatus({ className = '' }: { className?: string }) {
 					return (
 						<div key={day} className="flex flex-col justify-center" title={title}>
 							<span
-								className={`text-center text-sm font-black ${className || 'text-foreground/75'}`}
+								className={`text-center text-sm font-black ${className || 'text-default/75'}`}
 							>
 								{dayName}
 							</span>

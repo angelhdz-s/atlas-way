@@ -11,11 +11,11 @@ export function Notification({
 }) {
 	const { title, description, date, notSeen, url } = data;
 
-	const notificationClass = notSeen ? 'ld-sec-bg border-foreground/5' : 'border-foreground/10';
+	const notificationClass = notSeen ? 'bg-middle' : '';
 
 	return (
 		<article
-			className={`cursor-pointer px-4 py-1 border hover:border-foreground/50 rounded ${notificationClass} ${className}`}
+			className={`cursor-pointer px-4 py-1 border border-bd-default hover:border-bd-strong rounded ${notificationClass} ${className}`}
 		>
 			<Link href={url || '/dashboard/notifications'} className="flex items-center gap-4">
 				<div className="grid place-content-center my-auto">
@@ -23,7 +23,7 @@ export function Notification({
 				</div>
 				<main className="flex-1 flex flex-col gap-0">
 					<header className="flex items-center gap-4">
-						<h3 className={`text-base ${notSeen ? 'ld-main-fg font-bold' : ''}`}>
+						<h3 className={`text-base ${notSeen ? 'fg-strong font-bold' : ''}`}>
 							{title}
 						</h3>
 						{notSeen && (
@@ -31,16 +31,16 @@ export function Notification({
 						)}
 					</header>
 					<footer>
-						<p className={`text-sm ${notSeen ? '' : 'text-foreground/60'}`}>
+						<p className={`text-sm ${notSeen ? '' : 'text-default/60'}`}>
 							{description}
 						</p>
 					</footer>
 				</main>
-				<aside className="w-12 text-center text-foreground/50 text-sm">{date}</aside>
+				<aside className="w-12 text-center text-default/50 text-sm">{date}</aside>
 				<div className="flex items-center gap-2">
 					<button
 						type="button"
-						className="bg-foreground/10 text-sm text-red-800/80 cursor-pointer p-2 rounded"
+						className="bg-front text-sm text-red-800/80 cursor-pointer p-2 rounded"
 					>
 						<Trash className="size-4" strokeWidth="2" />
 					</button>

@@ -1,26 +1,20 @@
 import { Heart, TrendingUp } from '@/presentation/globals/components/Icons';
-import { StartYourJourney } from './bentogrid/advantages/StartYourJourney';
-import { AtlasWayCard } from './bentogrid/advantages/AtlasWayCard';
-import { ScheduleYourSessions } from './bentogrid/advantages/ScheduleYourSessions';
-import { CreateYourOwnRoutines } from './bentogrid/advantages/CreateYourOwnRoutines';
-import { FlexibleRoutines } from './bentogrid/advantages/FlexibleRoutines';
-import { CarruselIcons } from './bentogrid/advantages/CarruselIcons';
-import { GetStartedCard } from './bentogrid/advantages/GetStartedCard';
-import { IconHeaderCard } from './bentogrid/IconHeaderCard';
+import { StartYourJourney } from './bentogrid/card/StartYourJourney';
+import { AtlasWayCard } from './bentogrid/card/AtlasWayCard';
+import { ScheduleYourSessions } from './bentogrid/card/ScheduleYourSessions';
+import { CreateYourOwnRoutines } from './bentogrid/card/CreateYourOwnRoutines';
+import { FlexibleRoutines } from './bentogrid/card/FlexibleRoutines';
+import { CarruselIcons } from './bentogrid/card/CarruselIcons';
+import { GetStartedCard } from './bentogrid/card/GetStartedCard';
+import { IconHeaderCard } from './bentogrid/card/IconHeaderCard';
 
 export function BentoGrid({ className = '' }: { className?: string }) {
 	return (
 		<section className={`w-full max-w-5xl mx-auto my-16 flex flex-col gap-8 ${className}`}>
-			<h2 className="font-funnel-display text-4xl font-bold ld-main-fg">
+			<h2 className="font-funnel-display text-4xl font-bold fg-strong">
 				Explore Our Features
 			</h2>
-			<main
-				className="grid grid-cols-1 xs:grid-cols-2 
-				md:grid-cols-4 gap-2
-				*:relative *:rounded-lg *:md:min-h-32 *:shadow-2xl 
-				*:light:shadow-lg *:shadow-black/10 
-				*:light:shadow-slate-400/20"
-			>
+			<main className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-2">
 				<StartYourJourney />
 
 				<AtlasWayCard />

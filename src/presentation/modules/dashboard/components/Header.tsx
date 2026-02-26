@@ -11,7 +11,7 @@ export function Header({ className = '' }: { className?: string }) {
 	return (
 		<header className="h-(--header-height) w-full">
 			<main
-				className={`fixed top-0 left-0 z-10 w-full grid grid-cols-[1fr_auto_1fr] ld-sec-bg pr-2 gap-4 font-funnel-display h-(--header-height) ${className}`}
+				className={`fixed top-0 left-0 z-10 w-full grid grid-cols-[1fr_auto_1fr] bg-middle pr-2 gap-4 font-funnel-display h-(--header-height) ${className}`}
 			>
 				<section className="flex items-center gap-2 h-full">
 					<main className="flex justify-between items-center gap-0 h-full pl-4 w-(--sidebar-width)">

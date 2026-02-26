@@ -2,7 +2,7 @@ export function NavLinkBody({ title }: { title: React.ReactNode }) {
 	return (
 		<div
 			className="absolute z-50 h-full left-16 top-0 
-            rounded ld-sec-bg hidden
+            rounded bg-middle hidden
             group-hover:grid place-content-center
             "
 			style={{

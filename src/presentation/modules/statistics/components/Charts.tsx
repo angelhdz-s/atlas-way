@@ -50,7 +50,7 @@ export function LineChart({
 						fill="freeze"
 					/>
 
-					<stop offset="0%" stopColor="currentColor" className="text-primary"></stop>
+					<stop offset="0%" stopColor="currentColor" className="fg-primary"></stop>
 					<stop offset="100%" stopColor="currentColor" className="text-secondary/0" />
 				</linearGradient>
 			</defs>
@@ -64,7 +64,7 @@ export function LineChart({
 				stroke="currentColor"
 				strokeWidth={1}
 				strokeLinecap="round"
-				className="text-subtle/10"
+				className="fg-bd-strong"
 			/>
 
 			{data.map((p, i) => (
@@ -74,7 +74,7 @@ export function LineChart({
 					cy={scaleY(p.y)}
 					r={3}
 					fill="currentColor"
-					className="text-primary"
+					className="fg-primary"
 					opacity={0}
 				>
 					<animate
@@ -92,7 +92,7 @@ export function LineChart({
 				d={pathD + ` V ${height - padding} H ${scaleX(data[0].x)} Z`}
 				fill="url(#lineGradient)"
 				stroke="none"
-				className="text-primary"
+				className="fg-primary"
 			></path>
 
 			<path
@@ -102,7 +102,7 @@ export function LineChart({
 				strokeWidth={3}
 				strokeLinejoin="round"
 				strokeLinecap="round"
-				className="text-primary"
+				className="fg-primary"
 				strokeDasharray={3000}
 				strokeDashoffset={3000}
 			>
@@ -173,7 +173,7 @@ export function BarCharts({
 					/>
 				</linearGradient>
 				<linearGradient id="strokeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-					<stop offset="10%" stopColor="currentColor" className="text-primary" />
+					<stop offset="10%" stopColor="currentColor" className="fg-primary" />
 					<stop offset="80%" stopColor="currentColor" className="text-primary/5" />
 					<stop
 						offset="100%"
@@ -193,7 +193,7 @@ export function BarCharts({
 				stroke="currentColor"
 				strokeWidth={1}
 				strokeLinecap="round"
-				className="text-subtle/10"
+				className="fg-bd-strong"
 			/>
 
 			{Array.from({ length: maxY - 1 }).map((_, i) => (
@@ -206,7 +206,7 @@ export function BarCharts({
 					stroke="currentColor"
 					strokeWidth={1}
 					strokeLinecap="round"
-					className="text-subtle/10"
+					className="fg-bd-default"
 				/>
 			))}
 

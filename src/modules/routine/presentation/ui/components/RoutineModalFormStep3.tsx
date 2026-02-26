@@ -8,15 +8,15 @@ import Link from 'next/link';
 export function RoutineModalFormStep3({ title, sessions }: { title: string; sessions: string[] }) {
 	return (
 		<section>
-			<header className="ld-main-fg">{title}</header>
+			<header className="fg-strong">{title}</header>
 			<main>
 				<Label title="Sessions">
-					<Box className="grid grid-cols-[1fr_auto] p-2 w-full bg-background/50 rounded-lg border border-subtle/20 min-h-24">
+					<Box className="grid grid-cols-[1fr_auto] p-2 w-full bg-back/50 rounded-lg border border-subtle/20 min-h-24">
 						<main>
 							{sessions.length > 0 ? (
 								sessions.map((session, index) => <p key={index}>{session}</p>)
 							) : (
-								<p className="font-light text-base text-foreground/50">
+								<p className="font-light text-base fg-default/50">
 									No sessions added
 								</p>
 							)}
@@ -24,7 +24,7 @@ export function RoutineModalFormStep3({ title, sessions }: { title: string; sess
 						<aside>
 							<Link
 								href="/dashboard/routines/create/sessions"
-								className="block aspect-square p-1 bg-zinc-900 border border-subtle/20 rounded text-main-foreground hover:bg-zinc-800/80 cursor-pointer transition-colors"
+								className="block aspect-square p-1 bg-zinc-900 border border-subtle/20 rounded fg-strong hover:bg-zinc-800/80 cursor-pointer transition-colors"
 							>
 								<CirclePlus strokeWidth="1" />
 							</Link>

@@ -1,7 +1,7 @@
 export const STATUS_TEXT_COLORS = {
-	completed: 'text-complete font-medium',
-	canceled: 'text-cancel font-medium',
-	pending: 'text-foreground',
+	completed: 'fg-complete font-medium',
+	canceled: 'fg-cancel font-medium',
+	pending: 'fg-default',
 };
 
 export const WITH_STATUS_GRID_COLS_CLASS = {

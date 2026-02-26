@@ -8,9 +8,7 @@ export function SessionsDetails({ className }: { className?: string }) {
 	const [prevDate, nextDate] = getPrevAndNextDate(selectedDate);
 
 	return (
-		<main
-			className={`rounded bg-sec-background/20 h-86 p-8 flex-1 flex flex-col gap-4 ${className}`}
-		>
+		<main className={`rounded bg-middle/20 h-86 p-8 flex-1 flex flex-col gap-4 ${className}`}>
 			<header className="text-center text-2xl font-light font-funnel-display">Details</header>
 			<div className="mx-auto max-w-5xl w-full flex items-center gap-4 justify-between">
 				<TrackingDay date={prevDate} />

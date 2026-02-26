@@ -12,7 +12,7 @@ export function FirstRoutine({ className = '' }: { className?: string }) {
 					alt="Description of image"
 					width={762}
 					height={828}
-					className="aspect-[762/828]"
+					className="aspect-762/828"
 				/>
 			</ImageBackground>
 		</article>

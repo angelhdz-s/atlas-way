@@ -14,17 +14,17 @@ export function HeaderNav() {
 					type="button"
 					onClick={handleClick}
 					className="block cursor-pointer md:hidden
-					hover:text-main-foreground transition-colors"
+					hover:fg-strong transition-colors"
 				>
 					<Menu className="size-8" />
 				</button>
 				<ul
 					className={`${hiddenClass(showing, 'button')}
 					flex items-start text-left absolute flex-col gap-0 z-10
-                    top-10 -left-10 bg-sec-background rounded-md py-2 w-48
+                    top-10 -left-10 bg-middle rounded-md py-2 w-48
 					md:top-auto md:left-auto md:flex md:w-full
                     md:relative md:items-center md:flex-row md:gap-16 md:text-center 
-                    md:p-0 md:bg-transparent ld-main-fg
+                    md:p-0 md:bg-transparent fg-strong
                     *:h-full *:w-full *:grid *:place-items-start *:transition-colors 
 					*:cursor-pointer
                     *:px-6 *:py-2 *:hover:text-current/50 *:hover:bg-sky-50/5
@@ -46,7 +46,7 @@ export function HeaderNav() {
 			{showing && (
 				<div
 					onClick={handleClickOut}
-					className={`fixed inset-0 bg-background/80 z-1 md:hidden`}
+					className={`fixed inset-0 bg-back/80 z-1 md:hidden`}
 				></div>
 			)}
 		</div>

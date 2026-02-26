@@ -10,7 +10,7 @@ export function LastSession({ className = '' }: { className?: string }) {
 					<h4 className="leading-none inline font-bold text-xl text-green-600">
 						Push Day
 					</h4>
-					<span className="px-3 py-1 bg-subtle/10 rounded-full ml-2 inline text-sm font-light text-foreground/70">
+					<span className="px-3 py-1 bg-front rounded-full ml-2 inline text-sm font-light text-default/70">
 						Yesterday
 					</span>
 				</header>
@@ -22,9 +22,7 @@ export function LastSession({ className = '' }: { className?: string }) {
 								<span className="leading-none">Push Ups</span>
 							</main>
 							<aside>
-								<span className="text-sm font-light text-foreground/50">
-									+1 Reps
-								</span>
+								<span className="text-sm font-light text-default/50">+1 Reps</span>
 							</aside>
 						</li>
 
@@ -34,9 +32,7 @@ export function LastSession({ className = '' }: { className?: string }) {
 								<span className="leading-none">Lateral Raises</span>
 							</main>
 							<aside>
-								<span className="text-sm font-light text-foreground/50">
-									+1 Reps
-								</span>
+								<span className="text-sm font-light text-default/50">+1 Reps</span>
 							</aside>
 						</li>
 
@@ -46,9 +42,7 @@ export function LastSession({ className = '' }: { className?: string }) {
 								<span className="leading-none">Abs</span>
 							</main>
 							<aside>
-								<span className="text-sm font-light text-foreground/50">
-									+1 Reps
-								</span>
+								<span className="text-sm font-light text-default/50">+1 Reps</span>
 							</aside>
 						</li>
 
@@ -58,9 +52,7 @@ export function LastSession({ className = '' }: { className?: string }) {
 								<span className="leading-none">Dips</span>
 							</main>
 							<aside>
-								<span className="text-sm font-light text-foreground/50">
-									+1 Reps
-								</span>
+								<span className="text-sm font-light text-default/50">+1 Reps</span>
 							</aside>
 						</li>
 					</ul>

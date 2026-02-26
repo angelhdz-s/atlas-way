@@ -12,8 +12,8 @@ export function ModalForm({
 	title: string;
 }) {
 	return (
-		<div className={`flex flex-col gap-2 w-96 ${className}`}>
-			<header className="text-2xl font-funnel-display ld-main-fg font-medium">{title}</header>
+		<div className={`flex w-96 flex-col gap-2 ${className}`}>
+			<header className="font-funnel-display fg-strong text-2xl font-medium">{title}</header>
 			<main className="font-light">
 				<form action={action} onSubmit={onSubmit} className="flex flex-col gap-4">
 					{children}
@@ -22,3 +22,24 @@ export function ModalForm({
 		</div>
 	);
 }
+
+/*
+
+	Tailwind CSS
+
+	@Classes
+	Space Y & Space X
+	Divide Y & Divide X
+	Odd: & Even:
+	Ring
+	Line Clamp
+	Truncate
+
+	@Editor
+	Worspace: Variants
+
+
+	@Plugins
+	Prettier / BiomeJS
+
+*/
