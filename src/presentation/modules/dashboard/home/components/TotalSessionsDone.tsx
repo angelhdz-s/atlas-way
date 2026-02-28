@@ -1,15 +1,25 @@
+import { Card } from '../../card/components/Card';
 import { CardTitle } from '../../card/components/CardTitle';
 
-export function TotalSessionsDone({ className = '' }: { className?: string }) {
-	return (
-		<article className={`flex flex-col gap-0 dashboard-card-default ${className}`}>
-			<CardTitle title="Total Sessions Done" className="text-center" />
-			<main className="flex-1 flex flex-col items-center justify-center gap-0">
-				<span className="tracking-tighter text-8xl font-medium font-funnel-display fg-accent">
-					120
-				</span>
-				<span className="leading-none text-base font-light text-default/50">Sessions</span>
-			</main>
-		</article>
-	);
+export function TotalSessionsDone({
+  className = '',
+}: {
+  className?: string;
+}) {
+  return (
+    <Card className={`flex flex-col gap-0 ${className}`}>
+      <CardTitle
+        title="Total Sessions Done"
+        className="text-center"
+      />
+      <main className="flex flex-1 flex-col items-center justify-center gap-0">
+        <span className="font-funnel-display fg-accent text-8xl font-medium tracking-tighter">
+          120
+        </span>
+        <span className="text-default/50 text-base leading-none font-light">
+          Sessions
+        </span>
+      </main>
+    </Card>
+  );
 }

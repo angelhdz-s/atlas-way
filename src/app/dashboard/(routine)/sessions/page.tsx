@@ -5,21 +5,31 @@ import { PageContent } from '@/presentation/modules/dashboard/page/components/Pa
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
 import { Session } from '@/modules/session/presentation/ui/components/Session';
 import { ClipboardList } from '@/presentation/globals/components/Icons';
+import { CustomTagPil } from '@/presentation/globals/components/CustomTagPil';
 
 export default function SessionsPage() {
-	return (
-		<PageContainer>
-			<PageHeader title="Sessions" description="Manage your days planifications" className="">
-				<Link href="/dashboard/sessions/create" className="pil-btn">
-					<ClipboardList className="size-5" strokeWidth="2" />
-					Create Session
-				</Link>
-			</PageHeader>
-			<PageContent className="flex flex-wrap gap-4 w-fit">
-				{SESSIONS.map((session) => (
-					<Session key={session.name} data={session} />
-				))}
-			</PageContent>
-		</PageContainer>
-	);
+  return (
+    <PageContainer>
+      <PageHeader
+        title="Sessions"
+        description="Manage your days planifications"
+        className=""
+      >
+        <Link href="/dashboard/sessions/create">
+          <CustomTagPil Tag="div">
+            <ClipboardList
+              className="size-5"
+              strokeWidth="2"
+            />
+            Create Session
+          </CustomTagPil>
+        </Link>
+      </PageHeader>
+      <PageContent className="flex w-fit flex-wrap gap-4">
+        {SESSIONS.map((session) => (
+          <Session key={session.name} data={session} />
+        ))}
+      </PageContent>
+    </PageContainer>
+  );
 }

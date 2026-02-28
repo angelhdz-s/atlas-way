@@ -5,30 +5,33 @@ import { PageHeader } from '@/presentation/modules/dashboard/page/components/Pag
 import { MapPlus } from '@/presentation/globals/components/Icons';
 import { ROUTINES } from '@/presentation/globals/mocks/routines';
 import { Routine } from '@/modules/routine/presentation/ui/components/Routine';
+import { CustomTagPil } from '@/presentation/globals/components/CustomTagPil';
 
 export default function RoutinesPage() {
-	return (
-		<PageContainer>
-			<PageHeader
-				title="Your Routines"
-				description="Create and manage your routines to automate tasks and workflows."
-			>
-				<Link href="/dashboard/routines/create" className="pil-btn">
-					<MapPlus className="size-5" strokeWidth="2" />
-					New Routine
-				</Link>
-			</PageHeader>
-			<PageContent className="flex flex-col gap-4">
-				<section className="flex flex-wrap gap-4">
-					{ROUTINES.map((routine, index) => (
-						<Routine
-							key={routine.name}
-							data={routine}
-							type={index === 0 ? 'default' : 'default'}
-						/>
-					))}
-				</section>
-			</PageContent>
-		</PageContainer>
-	);
+  return (
+    <PageContainer>
+      <PageHeader
+        title="Your Routines"
+        description="Create and manage your routines to automate tasks and workflows."
+      >
+        <Link href="/dashboard/routines/create">
+          <CustomTagPil Tag="div">
+            <MapPlus className="size-5" strokeWidth="2" />
+            New Routine
+          </CustomTagPil>
+        </Link>
+      </PageHeader>
+      <PageContent className="flex flex-col gap-4">
+        <section className="flex flex-wrap gap-4">
+          {ROUTINES.map((routine, index) => (
+            <Routine
+              key={routine.name}
+              data={routine}
+              type={index === 0 ? 'default' : 'default'}
+            />
+          ))}
+        </section>
+      </PageContent>
+    </PageContainer>
+  );
 }
