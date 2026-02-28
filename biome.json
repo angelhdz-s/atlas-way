@@ -19,14 +19,20 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "suspicious": {
+        "noAlert": "warn",
+        "noConsole": "warn",
+        "noEmptyBlock": "warn",
+        "noArrayIndexKey": "off"
+      }
     }
   },
   "assist": {
     "enabled": true,
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": "off"
       }
     }
   }
