@@ -1,8 +1,4 @@
-import {
-  CircleOutline,
-  SolidCircleCheck,
-  SolidCircleX,
-} from '@/presentation/globals/components/Icons';
+import { CircleOutline } from '@/presentation/globals/components/Icons';
 import { WEEK_DAYS } from '@/presentation/globals/constants/date';
 import {
   getNextDates,
@@ -17,6 +13,10 @@ import type {
 import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
 import { getStatusTextColorClass } from '@/presentation/globals/lib/get-classes';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import {
+  SolidCircleCheck,
+  SolidCircleX,
+} from '@/presentation/globals/components/SolidIcons';
 
 const ICON_SIZE_CLASS = 'size-7';
 

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { CardTitle } from '../../card/components/CardTitle';
 import { ImageBackground } from './ImageBackground';
 import { Card } from '../../card/components/Card';
+import { twMerge } from 'tailwind-merge';
 
 export function FirstSession({
   className = '',
@@ -10,7 +11,8 @@ export function FirstSession({
 }) {
   return (
     <Card
-      className={`relative overflow-hidden ${className}`}
+      border="simple"
+      className={twMerge('relative', className)}
     >
       <CardTitle title="Create Your Sessions" />
       <ImageBackground>

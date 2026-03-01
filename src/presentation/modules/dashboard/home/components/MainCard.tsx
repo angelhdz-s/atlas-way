@@ -2,9 +2,9 @@ import {
   Barbell,
   MapRoute,
   Alarm,
-  SolidCircleCheck,
 } from '@/presentation/globals/components/Icons';
 import { Card } from '../../card/components/Card';
+import { SolidCircleCheck } from '@/presentation/globals/components/SolidIcons';
 
 export function MainCard({
   className = '',

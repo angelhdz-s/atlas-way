@@ -1,5 +1,5 @@
 import type { ButtonElementProps } from '@/presentation/globals/components/Button';
-import type { ButtonVariantProps } from '@/presentation/modules/button/config';
+import type { ButtonVariantProps } from '@/presentation/modules/button/button.config';
 import { buttonVariantHelper } from '../helpers/button-variants.helper';
 
 type Props = ButtonElementProps & ButtonVariantProps;

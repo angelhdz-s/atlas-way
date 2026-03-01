@@ -1,6 +1,6 @@
-import { SolidCircleCheck } from '@/presentation/globals/components/Icons';
 import { CardTitle } from '../../card/components/CardTitle';
 import { Card } from '../../card/components/Card';
+import { SolidCircleCheck } from '@/presentation/globals/components/SolidIcons';
 
 export function LastSession({
   className = '',
@@ -12,7 +12,7 @@ export function LastSession({
       <CardTitle title="Last Sessions" />
       <main className="flex flex-col gap-4">
         <header className="flex items-center">
-          <h4 className="inline text-xl leading-none font-bold text-green-600">
+          <h4 className="fg-complete inline text-xl leading-none font-bold">
             Push Day
           </h4>
           <span className="bg-front text-default/70 ml-2 inline rounded-full px-3 py-1 text-sm font-light">
@@ -23,7 +23,7 @@ export function LastSession({
           <ul className="font-sm font-light">
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SolidCircleCheck className="mr-1 size-6 text-green-600" />
+                <SolidCircleCheck className="fg-complete mr-1 size-6" />
                 <span className="leading-none">
                   Push Ups
                 </span>
@@ -37,7 +37,7 @@ export function LastSession({
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SolidCircleCheck className="mr-1 size-6 text-green-600" />
+                <SolidCircleCheck className="fg-complete mr-1 size-6" />
                 <span className="leading-none">
                   Lateral Raises
                 </span>
@@ -51,7 +51,7 @@ export function LastSession({
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SolidCircleCheck className="mr-1 size-6 text-green-600" />
+                <SolidCircleCheck className="fg-complete mr-1 size-6" />
                 <span className="leading-none">Abs</span>
               </main>
               <aside>
@@ -63,7 +63,7 @@ export function LastSession({
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SolidCircleCheck className="mr-1 size-6 text-green-600" />
+                <SolidCircleCheck className="fg-complete mr-1 size-6" />
                 <span className="leading-none">Dips</span>
               </main>
               <aside>

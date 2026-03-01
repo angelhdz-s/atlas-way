@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { ComponentProps } from 'react';
-import type { ButtonVariantProps } from '@/presentation/modules/button/config';
+import type { ButtonVariantProps } from '@/presentation/modules/button/button.config';
 import { buttonVariantHelper } from '../helpers/button-variants.helper';
 
 type Props = ComponentProps<typeof Link> &

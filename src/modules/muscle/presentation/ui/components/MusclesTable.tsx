@@ -1,10 +1,8 @@
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
-import {
-  DashboardCardFooter,
-  DashboardCardHeader,
-  DashboardCardSubHeader,
-  DashboardCardTag,
-} from '@/presentation/modules/dashboard/components/Card';
+import { CardTag } from '@/presentation/modules/dashboard/card/components/CardTags';
+import { CardHeader } from '@/presentation/modules/dashboard/card/components/CardHeader';
+import { CardSubHeader } from '@/presentation/modules/dashboard/card/components/CardSubHeader';
+import { CardFooter } from '@/presentation/modules/dashboard/card/components/CardFooter';
 
 export default async function MusclesTable() {
   const bodySections = [
@@ -22,26 +20,26 @@ export default async function MusclesTable() {
   return bodySections.map((section) => {
     return (
       <Card type="dashboard" width="lg" key={section.id}>
-        <DashboardCardHeader title={section.name}>
-          <DashboardCardSubHeader
+        <CardHeader title={section.name}>
+          <CardSubHeader
             description={`Muscular groups:`}
             counters={[
               '3 routines',
               '5 exercises',
               `${section.muscularGroups?.length ?? 0} muscles`,
             ]}
-          ></DashboardCardSubHeader>
-        </DashboardCardHeader>
-        <DashboardCardFooter>
+          ></CardSubHeader>
+        </CardHeader>
+        <CardFooter>
           <ul className="flex flex-wrap gap-2">
             {section.muscularGroups.map(({ name, id }) => (
-              <DashboardCardTag
+              <CardTag
                 key={id}
                 tag={{ value: name, selected: false }}
               />
             ))}
           </ul>
-        </DashboardCardFooter>
+        </CardFooter>
       </Card>
     );
   });

@@ -5,6 +5,7 @@ export type Prettify<T> = {
 export interface IconProps {
   className?: string;
   strokeWidth?: string;
+  ariaHidden?: boolean;
 }
 
 export type IconTypes = React.FC<IconProps>;

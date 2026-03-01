@@ -23,12 +23,8 @@ export default function RoutinesPage() {
       </PageHeader>
       <PageContent className="flex flex-col gap-4">
         <section className="flex flex-wrap gap-4">
-          {ROUTINES.map((routine, index) => (
-            <Routine
-              key={routine.name}
-              data={routine}
-              type={index === 0 ? 'default' : 'default'}
-            />
+          {ROUTINES.map((routine) => (
+            <Routine key={routine.name} data={routine} />
           ))}
         </section>
       </PageContent>

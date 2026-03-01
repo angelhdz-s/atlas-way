@@ -1,6 +1,10 @@
 import type { AtomicElement } from '@/presentation/globals/types';
-import type { CardVariantProps } from '../config';
-import { cardVariantHelper } from '../helpers/card-variant.helper';
+import {
+  cardClassesConfig,
+  type CardVariantProps,
+} from '../card.config';
+import { twMerge } from 'tailwind-merge';
+import { CardHighlightBorder } from './decoration/CardHighlightBorder';
 
 interface Props extends CardVariantProps {
   className?: string;
@@ -15,15 +19,19 @@ export function Card({
   color,
   type,
   width,
+  border,
 }: Props) {
+  const cardVariant = cardClassesConfig({
+    color,
+    type,
+    width,
+    border,
+  });
+  const classNames = twMerge(cardVariant, className);
   return (
-    <Tag
-      className={cardVariantHelper(
-        { color, type, width },
-        className
-      )}
-    >
+    <Tag className={classNames}>
       {children}
+      {border === 'highlighted' && <CardHighlightBorder />}
     </Tag>
   );
 }
