@@ -1,5 +1,4 @@
 import type { Role } from '@/modules/role/domain/role.types';
-import { readonly } from 'zod';
 
 export type UserProps = {
   readonly id: string;

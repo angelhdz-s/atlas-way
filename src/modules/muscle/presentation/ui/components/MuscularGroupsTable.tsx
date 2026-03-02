@@ -1,5 +1,3 @@
-import { getBodySections } from '@/modules/body-section/presentation/body-section.actions';
-
 export async function MuscularGroupsTable() {
   const musculargroup = [
     {
@@ -9,7 +7,6 @@ export async function MuscularGroupsTable() {
       createdAt: new Date(2025, 7, 15),
     },
   ];
-  const { data: bodySections } = await getBodySections();
 
   return (
     <div className="rounded-lg bg-zinc-900/50 p-4 shadow-md">

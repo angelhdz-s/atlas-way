@@ -16,7 +16,7 @@ export function RoutineModalFormStep1({
     <form>
       <header className="fg-strong">{title}</header>
       <section className="flex flex-col gap-2">
-        <Label title="Sessiones">
+        <Label htmlFor="session.0" title="Sessiones">
           <Box>
             <div>
               <div className="bg-subtle flex items-center justify-between gap-2 rounded p-2">
@@ -24,13 +24,13 @@ export function RoutineModalFormStep1({
                   <span>Push, Pull, Legs</span>
                 </main>
                 <aside className="flex items-center gap-2">
-                  <button>
+                  <button type="button">
                     <Edit
                       className="size-5"
                       strokeWidth="1"
                     />
                   </button>
-                  <button>
+                  <button type="button">
                     <Trash
                       className="size-5"
                       strokeWidth="1"

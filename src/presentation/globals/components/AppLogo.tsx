@@ -30,6 +30,7 @@ export function Logo({
       viewBox="0 0 512 512"
       width={size}
       height={size}
+      className={className}
     >
       <defs>
         <linearGradient

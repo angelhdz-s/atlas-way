@@ -32,13 +32,13 @@ export function SessionModalForm({
 
   return (
     <ModalForm title={title} onSubmit={handleSubmit}>
-      <Label title="Name">
+      <Label htmlFor="name" title="Name">
         <InputText
           {...register('name')}
           placeholder="Enter Session name"
         />
       </Label>
-      <Label title="Description">
+      <Label htmlFor="description" title="Description">
         <TextArea
           {...register('description')}
           placeholder="Day focused on arms training"

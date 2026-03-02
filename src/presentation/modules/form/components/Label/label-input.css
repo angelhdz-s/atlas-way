@@ -28,12 +28,10 @@
   > input:is(:-webkit-autofill:active, :autofill),
 .label-input
   > input:is(:-webkit-autofill:hover, :autofill) {
-  -webkit-text-fill-color: var(
-    --color-foreground
-  ) !important;
-  color: var(--color-foreground) !important;
-  caret-color: var(--color-white) !important;
-  box-shadow: 0 0 0px 200px var(--color-background) inset !important;
+  -webkit-text-fill-color: var(--color-foreground);
+  color: var(--color-foreground);
+  caret-color: var(--color-white);
+  box-shadow: 0 0 0px 200px var(--color-background) inset;
 }
 
 .label-input > input:focus,

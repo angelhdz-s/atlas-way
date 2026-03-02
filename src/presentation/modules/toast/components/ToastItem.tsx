@@ -44,6 +44,7 @@ export function ToastItem({ toast, onClose }: Props) {
         </span>
       </main>
       <button
+        type="button"
         onClick={onClose}
         className="fg-muted cursor-pointer transition-opacity hover:opacity-50"
       >

@@ -1,4 +1,3 @@
-import { Session, User } from 'next-auth';
 import { UserAvatar } from './UserAvatar';
 
 export function UserLogout({

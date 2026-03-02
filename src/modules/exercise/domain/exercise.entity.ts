@@ -21,7 +21,7 @@ export class Exercise {
     return this.data.userId;
   }
   changeName(name: ExerciseProps['name']) {
-    return (this.data.name = name);
+    this.data.name = name;
   }
   changeDescription(
     description: ExerciseProps['description']

@@ -48,14 +48,14 @@ export function RoutineModalForm({
   return (
     <ModalForm title={title} onSubmit={handleSubmit}>
       <section className="flex flex-col gap-2">
-        <Label title="Name">
+        <Label htmlFor="name" title="Name">
           <InputText
             {...register('name')}
             placeholder="Full Body Workout"
             error={errors.name?.message}
           />
         </Label>
-        <Label title="Description">
+        <Label htmlFor="description" title="Description">
           <TextArea
             {...register('description')}
             error={errors.description?.message}
@@ -73,7 +73,11 @@ export function RoutineModalForm({
               className="flex items-center gap-2"
             />
           </LabelGroup>
-          <Label title="Days" className="w-fit">
+          <Label
+            htmlFor="days"
+            title="Days"
+            className="w-fit"
+          >
             <InputNumber
               {...register('days', inputNumberConfig)}
               value={'7'}
@@ -83,7 +87,11 @@ export function RoutineModalForm({
             />
           </Label>
         </div>
-        <Label title="Initial Date" className="w-fit">
+        <Label
+          htmlFor="initialDate"
+          title="Initial Date"
+          className="w-fit"
+        >
           <InputDate
             {...register('initialDate', {
               setValueAs: (value) =>

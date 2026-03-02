@@ -18,7 +18,7 @@ import {
 } from '@/presentation/globals/components/Icons';
 import type { IconTypes } from '@/presentation/globals/types';
 
-const STATUS_ICONS = {
+export const STATUS_ICONS = {
   completed: CircleCheck,
   canceled: XCircle,
   current: Alarm,

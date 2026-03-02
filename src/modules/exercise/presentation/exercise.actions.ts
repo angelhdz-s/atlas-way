@@ -93,13 +93,9 @@ export async function createExerciseAction(
   );
 }
 
-type UserExercisesConfig = {
-  includeMuscles: boolean;
-} | null;
-
-export async function getAllUserExercises(
-  config: UserExercisesConfig = null
-): ActionResponse<FullExerciseDTO[]> {
+export async function getAllUserExercises(): ActionResponse<
+  FullExerciseDTO[]
+> {
   const container = getContainer();
 
   const userIdResult = await getCurrentUserId();

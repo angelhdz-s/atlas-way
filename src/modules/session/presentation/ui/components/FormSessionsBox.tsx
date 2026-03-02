@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { CirclePlus } from '@/presentation/globals/components/Icons';
 
 export function FormSessionsBox() {
-  const [sessions, setSessions] = useState<
+  const [sessions, _setSessions] = useState<
     SessionsFormDataWithExercises[]
   >([]);
   return (

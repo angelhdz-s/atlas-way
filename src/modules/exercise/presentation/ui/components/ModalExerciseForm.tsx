@@ -36,14 +36,17 @@ export function ModalExerciseForm({
 
   return (
     <ModalForm title={title} onSubmit={handleSubmit}>
-      <Label title="Name">
+      <Label htmlFor="exercise.name" title="Name">
         <InputText
           {...register('exercise.name')}
           error={errors.exercise?.name?.message}
           placeholder="Bench Press"
         />
       </Label>
-      <Label title="Description">
+      <Label
+        htmlFor="exercise.description"
+        title="Description"
+      >
         <TextArea
           {...register('exercise.description')}
           error={errors.exercise?.description?.message}
@@ -51,7 +54,7 @@ export function ModalExerciseForm({
         />
       </Label>
       <section className="flex items-start gap-2">
-        <Label title="Sets">
+        <Label htmlFor="initialStats.sets" title="Sets">
           <InputNumber
             {...register(
               'initialStats.sets',
@@ -60,7 +63,7 @@ export function ModalExerciseForm({
             error={errors.initialStats?.sets?.message}
           />
         </Label>
-        <Label title="Reps">
+        <Label htmlFor="initialStats.reps" title="Reps">
           <InputNumber
             {...register(
               'initialStats.reps',
@@ -69,7 +72,10 @@ export function ModalExerciseForm({
             error={errors.initialStats?.reps?.message}
           />
         </Label>
-        <Label title="Weight (lbs)">
+        <Label
+          htmlFor="initialStats.weight"
+          title="Weight (lbs)"
+        >
           <InputNumber
             {...register(
               'initialStats.weight',

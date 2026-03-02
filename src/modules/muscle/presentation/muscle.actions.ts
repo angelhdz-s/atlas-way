@@ -40,10 +40,6 @@ export async function getMuscleById(
   if (!muscleResult.success)
     return ActionFailure(muscleResult.error.message);
 
-  const muscleDTO = muscleResult.data
-    ? MuscleMapper.toDTO(muscleResult.data)
-    : null;
-
   return ActionSuccess(muscleResult.data, '');
 }
 

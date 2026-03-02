@@ -58,6 +58,21 @@ export function useMultipleSelectBox({
     onOptionsChange?.(currentOptions.current);
   }, [selectedOptions, onOptionsChange]);
 
+  useEffect(() => {
+    if (!isSelecting) return;
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.stopPropagation();
+        setIsSelecting(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKey);
+    return () =>
+      document.removeEventListener('keydown', handleKey);
+  }, [isSelecting]);
+
   return {
     selectedOptions,
     isSelecting,

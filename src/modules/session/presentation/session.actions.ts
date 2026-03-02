@@ -66,7 +66,6 @@ export async function createSession(
   const sessionDTO = SessionMapper.toDTO(
     sessionResult.data
   );
-  console.log(exerciseIds);
   return ActionSuccess(
     sessionDTO,
     'Session created successfully'

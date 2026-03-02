@@ -1,4 +1,3 @@
-import { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
 import type { ExerciseInitialStatsProps } from './exercise-initial-stats.types';
 
 export class ExerciseInitialStats {
@@ -26,8 +25,9 @@ export class ExerciseInitialStats {
   }
 
   changeSets(sets: ExerciseInitialStatsProps['sets']) {
-    return (this.data.sets = sets);
+    this.data.sets = sets;
   }
+
   changeReps(reps: ExerciseInitialStatsProps['reps']) {
     this.data.reps = reps;
   }

@@ -16,7 +16,7 @@ export function RoutineModalFormStep3({
     <section>
       <header className="fg-strong">{title}</header>
       <main>
-        <Label title="Sessions">
+        <Label htmlFor="days" title="Sessions">
           <Box className="bg-back/50 border-subtle/20 grid min-h-24 w-full grid-cols-[1fr_auto] rounded-lg border p-2">
             <main>
               {sessions.length > 0 ? (

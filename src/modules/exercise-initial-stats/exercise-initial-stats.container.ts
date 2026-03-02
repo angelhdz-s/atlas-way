@@ -1,4 +1,3 @@
-import { prisma } from '@/shared/infrastructure/prisma/client';
 import { CreateExerciseInitialStats } from '@/modules/exercise-initial-stats/application/use-cases/create-exercise-initial-stats';
 import { GetAllExerciseInitialStats } from '@/modules/exercise-initial-stats/application/use-cases/get-all-exercise-initial-stats';
 import { GetExerciseInitialStatsByExerciseId } from '@/modules/exercise-initial-stats/application/use-cases/get-exercise-initial-stats-by-exercise-id';

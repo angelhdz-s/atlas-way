@@ -2,13 +2,18 @@ export function Label({
   className = '',
   children,
   title,
+  htmlFor,
 }: {
   className?: string;
   children: React.ReactNode;
   title: string;
+  htmlFor: string;
 }) {
   return (
-    <label className={`flex flex-col gap-1 ${className}`}>
+    <label
+      htmlFor={htmlFor}
+      className={`flex flex-col gap-1 ${className}`}
+    >
       <span className="whitespace-nowrap">{title}</span>
       {children}
     </label>

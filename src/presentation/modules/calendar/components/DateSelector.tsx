@@ -14,6 +14,7 @@ function ArrowButton({
 }) {
   return (
     <button
+      type="button"
       onClick={onClick}
       className={`hover:fg-strong grid size-6 cursor-pointer place-content-center rounded-full transition-colors ${className} `}
     >

@@ -9,6 +9,7 @@ export function ArrowButton({
 }) {
   return (
     <button
+      type="button"
       onClick={onClick}
       className={`border-bd-default hover:fg-strong hover:border-subtle/80 grid aspect-square h-full cursor-pointer place-content-center border transition-colors ${className}`}
     >

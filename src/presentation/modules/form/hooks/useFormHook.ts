@@ -15,6 +15,7 @@ export type ModalFormHookProps<
   onSuccess?: () => void;
   successToast?: boolean;
 };
+
 export function useFormHook<
   Schema extends ZodSchema<any, any>,
 >({
@@ -51,7 +52,7 @@ export function useFormHook<
     if (!state || !state.success) return;
     if (isAlreadySuccess.current) return;
     isAlreadySuccess.current = true;
-  }, [state, isAlreadySuccess]);
+  }, [state]);
 
   useEffect(() => {
     if (!successToast) return;

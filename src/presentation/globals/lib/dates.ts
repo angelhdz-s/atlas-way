@@ -135,7 +135,7 @@ export type CalendarDayType = {
 
 function getCalendarDay(
   date: Date,
-  month: number,
+  _month: number,
   out = false
 ): CalendarDayType {
   if (out) {
@@ -167,7 +167,8 @@ export function getCalendarDays(
   if (dayOfTheWeek !== 7) {
     const daysOffset = dayOfTheWeek - 1;
     const lastMonth = month > 0 ? month - 1 : 11;
-    const lastMonthYear = lastMonth == 11 ? year - 1 : year;
+    const lastMonthYear =
+      lastMonth === 11 ? year - 1 : year;
     const lastMonthDays = getMonthDays(
       lastMonthYear,
       lastMonth

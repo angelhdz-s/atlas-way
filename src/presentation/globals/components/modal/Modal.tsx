@@ -1,8 +1,6 @@
 'use client';
-
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-
 export function Modal({
   className = '',
   children,
@@ -22,14 +20,14 @@ export function Modal({
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
+        e.stopPropagation();
         router.back();
       }
     };
 
     document.addEventListener('keydown', handleEscape);
-    return () => {
+    return () =>
       document.removeEventListener('keydown', handleEscape);
-    };
   }, [router]);
 
   return (

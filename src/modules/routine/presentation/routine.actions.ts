@@ -11,8 +11,6 @@ export async function createRoutineAction(
 ): Promise<ActionResponseType> {
   const parsedRoutine = routineFormSchema.safeParse(data);
   if (!parsedRoutine.success) {
-    const errors = parsedRoutine.error;
-    console.log(errors);
     return { success: false, message: 'Invalid form data' };
   }
   const error = await createRoutine(data);
