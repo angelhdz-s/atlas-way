@@ -22,7 +22,7 @@ export default function Dashboard() {
         title="Dashboard"
         description="Your personal fitness dashboard"
       />
-      <PageContent className="grid grid-cols-12 gap-4">
+      <PageContent className="grid grid-cols-12 gap-6">
         <MainCard className="col-span-4" />
 
         <FirstRoutine className="col-span-3" />
