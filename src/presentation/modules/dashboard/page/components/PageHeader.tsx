@@ -1,27 +1,29 @@
 export function PageHeader({
-	className = '',
-	description,
-	children,
-	title,
+  className = '',
+  description,
+  children,
+  title,
 }: {
-	className?: string;
-	children?: React.ReactNode;
-	description?: string;
-	title: string;
+  className?: string;
+  children?: React.ReactNode;
+  description?: string;
+  title: string;
 }) {
-	return (
-		<header className={`w-full fg-strong ${className}`}>
-			<main className="w-full flex items-center gap-2">
-				<h1 className="flex-1 text-4xl leading-none font-bold tracking-tight font-funnel-display pb-1">
-					{title}
-				</h1>
-				<aside>{children}</aside>
-			</main>
-			{description && (
-				<footer>
-					<p className="font-light text-lg text-default/70">{description}</p>
-				</footer>
-			)}
-		</header>
-	);
+  return (
+    <header className={`fg-strong w-full ${className}`}>
+      <main className="flex w-full items-center gap-2">
+        <h1 className="font-funnel-display flex-1 pb-1 text-4xl leading-none font-bold tracking-tight">
+          {title}
+        </h1>
+        <aside>{children}</aside>
+      </main>
+      {description && (
+        <footer>
+          <p className="text-default/70 text-lg font-light">
+            {description}
+          </p>
+        </footer>
+      )}
+    </header>
+  );
 }

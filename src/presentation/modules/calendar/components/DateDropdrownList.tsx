@@ -1,18 +1,21 @@
 import styles from './DateDropdownList.module.css';
-import { DropdownList, DropdownListProps } from '@/presentation/globals/components/DropdownList';
+import {
+  DropdownList,
+  type DropdownListProps,
+} from '@/presentation/globals/components/DropdownList';
 
 export function DateDropdownlist({
-	className = '',
-	values,
-	selectedValue,
-	onChange,
+  className = '',
+  values,
+  selectedValue,
+  onChange,
 }: DropdownListProps) {
-	return (
-		<DropdownList
-			values={values}
-			className={`font-light px-2 py-1 text-xs rounded-0 text-default/50 ${styles.select} ${className} outline-none!`}
-			selectedValue={selectedValue}
-			onChange={onChange}
-		/>
-	);
+  return (
+    <DropdownList
+      values={values}
+      className={`rounded-0 text-default/50 px-2 py-1 text-xs font-light ${styles.select} ${className} outline-none!`}
+      selectedValue={selectedValue}
+      onChange={onChange}
+    />
+  );
 }

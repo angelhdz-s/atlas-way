@@ -1,3 +1,3 @@
 export default function DashboardDefault() {
-	return null;
+  return null;
 }

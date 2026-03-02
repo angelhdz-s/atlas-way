@@ -1,9 +1,9 @@
 import { createContext } from 'react';
 
 export const SidebarContext = createContext<{
-	isOpen: boolean;
-	toggleOpen?: () => void;
+  isOpen: boolean;
+  toggleOpen?: () => void;
 }>({
-	isOpen: true,
-	toggleOpen: undefined,
+  isOpen: true,
+  toggleOpen: undefined,
 });

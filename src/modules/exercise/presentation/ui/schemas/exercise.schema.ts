@@ -1,27 +1,33 @@
 import { z } from 'zod/v3';
 export const ExerciseSchema = z.object({
-	name: z
-		.string()
-		.min(3, 'Name must be at least 3 characters')
-		.max(50, 'Name must be at most 50 characters'),
-	description: z.string().optional(),
+  name: z
+    .string()
+    .min(3, 'Name must be at least 3 characters')
+    .max(50, 'Name must be at most 50 characters'),
+  description: z.string().optional(),
 });
 
 export const MusclesSchema = z
-	.array(z.object({ id: z.string() }))
-	.nonempty('Select at least one muscle');
+  .array(z.object({ id: z.string() }))
+  .nonempty('Select at least one muscle');
 export type ExerciseProps = z.infer<typeof ExerciseSchema>;
 
 export const ExerciseInitialStatsSchema = z.object({
-	sets: z.number().min(1, 'Sets must be at least 1'),
-	reps: z.number().min(1, 'Reps must be at least 1'),
-	weight: z.number().min(0, 'Weight must be at least 0'),
+  sets: z.number().min(1, 'Sets must be at least 1'),
+  reps: z.number().min(1, 'Reps must be at least 1'),
+  weight: z.number().min(0, 'Weight must be at least 0'),
 });
-export type ExerciseInitialStatsProps = z.infer<typeof ExerciseInitialStatsSchema>;
+export type ExerciseInitialStatsProps = z.infer<
+  typeof ExerciseInitialStatsSchema
+>;
 
 export const ExerciseFormSchema = z.object({
-	exercise: ExerciseSchema,
-	initialStats: ExerciseInitialStatsSchema.or(z.undefined()),
-	muscles: MusclesSchema,
+  exercise: ExerciseSchema,
+  initialStats: ExerciseInitialStatsSchema.or(
+    z.undefined()
+  ),
+  muscles: MusclesSchema,
 });
-export type ExerciseFormProps = z.infer<typeof ExerciseFormSchema>;
+export type ExerciseFormProps = z.infer<
+  typeof ExerciseFormSchema
+>;

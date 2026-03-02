@@ -1,22 +1,24 @@
-import { SessionToExerciseProps } from './session-to-exercise.types';
+import type { SessionToExerciseProps } from './session-to-exercise.types';
 
 export class SessionToExercise {
-	constructor(private data: SessionToExerciseProps) {}
+  constructor(private data: SessionToExerciseProps) {}
 
-	get sessionId() {
-		return this.data.sessionId;
-	}
-	get exerciseId() {
-		return this.data.exerciseId;
-	}
-	get createdAt() {
-		return this.data.createdAt;
-	}
+  get sessionId() {
+    return this.data.sessionId;
+  }
+  get exerciseId() {
+    return this.data.exerciseId;
+  }
+  get createdAt() {
+    return this.data.createdAt;
+  }
 
-	static create(data: Omit<SessionToExerciseProps, 'createdAt'>) {
-		return new SessionToExercise({
-			...data,
-			createdAt: new Date(),
-		});
-	}
+  static create(
+    data: Omit<SessionToExerciseProps, 'createdAt'>
+  ) {
+    return new SessionToExercise({
+      ...data,
+      createdAt: new Date(),
+    });
+  }
 }

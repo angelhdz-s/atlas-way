@@ -16,36 +16,39 @@ import { PageContent } from '@/presentation/modules/dashboard/page/components/Pa
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
 
 export default function Dashboard() {
-	return (
-		<PageContainer>
-			<PageHeader title="Dashboard" description="Your personal fitness dashboard" />
-			<PageContent className="grid grid-cols-12 gap-4">
-				<MainCard className="col-span-4" />
+  return (
+    <PageContainer>
+      <PageHeader
+        title="Dashboard"
+        description="Your personal fitness dashboard"
+      />
+      <PageContent className="grid grid-cols-12 gap-4">
+        <MainCard className="col-span-4" />
 
-				<FirstRoutine className="col-span-3" />
+        <FirstRoutine className="col-span-3" />
 
-				<FirstSession className="col-span-3" />
+        <FirstSession className="col-span-3" />
 
-				<ExercisesList className="col-span-2" />
+        <ExercisesList className="col-span-2" />
 
-				<LastSession className="col-span-3" />
+        <LastSession className="col-span-3" />
 
-				<NextSession className="col-span-3" />
+        <NextSession className="col-span-3" />
 
-				<SessionStreak className="col-span-2" />
+        <SessionStreak className="col-span-2" />
 
-				<RoutinesList className="col-span-2" />
+        <RoutinesList className="col-span-2" />
 
-				<MusclesList className="col-span-2" />
+        <MusclesList className="col-span-2" />
 
-				<TotalSessionsDone className="col-span-2" />
+        <TotalSessionsDone className="col-span-2" />
 
-				<Calendar className="col-span-4" />
+        <Calendar className="col-span-4" />
 
-				<NotificationsList className="col-span-3" />
+        <NotificationsList className="col-span-3" />
 
-				<BestExercises className="col-span-3" />
-			</PageContent>
-		</PageContainer>
-	);
+        <BestExercises className="col-span-3" />
+      </PageContent>
+    </PageContainer>
+  );
 }

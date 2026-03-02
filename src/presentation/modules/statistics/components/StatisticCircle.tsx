@@ -1,29 +1,31 @@
 import { Circle } from '@/presentation/globals/components/Icons';
 
 export function StatisticCircle({
-	title,
-	porcentage,
-	value,
+  title,
+  porcentage,
+  value,
 }: {
-	title: string;
-	porcentage: number;
-	value: string;
+  title: string;
+  porcentage: number;
+  value: string;
 }) {
-	return (
-		<div className="relative text-center size-28 grid place-content-center">
-			<header className="leading-[1.2] relative z-1 text-sm fg-muted">{title}</header>
-			<main className="leading-[1.2] relative z-1 text-xl fg-strong font-funnel-display">
-				{value}
-			</main>
-			<div className="absolute inset-0 rounded-full fg-primary">
-				<Circle
-					className="size-28 -rotate-90"
-					strokeWidth="0.5"
-					porcentage={porcentage}
-					animation
-				/>
-			</div>
-			<div className="absolute left-[50%] top-[50%] translate-[-50%] size-26 rounded-full border border-bd-default"></div>
-		</div>
-	);
+  return (
+    <div className="relative grid size-28 place-content-center text-center">
+      <header className="fg-muted relative z-1 text-sm leading-[1.2]">
+        {title}
+      </header>
+      <main className="fg-strong font-funnel-display relative z-1 text-xl leading-[1.2]">
+        {value}
+      </main>
+      <div className="fg-primary absolute inset-0 rounded-full">
+        <Circle
+          className="size-28 -rotate-90"
+          strokeWidth="0.5"
+          porcentage={porcentage}
+          animation
+        />
+      </div>
+      <div className="border-bd-default absolute top-[50%] left-[50%] size-26 translate-[-50%] rounded-full border"></div>
+    </div>
+  );
 }

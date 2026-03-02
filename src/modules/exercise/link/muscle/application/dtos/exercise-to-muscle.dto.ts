@@ -1,3 +1,6 @@
-import { ExerciseToMuscleProps } from '../../domain/exercise-to-muscle.types';
+import type { ExerciseToMuscleProps } from '../../domain/exercise-to-muscle.types';
 
-export type ExerciseToMuscleDTO = Pick<ExerciseToMuscleProps, 'createdAt'>;
+export type ExerciseToMuscleDTO = Pick<
+  ExerciseToMuscleProps,
+  'createdAt'
+>;

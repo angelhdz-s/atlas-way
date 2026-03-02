@@ -1,15 +1,27 @@
-import { IconTypes } from '@/presentation/globals/types';
+import type { IconTypes } from '@/presentation/globals/types';
 
-export function Counter({ className, number }: { className?: string; number: number }) {
-	return (
-		<span
-			className={`font-funnel-display text-3xl font-medium p-0.5 fg-accent leading-none ${className}`}
-		>
-			{number}
-		</span>
-	);
+export function Counter({
+  className,
+  number,
+}: {
+  className?: string;
+  number: number;
+}) {
+  return (
+    <span
+      className={`font-funnel-display fg-accent p-0.5 text-3xl leading-none font-medium ${className}`}
+    >
+      {number}
+    </span>
+  );
 }
 
-export function CounterIcon({ icon: Icon }: { icon: IconTypes }) {
-	return <Icon className="size-8 fg-accent" strokeWidth="2" />;
+export function CounterIcon({
+  icon: Icon,
+}: {
+  icon: IconTypes;
+}) {
+  return (
+    <Icon className="fg-accent size-8" strokeWidth="2" />
+  );
 }

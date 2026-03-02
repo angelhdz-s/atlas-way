@@ -1,11 +1,11 @@
-import { UseCase } from '@/shared/application/use-case';
-import { IMuscleRepository } from '../../domain/muscle.repository';
-import { MuscleProps } from '../../domain/muscle.types';
+import type { UseCase } from '@/shared/application/use-case';
+import type { IMuscleRepository } from '../../domain/muscle.repository';
+import type { MuscleProps } from '../../domain/muscle.types';
 
 export class GetMuscleById implements UseCase {
-	constructor(private repository: IMuscleRepository) {}
+  constructor(private repository: IMuscleRepository) {}
 
-	async execute(id: MuscleProps['id']) {
-		return await this.repository.findById(id);
-	}
+  async execute(id: MuscleProps['id']) {
+    return await this.repository.findById(id);
+  }
 }

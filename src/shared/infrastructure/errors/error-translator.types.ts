@@ -1,5 +1,5 @@
-import { DomainError } from '@/shared/domain/errors/domain.errors';
+import type { DomainError } from '@/shared/domain/errors/domain.errors';
 
 export interface IErrorTranslator {
-	translate: (error: unknown) => DomainError | null;
+  translate: (error: unknown) => DomainError | null;
 }

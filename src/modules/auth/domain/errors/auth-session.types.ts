@@ -1,4 +1,4 @@
 export interface AuthSession {
-	email: string;
-	avatar: string;
+  email: string;
+  avatar: string;
 }

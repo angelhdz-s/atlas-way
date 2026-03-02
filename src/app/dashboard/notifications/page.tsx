@@ -5,14 +5,14 @@ import { PageContent } from '@/presentation/modules/dashboard/page/components/Pa
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
 
 export default function Dashboard() {
-	return (
-		<PageContainer>
-			<PageHeader title="Notifications" />
-			<PageContent className="flex flex-col gap-1">
-				{NOTIFICATIONS.map((notification, index) => (
-					<Notification key={index} data={notification} />
-				))}
-			</PageContent>
-		</PageContainer>
-	);
+  return (
+    <PageContainer>
+      <PageHeader title="Notifications" />
+      <PageContent className="flex flex-col gap-1">
+        {NOTIFICATIONS.map((notification, index) => (
+          <Notification key={index} data={notification} />
+        ))}
+      </PageContent>
+    </PageContainer>
+  );
 }

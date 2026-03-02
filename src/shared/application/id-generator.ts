@@ -1,3 +1,3 @@
 export interface IdGeneratorRepository {
-	generate: () => string;
+  generate: () => string;
 }

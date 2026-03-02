@@ -1,11 +1,11 @@
-import { UseCase } from '@/shared/application/use-case';
-import { RoutineProps } from '../../domain/routine.types';
-import { IRoutineRepository } from '../../domain/routine.repository';
+import type { UseCase } from '@/shared/application/use-case';
+import type { RoutineProps } from '../../domain/routine.types';
+import type { IRoutineRepository } from '../../domain/routine.repository';
 
 export class GetRoutineById implements UseCase {
-	constructor(private repository: IRoutineRepository) {}
+  constructor(private repository: IRoutineRepository) {}
 
-	async execute(id: RoutineProps['id']) {
-		return this.repository.findById(id);
-	}
+  async execute(id: RoutineProps['id']) {
+    return this.repository.findById(id);
+  }
 }

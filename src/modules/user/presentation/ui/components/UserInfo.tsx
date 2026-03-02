@@ -2,28 +2,34 @@ import { getCurrentSession } from '@/shared/infrastructure/nextauth/next-auth.cu
 import { Dots } from '@/presentation/globals/components/Icons';
 import { UserAvatar } from './UserAvatar';
 
-export async function UserInfo({ className = '' }: { className?: string }) {
-	const session = await getCurrentSession();
-	const user = session?.user;
+export async function UserInfo({
+  className = '',
+}: {
+  className?: string;
+}) {
+  const session = await getCurrentSession();
+  const user = session?.user;
 
-	return (
-		<footer className={`flex items-center gap-2 h-full ${className}`}>
-			<main className={`flex items-center gap-3`}>
-				<figure className="size-9 rounded-full bg-blue-600 overflow-hidden grid place-items-center">
-					<UserAvatar src={user?.image} size={36} />
-				</figure>
-				<header className={`leading-none`}>
-					<h4 className="text-left text-sm h-5 -mb-1 font-normal overflow-hidden whitespace-nowrap text-ellipsis fg-strong">
-						{user?.name || 'Unknown User'}
-					</h4>
-					<p className="text-sm font-light overflow-y-clip overflow-hidden whitespace-nowrap text-ellipsis">
-						{user?.email || 'useremail@example.com'}
-					</p>
-				</header>
-			</main>
-			<button type="button" className="cursor-pointer p-2">
-				<Dots className="size-6" />
-			</button>
-		</footer>
-	);
+  return (
+    <footer
+      className={`flex h-full items-center gap-2 ${className}`}
+    >
+      <main className={`flex items-center gap-3`}>
+        <figure className="grid size-9 place-items-center overflow-hidden rounded-full bg-blue-600">
+          <UserAvatar src={user?.image} size={36} />
+        </figure>
+        <header className={`leading-none`}>
+          <h4 className="fg-strong -mb-1 h-5 overflow-hidden text-left text-sm font-normal text-ellipsis whitespace-nowrap">
+            {user?.name || 'Unknown User'}
+          </h4>
+          <p className="overflow-hidden overflow-y-clip text-sm font-light text-ellipsis whitespace-nowrap">
+            {user?.email || 'useremail@example.com'}
+          </p>
+        </header>
+      </main>
+      <button type="button" className="cursor-pointer p-2">
+        <Dots className="size-6" />
+      </button>
+    </footer>
+  );
 }

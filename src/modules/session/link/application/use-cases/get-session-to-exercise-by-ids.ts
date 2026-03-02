@@ -1,14 +1,18 @@
-import { UseCase } from '@/shared/application/use-case';
-import { SessionToExerciseProps } from '../../domain/session-to-exercise.types';
-import { ISessionToExerciseRepository } from '../../domain/session-to-exercise.repository';
+import type { UseCase } from '@/shared/application/use-case';
+import type { SessionToExerciseProps } from '../../domain/session-to-exercise.types';
+import type { ISessionToExerciseRepository } from '../../domain/session-to-exercise.repository';
 
 export class GetSessionsToExercisesBySessionAndExerciseId implements UseCase {
-	constructor(private repository: ISessionToExerciseRepository) {}
+  constructor(
+    private repository: ISessionToExerciseRepository
+  ) {}
 
-	async execute(data: {
-		sessionId: SessionToExerciseProps['sessionId'];
-		exerciseId: SessionToExerciseProps['exerciseId'];
-	}) {
-		return await this.repository.findBySessionAndExerciseId(data);
-	}
+  async execute(data: {
+    sessionId: SessionToExerciseProps['sessionId'];
+    exerciseId: SessionToExerciseProps['exerciseId'];
+  }) {
+    return await this.repository.findBySessionAndExerciseId(
+      data
+    );
+  }
 }

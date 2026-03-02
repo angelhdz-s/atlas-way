@@ -3,11 +3,11 @@ import { Header } from '@/presentation/modules/landing/components/Header';
 import { SignUp } from '@/presentation/modules/login/components/SignUp';
 
 export default function SignUpPage() {
-	return (
-		<>
-			<Header />
-			<SignUp className="my-16 max-w-5xl w-full mx-auto grid place-items-center flex-1" />
-			<Footer />
-		</>
-	);
+  return (
+    <>
+      <Header />
+      <SignUp className="mx-auto my-16 grid w-full max-w-5xl flex-1 place-items-center" />
+      <Footer />
+    </>
+  );
 }

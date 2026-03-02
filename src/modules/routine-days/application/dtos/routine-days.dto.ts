@@ -1,3 +1,6 @@
-import { RoutineDaysProps } from '../../domain/routine-days.types';
+import type { RoutineDaysProps } from '../../domain/routine-days.types';
 
-export type RoutineDaysDTO = Pick<RoutineDaysProps, 'id' | 'name' | 'dayNumber'>;
+export type RoutineDaysDTO = Pick<
+  RoutineDaysProps,
+  'id' | 'name' | 'dayNumber'
+>;

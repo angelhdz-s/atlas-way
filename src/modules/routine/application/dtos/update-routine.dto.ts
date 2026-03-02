@@ -1,5 +1,8 @@
-import { UpdateDto } from '@/shared/application/dtos/create.types';
-import { RoutineProps } from '../../domain/routine.types';
+import type { UpdateDto } from '@/shared/application/dtos/create.types';
+import type { RoutineProps } from '../../domain/routine.types';
 
-type UpdateProps = Pick<RoutineProps, 'name' | 'description' | 'active' | 'days' | 'initialDate'>;
+type UpdateProps = Pick<
+  RoutineProps,
+  'name' | 'description' | 'active' | 'days' | 'initialDate'
+>;
 export type UpdateRoutineInput = UpdateDto<UpdateProps>;

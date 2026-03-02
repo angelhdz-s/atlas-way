@@ -1,3 +1,6 @@
-import { NotificationProps } from '../../domain/notification.types';
+import type { NotificationProps } from '../../domain/notification.types';
 
-export type NotificationDTO = Pick<NotificationProps, 'name' | 'message' | 'createdAt'>;
+export type NotificationDTO = Pick<
+  NotificationProps,
+  'name' | 'message' | 'createdAt'
+>;
