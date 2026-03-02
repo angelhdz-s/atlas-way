@@ -1,5 +1,5 @@
 import { SidebarSection } from '@/presentation/modules/sidebar/components/SidebarSection';
-import { ReportAnalytics } from '@/presentation/globals/components/Icons';
+import { IconReportAnalytics } from '@/presentation/globals/components/Icons';
 import { NavLink, NavLinks } from './nav/NavLink';
 
 export function SidebarAnalyticsSection() {
@@ -8,7 +8,7 @@ export function SidebarAnalyticsSection() {
       <NavLinks>
         <NavLink
           href="/dashboard/statistics"
-          Icon={ReportAnalytics}
+          Icon={IconReportAnalytics}
         >
           Statistics
         </NavLink>

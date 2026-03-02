@@ -1,6 +1,7 @@
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
 import styles from './CurrentGoals.module.css';
+import { IconListCheck } from '@/presentation/globals/components/Icons';
 
 function PercentageBar({
   value,
@@ -93,7 +94,7 @@ export function CurrentGoals({
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
       <header>
-        <CardTitle title="Goals" />
+        <CardTitle Icon={IconListCheck} title="Goals" />
       </header>
       <main className="flex flex-col gap-2">
         {GOALS.map((goal) => (

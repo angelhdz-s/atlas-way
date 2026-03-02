@@ -4,7 +4,7 @@ import { PageContainer } from '@/presentation/modules/dashboard/page/components/
 import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
 import { Session } from '@/modules/session/presentation/ui/components/Session';
-import { ClipboardList } from '@/presentation/globals/components/Icons';
+import { IconClipboardList } from '@/presentation/globals/components/Icons';
 import { CustomTagPil } from '@/presentation/globals/components/CustomTagPil';
 
 export default function SessionsPage() {
@@ -17,7 +17,7 @@ export default function SessionsPage() {
       >
         <Link href="/dashboard/sessions/create">
           <CustomTagPil Tag="div">
-            <ClipboardList
+            <IconClipboardList
               className="size-5"
               strokeWidth="2"
             />

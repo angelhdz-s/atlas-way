@@ -4,9 +4,9 @@ import {
   TODAY,
 } from '@/presentation/globals/mocks/tracking';
 import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
-import { Counter, CounterIcon } from './Counter';
-import { CalendarWeek } from '@/presentation/globals/components/Icons';
+import { Counter } from './Counter';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { IconCalendarCheck } from '@/presentation/globals/components/Icons';
 
 export function CurrentMonthSessionsCounter({
   className,
@@ -22,11 +22,11 @@ export function CurrentMonthSessionsCounter({
     >
       <header>
         <CardTitle
+          Icon={IconCalendarCheck}
           title={`${monthName}'s Reached Sessions`}
         />
       </header>
       <main className="flex flex-1 items-center gap-1">
-        <CounterIcon icon={CalendarWeek} />
         <Counter number={currentMonth} />
       </main>
     </Card>

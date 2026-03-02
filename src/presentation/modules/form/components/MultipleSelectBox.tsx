@@ -5,9 +5,9 @@ import { MultipleSelectOptionsBox } from '@/presentation/modules/form/components
 import { useMultipleSelectBox } from '@/presentation/modules/form/hooks/useMultipleSelectBox';
 import type { SelectOption } from '@/presentation/modules/form/types';
 import {
-  CirclePlus,
-  Trash,
-  XMark,
+  IconCirclePlus,
+  IconTrash,
+  IconXMark,
 } from '@/presentation/globals/components/Icons';
 import { ErrorMessage } from './ErrorMessage';
 
@@ -27,7 +27,7 @@ function SelectedOptions({
           onClick={onCrossClick}
           className="cursor-pointer transition-opacity hover:opacity-50"
         >
-          <XMark className="size-5" strokeWidth="1" />
+          <IconXMark className="size-5" strokeWidth="1" />
         </button>
       )}
     </div>
@@ -71,14 +71,14 @@ export function MultipleSelectBox({
               className="bg-middle border-bd-default fg-strong hover:bg-back block aspect-square size-fit cursor-pointer rounded border p-1 transition-colors"
               onClick={handleAddOption}
             >
-              <CirclePlus strokeWidth="1" />
+              <IconCirclePlus strokeWidth="1" />
             </button>
             <button
               type="button"
               className="bg-middle border-bd-default fg-strong hover:bg-back block aspect-square size-fit cursor-pointer rounded border p-1 transition-colors"
               onClick={removeAllOptionsSelected}
             >
-              <Trash strokeWidth="1" />
+              <IconTrash strokeWidth="1" />
             </button>
           </aside>
           <main className="scrollbar-y flex flex-1 flex-wrap content-start gap-2 pb-4">

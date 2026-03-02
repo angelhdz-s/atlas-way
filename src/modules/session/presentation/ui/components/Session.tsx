@@ -1,4 +1,4 @@
-import { Barbell } from '@/presentation/globals/components/Icons';
+import { IconBarbell } from '@/presentation/globals/components/Icons';
 import { CardTags } from '../../../../../presentation/modules/dashboard/card/components/CardTags';
 import type { SessionDayType } from '@/presentation/globals/mocks/sessions';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
@@ -58,7 +58,10 @@ export function Session({
       </CardMain>
       <CardFooter>
         <CardButton>
-          <Barbell className="size-6" strokeWidth="1.3" />
+          <IconBarbell
+            className="size-6"
+            strokeWidth="1.3"
+          />
           Edit
         </CardButton>
       </CardFooter>

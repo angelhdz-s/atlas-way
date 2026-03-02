@@ -1,6 +1,6 @@
 import { CardTitle } from '../../card/components/CardTitle';
 import { Card } from '../../card/components/Card';
-import { SolidCircleCheck } from '@/presentation/globals/components/SolidIcons';
+import { IconSolidCircleCheck } from '@/presentation/globals/components/SolidIcons';
 
 export function LastSession({
   className = '',
@@ -23,7 +23,7 @@ export function LastSession({
           <ul className="font-sm font-light">
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SolidCircleCheck className="fg-complete mr-1 size-6" />
+                <IconSolidCircleCheck className="fg-complete mr-1 size-6" />
                 <span className="leading-none">
                   Push Ups
                 </span>
@@ -37,7 +37,7 @@ export function LastSession({
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SolidCircleCheck className="fg-complete mr-1 size-6" />
+                <IconSolidCircleCheck className="fg-complete mr-1 size-6" />
                 <span className="leading-none">
                   Lateral Raises
                 </span>
@@ -51,7 +51,7 @@ export function LastSession({
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SolidCircleCheck className="fg-complete mr-1 size-6" />
+                <IconSolidCircleCheck className="fg-complete mr-1 size-6" />
                 <span className="leading-none">Abs</span>
               </main>
               <aside>
@@ -63,7 +63,7 @@ export function LastSession({
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SolidCircleCheck className="fg-complete mr-1 size-6" />
+                <IconSolidCircleCheck className="fg-complete mr-1 size-6" />
                 <span className="leading-none">Dips</span>
               </main>
               <aside>

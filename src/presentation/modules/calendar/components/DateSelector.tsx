@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
 import { useCalendar } from '@/presentation/modules/calendar/hooks/useCalendar';
-import { ArrowUp } from '@/presentation/globals/components/Icons';
+import { IconArrowUp } from '@/presentation/globals/components/Icons';
 
 function ArrowButton({
   onClick,
@@ -44,7 +44,7 @@ function DateController({
         onClick={onPreviousClick}
         className="text-default/25"
       >
-        <ArrowUp
+        <IconArrowUp
           className="-mb-1.5 size-8"
           strokeWidth="2"
         />
@@ -56,7 +56,7 @@ function DateController({
         onClick={onNextClick}
         className="text-default/25"
       >
-        <ArrowUp
+        <IconArrowUp
           className="size-8 rotate-180"
           strokeWidth="2"
         />

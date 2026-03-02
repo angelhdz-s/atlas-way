@@ -1,4 +1,7 @@
-import { CircleOutline } from '@/presentation/globals/components/Icons';
+import {
+  IconCalendarWeek,
+  IconCircleOutline,
+} from '@/presentation/globals/components/Icons';
 import { WEEK_DAYS } from '@/presentation/globals/constants/date';
 import {
   getNextDates,
@@ -14,8 +17,8 @@ import { CardTitle } from '../../../presentation/modules/dashboard/card/componen
 import { getStatusTextColorClass } from '@/presentation/globals/lib/get-classes';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 import {
-  SolidCircleCheck,
-  SolidCircleX,
+  IconSolidCircleCheck,
+  IconSolidCircleX,
 } from '@/presentation/globals/components/SolidIcons';
 
 const ICON_SIZE_CLASS = 'size-7';
@@ -89,7 +92,7 @@ function StatusDay({
       <span className={` ${className}`}>
         <StatusDaySolidIcon
           className="fg-complete"
-          icon={SolidCircleCheck}
+          icon={IconSolidCircleCheck}
         />
       </span>
     );
@@ -99,7 +102,7 @@ function StatusDay({
       <span className={` ${className}`}>
         <StatusDaySolidIcon
           className="fg-cancel"
-          icon={SolidCircleX}
+          icon={IconSolidCircleX}
         />
       </span>
     );
@@ -109,7 +112,7 @@ function StatusDay({
       <span className={` ${className}`}>
         <StatusDayIcon
           className="fg-accent"
-          icon={CircleOutline}
+          icon={IconCircleOutline}
         />
       </span>
     );
@@ -119,7 +122,7 @@ function StatusDay({
     <span className={`${className}`}>
       <StatusDayIcon
         className="text-default/25"
-        icon={CircleOutline}
+        icon={IconCircleOutline}
       />
     </span>
   );
@@ -135,7 +138,7 @@ export function CurrentWeekStatus({
   return (
     <Card className={`flex flex-col ${className}`}>
       <header>
-        <CardTitle title="Week" />
+        <CardTitle Icon={IconCalendarWeek} title="Week" />
       </header>
       <main className="flex items-center justify-center gap-2">
         {currentWeekStatusDays.map(

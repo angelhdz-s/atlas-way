@@ -1,6 +1,6 @@
 'use client';
 
-import { Menu } from '@/presentation/globals/components/Icons';
+import { IconMenu } from '@/presentation/globals/components/Icons';
 import Link from 'next/link';
 import { useHeaderNav } from '../hooks/useHeaderNav';
 
@@ -20,7 +20,7 @@ export function HeaderNav() {
           onClick={handleClick}
           className="hover:fg-strong block cursor-pointer transition-colors md:hidden"
         >
-          <Menu className="size-8" />
+          <IconMenu className="size-8" />
         </button>
         <ul
           className={`${hiddenClass(showing, 'button')} bg-middle fg-strong absolute top-10 -left-10 z-10 flex w-48 flex-col items-start gap-0 rounded-md py-2 text-left *:grid *:h-full *:w-full *:cursor-pointer *:place-items-start *:px-6 *:py-2 *:transition-colors *:hover:bg-sky-50/5 *:hover:text-current/50 md:relative md:top-auto md:left-auto md:flex md:w-full md:flex-row md:items-center md:gap-16 md:bg-transparent md:p-0 md:text-center *:md:w-fit *:md:place-items-center *:md:p-0 *:md:hover:bg-transparent`}

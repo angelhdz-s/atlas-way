@@ -1,8 +1,8 @@
 import { SESSIONS_COUNTERS } from '@/presentation/globals/mocks/tracking';
 import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
-import { Counter, CounterIcon } from './Counter';
-import { Trophy } from '@/presentation/globals/components/Icons';
+import { Counter } from './Counter';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { IconTrophy } from '@/presentation/globals/components/Icons';
 
 export function AllSessionsDoneCounter({
   className,
@@ -13,10 +13,12 @@ export function AllSessionsDoneCounter({
   return (
     <Card className={`flex flex-col gap-1 ${className}`}>
       <header>
-        <CardTitle title="Total Sessions" />
+        <CardTitle
+          Icon={IconTrophy}
+          title="Total Sessions"
+        />
       </header>
       <main className="flex flex-1 items-center gap-1">
-        <CounterIcon icon={Trophy} />
         <Counter number={totalSessions} />
       </main>
     </Card>

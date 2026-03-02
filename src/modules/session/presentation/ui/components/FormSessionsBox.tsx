@@ -2,7 +2,7 @@ import { Box } from '@/presentation/modules/form/components/Box';
 import { useState } from 'react';
 import type { SessionsFormDataWithExercises } from '@/modules/session/presentation/types';
 import Link from 'next/link';
-import { CirclePlus } from '@/presentation/globals/components/Icons';
+import { IconCirclePlus } from '@/presentation/globals/components/Icons';
 
 export function FormSessionsBox() {
   const [sessions, _setSessions] = useState<
@@ -26,7 +26,7 @@ export function FormSessionsBox() {
           href="/dashboard/routines/create/sessions"
           className="border-subtle/20 fg-strong block aspect-square cursor-pointer rounded border bg-zinc-900 p-1 transition-colors hover:bg-zinc-800/80"
         >
-          <CirclePlus strokeWidth="1" />
+          <IconCirclePlus strokeWidth="1" />
         </Link>
       </aside>
     </Box>

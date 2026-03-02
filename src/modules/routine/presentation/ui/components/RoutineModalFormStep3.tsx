@@ -2,7 +2,7 @@
 
 import { Box } from '@/presentation/modules/form/components/Box';
 import { Label } from '@/presentation/modules/form/components/LabelInput';
-import { CirclePlus } from '@/presentation/globals/components/Icons';
+import { IconCirclePlus } from '@/presentation/globals/components/Icons';
 import Link from 'next/link';
 
 export function RoutineModalFormStep3({
@@ -34,7 +34,7 @@ export function RoutineModalFormStep3({
                 href="/dashboard/routines/create/sessions"
                 className="border-subtle/20 fg-strong block aspect-square cursor-pointer rounded border bg-zinc-900 p-1 transition-colors hover:bg-zinc-800/80"
               >
-                <CirclePlus strokeWidth="1" />
+                <IconCirclePlus strokeWidth="1" />
               </Link>
             </aside>
           </Box>

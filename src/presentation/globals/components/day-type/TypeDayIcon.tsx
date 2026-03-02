@@ -1,4 +1,4 @@
-import { Barbell, BarbellOff } from '../Icons';
+import { IconBarbell, IconBarbellOff } from '../Icons';
 
 export function TrainingIcon({
   className = '',
@@ -8,7 +8,7 @@ export function TrainingIcon({
   strokeWidth?: string;
 }) {
   return (
-    <Barbell
+    <IconBarbell
       className={className}
       strokeWidth={strokeWidth}
     />
@@ -23,7 +23,7 @@ export function RestIcon({
   strokeWidth?: string;
 }) {
   return (
-    <BarbellOff
+    <IconBarbellOff
       className={className}
       strokeWidth={strokeWidth}
     />

@@ -6,8 +6,8 @@ import { THEME } from '@/presentation/globals/constants/client';
 import {
   DefaultIcon,
   defaultIconSizeClass,
-  Moon,
-  Sun,
+  IconMoon,
+  IconSun,
 } from '@/presentation/globals/components/Icons';
 import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
 
@@ -36,8 +36,12 @@ export function ToggleTheme({
       className={`animate-fade cursor-pointer ${className}`}
       onClick={handleClick}
     >
-      {theme === THEME.DARK && <DefaultIcon Icon={Sun} />}
-      {theme === THEME.LIGHT && <DefaultIcon Icon={Moon} />}
+      {theme === THEME.DARK && (
+        <DefaultIcon Icon={IconSun} />
+      )}
+      {theme === THEME.LIGHT && (
+        <DefaultIcon Icon={IconMoon} />
+      )}
     </VariantButton>
   ) : (
     <VariantButton

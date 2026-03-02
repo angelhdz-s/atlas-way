@@ -6,7 +6,7 @@ import { CardMain } from '@/presentation/modules/dashboard/card/components/CardM
 import { CardTag } from '@/presentation/modules/dashboard/card/components/CardTags';
 import { CardFooter } from '@/presentation/modules/dashboard/card/components/CardFooter';
 import { CardButton } from '@/presentation/modules/dashboard/card/components/CardButton';
-import { Barbell } from '@/presentation/globals/components/Icons';
+import { IconBarbell } from '@/presentation/globals/components/Icons';
 
 export function ExerciseCard({
   description,
@@ -34,7 +34,7 @@ export function ExerciseCard({
       </CardMain>
       <CardFooter>
         <CardButton>
-          <Barbell className="size-5" />
+          <IconBarbell className="size-5" />
           Edit
         </CardButton>
       </CardFooter>

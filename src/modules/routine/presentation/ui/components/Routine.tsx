@@ -4,7 +4,7 @@ import {
 } from '@/presentation/globals/config/defaults';
 import type { RoutineType } from '@/presentation/globals/mocks/routines';
 import { CardTags } from '@/presentation/modules/dashboard/card/components/CardTags';
-import { CalendarWeek } from '@/presentation/globals/components/Icons';
+import { IconCalendarWeek } from '@/presentation/globals/components/Icons';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 import { CardHeader } from '@/presentation/modules/dashboard/card/components/CardHeader';
 import { CardSubHeader } from '@/presentation/modules/dashboard/card/components/CardSubHeader';
@@ -69,7 +69,7 @@ export function Routine({ data }: { data: RoutineType }) {
       </CardMain>
       <CardFooter>
         <CardButton>
-          <CalendarWeek
+          <IconCalendarWeek
             className="size-6"
             strokeWidth="1.3"
           />

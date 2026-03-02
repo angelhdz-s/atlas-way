@@ -4,8 +4,8 @@ import { Box } from '@/presentation/modules/form/components/Box';
 import { useMultipleSelectOptionsBox } from '@/presentation/modules/form/hooks/useMultipleSelectOptionsBox';
 import type { SelectOption } from '@/presentation/modules/form/types';
 import {
-  CirclePlus,
-  Search,
+  IconCirclePlus,
+  IconSearch,
 } from '@/presentation/globals/components/Icons';
 
 function SelectOptionBox({
@@ -66,7 +66,7 @@ export function MultipleSelectOptionsBox({
           {title}
         </h5>
         <label className="bg-back/30 mb-2 flex w-full items-center gap-2 rounded-full px-4 py-2 text-base font-light outline-none">
-          <Search
+          <IconSearch
             className="fg-muted size-5"
             strokeWidth="2"
           />
@@ -95,7 +95,10 @@ export function MultipleSelectOptionsBox({
           onClick={handleAddOptions}
           className="fg-complete border-complete hover:bg-complete/50 hover:fg-strong rounded border px-4 py-2 font-medium"
         >
-          <CirclePlus className="size-5" strokeWidth="2" />
+          <IconCirclePlus
+            className="size-5"
+            strokeWidth="2"
+          />
           Add
         </button>
         <button

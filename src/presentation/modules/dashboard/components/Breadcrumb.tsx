@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { ArrowUp } from '@/presentation/globals/components/Icons';
+import { IconArrowUp } from '@/presentation/globals/components/Icons';
 import Link from 'next/link';
 
 function joinUrlParts(
@@ -29,7 +29,7 @@ function ListBreadcrumbs({
       return (
         <li key={index} className="flex items-center gap-1">
           {index > 0 && (
-            <ArrowUp
+            <IconArrowUp
               className="size-3 rotate-90"
               strokeWidth="3"
             />
@@ -41,7 +41,7 @@ function ListBreadcrumbs({
     return (
       <li key={index} className="flex items-center gap-1">
         {index > 0 && (
-          <ArrowUp
+          <IconArrowUp
             className="size-3 rotate-90"
             strokeWidth="3"
           />

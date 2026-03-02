@@ -1,4 +1,4 @@
-import { ArrowsLeftRight } from '@/presentation/globals/components/Icons';
+import { IconArrowsLeftRight } from '@/presentation/globals/components/Icons';
 import { BentoCard } from '../BentoCard';
 
 type Props = {
@@ -17,7 +17,7 @@ export function FlexibleRoutines({ className }: Props) {
       </main>
       <div className="absolute inset-0 z-0 overflow-hidden rounded-lg">
         <figure className="bg-primary absolute right-10 -bottom-21 h-32 w-fit rounded-full p-2">
-          <ArrowsLeftRight
+          <IconArrowsLeftRight
             className="fg-strong size-6"
             strokeWidth="1.5"
           />

@@ -1,4 +1,4 @@
-import { XMark } from '@/presentation/globals/components/Icons';
+import { IconXMark } from '@/presentation/globals/components/Icons';
 import {
   getGridColsClassFromWithStatus,
   getStatusTextColorClass,
@@ -46,7 +46,7 @@ export function ExerciseRow({
       <div className="grid grid-cols-[1fr_auto_1fr] gap-0.5">
         <span className="text-right">{sets}</span>
         <span className="text-default/50 flex items-center justify-center">
-          <XMark
+          <IconXMark
             className="fg-muted size-3"
             strokeWidth="3"
           />

@@ -1,4 +1,4 @@
-import { ArrowUp } from '@/presentation/globals/components/Icons';
+import { IconArrowUp } from '@/presentation/globals/components/Icons';
 import { ArrowButton } from './ArrowButton';
 
 type DateControlProps = {
@@ -24,7 +24,7 @@ export function DateControl({
         className="rounded-l"
         onClick={onLeftClick}
       >
-        <ArrowUp
+        <IconArrowUp
           className={`${iconSize} -rotate-90`}
           strokeWidth="2"
         />
@@ -34,7 +34,7 @@ export function DateControl({
         className="rounded-r"
         onClick={onRightClick}
       >
-        <ArrowUp
+        <IconArrowUp
           className={`${iconSize} rotate-90`}
           strokeWidth="2"
         />

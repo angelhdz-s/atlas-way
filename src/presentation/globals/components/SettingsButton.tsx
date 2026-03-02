@@ -1,4 +1,4 @@
-import { Cog, DefaultIcon } from './Icons';
+import { IconCog, DefaultIcon } from './Icons';
 
 export function SettingsButton({
   className = '',
@@ -10,7 +10,7 @@ export function SettingsButton({
       type="button"
       className={`animate-fade cursor-pointer ${className}`}
     >
-      <DefaultIcon Icon={Cog} />
+      <DefaultIcon Icon={IconCog} />
     </button>
   );
 }

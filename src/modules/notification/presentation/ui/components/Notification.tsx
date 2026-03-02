@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { NotificationType } from '@/presentation/globals/mocks/notifications';
-import { Trash } from '@/presentation/globals/components/Icons';
+import { IconTrash } from '@/presentation/globals/components/Icons';
 
 export function Notification({
   className = '',
@@ -51,7 +51,7 @@ export function Notification({
             type="button"
             className="bg-front cursor-pointer rounded p-2 text-sm text-red-800/80"
           >
-            <Trash className="size-4" strokeWidth="2" />
+            <IconTrash className="size-4" strokeWidth="2" />
           </button>
         </div>
       </Link>

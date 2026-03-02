@@ -1,4 +1,4 @@
-import { ArrowUp } from '@/presentation/globals/components/Icons';
+import { IconArrowUp } from '@/presentation/globals/components/Icons';
 import { VariantLink } from '../../button/components/VariantLink';
 
 export function Hero() {
@@ -32,7 +32,7 @@ export function Hero() {
             >
               Try AtlasWay
               <span className="material-icons">
-                <ArrowUp className="size-5 rotate-90" />
+                <IconArrowUp className="size-5 rotate-90" />
               </span>
             </VariantLink>
           </footer>

@@ -1,4 +1,4 @@
-import { Circle } from '@/presentation/globals/components/Icons';
+import { IconCircle } from '@/presentation/globals/components/Icons';
 
 export function StatisticCircle({
   title,
@@ -18,7 +18,7 @@ export function StatisticCircle({
         {value}
       </main>
       <div className="fg-primary absolute inset-0 rounded-full">
-        <Circle
+        <IconCircle
           className="size-28 -rotate-90"
           strokeWidth="0.5"
           porcentage={porcentage}

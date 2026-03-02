@@ -1,4 +1,4 @@
-import { Language } from './Icons';
+import { IconLanguage } from './Icons';
 
 export function LangButton({
   className = '',
@@ -10,7 +10,7 @@ export function LangButton({
       type="button"
       className={`animate-fade cursor-pointer ${className}`}
     >
-      <Language className="size-6" strokeWidth="1.5" />
+      <IconLanguage className="size-6" strokeWidth="1.5" />
     </button>
   );
 }

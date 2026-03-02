@@ -8,21 +8,21 @@ import {
 } from '@/presentation/globals/lib/dates';
 import { TODAY } from '@/presentation/globals/mocks/tracking';
 import {
-  BarbellOff,
-  Circle,
-  CircleCheck,
-  CircleOutline,
-  Alarm,
-  XCircle,
-  AlertTriangle,
+  IconBarbellOff,
+  IconCircle,
+  IconCircleCheck,
+  IconCircleOutline,
+  IconAlarm,
+  IconXCircle,
+  IconAlertTriangle,
 } from '@/presentation/globals/components/Icons';
 import type { IconTypes } from '@/presentation/globals/types';
 
 export const STATUS_ICONS = {
-  completed: CircleCheck,
-  canceled: XCircle,
-  current: Alarm,
-  next: CircleOutline,
+  completed: IconCircleCheck,
+  canceled: IconXCircle,
+  current: IconAlarm,
+  next: IconCircleOutline,
 };
 
 const TRACKS_DAY_RANGES_CLASSES = {
@@ -72,7 +72,7 @@ function NextTrainingDayTaskItem({
     <div
       className={`flex items-center ${main ? 'gap-2' : 'gap-1'}`}
     >
-      <Circle
+      <IconCircle
         className={`${main ? 'size-5' : 'size-4'}`}
         strokeWidth="1"
       />
@@ -116,7 +116,7 @@ export function TrackingDay({
             type="button"
             className="h-full cursor-pointer"
           >
-            <DefaultStatusIcon Icon={AlertTriangle} />
+            <DefaultStatusIcon Icon={IconAlertTriangle} />
           </button>
         </aside>
       </header>
@@ -152,7 +152,7 @@ export function TrackingDay({
         {session.type === 'REST' && (
           <div className="grid h-full place-content-center p-2">
             <div className="flex flex-col items-center justify-center gap-2 text-current/20 group-hover:text-current">
-              <BarbellOff
+              <IconBarbellOff
                 className="size-20 mask-radial-[100%_100%] mask-radial-from-0% mask-radial-to-150% mask-radial-at-top-left"
                 strokeWidth="0.5"
               />

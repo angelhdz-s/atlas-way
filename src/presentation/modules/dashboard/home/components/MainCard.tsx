@@ -1,10 +1,10 @@
 import {
-  Barbell,
-  MapRoute,
-  Alarm,
+  IconBarbell,
+  IconMapRoute,
+  IconAlarm,
 } from '@/presentation/globals/components/Icons';
 import { Card } from '../../card/components/Card';
-import { SolidCircleCheck } from '@/presentation/globals/components/SolidIcons';
+import { IconSolidCircleCheck } from '@/presentation/globals/components/SolidIcons';
 
 export function MainCard({
   className = '',
@@ -26,7 +26,7 @@ export function MainCard({
         <ul className="flex flex-col gap-0 text-lg *:relative *:flex *:items-start *:gap-2">
           <li>
             <span className="pt-1">
-              <SolidCircleCheck className="size-6" />
+              <IconSolidCircleCheck className="size-6" />
             </span>
             <span className="flex-1">
               Create Your Own Path
@@ -34,7 +34,7 @@ export function MainCard({
           </li>
           <li>
             <span className="pt-1">
-              <SolidCircleCheck className="size-6" />
+              <IconSolidCircleCheck className="size-6" />
             </span>
             <span className="flex-1">
               {"You Don't Need to Be an Expert"}
@@ -44,15 +44,21 @@ export function MainCard({
       </main>
       <footer className="*:border-bd-strong-light/50 relative z-1 flex w-full items-center justify-center gap-2 text-base *:flex *:items-center *:gap-2 *:rounded-full *:border *:px-3 *:py-1.5">
         <button type="button">
-          <MapRoute className="size-5" strokeWidth="1.5" />
+          <IconMapRoute
+            className="size-5"
+            strokeWidth="1.5"
+          />
           Routines
         </button>
         <button type="button">
-          <Alarm className="size-5" strokeWidth="1.5" />
+          <IconAlarm className="size-5" strokeWidth="1.5" />
           Sessions
         </button>
         <button type="button">
-          <Barbell className="size-5" strokeWidth="1.5" />
+          <IconBarbell
+            className="size-5"
+            strokeWidth="1.5"
+          />
           Exercises
         </button>
       </footer>

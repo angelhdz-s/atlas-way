@@ -21,7 +21,7 @@ function MainSolidSvgBody({
   );
 }
 
-export function SolidCircleCheck({
+export function IconSolidCircleCheck({
   className = '',
 }: {
   className?: string;
@@ -33,7 +33,7 @@ export function SolidCircleCheck({
   );
 }
 
-export function SolidCircleX({
+export function IconSolidCircleX({
   className = '',
 }: {
   className?: string;

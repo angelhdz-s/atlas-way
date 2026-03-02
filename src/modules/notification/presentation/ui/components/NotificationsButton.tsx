@@ -1,5 +1,5 @@
 import {
-  Bell,
+  IconBell,
   DefaultIcon,
 } from '@/presentation/globals/components/Icons';
 
@@ -13,7 +13,7 @@ export function NotificationsButton({
       type="button"
       className={`cursor-pointer ${className}`}
     >
-      <DefaultIcon Icon={Bell} />
+      <DefaultIcon Icon={IconBell} />
     </button>
   );
 }

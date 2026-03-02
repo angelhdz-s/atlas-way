@@ -1,8 +1,8 @@
 import {
-  BellRinging,
-  DeviceDesktop,
-  DeviceDesktopAnalytics,
-  Hammer,
+  IconBellRinging,
+  IconDeviceDesktop,
+  IconDeviceDesktopAnalytics,
+  IconHammer,
 } from '@/presentation/globals/components/Icons';
 
 import { AdvantageItem } from './advantages/AdvantageItem';
@@ -25,25 +25,25 @@ export function Advantages({
       <main>
         <ul className="mt-8 grid grid-cols-1 gap-2 md:grid-cols-2">
           <AdvantageItem
-            Icon={Hammer}
+            Icon={IconHammer}
             tile="Highly Customizable"
             description="Tailor your workout routines and exercises plans to fit your unique needs."
           />
 
           <AdvantageItem
-            Icon={DeviceDesktop}
+            Icon={IconDeviceDesktop}
             tile="Easy to Use"
             description="Designed with user-friendliness in mind, making it accessible for everyone."
           ></AdvantageItem>
 
           <AdvantageItem
-            Icon={DeviceDesktopAnalytics}
+            Icon={IconDeviceDesktopAnalytics}
             tile="Comprehensive Tracking"
             description="Monitor your progress with detailed analytics and insights."
           ></AdvantageItem>
 
           <AdvantageItem
-            Icon={BellRinging}
+            Icon={IconBellRinging}
             tile="Notifications and Alerts"
             description="Get reminders and alerts to keep you on track with your fitness goals."
           ></AdvantageItem>

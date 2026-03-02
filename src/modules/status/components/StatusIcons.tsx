@@ -1,7 +1,7 @@
-import { CircleOutline } from '@/presentation/globals/components/Icons';
+import { IconCircleOutline } from '@/presentation/globals/components/Icons';
 import {
-  SolidCircleCheck,
-  SolidCircleX,
+  IconSolidCircleCheck,
+  IconSolidCircleX,
 } from '@/presentation/globals/components/SolidIcons';
 
 export function CompletedIcon({
@@ -10,7 +10,7 @@ export function CompletedIcon({
   className?: string;
 }) {
   return (
-    <SolidCircleCheck
+    <IconSolidCircleCheck
       className={`${className} fg-complete`}
     />
   );
@@ -22,7 +22,9 @@ export function CanceledIcon({
   className?: string;
 }) {
   return (
-    <SolidCircleX className={`${className} fg-cancel`} />
+    <IconSolidCircleX
+      className={`${className} fg-cancel`}
+    />
   );
 }
 
@@ -31,7 +33,7 @@ export function PendingIcon({
 }: {
   className?: string;
 }) {
-  return <CircleOutline className={`${className}`} />;
+  return <IconCircleOutline className={`${className}`} />;
 }
 
 export function StatusIcon({

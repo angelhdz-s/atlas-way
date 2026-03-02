@@ -1,15 +1,29 @@
+import type { IconTypes } from '@/presentation/globals/types';
+import { twMerge } from 'tailwind-merge';
+
 export function CardTitle({
   className = '',
   title,
+  Icon,
 }: {
   className?: string;
   title: string;
+  Icon?: IconTypes;
 }) {
   return (
     <h3
-      className={`font-funnel-display fg-strong text-xl font-light tracking-tight ${className}`}
+      className={twMerge(
+        'font-funnel-display fg-strong truncate overflow-hidden text-xl',
+        Icon ? 'flex w-full items-center gap-4' : '',
+        className
+      )}
     >
-      {title}
+      {Icon && (
+        <div className="bg-front fg-muted grid aspect-square size-9 place-content-center rounded-xl">
+          <Icon strokeWidth="1.5" className="size-6" />
+        </div>
+      )}
+      <span className="truncate">{title}</span>
     </h3>
   );
 }

@@ -1,6 +1,6 @@
 import {
-  Barbell,
-  Alarm,
+  IconBarbell,
+  IconAlarm,
 } from '@/presentation/globals/components/Icons';
 import { CardTitle } from '../../card/components/CardTitle';
 import { Card } from '../../card/components/Card';
@@ -23,7 +23,7 @@ export function RoutinesList({
             </header>
             <ul className="text-default/70 flex flex-col gap-1 text-sm *:leading-none">
               <li className="flex items-center gap-2">
-                <Alarm
+                <IconAlarm
                   className="size-4"
                   strokeWidth="1.5"
                 />
@@ -32,7 +32,7 @@ export function RoutinesList({
                 </span>
               </li>
               <li className="flex items-center gap-2">
-                <Barbell
+                <IconBarbell
                   className="size-4"
                   strokeWidth="1.5"
                 />
@@ -50,7 +50,7 @@ export function RoutinesList({
             </header>
             <ul className="text-default/70 flex flex-col gap-1 text-sm *:leading-none">
               <li className="flex items-center gap-2">
-                <Alarm
+                <IconAlarm
                   className="size-4"
                   strokeWidth="1.5"
                 />
@@ -59,7 +59,7 @@ export function RoutinesList({
                 </span>
               </li>
               <li className="flex items-center gap-2">
-                <Barbell
+                <IconBarbell
                   className="size-4"
                   strokeWidth="1.5"
                 />

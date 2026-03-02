@@ -1,5 +1,5 @@
 import { getCurrentSession } from '@/shared/infrastructure/nextauth/next-auth.currentsession';
-import { Dots } from '@/presentation/globals/components/Icons';
+import { IconDots } from '@/presentation/globals/components/Icons';
 import { UserAvatar } from './UserAvatar';
 
 export async function UserInfo({
@@ -28,7 +28,7 @@ export async function UserInfo({
         </header>
       </main>
       <button type="button" className="cursor-pointer p-2">
-        <Dots className="size-6" />
+        <IconDots className="size-6" />
       </button>
     </footer>
   );

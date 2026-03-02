@@ -1,32 +1,32 @@
 'use client';
 
 import {
-  Alarm,
-  Barbell,
-  Bell,
-  Edit,
-  Forward,
-  MapRoute,
-  Heart,
-  Scale,
-  TrendingUp,
-  Trophy,
+  IconAlarm,
+  IconBarbell,
+  IconBell,
+  IconEdit,
+  IconForward,
+  IconMapRoute,
+  IconHeart,
+  IconScale,
+  IconTrendingUp,
+  IconTrophy,
 } from '@/presentation/globals/components/Icons';
 import type { IconTypes } from '@/presentation/globals/types.d';
 import styles from './IconsAnimation.module.css';
 import { useEffect, useState } from 'react';
 
 const ICONS: IconTypes[] = [
-  Bell,
-  Barbell,
-  MapRoute,
-  Alarm,
-  Edit,
-  Forward,
-  Heart,
-  Scale,
-  TrendingUp,
-  Trophy,
+  IconBell,
+  IconBarbell,
+  IconMapRoute,
+  IconAlarm,
+  IconEdit,
+  IconForward,
+  IconHeart,
+  IconScale,
+  IconTrendingUp,
+  IconTrophy,
 ];
 
 const DURATION = 20000;

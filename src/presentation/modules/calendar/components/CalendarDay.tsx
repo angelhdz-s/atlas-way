@@ -3,7 +3,7 @@ import {
   getCalendarStatusDay,
   getISOStringDate,
 } from '@/presentation/globals/lib/dates';
-import { BarbellOff } from '@/presentation/globals/components/Icons';
+import { IconBarbellOff } from '@/presentation/globals/components/Icons';
 
 function CalendarDayItem({
   children,
@@ -85,7 +85,7 @@ function CalendarDayCurrent({
       onClick={onClick}
       className={`${isSelected ? 'bg-strong fg-strong-light light:fg-strong-dark' : 'bg-subtle/20'}`}
     >
-      <BarbellOff
+      <IconBarbellOff
         className="size-4.5"
         strokeWidth={isSelected ? '2' : '1.5'}
       />

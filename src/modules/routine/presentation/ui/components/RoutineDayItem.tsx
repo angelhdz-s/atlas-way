@@ -1,9 +1,9 @@
 import {
-  Barbell,
-  BarbellOff,
-  CalendarWeek,
-  CircleCheck,
-  XCircle,
+  IconBarbell,
+  IconBarbellOff,
+  IconCalendarWeek,
+  IconCircleCheck,
+  IconXCircle,
 } from '@/presentation/globals/components/Icons';
 import type {
   DayTypeProps,
@@ -24,24 +24,24 @@ type StatusDayTypes = {
 const STATUS_DAYS: StatusDayTypes = {
   canceled: {
     title: 'Canceled',
-    icon: XCircle,
+    icon: IconXCircle,
   },
   completed: {
     title: 'Completed',
-    icon: CircleCheck,
+    icon: IconCircleCheck,
   },
   current: {
     title: 'Current Day',
-    icon: Barbell,
+    icon: IconBarbell,
   },
   next: {
     title: 'Next Day',
-    icon: CalendarWeek,
+    icon: IconCalendarWeek,
   },
 };
 
 const DAY_TYPE_REST = {
-  icon: BarbellOff,
+  icon: IconBarbellOff,
 };
 
 const getDayAttributes = (

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
-import { MapPlus } from '@/presentation/globals/components/Icons';
+import { IconMapPlus } from '@/presentation/globals/components/Icons';
 import { ROUTINES } from '@/presentation/globals/mocks/routines';
 import { Routine } from '@/modules/routine/presentation/ui/components/Routine';
 import { CustomTagPil } from '@/presentation/globals/components/CustomTagPil';
@@ -16,7 +16,10 @@ export default function RoutinesPage() {
       >
         <Link href="/dashboard/routines/create">
           <CustomTagPil Tag="div">
-            <MapPlus className="size-5" strokeWidth="2" />
+            <IconMapPlus
+              className="size-5"
+              strokeWidth="2"
+            />
             New Routine
           </CustomTagPil>
         </Link>

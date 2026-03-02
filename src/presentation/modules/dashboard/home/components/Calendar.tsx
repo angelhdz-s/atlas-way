@@ -1,8 +1,8 @@
 import {
-  Barbell,
-  BarbellOff,
-  CircleCheck,
-  Alarm,
+  IconBarbell,
+  IconBarbellOff,
+  IconCircleCheck,
+  IconAlarm,
 } from '@/presentation/globals/components/Icons';
 import { Card } from '../../card/components/Card';
 
@@ -39,7 +39,7 @@ function CalendarCurrentWeek({
           <footer>07</footer>
         </main>
         <footer>
-          <CircleCheck className="mx-auto size-5" />
+          <IconCircleCheck className="mx-auto size-5" />
         </footer>
       </li>
       <li className="bg-subtle/10 flex flex-col items-center gap-2">
@@ -48,7 +48,7 @@ function CalendarCurrentWeek({
           <footer>08</footer>
         </main>
         <footer>
-          <CircleCheck className="mx-auto size-5" />
+          <IconCircleCheck className="mx-auto size-5" />
         </footer>
       </li>
       <li className="bg-subtle/10 fg-accent flex flex-col items-center gap-2 text-xl leading-[1.2] font-medium">
@@ -57,7 +57,7 @@ function CalendarCurrentWeek({
           <footer>09</footer>
         </main>
         <footer>
-          <Alarm className="mx-auto size-5" />
+          <IconAlarm className="mx-auto size-5" />
         </footer>
       </li>
       <li className="bg-subtle/10 flex flex-col items-center gap-2">
@@ -66,7 +66,7 @@ function CalendarCurrentWeek({
           <footer>10</footer>
         </main>
         <footer>
-          <Barbell className="mx-auto size-5" />
+          <IconBarbell className="mx-auto size-5" />
         </footer>
       </li>
       <li className="bg-subtle/5 text-default/70 flex flex-col items-center gap-2 text-xs font-normal">
@@ -75,7 +75,7 @@ function CalendarCurrentWeek({
           <footer>11</footer>
         </main>
         <footer>
-          <BarbellOff className="mx-auto size-5" />
+          <IconBarbellOff className="mx-auto size-5" />
         </footer>
       </li>
     </ul>
@@ -94,7 +94,7 @@ function CalendarNextWeek({
       <li>
         <main>Tue 12</main>
         <footer>
-          <Barbell
+          <IconBarbell
             className="mx-auto size-4"
             strokeWidth="1.5"
           />
@@ -103,7 +103,7 @@ function CalendarNextWeek({
       <li>
         <main>Wed 13</main>
         <footer>
-          <BarbellOff
+          <IconBarbellOff
             className="mx-auto size-4"
             strokeWidth="1.5"
           />
@@ -112,7 +112,7 @@ function CalendarNextWeek({
       <li>
         <main>Thu 14</main>
         <footer>
-          <Barbell
+          <IconBarbell
             className="mx-auto size-4"
             strokeWidth="1.5"
           />
@@ -121,7 +121,7 @@ function CalendarNextWeek({
       <li>
         <main>Fri 15</main>
         <footer>
-          <BarbellOff
+          <IconBarbellOff
             className="mx-auto size-4"
             strokeWidth="1.5"
           />
@@ -130,7 +130,7 @@ function CalendarNextWeek({
       <li>
         <main>Sat 16</main>
         <footer>
-          <BarbellOff
+          <IconBarbellOff
             className="mx-auto size-4"
             strokeWidth="1.5"
           />

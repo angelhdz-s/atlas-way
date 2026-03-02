@@ -7,7 +7,10 @@ import { MonthDateSelector } from '@/presentation/modules/calendar/components/Mo
 import { YearDateSelector } from '@/presentation/modules/calendar/components/YearDateSelector';
 import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
 import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
-import { CalendarClock } from '@/presentation/globals/components/Icons';
+import {
+  IconCalendarClock,
+  IconClipboardList,
+} from '@/presentation/globals/components/Icons';
 import { SubtleCard } from '@/presentation/globals/components/SubtleCard';
 import { getSessionFromDate } from '@/presentation/globals/lib/dates';
 import { LastSessions } from '@/modules/session/presentation/ui/components/LastSessions';
@@ -69,7 +72,10 @@ export function SessionsHistory({
     <CalendarProvider>
       <Card className={`flex flex-col gap-4 ${className}`}>
         <header>
-          <CardTitle title="Session History" />
+          <CardTitle
+            Icon={IconClipboardList}
+            title="Session History"
+          />
         </header>
         <main className="grid grid-cols-[auto_1fr_auto] gap-4">
           <section className="flex h-61.5 flex-col justify-between">
@@ -77,7 +83,7 @@ export function SessionsHistory({
           </section>
           <section className="flex flex-col gap-4">
             <header className="flex items-center gap-2">
-              <CalendarClock
+              <IconCalendarClock
                 className="fg-muted"
                 strokeWidth="1.5"
               />

@@ -3,8 +3,8 @@
 import { Box } from '@/presentation/modules/form/components/Box';
 import { Label } from '@/presentation/modules/form/components/LabelInput';
 import {
-  Edit,
-  Trash,
+  IconEdit,
+  IconTrash,
 } from '@/presentation/globals/components/Icons';
 
 export function RoutineModalFormStep1({
@@ -25,13 +25,13 @@ export function RoutineModalFormStep1({
                 </main>
                 <aside className="flex items-center gap-2">
                   <button type="button">
-                    <Edit
+                    <IconEdit
                       className="size-5"
                       strokeWidth="1"
                     />
                   </button>
                   <button type="button">
-                    <Trash
+                    <IconTrash
                       className="size-5"
                       strokeWidth="1"
                     />

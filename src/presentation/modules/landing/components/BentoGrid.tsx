@@ -1,6 +1,6 @@
 import {
-  Heart,
-  TrendingUp,
+  IconHeart,
+  IconTrendingUp,
 } from '@/presentation/globals/components/Icons';
 import { StartYourJourney } from './bentogrid/card/StartYourJourney';
 import { AtlasWayCard } from './bentogrid/card/AtlasWayCard';
@@ -37,13 +37,13 @@ export function BentoGrid({
         <IconHeaderCard
           title="Reminders"
           description="Timely reminders for your sessions"
-          Icon={Heart}
+          Icon={IconHeart}
         />
 
         <IconHeaderCard
           title="Statistics"
           description="Track your progress and performance"
-          Icon={TrendingUp}
+          Icon={IconTrendingUp}
         />
 
         <GetStartedCard />

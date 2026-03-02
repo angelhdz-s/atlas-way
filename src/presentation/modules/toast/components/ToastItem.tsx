@@ -2,11 +2,11 @@
 
 import { TOAST_TYPE } from '@/presentation/globals/config/defaults';
 import {
-  CircleCheck,
-  AlertTriangle,
-  InformationCircle,
-  XCircle,
-  XMark,
+  IconCircleCheck,
+  IconAlertTriangle,
+  IconInformationCircle,
+  IconXCircle,
+  IconXMark,
 } from '@/presentation/globals/components/Icons';
 import type { Toast } from '@/presentation/globals/types.d';
 import styles from './Toast.module.css';
@@ -24,10 +24,10 @@ const TOAST_TYPES = {
 };
 
 const TOAST_ICONS = {
-  info: <InformationCircle className="size-6" />,
-  success: <CircleCheck className="size-6" />,
-  error: <XCircle className="size-6" />,
-  warning: <AlertTriangle className="size-6" />,
+  info: <IconInformationCircle className="size-6" />,
+  success: <IconCircleCheck className="size-6" />,
+  error: <IconXCircle className="size-6" />,
+  warning: <IconAlertTriangle className="size-6" />,
 };
 
 export function ToastItem({ toast, onClose }: Props) {
@@ -48,7 +48,7 @@ export function ToastItem({ toast, onClose }: Props) {
         onClick={onClose}
         className="fg-muted cursor-pointer transition-opacity hover:opacity-50"
       >
-        <XMark className="size-5" />
+        <IconXMark className="size-5" />
       </button>
       <div className="absolute bottom-0 left-0 h-1 w-full mask-l-from-50% mask-l-to-110%">
         <span
