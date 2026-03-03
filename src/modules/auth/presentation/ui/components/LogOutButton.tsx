@@ -9,9 +9,8 @@ export function LogOutButton() {
   };
   return (
     <VariantButton
-      size="md"
-      color="subtle"
-      className=""
+      type="button"
+      variantConfig={{ color: 'subtle' }}
       onClick={handleSignOut}
     >
       Log Out

@@ -17,8 +17,11 @@ export function HeaderNav() {
     <div className="w-full md:mx-auto md:grid md:w-fit md:place-items-center">
       <nav className="relative text-lg font-medium">
         <VariantButton
-          color="simple"
-          type="square"
+          type="button"
+          variantConfig={{
+            color: 'simple',
+            type: 'square',
+          }}
           onClick={handleClick}
           className="md:hidden"
         >

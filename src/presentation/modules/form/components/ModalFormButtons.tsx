@@ -16,8 +16,10 @@ export function ModalFormButtons({
   return (
     <>
       <VariantButton
-        size="md"
-        color="primary"
+        type="button"
+        variantConfig={{
+          color: 'primary',
+        }}
         className={
           isPending ? 'cursor-not-allowed opacity-50' : ''
         }

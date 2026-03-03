@@ -49,8 +49,11 @@ export function Notification({
         </aside>
         <div className="flex items-center gap-2">
           <VariantButton
-            color="subtle"
-            type="square"
+            type="button"
+            variantConfig={{
+              type: 'square',
+              color: 'subtle',
+            }}
             className="text-red-800/80"
           >
             <IconTrash className="size-4" strokeWidth="2" />

@@ -92,7 +92,10 @@ export function MultipleSelectOptionsBox({
       </Box>
       <footer className="flex gap-2">
         <VariantButton
-          color="primary"
+          type="button"
+          variantConfig={{
+            color: 'primary',
+          }}
           onClick={handleAddOptions}
         >
           <IconCirclePlus
@@ -101,7 +104,13 @@ export function MultipleSelectOptionsBox({
           />
           Add
         </VariantButton>
-        <VariantButton color="simple" onClick={handleClose}>
+        <VariantButton
+          type="button"
+          variantConfig={{
+            color: 'simple',
+          }}
+          onClick={handleClose}
+        >
           Cancel
         </VariantButton>
       </footer>

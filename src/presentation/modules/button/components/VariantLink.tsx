@@ -1,26 +1,17 @@
 import Link from 'next/link';
 import type { ComponentProps } from 'react';
-import {
-  buttonVariant,
-  type ButtonVariantProps,
-} from '@/presentation/modules/button/button.config';
+import { buttonVariant } from '@/presentation/modules/button/button.config';
 import { twMerge } from 'tailwind-merge';
+import type { VariantButtonType } from '../button.types';
 
-type Props = ComponentProps<typeof Link> &
-  ButtonVariantProps;
+type LinkProps = ComponentProps<typeof Link>;
 
 export function VariantLink({
+  variantConfig,
   className,
-  size,
-  color,
-  type,
   ...props
-}: Props) {
-  const variantClassNames = buttonVariant({
-    size,
-    color,
-    type,
-  });
+}: VariantButtonType<LinkProps>) {
+  const variantClassNames = buttonVariant(variantConfig);
   return (
     <Link
       className={twMerge(variantClassNames, className)}

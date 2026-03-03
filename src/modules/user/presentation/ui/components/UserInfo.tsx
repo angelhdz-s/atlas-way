@@ -28,7 +28,13 @@ export async function UserInfo({
           </p>
         </header>
       </main>
-      <VariantButton color="simple" type="square">
+      <VariantButton
+        type="button"
+        variantConfig={{
+          type: 'square',
+          color: 'simple',
+        }}
+      >
         <IconDots className="size-6" />
       </VariantButton>
     </footer>

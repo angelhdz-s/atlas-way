@@ -24,9 +24,11 @@ export function Hero() {
 
           <footer className="animate-fade-down animate-delay-200 animate-ease-out flex items-center gap-4">
             <VariantLink
-              size="lg"
+              variantConfig={{
+                color: 'primary',
+                size: 'lg',
+              }}
               href="/dashboard"
-              color="primary"
               className="mx-auto inline-flex min-h-14 items-center gap-2 rounded-full"
             >
               Try AtlasWay

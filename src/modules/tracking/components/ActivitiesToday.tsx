@@ -75,8 +75,11 @@ export function ActivitiesToday({
       </main>
       <footer>
         <VariantButton
-          color="primary"
-          size="sm"
+          type="button"
+          variantConfig={{
+            size: 'sm',
+            color: 'primary',
+          }}
           className="flex items-center gap-1"
         >
           <IconCirclePlus className="size-5" />

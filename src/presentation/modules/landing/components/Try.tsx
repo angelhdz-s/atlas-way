@@ -15,8 +15,10 @@ export function Try({
       <main className="flex w-fit items-center justify-center gap-4">
         <VariantLink
           href="/dashboard"
-          size="lg"
-          color="primary"
+          variantConfig={{
+            color: 'primary',
+            size: 'lg',
+          }}
         >
           <span className="text-lg">Get Started</span>
         </VariantLink>

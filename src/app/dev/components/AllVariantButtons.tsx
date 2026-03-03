@@ -46,33 +46,25 @@ function AllButtonSizes({
     <>
       <VariantLink
         href="#"
-        size="xs"
-        type={type}
-        color={color}
+        variantConfig={{ size: 'xs', color, type }}
       >
         {type === 'normal' ? 'Button XS' : <IconRocket />}
       </VariantLink>
       <VariantLink
         href="#"
-        size="sm"
-        type={type}
-        color={color}
+        variantConfig={{ size: 'sm', color, type }}
       >
         {type === 'normal' ? 'Button SM' : <IconRocket />}
       </VariantLink>
       <VariantLink
         href="#"
-        size="md"
-        type={type}
-        color={color}
+        variantConfig={{ size: 'md', color, type }}
       >
         {type === 'normal' ? 'Button MD' : <IconRocket />}
       </VariantLink>
       <VariantLink
         href="#"
-        size="lg"
-        type={type}
-        color={color}
+        variantConfig={{ size: 'lg', color, type }}
       >
         {type === 'normal' ? (
           'Button LG'

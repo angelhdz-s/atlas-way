@@ -15,7 +15,7 @@ export default function SessionsPage() {
         className=""
       >
         <VariantLink
-          color="simple"
+          variantConfig={{ color: 'simple' }}
           href="/dashboard/sessions/create"
         >
           <IconClipboardList

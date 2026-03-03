@@ -14,7 +14,7 @@ export default function RoutinesPage() {
         description="Create and manage your routines to automate tasks and workflows."
       >
         <VariantLink
-          color="simple"
+          variantConfig={{ color: 'simple' }}
           href="/dashboard/routines/create"
         >
           <IconMapPlus className="size-5" strokeWidth="2" />

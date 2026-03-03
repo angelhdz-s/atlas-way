@@ -23,7 +23,7 @@ export default async function ExercisesPage() {
         className="flex items-center justify-between"
       >
         <VariantLink
-          color="simple"
+          variantConfig={{ color: 'simple' }}
           href="/dashboard/exercises/create"
         >
           Create Exercise

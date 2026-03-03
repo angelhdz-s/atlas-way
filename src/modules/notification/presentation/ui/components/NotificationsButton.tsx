@@ -11,8 +11,11 @@ export function NotificationsButton({
 }) {
   return (
     <VariantButton
-      color="simple"
-      type="square"
+      type="button"
+      variantConfig={{
+        type: 'square',
+        color: 'simple',
+      }}
       className={className}
     >
       <DefaultIcon Icon={IconBell} />

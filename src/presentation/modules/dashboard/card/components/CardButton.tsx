@@ -7,8 +7,10 @@ export function CardButton({
 }) {
   return (
     <VariantButton
-      color="simple"
-      size="md"
+      type="button"
+      variantConfig={{
+        color: 'simple',
+      }}
       className="ml-auto flex items-center gap-1"
     >
       {children}

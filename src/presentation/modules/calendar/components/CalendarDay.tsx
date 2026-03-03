@@ -17,9 +17,12 @@ function CalendarDayItem({
 }) {
   return (
     <VariantButton
-      type="square"
-      color="simple"
-      size="xxs"
+      type="button"
+      variantConfig={{
+        type: 'square',
+        color: 'simple',
+        size: 'xxs',
+      }}
       onClick={onClick}
       className="flex w-full cursor-pointer justify-center hover:bg-transparent"
     >

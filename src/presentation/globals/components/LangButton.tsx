@@ -8,8 +8,11 @@ export function LangButton({
 }) {
   return (
     <VariantButton
-      color="simple"
-      type="square"
+      type="button"
+      variantConfig={{
+        type: 'square',
+        color: 'simple',
+      }}
       className={className}
     >
       <IconLanguage className="size-6" strokeWidth="1.5" />

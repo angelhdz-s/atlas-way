@@ -1,11 +1,9 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
 import { THEME } from '@/presentation/globals/constants/client';
 import {
   DefaultIcon,
-  defaultIconSizeClass,
   IconMoon,
   IconSun,
 } from '@/presentation/globals/components/Icons';
@@ -26,8 +24,11 @@ export function ToggleTheme({
 
   return (
     <VariantButton
-      color="simple"
-      type="square"
+      type="button"
+      variantConfig={{
+        type: 'square',
+        color: 'simple',
+      }}
       className={className}
       onClick={handleClick}
     >

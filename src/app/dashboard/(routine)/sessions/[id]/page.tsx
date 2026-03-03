@@ -16,7 +16,7 @@ export default function RoutinesPage() {
       >
         <VariantLink
           href={`/dashboard/sessions/${id}/add-exercise`}
-          color="primary"
+          variantConfig={{ color: 'primary' }}
         >
           Add Exercises
         </VariantLink>
