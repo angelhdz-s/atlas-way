@@ -4,7 +4,7 @@ import type {
 } from '@/presentation/globals/types.d';
 import { twMerge } from 'tailwind-merge';
 
-export const defaultIconStrokeWidth = '2';
+export const defaultIconStrokeWidth = '1.5';
 export const defaultIconSizeClass = 'size-6';
 
 export function DefaultIcon({
