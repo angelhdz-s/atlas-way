@@ -11,13 +11,13 @@ export function VariantAnchor({
   className,
   size,
   color,
-  rounded = 'default',
+  type,
   ...props
 }: Props) {
   const variantClassNames = buttonVariant({
     size,
     color,
-    rounded,
+    type,
   });
   return (
     <a

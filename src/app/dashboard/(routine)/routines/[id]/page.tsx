@@ -16,7 +16,6 @@ export default function RoutinesPage() {
       >
         <VariantLink
           href={`/dashboard/routines/${id}/add-session`}
-          size="md"
           color="primary"
         >
           Add Session

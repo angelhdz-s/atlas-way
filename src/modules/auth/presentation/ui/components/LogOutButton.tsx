@@ -9,9 +9,9 @@ export function LogOutButton() {
   };
   return (
     <VariantButton
-      type="button"
       size="md"
-      className="hover:fg-strong cursor-pointer pl-0.5 whitespace-nowrap transition-colors"
+      color="subtle"
+      className=""
       onClick={handleSignOut}
     >
       Log Out

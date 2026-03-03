@@ -42,26 +42,26 @@ export function MainCard({
           </li>
         </ul>
       </main>
-      <footer className="*:border-bd-strong-light/50 relative z-1 flex w-full items-center justify-center gap-2 text-base *:flex *:items-center *:gap-2 *:rounded-full *:border *:px-3 *:py-1.5">
-        <button type="button">
+      <ul className="*:border-bd-strong-light/50 relative z-1 flex w-full items-center justify-center gap-2 text-base *:flex *:items-center *:gap-2 *:rounded-full *:border *:px-3 *:py-1.5">
+        <li>
           <IconMapRoute
             className="size-5"
             strokeWidth="1.5"
           />
           Routines
-        </button>
-        <button type="button">
+        </li>
+        <li>
           <IconAlarm className="size-5" strokeWidth="1.5" />
           Sessions
-        </button>
-        <button type="button">
+        </li>
+        <li>
           <IconBarbell
             className="size-5"
             strokeWidth="1.5"
           />
           Exercises
-        </button>
-      </footer>
+        </li>
+      </ul>
     </Card>
   );
 }

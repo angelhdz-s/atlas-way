@@ -7,6 +7,7 @@ import {
   IconCirclePlus,
   IconSearch,
 } from '@/presentation/globals/components/Icons';
+import { VariantButton } from '../../button/components/VariantButton';
 
 function SelectOptionBox({
   option,
@@ -89,25 +90,20 @@ export function MultipleSelectOptionsBox({
           />
         ))}
       </Box>
-      <footer className="flex gap-2 [&_button]:flex [&_button]:w-fit [&_button]:cursor-pointer [&_button]:items-center [&_button]:gap-2 [&_button]:transition-colors">
-        <button
-          type="button"
+      <footer className="flex gap-2">
+        <VariantButton
+          color="primary"
           onClick={handleAddOptions}
-          className="fg-complete border-complete hover:bg-complete/50 hover:fg-strong rounded border px-4 py-2 font-medium"
         >
           <IconCirclePlus
             className="size-5"
             strokeWidth="2"
           />
           Add
-        </button>
-        <button
-          type="button"
-          onClick={handleClose}
-          className="fg-muted border-subtle/20 hover:border-subtle/50 hover:fg-default rounded border px-4 py-2 font-medium"
-        >
+        </VariantButton>
+        <VariantButton color="simple" onClick={handleClose}>
           Cancel
-        </button>
+        </VariantButton>
       </footer>
     </div>
   );

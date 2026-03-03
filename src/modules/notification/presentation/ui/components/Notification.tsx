@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { NotificationType } from '@/presentation/globals/mocks/notifications';
 import { IconTrash } from '@/presentation/globals/components/Icons';
+import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
 
 export function Notification({
   className = '',
@@ -47,12 +48,13 @@ export function Notification({
           {date}
         </aside>
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            className="bg-front cursor-pointer rounded p-2 text-sm text-red-800/80"
+          <VariantButton
+            color="subtle"
+            type="square"
+            className="text-red-800/80"
           >
             <IconTrash className="size-4" strokeWidth="2" />
-          </button>
+          </VariantButton>
         </div>
       </Link>
     </article>

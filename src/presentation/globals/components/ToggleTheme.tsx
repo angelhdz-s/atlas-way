@@ -16,7 +16,6 @@ export function ToggleTheme({
 }: {
   className?: string;
 }) {
-  const [mount, setMount] = useState(false);
   const { theme, setTheme } = useTheme();
 
   const handleClick = () => {
@@ -25,31 +24,21 @@ export function ToggleTheme({
     );
   };
 
-  useEffect(() => {
-    setMount(true);
-  }, []);
-
-  return mount ? (
+  return (
     <VariantButton
-      type="button"
-      size="md"
-      className={`animate-fade cursor-pointer ${className}`}
+      color="simple"
+      type="square"
+      className={className}
       onClick={handleClick}
     >
-      {theme === THEME.DARK && (
-        <DefaultIcon Icon={IconSun} />
-      )}
-      {theme === THEME.LIGHT && (
-        <DefaultIcon Icon={IconMoon} />
-      )}
-    </VariantButton>
-  ) : (
-    <VariantButton
-      size="md"
-      type="button"
-      className={className}
-    >
-      <div className={defaultIconSizeClass}></div>
+      <DefaultIcon
+        Icon={IconSun}
+        className="light:hidden"
+      />
+      <DefaultIcon
+        Icon={IconMoon}
+        className="light:block hidden"
+      />
     </VariantButton>
   );
 }

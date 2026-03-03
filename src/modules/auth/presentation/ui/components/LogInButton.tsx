@@ -9,9 +9,7 @@ export function LogInButton() {
   };
   return (
     <VariantButton
-      type="button"
-      className="rounded-full py-1.5 whitespace-nowrap"
-      color="primaryOutline"
+      color="primary"
       size="md"
       onClick={handleSignIn}
     >

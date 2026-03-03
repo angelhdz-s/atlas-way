@@ -16,8 +16,7 @@ export default function CloseButton({
   };
   return (
     <VariantButton
-      type="button"
-      color="subtleOutline"
+      color="simple"
       className={className}
       onClick={handleClose}
     >

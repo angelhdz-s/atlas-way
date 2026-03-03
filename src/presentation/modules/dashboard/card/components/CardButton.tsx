@@ -7,8 +7,7 @@ export function CardButton({
 }) {
   return (
     <VariantButton
-      type="button"
-      color="subtle"
+      color="simple"
       size="md"
       className="ml-auto flex items-center gap-1"
     >

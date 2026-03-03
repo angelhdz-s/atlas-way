@@ -1,3 +1,4 @@
+import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
 import { IconCog, DefaultIcon } from './Icons';
 
 export function SettingsButton({
@@ -6,11 +7,12 @@ export function SettingsButton({
   className?: string;
 }) {
   return (
-    <button
-      type="button"
-      className={`animate-fade cursor-pointer ${className}`}
+    <VariantButton
+      color="simple"
+      type="square"
+      className={className}
     >
       <DefaultIcon Icon={IconCog} />
-    </button>
+    </VariantButton>
   );
 }

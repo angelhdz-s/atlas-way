@@ -1,30 +1,46 @@
+import { twMerge } from 'tailwind-merge';
 import { tv, type VariantProps } from 'tailwind-variants';
 
 export const buttonVariant = tv({
-  base: 'cursor-pointer transition-colors',
+  base: 'flex w-fit cursor-pointer items-center gap-2 rounded-(--rounding) py-0.5 whitespace-nowrap transition-colors [--rounding:8px] disabled:cursor-not-allowed disabled:opacity-50',
   variants: {
-    rounded: {
-      default: 'rounded',
-      full: 'rounded-full',
-    },
     color: {
       primary:
         'bg-primary fg-strong-dark hover:bg-primary/90',
-      primaryOutline:
-        'outline-primary fg-strong hover:bg-primary/10 light:hover:outline-primary/60 bg-transparent outline-2 -outline-offset-2',
-      secondary:
-        'bg-secondary fg-strong hover:bg-secondary/90',
-      accent: 'bg-accent text-strong hover:bg-accent/90',
-      subtle: 'bg-subtle/20 fg-strong hover:bg-subtle/30',
-      subtleOutline:
-        'fg-default border-bd-default hover:fg-strong hover:border-bd-strong border bg-transparent',
+      primaryDeluxe: twMerge(
+        'fg-strong-dark to-primary from-secondary from-10%',
+        'bg-primary shadow-[0px_0px_30px_0px_var(--color-primary)]/80 hover:shadow-[0px_0px_30px_0px_var(--color-primary)]/50',
+        'hover:bg-amber-900',
+        'relative before:absolute before:-inset-0.5 before:-z-1 before:rounded-[calc(var(--rounding)+2px)]',
+        'before:to-primary before:from-primary before:via-accent light:before:via-white before:bg-linear-10'
+      ),
+      subtle: 'bg-subtle/20 fg-default hover:bg-subtle/30',
+      simple: twMerge(
+        'fg-default hover:fg-muted hover:bg-bd-muted/50 border border-transparent bg-transparent',
+        'light:hover:bg-black/3'
+      ),
+    },
+    type: {
+      normal: true,
+      square: 'aspect-square',
     },
     size: {
-      xs: 'px-2 py-1 text-sm',
-      sm: 'px-3 py-1.5 text-sm',
-      md: 'px-4 py-2 text-base',
-      lg: 'px-6 py-3 text-lg',
+      xxs: 'h-5 px-1 text-xs [--rounding:5px]',
+      xs: 'h-7 px-3 text-sm [--rounding:6px]',
+      sm: 'h-8 px-4 text-sm',
+      md: 'h-10 px-5 text-base',
+      lg: 'h-12 px-7 text-lg [--rounding:12px]',
     },
+  },
+  compoundVariants: [
+    {
+      type: 'square',
+      class: 'justify-center p-0',
+    },
+  ],
+  defaultVariants: {
+    type: 'normal',
+    size: 'md',
   },
 });
 

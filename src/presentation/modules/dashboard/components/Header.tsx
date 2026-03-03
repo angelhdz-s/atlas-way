@@ -34,12 +34,22 @@ export function Header({
             placeholder="Search"
             className="h-8 flex-1 rounded-4xl border border-current/20 px-4 outline-none"
           />
-          <aside className="flex items-center">
-            <NotificationsButton className="rounded-full p-2" />
-            <SettingsButton className="rounded-full p-2" />
-            <ToggleTheme className="rounded-full p-2" />
-            <LangButton className="rounded-full p-2" />
-          </aside>
+          <nav>
+            <ul className="flex items-center">
+              <li>
+                <NotificationsButton />
+              </li>
+              <li>
+                <SettingsButton />
+              </li>
+              <li>
+                <ToggleTheme />
+              </li>
+              <li>
+                <LangButton />
+              </li>
+            </ul>
+          </nav>
         </section>
         <section className="flex h-full items-center justify-end gap-2">
           <UserInfo />

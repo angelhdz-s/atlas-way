@@ -1,6 +1,7 @@
 import { getCurrentSession } from '@/shared/infrastructure/nextauth/next-auth.currentsession';
 import { IconDots } from '@/presentation/globals/components/Icons';
 import { UserAvatar } from './UserAvatar';
+import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
 
 export async function UserInfo({
   className = '',
@@ -27,9 +28,9 @@ export async function UserInfo({
           </p>
         </header>
       </main>
-      <button type="button" className="cursor-pointer p-2">
+      <VariantButton color="simple" type="square">
         <IconDots className="size-6" />
-      </button>
+      </VariantButton>
     </footer>
   );
 }

@@ -25,10 +25,9 @@ export function Hero() {
           <footer className="animate-fade-down animate-delay-200 animate-ease-out flex items-center gap-4">
             <VariantLink
               size="lg"
-              rounded="full"
               href="/dashboard"
               color="primary"
-              className="mx-auto inline-flex items-center gap-2"
+              className="mx-auto inline-flex min-h-14 items-center gap-2 rounded-full"
             >
               Try AtlasWay
               <span className="material-icons">

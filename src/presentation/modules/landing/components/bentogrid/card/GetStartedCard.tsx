@@ -14,8 +14,7 @@ export function GetStartedCard({ className }: Props) {
       <VariantLink
         href="/dashboard"
         size="lg"
-        rounded="full"
-        className="from-accent to-primary fg-strong-dark border-back outline-bd-default flex items-center gap-2 border-4 bg-radial-[50%_50%_at_50%_0%] outline"
+        className="from-accent to-primary fg-strong-dark border-back outline-bd-default flex min-h-14 items-center gap-2 rounded-full border-4 bg-radial-[50%_50%_at_50%_0%] outline"
       >
         <IconArrowsLeftRight className="-ml-1 size-6" />
         <span className="text-lg whitespace-nowrap">

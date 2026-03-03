@@ -1,18 +1,17 @@
+import { LogOutButton } from '@/modules/auth/presentation/ui/components/LogOutButton';
 import { UserAvatar } from './UserAvatar';
 
 export function UserLogout({
   src,
-  children,
 }: {
   src?: string | null;
-  children: React.ReactNode;
 }) {
   return (
-    <div className="border-subtle/50 flex items-center gap-1 rounded-full border px-[2px]">
+    <div className="flex items-center gap-4">
       <picture className="bg-subtle/50 grid aspect-square size-8 place-items-center overflow-hidden rounded-full">
         <UserAvatar src={src} />
       </picture>
-      <aside>{children}</aside>
+      <LogOutButton />
     </div>
   );
 }
