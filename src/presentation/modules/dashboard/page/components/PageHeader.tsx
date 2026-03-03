@@ -10,7 +10,9 @@ export function PageHeader({
   title: string;
 }) {
   return (
-    <header className={`fg-strong w-full ${className}`}>
+    <header
+      className={`fg-strong min-h-20 w-full py-4 ${className}`}
+    >
       <main className="flex w-full items-center gap-2">
         <h1 className="font-funnel-display flex-1 pb-1 text-4xl leading-none font-bold tracking-tight">
           {title}

@@ -1,6 +1,7 @@
 import {
   IconBarbell,
   IconAlarm,
+  IconRouteX,
 } from '@/presentation/globals/components/Icons';
 import { CardTitle } from '../../card/components/CardTitle';
 import { Card } from '../../card/components/Card';
@@ -12,7 +13,7 @@ export function RoutinesList({
 }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
-      <CardTitle title="Routines" />
+      <CardTitle Icon={IconRouteX} title="Routines" />
       <main>
         <ul className="flex flex-col gap-2">
           <li className="flex flex-col gap-1">

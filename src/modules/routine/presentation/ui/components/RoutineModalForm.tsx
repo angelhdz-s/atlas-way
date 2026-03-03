@@ -101,7 +101,7 @@ export function RoutineModalForm({
           />
         </Label>
       </section>
-      <footer className="flex gap-2 *:w-full *:rounded *:border-2 *:px-4 *:py-2">
+      <footer className="flex gap-2 *:w-full">
         <ModalFormButtons isPending={isSubmitting} />
       </footer>
     </ModalForm>

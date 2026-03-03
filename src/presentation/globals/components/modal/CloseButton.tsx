@@ -1,5 +1,6 @@
 'use client';
 
+import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
 import { useRouter } from 'next/navigation';
 
 export default function CloseButton({
@@ -14,12 +15,13 @@ export default function CloseButton({
     router.back();
   };
   return (
-    <button
+    <VariantButton
       type="button"
-      className={`cursor-pointer ${className}`}
+      color="subtleOutline"
+      className={className}
       onClick={handleClose}
     >
       {children}
-    </button>
+    </VariantButton>
   );
 }

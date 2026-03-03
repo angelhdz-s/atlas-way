@@ -1,3 +1,4 @@
+import { IconTrophy } from '@/presentation/globals/components/Icons';
 import { Card } from '../../card/components/Card';
 import { CardTitle } from '../../card/components/CardTitle';
 
@@ -9,6 +10,7 @@ export function TotalSessionsDone({
   return (
     <Card className={`flex flex-col gap-0 ${className}`}>
       <CardTitle
+        Icon={IconTrophy}
         title="Total Sessions Done"
         className="text-center"
       />

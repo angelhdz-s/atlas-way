@@ -136,7 +136,10 @@ export function CurrentWeekStatus({
   const currentWeekStatusDays = getCurrentWeekStatusDays();
 
   return (
-    <Card className={`flex flex-col ${className}`}>
+    <Card
+      border="highlighted"
+      className={`flex flex-col ${className}`}
+    >
       <header>
         <CardTitle Icon={IconCalendarWeek} title="Week" />
       </header>

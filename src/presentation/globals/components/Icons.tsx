@@ -302,11 +302,20 @@ export function IconFaceHappy(props: IconProps) {
   );
 }
 
-export function IconForward(props: IconProps) {
+export function IconPlayerTrackNext(props: IconProps) {
   return (
     <MainSvgBody {...props}>
       <path d="M3 5v14l8 -7z" />
       <path d="M14 5v14l8 -7z" />
+    </MainSvgBody>
+  );
+}
+
+export function IconPlayerTrackPrev(props: IconProps) {
+  return (
+    <MainSvgBody {...props}>
+      <path d="M21 5v14l-8 -7l8 -7" />
+      <path d="M10 5v14l-8 -7l8 -7" />
     </MainSvgBody>
   );
 }
@@ -642,6 +651,67 @@ export function IconListCheck(props: IconProps) {
       <path d="M11 6l9 0" />
       <path d="M11 12l9 0" />
       <path d="M11 18l9 0" />
+    </MainSvgBody>
+  );
+}
+
+export function IconRouteX(props: IconProps) {
+  return (
+    <MainSvgBody {...props}>
+      <path d="M3 17l4 4" />
+      <path d="M7 17l-4 4" />
+      <path d="M17 3l4 4" />
+      <path d="M21 3l-4 4" />
+      <path d="M11 19h5.5a3.5 3.5 0 0 0 0 -7h-8a3.5 3.5 0 0 1 0 -7h4.5" />
+    </MainSvgBody>
+  );
+}
+
+export function IconSchema(props: IconProps) {
+  return (
+    <MainSvgBody {...props}>
+      <path d="M5 2h5v4h-5l0 -4" />
+      <path d="M15 10h5v4h-5l0 -4" />
+      <path d="M5 18h5v4h-5l0 -4" />
+      <path d="M5 10h5v4h-5l0 -4" />
+      <path d="M10 12h5" />
+      <path d="M7.5 6v4" />
+      <path d="M7.5 14v4" />
+    </MainSvgBody>
+  );
+}
+
+export function IconSitemap(props: IconProps) {
+  return (
+    <MainSvgBody {...props}>
+      <path d="M3 17a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2l0 -2" />
+      <path d="M15 17a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2l0 -2" />
+      <path d="M9 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2l0 -2" />
+      <path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" />
+      <path d="M12 9l0 3" />
+    </MainSvgBody>
+  );
+}
+
+export function IconRotateClockwise(props: IconProps) {
+  return (
+    <MainSvgBody {...props}>
+      <path d="M9 4.55a8 8 0 0 1 6 14.9m0 -4.45v5h5" />
+      <path d="M5.63 7.16l0 .01" />
+      <path d="M4.06 11l0 .01" />
+      <path d="M4.63 15.1l0 .01" />
+      <path d="M7.16 18.37l0 .01" />
+      <path d="M11 19.94l0 .01" />
+    </MainSvgBody>
+  );
+}
+
+export function IconRocket(props: IconProps) {
+  return (
+    <MainSvgBody {...props}>
+      <path d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3" />
+      <path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
+      <path d="M14 9a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
     </MainSvgBody>
   );
 }

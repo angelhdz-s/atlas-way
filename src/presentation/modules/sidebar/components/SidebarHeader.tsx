@@ -1,5 +1,7 @@
 import {
+  IconCalendarCheck,
   IconCalendarWeek,
+  IconClipboardList,
   IconHome,
 } from '@/presentation/globals/components/Icons';
 import { NavLinkNotification } from './nav/custom/NavLinkNotification';
@@ -17,7 +19,7 @@ export function SidebarHeader() {
 
         <NavLink
           href="/dashboard/tracking"
-          Icon={IconCalendarWeek}
+          Icon={IconCalendarCheck}
         >
           Tracking
         </NavLink>

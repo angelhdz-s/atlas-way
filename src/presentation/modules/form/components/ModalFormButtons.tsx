@@ -1,6 +1,7 @@
 'use client';
 
 import CloseButton from '@/presentation/globals/components/modal/CloseButton';
+import { VariantButton } from '../../button/components/VariantButton';
 
 export function ModalFormButtons({
   isPending = false,
@@ -14,16 +15,17 @@ export function ModalFormButtons({
   };
   return (
     <>
-      <button
-        type="submit"
-        className={`fg-strong-dark border-blue-600 bg-blue-600 ${isPending ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+      <VariantButton
+        size="md"
+        color="primary"
+        className={
+          isPending ? 'cursor-not-allowed opacity-50' : ''
+        }
         onClick={handleSubmit}
       >
         Create
-      </button>
-      <CloseButton className="fg-strong border-bd-strong">
-        Cancel
-      </CloseButton>
+      </VariantButton>
+      <CloseButton>Cancel</CloseButton>
     </>
   );
 }

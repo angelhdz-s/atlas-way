@@ -13,9 +13,9 @@ export function ModalForm({
 }) {
   return (
     <div
-      className={`flex w-96 flex-col gap-2 ${className}`}
+      className={`flex w-100 flex-col gap-4 ${className}`}
     >
-      <header className="font-funnel-display fg-strong text-2xl font-medium">
+      <header className="font-funnel-display fg-strong text-center text-3xl font-medium">
         {title}
       </header>
       <main className="font-light">

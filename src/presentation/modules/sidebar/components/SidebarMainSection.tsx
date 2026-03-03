@@ -3,9 +3,9 @@
 import { SidebarSection } from '@/presentation/modules/sidebar/components/SidebarSection';
 import {
   IconBarbell,
-  IconClipboardList,
   IconMan,
-  IconMapRoute,
+  IconRouteX,
+  IconSchema,
 } from '@/presentation/globals/components/Icons';
 import { NavLink, NavLinks } from './nav/NavLink';
 
@@ -15,14 +15,14 @@ export function SidebarMainSection() {
       <NavLinks>
         <NavLink
           href="/dashboard/routines"
-          Icon={IconMapRoute}
+          Icon={IconRouteX}
         >
           Routines
         </NavLink>
 
         <NavLink
           href="/dashboard/sessions"
-          Icon={IconClipboardList}
+          Icon={IconSchema}
         >
           Sessions
         </NavLink>

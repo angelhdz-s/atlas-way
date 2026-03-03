@@ -5,12 +5,12 @@ import {
   IconBarbell,
   IconBell,
   IconEdit,
-  IconForward,
   IconMapRoute,
   IconHeart,
   IconScale,
   IconTrendingUp,
   IconTrophy,
+  IconPlayerTrackNext,
 } from '@/presentation/globals/components/Icons';
 import type { IconTypes } from '@/presentation/globals/types.d';
 import styles from './IconsAnimation.module.css';
@@ -22,7 +22,7 @@ const ICONS: IconTypes[] = [
   IconMapRoute,
   IconAlarm,
   IconEdit,
-  IconForward,
+  IconPlayerTrackNext,
   IconHeart,
   IconScale,
   IconTrendingUp,

@@ -1,6 +1,7 @@
 import { CardTitle } from '../../card/components/CardTitle';
 import { Card } from '../../card/components/Card';
 import { IconSolidCircleCheck } from '@/presentation/globals/components/SolidIcons';
+import { IconPlayerTrackPrev } from '@/presentation/globals/components/Icons';
 
 export function LastSession({
   className = '',
@@ -9,7 +10,10 @@ export function LastSession({
 }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
-      <CardTitle title="Last Sessions" />
+      <CardTitle
+        Icon={IconPlayerTrackPrev}
+        title="Last Sessions"
+      />
       <main className="flex flex-col gap-4">
         <header className="flex items-center">
           <h4 className="fg-complete inline text-xl leading-none font-bold">

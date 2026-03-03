@@ -5,6 +5,7 @@ import {
 } from '../card.config';
 import { twMerge } from 'tailwind-merge';
 import { CardHighlightBorder } from './decoration/CardHighlightBorder';
+import { useId } from 'react';
 
 interface Props extends CardVariantProps {
   className?: string;
@@ -21,6 +22,8 @@ export function Card({
   width,
   border,
 }: Props) {
+  const id = useId();
+
   const cardVariant = cardClassesConfig({
     color,
     type,
@@ -29,7 +32,7 @@ export function Card({
   });
   const classNames = twMerge(cardVariant, className);
   return (
-    <Tag className={classNames}>
+    <Tag id={id} className={classNames}>
       {children}
       {border === 'highlighted' && <CardHighlightBorder />}
     </Tag>

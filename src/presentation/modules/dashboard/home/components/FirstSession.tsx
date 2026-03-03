@@ -3,6 +3,7 @@ import { CardTitle } from '../../card/components/CardTitle';
 import { ImageBackground } from './ImageBackground';
 import { Card } from '../../card/components/Card';
 import { twMerge } from 'tailwind-merge';
+import { IconClipboardList } from '@/presentation/globals/components/Icons';
 
 export function FirstSession({
   className = '',
@@ -10,11 +11,11 @@ export function FirstSession({
   className?: string;
 }) {
   return (
-    <Card
-      border="simple"
-      className={twMerge('relative', className)}
-    >
-      <CardTitle title="Create Your Sessions" />
+    <Card className={twMerge('relative', className)}>
+      <CardTitle
+        Icon={IconClipboardList}
+        title="Create Your Sessions"
+      />
       <ImageBackground>
         <Image
           src="/images/dashboard/session-dark.png"

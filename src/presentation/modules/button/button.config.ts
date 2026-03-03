@@ -17,7 +17,7 @@ export const buttonClassConfig = tv({
       accent: 'bg-accent text-strong hover:bg-accent/90',
       subtle: 'bg-subtle/20 fg-strong hover:bg-subtle/30',
       subtleOutline:
-        'border-secondary fg-secondary hover:bg-secondary hover:fg-strong border bg-transparent',
+        'fg-default border-bd-default hover:fg-strong hover:border-bd-strong border bg-transparent',
     },
     size: {
       xs: 'px-2 py-1 text-sm',

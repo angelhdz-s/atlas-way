@@ -2,6 +2,7 @@ import { MUSCLES } from '@/presentation/globals/constants/db';
 import { CardTitle } from '../../card/components/CardTitle';
 import { SimpleTable } from './SimpleTable';
 import { Card } from '../../card/components/Card';
+import { IconMan } from '@/presentation/globals/components/Icons';
 
 export function MusclesList({
   className = '',
@@ -16,7 +17,7 @@ export function MusclesList({
     }));
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
-      <CardTitle title="Muscles" />
+      <CardTitle Icon={IconMan} title="Muscles" />
       <main>
         <SimpleTable
           header={{ key: '#', name: 'Muscle' }}
