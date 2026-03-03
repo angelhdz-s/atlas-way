@@ -1,6 +1,6 @@
 import type { AtomicElement } from '@/presentation/globals/types';
 import {
-  cardClassesConfig,
+  cardVariant,
   type CardVariantProps,
 } from '../card.config';
 import { twMerge } from 'tailwind-merge';
@@ -24,13 +24,13 @@ export function Card({
 }: Props) {
   const id = useId();
 
-  const cardVariant = cardClassesConfig({
+  const variantClassNames = cardVariant({
     color,
     type,
     width,
     border,
   });
-  const classNames = twMerge(cardVariant, className);
+  const classNames = twMerge(variantClassNames, className);
   return (
     <Tag id={id} className={classNames}>
       {children}

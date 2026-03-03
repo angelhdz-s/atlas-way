@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import type { ComponentProps } from 'react';
-import type { ButtonVariantProps } from '@/presentation/modules/button/button.config';
-import { buttonVariantHelper } from '../helpers/button-variants.helper';
+import {
+  buttonVariant,
+  type ButtonVariantProps,
+} from '@/presentation/modules/button/button.config';
+import { twMerge } from 'tailwind-merge';
 
 type Props = ComponentProps<typeof Link> &
   ButtonVariantProps;
@@ -13,12 +16,14 @@ export function VariantLink({
   rounded = 'default',
   ...props
 }: Props) {
+  const variantClassNames = buttonVariant({
+    size,
+    color,
+    rounded,
+  });
   return (
     <Link
-      className={buttonVariantHelper(
-        { size, color, rounded },
-        className
-      )}
+      className={twMerge(variantClassNames, className)}
       {...props}
     ></Link>
   );

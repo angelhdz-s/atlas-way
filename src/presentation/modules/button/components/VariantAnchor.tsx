@@ -1,6 +1,9 @@
 import type { AnchorElementProps } from '@/presentation/globals/components/Anchor';
-import type { ButtonVariantProps } from '@/presentation/modules/button/button.config';
-import { buttonVariantHelper } from '../helpers/button-variants.helper';
+import {
+  buttonVariant,
+  type ButtonVariantProps,
+} from '@/presentation/modules/button/button.config';
+import { twMerge } from 'tailwind-merge';
 
 type Props = AnchorElementProps & ButtonVariantProps;
 
@@ -11,12 +14,14 @@ export function VariantAnchor({
   rounded = 'default',
   ...props
 }: Props) {
+  const variantClassNames = buttonVariant({
+    size,
+    color,
+    rounded,
+  });
   return (
     <a
-      className={buttonVariantHelper(
-        { size, color, rounded },
-        className
-      )}
+      className={twMerge(variantClassNames, className)}
       {...props}
     ></a>
   );

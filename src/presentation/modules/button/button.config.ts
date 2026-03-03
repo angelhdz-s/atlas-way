@@ -1,6 +1,6 @@
 import { tv, type VariantProps } from 'tailwind-variants';
 
-export const buttonClassConfig = tv({
+export const buttonVariant = tv({
   base: 'cursor-pointer transition-colors',
   variants: {
     rounded: {
@@ -29,5 +29,5 @@ export const buttonClassConfig = tv({
 });
 
 export type ButtonVariantProps = VariantProps<
-  typeof buttonClassConfig
+  typeof buttonVariant
 >;

@@ -1,6 +1,6 @@
 import { tv, type VariantProps } from 'tailwind-variants';
 
-export const cardClassesConfig = tv({
+export const cardVariant = tv({
   base: 'rounded-2xl border p-4',
   variants: {
     border: {
@@ -47,5 +47,5 @@ export const cardClassesConfig = tv({
 });
 
 export type CardVariantProps = VariantProps<
-  typeof cardClassesConfig
+  typeof cardVariant
 >;
