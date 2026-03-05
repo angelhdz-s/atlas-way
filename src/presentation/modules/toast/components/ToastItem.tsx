@@ -35,7 +35,7 @@ export function ToastItem({ toast, onClose }: Props) {
 
   return (
     <div
-      className={`animate-fade-up animate-duration-200 flex min-w-2xs items-center justify-between rounded p-4 pb-4.5 shadow-lg shadow-black/10 ${styles.toast} ${TOAST_TYPES[type]}`}
+      className={`animate-fade-up animate-duration-200 flex w-96 min-w-2xs items-center justify-between rounded-lg p-4 pb-4.5 shadow-lg shadow-black/10 ${styles.toast} ${TOAST_TYPES[type]}`}
     >
       <main className="flex items-center gap-2">
         <div className="-mb-1">{TOAST_ICONS[type]}</div>

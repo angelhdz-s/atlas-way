@@ -1,24 +1,26 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ModalForm } from '@/presentation/modules/form/components/ModalForm';
-import { ModalFormButtons } from '@/presentation/modules/form/components/ModalFormButtons';
+import { ModalForm } from '@/presentation/modules/form/components/modal-form/ModalForm';
+import { ModalFormButtons } from '@/presentation/modules/form/components/modal-form/ModalFormButtons';
 import type { SelectOption } from '@/presentation/modules/form/types';
-import { Label } from '@/presentation/modules/form/components/LabelInput';
-import { InputText } from '@/presentation/modules/form/components/InputText';
-import { TextArea } from '@/presentation/modules/form/components/TextArea';
+import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
+import { InputText } from '@/presentation/modules/form/components/fields/InputText';
+import { TextArea } from '@/presentation/modules/form/components/fields/TextArea';
 import { MultipleSelectBox } from '@/presentation/modules/form/components/MultipleSelectBox';
 import { useSessionForm } from '../hooks/useSessionForm';
 
 export function SessionModalForm({
-  title,
   exercises,
 }: {
-  title: string;
   exercises: SelectOption[];
 }) {
   const router = useRouter();
   const handleSuccess = () => {
+    router.back();
+  };
+
+  const handleClose = () => {
     router.back();
   };
 
@@ -31,7 +33,11 @@ export function SessionModalForm({
   } = useSessionForm({ onSuccess: handleSuccess });
 
   return (
-    <ModalForm title={title} onSubmit={handleSubmit}>
+    <ModalForm
+      title="Plan the session"
+      onSubmit={handleSubmit}
+      onClose={handleClose}
+    >
       <Label htmlFor="name" title="Name">
         <InputText
           {...register('name')}
@@ -58,9 +64,10 @@ export function SessionModalForm({
           />
         ))}
       </MultipleSelectBox>
-      <footer className="flex gap-2 *:w-full">
-        <ModalFormButtons isPending={isSubmitting} />
-      </footer>
+      <ModalFormButtons
+        onClose={handleClose}
+        isPending={isSubmitting}
+      />
     </ModalForm>
   );
 }

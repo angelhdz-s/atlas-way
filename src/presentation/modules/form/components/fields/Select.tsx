@@ -1,8 +1,11 @@
-import { InputClasses } from '../constants/classes';
+import { InputClasses } from '../../constants/classes';
 
 import styles from './Select.module.css';
-import type { SelectOption, SelectOptionValue } from '../types';
-import { ErrorMessage } from './ErrorMessage';
+import type {
+  SelectOption,
+  SelectOptionValue,
+} from '../../types';
+import { ErrorMessage } from '../ErrorMessage';
 
 type multipleSelectedType =
   | {

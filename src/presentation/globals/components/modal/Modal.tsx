@@ -34,7 +34,7 @@ export function Modal({
     <div
       className={`fixed inset-0 z-50 m-auto flex items-center justify-center ${className}`}
     >
-      <div className="bg-middle z-50 rounded-2xl p-10 shadow-lg">
+      <div className="bg-middle z-50 rounded-2xl shadow-lg">
         {children}
       </div>
       <div

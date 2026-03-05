@@ -10,6 +10,7 @@ import {
   IconXMark,
 } from '@/presentation/globals/components/Icons';
 import { ErrorMessage } from './ErrorMessage';
+import { VariantButton } from '../../button/components/VariantButton';
 
 function SelectedOptions({
   label,
@@ -19,16 +20,17 @@ function SelectedOptions({
   onCrossClick?: () => void;
 }) {
   return (
-    <div className="bg-sec-back border-subtle/10 flex w-fit items-center rounded-full border px-2">
-      {label}
+    <div className="bg-middle border-bd-muted flex w-fit max-w-36 items-center gap-0.5 rounded-lg border px-3 py-1 hover:border-transparent">
+      <span className="truncate">{label}</span>
       {onCrossClick && (
-        <button
+        <VariantButton
+          variantConfig={{ size: 'xs', type: 'square' }}
           type="button"
           onClick={onCrossClick}
           className="cursor-pointer transition-opacity hover:opacity-50"
         >
           <IconXMark className="size-5" strokeWidth="1" />
-        </button>
+        </VariantButton>
       )}
     </div>
   );
@@ -63,8 +65,23 @@ export function MultipleSelectBox({
   return (
     <>
       <div className="flex flex-col gap-2">
-        <p>{label}</p>
-        <Box className="flex h-32 gap-2">
+        <header className="fg-strong font-medium">
+          {label}
+        </header>
+        <Box className="flex h-48 gap-1">
+          <main className="scrollbar-y flex flex-1 flex-wrap content-start gap-2 pb-4">
+            {selectedOptions.map((selectedOption) => (
+              <SelectedOptions
+                key={selectedOption.value}
+                label={selectedOption.label}
+                onCrossClick={() =>
+                  handleRemoveOptionsSelected(
+                    selectedOption
+                  )
+                }
+              />
+            ))}
+          </main>
           <aside className="flex flex-col items-center justify-between gap-2">
             <button
               type="button"
@@ -81,26 +98,13 @@ export function MultipleSelectBox({
               <IconTrash strokeWidth="1" />
             </button>
           </aside>
-          <main className="scrollbar-y flex flex-1 flex-wrap content-start gap-2 pb-4">
-            {selectedOptions.map((selectedOption) => (
-              <SelectedOptions
-                key={selectedOption.value}
-                label={selectedOption.label}
-                onCrossClick={() =>
-                  handleRemoveOptionsSelected(
-                    selectedOption
-                  )
-                }
-              />
-            ))}
-          </main>
         </Box>
         {children}
         <ErrorMessage message={error} />
       </div>
       {isSelecting && (
         <>
-          <div className="border-subtle/10 fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rounded border shadow-lg">
+          <div className="fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rounded shadow-lg">
             <MultipleSelectOptionsBox
               title={selectingTitle}
               options={filteredOptions}

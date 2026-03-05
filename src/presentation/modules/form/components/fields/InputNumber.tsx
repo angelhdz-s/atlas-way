@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { InputClasses } from '../constants/classes';
-import type { InputNumberProps } from '../types';
-import { ErrorMessage } from './ErrorMessage';
+import { InputClasses } from '../../constants/classes';
+import type { InputNumberProps } from '../../types';
+import { ErrorMessage } from '../ErrorMessage';
 
 export function InputNumber({
   name,

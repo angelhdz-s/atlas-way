@@ -1,7 +1,7 @@
 'use client';
 
 import { Box } from '@/presentation/modules/form/components/Box';
-import { Label } from '@/presentation/modules/form/components/LabelInput';
+import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import {
   IconEdit,
   IconTrash,

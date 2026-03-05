@@ -3,9 +3,7 @@ import { SessionModalForm } from '@/modules/session/presentation/ui/components/S
 import type { SelectOption } from '@/presentation/modules/form/types';
 
 export default async function CreateSessionPage() {
-  const exercisesRequest = await getAllUserExercises({
-    includeMuscles: true,
-  });
+  const exercisesRequest = await getAllUserExercises();
   const data = exercisesRequest.success
     ? exercisesRequest.data
     : [];
@@ -16,10 +14,5 @@ export default async function CreateSessionPage() {
     })
   );
 
-  return (
-    <SessionModalForm
-      title="New Session"
-      exercises={exercises}
-    />
-  );
+  return <SessionModalForm exercises={exercises} />;
 }

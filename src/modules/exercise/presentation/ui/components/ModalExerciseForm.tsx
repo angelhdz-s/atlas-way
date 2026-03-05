@@ -2,26 +2,33 @@
 
 import { useRouter } from 'next/navigation';
 import { useExerciseForm } from '@/modules/exercise/presentation/ui/hooks/useExerciseForm';
-import { InputNumber } from '@/presentation/modules/form/components/InputNumber';
-import { InputText } from '@/presentation/modules/form/components/InputText';
-import { Label } from '@/presentation/modules/form/components/LabelInput';
-import { ModalForm } from '@/presentation/modules/form/components/ModalForm';
-import { ModalFormButtons } from '@/presentation/modules/form/components/ModalFormButtons';
+import { InputNumber } from '@/presentation/modules/form/components/fields/InputNumber';
+import { InputText } from '@/presentation/modules/form/components/fields/InputText';
+import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
+import { ModalForm } from '@/presentation/modules/form/components/modal-form/ModalForm';
+import { ModalFormButtons } from '@/presentation/modules/form/components/modal-form/ModalFormButtons';
 import { MultipleSelectBox } from '@/presentation/modules/form/components/MultipleSelectBox';
-import { TextArea } from '@/presentation/modules/form/components/TextArea';
+import { TextArea } from '@/presentation/modules/form/components/fields/TextArea';
 import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
 import type { SelectOption } from '@/presentation/modules/form/types';
+import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
+import {
+  IconBarbell,
+  IconMan,
+} from '@/presentation/globals/components/Icons';
 
 export function ModalExerciseForm({
-  title,
   muscles,
 }: {
-  title: string;
   muscles: SelectOption[];
 }) {
   const router = useRouter();
 
   const handleSuccess = () => {
+    router.back();
+  };
+
+  const handleClose = () => {
     router.back();
   };
 
@@ -35,25 +42,35 @@ export function ModalExerciseForm({
   } = useExerciseForm({ onSuccess: handleSuccess });
 
   return (
-    <ModalForm title={title} onSubmit={handleSubmit}>
-      <Label htmlFor="exercise.name" title="Name">
-        <InputText
-          {...register('exercise.name')}
-          error={errors.exercise?.name?.message}
-          placeholder="Bench Press"
-        />
-      </Label>
-      <Label
-        htmlFor="exercise.description"
-        title="Description"
+    <ModalForm
+      title="Build your exercise"
+      onSubmit={handleSubmit}
+      onClose={handleClose}
+    >
+      <section className="space-y-4">
+        <Label htmlFor="exercise.name" title="Name">
+          <InputText
+            {...register('exercise.name')}
+            error={errors.exercise?.name?.message}
+            placeholder="Bench Press"
+          />
+        </Label>
+        <Label
+          htmlFor="exercise.description"
+          title="Description"
+        >
+          <TextArea
+            {...register('exercise.description')}
+            error={errors.exercise?.description?.message}
+            placeholder="A compound exercise that targets the chest, shoulders, and triceps."
+          />
+        </Label>
+      </section>
+      <FormFieldSection
+        Icon={IconBarbell}
+        title="Metrics"
+        className="flex items-start gap-4"
       >
-        <TextArea
-          {...register('exercise.description')}
-          error={errors.exercise?.description?.message}
-          placeholder="A compound exercise that targets the chest, shoulders, and triceps."
-        />
-      </Label>
-      <section className="flex items-start gap-2">
         <Label htmlFor="initialStats.sets" title="Sets">
           <InputNumber
             {...register(
@@ -84,8 +101,12 @@ export function ModalExerciseForm({
             error={errors.initialStats?.weight?.message}
           />
         </Label>
-      </section>
-      <section>
+      </FormFieldSection>
+      <FormFieldSection
+        Icon={IconMan}
+        title="To train"
+        className=""
+      >
         <MultipleSelectBox
           label="Muscles"
           selectingTitle="Select muscles"
@@ -101,10 +122,11 @@ export function ModalExerciseForm({
             ></input>
           ))}
         </MultipleSelectBox>
-      </section>
-      <footer className="flex gap-2 *:w-full">
-        <ModalFormButtons isPending={isSubmitting} />
-      </footer>
+      </FormFieldSection>
+      <ModalFormButtons
+        onClose={handleClose}
+        isPending={isSubmitting}
+      />
     </ModalForm>
   );
 }

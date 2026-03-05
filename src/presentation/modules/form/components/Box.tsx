@@ -6,7 +6,7 @@ type BoxProps = {
 export function Box({ className, children }: BoxProps) {
   return (
     <div
-      className={`bg-back border-bd-muted w-full rounded-lg border p-2 ${className}`}
+      className={`bg-back hover:outline-bd-default w-full rounded-lg p-2 hover:outline-1 ${className}`}
     >
       {children}
     </div>

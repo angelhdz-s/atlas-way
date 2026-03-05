@@ -1,34 +1,35 @@
 'use client';
 
 import { useState } from 'react';
-import { InputNumber } from '@/presentation/modules/form/components/InputNumber';
-import { InputText } from '@/presentation/modules/form/components/InputText';
+import { InputNumber } from '@/presentation/modules/form/components/fields/InputNumber';
+import { InputText } from '@/presentation/modules/form/components/fields/InputText';
 import {
   Label,
   LabelGroup,
-} from '@/presentation/modules/form/components/LabelInput';
-import { ModalFormButtons } from '@/presentation/modules/form/components/ModalFormButtons';
-import { TextArea } from '@/presentation/modules/form/components/TextArea';
+} from '@/presentation/modules/form/components/fields/LabelInput';
+import { ModalFormButtons } from '@/presentation/modules/form/components/modal-form/ModalFormButtons';
+import { TextArea } from '@/presentation/modules/form/components/fields/TextArea';
 import { createRoutineAction } from '@/modules/routine/presentation/routine.actions';
 import { routineFormSchema } from '../config/routine-schema';
 import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
 import { daysOptions } from '../config/form';
 import { useFormHook } from '@/presentation/modules/form/hooks/useFormHook';
-import { InputDate } from '@/presentation/modules/form/components/InputDate';
-import { ModalForm } from '@/presentation/modules/form/components/ModalForm';
+import { InputDate } from '@/presentation/modules/form/components/fields/InputDate';
+import { ModalForm } from '@/presentation/modules/form/components/modal-form/ModalForm';
 import { RadiobuttonGroup } from '@/presentation/modules/form/components/RadiobuttonGroup';
 import { useRouter } from 'next/navigation';
 
-export function RoutineModalForm({
-  title,
-}: {
-  title: string;
-}) {
+export function RoutineModalForm() {
   const router = useRouter();
 
   const handleSuccess = () => {
     router.back();
   };
+
+  const handleClose = () => {
+    router.back();
+  };
+
   const { register, handleSubmit, errors, isSubmitting } =
     useFormHook({
       schema: routineFormSchema,
@@ -46,7 +47,11 @@ export function RoutineModalForm({
   };
 
   return (
-    <ModalForm title={title} onSubmit={handleSubmit}>
+    <ModalForm
+      onClose={handleClose}
+      title="Design your routine"
+      onSubmit={handleSubmit}
+    >
       <section className="flex flex-col gap-2">
         <Label htmlFor="name" title="Name">
           <InputText
@@ -101,9 +106,10 @@ export function RoutineModalForm({
           />
         </Label>
       </section>
-      <footer className="flex gap-2 *:w-full">
-        <ModalFormButtons isPending={isSubmitting} />
-      </footer>
+      <ModalFormButtons
+        onClose={handleClose}
+        isPending={isSubmitting}
+      />
     </ModalForm>
   );
 }
