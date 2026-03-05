@@ -18,7 +18,7 @@ export function CardSubHeader({
           </ul>
         </main>
       )}
-      <p>{description}</p>
+      <p className="line-clamp-2">{description}</p>
     </footer>
   );
 }

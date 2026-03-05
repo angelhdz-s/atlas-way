@@ -29,7 +29,7 @@ export default async function ExercisesPage() {
           Create Exercise
         </VariantLink>
       </PageHeader>
-      <PageContent className="flex flex-wrap gap-8">
+      <PageContent className="flex flex-wrap gap-4">
         <Exercises exercises={exercises} />
       </PageContent>
     </PageContainer>

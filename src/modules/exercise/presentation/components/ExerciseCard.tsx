@@ -15,7 +15,7 @@ export function ExerciseCard({
   name,
 }: FullExerciseDTO) {
   return (
-    <Card type="dashboard" width="sm" key={id}>
+    <Card type="dashboard" width="md" key={id}>
       <CardHeader title={name}>
         <CardSubHeader description={description ?? ''} />
       </CardHeader>
