@@ -34,7 +34,12 @@ export function Card({
   return (
     <Tag id={id} className={classNames}>
       {children}
-      {border === 'highlighted' && <CardHighlightBorder />}
+      {border === 'highlighted' && (
+        <>
+          <CardHighlightBorder />
+          <CardHighlightBorder className="opacity-20 blur-xs" />
+        </>
+      )}
     </Tag>
   );
 }

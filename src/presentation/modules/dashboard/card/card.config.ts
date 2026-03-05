@@ -37,7 +37,7 @@ export const cardVariant = tv({
       border: 'default',
       color: 'default',
       class:
-        'light:before:bg-white before:bg-bd-strong before:absolute before:inset-[-2px] before:-z-1 before:rounded-[17px] before:from-black before:to-black/50 before:mask-radial-[50%_50%] before:mask-radial-from-0 before:mask-radial-to-100% before:mask-radial-at-top-left',
+        'light:before:bg-white before:bg-bd-strong before:absolute before:-inset-0.5 before:-z-1 before:rounded-[17px] before:from-black before:to-black/50 before:mask-radial-[50%_50%] before:mask-radial-from-0 before:mask-radial-to-100% before:mask-radial-at-top-left',
     },
   ],
   defaultVariants: {
