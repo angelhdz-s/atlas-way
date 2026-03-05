@@ -1,3 +1,6 @@
-import { ExerciseInitialStatsProps } from '../../domain/exercise-initial-stats.types';
+import type { ExerciseInitialStatsProps } from '../../domain/exercise-initial-stats.types';
 
-export type ExerciseInitialStatsDTO = Pick<ExerciseInitialStatsProps, 'reps' | 'sets' | 'weight'>;
+export type ExerciseInitialStatsDTO = Pick<
+  ExerciseInitialStatsProps,
+  'reps' | 'sets' | 'weight'
+>;

@@ -1,4 +1,5 @@
 .tracking-day {
-	background: url('/backgrounds/grid.svg') repeat center center;
-	background-size: 20px;
+  background: url('/backgrounds/grid.svg') repeat center
+    center;
+  background-size: 20px;
 }

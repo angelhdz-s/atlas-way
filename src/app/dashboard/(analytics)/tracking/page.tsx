@@ -13,23 +13,23 @@ import { SessionsHistory } from '@/modules/tracking/components/SessionsHistory';
 import { SessionStreak } from '@/modules/tracking/components/SessionStreak';
 
 export default function SessionsPage() {
-	return (
-		<PageContainer>
-			<PageHeader title="Tracking" />
-			<PageContent className="grid grid-cols-3 gap-4">
-				<CurrentWeekStatus />
-				<section className="grid grid-cols-3 gap-2 col-span-2">
-					<SessionStreak />
-					<CurrentMonthSessionsCounter />
-					<AllSessionsDoneCounter />
-				</section>
-				<ActivitiesToday />
-				<SessionsHistory className="col-span-2" />
-				<SessionsChart />
-				<BestRecords />
-				<CurrentGoals />
-				<NextSession />
-			</PageContent>
-		</PageContainer>
-	);
+  return (
+    <PageContainer>
+      <PageHeader title="Tracking" />
+      <PageContent className="grid grid-cols-3 gap-6">
+        <CurrentWeekStatus />
+        <section className="col-span-2 grid grid-cols-3 gap-6">
+          <SessionStreak />
+          <CurrentMonthSessionsCounter />
+          <AllSessionsDoneCounter />
+        </section>
+        <ActivitiesToday />
+        <SessionsHistory className="col-span-2" />
+        <SessionsChart />
+        <BestRecords />
+        <CurrentGoals />
+        <NextSession />
+      </PageContent>
+    </PageContainer>
+  );
 }

@@ -1,18 +1,19 @@
 export function ArrowButton({
-	className = '',
-	children,
-	onClick,
+  className = '',
+  children,
+  onClick,
 }: {
-	className?: string;
-	children: React.ReactNode;
-	onClick?: () => void;
+  className?: string;
+  children: React.ReactNode;
+  onClick?: () => void;
 }) {
-	return (
-		<button
-			onClick={onClick}
-			className={`grid place-content-center cursor-pointer aspect-square h-full border border-bd-default hover:fg-strong hover:border-subtle/80 transition-colors ${className}`}
-		>
-			{children}
-		</button>
-	);
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`border-bd-default hover:fg-strong hover:border-subtle/80 grid aspect-square h-full cursor-pointer place-content-center border transition-colors ${className}`}
+    >
+      {children}
+    </button>
+  );
 }

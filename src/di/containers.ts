@@ -10,8 +10,8 @@ import { makeRoutineDaysModule } from '@/modules/routine-days/routine-days.conta
 import { makeSessionModule } from '@/modules/session/session.container';
 import { makeUserModule } from '@/modules/user/user.container';
 import {
-	errorHandlersContainer,
-	InfrastructureErrorTranslator,
+  errorHandlersContainer,
+  InfrastructureErrorTranslator,
 } from '@/shared/infrastructure/errors/error.translator';
 import { AuthNextAuthRepository } from '@/modules/auth/infrastructure/next-auth/auth.next-auth.repository';
 import { BodySectionPrismaRepository } from '@/modules/body-section/infrastructure/prisma/body-section.prisma.repository';
@@ -35,52 +35,103 @@ import { UserPrismaRepository } from '@/modules/user/infrastructure/prisma/user.
  * @returns an object of modules with their own use cases with dependencies injected
  */
 export const getContainer = () => {
-	// System repositories
-	const errorMapper = new InfrastructureErrorTranslator(errorHandlersContainer);
-	const authRepository = new AuthNextAuthRepository(errorMapper);
-	const idGeneratorRepository = new UUIDGenerator();
+  // System repositories
+  const errorMapper = new InfrastructureErrorTranslator(
+    errorHandlersContainer
+  );
+  const authRepository = new AuthNextAuthRepository(
+    errorMapper
+  );
+  const idGeneratorRepository = new UUIDGenerator();
 
-	// Database respositories
-	const bodySectionRepository = new BodySectionPrismaRepository(prisma, errorMapper);
-	const exerciseRepository = new ExercisePrismaRepository(prisma, errorMapper);
-	const exerciseInitialStatsRepository = new ExerciseInitialStatsPrismaRepository(
-		prisma,
-		errorMapper
-	);
-	const exerciseToMuscleRepository = new ExerciseToMusclePrismaRepository(prisma, errorMapper);
-	const muscleRepository = new MusclePrismaRepository(prisma, errorMapper);
-	const muscularGroupRepository = new MuscularGroupPrismaReporitory(prisma, errorMapper);
-	const notificationRepository = new NotificationPrismaRepository(prisma, errorMapper);
-	const routineRepository = new RoutinePrismaRepository(prisma, errorMapper);
-	const routineDaysRepository = new RoutineDaysPrismaRepository(prisma, errorMapper);
-	const sessionRepository = new SessionPrismaRepository(prisma, errorMapper);
-	const sessionToExerciseRepository = new SessionToExercisePrismaRepository(prisma, errorMapper);
-	const userRepository = new UserPrismaRepository(prisma, errorMapper);
+  // Database respositories
+  const bodySectionRepository =
+    new BodySectionPrismaRepository(prisma, errorMapper);
+  const exerciseRepository = new ExercisePrismaRepository(
+    prisma,
+    errorMapper
+  );
+  const exerciseInitialStatsRepository =
+    new ExerciseInitialStatsPrismaRepository(
+      prisma,
+      errorMapper
+    );
+  const exerciseToMuscleRepository =
+    new ExerciseToMusclePrismaRepository(
+      prisma,
+      errorMapper
+    );
+  const muscleRepository = new MusclePrismaRepository(
+    prisma,
+    errorMapper
+  );
+  const muscularGroupRepository =
+    new MuscularGroupPrismaReporitory(prisma, errorMapper);
+  const notificationRepository =
+    new NotificationPrismaRepository(prisma, errorMapper);
+  const routineRepository = new RoutinePrismaRepository(
+    prisma,
+    errorMapper
+  );
+  const routineDaysRepository =
+    new RoutineDaysPrismaRepository(prisma, errorMapper);
+  const sessionRepository = new SessionPrismaRepository(
+    prisma,
+    errorMapper
+  );
+  const sessionToExerciseRepository =
+    new SessionToExercisePrismaRepository(
+      prisma,
+      errorMapper
+    );
+  const userRepository = new UserPrismaRepository(
+    prisma,
+    errorMapper
+  );
 
-	return {
-		auth: makeAuthModule({ authRepository }),
-		bodySection: makeBodySectionModule({ bodySectionRepository }),
-		exercise: makeExerciseModule({
-			exerciseRepository,
-			exerciseToMuscleRepository,
-			exerciseInitialStatsRepository,
-			idGeneratorRepository,
-		}),
-		exerciseInitialStats: makeExerciseInitialStatsModule({
-			exerciseInitialStatsRepository,
-			idGeneratorRepository,
-		}),
-		exerciseToMuscle: makeExerciseToMuscleModule({ exerciseToMuscleRepository }),
-		muscle: makeMuscleModule({ muscleRepository }),
-		muscularGroup: makeMuscularGroupModule({ muscularGroupRepository }),
-		notification: makeNotificationModule({ notificationRepository, idGeneratorRepository }),
-		routine: makeRoutineModule({ routineRepository, idGeneratorRepository }),
-		routineDays: makeRoutineDaysModule({ idGeneratorRepository, routineDaysRepository }),
-		session: makeSessionModule({
-			idGeneratorRepository,
-			sessionRepository,
-			sessionToExerciseRepository,
-		}),
-		user: makeUserModule({ authRepository, idGeneratorRepository, userRepository }),
-	};
+  return {
+    auth: makeAuthModule({ authRepository }),
+    bodySection: makeBodySectionModule({
+      bodySectionRepository,
+    }),
+    exercise: makeExerciseModule({
+      exerciseRepository,
+      exerciseToMuscleRepository,
+      exerciseInitialStatsRepository,
+      idGeneratorRepository,
+    }),
+    exerciseInitialStats: makeExerciseInitialStatsModule({
+      exerciseInitialStatsRepository,
+      idGeneratorRepository,
+    }),
+    exerciseToMuscle: makeExerciseToMuscleModule({
+      exerciseToMuscleRepository,
+    }),
+    muscle: makeMuscleModule({ muscleRepository }),
+    muscularGroup: makeMuscularGroupModule({
+      muscularGroupRepository,
+    }),
+    notification: makeNotificationModule({
+      notificationRepository,
+      idGeneratorRepository,
+    }),
+    routine: makeRoutineModule({
+      routineRepository,
+      idGeneratorRepository,
+    }),
+    routineDays: makeRoutineDaysModule({
+      idGeneratorRepository,
+      routineDaysRepository,
+    }),
+    session: makeSessionModule({
+      idGeneratorRepository,
+      sessionRepository,
+      sessionToExerciseRepository,
+    }),
+    user: makeUserModule({
+      authRepository,
+      idGeneratorRepository,
+      userRepository,
+    }),
+  };
 };

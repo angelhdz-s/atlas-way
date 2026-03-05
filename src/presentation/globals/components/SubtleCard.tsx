@@ -1,9 +1,15 @@
 export function SubtleCard({
-	className,
-	children,
+  className,
+  children,
 }: {
-	className?: string;
-	children: React.ReactNode;
+  className?: string;
+  children: React.ReactNode;
 }) {
-	return <article className={`rounded bg-subtle/5 p-4 ${className}`}>{children}</article>;
+  return (
+    <article
+      className={`bg-subtle/5 rounded p-4 ${className}`}
+    >
+      {children}
+    </article>
+  );
 }

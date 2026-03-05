@@ -6,16 +6,16 @@ import { Hero } from '@/presentation/modules/landing/components/Hero';
 import { Try } from '@/presentation/modules/landing/components/Try';
 
 export default function Home() {
-	return (
-		<>
-			<Header />
-			<main className="w-full px-4 lg:px-0 flex flex-col flex-1 text-lg">
-				<Hero />
-				<Advantages />
-				<BentoGrid />
-				<Try />
-			</main>
-			<Footer />
-		</>
-	);
+  return (
+    <>
+      <Header />
+      <main className="flex w-full flex-1 flex-col px-4 text-lg lg:px-0">
+        <Hero />
+        <Advantages />
+        <BentoGrid />
+        <Try />
+      </main>
+      <Footer />
+    </>
+  );
 }

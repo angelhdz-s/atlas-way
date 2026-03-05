@@ -1,5 +1,5 @@
 export type SessionToExerciseProps = {
-	exerciseId: string;
-	sessionId: string;
-	readonly createdAt: Date;
+  exerciseId: string;
+  sessionId: string;
+  readonly createdAt: Date;
 };

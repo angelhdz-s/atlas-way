@@ -1,39 +1,46 @@
 'use client';
-
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-
 export function Modal({
-	className = '',
-	children,
+  className = '',
+  children,
 }: {
-	className?: string;
-	children: React.ReactNode;
+  className?: string;
+  children: React.ReactNode;
 }) {
-	const router = useRouter();
+  const router = useRouter();
 
-	const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-		router.back();
-		e.stopPropagation();
-	};
+  const handleClick = (
+    e: React.MouseEvent<HTMLDivElement>
+  ) => {
+    router.back();
+    e.stopPropagation();
+  };
 
-	useEffect(() => {
-		const handleEscape = (e: KeyboardEvent) => {
-			if (e.key === 'Escape') {
-				router.back();
-			}
-		};
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.stopPropagation();
+        router.back();
+      }
+    };
 
-		document.addEventListener('keydown', handleEscape);
-		return () => {
-			document.removeEventListener('keydown', handleEscape);
-		};
-	}, [router]);
+    document.addEventListener('keydown', handleEscape);
+    return () =>
+      document.removeEventListener('keydown', handleEscape);
+  }, [router]);
 
-	return (
-		<div className={`z-50 fixed inset-0 m-auto flex items-center justify-center ${className}`}>
-			<div className="z-50 bg-middle p-8 rounded-lg shadow-lg">{children}</div>
-			<div className="z-0 fixed inset-0 bg-black/30 select-none" onClick={handleClick}></div>
-		</div>
-	);
+  return (
+    <div
+      className={`fixed inset-0 z-50 m-auto flex items-center justify-center ${className}`}
+    >
+      <div className="bg-middle z-50 rounded-2xl shadow-lg">
+        {children}
+      </div>
+      <div
+        className="fixed inset-0 z-0 bg-black/30 select-none"
+        onClick={handleClick}
+      ></div>
+    </div>
+  );
 }

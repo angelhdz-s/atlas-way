@@ -7,40 +7,54 @@ import { NotificationsButton } from '../../../../modules/notification/presentati
 import Link from 'next/link';
 import { Imagotype } from '@/presentation/globals/components/AppLogo';
 
-export function Header({ className = '' }: { className?: string }) {
-	return (
-		<header className="h-(--header-height) w-full">
-			<main
-				className={`fixed top-0 left-0 z-10 w-full grid grid-cols-[1fr_auto_1fr] bg-middle pr-2 gap-4 font-funnel-display h-(--header-height) ${className}`}
-			>
-				<section className="flex items-center gap-2 h-full">
-					<main className="flex justify-between items-center gap-0 h-full pl-4 w-(--sidebar-width)">
-						<Link
-							href="/"
-							className="flex items-center gap-2 font-light font-funnel-display"
-						>
-							<Imagotype />
-						</Link>
-					</main>
-					<Breadcrumb />
-				</section>
-				<section className="flex items-center gap-2 h-full">
-					<input
-						type="search"
-						placeholder="Search"
-						className="flex-1 h-8 px-4 rounded-4xl border border-current/20 outline-none"
-					/>
-					<aside className="flex items-center">
-						<NotificationsButton className="p-2 rounded-full" />
-						<SettingsButton className="p-2 rounded-full" />
-						<ToggleTheme className="p-2 rounded-full" />
-						<LangButton className="p-2 rounded-full" />
-					</aside>
-				</section>
-				<section className="flex items-center justify-end gap-2 h-full">
-					<UserInfo />
-				</section>
-			</main>
-		</header>
-	);
+export function Header({
+  className = '',
+}: {
+  className?: string;
+}) {
+  return (
+    <header className="h-(--header-height) w-full">
+      <main
+        className={`bg-middle font-funnel-display fixed top-0 left-0 z-10 grid h-(--header-height) w-full grid-cols-[1fr_auto_1fr] gap-4 pr-2 ${className}`}
+      >
+        <section className="flex h-full items-center gap-2">
+          <main className="flex h-full w-(--sidebar-width) items-center justify-between gap-0 pl-4">
+            <Link
+              href="/"
+              className="font-funnel-display flex items-center gap-2 font-light"
+            >
+              <Imagotype />
+            </Link>
+          </main>
+          <Breadcrumb />
+        </section>
+        <section className="flex h-full items-center gap-2">
+          <input
+            type="search"
+            placeholder="Search"
+            className="h-8 flex-1 rounded-4xl border border-current/20 px-4 outline-none"
+          />
+          <nav>
+            <ul className="flex items-center">
+              <li>
+                <NotificationsButton />
+              </li>
+              <li>
+                <SettingsButton />
+              </li>
+              <li>
+                <ToggleTheme />
+              </li>
+              <li>
+                <LangButton />
+              </li>
+            </ul>
+          </nav>
+        </section>
+        <section className="flex h-full items-center justify-end gap-2">
+          <UserInfo />
+        </section>
+      </main>
+    </header>
+  );
 }

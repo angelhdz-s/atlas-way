@@ -1,4 +1,4 @@
-import { CreateDto } from '@/shared/application/dtos/create.types';
-import { RoutineProps } from '../../domain/routine.types';
+import type { CreateDto } from '@/shared/application/dtos/create.types';
+import type { RoutineProps } from '../../domain/routine.types';
 
 export type CreateRoutineInput = CreateDto<RoutineProps>;

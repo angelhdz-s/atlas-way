@@ -1,142 +1,168 @@
-import { DAYS, DayWeeksType } from '@/presentation/globals/config/defaults';
-import { getISOStringDate, getSessionFromDate } from '@/presentation/globals/lib/dates';
+import {
+  DAYS,
+  type DayWeeksType,
+} from '@/presentation/globals/config/defaults';
+import {
+  getISOStringDate,
+  getSessionFromDate,
+} from '@/presentation/globals/lib/dates';
 import { TODAY } from '@/presentation/globals/mocks/tracking';
 import {
-	BarbellOff,
-	Circle,
-	CircleCheck,
-	CircleOutline,
-	Alarm,
-	XCircle,
-	AlertTriangle,
+  IconBarbellOff,
+  IconCircle,
+  IconCircleCheck,
+  IconCircleOutline,
+  IconAlarm,
+  IconXCircle,
+  IconAlertTriangle,
 } from '@/presentation/globals/components/Icons';
-import { IconTypes } from '@/presentation/globals/types';
+import type { IconTypes } from '@/presentation/globals/types';
 
-const STATUS_ICONS = {
-	completed: CircleCheck,
-	canceled: XCircle,
-	current: Alarm,
-	next: CircleOutline,
+export const STATUS_ICONS = {
+  completed: IconCircleCheck,
+  canceled: IconXCircle,
+  current: IconAlarm,
+  next: IconCircleOutline,
 };
 
 const TRACKS_DAY_RANGES_CLASSES = {
-	COMPLETED: 'bg-green-800/10',
-	TODAY: 'bg-blue-600/10',
-	NEXT: '',
+  COMPLETED: 'bg-green-800/10',
+  TODAY: 'bg-blue-600/10',
+  NEXT: '',
 };
 
 function getTrackDayRangeClass(date: Date) {
-	const currentDate = getISOStringDate(date);
-	const todayDate = getISOStringDate(TODAY);
+  const currentDate = getISOStringDate(date);
+  const todayDate = getISOStringDate(TODAY);
 
-	if (currentDate === todayDate) {
-		return TRACKS_DAY_RANGES_CLASSES.TODAY;
-	}
-	if (currentDate < todayDate) {
-		return TRACKS_DAY_RANGES_CLASSES.COMPLETED;
-	}
+  if (currentDate === todayDate) {
+    return TRACKS_DAY_RANGES_CLASSES.TODAY;
+  }
+  if (currentDate < todayDate) {
+    return TRACKS_DAY_RANGES_CLASSES.COMPLETED;
+  }
 
-	return TRACKS_DAY_RANGES_CLASSES.NEXT;
+  return TRACKS_DAY_RANGES_CLASSES.NEXT;
 }
 
 function DefaultStatusIcon({ Icon }: { Icon: IconTypes }) {
-	return <Icon className="size-5" strokeWidth="1.8" />;
+  return <Icon className="size-5" strokeWidth="1.8" />;
 }
 
 function WeekDayTooltip({ date }: { date: Date }) {
-	const dayOfWeek = DAYS[(date.getDay() + 1) as DayWeeksType].shortName;
-	return (
-		<div
-			className="
-		absolute rounded-full bg-sec px-4 left-2 bottom-[calc(100%+0.75rem)] w-fit h-fit hidden group-hover:block
-		after:absolute after:z-0 after:size-2 after:bg-middle after:inset-0 after:mx-auto after:-bottom-1 after:top-auto after:rotate-45
-		"
-		>
-			<span className="block w-fit py-1.5 leading-none text-xs text-zinc-400 font-medium">
-				{dayOfWeek}
-			</span>
-		</div>
-	);
+  const dayOfWeek =
+    DAYS[(date.getDay() + 1) as DayWeeksType].shortName;
+  return (
+    <div className="bg-sec after:bg-middle absolute bottom-[calc(100%+0.75rem)] left-2 hidden h-fit w-fit rounded-full px-4 group-hover:block after:absolute after:inset-0 after:top-auto after:-bottom-1 after:z-0 after:mx-auto after:size-2 after:rotate-45">
+      <span className="block w-fit py-1.5 text-xs leading-none font-medium text-zinc-400">
+        {dayOfWeek}
+      </span>
+    </div>
+  );
 }
 
-function NextTrainingDayTaskItem({ task, main }: { task: string; main: boolean }) {
-	return (
-		<div className={`flex items-center ${main ? 'gap-2' : 'gap-1'}`}>
-			<Circle className={`${main ? 'size-5' : 'size-4'}`} strokeWidth="1" />
-			<span className={`font-light ${main ? 'text-lg' : 'text-sm'}`}>{task}</span>
-		</div>
-	);
+function NextTrainingDayTaskItem({
+  task,
+  main,
+}: {
+  task: string;
+  main: boolean;
+}) {
+  return (
+    <div
+      className={`flex items-center ${main ? 'gap-2' : 'gap-1'}`}
+    >
+      <IconCircle
+        className={`${main ? 'size-5' : 'size-4'}`}
+        strokeWidth="1"
+      />
+      <span
+        className={`font-light ${main ? 'text-lg' : 'text-sm'}`}
+      >
+        {task}
+      </span>
+    </div>
+  );
 }
 
 export function TrackingDay({
-	className = '',
-	date,
-	main = false,
+  className = '',
+  date,
+  main = false,
 }: {
-	className?: string;
-	date: Date;
-	main?: boolean;
+  className?: string;
+  date: Date;
+  main?: boolean;
 }) {
-	const dateString = `${date.toString().split(' ')[1]}, ${date.getDate()}`;
-	const session = getSessionFromDate(date);
-	const dayTypeClass = getTrackDayRangeClass(date);
+  const dateString = `${date.toString().split(' ')[1]}, ${date.getDate()}`;
+  const session = getSessionFromDate(date);
+  const dayTypeClass = getTrackDayRangeClass(date);
 
-	return (
-		<article
-			className={`group relative w-full rounded-md flex flex-col group border border-subtle/20 hover:border-zinc-900 transition-colors ${main ? 'min-h-54' : 'min-h-48'} ${className} ${dayTypeClass}`}
-		>
-			<header
-				className={`flex items-center justify-between bg-zinc-900/80 ${main ? 'text-base px-4 h-10' : 'text-sm px-2 h-8'} group-hover:fg-strong transition-colors rounded-t`}
-			>
-				<span className="flex-1 hover:text-current/50 text-ellipsis overflow-hidden whitespace-nowrap font-medium fg-strong pr-2 cursor-pointer">
-					{session.name}
-				</span>
-				<aside className="flex items-center gap-1">
-					<span className="whitespace-nowrap">{dateString}</span>
-					<button type="button" className=" h-full cursor-pointer">
-						<DefaultStatusIcon Icon={AlertTriangle} />
-					</button>
-				</aside>
-			</header>
-			<main className="relative p-2 flex-1 rounded-b">
-				{session.type === 'TRAINING' &&
-					(session.status === 'next' || session.status === 'current') && (
-						<div className="p-2 w-fit">
-							{session.exercises.map((exercise, index) => (
-								<NextTrainingDayTaskItem
-									key={index}
-									task={exercise.name}
-									main={main}
-								/>
-							))}
-						</div>
-					)}
-				{session.type === 'TRAINING' &&
-					(session.status === 'completed' || session.status === 'canceled') && (
-						<div className="p-2 w-fit">
-							{session.exercicesDone.map((exercise, index) => (
-								<NextTrainingDayTaskItem
-									key={index}
-									task={exercise.name}
-									main={main}
-								/>
-							))}
-						</div>
-					)}
-				{session.type === 'REST' && (
-					<div className="grid place-content-center p-2 h-full">
-						<div className="text-current/20 group-hover:text-current flex flex-col items-center justify-center gap-2">
-							<BarbellOff
-								className="size-20 mask-radial-[100%_100%] mask-radial-at-top-left mask-radial-from-0% mask-radial-to-150%"
-								strokeWidth="0.5"
-							/>
-							<span className="font-light">Rest Day</span>
-						</div>
-					</div>
-				)}
-				<div className="absolute mask-radial-at-top mask-radial-[50%_50%] mask-radial-from-0% mask-radial-to-250% inset-0 transition-opacity opacity-[0.05] group-hover:opacity-[0.15] bg-[url('/backgrounds/grid.svg')] bg-size-[50px]"></div>
-			</main>
-			<WeekDayTooltip date={date} />
-		</article>
-	);
+  return (
+    <article
+      className={`group group border-subtle/20 relative flex w-full flex-col rounded-md border transition-colors hover:border-zinc-900 ${main ? 'min-h-54' : 'min-h-48'} ${className} ${dayTypeClass}`}
+    >
+      <header
+        className={`flex items-center justify-between bg-zinc-900/80 ${main ? 'h-10 px-4 text-base' : 'h-8 px-2 text-sm'} group-hover:fg-strong rounded-t transition-colors`}
+      >
+        <span className="fg-strong flex-1 cursor-pointer overflow-hidden pr-2 font-medium text-ellipsis whitespace-nowrap hover:text-current/50">
+          {session.name}
+        </span>
+        <aside className="flex items-center gap-1">
+          <span className="whitespace-nowrap">
+            {dateString}
+          </span>
+          <button
+            type="button"
+            className="h-full cursor-pointer"
+          >
+            <DefaultStatusIcon Icon={IconAlertTriangle} />
+          </button>
+        </aside>
+      </header>
+      <main className="relative flex-1 rounded-b p-2">
+        {session.type === 'TRAINING' &&
+          (session.status === 'next' ||
+            session.status === 'current') && (
+            <div className="w-fit p-2">
+              {session.exercises.map((exercise, index) => (
+                <NextTrainingDayTaskItem
+                  key={index}
+                  task={exercise.name}
+                  main={main}
+                />
+              ))}
+            </div>
+          )}
+        {session.type === 'TRAINING' &&
+          (session.status === 'completed' ||
+            session.status === 'canceled') && (
+            <div className="w-fit p-2">
+              {session.exercicesDone.map(
+                (exercise, index) => (
+                  <NextTrainingDayTaskItem
+                    key={index}
+                    task={exercise.name}
+                    main={main}
+                  />
+                )
+              )}
+            </div>
+          )}
+        {session.type === 'REST' && (
+          <div className="grid h-full place-content-center p-2">
+            <div className="flex flex-col items-center justify-center gap-2 text-current/20 group-hover:text-current">
+              <IconBarbellOff
+                className="size-20 mask-radial-[100%_100%] mask-radial-from-0% mask-radial-to-150% mask-radial-at-top-left"
+                strokeWidth="0.5"
+              />
+              <span className="font-light">Rest Day</span>
+            </div>
+          </div>
+        )}
+        <div className="absolute inset-0 bg-[url('/backgrounds/grid.svg')] mask-radial-[50%_50%] mask-radial-from-0% mask-radial-to-250% mask-radial-at-top bg-size-[50px] opacity-[0.05] transition-opacity group-hover:opacity-[0.15]"></div>
+      </main>
+      <WeekDayTooltip date={date} />
+    </article>
+  );
 }

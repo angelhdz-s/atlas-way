@@ -1,7 +1,7 @@
-import { IErrorTranslator } from '../../errors/error-translator.types';
+import type { IErrorTranslator } from '../../errors/error-translator.types';
 
 export class NextAuthErrorHandler implements IErrorTranslator {
-	translate(error: unknown) {
-		return null;
-	}
+  translate(_error: unknown) {
+    return null;
+  }
 }

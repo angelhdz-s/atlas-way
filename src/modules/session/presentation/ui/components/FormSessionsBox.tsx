@@ -1,28 +1,34 @@
 import { Box } from '@/presentation/modules/form/components/Box';
 import { useState } from 'react';
-import { SessionsFormDataWithExercises } from '@/modules/session/presentation/types';
+import type { SessionsFormDataWithExercises } from '@/modules/session/presentation/types';
 import Link from 'next/link';
-import { CirclePlus } from '@/presentation/globals/components/Icons';
+import { IconCirclePlus } from '@/presentation/globals/components/Icons';
 
 export function FormSessionsBox() {
-	const [sessions, setSessions] = useState<SessionsFormDataWithExercises[]>([]);
-	return (
-		<Box className="grid grid-cols-[1fr_auto] min-h-24">
-			<main>
-				{sessions.length > 0 ? (
-					sessions.map((session, index) => <p key={index}>{session.name}</p>)
-				) : (
-					<p className="font-light text-base text-default/50">No sessions added</p>
-				)}
-			</main>
-			<aside>
-				<Link
-					href="/dashboard/routines/create/sessions"
-					className="block aspect-square p-1 bg-zinc-900 border border-subtle/20 rounded fg-strong hover:bg-zinc-800/80 cursor-pointer transition-colors"
-				>
-					<CirclePlus strokeWidth="1" />
-				</Link>
-			</aside>
-		</Box>
-	);
+  const [sessions, _setSessions] = useState<
+    SessionsFormDataWithExercises[]
+  >([]);
+  return (
+    <Box className="grid min-h-24 grid-cols-[1fr_auto]">
+      <main>
+        {sessions.length > 0 ? (
+          sessions.map((session, index) => (
+            <p key={index}>{session.name}</p>
+          ))
+        ) : (
+          <p className="text-default/50 text-base font-light">
+            No sessions added
+          </p>
+        )}
+      </main>
+      <aside>
+        <Link
+          href="/dashboard/routines/create/sessions"
+          className="border-subtle/20 fg-strong block aspect-square cursor-pointer rounded border bg-zinc-900 p-1 transition-colors hover:bg-zinc-800/80"
+        >
+          <IconCirclePlus strokeWidth="1" />
+        </Link>
+      </aside>
+    </Box>
+  );
 }

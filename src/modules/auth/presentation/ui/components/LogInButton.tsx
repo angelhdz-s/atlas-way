@@ -1,18 +1,19 @@
 'use client';
 
+import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
 import { redirect } from 'next/navigation';
 
 export function LogInButton() {
-	const handleSignIn = () => {
-		redirect('/api/auth/signin');
-	};
-	return (
-		<button
-			type="button"
-			className="rounded-full btn-md btn-primary-outline py-1.5 whitespace-nowrap "
-			onClick={handleSignIn}
-		>
-			Log in
-		</button>
-	);
+  const handleSignIn = () => {
+    redirect('/api/auth/signin');
+  };
+  return (
+    <VariantButton
+      type="button"
+      variantConfig={{ size: 'md', color: 'primary' }}
+      onClick={handleSignIn}
+    >
+      Log in
+    </VariantButton>
+  );
 }

@@ -1,11 +1,11 @@
-import { UseCase } from '@/shared/application/use-case';
-import { ISessionRepository } from '../../domain/session.repository';
-import { SessionProps } from '../../domain/session.types';
+import type { UseCase } from '@/shared/application/use-case';
+import type { ISessionRepository } from '../../domain/session.repository';
+import type { SessionProps } from '../../domain/session.types';
 
 export class GetSessionById implements UseCase {
-	constructor(private repository: ISessionRepository) {}
+  constructor(private repository: ISessionRepository) {}
 
-	async execute(id: SessionProps['id']) {
-		return await this.repository.findById(id);
-	}
+  async execute(id: SessionProps['id']) {
+    return await this.repository.findById(id);
+  }
 }

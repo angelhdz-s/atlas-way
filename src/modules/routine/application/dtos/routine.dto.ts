@@ -1,6 +1,12 @@
-import { RoutineProps } from '../../domain/routine.types';
+import type { RoutineProps } from '../../domain/routine.types';
 
 export type RoutineDTO = Pick<
-	RoutineProps,
-	'id' | 'name' | 'description' | 'active' | 'days' | 'initialDate' | 'createdAt'
+  RoutineProps,
+  | 'id'
+  | 'name'
+  | 'description'
+  | 'active'
+  | 'days'
+  | 'initialDate'
+  | 'createdAt'
 >;

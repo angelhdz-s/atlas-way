@@ -1,17 +1,21 @@
 import { BentoCard } from '../BentoCard';
 
 type Props = {
-	className?: string;
+  className?: string;
 };
 
-export function CreateYourOwnRoutines({ className }: Props) {
-	return (
-		<BentoCard className={`md:row-span-2 p-2 md:p-0 ${className}`}>
-			<main className="grid place-content-center h-full p-4 md:p-0">
-				<header className="font-funnel-display max-w-45 text-2xl font-bold fg-accent text-center leading-[1.1]">
-					Create Your Own Routines
-				</header>
-			</main>
-		</BentoCard>
-	);
+export function CreateYourOwnRoutines({
+  className,
+}: Props) {
+  return (
+    <BentoCard
+      className={`p-2 md:row-span-2 md:p-0 ${className}`}
+    >
+      <main className="grid h-full place-content-center p-4 md:p-0">
+        <header className="font-funnel-display fg-accent max-w-45 text-center text-2xl leading-[1.1] font-bold">
+          Create Your Own Routines
+        </header>
+      </main>
+    </BentoCard>
+  );
 }

@@ -1,3 +1,13 @@
 {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "tailwindCSS.classFunctions": [
+    "tv",
+    "cn",
+    "cva",
+    "compose",
+    "variants"
+  ],
+  "css.lint.unknownAtRules": "ignore",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true
 }

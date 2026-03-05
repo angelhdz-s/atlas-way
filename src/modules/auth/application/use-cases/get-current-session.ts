@@ -1,9 +1,9 @@
-import { UseCase } from '@/shared/application/use-case';
-import { IAuthRepository } from '../../domain/auth.respository';
+import type { UseCase } from '@/shared/application/use-case';
+import type { IAuthRepository } from '../../domain/auth.respository';
 
 export class GetCurrentSession implements UseCase {
-	constructor(private repository: IAuthRepository) {}
-	async execute() {
-		return this.repository.getSession();
-	}
+  constructor(private repository: IAuthRepository) {}
+  async execute() {
+    return this.repository.getSession();
+  }
 }

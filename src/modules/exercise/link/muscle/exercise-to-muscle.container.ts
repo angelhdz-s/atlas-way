@@ -3,23 +3,34 @@ import { GetExerciseToMuscleByExerciseAndMuscleId } from './application/use-case
 import { GetExercisesToMusclesByExerciseId } from './application/use-cases/get-exercise-to-muscle-by-exercise-id';
 import { GetExercisesToMusclesByMuscleId } from './application/use-cases/get-exercise-to-muscle-by-muscle-id';
 import { LinkExerciseToMuscle } from './application/use-cases/link-exercise-to-muscle';
-import { IExerciseToMuscleRepository } from './domain/exercise-to-muscle.repository';
+import type { IExerciseToMuscleRepository } from './domain/exercise-to-muscle.repository';
 
 type Props = {
-	exerciseToMuscleRepository: IExerciseToMuscleRepository;
+  exerciseToMuscleRepository: IExerciseToMuscleRepository;
 };
 
-export const makeExerciseToMuscleModule = ({ exerciseToMuscleRepository }: Props) => {
-	return {
-		GetAllExercisesToMusclesUseCase: new GetAllExercisesToMuscles(exerciseToMuscleRepository),
-		GetExercisesToMusclesByExerciseIdUseCase: new GetExercisesToMusclesByExerciseId(
-			exerciseToMuscleRepository
-		),
-		GetExercisesToMusclesByMuscleIdUseCase: new GetExercisesToMusclesByMuscleId(
-			exerciseToMuscleRepository
-		),
-		GetExerciseToMuscleByExerciseAndMuscleIdUseCase:
-			new GetExerciseToMuscleByExerciseAndMuscleId(exerciseToMuscleRepository),
-		LinkExerciseToMuscleUseCase: new LinkExerciseToMuscle(exerciseToMuscleRepository),
-	};
+export const makeExerciseToMuscleModule = ({
+  exerciseToMuscleRepository,
+}: Props) => {
+  return {
+    GetAllExercisesToMusclesUseCase:
+      new GetAllExercisesToMuscles(
+        exerciseToMuscleRepository
+      ),
+    GetExercisesToMusclesByExerciseIdUseCase:
+      new GetExercisesToMusclesByExerciseId(
+        exerciseToMuscleRepository
+      ),
+    GetExercisesToMusclesByMuscleIdUseCase:
+      new GetExercisesToMusclesByMuscleId(
+        exerciseToMuscleRepository
+      ),
+    GetExerciseToMuscleByExerciseAndMuscleIdUseCase:
+      new GetExerciseToMuscleByExerciseAndMuscleId(
+        exerciseToMuscleRepository
+      ),
+    LinkExerciseToMuscleUseCase: new LinkExerciseToMuscle(
+      exerciseToMuscleRepository
+    ),
+  };
 };

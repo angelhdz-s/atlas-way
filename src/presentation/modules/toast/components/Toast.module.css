@@ -1,78 +1,81 @@
 @keyframes slide-right {
-	from {
-		transform: scaleX(0);
-	}
-	to {
-		transform: scaleX(1);
-	}
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .toast {
-	position: relative;
-	border: solid 1px transparent;
+  position: relative;
+  border: solid 1px transparent;
 }
 
 .toast_time_fill {
-	display: block;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 4px;
-	animation-name: slide-right;
-	animation-timing-function: linear;
-	transform: scaleX(1);
-	transform-origin: left;
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  animation-name: slide-right;
+  animation-timing-function: linear;
+  transform: scaleX(1);
+  transform-origin: left;
+  border-radius: 12px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .toast {
-	background-color: var(--color-zinc-900);
+  background-color: var(--color-zinc-900);
 }
 
 .info.toast {
-	border-color: var(--color-zinc-700);
+  border-color: var(--color-zinc-700);
 }
 
 .info.toast .toast_time_fill {
-	background-color: var(--color-zinc-700);
+  background-color: var(--color-zinc-700);
 }
 
 .info.toast > main {
-	color: var(--color-sec-foreground);
+  color: var(--color-sec-foreground);
 }
 
 .warning.toast {
-	border-color: var(--color-amber-600);
+  border-color: var(--color-amber-600);
 }
 
 .warning.toast > main {
-	color: var(--color-amber-600);
+  color: var(--color-amber-600);
 }
 
 .warning.toast .toast_time_fill {
-	background-color: var(--color-amber-600);
+  background-color: var(--color-amber-600);
 }
 
 .error.toast {
-	border-color: var(--color-red-600);
+  border-color: var(--color-red-600);
 }
 
 .error.toast > main {
-	color: var(--color-red-600);
+  color: var(--color-red-600);
 }
 
 .error.toast .toast_time_fill {
-	background-color: var(--color-red-600);
+  background-color: var(--color-red-600);
 }
 
 .success.toast {
-	border-color: var(--color-green-600);
+  border-color: var(--color-green-600);
 }
 
 .success.toast > main {
-	color: var(--color-green-600);
+  color: var(--color-green-600);
 }
 
 .success.toast .toast_time_fill {
-	background-color: var(--color-green-600);
+  background-color: var(--color-green-600);
 }

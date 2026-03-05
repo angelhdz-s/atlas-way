@@ -1,51 +1,73 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { ModalForm } from '@/presentation/modules/form/components/ModalForm';
-import { ModalFormButtons } from '@/presentation/modules/form/components/ModalFormButtons';
-import { SelectOption } from '@/presentation/modules/form/types';
-import { Label } from '@/presentation/modules/form/components/LabelInput';
-import { InputText } from '@/presentation/modules/form/components/InputText';
-import { TextArea } from '@/presentation/modules/form/components/TextArea';
+import { ModalForm } from '@/presentation/modules/form/components/modal-form/ModalForm';
+import { ModalFormButtons } from '@/presentation/modules/form/components/modal-form/ModalFormButtons';
+import type { SelectOption } from '@/presentation/modules/form/types';
+import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
+import { InputText } from '@/presentation/modules/form/components/fields/InputText';
+import { TextArea } from '@/presentation/modules/form/components/fields/TextArea';
 import { MultipleSelectBox } from '@/presentation/modules/form/components/MultipleSelectBox';
 import { useSessionForm } from '../hooks/useSessionForm';
 
 export function SessionModalForm({
-	title,
-	exercises,
+  exercises,
 }: {
-	title: string;
-	exercises: SelectOption[];
+  exercises: SelectOption[];
 }) {
-	const router = useRouter();
-	const handleSuccess = () => {
-		router.back();
-	};
+  const router = useRouter();
+  const handleSuccess = () => {
+    router.back();
+  };
 
-	const { register, isSubmitting, fields, handleSubmit, handleOnExercisesChange } =
-		useSessionForm({ onSuccess: handleSuccess });
+  const handleClose = () => {
+    router.back();
+  };
 
-	return (
-		<ModalForm title={title} onSubmit={handleSubmit}>
-			<Label title="Name">
-				<InputText {...register('name')} placeholder="Enter Session name" />
-			</Label>
-			<Label title="Description">
-				<TextArea {...register('description')} placeholder="Day focused on arms training" />
-			</Label>
-			<MultipleSelectBox
-				selectingTitle="Select exercises"
-				label="Exercises"
-				options={exercises}
-				onOptionsChange={handleOnExercisesChange}
-			>
-				{fields.map((field, index) => (
-					<input type="hidden" key={field.id} {...register(`exercises.${index}.id`)} />
-				))}
-			</MultipleSelectBox>
-			<footer className="flex gap-2 *:px-4 *:py-2 *:rounded *:w-full *:border-2">
-				<ModalFormButtons isPending={isSubmitting} />
-			</footer>
-		</ModalForm>
-	);
+  const {
+    register,
+    isSubmitting,
+    fields,
+    handleSubmit,
+    handleOnExercisesChange,
+  } = useSessionForm({ onSuccess: handleSuccess });
+
+  return (
+    <ModalForm
+      title="Plan the session"
+      onSubmit={handleSubmit}
+      onClose={handleClose}
+    >
+      <Label htmlFor="name" title="Name">
+        <InputText
+          {...register('name')}
+          placeholder="Enter Session name"
+        />
+      </Label>
+      <Label htmlFor="description" title="Description">
+        <TextArea
+          {...register('description')}
+          placeholder="Day focused on arms training"
+        />
+      </Label>
+      <MultipleSelectBox
+        selectingTitle="Select exercises"
+        label="Exercises"
+        options={exercises}
+        onOptionsChange={handleOnExercisesChange}
+      >
+        {fields.map((field, index) => (
+          <input
+            type="hidden"
+            key={field.id}
+            {...register(`exercises.${index}.id`)}
+          />
+        ))}
+      </MultipleSelectBox>
+      <ModalFormButtons
+        onClose={handleClose}
+        isPending={isSubmitting}
+      />
+    </ModalForm>
+  );
 }

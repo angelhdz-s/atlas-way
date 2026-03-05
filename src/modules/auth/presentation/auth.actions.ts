@@ -1,20 +1,21 @@
 import { getContainer } from '@/di/containers';
-import { ActionResponse } from '@/shared/presentation/action.response';
-import { AuthSession } from '../domain/errors/auth-session.types';
+import type { ActionResponse } from '@/shared/presentation/action.response';
+import type { AuthSession } from '../domain/errors/auth-session.types';
 
 export async function getSession(): ActionResponse<AuthSession | null> {
-	const container = getContainer();
-	const getCurrentSession = container.auth.GetCurrentSessionUseCase;
-	const sessionResult = await getCurrentSession.execute();
-	if (!sessionResult.success)
-		return {
-			success: false,
-			message: sessionResult.error.message,
-			data: null,
-		};
-	return {
-		success: true,
-		message: 'Session obtained successfully',
-		data: sessionResult.data,
-	};
+  const container = getContainer();
+  const getCurrentSession =
+    container.auth.GetCurrentSessionUseCase;
+  const sessionResult = await getCurrentSession.execute();
+  if (!sessionResult.success)
+    return {
+      success: false,
+      message: sessionResult.error.message,
+      data: null,
+    };
+  return {
+    success: true,
+    message: 'Session obtained successfully',
+    data: sessionResult.data,
+  };
 }

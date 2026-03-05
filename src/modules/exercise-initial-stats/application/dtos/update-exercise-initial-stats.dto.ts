@@ -1,5 +1,9 @@
-import { UpdateDto } from '@/shared/application/dtos/create.types';
-import { ExerciseInitialStatsProps } from '../../domain/exercise-initial-stats.types';
+import type { UpdateDto } from '@/shared/application/dtos/create.types';
+import type { ExerciseInitialStatsProps } from '../../domain/exercise-initial-stats.types';
 
-type UpdateProps = Pick<ExerciseInitialStatsProps, 'reps' | 'sets' | 'weight'>;
-export type UpdateExerciseInitialStatsInput = UpdateDto<UpdateProps>;
+type UpdateProps = Pick<
+  ExerciseInitialStatsProps,
+  'reps' | 'sets' | 'weight'
+>;
+export type UpdateExerciseInitialStatsInput =
+  UpdateDto<UpdateProps>;
