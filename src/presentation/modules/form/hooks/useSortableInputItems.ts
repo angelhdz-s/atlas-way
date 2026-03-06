@@ -1,6 +1,5 @@
 import type { ArrayField, SelectOption, SortableSelectedItem } from '../types';
 import { useSortableItemsSelectBox } from './useSortableItemsSelectBox';
-import { isSortable } from '@dnd-kit/react/sortable';
 
 type Props = {
   fields: ArrayField[];
