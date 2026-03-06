@@ -1,3 +1,5 @@
+import type { FieldArrayWithId } from 'react-hook-form';
+
 export type InputTextProps = {
   className?: string;
   name: string;
@@ -22,3 +24,14 @@ export type SelectOption = {
   label: string;
   value: SelectOptionValue;
 };
+
+export type ArrayField = FieldArrayWithId<FieldValues> & {
+  fieldId: string;
+};
+
+export type ArrayFieldWithLabel = FieldArrayWithId<FieldValues> & {
+  fieldId: string;
+  label: string;
+};
+
+export type SortableSelectedItem = { id: string };

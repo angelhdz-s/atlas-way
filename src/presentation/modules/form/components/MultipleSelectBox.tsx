@@ -20,7 +20,7 @@ function SelectedOptions({
   onCrossClick?: () => void;
 }) {
   return (
-    <div className="bg-middle border-bd-muted flex w-fit max-w-36 items-center gap-0.5 rounded-lg border px-3 py-1 hover:border-transparent">
+    <div className="bg-middle border-bd-muted flex w-fit max-w-36 items-center gap-0.5 rounded-lg border px-1 py-1 pl-3 hover:border-transparent">
       <span className="truncate">{label}</span>
       {onCrossClick && (
         <VariantButton
