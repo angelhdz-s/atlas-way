@@ -8,12 +8,7 @@ import { CardFooter } from '@/presentation/modules/dashboard/card/components/Car
 import { CardButton } from '@/presentation/modules/dashboard/card/components/CardButton';
 import { IconBarbell } from '@/presentation/globals/components/Icons';
 
-export function ExerciseCard({
-  description,
-  id,
-  muscles,
-  name,
-}: FullExerciseDTO) {
+export function ExerciseCard({ description, id, muscles, name }: FullExerciseDTO) {
   return (
     <Card type="dashboard" width="md" key={id}>
       <CardHeader title={name}>

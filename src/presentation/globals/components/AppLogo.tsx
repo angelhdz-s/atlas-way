@@ -6,24 +6,14 @@ export function Imagotype({
   isotypeSize?: number;
 }) {
   return (
-    <div
-      className={`flex gap-2 font-bold tracking-tight ${className}`}
-    >
+    <div className={`flex gap-2 font-bold tracking-tight ${className}`}>
       <Logo size={isotypeSize} />
-      <span className="font-funnel-display fg-strong hidden text-2xl md:block">
-        AtlasWay
-      </span>
+      <span className="font-funnel-display fg-strong hidden text-2xl md:block">AtlasWay</span>
     </div>
   );
 }
 
-export function Logo({
-  className = '',
-  size = 24,
-}: {
-  className?: string;
-  size?: number;
-}) {
+export function Logo({ className = '', size = 24 }: { className?: string; size?: number }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

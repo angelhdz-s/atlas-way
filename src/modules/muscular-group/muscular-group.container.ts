@@ -6,15 +6,9 @@ type Props = {
   muscularGroupRepository: IMuscularGroupRepository;
 };
 
-export const makeMuscularGroupModule = ({
-  muscularGroupRepository,
-}: Props) => {
+export const makeMuscularGroupModule = ({ muscularGroupRepository }: Props) => {
   return {
-    GetAllMuscularGroupsUseCase: new GetAllMuscularGroups(
-      muscularGroupRepository
-    ),
-    GetMuscularGroupByIdUseCase: new GetMuscularGroupById(
-      muscularGroupRepository
-    ),
+    GetAllMuscularGroupsUseCase: new GetAllMuscularGroups(muscularGroupRepository),
+    GetMuscularGroupByIdUseCase: new GetMuscularGroupById(muscularGroupRepository),
   };
 };

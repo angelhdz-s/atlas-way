@@ -133,18 +133,9 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: color-mix(
-    in oklch,
-    var(--color-foreground) 5%,
-    transparent
-  );
+  background: color-mix(in oklch, var(--color-foreground) 5%, transparent);
   z-index: -10;
-  mask: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 60%,
-    black 100%
-  );
+  mask: linear-gradient(to bottom, transparent 0%, transparent 60%, black 100%);
 }
 
 .scrollbar-y {
@@ -160,11 +151,7 @@ body::before {
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: color-mix(
-      in oklch,
-      var(--color-subtle) 50%,
-      transparent
-    );
+    background-color: color-mix(in oklch, var(--color-subtle) 50%, transparent);
     border-radius: calc(var(--spacing) * 6);
     border: 2px solid transparent;
     background-clip: content-box;

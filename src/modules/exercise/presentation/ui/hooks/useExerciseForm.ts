@@ -10,13 +10,7 @@ export function useExerciseForm({
 }: {
   onSuccess?: () => void;
 } = {}) {
-  const {
-    register,
-    control,
-    isSubmitting,
-    errors,
-    handleSubmit,
-  } = useFormHook({
+  const { register, control, isSubmitting, errors, handleSubmit } = useFormHook({
     action: createExerciseAction,
     schema: ExerciseFormSchema,
     onSuccess,
@@ -27,9 +21,7 @@ export function useExerciseForm({
     name: 'muscles',
   });
 
-  const handleOnMusclesChange = (
-    options: SelectOption[]
-  ) => {
+  const handleOnMusclesChange = (options: SelectOption[]) => {
     const values = options.map((option) => ({
       id: option.value,
     }));

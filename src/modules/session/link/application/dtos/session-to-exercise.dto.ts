@@ -1,6 +1,3 @@
 import type { SessionToExerciseProps } from '../../domain/session-to-exercise.types';
 
-export type SessionToExerciseDTO = Pick<
-  SessionToExerciseProps,
-  'createdAt'
->;
+export type SessionToExerciseDTO = Pick<SessionToExerciseProps, 'createdAt'>;

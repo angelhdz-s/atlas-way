@@ -15,11 +15,9 @@ export function Hero() {
           </h1>
 
           <p className="animate-fade-down animate-delay-100 animate-ease-out max-w-4xl text-lg font-normal md:text-xl xl:text-2xl">
-            AtlasWay is a free and open-source web
-            application to manage your training routines,
-            sessions and exercises. It is designed to help
-            you stay organized and focused on your fitness
-            journey.
+            AtlasWay is a free and open-source web application to manage your training routines,
+            sessions and exercises. It is designed to help you stay organized and focused on your
+            fitness journey.
           </p>
 
           <footer className="animate-fade-down animate-delay-200 animate-ease-out flex items-center gap-4">

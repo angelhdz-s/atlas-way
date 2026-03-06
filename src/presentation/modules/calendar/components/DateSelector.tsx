@@ -37,41 +37,20 @@ function DateController({
   onNextClick,
 }: DateControllerProps) {
   return (
-    <section
-      className={`flex flex-col items-center justify-between gap-2 ${className}`}
-    >
-      <ArrowButton
-        onClick={onPreviousClick}
-        className="text-default/25"
-      >
-        <IconArrowUp
-          className="-mb-1.5 size-8"
-          strokeWidth="2"
-        />
+    <section className={`flex flex-col items-center justify-between gap-2 ${className}`}>
+      <ArrowButton onClick={onPreviousClick} className="text-default/25">
+        <IconArrowUp className="-mb-1.5 size-8" strokeWidth="2" />
       </ArrowButton>
-      <span className="fg-strong text-3xl font-bold">
-        {children}
-      </span>
-      <ArrowButton
-        onClick={onNextClick}
-        className="text-default/25"
-      >
-        <IconArrowUp
-          className="size-8 rotate-180"
-          strokeWidth="2"
-        />
+      <span className="fg-strong text-3xl font-bold">{children}</span>
+      <ArrowButton onClick={onNextClick} className="text-default/25">
+        <IconArrowUp className="size-8 rotate-180" strokeWidth="2" />
       </ArrowButton>
     </section>
   );
 }
 
-export function DateSelector({
-  className = '',
-}: {
-  className?: string;
-}) {
-  const { selectedDate, setCurrentDate } =
-    useContext(CalendarContext);
+export function DateSelector({ className = '' }: { className?: string }) {
+  const { selectedDate, setCurrentDate } = useContext(CalendarContext);
 
   const {
     handleNextDate,
@@ -90,10 +69,7 @@ export function DateSelector({
         <h2>Friday, July 5</h2>
       </header>
       <main className="flex gap-4">
-        <DateController
-          onPreviousClick={handlePreviousYear}
-          onNextClick={handleNextYear}
-        >
+        <DateController onPreviousClick={handlePreviousYear} onNextClick={handleNextYear}>
           {selectedDate.getFullYear()}
         </DateController>
         <DateController

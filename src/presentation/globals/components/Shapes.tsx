@@ -14,13 +14,7 @@ export function Shape01({
   const clipPathId = useId();
   const gradientId = useId();
   return (
-    <svg
-      width="200"
-      height="200"
-      viewBox="0 0 200 200"
-      fill="none"
-      className={className}
-    >
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" className={className}>
       <g clipPath={`url(#${clipPathId})`}>
         <path
           fillRule="evenodd"
@@ -38,15 +32,8 @@ export function Shape01({
           y2="200"
           gradientUnits="userSpaceOnUse"
         >
-          <stop
-            stopColor="currentColor"
-            className={color1}
-          />
-          <stop
-            offset="1"
-            stopColor="currentColor"
-            className={color2}
-          />
+          <stop stopColor="currentColor" className={color1} />
+          <stop offset="1" stopColor="currentColor" className={color2} />
         </linearGradient>
         <clipPath id={clipPathId}>
           <rect width="200" height="200" fill="none" />
@@ -68,13 +55,7 @@ export function Shape02({
   const clipPathId = useId();
   const gradientId = useId();
   return (
-    <svg
-      width="200"
-      height="200"
-      viewBox="0 0 200 200"
-      fill="none"
-      className={className}
-    >
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" className={className}>
       <g clipPath={`url(#${clipPathId})`}>
         <path
           fillRule="evenodd"
@@ -92,15 +73,8 @@ export function Shape02({
           y2="200"
           gradientUnits="userSpaceOnUse"
         >
-          <stop
-            stopColor="currentColor"
-            className={color1}
-          />
-          <stop
-            offset="1"
-            stopColor="currentColor"
-            className={color2}
-          />
+          <stop stopColor="currentColor" className={color1} />
+          <stop offset="1" stopColor="currentColor" className={color2} />
         </linearGradient>
         <clipPath id={clipPathId}>
           <rect width="200" height="200" fill="white" />
@@ -122,13 +96,7 @@ export function Shape03({
   const clipPathId = useId();
   const gradientId = useId();
   return (
-    <svg
-      width="200"
-      height="200"
-      viewBox="0 0 200 200"
-      fill="none"
-      className={className}
-    >
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" className={className}>
       <g clipPath={`url(#${clipPathId})`}>
         <path
           fillRule="evenodd"
@@ -146,15 +114,8 @@ export function Shape03({
           y2="179.5"
           gradientUnits="userSpaceOnUse"
         >
-          <stop
-            stopColor="currentColor"
-            className={color1}
-          />
-          <stop
-            offset="1"
-            stopColor="currentColor"
-            className={color2}
-          />
+          <stop stopColor="currentColor" className={color1} />
+          <stop offset="1" stopColor="currentColor" className={color2} />
         </linearGradient>
         <clipPath id={clipPathId}>
           <rect width="200" height="200" fill="white" />
@@ -174,13 +135,7 @@ export function Shape04({
   color2?: string;
 }) {
   return (
-    <svg
-      width="200"
-      height="200"
-      viewBox="0 0 200 200"
-      fill="none"
-      className={className}
-    >
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" className={className}>
       <g clipPath="url(#clip0_105_723)">
         <path
           fillRule="evenodd"
@@ -198,15 +153,8 @@ export function Shape04({
           y2="183"
           gradientUnits="userSpaceOnUse"
         >
-          <stop
-            stopColor="currentColor"
-            className={color1}
-          />
-          <stop
-            offset="1"
-            stopColor="currentColor"
-            className={color2}
-          />
+          <stop stopColor="currentColor" className={color1} />
+          <stop offset="1" stopColor="currentColor" className={color2} />
         </linearGradient>
         <clipPath id="clip0_105_723">
           <rect width="200" height="200" fill="white" />
@@ -241,32 +189,12 @@ export function Shape05({
       strokeDashoffset={strokeDasharray}
     >
       <defs>
-        <linearGradient
-          x1="50%"
-          y1="0%"
-          x2="50%"
-          y2="100%"
-          id={gradientId}
-        >
-          <stop
-            stopColor="currentColor"
-            className={color1}
-            stopOpacity="1"
-            offset="0%"
-          ></stop>
-          <stop
-            stopColor="currentColor"
-            className={color2}
-            stopOpacity="1"
-            offset="100%"
-          ></stop>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id={gradientId}>
+          <stop stopColor="currentColor" className={color1} stopOpacity="1" offset="0%"></stop>
+          <stop stopColor="currentColor" className={color2} stopOpacity="1" offset="100%"></stop>
         </linearGradient>
       </defs>
-      <g
-        stroke={`url(#${gradientId})`}
-        fill="none"
-        strokeLinecap="round"
-      >
+      <g stroke={`url(#${gradientId})`} fill="none" strokeLinecap="round">
         <circle
           r="363"
           cx="400"
@@ -435,29 +363,16 @@ export function Shape05({
           transform="rotate(17, 400, 400)"
           opacity="0.90"
         ></circle>
-        <circle
-          r="16.5"
-          cx="400"
-          cy="400"
-          strokeDasharray="0 104"
-          opacity="0.09"
-        ></circle>
+        <circle r="16.5" cx="400" cy="400" strokeDasharray="0 104" opacity="0.09"></circle>
       </g>
     </svg>
   );
 }
 
-export function Shape06({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function Shape06({ className = '' }: { className?: string }) {
   return (
     <svg viewBox="0 0 480 480" className={className}>
-      <path
-        d="M360 240 240 0 120 240l120 240 120-240z"
-        fill="currentColor"
-      ></path>
+      <path d="M360 240 240 0 120 240l120 240 120-240z" fill="currentColor"></path>
     </svg>
   );
 }

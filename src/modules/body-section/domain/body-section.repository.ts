@@ -4,7 +4,5 @@ import type { BodySectionProps } from './body-section.types';
 
 export interface IBodySectionRepository {
   findAll: () => RepositoryResult<BodySection[]>;
-  findById: (
-    id: BodySectionProps['id']
-  ) => RepositoryResult<BodySection | null>;
+  findById: (id: BodySectionProps['id']) => RepositoryResult<BodySection | null>;
 }

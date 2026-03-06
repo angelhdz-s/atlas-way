@@ -1,9 +1,6 @@
 import type { DomainErrorCode } from '../../domain/errors/error.types';
 
-export const errorMessages: Record<
-  DomainErrorCode,
-  string
-> = {
+export const errorMessages: Record<DomainErrorCode, string> = {
   EXERCISE_INITIAL_STATS_NOT_FOUND: '',
   EXERCISE_NOT_FOUND: '',
   EXERCISE_TO_MUSCLE_NOT_FOUND: '',

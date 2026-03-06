@@ -24,17 +24,12 @@ export class Session {
   changeName(name: SessionProps['name']) {
     this.data.name = name;
   }
-  changeDescription(
-    description: SessionProps['description']
-  ) {
+  changeDescription(description: SessionProps['description']) {
     this.data.description = description;
   }
   static create(
     id: SessionProps['id'],
-    data: Omit<
-      SessionProps,
-      'id' | 'createdAt' | 'updatedAt'
-    >
+    data: Omit<SessionProps, 'id' | 'createdAt' | 'updatedAt'>
   ) {
     return new Session({
       ...data,

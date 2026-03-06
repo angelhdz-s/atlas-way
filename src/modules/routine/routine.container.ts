@@ -10,23 +10,11 @@ type Props = {
   routineRepository: RoutinePrismaRepository;
 };
 
-export const makeRoutineModule = ({
-  idGeneratorRepository,
-  routineRepository,
-}: Props) => {
+export const makeRoutineModule = ({ idGeneratorRepository, routineRepository }: Props) => {
   return {
-    GetAllRoutinesUseCase: new GetAllRoutines(
-      routineRepository
-    ),
-    GetRoutineByIdUseCase: new GetRoutineById(
-      routineRepository
-    ),
-    CreateRoutineUseCase: new CreateRoutine(
-      routineRepository,
-      idGeneratorRepository
-    ),
-    UpdateRoutineUseCase: new UpdateRoutine(
-      routineRepository
-    ),
+    GetAllRoutinesUseCase: new GetAllRoutines(routineRepository),
+    GetRoutineByIdUseCase: new GetRoutineById(routineRepository),
+    CreateRoutineUseCase: new CreateRoutine(routineRepository, idGeneratorRepository),
+    UpdateRoutineUseCase: new UpdateRoutine(routineRepository),
   };
 };

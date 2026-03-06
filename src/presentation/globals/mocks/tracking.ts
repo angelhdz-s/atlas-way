@@ -1,14 +1,6 @@
-import {
-  getPastDate,
-  isToday,
-} from '@/presentation/globals/lib/dates';
+import { getPastDate, isToday } from '@/presentation/globals/lib/dates';
 import { ROUTINES, type StatusDayType } from './routines';
-import {
-  type ExerciseType,
-  LEGS_DAY,
-  PULL_DAY,
-  PUSH_DAY,
-} from './sessions';
+import { type ExerciseType, LEGS_DAY, PULL_DAY, PUSH_DAY } from './sessions';
 import { minorValue } from '@/presentation/globals/lib/utils';
 
 type TrainingtDayNameType = 'Training Day';
@@ -31,28 +23,16 @@ export const DAY_TYPES: DayTypes = {
 
 export type TypesOfDayType = keyof typeof DAY_TYPES;
 
-export const START_TRACKING_DAYS = new Date(
-  2025,
-  6,
-  1,
-  10,
-  30
-);
+export const START_TRACKING_DAYS = new Date(2025, 6, 1, 10, 30);
 export const TRACKING_DAYS = 21;
 export const TRACKING_DAYS_OFFSET = 3;
 
 const YEAR_TODAY = 2025;
 const MONTH_TODAY = 6;
 const DAY_TODAY = 4;
-export const TODAY = new Date(
-  YEAR_TODAY,
-  MONTH_TODAY,
-  DAY_TODAY
-);
+export const TODAY = new Date(YEAR_TODAY, MONTH_TODAY, DAY_TODAY);
 
-const routine = ROUTINES.find(
-  (routine) => routine.name === 'Push, Pull, Legs'
-);
+const routine = ROUTINES.find((routine) => routine.name === 'Push, Pull, Legs');
 
 type RestDayType = {
   type: Extract<TypesOfDayType, 'REST'>;
@@ -68,8 +48,7 @@ type NextRestDayType = {
   routine: 'Rest';
 };
 
-export type NextRestDayPlanifiedType = DayDatesType &
-  NextRestDayType;
+export type NextRestDayPlanifiedType = DayDatesType & NextRestDayType;
 
 type ExerciseSkipped = ExerciseType['name'];
 
@@ -82,8 +61,7 @@ type TrainingDayType = {
   exercicesSkipped: ExerciseSkipped[] | [];
 };
 
-export type TrackedDayType = DayDatesType &
-  (RestDayType | TrainingDayType);
+export type TrackedDayType = DayDatesType & (RestDayType | TrainingDayType);
 
 const REST_DAY: NextRestDayType = {
   type: 'REST',
@@ -92,9 +70,7 @@ const REST_DAY: NextRestDayType = {
   status: 'next',
 };
 
-export function getRestDay(
-  date: Date
-): NextRestDayPlanifiedType {
+export function getRestDay(date: Date): NextRestDayPlanifiedType {
   const status = isToday(date) ? 'current' : 'next';
   return {
     ...REST_DAY,
@@ -452,9 +428,9 @@ export const TRACKED_DAYS: TrackedDayType[] = [
   },
 ];
 
-export const FIRST_TRACKED_DAY = TRACKED_DAYS.map(
-  (day) => day.date
-).reduce((a, b) => minorValue(a, b));
+export const FIRST_TRACKED_DAY = TRACKED_DAYS.map((day) => day.date).reduce((a, b) =>
+  minorValue(a, b)
+);
 
 export const SESSIONS_COUNTERS = {
   sessionStreak: 16,

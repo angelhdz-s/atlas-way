@@ -25,9 +25,7 @@ type SessionRestDayType = {
   status: 'completed';
 };
 
-type SessionListItemType =
-  | SessionTrainingDayType
-  | SessionRestDayType;
+type SessionListItemType = SessionTrainingDayType | SessionRestDayType;
 
 const LAST_SESSIONS: SessionListItemType[] = [
   {
@@ -81,8 +79,7 @@ function SessionListItem({
   session: SessionListItemType;
 }) {
   const { name, date, type, status } = session;
-  const statusTextColorClass =
-    getStatusTextColorClass(status);
+  const statusTextColorClass = getStatusTextColorClass(status);
   return (
     <li
       className={`flex w-full items-center justify-between gap-4 ${statusTextColorClass} ${className}`}
@@ -99,15 +96,9 @@ function SessionListItem({
   );
 }
 
-export function LastSessions({
-  className,
-}: {
-  className?: string;
-}) {
+export function LastSessions({ className }: { className?: string }) {
   return (
-    <ul
-      className={`flex w-full flex-col gap-1 ${className}`}
-    >
+    <ul className={`flex w-full flex-col gap-1 ${className}`}>
       {LAST_SESSIONS.map((session) => (
         <SessionListItem
           className="border-bd-default rounded-lg border p-2"

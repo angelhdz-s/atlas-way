@@ -5,8 +5,7 @@ export const buttonVariant = tv({
   base: 'flex w-fit cursor-pointer items-center gap-2 rounded-(--rounding) py-0.5 whitespace-nowrap transition-colors [--rounding:8px] disabled:cursor-not-allowed disabled:opacity-50',
   variants: {
     color: {
-      primary:
-        'bg-primary fg-strong-dark hover:bg-primary/90',
+      primary: 'bg-primary fg-strong-dark hover:bg-primary/90',
       primaryDeluxe: twMerge(
         'fg-strong-dark to-primary from-secondary from-10%',
         'bg-primary shadow-[0px_0px_30px_0px_var(--color-primary)]/80 hover:shadow-[0px_0px_30px_0px_var(--color-primary)]/50',
@@ -44,6 +43,4 @@ export const buttonVariant = tv({
   },
 });
 
-export type ButtonVariantProps = VariantProps<
-  typeof buttonVariant
->;
+export type ButtonVariantProps = VariantProps<typeof buttonVariant>;

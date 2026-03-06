@@ -5,12 +5,8 @@ type Props = {
   authRepository: IAuthRepository;
 };
 
-export const makeAuthModule = ({
-  authRepository,
-}: Props) => {
+export const makeAuthModule = ({ authRepository }: Props) => {
   return {
-    GetCurrentSessionUseCase: new GetCurrentSession(
-      authRepository
-    ),
+    GetCurrentSessionUseCase: new GetCurrentSession(authRepository),
   };
 };

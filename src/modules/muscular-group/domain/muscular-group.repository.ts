@@ -4,7 +4,5 @@ import type { MuscularGroupProps } from './muscular-group.types';
 
 export interface IMuscularGroupRepository {
   findAll: () => RepositoryResult<MuscularGroup[]>;
-  findById: (
-    id: MuscularGroupProps['id']
-  ) => RepositoryResult<MuscularGroup | null>;
+  findById: (id: MuscularGroupProps['id']) => RepositoryResult<MuscularGroup | null>;
 }

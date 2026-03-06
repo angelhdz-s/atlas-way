@@ -32,23 +32,16 @@ export function SessionDetails({
   session: SessionDetailsType;
 }) {
   const { name, exercises, status } = session;
-  const statusTextColorClass =
-    getStatusTextColorClass(status);
-  const withStatusGridClass =
-    getGridColsClassFromWithStatus(withStatus);
+  const statusTextColorClass = getStatusTextColorClass(status);
+  const withStatusGridClass = getGridColsClassFromWithStatus(withStatus);
   return (
     <>
-      <header
-        className={`flex items-center justify-between gap-2 ${statusTextColorClass}`}
-      >
+      <header className={`flex items-center justify-between gap-2 ${statusTextColorClass}`}>
         <main className="flex items-center gap-2">
           <h4 className="text-lg">{name}</h4>
           {withStatus && (
             <aside>
-              <StatusIcon
-                status={status}
-                className="size-6"
-              />
+              <StatusIcon status={status} className="size-6" />
             </aside>
           )}
         </main>
@@ -71,11 +64,7 @@ export function SessionDetails({
             <span>Weight</span>
           </li>
           {exercises.map((exercise, index) => (
-            <ExerciseRow
-              withStatus={withStatus}
-              exercise={exercise}
-              key={index}
-            />
+            <ExerciseRow withStatus={withStatus} exercise={exercise} key={index} />
           ))}
         </ul>
       </main>

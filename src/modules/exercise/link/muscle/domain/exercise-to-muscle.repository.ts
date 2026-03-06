@@ -2,9 +2,7 @@ import type { RepositoryResult } from '@/shared/domain/repository.result';
 import type { ExerciseToMuscleProps } from './exercise-to-muscle.types';
 import type { ExerciseToMuscle } from './exercise-to-muscle.entity';
 export interface IExerciseToMuscleRepository {
-  create: (
-    data: ExerciseToMuscle
-  ) => RepositoryResult<ExerciseToMuscle>;
+  create: (data: ExerciseToMuscle) => RepositoryResult<ExerciseToMuscle>;
   findAll: () => RepositoryResult<ExerciseToMuscle[]>;
   findByExerciseId: (
     exerciseId: ExerciseToMuscleProps['exerciseId']

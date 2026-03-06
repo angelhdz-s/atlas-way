@@ -42,9 +42,7 @@ export class UserPrismaRepository implements IUserRepository {
   async findAll() {
     try {
       const users = await this.prisma.users.findMany();
-      const domainUsers = users.map((user) =>
-        UserMapper.toDomain(user)
-      );
+      const domainUsers = users.map((user) => UserMapper.toDomain(user));
       return Success(domainUsers);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
@@ -58,9 +56,7 @@ export class UserPrismaRepository implements IUserRepository {
           id,
         },
       });
-      return Success(
-        user ? UserMapper.toDomain(user) : null
-      );
+      return Success(user ? UserMapper.toDomain(user) : null);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
     }
@@ -72,9 +68,7 @@ export class UserPrismaRepository implements IUserRepository {
           email,
         },
       });
-      return Success(
-        user ? UserMapper.toDomain(user) : null
-      );
+      return Success(user ? UserMapper.toDomain(user) : null);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
     }

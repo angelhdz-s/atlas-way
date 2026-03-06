@@ -12,11 +12,9 @@ export class MuscularGroupPrismaReporitory implements IMuscularGroupRepository {
   ) {}
   async findAll() {
     try {
-      const muscularGroups =
-        await this.prisma.muscularGroups.findMany();
-      const muscularGroupsDomain = muscularGroups.map(
-        (muscularGroup) =>
-          MuscularGroupMapper.toDomain(muscularGroup)
+      const muscularGroups = await this.prisma.muscularGroups.findMany();
+      const muscularGroupsDomain = muscularGroups.map((muscularGroup) =>
+        MuscularGroupMapper.toDomain(muscularGroup)
       );
       return Success(muscularGroupsDomain);
     } catch (e) {
@@ -25,13 +23,10 @@ export class MuscularGroupPrismaReporitory implements IMuscularGroupRepository {
   }
   async findById(id: MuscularGroupProps['id']) {
     try {
-      const muscularGroup =
-        await this.prisma.muscularGroups.findUnique({
-          where: { id },
-        });
-      const result = muscularGroup
-        ? MuscularGroupMapper.toDomain(muscularGroup)
-        : null;
+      const muscularGroup = await this.prisma.muscularGroups.findUnique({
+        where: { id },
+      });
+      const result = muscularGroup ? MuscularGroupMapper.toDomain(muscularGroup) : null;
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));

@@ -27,8 +27,7 @@ export type NextSessionType = SessionDayType & {
 
 export const PUSH_DAY: SessionDayType = {
   name: 'Push Day',
-  description:
-    'Focus on pushing movements like bench press and shoulder press.',
+  description: 'Focus on pushing movements like bench press and shoulder press.',
   exercises: [
     {
       name: 'Shoulder Press',
@@ -70,8 +69,7 @@ export const PUSH_DAY: SessionDayType = {
 
 export const PULL_DAY: SessionDayType = {
   name: 'Pull Day',
-  description:
-    'Focus on pulling movements like deadlifts and pull-ups.',
+  description: 'Focus on pulling movements like deadlifts and pull-ups.',
   exercises: [
     {
       name: 'Deadlift',
@@ -121,8 +119,7 @@ export const PULL_DAY: SessionDayType = {
 
 export const LEGS_DAY: SessionDayType = {
   name: 'Leg Day',
-  description:
-    'Focus on leg movements like squats and lunges.',
+  description: 'Focus on leg movements like squats and lunges.',
   exercises: [
     {
       name: 'Squats',
@@ -170,8 +167,4 @@ export const LEGS_DAY: SessionDayType = {
   weekDay: 5,
 };
 
-export const SESSIONS: SessionDayType[] = [
-  PUSH_DAY,
-  PULL_DAY,
-  LEGS_DAY,
-];
+export const SESSIONS: SessionDayType[] = [PUSH_DAY, PULL_DAY, LEGS_DAY];

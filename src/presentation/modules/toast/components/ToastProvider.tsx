@@ -1,28 +1,18 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import {
-  TOAST_DURATION,
-  TOAST_TYPE,
-} from '@/presentation/globals/config/defaults';
+import { TOAST_DURATION, TOAST_TYPE } from '@/presentation/globals/config/defaults';
 import { generateId } from '@/presentation/globals/lib/utils';
 import type { Toast } from '@/presentation/globals/types.d';
 import { ToastContainer } from '@/presentation/modules/toast/components/ToastContainer';
 import { ToastContext } from '@/presentation/modules/toast/contexts/toast-context';
 
-export const ToastProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   const [toasts, setToasts] = useState<Toast[]>([]);
   const [mounted, setMounted] = useState(false);
 
   const addToast = useCallback(
-    (
-      message: string,
-      options?: Partial<Omit<Toast, 'id' | 'message'>>
-    ) => {
+    (message: string, options?: Partial<Omit<Toast, 'id' | 'message'>>) => {
       const toast: Toast = {
         id: generateId(),
         message,
@@ -32,9 +22,7 @@ export const ToastProvider = ({
       setToasts((prev) => [...prev, toast]);
 
       setTimeout(() => {
-        setToasts((prev) =>
-          prev.filter((t) => t.id !== toast.id)
-        );
+        setToasts((prev) => prev.filter((t) => t.id !== toast.id));
       }, toast.duration);
     },
     []
@@ -51,12 +39,7 @@ export const ToastProvider = ({
   return (
     <ToastContext.Provider value={{ addToast }}>
       {children}
-      {mounted && (
-        <ToastContainer
-          toasts={toasts}
-          onRemove={removeToast}
-        />
-      )}
+      {mounted && <ToastContainer toasts={toasts} onRemove={removeToast} />}
     </ToastContext.Provider>
   );
 };

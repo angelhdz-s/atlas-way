@@ -3,5 +3,4 @@ export function minorValue(a: Date, b: Date) {
   return b;
 }
 
-export const generateId = () =>
-  Math.random().toString(36).substr(2, 9);
+export const generateId = () => Math.random().toString(36).substr(2, 9);

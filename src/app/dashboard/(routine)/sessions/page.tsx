@@ -9,19 +9,9 @@ import { VariantLink } from '@/presentation/modules/button/components/VariantLin
 export default function SessionsPage() {
   return (
     <PageContainer>
-      <PageHeader
-        title="Sessions"
-        description="Manage your days planifications"
-        className=""
-      >
-        <VariantLink
-          variantConfig={{ color: 'simple' }}
-          href="/dashboard/sessions/create"
-        >
-          <IconClipboardList
-            className="size-5"
-            strokeWidth="2"
-          />
+      <PageHeader title="Sessions" description="Manage your days planifications" className="">
+        <VariantLink variantConfig={{ color: 'simple' }} href="/dashboard/sessions/create">
+          <IconClipboardList className="size-5" strokeWidth="2" />
           Create Session
         </VariantLink>
       </PageHeader>

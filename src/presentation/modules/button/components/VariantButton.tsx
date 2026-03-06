@@ -9,10 +9,5 @@ export function VariantButton({
   ...props
 }: VariantButtonType<ButtonElementProps>) {
   const variantClassNames = buttonVariant(variantConfig);
-  return (
-    <button
-      className={twMerge(variantClassNames, className)}
-      {...props}
-    ></button>
-  );
+  return <button className={twMerge(variantClassNames, className)} {...props}></button>;
 }

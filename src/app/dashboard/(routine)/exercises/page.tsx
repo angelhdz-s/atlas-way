@@ -18,14 +18,8 @@ export default async function ExercisesPage() {
   }
   return (
     <PageContainer>
-      <PageHeader
-        title="Exercises"
-        className="flex items-center justify-between"
-      >
-        <VariantLink
-          variantConfig={{ color: 'simple' }}
-          href="/dashboard/exercises/create"
-        >
+      <PageHeader title="Exercises" className="flex items-center justify-between">
+        <VariantLink variantConfig={{ color: 'simple' }} href="/dashboard/exercises/create">
           Create Exercise
         </VariantLink>
       </PageHeader>

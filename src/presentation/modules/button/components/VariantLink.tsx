@@ -6,16 +6,7 @@ import type { VariantButtonType } from '../button.types';
 
 type LinkProps = ComponentProps<typeof Link>;
 
-export function VariantLink({
-  variantConfig,
-  className,
-  ...props
-}: VariantButtonType<LinkProps>) {
+export function VariantLink({ variantConfig, className, ...props }: VariantButtonType<LinkProps>) {
   const variantClassNames = buttonVariant(variantConfig);
-  return (
-    <Link
-      className={twMerge(variantClassNames, className)}
-      {...props}
-    ></Link>
-  );
+  return <Link className={twMerge(variantClassNames, className)} {...props}></Link>;
 }

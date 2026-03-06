@@ -7,8 +7,7 @@ import { CalendarContext } from '@/presentation/modules/calendar/contexts/calend
 import { useCalendar } from '@/presentation/modules/calendar/hooks/useCalendar';
 
 export function Calendar() {
-  const { selectedDate, setCurrentDate } =
-    useContext(CalendarContext);
+  const { selectedDate, setCurrentDate } = useContext(CalendarContext);
 
   const { days } = useCalendar({
     selectedDate,

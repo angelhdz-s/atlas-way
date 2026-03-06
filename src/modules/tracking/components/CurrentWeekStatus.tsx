@@ -1,18 +1,9 @@
-import {
-  IconCalendarWeek,
-  IconCircleOutline,
-} from '@/presentation/globals/components/Icons';
+import { IconCalendarWeek, IconCircleOutline } from '@/presentation/globals/components/Icons';
 import { WEEK_DAYS } from '@/presentation/globals/constants/date';
-import {
-  getNextDates,
-  getSessionFromDate,
-} from '@/presentation/globals/lib/dates';
+import { getNextDates, getSessionFromDate } from '@/presentation/globals/lib/dates';
 import type { StatusDayType } from '@/presentation/globals/mocks/routines';
 import { TODAY } from '@/presentation/globals/mocks/tracking';
-import type {
-  IconTypes,
-  SolidIconTypes,
-} from '@/presentation/globals/types';
+import type { IconTypes, SolidIconTypes } from '@/presentation/globals/types';
 import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
 import { getStatusTextColorClass } from '@/presentation/globals/lib/get-classes';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
@@ -36,14 +27,9 @@ function getCurrentWeekStatusDays(): CurrentWeekStatusDays[] {
 
   const dateCopy = new Date(TODAY);
 
-  const newInitialDate = new Date(
-    dateCopy.setDate(TODAY.getDate() - dayOfTheWeek)
-  );
+  const newInitialDate = new Date(dateCopy.setDate(TODAY.getDate() - dayOfTheWeek));
 
-  const datesArr = [
-    newInitialDate,
-    ...getNextDates(newInitialDate, 6),
-  ];
+  const datesArr = [newInitialDate, ...getNextDates(newInitialDate, 6)];
 
   datesArr.forEach((date) => {
     const { status, name } = getSessionFromDate(date);
@@ -53,19 +39,8 @@ function getCurrentWeekStatusDays(): CurrentWeekStatusDays[] {
   return dates;
 }
 
-function StatusDayIcon({
-  className = '',
-  icon: Icon,
-}: {
-  className: string;
-  icon: IconTypes;
-}) {
-  return (
-    <Icon
-      className={`${ICON_SIZE_CLASS} ${className}`}
-      strokeWidth="1.5"
-    />
-  );
+function StatusDayIcon({ className = '', icon: Icon }: { className: string; icon: IconTypes }) {
+  return <Icon className={`${ICON_SIZE_CLASS} ${className}`} strokeWidth="1.5" />;
 }
 
 function StatusDaySolidIcon({
@@ -75,96 +50,60 @@ function StatusDaySolidIcon({
   className?: string;
   icon: SolidIconTypes;
 }) {
-  return (
-    <Icon className={`${ICON_SIZE_CLASS} ${className}`} />
-  );
+  return <Icon className={`${ICON_SIZE_CLASS} ${className}`} />;
 }
 
-function StatusDay({
-  status,
-  className,
-}: {
-  status: StatusDayType;
-  className?: string;
-}) {
+function StatusDay({ status, className }: { status: StatusDayType; className?: string }) {
   if (status === 'completed')
     return (
       <span className={` ${className}`}>
-        <StatusDaySolidIcon
-          className="fg-complete"
-          icon={IconSolidCircleCheck}
-        />
+        <StatusDaySolidIcon className="fg-complete" icon={IconSolidCircleCheck} />
       </span>
     );
 
   if (status === 'canceled')
     return (
       <span className={` ${className}`}>
-        <StatusDaySolidIcon
-          className="fg-cancel"
-          icon={IconSolidCircleX}
-        />
+        <StatusDaySolidIcon className="fg-cancel" icon={IconSolidCircleX} />
       </span>
     );
 
   if (status === 'current')
     return (
       <span className={` ${className}`}>
-        <StatusDayIcon
-          className="fg-accent"
-          icon={IconCircleOutline}
-        />
+        <StatusDayIcon className="fg-accent" icon={IconCircleOutline} />
       </span>
     );
 
   // default return if status === "next"
   return (
     <span className={`${className}`}>
-      <StatusDayIcon
-        className="text-default/25"
-        icon={IconCircleOutline}
-      />
+      <StatusDayIcon className="text-default/25" icon={IconCircleOutline} />
     </span>
   );
 }
 
-export function CurrentWeekStatus({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function CurrentWeekStatus({ className = '' }: { className?: string }) {
   const currentWeekStatusDays = getCurrentWeekStatusDays();
 
   return (
-    <Card
-      border="highlighted"
-      className={`flex flex-col ${className}`}
-    >
+    <Card border="highlighted" className={`flex flex-col ${className}`}>
       <header>
         <CardTitle Icon={IconCalendarWeek} title="Week" />
       </header>
       <main className="flex items-center justify-center gap-2">
-        {currentWeekStatusDays.map(
-          ({ day, status, title }) => {
-            const dayName = WEEK_DAYS[day].initial;
-            const className =
-              getStatusTextColorClass(status);
-            return (
-              <div
-                key={day}
-                className="flex flex-col justify-center"
-                title={title}
-              >
-                <span
-                  className={`text-center text-sm font-black ${className || 'text-default/75'}`}
-                >
-                  {dayName}
-                </span>
-                <StatusDay status={status} />
-              </div>
-            );
-          }
-        )}
+        {currentWeekStatusDays.map(({ day, status, title }) => {
+          const dayName = WEEK_DAYS[day].initial;
+          const className = getStatusTextColorClass(status);
+          return (
+            <div key={day} className="flex flex-col justify-center" title={title}>
+              <span className={`text-center text-sm font-black ${className || 'text-default/75'}`}>
+                {dayName}
+              </span>
+              <StatusDay status={status} />
+            </div>
+          );
+        })}
       </main>
     </Card>
   );

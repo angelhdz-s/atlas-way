@@ -5,10 +5,7 @@ import { PageHeader } from '@/presentation/modules/dashboard/page/components/Pag
 export default function ExercisesStatisticsPage() {
   return (
     <PageContainer>
-      <PageHeader
-        title="Exercises Statistics"
-        className="flex items-center justify-between"
-      />
+      <PageHeader title="Exercises Statistics" className="flex items-center justify-between" />
       <PageContent>
         <div>Statistics 1</div>
         <div>Statistics 2</div>

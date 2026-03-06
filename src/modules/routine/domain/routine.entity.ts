@@ -50,10 +50,7 @@ export class Routine {
   }
   static create(
     id: RoutineProps['id'],
-    data: Omit<
-      RoutineProps,
-      'id' | 'createdAt' | 'updatedAt'
-    >
+    data: Omit<RoutineProps, 'id' | 'createdAt' | 'updatedAt'>
   ) {
     return new Routine({
       ...data,

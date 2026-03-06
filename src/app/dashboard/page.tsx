@@ -18,10 +18,7 @@ import { PageHeader } from '@/presentation/modules/dashboard/page/components/Pag
 export default function Dashboard() {
   return (
     <PageContainer>
-      <PageHeader
-        title="Dashboard"
-        description="Your personal fitness dashboard"
-      />
+      <PageHeader title="Dashboard" description="Your personal fitness dashboard" />
       <PageContent className="grid grid-cols-12 gap-6">
         <MainCard className="col-span-4" />
 

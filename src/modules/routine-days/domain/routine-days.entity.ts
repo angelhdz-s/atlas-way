@@ -28,18 +28,13 @@ export class RoutineDays {
   changeName(name: RoutineDaysProps['name']) {
     this.data.name = name;
   }
-  changeDayNumber(
-    dayNumber: RoutineDaysProps['dayNumber']
-  ) {
+  changeDayNumber(dayNumber: RoutineDaysProps['dayNumber']) {
     this.data.dayNumber = dayNumber;
   }
 
   static create(
     id: RoutineDaysProps['id'],
-    data: Omit<
-      RoutineDaysProps,
-      'id' | 'createdAt' | 'updatedAt'
-    >
+    data: Omit<RoutineDaysProps, 'id' | 'createdAt' | 'updatedAt'>
   ) {
     return new RoutineDays({
       ...data,

@@ -10,10 +10,7 @@ export default function RoutinesPage() {
   const id = useParams().id as string;
   return (
     <PageContainer>
-      <PageHeader
-        title={id}
-        className="flex items-center justify-between"
-      >
+      <PageHeader title={id} className="flex items-center justify-between">
         <VariantLink
           href={`/dashboard/sessions/${id}/add-exercise`}
           variantConfig={{ color: 'primary' }}

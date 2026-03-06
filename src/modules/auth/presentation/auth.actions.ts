@@ -4,8 +4,7 @@ import type { AuthSession } from '../domain/errors/auth-session.types';
 
 export async function getSession(): ActionResponse<AuthSession | null> {
   const container = getContainer();
-  const getCurrentSession =
-    container.auth.GetCurrentSessionUseCase;
+  const getCurrentSession = container.auth.GetCurrentSessionUseCase;
   const sessionResult = await getCurrentSession.execute();
   if (!sessionResult.success)
     return {

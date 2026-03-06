@@ -5,9 +5,7 @@ import { AuthMapper } from '../auth.mapper';
 import type { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class AuthNextAuthRepository implements IAuthRepository {
-  constructor(
-    private errorMapper: InfrastructureErrorTranslator
-  ) {}
+  constructor(private errorMapper: InfrastructureErrorTranslator) {}
   async getSession() {
     try {
       const session = await getCurrentSession();

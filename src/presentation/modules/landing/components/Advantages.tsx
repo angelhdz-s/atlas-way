@@ -7,19 +7,11 @@ import {
 
 import { AdvantageItem } from './advantages/AdvantageItem';
 
-export function Advantages({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function Advantages({ className = '' }: { className?: string }) {
   return (
-    <section
-      className={`mx-auto my-16 w-full max-w-5xl ${className}`}
-    >
+    <section className={`mx-auto my-16 w-full max-w-5xl ${className}`}>
       <header>
-        <h2 className="font-funnel-display fg-strong text-4xl font-bold">
-          Why AtlasWay?
-        </h2>
+        <h2 className="font-funnel-display fg-strong text-4xl font-bold">Why AtlasWay?</h2>
       </header>
 
       <main>

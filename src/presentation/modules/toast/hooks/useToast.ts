@@ -3,9 +3,6 @@ import { ToastContext } from '@/presentation/modules/toast/contexts/toast-contex
 
 export const useToast = () => {
   const ctx = useContext(ToastContext);
-  if (!ctx)
-    throw new Error(
-      'useToast must be used within ToastProvider'
-    );
+  if (!ctx) throw new Error('useToast must be used within ToastProvider');
   return ctx;
 };

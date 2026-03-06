@@ -17,27 +17,13 @@ export function DateControl({
   onRightClick,
 }: DateControlProps) {
   return (
-    <div
-      className={`flex h-full items-center ${className}`}
-    >
-      <ArrowButton
-        className="rounded-l"
-        onClick={onLeftClick}
-      >
-        <IconArrowUp
-          className={`${iconSize} -rotate-90`}
-          strokeWidth="2"
-        />
+    <div className={`flex h-full items-center ${className}`}>
+      <ArrowButton className="rounded-l" onClick={onLeftClick}>
+        <IconArrowUp className={`${iconSize} -rotate-90`} strokeWidth="2" />
       </ArrowButton>
       {children}
-      <ArrowButton
-        className="rounded-r"
-        onClick={onRightClick}
-      >
-        <IconArrowUp
-          className={`${iconSize} rotate-90`}
-          strokeWidth="2"
-        />
+      <ArrowButton className="rounded-r" onClick={onRightClick}>
+        <IconArrowUp className={`${iconSize} rotate-90`} strokeWidth="2" />
       </ArrowButton>
     </div>
   );

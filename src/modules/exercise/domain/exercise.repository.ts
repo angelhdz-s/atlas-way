@@ -4,10 +4,6 @@ export interface IExerciseRepository {
   create: (data: Exercise) => RepositoryResult<Exercise>;
   update: (data: Exercise) => RepositoryResult<Exercise>;
   findAll: () => RepositoryResult<Exercise[]>;
-  findById: (
-    id: Exercise['id']
-  ) => RepositoryResult<Exercise | null>;
-  findAllByUserId: (
-    userId: Exercise['userId']
-  ) => RepositoryResult<Exercise[]>;
+  findById: (id: Exercise['id']) => RepositoryResult<Exercise | null>;
+  findAllByUserId: (userId: Exercise['userId']) => RepositoryResult<Exercise[]>;
 }

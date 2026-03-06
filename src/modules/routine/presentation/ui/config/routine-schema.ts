@@ -1,18 +1,10 @@
 import { ROUTINE_CYCLES } from '@/presentation/globals/seed/cycle-types';
 import { z } from 'zod/v3';
 
-export const routineCycleLiterals = ROUTINE_CYCLES.map(
-  (cycle) => cycle.id
-);
-const routineCycleSchema = z.enum(
-  [
-    routineCycleLiterals[0],
-    ...routineCycleLiterals.slice(1),
-  ],
-  {
-    message: 'Invalid option',
-  }
-);
+export const routineCycleLiterals = ROUTINE_CYCLES.map((cycle) => cycle.id);
+const routineCycleSchema = z.enum([routineCycleLiterals[0], ...routineCycleLiterals.slice(1)], {
+  message: 'Invalid option',
+});
 
 export const routineFormSchema = z.object({
   name: z
@@ -21,10 +13,7 @@ export const routineFormSchema = z.object({
     .max(50, 'Name must be at most 50 characters long'),
   description: z
     .string({ message: 'Description must be a string' })
-    .max(
-      255,
-      'Description must be at most 255 characters long'
-    )
+    .max(255, 'Description must be at most 255 characters long')
     .optional(),
   cycle: routineCycleSchema,
   initialDate: z.date({

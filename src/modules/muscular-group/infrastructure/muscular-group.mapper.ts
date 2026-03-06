@@ -3,9 +3,7 @@ import { MuscularGroup as DomainMuscularGroup } from '../domain/muscular-group.e
 import type { MuscularGroupProps } from '../domain/muscular-group.types';
 
 export class MuscularGroupMapper {
-  static toDomain(
-    data: PrismaMuscularGroup
-  ): DomainMuscularGroup {
+  static toDomain(data: PrismaMuscularGroup): DomainMuscularGroup {
     const muscularGroup: MuscularGroupProps = {
       id: data.id,
       name: data.name,

@@ -17,17 +17,11 @@ export const ExerciseInitialStatsSchema = z.object({
   reps: z.number().min(1, 'Reps must be at least 1'),
   weight: z.number().min(0, 'Weight must be at least 0'),
 });
-export type ExerciseInitialStatsProps = z.infer<
-  typeof ExerciseInitialStatsSchema
->;
+export type ExerciseInitialStatsProps = z.infer<typeof ExerciseInitialStatsSchema>;
 
 export const ExerciseFormSchema = z.object({
   exercise: ExerciseSchema,
-  initialStats: ExerciseInitialStatsSchema.or(
-    z.undefined()
-  ),
+  initialStats: ExerciseInitialStatsSchema.or(z.undefined()),
   muscles: MusclesSchema,
 });
-export type ExerciseFormProps = z.infer<
-  typeof ExerciseFormSchema
->;
+export type ExerciseFormProps = z.infer<typeof ExerciseFormSchema>;

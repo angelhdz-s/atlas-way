@@ -13,8 +13,7 @@ export class SessionPrismaRepository implements ISessionRepository {
   ) {}
   async create(data: Session) {
     try {
-      const sessionPersistence =
-        SessionMapper.toPersistence(data);
+      const sessionPersistence = SessionMapper.toPersistence(data);
       const created = await this.prisma.sessions.create({
         data: sessionPersistence,
       });
@@ -26,8 +25,7 @@ export class SessionPrismaRepository implements ISessionRepository {
   }
   async update(data: Session) {
     try {
-      const sessionPersistence =
-        SessionMapper.toPersistence(data);
+      const sessionPersistence = SessionMapper.toPersistence(data);
       const updated = await this.prisma.sessions.update({
         data: sessionPersistence,
         where: { id: data.id },
@@ -40,11 +38,8 @@ export class SessionPrismaRepository implements ISessionRepository {
   }
   async findAll() {
     try {
-      const sessions =
-        await this.prisma.sessions.findMany();
-      const sessionsDomain = sessions.map((session) =>
-        SessionMapper.toDomain(session)
-      );
+      const sessions = await this.prisma.sessions.findMany();
+      const sessionsDomain = sessions.map((session) => SessionMapper.toDomain(session));
       return Success(sessionsDomain);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
@@ -52,12 +47,8 @@ export class SessionPrismaRepository implements ISessionRepository {
   }
   async findById(id: SessionProps['id']) {
     try {
-      const session = await this.prisma.sessions.findUnique(
-        { where: { id } }
-      );
-      const result = session
-        ? SessionMapper.toDomain(session)
-        : null;
+      const session = await this.prisma.sessions.findUnique({ where: { id } });
+      const result = session ? SessionMapper.toDomain(session) : null;
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));

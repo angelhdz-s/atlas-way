@@ -3,13 +3,7 @@ import { CardTitle } from '../../../presentation/modules/dashboard/card/componen
 import styles from './CurrentGoals.module.css';
 import { IconListCheck } from '@/presentation/globals/components/Icons';
 
-function PercentageBar({
-  value,
-  target,
-}: {
-  value: number;
-  target: number;
-}) {
+function PercentageBar({ value, target }: { value: number; target: number }) {
   const percentage = Math.min((value / target) * 100, 100);
   return (
     <div className="bg-subtle/20 h-1 w-full overflow-hidden rounded-full">
@@ -28,17 +22,10 @@ type GoalItemType = {
   target: number;
 };
 
-function GoalItem({
-  className = '',
-  goal,
-}: {
-  className?: string;
-  goal: GoalItemType;
-}) {
+function GoalItem({ className = '', goal }: { className?: string; goal: GoalItemType }) {
   const { name, value, target } = goal;
 
-  const completedClass =
-    value >= target ? 'fg-complete' : '';
+  const completedClass = value >= target ? 'fg-complete' : '';
 
   return (
     <article
@@ -86,11 +73,7 @@ const GOALS: GoalItemType[] = [
   },
 ];
 
-export function CurrentGoals({
-  className,
-}: {
-  className?: string;
-}) {
+export function CurrentGoals({ className }: { className?: string }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
       <header>

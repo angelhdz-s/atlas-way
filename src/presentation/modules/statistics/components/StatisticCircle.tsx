@@ -11,9 +11,7 @@ export function StatisticCircle({
 }) {
   return (
     <div className="relative grid size-28 place-content-center text-center">
-      <header className="fg-muted relative z-1 text-sm leading-[1.2]">
-        {title}
-      </header>
+      <header className="fg-muted relative z-1 text-sm leading-[1.2]">{title}</header>
       <main className="fg-strong font-funnel-display relative z-1 text-xl leading-[1.2]">
         {value}
       </main>

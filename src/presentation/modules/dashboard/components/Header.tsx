@@ -7,11 +7,7 @@ import { NotificationsButton } from '../../../../modules/notification/presentati
 import Link from 'next/link';
 import { Imagotype } from '@/presentation/globals/components/AppLogo';
 
-export function Header({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function Header({ className = '' }: { className?: string }) {
   return (
     <header className="h-(--header-height) w-full">
       <main
@@ -19,10 +15,7 @@ export function Header({
       >
         <section className="flex h-full items-center gap-2">
           <main className="flex h-full w-(--sidebar-width) items-center justify-between gap-0 pl-4">
-            <Link
-              href="/"
-              className="font-funnel-display flex items-center gap-2 font-light"
-            >
+            <Link href="/" className="font-funnel-display flex items-center gap-2 font-light">
               <Imagotype />
             </Link>
           </main>

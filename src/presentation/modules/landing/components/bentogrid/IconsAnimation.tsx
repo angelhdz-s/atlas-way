@@ -48,10 +48,7 @@ function IconContainer({
   Icon: IconTypes;
 }) {
   return (
-    <figure
-      className={`absolute top-0 left-0 block ${className}`}
-      style={style}
-    >
+    <figure className={`absolute top-0 left-0 block ${className}`} style={style}>
       <Icon
         className="fg-strong animate-wiggle-more animate-infinite animate-duration-5000 size-8"
         strokeWidth="1"
@@ -60,17 +57,11 @@ function IconContainer({
   );
 }
 
-export function IconsAnimation({
-  direction,
-}: {
-  direction: AnimationDirection;
-}) {
+export function IconsAnimation({ direction }: { direction: AnimationDirection }) {
   const [mounted, setMounted] = useState(false);
 
   const limitRange = ICONS.length;
-  const displacedIndex = Math.floor(
-    Math.random() * limitRange
-  );
+  const displacedIndex = Math.floor(Math.random() * limitRange);
 
   const getIndex = (index: number) => {
     const currentIndex = index + displacedIndex;
@@ -81,8 +72,7 @@ export function IconsAnimation({
   };
 
   const getDelay = (index: number) => {
-    const delay =
-      getIndex(index) * (DURATION / ICONS.length);
+    const delay = getIndex(index) * (DURATION / ICONS.length);
     return delay;
   };
 

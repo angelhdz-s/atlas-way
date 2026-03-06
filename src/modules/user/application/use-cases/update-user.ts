@@ -8,14 +8,10 @@ import { UserNotFoundError } from '../../domain/errors/user.errors';
 export class UpdateUser implements UseCase {
   constructor(private repository: IUserRepository) {}
 
-  async execute(
-    id: UserProps['id'],
-    data: UpdateUserInput
-  ) {
+  async execute(id: UserProps['id'], data: UpdateUserInput) {
     const userResult = await this.repository.findById(id);
 
-    if (!userResult.success || !userResult.data)
-      return Failure(new UserNotFoundError());
+    if (!userResult.success || !userResult.data) return Failure(new UserNotFoundError());
     const user = userResult.data;
 
     if (data.name) user.changeName(data.name);

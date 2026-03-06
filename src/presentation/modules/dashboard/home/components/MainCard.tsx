@@ -1,25 +1,13 @@
-import {
-  IconBarbell,
-  IconMapRoute,
-  IconAlarm,
-} from '@/presentation/globals/components/Icons';
+import { IconBarbell, IconMapRoute, IconAlarm } from '@/presentation/globals/components/Icons';
 import { Card } from '../../card/components/Card';
 import { IconSolidCircleCheck } from '@/presentation/globals/components/SolidIcons';
 
-export function MainCard({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function MainCard({ className = '' }: { className?: string }) {
   return (
-    <Card
-      color="main"
-      className={`relative flex flex-col gap-4 ${className}`}
-    >
+    <Card color="main" className={`relative flex flex-col gap-4 ${className}`}>
       <header className="relative z-1">
         <h3 className="font-funnel-display max-w-100 text-2xl tracking-tight">
-          Start achieving your goals with{' '}
-          <span className="fg-accent">AtlasWay</span>
+          Start achieving your goals with <span className="fg-accent">AtlasWay</span>
         </h3>
       </header>
       <main className="relative z-1 flex max-w-140 flex-1 flex-col">
@@ -28,26 +16,19 @@ export function MainCard({
             <span className="pt-1">
               <IconSolidCircleCheck className="size-6" />
             </span>
-            <span className="flex-1">
-              Create Your Own Path
-            </span>
+            <span className="flex-1">Create Your Own Path</span>
           </li>
           <li>
             <span className="pt-1">
               <IconSolidCircleCheck className="size-6" />
             </span>
-            <span className="flex-1">
-              {"You Don't Need to Be an Expert"}
-            </span>
+            <span className="flex-1">{"You Don't Need to Be an Expert"}</span>
           </li>
         </ul>
       </main>
       <ul className="*:border-bd-strong-light/50 relative z-1 flex w-full items-center justify-center gap-2 text-base *:flex *:items-center *:gap-2 *:rounded-full *:border *:px-3 *:py-1.5">
         <li>
-          <IconMapRoute
-            className="size-5"
-            strokeWidth="1.5"
-          />
+          <IconMapRoute className="size-5" strokeWidth="1.5" />
           Routines
         </li>
         <li>
@@ -55,10 +36,7 @@ export function MainCard({
           Sessions
         </li>
         <li>
-          <IconBarbell
-            className="size-5"
-            strokeWidth="1.5"
-          />
+          <IconBarbell className="size-5" strokeWidth="1.5" />
           Exercises
         </li>
       </ul>

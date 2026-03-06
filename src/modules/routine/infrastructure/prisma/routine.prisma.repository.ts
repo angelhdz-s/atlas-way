@@ -11,8 +11,7 @@ export class RoutinePrismaRepository implements IRoutineRepository {
     private readonly errorMapper: InfrastructureErrorTranslator
   ) {}
   async create(data: Routine) {
-    const routinePersistence =
-      RoutineMapper.toPersistence(data);
+    const routinePersistence = RoutineMapper.toPersistence(data);
     try {
       const created = await this.prisma.routines.create({
         data: routinePersistence,
@@ -24,8 +23,7 @@ export class RoutinePrismaRepository implements IRoutineRepository {
     }
   }
   async update(data: Routine) {
-    const routinePersistence =
-      RoutineMapper.toPersistence(data);
+    const routinePersistence = RoutineMapper.toPersistence(data);
     try {
       const created = await this.prisma.routines.update({
         data: routinePersistence,
@@ -39,11 +37,8 @@ export class RoutinePrismaRepository implements IRoutineRepository {
   }
   async findaAll() {
     try {
-      const routines =
-        await this.prisma.routines.findMany();
-      const routinesDomain = routines.map((routine) =>
-        RoutineMapper.toDomain(routine)
-      );
+      const routines = await this.prisma.routines.findMany();
+      const routinesDomain = routines.map((routine) => RoutineMapper.toDomain(routine));
       return Success(routinesDomain);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
@@ -51,12 +46,8 @@ export class RoutinePrismaRepository implements IRoutineRepository {
   }
   async findById(id: string) {
     try {
-      const routine = await this.prisma.routines.findUnique(
-        { where: { id } }
-      );
-      const result = routine
-        ? RoutineMapper.toDomain(routine)
-        : null;
+      const routine = await this.prisma.routines.findUnique({ where: { id } });
+      const result = routine ? RoutineMapper.toDomain(routine) : null;
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));

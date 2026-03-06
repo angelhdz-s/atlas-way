@@ -5,13 +5,11 @@ export const cardVariant = tv({
   variants: {
     border: {
       simple: 'bg-middle border-bd-muted',
-      default:
-        'border-bd-muted light:border-white/50 relative',
+      default: 'border-bd-muted light:border-white/50 relative',
       highlighted: 'group relative border-transparent',
     },
     type: {
-      dashboard:
-        'flex flex-col gap-6 p-8 tracking-tight shadow-xl shadow-black/5',
+      dashboard: 'flex flex-col gap-6 p-8 tracking-tight shadow-xl shadow-black/5',
     },
     color: {
       default: 'bg-middle',
@@ -46,6 +44,4 @@ export const cardVariant = tv({
   },
 });
 
-export type CardVariantProps = VariantProps<
-  typeof cardVariant
->;
+export type CardVariantProps = VariantProps<typeof cardVariant>;

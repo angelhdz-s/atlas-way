@@ -8,9 +8,7 @@ export function MonthDropdownlist({
 }: {
   className?: string;
   selectedValue?: number;
-  onChange?: (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ) => void;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }) {
   const monthOptions = MONTH_NAMES.map((month) => ({
     value: month.month,

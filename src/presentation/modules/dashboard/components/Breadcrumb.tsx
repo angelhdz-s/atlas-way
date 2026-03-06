@@ -4,10 +4,7 @@ import { usePathname } from 'next/navigation';
 import { IconArrowUp } from '@/presentation/globals/components/Icons';
 import Link from 'next/link';
 
-function joinUrlParts(
-  urls: string[],
-  index: number
-): string {
+function joinUrlParts(urls: string[], index: number): string {
   return urls.slice(0, index + 1).join('');
 }
 
@@ -19,8 +16,7 @@ function ListBreadcrumbs({
   pathname: string;
 }) {
   return parts.map(({ name }, index) => {
-    const part =
-      name.charAt(0).toUpperCase() + name.slice(1);
+    const part = name.charAt(0).toUpperCase() + name.slice(1);
     const completeUrl = joinUrlParts(
       parts.map((p) => p.url),
       index
@@ -28,28 +24,15 @@ function ListBreadcrumbs({
     if (completeUrl === pathname)
       return (
         <li key={index} className="flex items-center gap-1">
-          {index > 0 && (
-            <IconArrowUp
-              className="size-3 rotate-90"
-              strokeWidth="3"
-            />
-          )}
+          {index > 0 && <IconArrowUp className="size-3 rotate-90" strokeWidth="3" />}
           <span className="p-2">{part}</span>
         </li>
       );
 
     return (
       <li key={index} className="flex items-center gap-1">
-        {index > 0 && (
-          <IconArrowUp
-            className="size-3 rotate-90"
-            strokeWidth="3"
-          />
-        )}
-        <Link
-          href={completeUrl}
-          className="p-2 hover:text-current/50"
-        >
+        {index > 0 && <IconArrowUp className="size-3 rotate-90" strokeWidth="3" />}
+        <Link href={completeUrl} className="p-2 hover:text-current/50">
           {part}
         </Link>
       </li>
@@ -57,11 +40,7 @@ function ListBreadcrumbs({
   });
 }
 
-export function Breadcrumb({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function Breadcrumb({ className = '' }: { className?: string }) {
   const pathname = usePathname();
   const pathParts = pathname
     .split('/')
@@ -81,10 +60,7 @@ export function Breadcrumb({
   return (
     <nav className={`text-sm font-medium ${className}`}>
       <ol className="flex items-center gap-2">
-        <ListBreadcrumbs
-          parts={pathParts}
-          pathname={pathname}
-        />
+        <ListBreadcrumbs parts={pathParts} pathname={pathname} />
       </ol>
     </nav>
   );

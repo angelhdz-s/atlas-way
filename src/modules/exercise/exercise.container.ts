@@ -28,17 +28,9 @@ export const makeExerciseModule = ({
       exerciseInitialStatsRepository,
       idGeneratorRepository
     ),
-    UpdateExerciseUseCase: new UpdateExercise(
-      exerciseRepository
-    ),
-    GetExerciseByIdUseCase: new GetExerciseById(
-      exerciseRepository
-    ),
-    GetAllExerciseUseCase: new GetAllExercises(
-      exerciseRepository
-    ),
-    GetAllUserExercisesUseCase: new GetAllUserExercises(
-      exerciseRepository
-    ),
+    UpdateExerciseUseCase: new UpdateExercise(exerciseRepository),
+    GetExerciseByIdUseCase: new GetExerciseById(exerciseRepository),
+    GetAllExerciseUseCase: new GetAllExercises(exerciseRepository),
+    GetAllUserExercisesUseCase: new GetAllUserExercises(exerciseRepository),
   };
 };

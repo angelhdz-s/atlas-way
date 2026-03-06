@@ -12,13 +12,11 @@ export class NotificationPrismaRepository implements INotificationRepository {
     private readonly errorMapper: InfrastructureErrorTranslator
   ) {}
   async create(data: Notification) {
-    const persistence =
-      NotificationMapper.toPersistence(data);
+    const persistence = NotificationMapper.toPersistence(data);
     try {
-      const created =
-        await this.prisma.notifications.create({
-          data: persistence,
-        });
+      const created = await this.prisma.notifications.create({
+        data: persistence,
+      });
       const result = NotificationMapper.toDomain(created);
       return Success(result);
     } catch (e) {
@@ -26,14 +24,12 @@ export class NotificationPrismaRepository implements INotificationRepository {
     }
   }
   async update(data: Notification) {
-    const persistence =
-      NotificationMapper.toPersistence(data);
+    const persistence = NotificationMapper.toPersistence(data);
     try {
-      const updated =
-        await this.prisma.notifications.update({
-          data: persistence,
-          where: { id: data.id },
-        });
+      const updated = await this.prisma.notifications.update({
+        data: persistence,
+        where: { id: data.id },
+      });
       const result = NotificationMapper.toDomain(updated);
       return Success(result);
     } catch (e) {
@@ -42,11 +38,9 @@ export class NotificationPrismaRepository implements INotificationRepository {
   }
   async findAll() {
     try {
-      const notifications =
-        await this.prisma.notifications.findMany();
-      const domainNotifications = notifications.map(
-        (notification) =>
-          NotificationMapper.toDomain(notification)
+      const notifications = await this.prisma.notifications.findMany();
+      const domainNotifications = notifications.map((notification) =>
+        NotificationMapper.toDomain(notification)
       );
       return Success(domainNotifications);
     } catch (e) {
@@ -55,13 +49,10 @@ export class NotificationPrismaRepository implements INotificationRepository {
   }
   async findById(id: NotificationProps['id']) {
     try {
-      const notification =
-        await this.prisma.notifications.findUnique({
-          where: { id },
-        });
-      const result = notification
-        ? NotificationMapper.toDomain(notification)
-        : null;
+      const notification = await this.prisma.notifications.findUnique({
+        where: { id },
+      });
+      const result = notification ? NotificationMapper.toDomain(notification) : null;
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));

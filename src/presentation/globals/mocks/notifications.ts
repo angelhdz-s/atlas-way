@@ -1,8 +1,4 @@
-export type NotificationRelevanceType =
-  | 'special'
-  | 'info'
-  | 'warning'
-  | 'error';
+export type NotificationRelevanceType = 'special' | 'info' | 'warning' | 'error';
 
 export interface NotificationType {
   title: string;
@@ -16,8 +12,7 @@ export interface NotificationType {
 export const NOTIFICATIONS: NotificationType[] = [
   {
     title: 'Account Locked',
-    description:
-      'Your account has been locked due to suspicious activity.',
+    description: 'Your account has been locked due to suspicious activity.',
     date: '1 day',
     notSeen: true,
     url: '/support',
@@ -33,8 +28,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'Session Reminder',
-    description:
-      "Don't forget your upcoming session tomorrow.",
+    description: "Don't forget your upcoming session tomorrow.",
     date: '3 days',
     notSeen: true,
     url: '/dashboard/sessions',
@@ -42,8 +36,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'Invitation to Join Team',
-    description:
-      'You have been invited to join a new team.',
+    description: 'You have been invited to join a new team.',
     date: '4 days',
     notSeen: true,
     url: '/dashboard/teams',
@@ -51,8 +44,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'Update Available',
-    description:
-      'A new update is available. Please refresh the page.',
+    description: 'A new update is available. Please refresh the page.',
     date: '5 days',
     notSeen: false,
     url: '/dashboard',
@@ -60,8 +52,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'Security Alert',
-    description:
-      'A new device was used to access your account.',
+    description: 'A new device was used to access your account.',
     date: '6 days',
     notSeen: true,
     url: '/settings/security',
@@ -85,8 +76,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'Error: Unable to Sync Data',
-    description:
-      'There was an error syncing your data. Please try again.',
+    description: 'There was an error syncing your data. Please try again.',
     date: '2 weeks',
     notSeen: true,
     url: '/dashboard/sync',
@@ -94,8 +84,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'System Maintenance Scheduled',
-    description:
-      'Scheduled maintenance will occur this weekend.',
+    description: 'Scheduled maintenance will occur this weekend.',
     date: '2 weeks',
     notSeen: false,
     url: '/status',
@@ -127,8 +116,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'Account Verification Needed',
-    description:
-      'Please verify your email address to continue.',
+    description: 'Please verify your email address to continue.',
     date: '1 month',
     notSeen: true,
     url: '/verify-email',
@@ -136,8 +124,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'Routine Completed',
-    description:
-      'Congratulations! You completed your routine.',
+    description: 'Congratulations! You completed your routine.',
     date: '1 month',
     notSeen: false,
     url: '/dashboard/routines',
@@ -145,8 +132,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'New Message Received',
-    description:
-      'You have received a new message from your coach.',
+    description: 'You have received a new message from your coach.',
     date: '1 month',
     notSeen: true,
     url: '/messages',
@@ -162,8 +148,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'Session Expired',
-    description:
-      'Your session has expired. Please log in again.',
+    description: 'Your session has expired. Please log in again.',
     date: '2 months',
     notSeen: false,
     url: '/login',
@@ -171,8 +156,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'New Feature: Dark Mode',
-    description:
-      'Try out the new dark mode in your profile settings.',
+    description: 'Try out the new dark mode in your profile settings.',
     date: '2 months',
     notSeen: true,
     url: '/settings/appearance',
@@ -188,8 +172,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'Monthly report is ready',
-    description:
-      'The monthly report for your project is ready to view.',
+    description: 'The monthly report for your project is ready to view.',
     date: '3 months',
     notSeen: true,
     url: '/dashboard/statistics',
@@ -197,8 +180,7 @@ export const NOTIFICATIONS: NotificationType[] = [
   },
   {
     title: 'Create your sessions',
-    description:
-      'Go to sessions and create your own sessions.',
+    description: 'Go to sessions and create your own sessions.',
     date: '4 months',
     notSeen: false,
     url: '/dashboard/sessions',

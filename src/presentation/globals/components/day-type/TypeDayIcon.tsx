@@ -7,12 +7,7 @@ export function TrainingIcon({
   className?: string;
   strokeWidth?: string;
 }) {
-  return (
-    <IconBarbell
-      className={className}
-      strokeWidth={strokeWidth}
-    />
-  );
+  return <IconBarbell className={className} strokeWidth={strokeWidth} />;
 }
 
 export function RestIcon({
@@ -22,12 +17,7 @@ export function RestIcon({
   className?: string;
   strokeWidth?: string;
 }) {
-  return (
-    <IconBarbellOff
-      className={className}
-      strokeWidth={strokeWidth}
-    />
-  );
+  return <IconBarbellOff className={className} strokeWidth={strokeWidth} />;
 }
 
 export function TypeDayIcon({
@@ -42,10 +32,5 @@ export function TypeDayIcon({
   if (type === 'training') {
     return <TrainingIcon className={className} />;
   }
-  return (
-    <RestIcon
-      className={className}
-      strokeWidth={strokeWidth}
-    />
-  );
+  return <RestIcon className={className} strokeWidth={strokeWidth} />;
 }

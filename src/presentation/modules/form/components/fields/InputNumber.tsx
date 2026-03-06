@@ -14,12 +14,8 @@ export function InputNumber({
   error,
   ...props
 }: InputNumberProps) {
-  const [currentValue, setCurrentValue] = useState<
-    string | number | undefined
-  >(value);
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const [currentValue, setCurrentValue] = useState<string | number | undefined>(value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     if (val !== currentValue) setCurrentValue(val);
   };

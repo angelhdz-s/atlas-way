@@ -11,11 +11,8 @@ export class CreateIfNotExistsUser implements UseCase {
     private generator: IdGeneratorRepository
   ) {}
   async execute(data: CreateUserInput) {
-    const userResult = await this.repository.findByEmail(
-      data.email
-    );
-    if (userResult.success && userResult.data)
-      return Success(userResult.data);
+    const userResult = await this.repository.findByEmail(data.email);
+    if (userResult.success && userResult.data) return Success(userResult.data);
 
     const id = this.generator.generate();
     const newUser = User.create(id, {

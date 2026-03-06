@@ -3,12 +3,8 @@ import type { IExerciseToMuscleRepository } from '../../domain/exercise-to-muscl
 import type { ExerciseToMuscle } from '../../domain/exercise-to-muscle.entity';
 
 export class GetExercisesToMusclesByExerciseId implements UseCase {
-  constructor(
-    private repository: IExerciseToMuscleRepository
-  ) {}
-  async execute(
-    exerciseId: ExerciseToMuscle['exerciseId']
-  ) {
+  constructor(private repository: IExerciseToMuscleRepository) {}
+  async execute(exerciseId: ExerciseToMuscle['exerciseId']) {
     return this.repository.findByExerciseId(exerciseId);
   }
 }

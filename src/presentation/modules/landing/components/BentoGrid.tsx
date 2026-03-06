@@ -1,7 +1,4 @@
-import {
-  IconHeart,
-  IconTrendingUp,
-} from '@/presentation/globals/components/Icons';
+import { IconHeart, IconTrendingUp } from '@/presentation/globals/components/Icons';
 import { StartYourJourney } from './bentogrid/card/StartYourJourney';
 import { AtlasWayCard } from './bentogrid/card/AtlasWayCard';
 import { ScheduleYourSessions } from './bentogrid/card/ScheduleYourSessions';
@@ -11,18 +8,10 @@ import { CarruselIcons } from './bentogrid/card/CarruselIcons';
 import { GetStartedCard } from './bentogrid/card/GetStartedCard';
 import { IconHeaderCard } from './bentogrid/card/IconHeaderCard';
 
-export function BentoGrid({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function BentoGrid({ className = '' }: { className?: string }) {
   return (
-    <section
-      className={`mx-auto my-16 flex w-full max-w-5xl flex-col gap-8 ${className}`}
-    >
-      <h2 className="font-funnel-display fg-strong text-4xl font-bold">
-        Explore Our Features
-      </h2>
+    <section className={`mx-auto my-16 flex w-full max-w-5xl flex-col gap-8 ${className}`}>
+      <h2 className="font-funnel-display fg-strong text-4xl font-bold">Explore Our Features</h2>
       <main className="xs:grid-cols-2 grid grid-cols-1 gap-2 md:grid-cols-4">
         <StartYourJourney />
 

@@ -12,9 +12,7 @@ export class MusclePrismaRepository implements IMuscleRepository {
   async findAll() {
     try {
       const muscles = await this.prisma.muscles.findMany();
-      const domainMuscles = muscles.map((muscle) =>
-        MuscleMapper.toDomain(muscle)
-      );
+      const domainMuscles = muscles.map((muscle) => MuscleMapper.toDomain(muscle));
       return Success(domainMuscles);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
@@ -25,9 +23,7 @@ export class MusclePrismaRepository implements IMuscleRepository {
       const muscle = await this.prisma.muscles.findUnique({
         where: { id },
       });
-      const result = muscle
-        ? MuscleMapper.toDomain(muscle)
-        : null;
+      const result = muscle ? MuscleMapper.toDomain(muscle) : null;
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));

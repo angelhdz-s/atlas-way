@@ -16,9 +16,7 @@ export class NotificationMapper {
     return new Notification(notification);
   }
 
-  static toPersistence(
-    data: Notification
-  ): PrismaNotification {
+  static toPersistence(data: Notification): PrismaNotification {
     return {
       id: data.id,
       name: data.name,

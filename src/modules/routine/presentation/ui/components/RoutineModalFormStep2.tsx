@@ -16,22 +16,10 @@ export function RoutineModalFormStep2({
     <section>
       <header className="fg-strong">{title}</header>
       <main className="flex items-center gap-2">
-        <Label
-          htmlFor="days"
-          className="w-full"
-          title="Days Plan"
-        >
-          <Select
-            name="days"
-            options={daysOptions}
-            multiple={false}
-          />
+        <Label htmlFor="days" className="w-full" title="Days Plan">
+          <Select name="days" options={daysOptions} multiple={false} />
         </Label>
-        <Label
-          htmlFor="daysRange"
-          className="w-fit"
-          title="Days Range"
-        >
+        <Label htmlFor="daysRange" className="w-fit" title="Days Range">
           <InputNumber
             name="daysRange"
             min={2}

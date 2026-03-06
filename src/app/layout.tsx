@@ -16,8 +16,7 @@ const outfitFont = Outfit({
 
 export const metadata: Metadata = {
   title: 'AtlasWay | Manage your Work Out Routine',
-  description:
-    'A comprehensive platform to manage and optimize your workout routines.',
+  description: 'A comprehensive platform to manage and optimize your workout routines.',
 };
 
 export default function RootLayout({
@@ -26,11 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      data-theme="dark"
-      suppressHydrationWarning
-    >
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <body
         className={`scrollbar-y flex h-full min-h-dvh flex-col overflow-x-hidden antialiased transition-colors ${funnelDisplayFont.variable} ${outfitFont.variable}`}
       >

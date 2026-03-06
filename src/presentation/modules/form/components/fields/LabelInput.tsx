@@ -10,13 +10,8 @@ export function Label({
   htmlFor: string;
 }) {
   return (
-    <label
-      htmlFor={htmlFor}
-      className={`flex flex-col gap-2 ${className}`}
-    >
-      <span className="fg-strong pl-0.5 font-medium whitespace-nowrap">
-        {title}
-      </span>
+    <label htmlFor={htmlFor} className={`flex flex-col gap-2 ${className}`}>
+      <span className="fg-strong pl-0.5 font-medium whitespace-nowrap">{title}</span>
       {children}
     </label>
   );

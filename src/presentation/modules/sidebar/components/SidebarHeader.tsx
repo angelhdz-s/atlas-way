@@ -17,10 +17,7 @@ export function SidebarHeader() {
 
         <NavLinkNotification href="/dashboard/notifications" />
 
-        <NavLink
-          href="/dashboard/tracking"
-          Icon={IconCalendarCheck}
-        >
+        <NavLink href="/dashboard/tracking" Icon={IconCalendarCheck}>
           Tracking
         </NavLink>
       </NavLinks>

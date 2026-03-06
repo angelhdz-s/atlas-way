@@ -6,29 +6,19 @@ import {
 } from '@/presentation/globals/components/Icons';
 import { Card } from '../../card/components/Card';
 
-function CalendarHeader({
-  className = '',
-}: {
-  className?: string;
-}) {
+function CalendarHeader({ className = '' }: { className?: string }) {
   return (
     <header className={` ${className}`}>
       <ul className="font-funnel-display grid grid-cols-[1fr_auto_1fr] font-light">
         <li className="text-default/50">July</li>
         <li className="fg-strong text-xl">August 2024</li>
-        <li className="text-default/50 text-right">
-          September
-        </li>
+        <li className="text-default/50 text-right">September</li>
       </ul>
     </header>
   );
 }
 
-function CalendarCurrentWeek({
-  className,
-}: {
-  className?: string;
-}) {
+function CalendarCurrentWeek({ className }: { className?: string }) {
   return (
     <ul
       className={`flex items-end justify-around gap-2 text-sm leading-[1.2] *:w-full *:rounded-lg *:px-3 *:py-1 ${className}`}
@@ -82,11 +72,7 @@ function CalendarCurrentWeek({
   );
 }
 
-function CalendarNextWeek({
-  className,
-}: {
-  className?: string;
-}) {
+function CalendarNextWeek({ className }: { className?: string }) {
   return (
     <ul
       className={`text-default/50 *:bg-subtle/5 flex items-end justify-around gap-2 text-xs *:flex *:w-full *:flex-col *:items-center *:gap-1 *:rounded-lg *:px-3 *:py-1 ${className} `}
@@ -94,57 +80,38 @@ function CalendarNextWeek({
       <li>
         <main>Tue 12</main>
         <footer>
-          <IconBarbell
-            className="mx-auto size-4"
-            strokeWidth="1.5"
-          />
+          <IconBarbell className="mx-auto size-4" strokeWidth="1.5" />
         </footer>
       </li>
       <li>
         <main>Wed 13</main>
         <footer>
-          <IconBarbellOff
-            className="mx-auto size-4"
-            strokeWidth="1.5"
-          />
+          <IconBarbellOff className="mx-auto size-4" strokeWidth="1.5" />
         </footer>
       </li>
       <li>
         <main>Thu 14</main>
         <footer>
-          <IconBarbell
-            className="mx-auto size-4"
-            strokeWidth="1.5"
-          />
+          <IconBarbell className="mx-auto size-4" strokeWidth="1.5" />
         </footer>
       </li>
       <li>
         <main>Fri 15</main>
         <footer>
-          <IconBarbellOff
-            className="mx-auto size-4"
-            strokeWidth="1.5"
-          />
+          <IconBarbellOff className="mx-auto size-4" strokeWidth="1.5" />
         </footer>
       </li>
       <li>
         <main>Sat 16</main>
         <footer>
-          <IconBarbellOff
-            className="mx-auto size-4"
-            strokeWidth="1.5"
-          />
+          <IconBarbellOff className="mx-auto size-4" strokeWidth="1.5" />
         </footer>
       </li>
     </ul>
   );
 }
 
-export function Calendar({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function Calendar({ className = '' }: { className?: string }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
       <CalendarHeader />

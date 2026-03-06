@@ -1,7 +1,4 @@
-import type {
-  IconProps,
-  IconTypes,
-} from '@/presentation/globals/types.d';
+import type { IconProps, IconTypes } from '@/presentation/globals/types.d';
 import { twMerge } from 'tailwind-merge';
 
 export const defaultIconStrokeWidth = '1.5';
@@ -16,12 +13,7 @@ export function DefaultIcon({
   className?: string;
   strokeWidth?: string;
 }) {
-  return (
-    <Icon
-      className={twMerge(defaultIconSizeClass, className)}
-      strokeWidth={strokeWidth}
-    />
-  );
+  return <Icon className={twMerge(defaultIconSizeClass, className)} strokeWidth={strokeWidth} />;
 }
 
 function MainSvgBody({
@@ -51,11 +43,7 @@ function MainSvgBody({
 export function IconArrowUp(props: IconProps) {
   return (
     <MainSvgBody {...props}>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="m4.5 15.75 7.5-7.5 7.5 7.5"
-      />
+      <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
     </MainSvgBody>
   );
 }
@@ -378,9 +366,7 @@ export function IconDots(props: IconProps) {
   );
 }
 
-export function IconDeviceDesktopAnalytics(
-  props: IconProps
-) {
+export function IconDeviceDesktopAnalytics(props: IconProps) {
   return (
     <MainSvgBody {...props}>
       <path d="M3 4m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1z" />

@@ -9,28 +9,18 @@ type Props = {
   exerciseToMuscleRepository: IExerciseToMuscleRepository;
 };
 
-export const makeExerciseToMuscleModule = ({
-  exerciseToMuscleRepository,
-}: Props) => {
+export const makeExerciseToMuscleModule = ({ exerciseToMuscleRepository }: Props) => {
   return {
-    GetAllExercisesToMusclesUseCase:
-      new GetAllExercisesToMuscles(
-        exerciseToMuscleRepository
-      ),
-    GetExercisesToMusclesByExerciseIdUseCase:
-      new GetExercisesToMusclesByExerciseId(
-        exerciseToMuscleRepository
-      ),
-    GetExercisesToMusclesByMuscleIdUseCase:
-      new GetExercisesToMusclesByMuscleId(
-        exerciseToMuscleRepository
-      ),
-    GetExerciseToMuscleByExerciseAndMuscleIdUseCase:
-      new GetExerciseToMuscleByExerciseAndMuscleId(
-        exerciseToMuscleRepository
-      ),
-    LinkExerciseToMuscleUseCase: new LinkExerciseToMuscle(
+    GetAllExercisesToMusclesUseCase: new GetAllExercisesToMuscles(exerciseToMuscleRepository),
+    GetExercisesToMusclesByExerciseIdUseCase: new GetExercisesToMusclesByExerciseId(
       exerciseToMuscleRepository
     ),
+    GetExercisesToMusclesByMuscleIdUseCase: new GetExercisesToMusclesByMuscleId(
+      exerciseToMuscleRepository
+    ),
+    GetExerciseToMuscleByExerciseAndMuscleIdUseCase: new GetExerciseToMuscleByExerciseAndMuscleId(
+      exerciseToMuscleRepository
+    ),
+    LinkExerciseToMuscleUseCase: new LinkExerciseToMuscle(exerciseToMuscleRepository),
   };
 };

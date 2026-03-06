@@ -5,13 +5,7 @@ import { Label } from '@/presentation/modules/form/components/fields/LabelInput'
 import { IconCirclePlus } from '@/presentation/globals/components/Icons';
 import Link from 'next/link';
 
-export function RoutineModalFormStep3({
-  title,
-  sessions,
-}: {
-  title: string;
-  sessions: string[];
-}) {
+export function RoutineModalFormStep3({ title, sessions }: { title: string; sessions: string[] }) {
   return (
     <section>
       <header className="fg-strong">{title}</header>
@@ -20,13 +14,9 @@ export function RoutineModalFormStep3({
           <Box className="bg-back/50 border-subtle/20 grid min-h-24 w-full grid-cols-[1fr_auto] rounded-lg border p-2">
             <main>
               {sessions.length > 0 ? (
-                sessions.map((session, index) => (
-                  <p key={index}>{session}</p>
-                ))
+                sessions.map((session, index) => <p key={index}>{session}</p>)
               ) : (
-                <p className="fg-default/50 text-base font-light">
-                  No sessions added
-                </p>
+                <p className="fg-default/50 text-base font-light">No sessions added</p>
               )}
             </main>
             <aside>

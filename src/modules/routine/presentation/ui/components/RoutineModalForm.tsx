@@ -3,10 +3,7 @@
 import { useState } from 'react';
 import { InputNumber } from '@/presentation/modules/form/components/fields/InputNumber';
 import { InputText } from '@/presentation/modules/form/components/fields/InputText';
-import {
-  Label,
-  LabelGroup,
-} from '@/presentation/modules/form/components/fields/LabelInput';
+import { Label, LabelGroup } from '@/presentation/modules/form/components/fields/LabelInput';
 import { ModalFormButtons } from '@/presentation/modules/form/components/modal-form/ModalFormButtons';
 import { TextArea } from '@/presentation/modules/form/components/fields/TextArea';
 import { createRoutineAction } from '@/modules/routine/presentation/routine.actions';
@@ -30,28 +27,21 @@ export function RoutineModalForm() {
     router.back();
   };
 
-  const { register, handleSubmit, errors, isSubmitting } =
-    useFormHook({
-      schema: routineFormSchema,
-      action: createRoutineAction,
-      onSuccess: handleSuccess,
-    });
+  const { register, handleSubmit, errors, isSubmitting } = useFormHook({
+    schema: routineFormSchema,
+    action: createRoutineAction,
+    onSuccess: handleSuccess,
+  });
   const [daysEnabled, setDaysEnabled] = useState(false);
 
-  const handleOnChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
     if (value === 'custom' && daysEnabled) return;
     setDaysEnabled(value === 'custom');
   };
 
   return (
-    <ModalForm
-      onClose={handleClose}
-      title="Design your routine"
-      onSubmit={handleSubmit}
-    >
+    <ModalForm onClose={handleClose} title="Design your routine" onSubmit={handleSubmit}>
       <section className="flex flex-col gap-2">
         <Label htmlFor="name" title="Name">
           <InputText
@@ -78,11 +68,7 @@ export function RoutineModalForm() {
               className="flex items-center gap-2"
             />
           </LabelGroup>
-          <Label
-            htmlFor="days"
-            title="Days"
-            className="w-fit"
-          >
+          <Label htmlFor="days" title="Days" className="w-fit">
             <InputNumber
               {...register('days', inputNumberConfig)}
               value={'7'}
@@ -92,24 +78,16 @@ export function RoutineModalForm() {
             />
           </Label>
         </div>
-        <Label
-          htmlFor="initialDate"
-          title="Initial Date"
-          className="w-fit"
-        >
+        <Label htmlFor="initialDate" title="Initial Date" className="w-fit">
           <InputDate
             {...register('initialDate', {
-              setValueAs: (value) =>
-                value ? new Date(value) : undefined,
+              setValueAs: (value) => (value ? new Date(value) : undefined),
             })}
             error={errors.initialDate?.message}
           />
         </Label>
       </section>
-      <ModalFormButtons
-        onClose={handleClose}
-        isPending={isSubmitting}
-      />
+      <ModalFormButtons onClose={handleClose} isPending={isSubmitting} />
     </ModalForm>
   );
 }

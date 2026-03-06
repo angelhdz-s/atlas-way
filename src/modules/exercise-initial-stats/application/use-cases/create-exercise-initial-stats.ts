@@ -11,10 +11,7 @@ export class CreateExerciseInitialStats implements UseCase {
   ) {}
   async execute(data: CreateExerciseInitialStatsInput) {
     const id = this.generator.generate();
-    const domainData = ExerciseInitialStats.create(
-      id,
-      data
-    );
+    const domainData = ExerciseInitialStats.create(id, data);
     return await this.repo.create(domainData);
   }
 }

@@ -3,16 +3,12 @@ import type { SessionToExerciseProps } from '../../domain/session-to-exercise.ty
 import type { ISessionToExerciseRepository } from '../../domain/session-to-exercise.repository';
 
 export class GetSessionsToExercisesBySessionAndExerciseId implements UseCase {
-  constructor(
-    private repository: ISessionToExerciseRepository
-  ) {}
+  constructor(private repository: ISessionToExerciseRepository) {}
 
   async execute(data: {
     sessionId: SessionToExerciseProps['sessionId'];
     exerciseId: SessionToExerciseProps['exerciseId'];
   }) {
-    return await this.repository.findBySessionAndExerciseId(
-      data
-    );
+    return await this.repository.findBySessionAndExerciseId(data);
   }
 }

@@ -47,27 +47,14 @@ const session = {
   status: 'next',
   date: 'Aug 10, 2024',
 } as SessionDetailsType;
-export function NextSession({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function NextSession({ className = '' }: { className?: string }) {
   return (
-    <Card
-      border="highlighted"
-      className={`flex flex-col gap-4 ${className}`}
-    >
+    <Card border="highlighted" className={`flex flex-col gap-4 ${className}`}>
       <header>
-        <CardTitle
-          Icon={IconPlayerTrackNext}
-          title="Next Session"
-        />
+        <CardTitle Icon={IconPlayerTrackNext} title="Next Session" />
       </header>
       <main className="flex flex-col gap-1">
-        <SessionDetails
-          withStatus={false}
-          session={session}
-        />
+        <SessionDetails withStatus={false} session={session} />
       </main>
     </Card>
   );

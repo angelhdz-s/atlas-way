@@ -1,11 +1,5 @@
-import {
-  DAYS,
-  type DayWeeksType,
-} from '@/presentation/globals/config/defaults';
-import {
-  getISOStringDate,
-  getSessionFromDate,
-} from '@/presentation/globals/lib/dates';
+import { DAYS, type DayWeeksType } from '@/presentation/globals/config/defaults';
+import { getISOStringDate, getSessionFromDate } from '@/presentation/globals/lib/dates';
 import { TODAY } from '@/presentation/globals/mocks/tracking';
 import {
   IconBarbellOff,
@@ -50,8 +44,7 @@ function DefaultStatusIcon({ Icon }: { Icon: IconTypes }) {
 }
 
 function WeekDayTooltip({ date }: { date: Date }) {
-  const dayOfWeek =
-    DAYS[(date.getDay() + 1) as DayWeeksType].shortName;
+  const dayOfWeek = DAYS[(date.getDay() + 1) as DayWeeksType].shortName;
   return (
     <div className="bg-sec after:bg-middle absolute bottom-[calc(100%+0.75rem)] left-2 hidden h-fit w-fit rounded-full px-4 group-hover:block after:absolute after:inset-0 after:top-auto after:-bottom-1 after:z-0 after:mx-auto after:size-2 after:rotate-45">
       <span className="block w-fit py-1.5 text-xs leading-none font-medium text-zinc-400">
@@ -61,26 +54,11 @@ function WeekDayTooltip({ date }: { date: Date }) {
   );
 }
 
-function NextTrainingDayTaskItem({
-  task,
-  main,
-}: {
-  task: string;
-  main: boolean;
-}) {
+function NextTrainingDayTaskItem({ task, main }: { task: string; main: boolean }) {
   return (
-    <div
-      className={`flex items-center ${main ? 'gap-2' : 'gap-1'}`}
-    >
-      <IconCircle
-        className={`${main ? 'size-5' : 'size-4'}`}
-        strokeWidth="1"
-      />
-      <span
-        className={`font-light ${main ? 'text-lg' : 'text-sm'}`}
-      >
-        {task}
-      </span>
+    <div className={`flex items-center ${main ? 'gap-2' : 'gap-1'}`}>
+      <IconCircle className={`${main ? 'size-5' : 'size-4'}`} strokeWidth="1" />
+      <span className={`font-light ${main ? 'text-lg' : 'text-sm'}`}>{task}</span>
     </div>
   );
 }
@@ -109,44 +87,27 @@ export function TrackingDay({
           {session.name}
         </span>
         <aside className="flex items-center gap-1">
-          <span className="whitespace-nowrap">
-            {dateString}
-          </span>
-          <button
-            type="button"
-            className="h-full cursor-pointer"
-          >
+          <span className="whitespace-nowrap">{dateString}</span>
+          <button type="button" className="h-full cursor-pointer">
             <DefaultStatusIcon Icon={IconAlertTriangle} />
           </button>
         </aside>
       </header>
       <main className="relative flex-1 rounded-b p-2">
         {session.type === 'TRAINING' &&
-          (session.status === 'next' ||
-            session.status === 'current') && (
+          (session.status === 'next' || session.status === 'current') && (
             <div className="w-fit p-2">
               {session.exercises.map((exercise, index) => (
-                <NextTrainingDayTaskItem
-                  key={index}
-                  task={exercise.name}
-                  main={main}
-                />
+                <NextTrainingDayTaskItem key={index} task={exercise.name} main={main} />
               ))}
             </div>
           )}
         {session.type === 'TRAINING' &&
-          (session.status === 'completed' ||
-            session.status === 'canceled') && (
+          (session.status === 'completed' || session.status === 'canceled') && (
             <div className="w-fit p-2">
-              {session.exercicesDone.map(
-                (exercise, index) => (
-                  <NextTrainingDayTaskItem
-                    key={index}
-                    task={exercise.name}
-                    main={main}
-                  />
-                )
-              )}
+              {session.exercicesDone.map((exercise, index) => (
+                <NextTrainingDayTaskItem key={index} task={exercise.name} main={main} />
+              ))}
             </div>
           )}
         {session.type === 'REST' && (

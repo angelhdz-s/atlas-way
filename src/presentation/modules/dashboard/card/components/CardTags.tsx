@@ -5,11 +5,7 @@ type CardTagType = {
   value: CardTagValueType;
 };
 
-export function CardTags({
-  values,
-}: {
-  values: CardTagType[];
-}) {
+export function CardTags({ values }: { values: CardTagType[] }) {
   return (
     <ul className="flex flex-wrap gap-1">
       {values.map((tag, index) => (
@@ -24,11 +20,5 @@ export function CardTag({ tag }: { tag: CardTagType }) {
   const className = selected
     ? 'bg-accent fg-strong-light light:fg-strong-dark'
     : 'bg-front fg-strong';
-  return (
-    <li
-      className={`rounded-full px-3 py-1 text-sm font-light ${className}`}
-    >
-      {value}
-    </li>
-  );
+  return <li className={`rounded-full px-3 py-1 text-sm font-light ${className}`}>{value}</li>;
 }

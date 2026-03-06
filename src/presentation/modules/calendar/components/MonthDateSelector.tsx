@@ -4,13 +4,8 @@ import { MonthDropdownlist } from '@/presentation/modules/calendar/components/Mo
 import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
 import { useCalendar } from '@/presentation/modules/calendar/hooks/useCalendar';
 
-export function MonthDateSelector({
-  className,
-}: {
-  className?: string;
-}) {
-  const { selectedDate, setCurrentDate } =
-    useContext(CalendarContext);
+export function MonthDateSelector({ className }: { className?: string }) {
+  const { selectedDate, setCurrentDate } = useContext(CalendarContext);
   const {
     selectedDate: currentDate,
     handlePreviousMonth,
@@ -22,10 +17,7 @@ export function MonthDateSelector({
   });
   const currentMonth = currentDate.getMonth() + 1;
   return (
-    <DateControl
-      onLeftClick={handlePreviousMonth}
-      onRightClick={handleNextMonth}
-    >
+    <DateControl onLeftClick={handlePreviousMonth} onRightClick={handleNextMonth}>
       <MonthDropdownlist
         selectedValue={currentMonth}
         className={`${className}`}

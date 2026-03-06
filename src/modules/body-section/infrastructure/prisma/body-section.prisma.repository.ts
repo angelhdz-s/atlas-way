@@ -11,11 +11,9 @@ export class BodySectionPrismaRepository implements IBodySectionRepository {
   ) {}
   async findAll() {
     try {
-      const bodySections =
-        await this.prisma.bodySections.findMany();
-      const bodySectionsDomain = bodySections.map(
-        (bodySection) =>
-          BodySectionMapper.toDomain(bodySection)
+      const bodySections = await this.prisma.bodySections.findMany();
+      const bodySectionsDomain = bodySections.map((bodySection) =>
+        BodySectionMapper.toDomain(bodySection)
       );
       return Success(bodySectionsDomain);
     } catch (e) {
@@ -24,13 +22,10 @@ export class BodySectionPrismaRepository implements IBodySectionRepository {
   }
   async findById(id: number) {
     try {
-      const bodySection =
-        await this.prisma.bodySections.findUnique({
-          where: { id },
-        });
-      const result = bodySection
-        ? BodySectionMapper.toDomain(bodySection)
-        : null;
+      const bodySection = await this.prisma.bodySections.findUnique({
+        where: { id },
+      });
+      const result = bodySection ? BodySectionMapper.toDomain(bodySection) : null;
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));

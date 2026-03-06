@@ -9,21 +9,12 @@ import { CardFooter } from '@/presentation/modules/dashboard/card/components/Car
 import { CardButton } from '@/presentation/modules/dashboard/card/components/CardButton';
 import { SessionExercisesList } from './SessionExerciseList';
 
-export function Session({
-  data,
-}: {
-  data: SessionDayType;
-}) {
-  const { name, description, exercises, date, routines } =
-    data;
+export function Session({ data }: { data: SessionDayType }) {
+  const { name, description, exercises, date, routines } = data;
 
-  const muscularGroups = exercises.map(
-    (e) => e.muscleGroup
-  );
+  const muscularGroups = exercises.map((e) => e.muscleGroup);
 
-  const distinctMuscularGroups = [
-    ...new Set(muscularGroups),
-  ];
+  const distinctMuscularGroups = [...new Set(muscularGroups)];
 
   const tags = distinctMuscularGroups.map((el) => ({
     value: el,
@@ -34,9 +25,7 @@ export function Session({
     <Card type="dashboard" width="lg">
       <CardHeader
         title={name}
-        decoration={
-          <span className="bg-unread block aspect-square size-4 rounded-full"></span>
-        }
+        decoration={<span className="bg-unread block aspect-square size-4 rounded-full"></span>}
       >
         <CardSubHeader
           counters={[
@@ -50,18 +39,11 @@ export function Session({
 
       <CardMain>
         <CardTags values={tags} />
-        <SessionExercisesList
-          exercises={exercises.sort((a, b) =>
-            a.name.localeCompare(b.name)
-          )}
-        />
+        <SessionExercisesList exercises={exercises.sort((a, b) => a.name.localeCompare(b.name))} />
       </CardMain>
       <CardFooter>
         <CardButton>
-          <IconBarbell
-            className="size-6"
-            strokeWidth="1.3"
-          />
+          <IconBarbell className="size-6" strokeWidth="1.3" />
           Edit
         </CardButton>
       </CardFooter>

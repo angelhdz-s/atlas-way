@@ -10,9 +10,7 @@ type RadiobuttonsProps = {
   error?: string;
   checked?: string;
   options: SelectOption[];
-  onChange?: (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export function RadiobuttonGroup({
@@ -25,9 +23,7 @@ export function RadiobuttonGroup({
 }: RadiobuttonsProps) {
   const [selected, setSelected] = useState<string>(checked);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.value === selected) return;
     const value = e.currentTarget.value;
     setSelected(value);

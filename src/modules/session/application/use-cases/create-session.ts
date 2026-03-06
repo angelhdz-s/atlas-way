@@ -16,32 +16,20 @@ export class CreateSession implements UseCase {
     private generator: IdGeneratorRepository
   ) {}
 
-  async execute(
-    data: CreateSessionInput,
-    exerciseIds: ExerciseProps['id'][] | null = null
-  ) {
+  async execute(data: CreateSessionInput, exerciseIds: ExerciseProps['id'][] | null = null) {
     const sessionId = this.generator.generate();
     const newSession = Session.create(sessionId, data);
-    const sessionResult =
-      await this.repository.create(newSession);
-    if (!exerciseIds || !sessionResult.success)
-      return sessionResult;
+    const sessionResult = await this.repository.create(newSession);
+    if (!exerciseIds || !sessionResult.success) return sessionResult;
 
     for (const exerciseId of exerciseIds) {
-      const newSessionLinkProps: CreateSessionToExerciseInput =
-        {
-          sessionId,
-          exerciseId,
-        };
-      const newSessionToExercise = SessionToExercise.create(
-        newSessionLinkProps
-      );
-      const sessionToExerciseResult =
-        await this.linkRepository.create(
-          newSessionToExercise
-        );
-      if (!sessionToExerciseResult.success)
-        return Failure(sessionToExerciseResult.error);
+      const newSessionLinkProps: CreateSessionToExerciseInput = {
+        sessionId,
+        exerciseId,
+      };
+      const newSessionToExercise = SessionToExercise.create(newSessionLinkProps);
+      const sessionToExerciseResult = await this.linkRepository.create(newSessionToExercise);
+      if (!sessionToExerciseResult.success) return Failure(sessionToExerciseResult.error);
     }
 
     return sessionResult;

@@ -4,19 +4,12 @@ import { Counter } from './Counter';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 import { IconTrophy } from '@/presentation/globals/components/Icons';
 
-export function AllSessionsDoneCounter({
-  className,
-}: {
-  className?: string;
-}) {
+export function AllSessionsDoneCounter({ className }: { className?: string }) {
   const { totalSessions } = SESSIONS_COUNTERS;
   return (
     <Card className={`flex flex-col gap-1 ${className}`}>
       <header>
-        <CardTitle
-          Icon={IconTrophy}
-          title="Total Sessions"
-        />
+        <CardTitle Icon={IconTrophy} title="Total Sessions" />
       </header>
       <main className="flex flex-1 items-center gap-1">
         <Counter number={totalSessions} />

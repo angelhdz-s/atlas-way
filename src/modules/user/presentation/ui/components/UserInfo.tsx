@@ -3,18 +3,12 @@ import { IconDots } from '@/presentation/globals/components/Icons';
 import { UserAvatar } from './UserAvatar';
 import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
 
-export async function UserInfo({
-  className = '',
-}: {
-  className?: string;
-}) {
+export async function UserInfo({ className = '' }: { className?: string }) {
   const session = await getCurrentSession();
   const user = session?.user;
 
   return (
-    <footer
-      className={`flex h-full items-center gap-2 ${className}`}
-    >
+    <footer className={`flex h-full items-center gap-2 ${className}`}>
       <main className={`flex items-center gap-3`}>
         <figure className="grid size-9 place-items-center overflow-hidden rounded-full bg-blue-600">
           <UserAvatar src={user?.image} size={36} />

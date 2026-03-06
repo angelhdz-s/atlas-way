@@ -1,8 +1,5 @@
 import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
-import {
-  IconCalendarClock,
-  IconCirclePlus,
-} from '@/presentation/globals/components/Icons';
+import { IconCalendarClock, IconCirclePlus } from '@/presentation/globals/components/Icons';
 import {
   SessionDetails,
   type SessionDetailsType,
@@ -52,25 +49,15 @@ const session = {
   status: 'next',
 } as SessionDetailsType;
 
-export function ActivitiesToday({
-  className,
-}: {
-  className?: string;
-}) {
+export function ActivitiesToday({ className }: { className?: string }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
       <header>
-        <CardTitle
-          Icon={IconCalendarClock}
-          title="Today's Challenge"
-        />
+        <CardTitle Icon={IconCalendarClock} title="Today's Challenge" />
       </header>
       <main className="flex flex-col gap-1">
         <SubtleCard>
-          <SessionDetails
-            withStatus={true}
-            session={session}
-          />
+          <SessionDetails withStatus={true} session={session} />
         </SubtleCard>
       </main>
       <footer>

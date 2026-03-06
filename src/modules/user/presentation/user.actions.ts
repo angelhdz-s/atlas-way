@@ -17,32 +17,24 @@ export async function getUser(): ActionResponse<User | null> {
 
 export async function getCurrentUser(): ActionResponse<User> {
   const container = getContainer();
-  const getCurrentUser =
-    container.user.GetCurrentUserUseCase;
+  const getCurrentUser = container.user.GetCurrentUserUseCase;
 
   const userResult = await getCurrentUser.execute();
 
-  if (!userResult.success)
-    return ActionFailure(userResult.error.message);
-  if (!userResult.data)
-    return ActionFailure('User not found');
+  if (!userResult.success) return ActionFailure(userResult.error.message);
+  if (!userResult.data) return ActionFailure('User not found');
 
   return ActionSuccess(userResult.data, 'User found');
 }
 
-export async function getCurrentUserId(): ActionResponse<
-  UserProps['id']
-> {
+export async function getCurrentUserId(): ActionResponse<UserProps['id']> {
   const container = getContainer();
-  const getCurrentUserId =
-    container.user.GetCurrentUserIdUseCase;
+  const getCurrentUserId = container.user.GetCurrentUserIdUseCase;
 
   const userIdResult = await getCurrentUserId.execute();
 
-  if (!userIdResult.success)
-    return ActionFailure(userIdResult.error.message);
-  if (!userIdResult.data)
-    return ActionFailure('User not found');
+  if (!userIdResult.success) return ActionFailure(userIdResult.error.message);
+  if (!userIdResult.data) return ActionFailure('User not found');
 
   return ActionSuccess(userIdResult.data, 'User found');
 }

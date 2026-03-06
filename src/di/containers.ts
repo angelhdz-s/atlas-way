@@ -36,58 +36,26 @@ import { UserPrismaRepository } from '@/modules/user/infrastructure/prisma/user.
  */
 export const getContainer = () => {
   // System repositories
-  const errorMapper = new InfrastructureErrorTranslator(
-    errorHandlersContainer
-  );
-  const authRepository = new AuthNextAuthRepository(
-    errorMapper
-  );
+  const errorMapper = new InfrastructureErrorTranslator(errorHandlersContainer);
+  const authRepository = new AuthNextAuthRepository(errorMapper);
   const idGeneratorRepository = new UUIDGenerator();
 
   // Database respositories
-  const bodySectionRepository =
-    new BodySectionPrismaRepository(prisma, errorMapper);
-  const exerciseRepository = new ExercisePrismaRepository(
+  const bodySectionRepository = new BodySectionPrismaRepository(prisma, errorMapper);
+  const exerciseRepository = new ExercisePrismaRepository(prisma, errorMapper);
+  const exerciseInitialStatsRepository = new ExerciseInitialStatsPrismaRepository(
     prisma,
     errorMapper
   );
-  const exerciseInitialStatsRepository =
-    new ExerciseInitialStatsPrismaRepository(
-      prisma,
-      errorMapper
-    );
-  const exerciseToMuscleRepository =
-    new ExerciseToMusclePrismaRepository(
-      prisma,
-      errorMapper
-    );
-  const muscleRepository = new MusclePrismaRepository(
-    prisma,
-    errorMapper
-  );
-  const muscularGroupRepository =
-    new MuscularGroupPrismaReporitory(prisma, errorMapper);
-  const notificationRepository =
-    new NotificationPrismaRepository(prisma, errorMapper);
-  const routineRepository = new RoutinePrismaRepository(
-    prisma,
-    errorMapper
-  );
-  const routineDaysRepository =
-    new RoutineDaysPrismaRepository(prisma, errorMapper);
-  const sessionRepository = new SessionPrismaRepository(
-    prisma,
-    errorMapper
-  );
-  const sessionToExerciseRepository =
-    new SessionToExercisePrismaRepository(
-      prisma,
-      errorMapper
-    );
-  const userRepository = new UserPrismaRepository(
-    prisma,
-    errorMapper
-  );
+  const exerciseToMuscleRepository = new ExerciseToMusclePrismaRepository(prisma, errorMapper);
+  const muscleRepository = new MusclePrismaRepository(prisma, errorMapper);
+  const muscularGroupRepository = new MuscularGroupPrismaReporitory(prisma, errorMapper);
+  const notificationRepository = new NotificationPrismaRepository(prisma, errorMapper);
+  const routineRepository = new RoutinePrismaRepository(prisma, errorMapper);
+  const routineDaysRepository = new RoutineDaysPrismaRepository(prisma, errorMapper);
+  const sessionRepository = new SessionPrismaRepository(prisma, errorMapper);
+  const sessionToExerciseRepository = new SessionToExercisePrismaRepository(prisma, errorMapper);
+  const userRepository = new UserPrismaRepository(prisma, errorMapper);
 
   return {
     auth: makeAuthModule({ authRepository }),

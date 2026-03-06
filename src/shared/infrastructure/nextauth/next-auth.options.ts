@@ -1,8 +1,5 @@
 import GoogleProvider from 'next-auth/providers/google';
-import type {
-  NextAuthOptions,
-  User as NextAuthUser,
-} from 'next-auth';
+import type { NextAuthOptions, User as NextAuthUser } from 'next-auth';
 import { getContainer } from '@/di/containers';
 import type { CreateUserInput } from '@/modules/user/application/dtos/create-user.dto';
 
@@ -10,8 +7,7 @@ export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env
-        .GOOGLE_CLIENT_SECRET as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
@@ -21,8 +17,7 @@ export const authOptions: NextAuthOptions = {
 
       const containers = getContainer();
 
-      const registerUser =
-        containers.user.CreateIfNotExistsUserUseCase;
+      const registerUser = containers.user.CreateIfNotExistsUserUseCase;
 
       const newUser: CreateUserInput = {
         email: user.email,

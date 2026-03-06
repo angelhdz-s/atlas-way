@@ -4,15 +4,10 @@ import type { CreateSessionToExerciseInput } from '../dtos/create-session-to-exe
 import { SessionToExercise } from '../../domain/session-to-exercise.entity';
 
 export class CreateSessionToExercise implements UseCase {
-  constructor(
-    private repository: ISessionToExerciseRepository
-  ) {}
+  constructor(private repository: ISessionToExerciseRepository) {}
 
   async execute(data: CreateSessionToExerciseInput) {
-    const newSessionToExercise =
-      SessionToExercise.create(data);
-    return await this.repository.create(
-      newSessionToExercise
-    );
+    const newSessionToExercise = SessionToExercise.create(data);
+    return await this.repository.create(newSessionToExercise);
   }
 }

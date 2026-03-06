@@ -7,9 +7,7 @@ type Props = {
 
 export function CarruselIcons({ className }: Props) {
   return (
-    <BentoCard
-      className={`hidden md:row-span-2 md:block ${className}`}
-    >
+    <BentoCard className={`hidden md:row-span-2 md:block ${className}`}>
       <main className="light:opacity-40 flex h-full flex-col items-center justify-center gap-3 opacity-20">
         <IconsAnimation direction="left" />
         <IconsAnimation direction="right" />

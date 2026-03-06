@@ -2,16 +2,9 @@
 
 import { Box } from '@/presentation/modules/form/components/Box';
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
-import {
-  IconEdit,
-  IconTrash,
-} from '@/presentation/globals/components/Icons';
+import { IconEdit, IconTrash } from '@/presentation/globals/components/Icons';
 
-export function RoutineModalFormStep1({
-  title,
-}: {
-  title: string;
-}) {
+export function RoutineModalFormStep1({ title }: { title: string }) {
   return (
     <form>
       <header className="fg-strong">{title}</header>
@@ -25,16 +18,10 @@ export function RoutineModalFormStep1({
                 </main>
                 <aside className="flex items-center gap-2">
                   <button type="button">
-                    <IconEdit
-                      className="size-5"
-                      strokeWidth="1"
-                    />
+                    <IconEdit className="size-5" strokeWidth="1" />
                   </button>
                   <button type="button">
-                    <IconTrash
-                      className="size-5"
-                      strokeWidth="1"
-                    />
+                    <IconTrash className="size-5" strokeWidth="1" />
                   </button>
                 </aside>
               </div>

@@ -3,9 +3,7 @@ import type { IExerciseInitialStatsRepository } from '../../domain/exercise-init
 import type { UseCase } from '@/shared/application/use-case';
 
 export class GetExerciseInitialStatsById implements UseCase {
-  constructor(
-    private repo: IExerciseInitialStatsRepository
-  ) {}
+  constructor(private repo: IExerciseInitialStatsRepository) {}
   async execute(id: ExerciseInitialStats['id']) {
     return await this.repo.findById(id);
   }

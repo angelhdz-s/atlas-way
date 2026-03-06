@@ -4,9 +4,7 @@ import type { LinkExerciseToMuscleInput } from '../dtos/link-exercise-to-muscle.
 import { ExerciseToMuscle } from '../../domain/exercise-to-muscle.entity';
 
 export class LinkExerciseToMuscle implements UseCase {
-  constructor(
-    private repository: IExerciseToMuscleRepository
-  ) {}
+  constructor(private repository: IExerciseToMuscleRepository) {}
   async execute(data: LinkExerciseToMuscleInput) {
     const exerciseToMuscle = ExerciseToMuscle.create(data);
     return this.repository.create(exerciseToMuscle);

@@ -8,10 +8,7 @@ type Props = {
   className?: string;
 };
 
-export function AllVariantButtons({
-  className,
-  colors,
-}: Props) {
+export function AllVariantButtons({ className, colors }: Props) {
   return (
     <div className={className}>
       {colors.map((color) => (
@@ -44,33 +41,17 @@ function AllButtonSizes({
 }) {
   return (
     <>
-      <VariantLink
-        href="#"
-        variantConfig={{ size: 'xs', color, type }}
-      >
+      <VariantLink href="#" variantConfig={{ size: 'xs', color, type }}>
         {type === 'normal' ? 'Button XS' : <IconRocket />}
       </VariantLink>
-      <VariantLink
-        href="#"
-        variantConfig={{ size: 'sm', color, type }}
-      >
+      <VariantLink href="#" variantConfig={{ size: 'sm', color, type }}>
         {type === 'normal' ? 'Button SM' : <IconRocket />}
       </VariantLink>
-      <VariantLink
-        href="#"
-        variantConfig={{ size: 'md', color, type }}
-      >
+      <VariantLink href="#" variantConfig={{ size: 'md', color, type }}>
         {type === 'normal' ? 'Button MD' : <IconRocket />}
       </VariantLink>
-      <VariantLink
-        href="#"
-        variantConfig={{ size: 'lg', color, type }}
-      >
-        {type === 'normal' ? (
-          'Button LG'
-        ) : (
-          <IconRocket className="size-6" />
-        )}
+      <VariantLink href="#" variantConfig={{ size: 'lg', color, type }}>
+        {type === 'normal' ? 'Button LG' : <IconRocket className="size-6" />}
       </VariantLink>
     </>
   );

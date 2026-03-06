@@ -30,10 +30,7 @@ export class Notification {
 
   static create(
     id: NotificationProps['id'],
-    data: Omit<
-      NotificationProps,
-      'id' | 'createdAt' | 'updatedAt'
-    >
+    data: Omit<NotificationProps, 'id' | 'createdAt' | 'updatedAt'>
   ) {
     return new Notification({
       ...data,
