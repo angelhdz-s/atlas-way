@@ -25,10 +25,10 @@ export default function SessionsPage() {
         </section>
         <ActivitiesToday />
         <SessionsHistory className="col-span-2" />
-        <SessionsChart />
+        <NextSession />
         <BestRecords />
         <CurrentGoals />
-        <NextSession />
+        <SessionsChart />
       </PageContent>
     </PageContainer>
   );
