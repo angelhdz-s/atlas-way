@@ -6,18 +6,10 @@ type InputDateProps = {
   error?: string;
 };
 
-export function InputDate({
-  className = '',
-  error,
-  ...props
-}: InputDateProps) {
+export function InputDate({ className = '', error, ...props }: InputDateProps) {
   return (
     <>
-      <input
-        type="date"
-        className={`${InputClasses} ${className}`}
-        {...props}
-      />
+      <input type="date" className={`${InputClasses} ${className}`} {...props} />
       {<ErrorMessage message={error} />}
     </>
   );

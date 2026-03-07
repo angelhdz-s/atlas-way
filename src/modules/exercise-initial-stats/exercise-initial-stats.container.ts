@@ -16,27 +16,22 @@ export const makeExerciseInitialStatsModule = ({
   idGeneratorRepository,
 }: Props) => {
   return {
-    GetAllExerciseInitialStatsUseCase:
-      new GetAllExerciseInitialStats(
-        exerciseInitialStatsRepository
-      ),
-    GetExerciseInitialStatsByIdUseCase:
-      new GetExerciseInitialStatsById(
-        exerciseInitialStatsRepository
-      ),
-    GetExerciseInitialStatsByExerciseIdUseCase:
-      new GetExerciseInitialStatsByExerciseId(
-        exerciseInitialStatsRepository
-      ),
+    GetAllExerciseInitialStatsUseCase: new GetAllExerciseInitialStats(
+      exerciseInitialStatsRepository
+    ),
+    GetExerciseInitialStatsByIdUseCase: new GetExerciseInitialStatsById(
+      exerciseInitialStatsRepository
+    ),
+    GetExerciseInitialStatsByExerciseIdUseCase: new GetExerciseInitialStatsByExerciseId(
+      exerciseInitialStatsRepository
+    ),
 
-    CreateExerciseInitialStatsUseCase:
-      new CreateExerciseInitialStats(
-        exerciseInitialStatsRepository,
-        idGeneratorRepository
-      ),
-    UpdateExerciseInitialStatsUseCase:
-      new UpdateExerciseInitialStats(
-        exerciseInitialStatsRepository
-      ),
+    CreateExerciseInitialStatsUseCase: new CreateExerciseInitialStats(
+      exerciseInitialStatsRepository,
+      idGeneratorRepository
+    ),
+    UpdateExerciseInitialStatsUseCase: new UpdateExerciseInitialStats(
+      exerciseInitialStatsRepository
+    ),
   };
 };

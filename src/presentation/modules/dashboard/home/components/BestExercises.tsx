@@ -2,11 +2,7 @@ import { IconAward } from '@/presentation/globals/components/Icons';
 import { Card } from '../../card/components/Card';
 import { CardTitle } from '../../card/components/CardTitle';
 
-export function BestExercises({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function BestExercises({ className = '' }: { className?: string }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
       <CardTitle Icon={IconAward} title="Best Exercises" />

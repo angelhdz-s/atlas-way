@@ -13,14 +13,11 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
   ) {}
   async create(data: SessionToExercise) {
     try {
-      const sessionPersistence =
-        SessionToExerciseMapper.toPersistence(data);
-      const created =
-        await this.prisma.sessionsToExercises.create({
-          data: sessionPersistence,
-        });
-      const result =
-        SessionToExerciseMapper.toDomain(created);
+      const sessionPersistence = SessionToExerciseMapper.toPersistence(data);
+      const created = await this.prisma.sessionsToExercises.create({
+        data: sessionPersistence,
+      });
+      const result = SessionToExerciseMapper.toDomain(created);
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
@@ -28,43 +25,30 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
   }
   async findAll() {
     try {
-      const sessions =
-        await this.prisma.sessionsToExercises.findMany();
-      const sessionsDomain = sessions.map((session) =>
-        SessionToExerciseMapper.toDomain(session)
-      );
+      const sessions = await this.prisma.sessionsToExercises.findMany();
+      const sessionsDomain = sessions.map((session) => SessionToExerciseMapper.toDomain(session));
       return Success(sessionsDomain);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
     }
   }
-  async listBySessionId(
-    sessionId: SessionToExerciseProps['sessionId']
-  ) {
+  async listBySessionId(sessionId: SessionToExerciseProps['sessionId']) {
     try {
-      const sessions =
-        await this.prisma.sessionsToExercises.findMany({
-          where: { sessionId },
-        });
-      const sessionsDomain = sessions.map((session) =>
-        SessionToExerciseMapper.toDomain(session)
-      );
+      const sessions = await this.prisma.sessionsToExercises.findMany({
+        where: { sessionId },
+      });
+      const sessionsDomain = sessions.map((session) => SessionToExerciseMapper.toDomain(session));
       return Success(sessionsDomain);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
     }
   }
-  async listByExerciseId(
-    exerciseId: SessionToExerciseProps['exerciseId']
-  ) {
+  async listByExerciseId(exerciseId: SessionToExerciseProps['exerciseId']) {
     try {
-      const sessions =
-        await this.prisma.sessionsToExercises.findMany({
-          where: { exerciseId },
-        });
-      const sessionsDomain = sessions.map((session) =>
-        SessionToExerciseMapper.toDomain(session)
-      );
+      const sessions = await this.prisma.sessionsToExercises.findMany({
+        where: { exerciseId },
+      });
+      const sessionsDomain = sessions.map((session) => SessionToExerciseMapper.toDomain(session));
       return Success(sessionsDomain);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
@@ -79,18 +63,15 @@ export class SessionToExercisePrismaRepository implements ISessionToExerciseRepo
     exerciseId: SessionToExerciseProps['exerciseId'];
   }) {
     try {
-      const session =
-        await this.prisma.sessionsToExercises.findUnique({
-          where: {
-            sessionId_exerciseId: {
-              sessionId,
-              exerciseId,
-            },
+      const session = await this.prisma.sessionsToExercises.findUnique({
+        where: {
+          sessionId_exerciseId: {
+            sessionId,
+            exerciseId,
           },
-        });
-      const result = session
-        ? SessionToExerciseMapper.toDomain(session)
-        : null;
+        },
+      });
+      const result = session ? SessionToExerciseMapper.toDomain(session) : null;
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));

@@ -2,14 +2,8 @@ import type { IconTypes } from '@/presentation/globals/types.d';
 import { NavIconSize } from '@/presentation/modules/sidebar/components/nav/NavConstants';
 import { SubLink } from '@/presentation/modules/sidebar/components/nav/SubLink';
 
-export function NavLinks({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <nav className="flex flex-col gap-1">{children}</nav>
-  );
+export function NavLinks({ children }: { children: React.ReactNode }) {
+  return <nav className="flex flex-col gap-1">{children}</nav>;
 }
 
 export function NavLink({

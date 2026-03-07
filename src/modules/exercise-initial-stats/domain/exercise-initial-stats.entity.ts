@@ -32,18 +32,13 @@ export class ExerciseInitialStats {
     this.data.reps = reps;
   }
 
-  changeWeight(
-    weight: ExerciseInitialStatsProps['weight']
-  ) {
+  changeWeight(weight: ExerciseInitialStatsProps['weight']) {
     this.data.weight = weight;
   }
 
   static create(
     id: ExerciseInitialStatsProps['id'],
-    data: Omit<
-      ExerciseInitialStatsProps,
-      'id' | 'createdAt' | 'updatedAt'
-    >
+    data: Omit<ExerciseInitialStatsProps, 'id' | 'createdAt' | 'updatedAt'>
   ) {
     return new ExerciseInitialStats({
       ...data,

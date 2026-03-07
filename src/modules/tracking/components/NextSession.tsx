@@ -7,67 +7,54 @@ import {
 import { IconPlayerTrackNext } from '@/presentation/globals/components/Icons';
 
 const session = {
-  id: 1,
-  name: 'Push Day',
-  description: 'Take it easy today!',
+  id: 2,
+  name: 'Pull Day',
+  description: 'Get a good pump!',
   exercises: [
     {
       id: 1,
-      name: 'Push Ups',
+      name: 'Pull Ups',
       sets: 3,
-      reps: 10,
+      reps: 8,
       weight: 0,
       status: 'next',
     },
     {
       id: 2,
-      name: 'Shoulder Press',
+      name: 'Barbell Rows',
       sets: 3,
-      reps: 12,
-      weight: 20,
+      reps: 10,
+      weight: 40,
       status: 'next',
     },
     {
       id: 3,
-      name: 'Tricep Dips',
+      name: 'Bicep Curls',
       sets: 3,
-      reps: 10,
-      weight: 10,
+      reps: 12,
+      weight: 15,
       status: 'next',
     },
     {
       id: 4,
-      name: 'Lateral Raises',
+      name: 'Face Pulls',
       sets: 3,
       reps: 15,
-      weight: 5,
+      weight: 10,
       status: 'next',
     },
   ],
   status: 'next',
   date: 'Aug 10, 2024',
 } as SessionDetailsType;
-export function NextSession({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function NextSession({ className = '' }: { className?: string }) {
   return (
-    <Card
-      border="highlighted"
-      className={`flex flex-col gap-4 ${className}`}
-    >
+    <Card border="highlighted" className={`flex flex-col gap-4 ${className}`}>
       <header>
-        <CardTitle
-          Icon={IconPlayerTrackNext}
-          title="Next Session"
-        />
+        <CardTitle Icon={IconPlayerTrackNext} title="Next Session" />
       </header>
       <main className="flex flex-col gap-1">
-        <SessionDetails
-          withStatus={false}
-          session={session}
-        />
+        <SessionDetails withStatus={false} session={session} />
       </main>
     </Card>
   );

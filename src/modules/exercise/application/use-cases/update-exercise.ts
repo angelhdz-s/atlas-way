@@ -8,20 +8,15 @@ import { ExerciseNotFoundError } from '../../domain/errors/exercise-errors';
 export class UpdateExercise implements UseCase {
   constructor(private repository: IExerciseRepository) {}
 
-  async execute(
-    id: Exercise['id'],
-    data: UpdateExerciseInput
-  ) {
-    const exerciseResult =
-      await this.repository.findById(id);
+  async execute(id: Exercise['id'], data: UpdateExerciseInput) {
+    const exerciseResult = await this.repository.findById(id);
     if (!exerciseResult.success || !exerciseResult.data)
       return Failure(new ExerciseNotFoundError());
 
     const exercise = exerciseResult.data;
 
     if (data.name) exercise.changeName(data.name);
-    if (data.description)
-      exercise.changeDescription(data.description);
+    if (data.description) exercise.changeDescription(data.description);
 
     return await this.repository.update(exercise);
   }

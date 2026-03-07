@@ -6,15 +6,9 @@ type Props = {
   bodySectionRepository: IBodySectionRepository;
 };
 
-export const makeBodySectionModule = ({
-  bodySectionRepository,
-}: Props) => {
+export const makeBodySectionModule = ({ bodySectionRepository }: Props) => {
   return {
-    GetAllBodySectionUseCase: new GetAllBodySections(
-      bodySectionRepository
-    ),
-    GetBodySectionByIdUseCase: new GetBodySectionById(
-      bodySectionRepository
-    ),
+    GetAllBodySectionUseCase: new GetAllBodySections(bodySectionRepository),
+    GetBodySectionByIdUseCase: new GetBodySectionById(bodySectionRepository),
   };
 };

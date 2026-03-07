@@ -15,18 +15,12 @@ export const makeNotificationModule = ({
   idGeneratorRepository,
 }: Props) => {
   return {
-    GetAllNotificationsUseCase: new GetAllNotifications(
-      notificationRepository
-    ),
-    GetNotificationByIdUseCase: new GetNotificationById(
-      notificationRepository
-    ),
+    GetAllNotificationsUseCase: new GetAllNotifications(notificationRepository),
+    GetNotificationByIdUseCase: new GetNotificationById(notificationRepository),
     CreateNotificationUseCase: new CreateNotification(
       notificationRepository,
       idGeneratorRepository
     ),
-    UpdateNotificationUseCase: new UpdateNotification(
-      notificationRepository
-    ),
+    UpdateNotificationUseCase: new UpdateNotification(notificationRepository),
   };
 };

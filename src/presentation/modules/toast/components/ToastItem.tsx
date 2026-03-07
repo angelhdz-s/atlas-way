@@ -39,9 +39,7 @@ export function ToastItem({ toast, onClose }: Props) {
     >
       <main className="flex items-center gap-2">
         <div className="-mb-1">{TOAST_ICONS[type]}</div>
-        <span className="block w-fit font-semibold">
-          {toast.message}
-        </span>
+        <span className="block w-fit font-semibold">{toast.message}</span>
       </main>
       <button
         type="button"

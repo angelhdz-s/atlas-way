@@ -1,7 +1,6 @@
 import type { Prisma } from '../../../prisma/client';
 
-export const SYSTEM_ID =
-  'fbd0fb0b-41c0-43d4-823c-c7f32c80819b';
+export const SYSTEM_ID = 'fbd0fb0b-41c0-43d4-823c-c7f32c80819b';
 export const ROLES: Prisma.RolesCreateManyInput[] = [
   {
     id: 'system',

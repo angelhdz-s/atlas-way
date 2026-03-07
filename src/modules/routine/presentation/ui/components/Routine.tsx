@@ -1,7 +1,4 @@
-import {
-  DAYS,
-  type DayWeeksType,
-} from '@/presentation/globals/config/defaults';
+import { DAYS, type DayWeeksType } from '@/presentation/globals/config/defaults';
 import type { RoutineType } from '@/presentation/globals/mocks/routines';
 import { CardTags } from '@/presentation/modules/dashboard/card/components/CardTags';
 import { IconCalendarWeek } from '@/presentation/globals/components/Icons';
@@ -14,18 +11,9 @@ import { CardFooter } from '@/presentation/modules/dashboard/card/components/Car
 import { RoutineDayItem } from './RoutineDayItem';
 
 export function Routine({ data }: { data: RoutineType }) {
-  const {
-    name,
-    description,
-    days,
-    exercisesCount,
-    date,
-    sessions,
-  } = data;
+  const { name, description, days, exercisesCount, date, sessions } = data;
 
-  const trainingSessions = days.filter(
-    (day) => day.type !== 'rest'
-  );
+  const trainingSessions = days.filter((day) => day.type !== 'rest');
   const sessionsTags = trainingSessions.map((day) => ({
     value: day.name,
     selected: day.status === 'current',
@@ -35,16 +23,10 @@ export function Routine({ data }: { data: RoutineType }) {
     <Card type="dashboard" width="lg">
       <CardHeader
         title={name}
-        decoration={
-          <span className="bg-unread block aspect-square size-4 rounded-full"></span>
-        }
+        decoration={<span className="bg-unread block aspect-square size-4 rounded-full"></span>}
       >
         <CardSubHeader
-          counters={[
-            date,
-            `${exercisesCount} exercises`,
-            `${sessions} sessions`,
-          ]}
+          counters={[date, `${exercisesCount} exercises`, `${sessions} sessions`]}
           description={description}
         />
       </CardHeader>
@@ -57,9 +39,7 @@ export function Routine({ data }: { data: RoutineType }) {
             {days.map(({ weekDay, type, status }) => (
               <RoutineDayItem
                 key={weekDay}
-                name={
-                  DAYS[weekDay as DayWeeksType].shortName
-                }
+                name={DAYS[weekDay as DayWeeksType].shortName}
                 type={type}
                 status={status}
               />
@@ -69,10 +49,7 @@ export function Routine({ data }: { data: RoutineType }) {
       </CardMain>
       <CardFooter>
         <CardButton>
-          <IconCalendarWeek
-            className="size-6"
-            strokeWidth="1.3"
-          />
+          <IconCalendarWeek className="size-6" strokeWidth="1.3" />
           Edit
         </CardButton>
       </CardFooter>

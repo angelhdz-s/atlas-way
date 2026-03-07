@@ -4,9 +4,7 @@ import type { ExerciseInitialStatsProps } from '../domain/exercise-initial-stats
 import type { ExerciseInitialStatsDTO } from '../application/dtos/exercise-initial-stats.dto';
 
 export class ExerciseInitialStatsMapper {
-  static toDomain(
-    data: PrismaExerciseInitialStats
-  ): ExerciseInitialStats {
+  static toDomain(data: PrismaExerciseInitialStats): ExerciseInitialStats {
     const exerciseStats: ExerciseInitialStatsProps = {
       id: data.id,
       sets: data.sets,
@@ -20,9 +18,7 @@ export class ExerciseInitialStatsMapper {
     return new ExerciseInitialStats(exerciseStats);
   }
 
-  static toPersistence(
-    data: ExerciseInitialStats
-  ): PrismaExerciseInitialStats {
+  static toPersistence(data: ExerciseInitialStats): PrismaExerciseInitialStats {
     return {
       id: data.id,
       sets: data.sets,
@@ -34,9 +30,7 @@ export class ExerciseInitialStatsMapper {
     };
   }
 
-  static toDTO(
-    data: ExerciseInitialStats
-  ): ExerciseInitialStatsDTO {
+  static toDTO(data: ExerciseInitialStats): ExerciseInitialStatsDTO {
     return {
       sets: data.sets,
       reps: data.reps,

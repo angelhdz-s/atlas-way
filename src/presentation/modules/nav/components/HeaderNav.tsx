@@ -6,12 +6,7 @@ import { useHeaderNav } from '../hooks/useHeaderNav';
 import { VariantButton } from '../../button/components/VariantButton';
 
 export function HeaderNav() {
-  const {
-    showing,
-    handleClick,
-    handleClickOut,
-    hiddenClass,
-  } = useHeaderNav();
+  const { showing, handleClick, handleClickOut, hiddenClass } = useHeaderNav();
 
   return (
     <div className="w-full md:mx-auto md:grid md:w-fit md:place-items-center">
@@ -42,10 +37,7 @@ export function HeaderNav() {
         </ul>
       </nav>
       {showing && (
-        <div
-          onClick={handleClickOut}
-          className={`bg-back/80 fixed inset-0 z-1 md:hidden`}
-        ></div>
+        <div onClick={handleClickOut} className={`bg-back/80 fixed inset-0 z-1 md:hidden`}></div>
       )}
     </div>
   );

@@ -15,9 +15,7 @@ export function AdvantageItem({
         <Icon className="size-6" strokeWidth="1.5" />
       </div>
       <main className="xs:p-0 flex flex-1 flex-col gap-2 pt-1.5">
-        <h3 className="fg-strong text-xl font-medium">
-          {tile}
-        </h3>
+        <h3 className="fg-strong text-xl font-medium">{tile}</h3>
         <p>{description}</p>
       </main>
     </li>

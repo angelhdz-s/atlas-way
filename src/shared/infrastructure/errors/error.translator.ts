@@ -1,7 +1,4 @@
-import {
-  type DomainError,
-  TechnicalError,
-} from '../../domain/errors/domain.errors';
+import { type DomainError, TechnicalError } from '../../domain/errors/domain.errors';
 import type { IErrorTranslator } from './error-translator.types';
 import { NextAuthErrorHandler } from '../nextauth/errors/next-auth.error.handler';
 import { PrismaErrorHandler } from '../prisma/errors/prisma.error.handler';
@@ -12,9 +9,7 @@ export const errorHandlersContainer: IErrorTranslator[] = [
 ];
 
 export class InfrastructureErrorTranslator {
-  constructor(
-    private readonly translators: IErrorTranslator[]
-  ) {}
+  constructor(private readonly translators: IErrorTranslator[]) {}
   translate(error: unknown): DomainError {
     for (const handler of this.translators) {
       const domainError = handler.translate(error);
@@ -24,5 +19,4 @@ export class InfrastructureErrorTranslator {
   }
 }
 
-export const globalErrorMapper =
-  new InfrastructureErrorTranslator(errorHandlersContainer);
+export const globalErrorMapper = new InfrastructureErrorTranslator(errorHandlersContainer);

@@ -1,9 +1,6 @@
 'use client';
 
-import {
-  useState,
-  type HTMLInputTypeAttribute,
-} from 'react';
+import { useState, type HTMLInputTypeAttribute } from 'react';
 import './label-input.css';
 
 export function LabelInput({
@@ -22,9 +19,7 @@ export function LabelInput({
   disabled?: boolean;
 }) {
   const [value, setvalue] = useState('');
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setvalue(e.target.value);
   };
   return (

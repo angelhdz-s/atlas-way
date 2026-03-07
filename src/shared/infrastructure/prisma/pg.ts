@@ -10,5 +10,4 @@ export const pool =
     connectionString: process.env.DATABASE_URL,
     max: 5,
   });
-if (process.env.NODE_ENV !== 'production')
-  globalForPg.pool = pool;
+if (process.env.NODE_ENV !== 'production') globalForPg.pool = pool;

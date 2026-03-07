@@ -4,9 +4,7 @@ import type { SessionToExerciseProps } from '../domain/session-to-exercise.types
 import type { SessionToExerciseDTO } from '../application/dtos/session-to-exercise.dto';
 
 export class SessionToExerciseMapper {
-  static toDomain(
-    data: PrismaSessionToExercise
-  ): SessionToExercise {
+  static toDomain(data: PrismaSessionToExercise): SessionToExercise {
     const session: SessionToExerciseProps = {
       exerciseId: data.exerciseId,
       sessionId: data.sessionId,
@@ -16,18 +14,14 @@ export class SessionToExerciseMapper {
     return new SessionToExercise(session);
   }
 
-  static toPersistence(
-    data: SessionToExercise
-  ): PrismaSessionToExercise {
+  static toPersistence(data: SessionToExercise): PrismaSessionToExercise {
     return {
       exerciseId: data.exerciseId,
       sessionId: data.sessionId,
       createdAt: data.createdAt,
     };
   }
-  static toDTO(
-    data: SessionToExercise
-  ): SessionToExerciseDTO {
+  static toDTO(data: SessionToExercise): SessionToExerciseDTO {
     return {
       createdAt: data.createdAt,
     };

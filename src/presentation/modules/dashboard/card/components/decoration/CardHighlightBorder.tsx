@@ -1,10 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
-export function CardHighlightBorder({
-  className,
-}: {
-  className?: string;
-}) {
+export function CardHighlightBorder({ className }: { className?: string }) {
   return (
     <div
       className={twMerge(

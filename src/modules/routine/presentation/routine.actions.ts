@@ -1,14 +1,9 @@
 'use server';
 
 import type { ActionResponseType } from '@/presentation/globals/types';
-import {
-  type RoutineForm,
-  routineFormSchema,
-} from './ui/config/routine-schema';
+import { type RoutineForm, routineFormSchema } from './ui/config/routine-schema';
 
-export async function createRoutineAction(
-  data: RoutineForm
-): Promise<ActionResponseType> {
+export async function createRoutineAction(data: RoutineForm): Promise<ActionResponseType> {
   const parsedRoutine = routineFormSchema.safeParse(data);
   if (!parsedRoutine.success) {
     return { success: false, message: 'Invalid form data' };
@@ -21,15 +16,10 @@ export async function createRoutineAction(
   };
 }
 
-export async function createRoutine(
-  data: RoutineForm
-): Promise<string | null> {
-  const parsedRoutineForm =
-    routineFormSchema.safeParse(data);
+export async function createRoutine(data: RoutineForm): Promise<string | null> {
+  const parsedRoutineForm = routineFormSchema.safeParse(data);
   if (!parsedRoutineForm.success) {
-    return parsedRoutineForm.error.issues
-      .map((issue) => issue.message)
-      .join(', ');
+    return parsedRoutineForm.error.issues.map((issue) => issue.message).join(', ');
   }
 
   return null;

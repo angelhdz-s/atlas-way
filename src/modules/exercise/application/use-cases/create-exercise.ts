@@ -26,48 +26,32 @@ export class CreateExercise implements UseCase {
     statsData: CreateExerciseInitialStatsWithoutExerciseIdInput | null = null
   ) {
     const exerciseId = this.generator.generate();
-    const newExercise = Exercise.create(
-      exerciseId,
-      exerciseData
-    );
-    const exerciseResult =
-      await this.repository.create(newExercise);
+    const newExercise = Exercise.create(exerciseId, exerciseData);
+    const exerciseResult = await this.repository.create(newExercise);
 
     for (const muscleId of muscleIds) {
-      const newMuscleLinkProps: LinkExerciseToMuscleInput =
-        {
-          muscleId,
-          exerciseId,
-        };
-      const newExerciseToMuscle = ExerciseToMuscle.create(
-        newMuscleLinkProps
-      );
-      const exerciseToMuscleResult =
-        await this.linkRepository.create(
-          newExerciseToMuscle
-        );
-      if (!exerciseToMuscleResult.success)
-        return Failure(exerciseToMuscleResult.error);
+      const newMuscleLinkProps: LinkExerciseToMuscleInput = {
+        muscleId,
+        exerciseId,
+      };
+      const newExerciseToMuscle = ExerciseToMuscle.create(newMuscleLinkProps);
+      const exerciseToMuscleResult = await this.linkRepository.create(newExerciseToMuscle);
+      if (!exerciseToMuscleResult.success) return Failure(exerciseToMuscleResult.error);
     }
 
     if (!statsData) return exerciseResult;
 
     const statsId = this.generator.generate();
 
-    const newExerciseInitialStats =
-      ExerciseInitialStats.create(statsId, {
-        sets: statsData.sets,
-        reps: statsData.reps,
-        weight: statsData.weight,
-        exerciseId,
-      });
+    const newExerciseInitialStats = ExerciseInitialStats.create(statsId, {
+      sets: statsData.sets,
+      reps: statsData.reps,
+      weight: statsData.weight,
+      exerciseId,
+    });
 
-    const exerciseInitialStatsResult =
-      await this.statsRepository.create(
-        newExerciseInitialStats
-      );
-    if (!exerciseInitialStatsResult.success)
-      return Failure(exerciseInitialStatsResult.error);
+    const exerciseInitialStatsResult = await this.statsRepository.create(newExerciseInitialStats);
+    if (!exerciseInitialStatsResult.success) return Failure(exerciseInitialStatsResult.error);
 
     return exerciseResult;
   }

@@ -28,9 +28,7 @@ export function ModalFormButtons({
         variantConfig={{
           color: 'primary',
         }}
-        className={
-          isPending ? 'cursor-not-allowed opacity-50' : ''
-        }
+        className={isPending ? 'cursor-not-allowed opacity-50' : ''}
       >
         Create
       </VariantButton>

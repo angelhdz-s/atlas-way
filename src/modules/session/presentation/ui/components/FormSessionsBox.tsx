@@ -5,20 +5,14 @@ import Link from 'next/link';
 import { IconCirclePlus } from '@/presentation/globals/components/Icons';
 
 export function FormSessionsBox() {
-  const [sessions, _setSessions] = useState<
-    SessionsFormDataWithExercises[]
-  >([]);
+  const [sessions, _setSessions] = useState<SessionsFormDataWithExercises[]>([]);
   return (
     <Box className="grid min-h-24 grid-cols-[1fr_auto]">
       <main>
         {sessions.length > 0 ? (
-          sessions.map((session, index) => (
-            <p key={index}>{session.name}</p>
-          ))
+          sessions.map((session, index) => <p key={index}>{session.name}</p>)
         ) : (
-          <p className="text-default/50 text-base font-light">
-            No sessions added
-          </p>
+          <p className="text-default/50 text-base font-light">No sessions added</p>
         )}
       </main>
       <aside>

@@ -9,10 +9,5 @@ export function VariantAnchor({
   ...props
 }: VariantButtonType<AnchorElementProps>) {
   const variantClassNames = buttonVariant(variantConfig);
-  return (
-    <a
-      className={twMerge(variantClassNames, className)}
-      {...props}
-    ></a>
-  );
+  return <a className={twMerge(variantClassNames, className)} {...props}></a>;
 }

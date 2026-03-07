@@ -7,25 +7,20 @@ import type { ActionResponseType } from '@/presentation/globals/types';
 import { useToast } from '@/presentation/modules/toast/hooks/useToast';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-export type ModalFormHookProps<
-  T extends ZodSchema<any, any>,
-> = {
+export type ModalFormHookProps<T extends ZodSchema<any, any>> = {
   action: (data: TypeOf<T>) => Promise<ActionResponseType>;
   schema: T;
   onSuccess?: () => void;
   successToast?: boolean;
 };
 
-export function useFormHook<
-  Schema extends ZodSchema<any, any>,
->({
+export function useFormHook<Schema extends ZodSchema<any, any>>({
   action,
   schema,
   onSuccess,
   successToast = true,
 }: ModalFormHookProps<Schema>) {
-  const [state, setState] =
-    useState<ActionResponseType | null>(null);
+  const [state, setState] = useState<ActionResponseType | null>(null);
   const isAlreadySuccess = useRef(false);
   const { addToast } = useToast();
 

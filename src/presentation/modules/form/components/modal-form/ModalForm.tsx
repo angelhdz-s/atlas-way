@@ -17,13 +17,9 @@ export function ModalForm({
   title: string;
 }) {
   return (
-    <div
-      className={`flex w-160 flex-col gap-4 ${className}`}
-    >
+    <div className={`flex w-160 flex-col gap-4 ${className}`}>
       <header className="border-bd-muted flex h-10 items-center justify-between border-b p-8 text-xl">
-        <h3 className="font-funnel-display fg-strong truncate text-2xl font-medium">
-          {title}
-        </h3>
+        <h3 className="font-funnel-display fg-strong truncate text-2xl font-medium">{title}</h3>
         <aside>
           <VariantButton
             type="button"
@@ -38,11 +34,7 @@ export function ModalForm({
         </aside>
       </header>
       <main className="p-8 pt-0 font-light">
-        <form
-          action={action}
-          onSubmit={onSubmit}
-          className="flex flex-col gap-4"
-        >
+        <form action={action} onSubmit={onSubmit} className="flex flex-col gap-4">
           {children}
         </form>
       </main>

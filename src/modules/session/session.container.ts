@@ -22,14 +22,8 @@ export const makeSessionModule = ({
       sessionToExerciseRepository,
       idGeneratorRepository
     ),
-    GetAllSessionsUseCase: new GetAllSessions(
-      sessionRepository
-    ),
-    GetSessionByIdUseCase: new GetSessionById(
-      sessionRepository
-    ),
-    UpdateSessionUseCase: new UpdateSessions(
-      sessionRepository
-    ),
+    GetAllSessionsUseCase: new GetAllSessions(sessionRepository),
+    GetSessionByIdUseCase: new GetSessionById(sessionRepository),
+    UpdateSessionUseCase: new UpdateSessions(sessionRepository),
   };
 };

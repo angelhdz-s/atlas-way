@@ -17,9 +17,7 @@ export class RoutineDaysMapper {
 
     return new RoutineDays(routineDay);
   }
-  static toPersistence(
-    data: RoutineDays
-  ): PrismaRoutineDays {
+  static toPersistence(data: RoutineDays): PrismaRoutineDays {
     return {
       id: data.id,
       name: data.name,

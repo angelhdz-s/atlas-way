@@ -13,8 +13,7 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
   ) {}
   async create(data: RoutineDays) {
     try {
-      const routineDayPersistence =
-        RoutineDaysMapper.toPersistence(data);
+      const routineDayPersistence = RoutineDaysMapper.toPersistence(data);
       const created = await this.prisma.routineDays.create({
         data: routineDayPersistence,
       });
@@ -26,8 +25,7 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
   }
   async update(data: RoutineDays) {
     try {
-      const routineDayPersistence =
-        RoutineDaysMapper.toPersistence(data);
+      const routineDayPersistence = RoutineDaysMapper.toPersistence(data);
       const updated = await this.prisma.routineDays.update({
         data: routineDayPersistence,
         where: { id: routineDayPersistence.id },
@@ -40,11 +38,9 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
   }
   async findAll() {
     try {
-      const routineDays =
-        await this.prisma.routineDays.findMany();
-      const routineDaysDomain = routineDays.map(
-        (routineDay) =>
-          RoutineDaysMapper.toDomain(routineDay)
+      const routineDays = await this.prisma.routineDays.findMany();
+      const routineDaysDomain = routineDays.map((routineDay) =>
+        RoutineDaysMapper.toDomain(routineDay)
       );
       return Success(routineDaysDomain);
     } catch (e) {
@@ -53,13 +49,10 @@ export class RoutineDaysPrismaRepository implements IRoutineDaysRepository {
   }
   async findById(id: RoutineDaysProps['id']) {
     try {
-      const routineDay =
-        await this.prisma.routineDays.findUnique({
-          where: { id },
-        });
-      const result = routineDay
-        ? RoutineDaysMapper.toDomain(routineDay)
-        : null;
+      const routineDay = await this.prisma.routineDays.findUnique({
+        where: { id },
+      });
+      const result = routineDay ? RoutineDaysMapper.toDomain(routineDay) : null;
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));

@@ -3,12 +3,8 @@ import type { ExerciseInitialStats } from '../../domain/exercise-initial-stats.e
 import type { IExerciseInitialStatsRepository } from '../../domain/exercise-initial-stats.repository';
 
 export class GetExerciseInitialStatsByExerciseId implements UseCase {
-  constructor(
-    private repo: IExerciseInitialStatsRepository
-  ) {}
-  async execute(
-    exerciseId: ExerciseInitialStats['exerciseId']
-  ) {
+  constructor(private repo: IExerciseInitialStatsRepository) {}
+  async execute(exerciseId: ExerciseInitialStats['exerciseId']) {
     return await this.repo.findByExerciseId(exerciseId);
   }
 }

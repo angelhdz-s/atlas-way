@@ -10,23 +10,11 @@ type Props = {
   routineDaysRepository: RoutineDaysPrismaRepository;
 };
 
-export const makeRoutineDaysModule = ({
-  idGeneratorRepository,
-  routineDaysRepository,
-}: Props) => {
+export const makeRoutineDaysModule = ({ idGeneratorRepository, routineDaysRepository }: Props) => {
   return {
-    GetAllRoutineDaysUseCase: new GetAllRoutineDays(
-      routineDaysRepository
-    ),
-    GetRoutineDaysByIdUseCase: new GetRoutineDaysById(
-      routineDaysRepository
-    ),
-    CreateRoutineDaysUseCase: new CreateRoutineDays(
-      routineDaysRepository,
-      idGeneratorRepository
-    ),
-    UpdateRoutineDaysUseCase: new UpdateRoutineDays(
-      routineDaysRepository
-    ),
+    GetAllRoutineDaysUseCase: new GetAllRoutineDays(routineDaysRepository),
+    GetRoutineDaysByIdUseCase: new GetRoutineDaysById(routineDaysRepository),
+    CreateRoutineDaysUseCase: new CreateRoutineDays(routineDaysRepository, idGeneratorRepository),
+    UpdateRoutineDaysUseCase: new UpdateRoutineDays(routineDaysRepository),
   };
 };

@@ -8,9 +8,7 @@ type Props = {
 
 export function GetStartedCard({ className }: Props) {
   return (
-    <BentoCard
-      className={`xs:grid hidden place-content-center md:row-span-2 ${className}`}
-    >
+    <BentoCard className={`xs:grid hidden place-content-center md:row-span-2 ${className}`}>
       <VariantLink
         href="/dashboard"
         variantConfig={{
@@ -19,9 +17,7 @@ export function GetStartedCard({ className }: Props) {
         className="from-accent to-primary fg-strong-dark border-back outline-bd-default flex min-h-14 items-center gap-2 rounded-full border-4 bg-radial-[50%_50%_at_50%_0%] outline"
       >
         <IconArrowsLeftRight className="-ml-1 size-6" />
-        <span className="text-lg whitespace-nowrap">
-          Start Now
-        </span>
+        <span className="text-lg whitespace-nowrap">Start Now</span>
       </VariantLink>
     </BentoCard>
   );

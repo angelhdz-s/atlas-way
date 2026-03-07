@@ -13,9 +13,7 @@ export class SessionToExercise {
     return this.data.createdAt;
   }
 
-  static create(
-    data: Omit<SessionToExerciseProps, 'createdAt'>
-  ) {
+  static create(data: Omit<SessionToExerciseProps, 'createdAt'>) {
     return new SessionToExercise({
       ...data,
       createdAt: new Date(),

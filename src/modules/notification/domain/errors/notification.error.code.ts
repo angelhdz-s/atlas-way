@@ -1,2 +1,1 @@
-export type NotificationErrorCode =
-  'NOTIFICATION_NOT_FOUND';
+export type NotificationErrorCode = 'NOTIFICATION_NOT_FOUND';

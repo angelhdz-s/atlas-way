@@ -12,9 +12,7 @@ export class ExerciseToMuscle {
     return this.data.createdAt;
   }
 
-  static create(
-    data: Omit<ExerciseToMuscleProps, 'createdAt'>
-  ) {
+  static create(data: Omit<ExerciseToMuscleProps, 'createdAt'>) {
     return new ExerciseToMuscle({
       ...data,
       createdAt: new Date(),

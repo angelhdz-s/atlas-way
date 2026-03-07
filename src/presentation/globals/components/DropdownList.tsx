@@ -8,9 +8,7 @@ export type DropdownListProps = {
   selectedValue?: DropdownListValueType['value'];
   className?: string;
   values: DropdownListValueType[];
-  onChange?: (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ) => void;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
 
 export function DropdownList({
@@ -22,9 +20,7 @@ export function DropdownList({
   const [selectedOption, setSelectedOption] =
     useState<DropdownListValueType['value']>(selectedValue);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onChange?.(e);
   };
 

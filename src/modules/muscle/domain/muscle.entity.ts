@@ -30,13 +30,7 @@ export class Muscle {
     this.data.description = description;
   }
 
-  static create(
-    id: MuscleProps['id'],
-    data: Omit<
-      MuscleProps,
-      'id' | 'createdAt' | 'updatedAt'
-    >
-  ) {
+  static create(id: MuscleProps['id'], data: Omit<MuscleProps, 'id' | 'createdAt' | 'updatedAt'>) {
     return new Muscle({
       ...data,
       id,

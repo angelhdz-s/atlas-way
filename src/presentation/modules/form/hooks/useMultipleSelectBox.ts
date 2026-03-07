@@ -8,19 +8,12 @@ type UseMultipleSelectBoxProps = {
   onOptionsChange?: (options: SelectOption[]) => void;
 };
 
-export function useMultipleSelectBox({
-  options,
-  onOptionsChange,
-}: UseMultipleSelectBoxProps) {
-  const [selectedOptions, setSelectedOptions] = useState<
-    SelectOption[]
-  >([]);
+export function useMultipleSelectBox({ options, onOptionsChange }: UseMultipleSelectBoxProps) {
+  const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>([]);
   const currentOptions = useRef(selectedOptions);
   const [isSelecting, setIsSelecting] = useState(false);
 
-  const filteredOptions = options.filter(
-    (option) => !selectedOptions.includes(option)
-  );
+  const filteredOptions = options.filter((option) => !selectedOptions.includes(option));
 
   const handleCloseSelectOptions = () => {
     setIsSelecting(false);
@@ -34,21 +27,14 @@ export function useMultipleSelectBox({
     setSelectedOptions([]);
   };
 
-  const handleAddOptionsSelection = (
-    options: SelectOption[]
-  ) => {
+  const handleAddOptionsSelection = (options: SelectOption[]) => {
     setSelectedOptions((prev) => [...prev, ...options]);
     setIsSelecting(false);
   };
 
-  const handleRemoveOptionsSelected = (
-    option: SelectOption
-  ) => {
+  const handleRemoveOptionsSelected = (option: SelectOption) => {
     setSelectedOptions((prev) =>
-      prev.filter(
-        (selectedOption) =>
-          selectedOption.value !== option.value
-      )
+      prev.filter((selectedOption) => selectedOption.value !== option.value)
     );
   };
 
@@ -69,8 +55,7 @@ export function useMultipleSelectBox({
     };
 
     document.addEventListener('keydown', handleKey);
-    return () =>
-      document.removeEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
   }, [isSelecting]);
 
   return {

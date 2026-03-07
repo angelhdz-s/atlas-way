@@ -1,7 +1,4 @@
-import type {
-  IconProps,
-  IconTypes,
-} from '@/presentation/globals/types.d';
+import type { IconProps, IconTypes } from '@/presentation/globals/types.d';
 import { twMerge } from 'tailwind-merge';
 
 export const defaultIconStrokeWidth = '1.5';
@@ -16,12 +13,7 @@ export function DefaultIcon({
   className?: string;
   strokeWidth?: string;
 }) {
-  return (
-    <Icon
-      className={twMerge(defaultIconSizeClass, className)}
-      strokeWidth={strokeWidth}
-    />
-  );
+  return <Icon className={twMerge(defaultIconSizeClass, className)} strokeWidth={strokeWidth} />;
 }
 
 function MainSvgBody({
@@ -51,11 +43,7 @@ function MainSvgBody({
 export function IconArrowUp(props: IconProps) {
   return (
     <MainSvgBody {...props}>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="m4.5 15.75 7.5-7.5 7.5 7.5"
-      />
+      <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
     </MainSvgBody>
   );
 }
@@ -378,9 +366,7 @@ export function IconDots(props: IconProps) {
   );
 }
 
-export function IconDeviceDesktopAnalytics(
-  props: IconProps
-) {
+export function IconDeviceDesktopAnalytics(props: IconProps) {
   return (
     <MainSvgBody {...props}>
       <path d="M3 4m0 1a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1z" />
@@ -712,6 +698,19 @@ export function IconRocket(props: IconProps) {
       <path d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3" />
       <path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3" />
       <path d="M14 9a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+    </MainSvgBody>
+  );
+}
+
+export function IconGripVertical(props: IconProps) {
+  return (
+    <MainSvgBody {...props}>
+      <path d="M8 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+      <path d="M8 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+      <path d="M8 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+      <path d="M14 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+      <path d="M14 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+      <path d="M14 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
     </MainSvgBody>
   );
 }

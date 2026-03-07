@@ -9,20 +9,14 @@ type BestRecordItemType = {
   value: string;
   date: string;
 };
-function BestRecordItem({
-  record,
-}: {
-  record: BestRecordItemType;
-}) {
+function BestRecordItem({ record }: { record: BestRecordItemType }) {
   const { name, metric, value, date } = record;
   return (
     <article className="bg-subtle/5 rounded-lg px-4 py-1">
       <header className="flex items-center justify-between">
         <h3 className="fg-strong">{name}</h3>
         <aside>
-          <span className="fg-default/50 text-sm font-light">
-            {date}
-          </span>
+          <span className="fg-default/50 text-sm font-light">{date}</span>
         </aside>
       </header>
       <main className="flex items-baseline gap-1">
@@ -57,11 +51,7 @@ const RECORDS: BestRecordItemType[] = [
   },
 ];
 
-export function BestRecords({
-  className,
-}: {
-  className?: string;
-}) {
+export function BestRecords({ className }: { className?: string }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
       <header>

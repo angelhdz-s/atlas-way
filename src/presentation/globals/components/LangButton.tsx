@@ -1,11 +1,7 @@
 import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
 import { IconLanguage } from './Icons';
 
-export function LangButton({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function LangButton({ className = '' }: { className?: string }) {
   return (
     <VariantButton
       type="button"

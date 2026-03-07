@@ -33,10 +33,7 @@ export default async function MusclesTable() {
         <CardFooter>
           <ul className="flex flex-wrap gap-2">
             {section.muscularGroups.map(({ name, id }) => (
-              <CardTag
-                key={id}
-                tag={{ value: name, selected: false }}
-              />
+              <CardTag key={id} tag={{ value: name, selected: false }} />
             ))}
           </ul>
         </CardFooter>

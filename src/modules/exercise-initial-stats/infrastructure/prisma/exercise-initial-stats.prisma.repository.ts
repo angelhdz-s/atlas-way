@@ -11,13 +11,11 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
     private readonly errorMapper: InfrastructureErrorTranslator
   ) {}
   async create(data: ExerciseInitialStats) {
-    const exerciseStatsPersistence =
-      ExerciseInitialStatsMapper.toPersistence(data);
+    const exerciseStatsPersistence = ExerciseInitialStatsMapper.toPersistence(data);
     try {
-      const created =
-        await this.prisma.exerciseInitialStats.create({
-          data: exerciseStatsPersistence,
-        });
+      const created = await this.prisma.exerciseInitialStats.create({
+        data: exerciseStatsPersistence,
+      });
       const result = new ExerciseInitialStats(created);
       return Success(result);
     } catch (e) {
@@ -25,14 +23,12 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
     }
   }
   async update(data: ExerciseInitialStats) {
-    const exerciseStatsPersistence =
-      ExerciseInitialStatsMapper.toPersistence(data);
+    const exerciseStatsPersistence = ExerciseInitialStatsMapper.toPersistence(data);
     try {
-      const updated =
-        await this.prisma.exerciseInitialStats.update({
-          data: exerciseStatsPersistence,
-          where: { id: exerciseStatsPersistence.id },
-        });
+      const updated = await this.prisma.exerciseInitialStats.update({
+        data: exerciseStatsPersistence,
+        where: { id: exerciseStatsPersistence.id },
+      });
 
       const result = new ExerciseInitialStats(updated);
       return Success(result);
@@ -42,11 +38,9 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
   }
   async findAll() {
     try {
-      const exerciseStats =
-        await this.prisma.exerciseInitialStats.findMany();
-      const exerciseStatsDomain = exerciseStats.map(
-        (exerciseStats) =>
-          ExerciseInitialStatsMapper.toDomain(exerciseStats)
+      const exerciseStats = await this.prisma.exerciseInitialStats.findMany();
+      const exerciseStatsDomain = exerciseStats.map((exerciseStats) =>
+        ExerciseInitialStatsMapper.toDomain(exerciseStats)
       );
 
       return Success(exerciseStatsDomain);
@@ -56,29 +50,21 @@ export class ExerciseInitialStatsPrismaRepository implements IExerciseInitialSta
   }
   async findById(id: ExerciseInitialStats['id']) {
     try {
-      const exerciseStats =
-        await this.prisma.exerciseInitialStats.findUnique({
-          where: { id },
-        });
-      const result = exerciseStats
-        ? ExerciseInitialStatsMapper.toDomain(exerciseStats)
-        : null;
+      const exerciseStats = await this.prisma.exerciseInitialStats.findUnique({
+        where: { id },
+      });
+      const result = exerciseStats ? ExerciseInitialStatsMapper.toDomain(exerciseStats) : null;
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
     }
   }
-  async findByExerciseId(
-    exerciseId: ExerciseInitialStats['exerciseId']
-  ) {
+  async findByExerciseId(exerciseId: ExerciseInitialStats['exerciseId']) {
     try {
-      const exerciseStats =
-        await this.prisma.exerciseInitialStats.findUnique({
-          where: { exerciseId },
-        });
-      const result = exerciseStats
-        ? ExerciseInitialStatsMapper.toDomain(exerciseStats)
-        : null;
+      const exerciseStats = await this.prisma.exerciseInitialStats.findUnique({
+        where: { exerciseId },
+      });
+      const result = exerciseStats ? ExerciseInitialStatsMapper.toDomain(exerciseStats) : null;
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));

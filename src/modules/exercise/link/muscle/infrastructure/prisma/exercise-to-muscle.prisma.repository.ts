@@ -11,15 +11,12 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
     private readonly errorMapper: InfrastructureErrorTranslator
   ) {}
   async create(data: ExerciseToMuscle) {
-    const exercisePersistence =
-      ExerciseToMuscleMapper.toPersistence(data);
+    const exercisePersistence = ExerciseToMuscleMapper.toPersistence(data);
     try {
-      const created =
-        await this.prisma.exercisesToMuscles.create({
-          data: exercisePersistence,
-        });
-      const result =
-        ExerciseToMuscleMapper.toDomain(created);
+      const created = await this.prisma.exercisesToMuscles.create({
+        data: exercisePersistence,
+      });
+      const result = ExerciseToMuscleMapper.toDomain(created);
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
@@ -27,8 +24,7 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
   }
   async findAll() {
     try {
-      const exercises =
-        await this.prisma.exercisesToMuscles.findMany();
+      const exercises = await this.prisma.exercisesToMuscles.findMany();
       const domainExercises = exercises.map((exercise) =>
         ExerciseToMuscleMapper.toDomain(exercise)
       );
@@ -37,33 +33,23 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
       return Failure(this.errorMapper.translate(e));
     }
   }
-  async findByExerciseId(
-    exerciseId: ExerciseToMuscle['exerciseId']
-  ) {
+  async findByExerciseId(exerciseId: ExerciseToMuscle['exerciseId']) {
     try {
-      const exercises =
-        await this.prisma.exercisesToMuscles.findMany({
-          where: { exerciseId },
-        });
-      const result = exercises.map((exercise) =>
-        ExerciseToMuscleMapper.toDomain(exercise)
-      );
+      const exercises = await this.prisma.exercisesToMuscles.findMany({
+        where: { exerciseId },
+      });
+      const result = exercises.map((exercise) => ExerciseToMuscleMapper.toDomain(exercise));
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
     }
   }
-  async findByMuscleId(
-    muscleId: ExerciseToMuscle['muscleId']
-  ) {
+  async findByMuscleId(muscleId: ExerciseToMuscle['muscleId']) {
     try {
-      const exercises =
-        await this.prisma.exercisesToMuscles.findMany({
-          where: { muscleId },
-        });
-      const result = exercises.map((exercise) =>
-        ExerciseToMuscleMapper.toDomain(exercise)
-      );
+      const exercises = await this.prisma.exercisesToMuscles.findMany({
+        where: { muscleId },
+      });
+      const result = exercises.map((exercise) => ExerciseToMuscleMapper.toDomain(exercise));
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
@@ -78,18 +64,15 @@ export class ExerciseToMusclePrismaRepository implements IExerciseToMuscleReposi
     muscleId: ExerciseToMuscle['muscleId'];
   }) {
     try {
-      const exercise =
-        await this.prisma.exercisesToMuscles.findUnique({
-          where: {
-            exerciseId_muscleId: {
-              exerciseId,
-              muscleId,
-            },
+      const exercise = await this.prisma.exercisesToMuscles.findUnique({
+        where: {
+          exerciseId_muscleId: {
+            exerciseId,
+            muscleId,
           },
-        });
-      const result = exercise
-        ? ExerciseToMuscleMapper.toDomain(exercise)
-        : null;
+        },
+      });
+      const result = exercise ? ExerciseToMuscleMapper.toDomain(exercise) : null;
       return Success(result);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));

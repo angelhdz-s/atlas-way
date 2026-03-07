@@ -23,9 +23,7 @@ export class Exercise {
   changeName(name: ExerciseProps['name']) {
     this.data.name = name;
   }
-  changeDescription(
-    description: ExerciseProps['description']
-  ) {
+  changeDescription(description: ExerciseProps['description']) {
     this.data.description = description;
   }
 
@@ -35,10 +33,7 @@ export class Exercise {
 
   static create(
     id: ExerciseProps['id'],
-    data: Omit<
-      ExerciseProps,
-      'id' | 'createdAt' | 'updatedAt'
-    >
+    data: Omit<ExerciseProps, 'id' | 'createdAt' | 'updatedAt'>
   ) {
     return new Exercise({
       ...data,

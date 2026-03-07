@@ -6,31 +6,20 @@ import { Failure } from '@/shared/domain/result';
 import { NotificationNotFoundError } from '../../domain/errors/notification.errors';
 
 export class UpdateNotification implements UseCase {
-  constructor(
-    private repository: INotificationRepository
-  ) {}
+  constructor(private repository: INotificationRepository) {}
 
-  async execute(
-    id: NotificationProps['id'],
-    data: UpdateNotificationInput
-  ) {
-    const notificationResult =
-      await this.repository.findById(id);
+  async execute(id: NotificationProps['id'], data: UpdateNotificationInput) {
+    const notificationResult = await this.repository.findById(id);
 
-    if (
-      !notificationResult.success ||
-      !notificationResult.data
-    ) {
-      if (!notificationResult.success)
-        return Failure(notificationResult.error);
+    if (!notificationResult.success || !notificationResult.data) {
+      if (!notificationResult.success) return Failure(notificationResult.error);
       return Failure(new NotificationNotFoundError());
     }
 
     const notification = notificationResult.data;
 
     if (data.name) notification.changeName(data.name);
-    if (data.message)
-      notification.changeMessage(data.message);
+    if (data.message) notification.changeMessage(data.message);
 
     return this.repository.update(notification);
   }

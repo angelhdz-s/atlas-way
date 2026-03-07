@@ -22,27 +22,13 @@ export const makeUserModule = ({
   userRepository,
 }: Props) => {
   return {
-    CreateUserUseCase: new CreateUser(
-      userRepository,
-      idGeneratorRepository
-    ),
+    CreateUserUseCase: new CreateUser(userRepository, idGeneratorRepository),
     UpdateUserUseCase: new UpdateUser(userRepository),
-    CreateIfNotExistsUserUseCase: new CreateIfNotExistsUser(
-      userRepository,
-      idGeneratorRepository
-    ),
+    CreateIfNotExistsUserUseCase: new CreateIfNotExistsUser(userRepository, idGeneratorRepository),
     GetAllUsersUseCase: new GetAllUsers(userRepository),
     GetUserByIdUseCase: new GetUserById(userRepository),
-    GetUserByeEmailUseCase: new GetUserByEmail(
-      userRepository
-    ),
-    GetCurrentUserUseCase: new GetCurrentUser(
-      userRepository,
-      authRepository
-    ),
-    GetCurrentUserIdUseCase: new GetCurrentUserId(
-      userRepository,
-      authRepository
-    ),
+    GetUserByeEmailUseCase: new GetUserByEmail(userRepository),
+    GetCurrentUserUseCase: new GetCurrentUser(userRepository, authRepository),
+    GetCurrentUserIdUseCase: new GetCurrentUserId(userRepository, authRepository),
   };
 };

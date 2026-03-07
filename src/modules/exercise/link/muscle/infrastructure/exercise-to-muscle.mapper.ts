@@ -4,9 +4,7 @@ import { ExerciseToMuscle } from '../domain/exercise-to-muscle.entity';
 import type { ExerciseToMuscleProps } from '../domain/exercise-to-muscle.types';
 
 export class ExerciseToMuscleMapper {
-  static toDomain(
-    data: PrismaExerciseToMuscle
-  ): ExerciseToMuscle {
+  static toDomain(data: PrismaExerciseToMuscle): ExerciseToMuscle {
     const exerciseToMuscleProps: ExerciseToMuscleProps = {
       exerciseId: data.exerciseId,
       muscleId: data.muscleId,
@@ -15,9 +13,7 @@ export class ExerciseToMuscleMapper {
     return new ExerciseToMuscle(exerciseToMuscleProps);
   }
 
-  static toPersistence(
-    data: ExerciseToMuscle
-  ): PrismaExerciseToMuscle {
+  static toPersistence(data: ExerciseToMuscle): PrismaExerciseToMuscle {
     return {
       exerciseId: data.exerciseId,
       muscleId: data.muscleId,
@@ -25,9 +21,7 @@ export class ExerciseToMuscleMapper {
     };
   }
 
-  static toDTO(
-    data: ExerciseToMuscle
-  ): ExerciseToMuscleDTO {
+  static toDTO(data: ExerciseToMuscle): ExerciseToMuscleDTO {
     return {
       createdAt: data.createdAt,
     };

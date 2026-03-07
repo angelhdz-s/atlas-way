@@ -13,12 +13,10 @@ export class GetCurrentUser implements UseCase {
 
   async execute() {
     const session = await this.authRepo.getSession();
-    if (!session.success || !session.data)
-      return Failure(new SessionNotFoundError());
+    if (!session.success || !session.data) return Failure(new SessionNotFoundError());
     const { email } = session.data;
     const user = await this.repository.findByEmail(email);
-    if (!user.success || !user.data)
-      return Failure(new UserNotFoundError());
+    if (!user.success || !user.data) return Failure(new UserNotFoundError());
     return Success(user.data);
   }
 }

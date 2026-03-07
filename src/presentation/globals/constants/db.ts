@@ -1,15 +1,6 @@
-export type SessionTrackedStatusType =
-  | 'completed'
-  | 'canceled'
-  | 'pending';
-export type CalendarDayStatusType =
-  | SessionTrackedStatusType
-  | 'out';
-export type CalendarDayPositionTimelineType =
-  | 'pastout'
-  | 'past'
-  | 'today'
-  | 'future';
+export type SessionTrackedStatusType = 'completed' | 'canceled' | 'pending';
+export type CalendarDayStatusType = SessionTrackedStatusType | 'out';
+export type CalendarDayPositionTimelineType = 'pastout' | 'past' | 'today' | 'future';
 
 export type BodySectionsKeys = keyof typeof BODY_SECTIONS;
 
@@ -297,11 +288,7 @@ export const EXERCISES: ExercisesType = {
   FUNDS: {
     name: 'Funds',
     description: 'Chest Focus',
-    muscles: [
-      MUSCLES.CHEST,
-      MUSCLES.TRICEPS,
-      MUSCLES.ANTERIOR_SHOULDERS,
-    ],
+    muscles: [MUSCLES.CHEST, MUSCLES.TRICEPS, MUSCLES.ANTERIOR_SHOULDERS],
   },
   LATERAL_RAISES: {
     name: 'Lateral Raises',
@@ -311,11 +298,7 @@ export const EXERCISES: ExercisesType = {
   PUSH_UPS: {
     name: 'Push Ups',
     description: 'Chest Focus',
-    muscles: [
-      MUSCLES.CHEST,
-      MUSCLES.TRICEPS,
-      MUSCLES.ANTERIOR_SHOULDERS,
-    ],
+    muscles: [MUSCLES.CHEST, MUSCLES.TRICEPS, MUSCLES.ANTERIOR_SHOULDERS],
   },
   SKULL_CRUSHERS: {
     name: 'Skull Crushers',
@@ -327,11 +310,7 @@ export const EXERCISES: ExercisesType = {
   BULGARIANS: {
     name: 'Bulgarian Split Squats',
     description: 'Single Leg',
-    muscles: [
-      MUSCLES.QUADRICEPS,
-      MUSCLES.GLUTES,
-      MUSCLES.HAMSTRINGS,
-    ],
+    muscles: [MUSCLES.QUADRICEPS, MUSCLES.GLUTES, MUSCLES.HAMSTRINGS],
   },
   CALF_EXTENSIONS: {
     name: 'Calf Extensions',
@@ -346,29 +325,17 @@ export const EXERCISES: ExercisesType = {
   ROMANIAN_DEADLIFT: {
     name: 'Romanian Deadlift',
     description: 'Barbell',
-    muscles: [
-      MUSCLES.HAMSTRINGS,
-      MUSCLES.GLUTES,
-      MUSCLES.QUADRICEPS,
-    ],
+    muscles: [MUSCLES.HAMSTRINGS, MUSCLES.GLUTES, MUSCLES.QUADRICEPS],
   },
   SQUATS: {
     name: 'Squats',
     description: 'Barbell',
-    muscles: [
-      MUSCLES.QUADRICEPS,
-      MUSCLES.GLUTES,
-      MUSCLES.HAMSTRINGS,
-    ],
+    muscles: [MUSCLES.QUADRICEPS, MUSCLES.GLUTES, MUSCLES.HAMSTRINGS],
   },
   STRIDES: {
     name: 'Strides',
     description: 'Walking',
-    muscles: [
-      MUSCLES.QUADRICEPS,
-      MUSCLES.GLUTES,
-      MUSCLES.HAMSTRINGS,
-    ],
+    muscles: [MUSCLES.QUADRICEPS, MUSCLES.GLUTES, MUSCLES.HAMSTRINGS],
   },
 
   // PULL DAY

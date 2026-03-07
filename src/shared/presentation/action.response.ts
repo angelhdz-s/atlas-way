@@ -1,10 +1,6 @@
-export type ActionResponse<T> = Promise<
-  ActionResponseProps<T>
->;
+export type ActionResponse<T> = Promise<ActionResponseProps<T>>;
 
-export type ActionResponseProps<T> =
-  | ActionSuccessType<T>
-  | ActionFailureType;
+export type ActionResponseProps<T> = ActionSuccessType<T> | ActionFailureType;
 
 type ActionSuccessType<T> = {
   success: true;
@@ -17,19 +13,14 @@ type ActionFailureType = {
   data: null;
 };
 
-export function ActionSuccess<T>(
-  data: T,
-  message: string
-): ActionSuccessType<T> {
+export function ActionSuccess<T>(data: T, message: string): ActionSuccessType<T> {
   return {
     success: true,
     message,
     data,
   };
 }
-export function ActionFailure(
-  message: string
-): ActionFailureType {
+export function ActionFailure(message: string): ActionFailureType {
   return {
     success: false,
     message,

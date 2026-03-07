@@ -23,11 +23,7 @@ function SelectOptionBox({
       className={`bg-middle hover:border-complete hover:fg-complete light:hover:fg-green-900 w-fit cursor-pointer rounded-lg border px-3 py-1 ${isActiveClass}`}
     >
       <span className="text-sm">{option.label}</span>
-      <input
-        className="hidden"
-        type="checkbox"
-        onChange={() => onSelect(option)}
-      />
+      <input className="hidden" type="checkbox" onChange={() => onSelect(option)} />
     </label>
   );
 }
@@ -60,14 +56,9 @@ export function MultipleSelectOptionsBox({
   return (
     <div className="bg-middle border-subtle/20 flex w-160 flex-col gap-2 rounded-lg border p-6">
       <header className="flex flex-col gap-2">
-        <h5 className="mb-2 text-xl font-medium">
-          {title}
-        </h5>
+        <h5 className="mb-2 text-xl font-medium">{title}</h5>
         <label className="hover:outline-bd-default bg-back mb-2 flex w-full items-center gap-2 rounded-lg px-4 py-2 text-base font-light hover:outline-1">
-          <IconSearch
-            className="fg-muted size-5"
-            strokeWidth="2"
-          />
+          <IconSearch className="fg-muted size-5" strokeWidth="2" />
           <input
             type="search"
             className="w-full appearance-none outline-none"

@@ -12,8 +12,7 @@ export class ExercisePrismaRepository implements IExerciseRepository {
     private readonly errorMapper: InfrastructureErrorTranslator
   ) {}
   async create(data: Exercise) {
-    const exercisePersistence =
-      ExerciseMapper.toPersistence(data);
+    const exercisePersistence = ExerciseMapper.toPersistence(data);
     try {
       const created = await this.prisma.exercises.create({
         data: exercisePersistence,
@@ -24,8 +23,7 @@ export class ExercisePrismaRepository implements IExerciseRepository {
     }
   }
   async update(data: Exercise) {
-    const exercisePersistence =
-      ExerciseMapper.toPersistence(data);
+    const exercisePersistence = ExerciseMapper.toPersistence(data);
     try {
       const updated = await this.prisma.exercises.update({
         data: exercisePersistence,
@@ -38,11 +36,8 @@ export class ExercisePrismaRepository implements IExerciseRepository {
   }
   async findAll() {
     try {
-      const exercises =
-        await this.prisma.exercises.findMany();
-      const domainExercises = exercises.map((exercise) =>
-        ExerciseMapper.toDomain(exercise)
-      );
+      const exercises = await this.prisma.exercises.findMany();
+      const domainExercises = exercises.map((exercise) => ExerciseMapper.toDomain(exercise));
       return Success(domainExercises);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
@@ -50,26 +45,20 @@ export class ExercisePrismaRepository implements IExerciseRepository {
   }
   async findById(id: ExerciseProps['id']) {
     try {
-      const exercise =
-        await this.prisma.exercises.findUnique({
-          where: { id },
-        });
-      return Success(
-        exercise ? ExerciseMapper.toDomain(exercise) : null
-      );
+      const exercise = await this.prisma.exercises.findUnique({
+        where: { id },
+      });
+      return Success(exercise ? ExerciseMapper.toDomain(exercise) : null);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));
     }
   }
   async findAllByUserId(userId: ExerciseProps['userId']) {
     try {
-      const exercises =
-        await this.prisma.exercises.findMany({
-          where: { userId },
-        });
-      const domainExercises = exercises.map((exercise) =>
-        ExerciseMapper.toDomain(exercise)
-      );
+      const exercises = await this.prisma.exercises.findMany({
+        where: { userId },
+      });
+      const domainExercises = exercises.map((exercise) => ExerciseMapper.toDomain(exercise));
       return Success(domainExercises);
     } catch (e) {
       return Failure(this.errorMapper.translate(e));

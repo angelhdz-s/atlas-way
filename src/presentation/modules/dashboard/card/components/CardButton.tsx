@@ -1,10 +1,6 @@
 import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
 
-export function CardButton({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function CardButton({ children }: { children: React.ReactNode }) {
   return (
     <VariantButton
       type="button"

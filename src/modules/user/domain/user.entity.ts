@@ -26,10 +26,7 @@ export class User {
   changeEmail(email: UserProps['email']) {
     this.props.email = email;
   }
-  static create(
-    id: UserProps['id'],
-    data: Omit<UserProps, 'id' | 'createdAt' | 'updatedAt'>
-  ) {
+  static create(id: UserProps['id'], data: Omit<UserProps, 'id' | 'createdAt' | 'updatedAt'>) {
     return new User({
       ...data,
       createdAt: new Date(),

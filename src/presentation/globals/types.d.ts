@@ -16,11 +16,7 @@ export interface SolidIconProps {
 
 export type SolidIconTypes = React.FC<IconProps>;
 
-export type ToastType =
-  | 'success'
-  | 'error'
-  | 'info'
-  | 'warning';
+export type ToastType = 'success' | 'error' | 'info' | 'warning';
 
 export interface Toast {
   id: string;
@@ -34,9 +30,4 @@ export type ActionResponseType = {
   message: string;
 };
 
-export type AtomicElement =
-  | 'div'
-  | 'span'
-  | 'button'
-  | 'li'
-  | 'a';
+export type AtomicElement = 'div' | 'span' | 'button' | 'li' | 'a';

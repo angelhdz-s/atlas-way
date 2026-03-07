@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  ChangeEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ChangeEvent, ChangeEventHandler, useEffect, useRef, useState } from 'react';
 
 const MD_BREAKPOINT = 768;
 
@@ -21,18 +15,13 @@ export function useHeaderNav() {
     setShowing(false);
   };
 
-  const hiddenClass = (
-    show: boolean,
-    el: 'button' | 'backdrop'
-  ): string => {
+  const hiddenClass = (show: boolean, el: 'button' | 'backdrop'): string => {
     if (el === 'backdrop') return show ? '' : 'hidden';
     return show ? '' : 'hidden';
   };
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia(
-      `(min-width: ${MD_BREAKPOINT}px)`
-    );
+    const mediaQuery = window.matchMedia(`(min-width: ${MD_BREAKPOINT}px)`);
 
     const handleChange = (e: MediaQueryListEvent) => {
       if (e.matches) {
@@ -43,10 +32,7 @@ export function useHeaderNav() {
     mediaQuery.addEventListener('change', handleChange);
 
     return () => {
-      mediaQuery.removeEventListener(
-        'change',
-        handleChange
-      );
+      mediaQuery.removeEventListener('change', handleChange);
     };
   });
 

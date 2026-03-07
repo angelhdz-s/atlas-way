@@ -5,17 +5,10 @@ import { Card } from '../../card/components/Card';
 import { twMerge } from 'tailwind-merge';
 import { IconMapRoute } from '@/presentation/globals/components/Icons';
 
-export function FirstRoutine({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function FirstRoutine({ className = '' }: { className?: string }) {
   return (
     <Card className={twMerge('relative', className)}>
-      <CardTitle
-        Icon={IconMapRoute}
-        title="Create Your First Routine"
-      />
+      <CardTitle Icon={IconMapRoute} title="Create Your First Routine" />
       <ImageBackground>
         <Image
           src="/images/dashboard/routine-dark.png"

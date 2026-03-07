@@ -6,7 +6,5 @@ export interface ISessionRepository {
   create: (data: Session) => RepositoryResult<Session>;
   update: (data: Session) => RepositoryResult<Session>;
   findAll: () => RepositoryResult<Session[]>;
-  findById: (
-    id: SessionProps['id']
-  ) => RepositoryResult<Session | null>;
+  findById: (id: SessionProps['id']) => RepositoryResult<Session | null>;
 }

@@ -22,12 +22,8 @@ export function LineChart({
   const maxX = Math.max(...data.map((d) => d.x));
   const maxY = Math.max(...data.map((d) => d.y));
 
-  const scaleX = (val: number) =>
-    padding + (val / maxX) * (width - padding * 2);
-  const scaleY = (val: number) =>
-    height -
-    padding -
-    (val / maxY) * (height - padding * 2);
+  const scaleX = (val: number) => padding + (val / maxX) * (width - padding * 2);
+  const scaleY = (val: number) => height - padding - (val / maxY) * (height - padding * 2);
 
   const pathD = data
     .map((p, i) => {
@@ -38,38 +34,13 @@ export function LineChart({
     .join(' ');
 
   return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      width={width}
-      height={height}
-      className="bg-subtle/5"
-    >
+    <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} className="bg-subtle/5">
       <defs>
-        <linearGradient
-          id="lineGradient"
-          x1="0%"
-          y1="0%"
-          x2="0%"
-          y2="0%"
-        >
-          <animate
-            attributeName="y2"
-            values="0%;100%"
-            dur="0.3s"
-            begin="0.3s"
-            fill="freeze"
-          />
+        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="0%">
+          <animate attributeName="y2" values="0%;100%" dur="0.3s" begin="0.3s" fill="freeze" />
 
-          <stop
-            offset="0%"
-            stopColor="currentColor"
-            className="fg-primary"
-          ></stop>
-          <stop
-            offset="100%"
-            stopColor="currentColor"
-            className="text-secondary/0"
-          />
+          <stop offset="0%" stopColor="currentColor" className="fg-primary"></stop>
+          <stop offset="100%" stopColor="currentColor" className="text-secondary/0" />
         </linearGradient>
       </defs>
 
@@ -107,10 +78,7 @@ export function LineChart({
       ))}
 
       <path
-        d={
-          pathD +
-          ` V ${height - padding} H ${scaleX(data[0].x)} Z`
-        }
+        d={pathD + ` V ${height - padding} H ${scaleX(data[0].x)} Z`}
         fill="url(#lineGradient)"
         stroke="none"
         className="fg-primary"
@@ -127,13 +95,7 @@ export function LineChart({
         strokeDasharray={3000}
         strokeDashoffset={3000}
       >
-        <animate
-          attributeName="stroke-dashoffset"
-          from="3000"
-          to="0"
-          dur="1s"
-          fill="freeze"
-        />
+        <animate attributeName="stroke-dashoffset" from="3000" to="0" dur="1s" fill="freeze" />
       </path>
     </svg>
   );
@@ -162,8 +124,7 @@ export function BarCharts({
   padding?: number;
   gap?: number;
 }) {
-  const widthAvailable =
-    (width - padding * 2) / data.length;
+  const widthAvailable = (width - padding * 2) / data.length;
   const absoluteWidth = width - padding * 2;
 
   const absoluteHeight = height - padding * 2;
@@ -174,63 +135,20 @@ export function BarCharts({
   const maxY = Math.max(...data.map((d) => d.y));
 
   const X = (i: number) =>
-    i === 0
-      ? padding
-      : padding +
-        i * (barWidth + freeWidth / (data.length - 1));
-  const scaleY = (val: number) =>
-    height - padding - (val / maxY) * absoluteHeight;
+    i === 0 ? padding : padding + i * (barWidth + freeWidth / (data.length - 1));
+  const scaleY = (val: number) => height - padding - (val / maxY) * absoluteHeight;
 
   return (
-    <svg
-      viewBox={`0 0 ${width} ${height}`}
-      width={width}
-      height={height}
-      className="bg-subtle/5"
-    >
+    <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} className="bg-subtle/5">
       <defs>
-        <linearGradient
-          id="barGradient"
-          x1="0%"
-          y1="0%"
-          x2="0%"
-          y2="100%"
-        >
-          <stop
-            offset="0%"
-            stopColor="currentColor"
-            className="text-primary/50"
-          ></stop>
-          <stop
-            offset="100%"
-            stopColor="currentColor"
-            className="text-primary/5"
-            opacity={0}
-          />
+        <linearGradient id="barGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="currentColor" className="text-primary/50"></stop>
+          <stop offset="100%" stopColor="currentColor" className="text-primary/5" opacity={0} />
         </linearGradient>
-        <linearGradient
-          id="strokeGradient"
-          x1="0%"
-          y1="0%"
-          x2="0%"
-          y2="100%"
-        >
-          <stop
-            offset="10%"
-            stopColor="currentColor"
-            className="fg-primary"
-          />
-          <stop
-            offset="80%"
-            stopColor="currentColor"
-            className="text-primary/5"
-          />
-          <stop
-            offset="100%"
-            stopColor="currentColor"
-            className="text-primary/0"
-            opacity={0}
-          />
+        <linearGradient id="strokeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="10%" stopColor="currentColor" className="fg-primary" />
+          <stop offset="80%" stopColor="currentColor" className="text-primary/5" />
+          <stop offset="100%" stopColor="currentColor" className="text-primary/0" opacity={0} />
         </linearGradient>
       </defs>
 

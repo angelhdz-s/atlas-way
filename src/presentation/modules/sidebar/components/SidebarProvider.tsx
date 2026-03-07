@@ -3,11 +3,7 @@
 import { useState } from 'react';
 import { SidebarContext } from '@/presentation/modules/sidebar/contexts/sidebar-context';
 
-export function SidebarProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function SidebarProvider({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleOpen = () => {
@@ -15,8 +11,6 @@ export function SidebarProvider({
   };
 
   return (
-    <SidebarContext.Provider value={{ isOpen, toggleOpen }}>
-      {children}
-    </SidebarContext.Provider>
+    <SidebarContext.Provider value={{ isOpen, toggleOpen }}>{children}</SidebarContext.Provider>
   );
 }

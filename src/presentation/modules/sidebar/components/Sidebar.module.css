@@ -65,11 +65,7 @@
   background-color: var(--color-default);
   opacity: 0.5;
   transition: background-color 0.2s ease-out;
-  mask-image: linear-gradient(
-    to top,
-    transparent -20%,
-    black 100%
-  );
+  mask-image: linear-gradient(to top, transparent -20%, black 100%);
 }
 
 .dropdown_link.nav_link {

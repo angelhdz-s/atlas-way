@@ -13,24 +13,15 @@ export function SidebarMainSection() {
   return (
     <SidebarSection name="Main">
       <NavLinks>
-        <NavLink
-          href="/dashboard/routines"
-          Icon={IconRouteX}
-        >
+        <NavLink href="/dashboard/routines" Icon={IconRouteX}>
           Routines
         </NavLink>
 
-        <NavLink
-          href="/dashboard/sessions"
-          Icon={IconSchema}
-        >
+        <NavLink href="/dashboard/sessions" Icon={IconSchema}>
           Sessions
         </NavLink>
 
-        <NavLink
-          href="/dashboard/exercises"
-          Icon={IconBarbell}
-        >
+        <NavLink href="/dashboard/exercises" Icon={IconBarbell}>
           Exercises
         </NavLink>
 

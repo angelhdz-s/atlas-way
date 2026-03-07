@@ -3,11 +3,7 @@ import { SidebarFooter } from '@/presentation/modules/sidebar/components/Sidebar
 import { SidebarHeader } from '@/presentation/modules/sidebar/components/SidebarHeader';
 import { SidebarMainSection } from '@/presentation/modules/sidebar/components/SidebarMainSection';
 
-export function Sidebar({
-  className = '',
-}: {
-  className?: string;
-}) {
+export function Sidebar({ className = '' }: { className?: string }) {
   return (
     <aside className="w-(--sidebar-width)">
       <main

@@ -6,22 +6,12 @@ import {
   ActionSuccess,
 } from '@/shared/presentation/action.response';
 
-export async function getMuscularGroups(): ActionResponse<
-  MuscularGroup[]
-> {
+export async function getMuscularGroups(): ActionResponse<MuscularGroup[]> {
   const container = getContainer();
-  const getAllMuscularGroups =
-    container.muscularGroup.GetAllMuscularGroupsUseCase;
-  const muscularGroupsResult =
-    await getAllMuscularGroups.execute();
+  const getAllMuscularGroups = container.muscularGroup.GetAllMuscularGroupsUseCase;
+  const muscularGroupsResult = await getAllMuscularGroups.execute();
 
-  if (!muscularGroupsResult.success)
-    return ActionFailure(
-      muscularGroupsResult.error.message
-    );
+  if (!muscularGroupsResult.success) return ActionFailure(muscularGroupsResult.error.message);
 
-  return ActionSuccess(
-    muscularGroupsResult.data,
-    'Muscular groups were obtained successfully'
-  );
+  return ActionSuccess(muscularGroupsResult.data, 'Muscular groups were obtained successfully');
 }

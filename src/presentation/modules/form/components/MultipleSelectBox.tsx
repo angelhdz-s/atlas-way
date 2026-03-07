@@ -4,23 +4,13 @@ import { Box } from '@/presentation/modules/form/components/Box';
 import { MultipleSelectOptionsBox } from '@/presentation/modules/form/components/MultipleSelectOptionsBox';
 import { useMultipleSelectBox } from '@/presentation/modules/form/hooks/useMultipleSelectBox';
 import type { SelectOption } from '@/presentation/modules/form/types';
-import {
-  IconCirclePlus,
-  IconTrash,
-  IconXMark,
-} from '@/presentation/globals/components/Icons';
+import { IconCirclePlus, IconTrash, IconXMark } from '@/presentation/globals/components/Icons';
 import { ErrorMessage } from './ErrorMessage';
 import { VariantButton } from '../../button/components/VariantButton';
 
-function SelectedOptions({
-  label,
-  onCrossClick,
-}: {
-  label: string;
-  onCrossClick?: () => void;
-}) {
+function SelectedOptions({ label, onCrossClick }: { label: string; onCrossClick?: () => void }) {
   return (
-    <div className="bg-middle border-bd-muted flex w-fit max-w-36 items-center gap-0.5 rounded-lg border px-3 py-1 hover:border-transparent">
+    <div className="bg-middle border-bd-muted flex w-fit max-w-36 items-center gap-0.5 rounded-lg border px-1 py-1 pl-3 hover:border-transparent">
       <span className="truncate">{label}</span>
       {onCrossClick && (
         <VariantButton
@@ -65,20 +55,14 @@ export function MultipleSelectBox({
   return (
     <>
       <div className="flex flex-col gap-2">
-        <header className="fg-strong font-medium">
-          {label}
-        </header>
+        <header className="fg-strong font-medium">{label}</header>
         <Box className="flex h-48 gap-1">
           <main className="scrollbar-y flex flex-1 flex-wrap content-start gap-2 pb-4">
             {selectedOptions.map((selectedOption) => (
               <SelectedOptions
                 key={selectedOption.value}
                 label={selectedOption.label}
-                onCrossClick={() =>
-                  handleRemoveOptionsSelected(
-                    selectedOption
-                  )
-                }
+                onCrossClick={() => handleRemoveOptionsSelected(selectedOption)}
               />
             ))}
           </main>

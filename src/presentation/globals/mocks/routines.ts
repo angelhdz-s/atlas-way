@@ -1,19 +1,8 @@
-export type StatusDayType =
-  | 'completed'
-  | 'canceled'
-  | 'current'
-  | 'next';
+export type StatusDayType = 'completed' | 'canceled' | 'current' | 'next';
 
-export type RestStatusType = Exclude<
-  StatusDayType,
-  'canceled'
->;
+export type RestStatusType = Exclude<StatusDayType, 'canceled'>;
 
-export type DayTypeProps =
-  | 'training'
-  | 'rest'
-  | 'recovery'
-  | 'yoga';
+export type DayTypeProps = 'training' | 'rest' | 'recovery' | 'yoga';
 
 export type DayType = {
   name: string;
@@ -41,8 +30,7 @@ export interface RoutineType {
 export const ROUTINES: RoutineType[] = [
   {
     name: 'Push, Pull, Legs',
-    description:
-      'A split routine focusing on push, pull, and leg exercises.',
+    description: 'A split routine focusing on push, pull, and leg exercises.',
     days: [
       {
         name: 'Push Day',
@@ -93,8 +81,7 @@ export const ROUTINES: RoutineType[] = [
   },
   {
     name: 'Full Body',
-    description:
-      'A comprehensive full-body workout routine.',
+    description: 'A comprehensive full-body workout routine.',
     days: [
       {
         name: 'Rest Day',
@@ -145,8 +132,7 @@ export const ROUTINES: RoutineType[] = [
   },
   {
     name: 'Cardio',
-    description:
-      'A high-intensity cardio routine for endurance.',
+    description: 'A high-intensity cardio routine for endurance.',
     days: [
       {
         name: 'Rest Day',
@@ -197,8 +183,7 @@ export const ROUTINES: RoutineType[] = [
   },
   {
     name: 'Yoga',
-    description:
-      'A calming yoga routine for flexibility and relaxation.',
+    description: 'A calming yoga routine for flexibility and relaxation.',
     days: [
       {
         name: 'Morning Yoga',

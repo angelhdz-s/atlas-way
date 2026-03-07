@@ -5,10 +5,7 @@ import {
   IconCircleCheck,
   IconXCircle,
 } from '@/presentation/globals/components/Icons';
-import type {
-  DayTypeProps,
-  StatusDayType,
-} from '@/presentation/globals/mocks/routines';
+import type { DayTypeProps, StatusDayType } from '@/presentation/globals/mocks/routines';
 import type { IconTypes } from '@/presentation/globals/types';
 import { routineDayItemClassConfig } from '../routine.ui.config';
 
@@ -44,10 +41,7 @@ const DAY_TYPE_REST = {
   icon: IconBarbellOff,
 };
 
-const getDayAttributes = (
-  status: StatusDayType,
-  type: DayTypeProps
-) => {
+const getDayAttributes = (status: StatusDayType, type: DayTypeProps) => {
   if (type === 'rest' && status === 'completed')
     return {
       Icon: STATUS_DAYS[status].icon,

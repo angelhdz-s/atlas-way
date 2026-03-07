@@ -24,10 +24,8 @@
 
 .label-input > input:is(:-webkit-autofill, :autofill),
 .label-input > input:is(:-webkit-autofill:focus, :autofill),
-.label-input
-  > input:is(:-webkit-autofill:active, :autofill),
-.label-input
-  > input:is(:-webkit-autofill:hover, :autofill) {
+.label-input > input:is(:-webkit-autofill:active, :autofill),
+.label-input > input:is(:-webkit-autofill:hover, :autofill) {
   -webkit-text-fill-color: var(--color-foreground);
   color: var(--color-foreground);
   caret-color: var(--color-white);
