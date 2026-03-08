@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react';
 
 function RadiobuttonMark({ isChecked }: { isChecked: boolean }) {
-  const borderColor = isChecked ? 'border-bd-strong' : 'border-bd-default';
+  const borderColor = isChecked ? 'outline-bd-strong' : 'outline-bd-default';
   const backgroundColor = isChecked ? 'bg-default' : 'bg-transparent';
   return (
-    <div className={`relative block size-4 rounded-full border transition-colors ${borderColor}`}>
+    <div className={`relative block size-4 rounded-full outline transition-colors ${borderColor}`}>
       <div
         className={`absolute inset-0 m-auto size-2 rounded-full transition-colors ${backgroundColor}`}
       />
@@ -31,7 +31,7 @@ export function Radiobutton({
 }: RadiobuttonProps) {
   const [isChecked, setIsChecked] = useState(checked);
 
-  const labelCheckedClass = isChecked ? 'border-subtle/50' : 'text-default/50 border-subtle/20';
+  const labelCheckedClass = isChecked ? 'outline-subtle/50' : 'text-default/50 outline-subtle/20';
 
   useEffect(() => {
     if (checked !== isChecked) setIsChecked(checked);
@@ -39,7 +39,7 @@ export function Radiobutton({
 
   return (
     <label
-      className={`flex h-10 items-center gap-2 rounded border px-2 py-1 transition-colors ${labelCheckedClass} ${className}`}
+      className={`flex h-10 items-center gap-2 rounded px-2 py-1 outline transition-colors ${labelCheckedClass} ${className}`}
     >
       <RadiobuttonMark isChecked={isChecked} />
       <input

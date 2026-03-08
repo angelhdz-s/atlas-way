@@ -1,20 +1,20 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import type { SelectOption, SortableSelectedItem } from '@/presentation/modules/form/types';
+import type { SelectOption } from '@/presentation/modules/form/types';
 
 type Props = {
   items: SelectOption[];
-  onItemsChange?: (items: SortableSelectedItem[]) => void;
+  onItemsChange?: (items: string[]) => void;
 };
 
 export function useSortableItemsSelectBox({ items, onItemsChange }: Props) {
-  const [selectedItems, setSelectedItems] = useState<SortableSelectedItem[]>([]);
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
   const currentItems = useRef(selectedItems);
   const [isSelecting, setIsSelecting] = useState(false);
 
   const nonSelectedItems: SelectOption[] = items.filter(
-    (item) => !selectedItems.includes({ id: item.value })
+    (item) => !selectedItems.includes(item.value)
   );
 
   const handleCloseItemsSelection = () => {
@@ -29,13 +29,16 @@ export function useSortableItemsSelectBox({ items, onItemsChange }: Props) {
     setSelectedItems([]);
   };
 
-  const handleAddItems = (items: SortableSelectedItem[]) => {
-    setSelectedItems((prev) => [...prev, ...items]);
+  const handleAddItems = (items: string[]) => {
+    setSelectedItems((prev) => {
+      const selected = new Set([...prev, ...items]);
+      return [...selected];
+    });
     setIsSelecting(false);
   };
 
-  const handleRemoveItem = (item: SortableSelectedItem) => {
-    setSelectedItems((prev) => prev.filter((selectedItem) => selectedItem.id !== item.id));
+  const handleRemoveItem = (item: string) => {
+    setSelectedItems((prev) => prev.filter((selectedItem) => selectedItem !== item));
   };
 
   useEffect(() => {

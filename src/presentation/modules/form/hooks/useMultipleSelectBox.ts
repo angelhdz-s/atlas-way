@@ -1,71 +1,89 @@
-'use client';
+import {
+  type Control,
+  type FieldArrayPath,
+  type FieldValues,
+  useFieldArray,
+} from 'react-hook-form';
+import type { SelectOption } from '../types';
+import { useMemo, useState } from 'react';
 
-import { useEffect, useRef, useState } from 'react';
-import type { SelectOption } from '@/presentation/modules/form/types';
-
-type UseMultipleSelectBoxProps = {
-  options: SelectOption[];
-  onOptionsChange?: (options: SelectOption[]) => void;
+type Props<TForm extends FieldValues, TName extends FieldArrayPath<TForm>> = {
+  items: SelectOption[];
+  itemsSelected: SelectOption['value'][];
+  name: TName;
+  control: Control<TForm>;
 };
 
-export function useMultipleSelectBox({ options, onOptionsChange }: UseMultipleSelectBoxProps) {
-  const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>([]);
-  const currentOptions = useRef(selectedOptions);
-  const [isSelecting, setIsSelecting] = useState(false);
+/**
+ * Custom hook for draggable and sortabble select list of items
+ */
 
-  const filteredOptions = options.filter((option) => !selectedOptions.includes(option));
+export function useMultipleSelectBox<
+  TForm extends FieldValues,
+  TName extends FieldArrayPath<TForm>,
+>({ control, items, name, itemsSelected }: Props<TForm, TName>) {
+  const [isSelecting, setIsSelecting] = useState<boolean>(false);
+  const [_selectedItems, setSelectedItems] = useState<SelectOption['value'][]>(itemsSelected);
+  const intialSelectableItems = useMemo(() => {
+    return items.filter((item) => !itemsSelected.includes(item.value));
+  }, [items, itemsSelected]);
 
-  const handleCloseSelectOptions = () => {
-    setIsSelecting(false);
-  };
+  const [selectableItems, setSelectableItems] = useState<SelectOption[]>(intialSelectableItems);
 
-  const handleAddOption = () => {
+  const { fields, remove, replace } = useFieldArray({
+    control,
+    name,
+    keyName: 'fieldId',
+  });
+
+  const openSelection = () => {
+    if (isSelecting) return;
     setIsSelecting(true);
   };
 
-  const removeAllOptionsSelected = () => {
-    setSelectedOptions([]);
-  };
-
-  const handleAddOptionsSelection = (options: SelectOption[]) => {
-    setSelectedOptions((prev) => [...prev, ...options]);
+  const closeSelection = () => {
+    if (!isSelecting) return;
     setIsSelecting(false);
   };
 
-  const handleRemoveOptionsSelected = (option: SelectOption) => {
-    setSelectedOptions((prev) =>
-      prev.filter((selectedOption) => selectedOption.value !== option.value)
-    );
+  const makeFieldOption = (id: SelectOption['value']): SelectOption => {
+    const label = items.find((item) => item.value === id)?.label ?? '';
+    return {
+      label,
+      value: id,
+    };
   };
 
-  useEffect(() => {
-    if (currentOptions.current === selectedOptions) return;
-    currentOptions.current = selectedOptions;
-    onOptionsChange?.(currentOptions.current);
-  }, [selectedOptions, onOptionsChange]);
+  const handleRemoveItem = (index: number) => (item: SelectOption['value']) => {
+    remove(index);
+    setSelectedItems((prev) => {
+      const newItems = prev.filter((option) => option !== item);
+      setSelectableItems(() => {
+        return items.filter((item) => !newItems.includes(item.value));
+      });
+      return newItems;
+    });
+  };
 
-  useEffect(() => {
-    if (!isSelecting) return;
+  const addMultipleItems = (options: SelectOption['value'][]) => {
+    const selected = options.map((option) => ({ id: option }));
+    replace(selected as any);
+    closeSelection();
+  };
 
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.stopPropagation();
-        setIsSelecting(false);
-      }
-    };
-
-    document.addEventListener('keydown', handleKey);
-    return () => document.removeEventListener('keydown', handleKey);
-  }, [isSelecting]);
+  const clearAllItems = () => {
+    replace([]);
+  };
 
   return {
-    selectedOptions,
+    fields,
     isSelecting,
-    filteredOptions,
-    handleAddOption,
-    removeAllOptionsSelected,
-    handleAddOptionsSelection,
-    handleRemoveOptionsSelected,
-    handleCloseSelectOptions,
+    selectableItems,
+    addMultipleItems,
+    handleRemoveItem,
+    clearAllItems,
+    makeFieldOption,
+    openSelection,
+    closeSelection,
   };
 }

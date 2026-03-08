@@ -1,22 +1,31 @@
 'use client';
 
 import { Box } from '@/presentation/modules/form/components/Box';
-import { MultipleSelectOptionsBox } from '@/presentation/modules/form/components/MultipleSelectOptionsBox';
 import { useMultipleSelectBox } from '@/presentation/modules/form/hooks/useMultipleSelectBox';
 import type { SelectOption } from '@/presentation/modules/form/types';
 import { IconCirclePlus, IconTrash, IconXMark } from '@/presentation/globals/components/Icons';
 import { ErrorMessage } from './ErrorMessage';
 import { VariantButton } from '../../button/components/VariantButton';
+import type { Control, FieldArrayPath, FieldValues } from 'react-hook-form';
+import { SelectBox } from './SelectBox';
 
-function SelectedOptions({ label, onCrossClick }: { label: string; onCrossClick?: () => void }) {
+type SelectedOption = {
+  option: SelectOption;
+  onCrossClick?: (item: SelectOption['value']) => void;
+};
+
+function SelectedOptions({ option, onCrossClick }: SelectedOption) {
+  const handleClick = () => {
+    onCrossClick?.(option.value);
+  };
   return (
     <div className="bg-middle border-bd-muted flex w-fit max-w-36 items-center gap-0.5 rounded-lg border px-1 py-1 pl-3 hover:border-transparent">
-      <span className="truncate">{label}</span>
+      <span className="truncate">{option.label}</span>
       {onCrossClick && (
         <VariantButton
           variantConfig={{ size: 'xs', type: 'square' }}
           type="button"
-          onClick={onCrossClick}
+          onClick={handleClick}
           className="cursor-pointer transition-opacity hover:opacity-50"
         >
           <IconXMark className="size-5" strokeWidth="1" />
@@ -26,31 +35,41 @@ function SelectedOptions({ label, onCrossClick }: { label: string; onCrossClick?
   );
 }
 
-export function MultipleSelectBox({
-  label,
-  selectingTitle,
-  options,
-  error,
-  children,
-  onOptionsChange,
-}: {
+type Props<TForm extends FieldValues, TName extends FieldArrayPath<TForm>> = {
+  items: SelectOption[];
+  itemsSelected?: SelectOption['value'][];
+  name: TName;
+  control: Control<TForm>;
   label: string;
   selectingTitle: string;
-  options: SelectOption[];
   error?: string;
-  children?: React.ReactNode;
-  onOptionsChange?: (options: SelectOption[]) => void;
-}) {
+};
+
+export function MultipleSelectBox<TForm extends FieldValues, TName extends FieldArrayPath<TForm>>({
+  control,
+  items,
+  label,
+  name,
+  itemsSelected = [],
+  selectingTitle,
+  error,
+}: Props<TForm, TName>) {
   const {
-    filteredOptions,
-    handleAddOption,
-    handleAddOptionsSelection,
-    handleRemoveOptionsSelected,
     isSelecting,
-    removeAllOptionsSelected,
-    selectedOptions,
-    handleCloseSelectOptions,
-  } = useMultipleSelectBox({ options, onOptionsChange });
+    addMultipleItems,
+    closeSelection,
+    clearAllItems,
+    fields,
+    handleRemoveItem,
+    makeFieldOption,
+    openSelection,
+    selectableItems,
+  } = useMultipleSelectBox({
+    control,
+    items,
+    itemsSelected,
+    name,
+  });
 
   return (
     <>
@@ -58,11 +77,11 @@ export function MultipleSelectBox({
         <header className="fg-strong font-medium">{label}</header>
         <Box className="flex h-48 gap-1">
           <main className="scrollbar-y flex flex-1 flex-wrap content-start gap-2 pb-4">
-            {selectedOptions.map((selectedOption) => (
+            {fields.map((field, index) => (
               <SelectedOptions
-                key={selectedOption.value}
-                label={selectedOption.label}
-                onCrossClick={() => handleRemoveOptionsSelected(selectedOption)}
+                key={field.fieldId}
+                option={makeFieldOption((field as any).id)}
+                onCrossClick={handleRemoveItem(index)}
               />
             ))}
           </main>
@@ -70,34 +89,36 @@ export function MultipleSelectBox({
             <button
               type="button"
               className="bg-middle border-bd-default fg-strong hover:bg-back block aspect-square size-fit cursor-pointer rounded border p-1 transition-colors"
-              onClick={handleAddOption}
+              onClick={openSelection}
             >
               <IconCirclePlus strokeWidth="1" />
             </button>
             <button
               type="button"
               className="bg-middle border-bd-default fg-strong hover:bg-back block aspect-square size-fit cursor-pointer rounded border p-1 transition-colors"
-              onClick={removeAllOptionsSelected}
+              onClick={clearAllItems}
             >
               <IconTrash strokeWidth="1" />
             </button>
           </aside>
         </Box>
-        {children}
         <ErrorMessage message={error} />
       </div>
       {isSelecting && (
         <>
           <div className="fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rounded shadow-lg">
-            <MultipleSelectOptionsBox
+            <SelectBox
               title={selectingTitle}
-              options={filteredOptions}
-              onAdd={handleAddOptionsSelection}
-              onClose={handleCloseSelectOptions}
+              options={selectableItems}
+              onAdd={addMultipleItems}
+              onClose={closeSelection}
             />
           </div>
           <div
-            onClick={handleCloseSelectOptions}
+            onClick={closeSelection}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') closeSelection();
+            }}
             className="light:bg-black/25 fixed inset-0 z-40 bg-black/50"
           />
         </>

@@ -1,19 +1,19 @@
 import { IconGripVertical, IconTrash } from '@/presentation/globals/components/Icons';
 import { useSortable } from '@dnd-kit/react/sortable';
+import type { SelectOption } from '../types';
 
 type Props = {
-  field: { id: string; label: string; fieldId: string };
+  item: SelectOption;
   index: number;
   onRemoveOption: (id: string, index: number) => void;
-  register: object;
 };
-export function SortableInputItem({ field, index, onRemoveOption, register }: Props) {
+export function SortableInputItem({ item, index, onRemoveOption }: Props) {
   const handleRemoveOption = () => {
-    onRemoveOption(field.id, index);
+    onRemoveOption(item.value, index);
   };
 
   const { ref, handleRef } = useSortable({
-    id: field.id,
+    id: item.value,
     index,
   });
 
@@ -31,7 +31,7 @@ export function SortableInputItem({ field, index, onRemoveOption, register }: Pr
           <IconGripVertical className="size-5" />
         </button>
         <span className="px-2 text-sm">{index + 1}</span>
-        <div>{field.label}</div>
+        <div>{item.label}</div>
       </div>
       <button
         type="button"
@@ -40,7 +40,6 @@ export function SortableInputItem({ field, index, onRemoveOption, register }: Pr
       >
         <IconTrash className="size-5" />
       </button>
-      <input type="hidden" {...register} />
     </div>
   );
 }

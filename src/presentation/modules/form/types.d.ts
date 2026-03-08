@@ -35,3 +35,5 @@ export type ArrayFieldWithLabel = FieldArrayWithId<FieldValues> & {
 };
 
 export type SortableSelectedItem = { id: string };
+
+export type IdArrayField = { id: string }[];

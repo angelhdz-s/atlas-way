@@ -24,16 +24,17 @@ export function useFormHook<Schema extends ZodSchema<any, any>>({
   const isAlreadySuccess = useRef(false);
   const { addToast } = useToast();
 
-  const {
-    control,
-    register,
-    formState: { errors, isSubmitting },
-    handleSubmit,
-  } = useForm<TypeOf<Schema>>({
+  const methods = useForm<TypeOf<Schema>>({
     resolver: zodResolver(schema),
   });
 
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods;
+
   const onSubmit = async (data: TypeOf<Schema>) => {
+    if (isSubmitting) return;
     const result = await action(data);
     setState(result);
     if (result.success) {
@@ -57,10 +58,7 @@ export function useFormHook<Schema extends ZodSchema<any, any>>({
   }, [successToast, state, addToast]);
 
   return {
-    register,
-    errors,
+    methods,
     handleSubmit: handleSubmitWrapper,
-    control,
-    isSubmitting,
   };
 }
