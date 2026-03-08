@@ -16,7 +16,7 @@ export function ExerciseMusclesField({ items }: Props) {
   } = useFormContext<ExerciseFormProps>();
 
   return (
-    <FormFieldSection Icon={IconMan} title="To train" className="">
+    <FormFieldSection Icon={IconMan} title="To train">
       <MultipleSelectBox
         control={control}
         name="muscles"

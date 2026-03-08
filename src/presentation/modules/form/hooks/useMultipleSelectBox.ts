@@ -23,7 +23,7 @@ export function useMultipleSelectBox<
   TName extends FieldArrayPath<TForm>,
 >({ control, items, name, itemsSelected }: Props<TForm, TName>) {
   const [isSelecting, setIsSelecting] = useState<boolean>(false);
-  const [_selectedItems, setSelectedItems] = useState<SelectOption['value'][]>(itemsSelected);
+  const [selectedItems, setSelectedItems] = useState<SelectOption['value'][]>(itemsSelected);
   const intialSelectableItems = useMemo(() => {
     return items.filter((item) => !itemsSelected.includes(item.value));
   }, [items, itemsSelected]);
@@ -66,8 +66,20 @@ export function useMultipleSelectBox<
   };
 
   const addMultipleItems = (options: SelectOption['value'][]) => {
-    const selected = options.map((option) => ({ id: option }));
-    replace(selected as any);
+    const formattedOptions = options.map((option) => ({ id: option }));
+    const formattedSelected = selectedItems.map((option) => ({ id: option }));
+    const fieldsSelected = [...new Set([...formattedSelected, ...formattedOptions])];
+
+    replace([...fieldsSelected] as any);
+    setSelectedItems((prev) => {
+      const newDinstincItems = new Set([...prev, ...options]);
+      const newItems = [...newDinstincItems];
+
+      setSelectableItems(() => {
+        return items.filter((item) => !newItems.includes(item.value));
+      });
+      return newItems;
+    });
     closeSelection();
   };
 

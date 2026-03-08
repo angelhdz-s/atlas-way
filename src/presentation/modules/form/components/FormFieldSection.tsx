@@ -4,7 +4,7 @@ type Props = {
   title: string;
   Icon?: IconTypes;
   children: React.ReactNode;
-  className: string;
+  className?: string;
 };
 export function FormFieldSection({ Icon, children, title, className }: Props) {
   return (

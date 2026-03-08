@@ -26,6 +26,11 @@ export function useSelectBox({
   };
 
   const handleSelectOption = (value: SelectOption['value']) => {
+    if (selectedOptions.includes(value)) {
+      setSelectedOptions((prev) => prev.filter((item) => item !== value));
+      return;
+    }
+
     setSelectedOptions((prev) => {
       const items = new Set([...prev, value]);
       return [...items];
