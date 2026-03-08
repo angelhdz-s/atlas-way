@@ -8,7 +8,11 @@ export function LogOutButton() {
     redirect('/api/auth/signout');
   };
   return (
-    <VariantButton type="button" variantConfig={{ color: 'subtle' }} onClick={handleSignOut}>
+    <VariantButton
+      type="button"
+      variantConfig={{ color: 'subtle', size: 'sm' }}
+      onClick={handleSignOut}
+    >
       Log Out
     </VariantButton>
   );

@@ -38,6 +38,7 @@ export function Notification({
             variantConfig={{
               type: 'square',
               color: 'subtle',
+              size: 'sm',
             }}
             className="text-red-800/80"
           >

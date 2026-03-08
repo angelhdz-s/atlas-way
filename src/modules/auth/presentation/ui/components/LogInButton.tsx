@@ -10,7 +10,7 @@ export function LogInButton() {
   return (
     <VariantButton
       type="button"
-      variantConfig={{ size: 'md', color: 'primary' }}
+      variantConfig={{ size: 'sm', color: 'primary' }}
       onClick={handleSignIn}
     >
       Log in
