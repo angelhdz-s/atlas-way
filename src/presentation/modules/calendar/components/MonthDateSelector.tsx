@@ -20,7 +20,7 @@ export function MonthDateSelector({ className }: { className?: string }) {
     <DateControl onLeftClick={handlePreviousMonth} onRightClick={handleNextMonth}>
       <MonthDropdownlist
         selectedValue={currentMonth}
-        className={`${className}`}
+        className={className}
         onChange={(e) => {
           const newMonth = Number(e.target.value) - 1;
           handleMonthChange(newMonth);

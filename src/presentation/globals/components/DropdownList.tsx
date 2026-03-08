@@ -30,12 +30,12 @@ export function DropdownList({
 
   return (
     <select
-      className={`bg-back border ${className}`}
+      className={`bg-back border ${className} appearance:[base-select]`}
       onChange={handleChange}
       value={selectedOption}
     >
       {values.map((value) => (
-        <option key={value.value} value={value.value}>
+        <option key={value.value} value={value.value} className="bg-back">
           {value.label}
         </option>
       ))}
