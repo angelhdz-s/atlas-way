@@ -15,14 +15,16 @@ export function useSelectBox({
   const [search, setSearch] = useState<string>('');
   const [selectedOptions, setSelectedOptions] = useState<SelectOption['value'][]>([]);
 
-  const filteredOptions = options.filter((option) => option.label.toLowerCase().includes(search));
+  const filteredOptions = options.filter((option) =>
+    option.label.toLowerCase().includes(search.toLowerCase())
+  );
 
   const handleClose = () => {
     onClose?.();
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value.toLowerCase());
+    setSearch(e.target.value);
   };
 
   const handleSelectOption = (value: SelectOption['value']) => {
