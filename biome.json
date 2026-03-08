@@ -24,7 +24,8 @@
         "noAlert": "warn",
         "noConsole": "warn",
         "noEmptyBlock": "warn",
-        "noArrayIndexKey": "off"
+        "noArrayIndexKey": "off",
+        "noExplicitAny": "off"
       },
       "a11y": {
         "noSvgWithoutTitle": "off",
