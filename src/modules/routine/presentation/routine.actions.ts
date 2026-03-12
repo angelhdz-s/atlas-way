@@ -4,6 +4,7 @@ import type { ActionResponseType } from '@/presentation/globals/types';
 import { type RoutineForm, routineFormSchema } from './ui/config/routine-schema';
 
 export async function createRoutineAction(data: RoutineForm): Promise<ActionResponseType> {
+  console.log(data);
   const parsedRoutine = routineFormSchema.safeParse(data);
   if (!parsedRoutine.success) {
     return { success: false, message: 'Invalid form data' };

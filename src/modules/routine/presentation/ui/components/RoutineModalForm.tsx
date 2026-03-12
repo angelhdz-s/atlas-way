@@ -7,8 +7,11 @@ import { ModalForm } from '@/presentation/modules/form/components/modal-form/Mod
 import { useRouter } from 'next/navigation';
 import { RoutineNameField } from './fields/RoutineNameField';
 import { RoutineDescriptionField } from './fields/RoutineDescriptionField';
-import { RoutineDayCycleField } from './fields/RoutineDayCycleField';
+import { RoutineCycleField } from './fields/RoutineCycleField';
 import { RoutineInitialDateField } from './fields/RoutineInitialDateField';
+import { RoutineDayField } from './fields/RoutineDayField';
+import { useState } from 'react';
+import { RoutineSessionPlanField } from './fields/RoutineSessionPlanField';
 
 export function RoutineModalForm() {
   const router = useRouter();
@@ -21,6 +24,14 @@ export function RoutineModalForm() {
     router.back();
   };
 
+  const [daysEnabled, setDaysEnabled] = useState(false);
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.currentTarget.value;
+    if (value === 'custom' && daysEnabled) return;
+    setDaysEnabled(value === 'custom');
+  };
+
   return (
     <ModalForm
       config={{
@@ -31,12 +42,14 @@ export function RoutineModalForm() {
       onClose={handleClose}
       title="Design your routine"
     >
-      <section className="flex flex-col gap-2">
-        <RoutineNameField />
-        <RoutineDescriptionField />
-        <RoutineDayCycleField />
+      <RoutineNameField />
+      <RoutineDescriptionField />
+      <div className="flex gap-4">
         <RoutineInitialDateField />
-      </section>
+        <RoutineCycleField onChange={handleOnChange} />
+        <RoutineDayField daysEnabled={daysEnabled} />
+      </div>
+      <RoutineSessionPlanField />
       <ModalFormButtons onClose={handleClose} />
     </ModalForm>
   );
