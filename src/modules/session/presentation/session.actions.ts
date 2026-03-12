@@ -51,3 +51,28 @@ export async function createSession(
   const sessionDTO = SessionMapper.toDTO(sessionResult.data);
   return ActionSuccess(sessionDTO, 'Session created successfully');
 }
+
+export async function getAllSessions(): ActionResponse<SessionDTO[]> {
+  const container = getContainer();
+
+  const getAllSessions = container.session.GetAllSessionsUseCase;
+
+  const sessionsResult = await getAllSessions.execute();
+
+  if (!sessionsResult.success)
+    return {
+      message: 'Error fetching sessions',
+      success: false,
+      data: null,
+    };
+
+  const { data } = sessionsResult;
+
+  const sessionsDTO = data.map((session) => SessionMapper.toDTO(session));
+
+  return {
+    message: 'Sessions obtained successfully',
+    success: true,
+    data: sessionsDTO,
+  };
+}
