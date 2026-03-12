@@ -7,11 +7,19 @@ const routineCycleSchema = z.enum([routineCycleLiterals[0], ...routineCycleLiter
 });
 
 const sessions = z.array(
-  z.object({
-    sessionId: z.string().nonempty().or(z.null()),
-    day: z.number(),
-    dayName: z.string().nonempty(),
-  })
+  z.object(
+    {
+      sessionId: z
+        .string({ message: 'Invalid Session ID' })
+        .nonempty({ message: 'Session ID can not be empty' })
+        .or(z.null()),
+      day: z.number({ message: 'Invalid Day' }),
+      dayName: z
+        .string({ message: 'Invalid day name' })
+        .nonempty({ message: 'Day name can not be empty' }),
+    },
+    { message: 'Sessions must be an array' }
+  )
 );
 
 export const routineFormSchema = z.object({
