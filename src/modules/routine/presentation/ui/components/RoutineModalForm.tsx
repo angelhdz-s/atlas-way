@@ -12,8 +12,14 @@ import { RoutineInitialDateField } from './fields/RoutineInitialDateField';
 import { RoutineDayField } from './fields/RoutineDayField';
 import { useState } from 'react';
 import { RoutineSessionPlanField } from './fields/RoutineSessionPlanField';
+import { DEFAULT_WEEK_CYCLE_DAYS_DATA } from '../routine.ui.constants';
+import type { SelectOption } from '@/presentation/modules/form/types';
 
-export function RoutineModalForm() {
+type Props = {
+  sessions: SelectOption[];
+};
+
+export function RoutineModalForm({ sessions }: Props) {
   const router = useRouter();
 
   const handleSuccess = () => {
@@ -49,7 +55,7 @@ export function RoutineModalForm() {
         <RoutineCycleField onChange={handleOnChange} />
         <RoutineDayField daysEnabled={daysEnabled} />
       </div>
-      <RoutineSessionPlanField />
+      <RoutineSessionPlanField days={DEFAULT_WEEK_CYCLE_DAYS_DATA} sessions={sessions} />
       <ModalFormButtons onClose={handleClose} />
     </ModalForm>
   );

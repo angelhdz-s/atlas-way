@@ -1,11 +1,8 @@
 import { removeObjectKey } from '@/presentation/globals/lib/utils';
+import { useEffect, useRef, useState } from 'react';
+import { useFieldArray } from 'react-hook-form';
+import type { ArrayPath, Control, FieldValues } from 'react-hook-form';
 import type { SelectOption } from '@/presentation/modules/form/types';
-import { useState } from 'react';
-
-type Props = {
-  options: SelectOption[];
-  containers: SelectOption[];
-};
 
 type ContainersKey = Props['containers'][number]['value'];
 
@@ -13,61 +10,50 @@ type DroppedItem = {
   [K in ContainersKey]?: SelectOption;
 };
 
-type State<T extends SelectOption> = {
-  droppeds: T['value'];
-  nonDroppedItems: T[];
+type Props = {
+  options: SelectOption[];
+  containers: SelectOption[];
 };
 
-interface Action {
-  type: 'addDroppedItem' | 'moveDroppedItems';
-}
-
-type _ReduceController<T extends SelectOption> = {
-  [key in Action['type']]: (state: State<T>, action: Action) => State<T>;
+type FullProps<TForm extends FieldValues, TName extends ArrayPath<TForm>> = {
+  options: SelectOption[];
+  containers: SelectOption[];
+  control: Control<TForm>;
+  name: TName;
+  initialMapper: (container: SelectOption, containerIndex: number) => TForm[TName][number];
+  mapper: (
+    item: SelectOption,
+    container: SelectOption,
+    containerIndex: number
+  ) => TForm[TName][number];
 };
 
-export function useRoutineSessionPlanField({ options, containers }: Props) {
-  const [items, _setItems] = useState<SelectOption[]>(options);
+export function useRoutineSessionPlanField<
+  TForm extends FieldValues,
+  TName extends ArrayPath<TForm>,
+>({ options, containers, control, name, initialMapper, mapper }: FullProps<TForm, TName>) {
   const [state, setState] = useState<{
     droppeds: DroppedItem;
     nonDroppedItems: SelectOption[];
   }>({
     droppeds: {},
-    nonDroppedItems: items,
+    nonDroppedItems: options,
+  });
+
+  const { fields, update, replace } = useFieldArray<TForm>({
+    control,
+    name,
   });
 
   const findOption = (key: ContainersKey): SelectOption | undefined => {
     return state.droppeds[key];
   };
 
-  const droppedValues = Object.values(state.droppeds);
-  const droppedKeys = Object.keys(state.droppeds);
-  const droppedOptionValues = droppedValues
-    .map((item) => item?.value)
-    .filter((item) => item !== undefined);
-  const droppedPossibleKeys = containers.map((day) => day.value);
-  const droppedPossibleOptionValues = items.map((item) => item.value);
-
-  const isDroppedKey = (key: string) => {
-    return droppedKeys.includes(key);
-  };
-
-  const isDroppedValue = (valueId: string) => {
-    return droppedOptionValues.includes(valueId);
-  };
-
-  const isPossibleDroppedKey = (key: string) => {
-    return droppedPossibleKeys.includes(key);
-  };
-
-  const isPossibleDroppedValue = (valueId: string) => {
-    return droppedPossibleOptionValues.includes(valueId);
-  };
-
-  const addDroppedSession = (itemId: string, containerId: ContainersKey) => {
-    if (!isPossibleDroppedKey(containerId)) return;
-    const item = items.find((item) => item.value === itemId);
+  const addItem = (itemId: string, containerId: ContainersKey, containerIndex: number) => {
+    const item = options.find((option) => option.value === itemId);
     if (!item) return;
+    const container = containers.find((container) => container.value === containerId);
+    if (!container) return;
     setState((prev) => {
       const newSession = {
         [containerId]: item,
@@ -77,12 +63,16 @@ export function useRoutineSessionPlanField({ options, containers }: Props) {
         ...prev.droppeds,
         ...newSession,
       };
+
       return {
         droppeds: newDroppeds,
         nonDroppedItems: newNonDroppedItems,
       };
     });
+    update(containerIndex, mapper(item, container, containerIndex));
   };
+
+  console.log(fields);
 
   const moveSessionBetweenCycleDays = (
     sourceContainer: ContainersKey,
@@ -138,55 +128,28 @@ export function useRoutineSessionPlanField({ options, containers }: Props) {
     });
   };
 
-  const getSessionByCycleDay = (containerId: ContainersKey) => {
-    return state.droppeds[containerId]?.value;
-  };
+  const initialRender = useRef(true);
 
-  const getCycleDayBySession = (itemId: string): ContainersKey | undefined => {
-    for (const key in state.droppeds) {
-      if (state.droppeds[key]?.value === itemId) return key;
-    }
-  };
-
-  const removeDroppedSession = (itemId: string) => {
-    setState((prev) => {
-      for (const key in prev.droppeds) {
-        if (prev.droppeds[key]?.value !== itemId) continue;
-
-        const item = prev.droppeds[key];
-        if (!item) return prev;
-
-        const newNonDroppedItems = [...prev.nonDroppedItems, item];
-        const newDroppeds = removeObjectKey(prev.droppeds, key);
-        return {
-          droppeds: newDroppeds,
-          nonDroppedItems: newNonDroppedItems,
-        };
-      }
-      return prev;
-    });
-  };
+  useEffect(() => {
+    if (!initialRender.current) return;
+    const newFields = containers.map(initialMapper);
+    replace(newFields);
+    initialRender.current = false;
+  }, [replace, containers, initialMapper]);
 
   return {
     data: {
-      droppeds: state.droppeds,
       nonDroppedItems: state.nonDroppedItems,
-      items,
+      options,
     },
     get: {
       findOption,
-      isDroppedKey,
-      isDroppedValue,
-      isPossibleDroppedKey,
-      getCycleDayBySession,
-      getSessionByCycleDay,
-      isPossibleDroppedValue,
     },
     actions: {
+      replace,
       swapDroppeds,
-      addDroppedSession,
+      addItem,
       moveSessionBetweenCycleDays,
-      removeDroppedSession,
       removeDroppedCycleDay,
     },
   };

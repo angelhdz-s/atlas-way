@@ -1,32 +1,32 @@
 'use client';
 
 import { useSortable } from '@dnd-kit/react/sortable';
+import type { DnDFormFieldItemDraggableData } from '@/presentation/modules/form/types';
+import { IconGripVertical } from '@/presentation/globals/components/Icons';
 
 export function RoutineSessionPlanSortableItem({
   id,
   text,
   index,
-  active = false,
+  dndConfig,
 }: {
   id: string;
   text: string;
   index: number;
   active?: boolean;
+  dndConfig: DnDFormFieldItemDraggableData;
 }) {
-  const identifierId = id.split('-')[0];
   const { ref } = useSortable({
     id,
     index,
-    data: {
-      elementId: identifierId,
-      dropped: false,
-    },
+    data: dndConfig,
   });
   return (
     <div
-      className={`border-bd-muted bg-back flex h-8 w-fit cursor-grab items-center justify-center gap-2 rounded border p-2 px-3 py-1 text-sm ${active ? 'opacity-40' : ''}`}
+      className={`border-bd-muted bg-back flex h-8 w-fit cursor-grab items-center justify-center gap-1 rounded border py-1 pr-3 pl-1 text-sm`}
       ref={ref}
     >
+      <IconGripVertical className="size-4" />
       {text}
     </div>
   );
