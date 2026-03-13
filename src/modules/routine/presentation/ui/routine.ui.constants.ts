@@ -35,10 +35,10 @@ export const DEFAULT_WEEK_CYCLE_DAYS_DATA = [
   },
   {
     value: 'friday',
-    label: 'Friday',
+    label: 'Fri',
   },
   {
     value: 'saturday',
-    label: 'Saturday',
+    label: 'Sat',
   },
 ];

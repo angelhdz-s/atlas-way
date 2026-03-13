@@ -4,17 +4,12 @@ import { DragDropProvider } from '@dnd-kit/react';
 import { DroppableArea } from '@/presentation/globals/components/DroppabelArea';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
-import {
-  IconBarbell,
-  IconCalendarWeek,
-  IconCirclePlus,
-  IconZZ,
-} from '@/presentation/globals/components/Icons';
+import { IconBarbell, IconCalendarWeek, IconZZ } from '@/presentation/globals/components/Icons';
 import { isSortableOperation } from '@dnd-kit/react/sortable';
 import { RoutineSessionPlanDraggableItem } from './RoutineSessionPlanDraggableItem';
 import { RoutineSessionPlanDroppableItem } from './RoutineSessionPlanDroppableItem';
 import { RoutineSessionPlanSortableItem } from './RoutineSessionPlanSortableItem';
-import { useFormContext } from 'react-hook-form';
+import { type FieldArrayWithId, useFormContext } from 'react-hook-form';
 import { useRoutineSessionPlanField } from '../../hooks/useRoutineSessionPlanField';
 import type {
   DnDFormFieldItemData,
@@ -22,13 +17,13 @@ import type {
   SelectOption,
 } from '@/presentation/modules/form/types';
 import type { RoutineForm } from '../../config/routine-schema';
-import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
-import { VariantLink } from '@/presentation/modules/button/components/VariantLink';
 
 type Props = {
   sessions: SelectOption[];
   days: SelectOption[];
 };
+
+type RoutineSessionField = FieldArrayWithId<RoutineForm, 'sessions'>;
 
 export function RoutineSessionPlanField({ sessions, days }: Props) {
   const {
@@ -45,14 +40,28 @@ export function RoutineSessionPlanField({ sessions, days }: Props) {
     sessionId: null,
   });
 
-  const mapper = (
-    item: SelectOption,
-    container: SelectOption,
-    containerIndex: number
-  ): RoutineForm['sessions'][number] => ({
-    day: containerIndex,
-    dayName: container.label,
+  const appendMapper = (field: RoutineSessionField, item: SelectOption): RoutineSessionField => ({
+    ...field,
     sessionId: item.value,
+  });
+
+  const swapMapper = (
+    fieldA: RoutineSessionField,
+    fieldB: RoutineSessionField
+  ): [RoutineSessionField, RoutineSessionField] => [
+    {
+      ...fieldA,
+      sessionId: fieldB.sessionId,
+    },
+    {
+      ...fieldB,
+      sessionId: fieldA.sessionId,
+    },
+  ];
+
+  const removeMapper = (field: RoutineSessionField): RoutineSessionField => ({
+    ...field,
+    sessionId: null,
   });
 
   const {
@@ -64,8 +73,12 @@ export function RoutineSessionPlanField({ sessions, days }: Props) {
     options: sessions,
     control,
     name: 'sessions',
-    initialMapper,
-    mapper,
+    fieldMappers: {
+      initialMapper,
+      add: appendMapper,
+      swap: swapMapper,
+      remove: removeMapper,
+    },
   });
 
   return (
@@ -84,7 +97,15 @@ export function RoutineSessionPlanField({ sessions, days }: Props) {
 
         if (!target) {
           if (sourceData.containerId) {
-            removeDroppedCycleDay(sourceData.containerId);
+            removeDroppedCycleDay({
+              containerData: {
+                id: sourceData.containerId,
+                index: sourceData.containerIndex,
+              },
+              itemData: {
+                id: sourceData.id,
+              },
+            });
           }
           return;
         }
@@ -94,28 +115,80 @@ export function RoutineSessionPlanField({ sessions, days }: Props) {
         if (sourceData.containerId === targetData.id) return;
 
         if (targetData.type !== 'droppable') {
-          if (sourceData.containerId) removeDroppedCycleDay(sourceData.containerId);
+          if (sourceData.containerId)
+            removeDroppedCycleDay({
+              containerData: {
+                id: sourceData.containerId,
+                index: sourceData.containerIndex,
+              },
+              itemData: {
+                id: sourceData.id,
+              },
+            });
           return;
         }
 
         if (!targetData.droppedId && !sourceData.containerId) {
-          addItem(sourceData.id, targetData.id, targetData.index);
+          addItem({
+            itemData: {
+              id: sourceData.id,
+            },
+            containerData: {
+              index: targetData.index,
+              key: targetData.id,
+            },
+          });
           return;
         }
 
         if (!sourceData.containerId) {
-          removeDroppedCycleDay(targetData.id);
-          addItem(sourceData.id, targetData.id, targetData.index);
+          removeDroppedCycleDay({
+            containerData: {
+              id: targetData.id,
+              index: targetData.index,
+            },
+            itemData: {
+              id: sourceData.id,
+            },
+          });
+          addItem({
+            itemData: {
+              id: sourceData.id,
+            },
+            containerData: {
+              index: targetData.index,
+              key: targetData.id,
+            },
+          });
           return;
         }
 
         if (!targetData.droppedId) {
-          moveSessionBetweenCycleDays(sourceData.containerId, targetData.id);
+          moveSessionBetweenCycleDays({
+            source: {
+              containerIndex: sourceData.containerIndex,
+              containerKey: sourceData.containerId,
+              id: sourceData.id,
+            },
+            target: {
+              containerIndex: targetData.index,
+              containerKey: targetData.id,
+            },
+          });
           return;
         }
 
         if (sourceData.containerId && sourceData.containerId !== targetData.id) {
-          swapDroppeds(targetData.id, sourceData.containerId);
+          swapDroppeds({
+            source: {
+              containerIndex: sourceData.containerIndex,
+              containerKey: sourceData.containerId,
+            },
+            target: {
+              containerIndex: targetData.index,
+              containerKey: targetData.id,
+            },
+          });
           return;
         }
         return;
