@@ -5,7 +5,7 @@ import {
   type ActionResponse,
   ActionSuccess,
 } from '@/shared/presentation/action.response';
-import type { SessionsFormData } from './types';
+import type { SessionForm } from './ui/config/session-schema';
 import { sessionFormSchema } from './ui/config/session-schema';
 import type { CreateSessionInput } from '../application/dtos/create-session.dto';
 import { getContainer } from '@/di/containers';
@@ -14,7 +14,7 @@ import type { SessionDTO } from '../application/dtos/session.dto';
 import { SessionMapper } from '../infrastructure/session.mapper';
 import type { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
 
-export async function createSessionAction(data: SessionsFormData): ActionResponse<SessionDTO> {
+export async function createSessionAction(data: SessionForm): ActionResponse<SessionDTO> {
   const parseResult = sessionFormSchema.safeParse(data);
   if (!parseResult.success) return ActionFailure(parseResult.error.errors.join(', '));
   const sessionFormData = parseResult.data;

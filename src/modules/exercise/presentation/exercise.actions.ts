@@ -15,13 +15,9 @@ import type { CreateExerciseInitialStatsWithoutExerciseIdInput } from '@/modules
 import { getContainer } from '@/di/containers';
 import { ExerciseMapper } from '../infrastructure/exercise.mapper';
 import type { ExerciseDTO } from '../application/dtos/exercise.dto';
-import type { MuscleDTO } from '@/modules/muscle/application/dtos/muscle.dto';
 import { getAllMusclesByExercise } from '@/modules/muscle/presentation/muscle.actions';
 import { revalidatePath } from 'next/cache';
-
-export type FullExerciseDTO = ExerciseDTO & {
-  muscles: MuscleDTO[];
-};
+import type { FullExerciseDTO } from './exercise.presentation.types';
 
 export async function createExerciseAction(
   data: ExerciseFormProps

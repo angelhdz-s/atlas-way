@@ -1,12 +1,10 @@
 import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
-import {
-  type FullExerciseDTO,
-  getAllUserExercises,
-} from '@/modules/exercise/presentation/exercise.actions';
+import { getAllUserExercises } from '@/modules/exercise/presentation/exercise.actions';
 import { Exercises } from '@/modules/exercise/presentation/components/Exercises';
 import { VariantLink } from '@/presentation/modules/button/components/VariantLink';
+import type { FullExerciseDTO } from '@/modules/exercise/presentation/exercise.presentation.types';
 
 export default async function ExercisesPage() {
   const exercises: FullExerciseDTO[] = [];

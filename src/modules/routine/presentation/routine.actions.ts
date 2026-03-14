@@ -3,13 +3,13 @@
 import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.response';
 import { getContainer } from '@/di/containers';
 import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
-import { routineFormSchema } from './ui/config/routine-schema';
+import { routineFormSchema } from './ui/config/routine.schema';
 import { RoutineMapper } from '../infrastructure/routine.mapper';
 import type { ActionResponse } from '@/shared/presentation/action.response';
 import type { CreateRoutineDaysWithoutRoutineIdInput } from '@/modules/routine-days/application/dtos/create-routine-days.dto';
 import type { CreateRoutineInput } from '../application/dtos/create-routine.dto';
 import type { RoutineDTO } from '../application/dtos/routine.dto';
-import type { RoutineForm } from './ui/config/routine-schema';
+import type { RoutineForm } from './ui/config/routine.schema';
 
 export async function createRoutineAction(data: RoutineForm): ActionResponse<RoutineDTO> {
   const parsedRoutine = routineFormSchema.safeParse(data);
