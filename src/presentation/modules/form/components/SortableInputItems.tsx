@@ -1,51 +1,60 @@
+import type { FieldArrayPath, Control, FieldValues } from 'react-hook-form';
 import { DragDropProvider } from '@dnd-kit/react';
 import { isSortable } from '@dnd-kit/react/sortable';
-import type { ArrayFieldWithLabel, SelectOption, SortableSelectedItem } from '../types';
+import type { SelectOption } from '../types';
 import { SortableInputItem } from './SortableInputItem';
-import type { ArrayPath, FieldValues, Path, UseFormRegister } from 'react-hook-form';
 import { VariantButton } from '../../button/components/VariantButton';
 import { IconCirclePlus, IconTrash } from '@/presentation/globals/components/Icons';
-import { MultipleSelectOptionsBox } from './MultipleSelectOptionsBox';
+import { SelectBox } from './SelectBox';
+import { useSortableInputItems } from '../hooks/useSortableInputItems';
 
-interface DynamicInputProps<T extends FieldValues> {
-  name: ArrayPath<T>;
-  register: UseFormRegister<T>;
-}
-
-type Props<T extends FieldValues> = {
-  isSelecting: boolean;
-  fields: ArrayFieldWithLabel[];
-  nonSelectedItems: SelectOption[];
-  handleSortItem: (oldIndex: number, newIndex: number) => void;
-  handleRemoveItem: (id: string, index: number) => void;
-  handleOpenItemsSelection: () => void;
-  handleAddItems: (items: SortableSelectedItem[]) => void;
-  handleClearAllItems: () => void;
-  handleCloseItemsSelection: () => void;
-  dynamicInputProps: DynamicInputProps<T>;
-  addLabel?: string;
+type Props<TForm extends FieldValues, TName extends FieldArrayPath<TForm>> = {
+  addButtonLabel?: string;
+  selectingTitle: string;
+  name: TName;
+  control: Control<TForm>;
+  items: SelectOption[];
+  itemsSelected?: SelectOption['value'][];
 };
 
-export function SortableInputItems<T extends FieldValues>({
-  fields,
-  handleSortItem,
-  handleRemoveItem,
-  handleOpenItemsSelection,
-  isSelecting,
-  nonSelectedItems,
-  handleClearAllItems,
-  handleCloseItemsSelection,
-  handleAddItems,
-  dynamicInputProps,
-  addLabel,
-}: Props<T>) {
-  const { register, name } = dynamicInputProps;
-  const handleAddOptions = (optons: SelectOption[]) => {
-    const items = optons.map((option) => ({
-      id: option.value,
-    }));
-    handleAddItems(items);
-  };
+/**
+ * Sortable and draggable form fields component.
+ * -
+ * @description It works with `useFieldArray` from `React Hook Form`. It only works with arrays with the following strcuture:
+ * @example
+ * type UserForm = {
+ *  username: string
+ *  name: string
+ *  email: string
+ *  tags: { id: string }[] // Tags is allowed to use this component
+ * }
+ */
+export function SortableInputItems<TForm extends FieldValues, TName extends FieldArrayPath<TForm>>({
+  name,
+  addButtonLabel,
+  control,
+  items,
+  itemsSelected = [],
+  selectingTitle,
+}: Props<TForm, TName>) {
+  const {
+    addMultipleItems,
+    crearAllItems,
+    fields,
+    handleRemoveItem,
+    isSelecting,
+    makeFieldOption,
+    openSelection,
+    selectableItems,
+    sortField,
+    closeSelection,
+  } = useSortableInputItems({
+    control,
+    items,
+    itemsSelected,
+    name,
+  });
+
   return (
     <div className="space-y-2">
       <DragDropProvider
@@ -55,17 +64,16 @@ export function SortableInputItems<T extends FieldValues>({
           const { source } = operation;
           if (!isSortable(source)) return;
           const { initialIndex, index } = source;
-          handleSortItem(initialIndex, index);
+          sortField(initialIndex, index);
         }}
       >
         <main className="bg-back min-h-16 space-y-2 rounded-lg p-2">
           {fields.map((field, index) => (
             <SortableInputItem
               key={field.fieldId}
-              field={field}
+              item={makeFieldOption((field as any).id)}
               index={index}
-              onRemoveOption={handleRemoveItem}
-              register={register(`${name}.${index}.id` as Path<T>)}
+              onRemoveOption={handleRemoveItem(index)}
             />
           ))}
         </main>
@@ -74,16 +82,16 @@ export function SortableInputItems<T extends FieldValues>({
         <VariantButton
           variantConfig={{ color: 'simple' }}
           type="button"
-          onClick={handleOpenItemsSelection}
+          onClick={openSelection}
           className="pr-3 pl-2"
         >
           <IconCirclePlus />
-          {addLabel ?? 'Add'}
+          {addButtonLabel ?? 'Add'}
         </VariantButton>
         <VariantButton
           variantConfig={{ color: 'simple' }}
           type="button"
-          onClick={handleClearAllItems}
+          onClick={crearAllItems}
           className="pr-3 pl-2"
         >
           <IconTrash />
@@ -92,11 +100,11 @@ export function SortableInputItems<T extends FieldValues>({
       </footer>
       {isSelecting && (
         <div className="fixed inset-0 grid place-content-center">
-          <MultipleSelectOptionsBox
-            options={nonSelectedItems}
-            title="Your Exercises"
-            onClose={handleCloseItemsSelection}
-            onAdd={handleAddOptions}
+          <SelectBox
+            options={selectableItems}
+            title={selectingTitle}
+            onClose={closeSelection}
+            onAdd={addMultipleItems}
           />
         </div>
       )}

@@ -10,6 +10,7 @@ export const ExerciseSchema = z.object({
 export const MusclesSchema = z
   .array(z.object({ id: z.string() }))
   .nonempty('Select at least one muscle');
+
 export type ExerciseProps = z.infer<typeof ExerciseSchema>;
 
 export const ExerciseInitialStatsSchema = z.object({

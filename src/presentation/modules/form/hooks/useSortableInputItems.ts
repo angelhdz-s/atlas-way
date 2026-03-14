@@ -1,64 +1,107 @@
-import type { ArrayField, SelectOption, SortableSelectedItem } from '../types';
-import { useSortableItemsSelectBox } from './useSortableItemsSelectBox';
+import {
+  type Control,
+  type FieldArrayPath,
+  type FieldValues,
+  useFieldArray,
+} from 'react-hook-form';
+import type { SelectOption } from '../types';
+import { useMemo, useState } from 'react';
 
-type Props = {
-  fields: ArrayField[];
+type Props<TForm extends FieldValues, TName extends FieldArrayPath<TForm>> = {
   items: SelectOption[];
-  onChange: (selected: SortableSelectedItem[]) => void;
-  onRemoveAllFields: () => void;
-  onRemoveOption: (index: number) => void;
+  itemsSelected: SelectOption['value'][];
+  name: TName;
+  control: Control<TForm>;
 };
 
 /**
  * Custom hook for draggable and sortabble select list of items
  */
 
-export function useSortableInputItems({
-  fields,
-  onChange,
-  items,
-  onRemoveAllFields,
-  onRemoveOption,
-}: Props) {
-  const labelFields = fields.map((field) => ({
-    id: field.id,
-    fieldId: field.fieldId,
-    label: items.find((item) => item.value === field.id)?.label ?? '',
-  }));
+export function useSortableInputItems<
+  TForm extends FieldValues,
+  TName extends FieldArrayPath<TForm>,
+>({ control, items, name, itemsSelected }: Props<TForm, TName>) {
+  const [isSelecting, setIsSelecting] = useState<boolean>(false);
+  const [selectedItems, setSelectedItems] = useState<SelectOption['value'][]>(itemsSelected);
 
-  const {
-    isSelecting,
-    nonSelectedItems,
-    selectedItems,
-    handleClearAllItems,
-    handleOpenItemsSelection,
-    handleCloseItemsSelection,
-    handleAddItems,
-    handleRemoveItem,
-  } = useSortableItemsSelectBox({
-    items,
-    onItemsChange: onChange,
+  const intialSelectableItems = useMemo(() => {
+    return items.filter((item) => !itemsSelected.includes(item.value));
+  }, [items, itemsSelected]);
+
+  const [selectableItems, setSelectableItems] = useState<SelectOption[]>(intialSelectableItems);
+
+  const { fields, remove, replace, move } = useFieldArray({
+    control,
+    name,
+    keyName: 'fieldId',
   });
 
-  const handleRemoveAllOptions = () => {
-    handleClearAllItems();
-    onRemoveAllFields();
+  const openSelection = () => {
+    if (isSelecting) return;
+    setIsSelecting(true);
   };
 
-  const handleRemoveOption = (id: string, index: number) => {
-    onRemoveOption(index);
-    handleRemoveItem({ id });
+  const closeSelection = () => {
+    if (!isSelecting) return;
+    setIsSelecting(false);
+  };
+
+  const sortField = (initialIndex: number, targetIndex: number) => {
+    move(initialIndex, targetIndex);
+  };
+
+  const makeFieldOption = (id: SelectOption['value']): SelectOption => {
+    const label = items.find((item) => item.value === id)?.label ?? '';
+    return {
+      label,
+      value: id,
+    };
+  };
+
+  const handleRemoveItem = (index: number) => (item: SelectOption['value']) => {
+    remove(index);
+    setSelectedItems((prev) => {
+      const newItems = prev.filter((option) => option !== item);
+      setSelectableItems(() => {
+        return items.filter((item) => !newItems.includes(item.value));
+      });
+      return newItems;
+    });
+  };
+
+  const addMultipleItems = (options: SelectOption['value'][]) => {
+    const formattedOptions = options.map((option) => ({ id: option }));
+    const formattedSelected = selectedItems.map((option) => ({ id: option }));
+    const fieldsSelected = [...new Set([...formattedSelected, ...formattedOptions])];
+    replace([...fieldsSelected] as any);
+    setSelectedItems((prev) => {
+      const newDistincItems = new Set([...prev, ...options]);
+      const newItems = [...newDistincItems];
+      setSelectableItems(() => {
+        return items.filter((item) => !newItems.includes(item.value));
+      });
+      return newItems;
+    });
+    closeSelection();
+  };
+
+  const crearAllItems = () => {
+    replace([]);
+    setSelectedItems([]);
+    setSelectableItems(items);
   };
 
   return {
-    selectedItems,
-    nonSelectedItems,
+    fields,
     isSelecting,
-    labelFields,
-    handleAddItems,
-    handleOpenItemsSelection,
-    handleCloseItemsSelection,
-    handleRemoveAllOptions,
-    handleRemoveOption,
+    selectableItems,
+    addMultipleItems,
+    handleRemoveItem,
+    crearAllItems,
+    makeFieldOption,
+    openSelection,
+    closeSelection,
+    sortField,
   };
 }

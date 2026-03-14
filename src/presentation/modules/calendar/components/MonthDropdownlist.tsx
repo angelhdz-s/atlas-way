@@ -17,7 +17,7 @@ export function MonthDropdownlist({
   return (
     <DateDropdownlist
       values={monthOptions}
-      className={`${className}`}
+      className={className}
       selectedValue={selectedValue}
       onChange={onChange}
     />

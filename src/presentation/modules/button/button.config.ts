@@ -25,10 +25,10 @@ export const buttonVariant = tv({
     },
     size: {
       xxs: 'h-5 px-1 text-xs [--rounding:5px]',
-      xs: 'h-7 px-3 text-sm [--rounding:6px]',
-      sm: 'h-8 px-4 text-sm',
-      md: 'h-10 px-5 text-base',
-      lg: 'h-12 px-7 text-lg [--rounding:12px]',
+      xs: 'h-8 px-4 text-sm [--rounding:6px]',
+      sm: 'h-10 px-6 text-sm [--rounding:8px]',
+      md: 'h-12 px-7 text-base',
+      lg: 'h-12 px-7 text-lg',
     },
   },
   compoundVariants: [

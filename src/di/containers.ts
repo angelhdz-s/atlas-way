@@ -85,6 +85,7 @@ export const getContainer = () => {
     }),
     routine: makeRoutineModule({
       routineRepository,
+      routineDaysRepository,
       idGeneratorRepository,
     }),
     routineDays: makeRoutineDaysModule({

@@ -1,22 +1,26 @@
 'use client';
 
-import { useState } from 'react';
-import { InputNumber } from '@/presentation/modules/form/components/fields/InputNumber';
-import { InputText } from '@/presentation/modules/form/components/fields/InputText';
-import { Label, LabelGroup } from '@/presentation/modules/form/components/fields/LabelInput';
 import { ModalFormButtons } from '@/presentation/modules/form/components/modal-form/ModalFormButtons';
-import { TextArea } from '@/presentation/modules/form/components/fields/TextArea';
 import { createRoutineAction } from '@/modules/routine/presentation/routine.actions';
 import { routineFormSchema } from '../config/routine-schema';
-import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
-import { daysOptions } from '../config/form';
-import { useFormHook } from '@/presentation/modules/form/hooks/useFormHook';
-import { InputDate } from '@/presentation/modules/form/components/fields/InputDate';
 import { ModalForm } from '@/presentation/modules/form/components/modal-form/ModalForm';
-import { RadiobuttonGroup } from '@/presentation/modules/form/components/RadiobuttonGroup';
 import { useRouter } from 'next/navigation';
+import { RoutineNameField } from './fields/RoutineNameField';
+import { RoutineDescriptionField } from './fields/RoutineDescriptionField';
+import { RoutineCycleField } from './fields/RoutineCycleField';
+import { RoutineInitialDateField } from './fields/RoutineInitialDateField';
+import { RoutineDayField } from './fields/RoutineDayField';
+import { useState } from 'react';
+import { RoutineSessionPlanField } from './fields/RoutineSessionPlanField';
+import { DEFAULT_WEEK_CYCLE_DAYS_DATA } from '../routine.ui.constants';
+import type { SelectOption } from '@/presentation/modules/form/types';
+import { RoutineActiveField } from './fields/RoutineActiveField';
 
-export function RoutineModalForm() {
+type Props = {
+  sessions: SelectOption[];
+};
+
+export function RoutineModalForm({ sessions }: Props) {
   const router = useRouter();
 
   const handleSuccess = () => {
@@ -27,11 +31,6 @@ export function RoutineModalForm() {
     router.back();
   };
 
-  const { register, handleSubmit, errors, isSubmitting } = useFormHook({
-    schema: routineFormSchema,
-    action: createRoutineAction,
-    onSuccess: handleSuccess,
-  });
   const [daysEnabled, setDaysEnabled] = useState(false);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,53 +40,25 @@ export function RoutineModalForm() {
   };
 
   return (
-    <ModalForm onClose={handleClose} title="Design your routine" onSubmit={handleSubmit}>
-      <section className="flex flex-col gap-2">
-        <Label htmlFor="name" title="Name">
-          <InputText
-            {...register('name')}
-            placeholder="Full Body Workout"
-            error={errors.name?.message}
-          />
-        </Label>
-        <Label htmlFor="description" title="Description">
-          <TextArea
-            {...register('description')}
-            error={errors.description?.message}
-            placeholder="A workout routine for the whole body"
-          />
-        </Label>
-        <div className="grid grid-cols-2 gap-2">
-          <LabelGroup title="Cycle" className="w-full">
-            <RadiobuttonGroup
-              {...register('cycle')}
-              checked={'week'}
-              options={daysOptions}
-              onChange={handleOnChange}
-              error={errors.cycle?.message}
-              className="flex items-center gap-2"
-            />
-          </LabelGroup>
-          <Label htmlFor="days" title="Days" className="w-fit">
-            <InputNumber
-              {...register('days', inputNumberConfig)}
-              value={'7'}
-              placeholder="7"
-              disabled={!daysEnabled}
-              error={errors.days?.message}
-            />
-          </Label>
-        </div>
-        <Label htmlFor="initialDate" title="Initial Date" className="w-fit">
-          <InputDate
-            {...register('initialDate', {
-              setValueAs: (value) => (value ? new Date(value) : undefined),
-            })}
-            error={errors.initialDate?.message}
-          />
-        </Label>
-      </section>
-      <ModalFormButtons onClose={handleClose} isPending={isSubmitting} />
+    <ModalForm
+      config={{
+        action: createRoutineAction,
+        onSuccess: handleSuccess,
+        schema: routineFormSchema,
+      }}
+      onClose={handleClose}
+      title="Design your routine"
+    >
+      <RoutineNameField />
+      <RoutineDescriptionField />
+      <div className="flex gap-4">
+        <RoutineActiveField />
+        <RoutineCycleField onChange={handleOnChange} />
+        <RoutineDayField daysEnabled={daysEnabled} />
+        <RoutineInitialDateField />
+      </div>
+      <RoutineSessionPlanField days={DEFAULT_WEEK_CYCLE_DAYS_DATA} sessions={sessions} />
+      <ModalFormButtons onClose={handleClose} />
     </ModalForm>
   );
 }

@@ -6,6 +6,22 @@ const routineCycleSchema = z.enum([routineCycleLiterals[0], ...routineCycleLiter
   message: 'Invalid option',
 });
 
+const sessions = z.array(
+  z.object(
+    {
+      sessionId: z
+        .string({ message: 'Invalid Session ID' })
+        .nonempty({ message: 'Session ID can not be empty' })
+        .or(z.null()),
+      day: z.number({ message: 'Invalid Day' }),
+      dayName: z
+        .string({ message: 'Invalid day name' })
+        .nonempty({ message: 'Day name can not be empty' }),
+    },
+    { message: 'Sessions must be an array' }
+  )
+);
+
 export const routineFormSchema = z.object({
   name: z
     .string({ message: 'Name must be a string' })
@@ -15,7 +31,8 @@ export const routineFormSchema = z.object({
     .string({ message: 'Description must be a string' })
     .max(255, 'Description must be at most 255 characters long')
     .optional(),
-  cycle: routineCycleSchema,
+  cycleType: routineCycleSchema,
+  active: z.boolean(),
   initialDate: z.date({
     message: 'Initial date is required',
   }),
@@ -24,6 +41,7 @@ export const routineFormSchema = z.object({
     .min(2, 'Days must be at least 2')
     .max(30, 'Days must be at most 30')
     .optional(),
+  sessions,
 });
 
 export type RoutineForm = z.infer<typeof routineFormSchema>;
