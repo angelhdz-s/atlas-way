@@ -31,7 +31,8 @@ export const routineFormSchema = z.object({
     .string({ message: 'Description must be a string' })
     .max(255, 'Description must be at most 255 characters long')
     .optional(),
-  cycle: routineCycleSchema,
+  cycleType: routineCycleSchema,
+  active: z.boolean(),
   initialDate: z.date({
     message: 'Initial date is required',
   }),
