@@ -19,11 +19,11 @@ export function RoutineCycleField({ onChange }: Props) {
   return (
     <LabelGroup title="Cycle" className="w-fit">
       <RadiobuttonGroup
-        {...register('cycle')}
+        {...register('cycleType')}
         checked={'week'}
         options={[defaultCycle]}
         onChange={onChange}
-        error={errors.cycle?.message}
+        error={errors.cycleType?.message}
         className="flex items-center gap-2"
       />
     </LabelGroup>

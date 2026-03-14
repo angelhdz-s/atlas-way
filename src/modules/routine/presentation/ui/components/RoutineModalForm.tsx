@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { RoutineSessionPlanField } from './fields/RoutineSessionPlanField';
 import { DEFAULT_WEEK_CYCLE_DAYS_DATA } from '../routine.ui.constants';
 import type { SelectOption } from '@/presentation/modules/form/types';
+import { RoutineActiveField } from './fields/RoutineActiveField';
 
 type Props = {
   sessions: SelectOption[];
@@ -51,9 +52,10 @@ export function RoutineModalForm({ sessions }: Props) {
       <RoutineNameField />
       <RoutineDescriptionField />
       <div className="flex gap-4">
-        <RoutineInitialDateField />
+        <RoutineActiveField />
         <RoutineCycleField onChange={handleOnChange} />
         <RoutineDayField daysEnabled={daysEnabled} />
+        <RoutineInitialDateField />
       </div>
       <RoutineSessionPlanField days={DEFAULT_WEEK_CYCLE_DAYS_DATA} sessions={sessions} />
       <ModalFormButtons onClose={handleClose} />
