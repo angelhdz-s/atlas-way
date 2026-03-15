@@ -1,38 +1,93 @@
-import type { Exercises as PrismaExercise } from '@/prisma/client';
 import { Exercise } from '../domain/exercise.entity';
 import type { ExerciseProps } from '../domain/exercise.types';
 import type { ExerciseDTO } from '../application/dtos/exercise.dto';
+import type {
+  ExercisePrisma,
+  ExercisePrismaCreate,
+  ExercisePrismaUpdate,
+} from './prisma/exercise.prisma.types';
+import { MuscleMapper } from '@/modules/muscle/infrastructure/muscle.mapper';
 
 export class ExerciseMapper {
-  static toDomain(data: PrismaExercise): Exercise {
+  static toDomain(data: ExercisePrisma): Exercise {
+    const { exercisesToMuscles } = data;
+
     const props: ExerciseProps = {
       id: data.id,
       name: data.name,
       description: data.description,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
+      reps: data.reps,
+      sets: data.sets,
+      weight: data.weight,
       userId: data.userId,
+      muscles: exercisesToMuscles.map((etm) => MuscleMapper.toDomain(etm.muscle)),
     };
 
     return new Exercise(props);
   }
-  static toPersistence(data: Exercise): PrismaExercise {
+  static toPersistenceCreate(data: Exercise): ExercisePrismaCreate {
+    const { muscles } = data;
     return {
       id: data.id,
       name: data.name,
       description: data.description,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
-      userId: data.userId,
+      reps: data.reps,
+      sets: data.sets,
+      weight: data.weight,
+      user: {
+        connect: {
+          id: data.userId,
+        },
+      },
+      exercisesToMuscles: {
+        create: muscles.map((m) => ({
+          muscleId: m.id,
+          createdAt: new Date(),
+        })),
+      },
     };
   }
 
-  static toDTO(data: Exercise): ExerciseDTO {
+  static toPersistenceUpdate(data: Exercise): ExercisePrismaUpdate {
+    const { muscles } = data;
     return {
       id: data.id,
       name: data.name,
       description: data.description,
+      reps: data.reps,
+      sets: data.sets,
+      weight: data.weight,
+
       createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+      exercisesToMuscles: {
+        deleteMany: {},
+        createMany: {
+          data: muscles.map((m) => ({
+            muscleId: m.id,
+            createdAt: new Date(),
+          })),
+        },
+      },
+    };
+  }
+
+  static toDTO(data: Exercise): ExerciseDTO {
+    const { muscles } = data;
+
+    return {
+      id: data.id,
+      name: data.name,
+      reps: data.reps,
+      sets: data.sets,
+      weight: data.weight,
+      description: data.description,
+      createdAt: data.createdAt,
+      muscles: muscles.map((m) => MuscleMapper.toDTO(m)),
     };
   }
 }
