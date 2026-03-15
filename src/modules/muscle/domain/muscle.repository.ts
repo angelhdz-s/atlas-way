@@ -5,4 +5,5 @@ import type { MuscleProps } from './muscle.types';
 export interface IMuscleRepository {
   findAll: () => RepositoryResult<Muscle[]>;
   findById: (id: MuscleProps['id']) => RepositoryResult<Muscle | null>;
+  findByIds: (ids: MuscleProps['id'][]) => RepositoryResult<Muscle[]>;
 }
