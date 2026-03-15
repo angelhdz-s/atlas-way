@@ -11,13 +11,12 @@ import {
 } from '@/shared/presentation/action.response';
 import type { CreateExerciseInput } from '../application/dtos/create-exercise.dto';
 import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
-import type { CreateExerciseInitialStatsWithoutExerciseIdInput } from '@/modules/exercise-initial-stats/application/dtos/create-exercise-initial-stats.dto';
 import { getContainer } from '@/di/containers';
 import { ExerciseMapper } from '../infrastructure/exercise.mapper';
 import type { ExerciseDTO } from '../application/dtos/exercise.dto';
-import { getAllMusclesByExercise } from '@/modules/muscle/presentation/muscle.actions';
 import { revalidatePath } from 'next/cache';
 import type { FullExerciseDTO } from './exercise.presentation.types';
+import { getAllMuscles } from '@/modules/muscle/presentation/muscle.actions';
 
 export async function createExerciseAction(
   data: ExerciseFormProps
@@ -33,30 +32,20 @@ export async function createExerciseAction(
   if (!userIdResult.success || !userIdResult.data) return ActionFailure(userIdResult.message);
   const userId = userIdResult.data;
 
+  const exerciseInput: CreateExerciseInput = {
+    name: parsedExercise.exercise.name,
+    description: parsedExercise.exercise.description ?? null,
+    reps: parsedExercise.exercise.reps,
+    sets: parsedExercise.exercise.sets,
+    weight: parsedExercise.exercise.weight,
+    userId,
+    muscleIds: parsedExercise.muscles.map((m) => Number(m.id)),
+  };
+
   const container = getContainer();
   const createExercise = container.exercise.CreateExerciseUseCase;
 
-  const exercise: CreateExerciseInput = {
-    name: parsedExercise.exercise.name,
-    description: parsedExercise.exercise.description ?? null,
-    userId,
-  };
-
-  const muscles = parsedExercise.muscles.map(({ id }) => Number(id));
-
-  if (!parsedExercise.initialStats) {
-    const createdExercise = await createExercise.execute(exercise, muscles);
-    if (!createdExercise.success) return ActionFailure(createdExercise.error.message);
-    return ActionSuccess(createdExercise.data, 'Exercise created successfully');
-  }
-
-  const stats: CreateExerciseInitialStatsWithoutExerciseIdInput = {
-    sets: parsedExercise.initialStats.sets,
-    reps: parsedExercise.initialStats.reps,
-    weight: parsedExercise.initialStats.weight,
-  };
-
-  const createdExercise = await createExercise.execute(exercise, muscles, stats);
+  const createdExercise = await createExercise.execute(exerciseInput);
 
   if (!createdExercise.success) return ActionFailure(createdExercise.error.message);
 
@@ -81,7 +70,7 @@ export async function getAllUserExercises(): ActionResponse<FullExerciseDTO[]> {
   const fullExercises: FullExerciseDTO[] = [];
 
   for (const exercise of exercises) {
-    const musclesResult = await getAllMusclesByExercise(exercise.id);
+    const musclesResult = await getAllMuscles();
     if (!musclesResult.success) return ActionFailure(musclesResult.message);
     const muscles = musclesResult.data;
     const exerciseDTO = ExerciseMapper.toDTO(exercise);

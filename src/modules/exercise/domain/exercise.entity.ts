@@ -1,4 +1,3 @@
-import type { Muscle } from '@/modules/muscle/domain/muscle.entity';
 import type { ExerciseProps } from './exercise.types';
 
 export class Exercise {
@@ -30,8 +29,8 @@ export class Exercise {
   get userId() {
     return this.data.userId;
   }
-  get muscles(): Muscle[] {
-    return this.muscles;
+  get muscles() {
+    return this.data.muscles;
   }
   changeName(name: ExerciseProps['name']) {
     this.data.name = name;

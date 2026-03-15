@@ -28,7 +28,6 @@ export class ExerciseMapper {
     return new Exercise(props);
   }
   static toPersistenceCreate(data: Exercise): ExercisePrismaCreate {
-    const { muscles } = data;
     return {
       id: data.id,
       name: data.name,
@@ -44,7 +43,7 @@ export class ExerciseMapper {
         },
       },
       exercisesToMuscles: {
-        create: muscles.map((m) => ({
+        create: data.muscles.map((m) => ({
           muscleId: m.id,
           createdAt: new Date(),
         })),
@@ -53,7 +52,6 @@ export class ExerciseMapper {
   }
 
   static toPersistenceUpdate(data: Exercise): ExercisePrismaUpdate {
-    const { muscles } = data;
     return {
       id: data.id,
       name: data.name,
@@ -67,7 +65,7 @@ export class ExerciseMapper {
       exercisesToMuscles: {
         deleteMany: {},
         createMany: {
-          data: muscles.map((m) => ({
+          data: data.muscles.map((m) => ({
             muscleId: m.id,
             createdAt: new Date(),
           })),
@@ -77,8 +75,6 @@ export class ExerciseMapper {
   }
 
   static toDTO(data: Exercise): ExerciseDTO {
-    const { muscles } = data;
-
     return {
       id: data.id,
       name: data.name,
@@ -87,7 +83,7 @@ export class ExerciseMapper {
       weight: data.weight,
       description: data.description,
       createdAt: data.createdAt,
-      muscles: muscles.map((m) => MuscleMapper.toDTO(m)),
+      muscles: data.muscles.map((m) => MuscleMapper.toDTO(m)),
     };
   }
 }

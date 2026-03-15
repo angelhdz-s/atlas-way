@@ -46,6 +46,7 @@ export const getContainer = () => {
     auth: makeAuthModule({ authRepository }),
     exercise: makeExerciseModule({
       exerciseRepository,
+      muscleRepository,
       idGeneratorRepository,
     }),
     muscle: makeMuscleModule({ muscleRepository }),
