@@ -2,7 +2,7 @@ import { IconBarbell } from '@/presentation/globals/components/Icons';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
 import { SortableInputItems } from '@/presentation/modules/form/components/SortableInputItems';
 import { useFormContext } from 'react-hook-form';
-import type { SessionForm } from '../../config/session-schema';
+import type { SessionForm } from '../../config/session.schema';
 import type { SelectOption } from '@/presentation/modules/form/types';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 

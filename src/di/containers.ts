@@ -19,7 +19,6 @@ import { NotificationPrismaRepository } from '@/modules/notification/infrastruct
 import { RoutinePrismaRepository } from '@/modules/routine/infrastructure/prisma/routine.prisma.repository';
 import { RoutineDaysPrismaRepository } from '@/modules/routine-days/infrastructure/prisma/routine-days.prisma.repository';
 import { SessionPrismaRepository } from '@/modules/session/infrastructure/prisma/session.prisma.repository';
-import { SessionToExercisePrismaRepository } from '@/modules/session/link/infrastructure/prisma/session-to-exercise.prisma.repository';
 import { UserPrismaRepository } from '@/modules/user/infrastructure/prisma/user.prisma.repository';
 
 /**
@@ -39,7 +38,6 @@ export const getContainer = () => {
   const routineRepository = new RoutinePrismaRepository(prisma, errorMapper);
   const routineDaysRepository = new RoutineDaysPrismaRepository(prisma, errorMapper);
   const sessionRepository = new SessionPrismaRepository(prisma, errorMapper);
-  const sessionToExerciseRepository = new SessionToExercisePrismaRepository(prisma, errorMapper);
   const userRepository = new UserPrismaRepository(prisma, errorMapper);
 
   return {
@@ -66,7 +64,7 @@ export const getContainer = () => {
     session: makeSessionModule({
       idGeneratorRepository,
       sessionRepository,
-      sessionToExerciseRepository,
+      exerciseRepository,
     }),
     user: makeUserModule({
       authRepository,

@@ -1,3 +1,4 @@
+import type { Exercise } from '@/modules/exercise/domain/exercise.entity';
 import type { UserProps } from '@/modules/user/domain/user.types';
 
 export type SessionProps = {
@@ -7,4 +8,5 @@ export type SessionProps = {
   readonly createdAt: Date;
   readonly updatedAt: Date;
   readonly userId: UserProps['id'];
+  exercises: Exercise[];
 };

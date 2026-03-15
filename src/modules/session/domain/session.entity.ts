@@ -12,6 +12,11 @@ export class Session {
   get description() {
     return this.data.description;
   }
+
+  get exercises() {
+    return this.data.exercises;
+  }
+
   get createdAt() {
     return this.data.createdAt;
   }

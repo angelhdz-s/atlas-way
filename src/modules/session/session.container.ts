@@ -3,23 +3,24 @@ import { GetAllSessions } from '@/modules/session/application/use-cases/get-all-
 import { GetSessionById } from '@/modules/session/application/use-cases/get-session-by-id';
 import { UpdateSessions } from '@/modules/session/application/use-cases/update-session';
 import type { ISessionRepository } from './domain/session.repository';
-import type { ISessionToExerciseRepository } from './link/domain/session-to-exercise.repository';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
+import type { IExerciseRepository } from '../exercise/domain/exercise.repository';
+
 type Props = {
   sessionRepository: ISessionRepository;
-  sessionToExerciseRepository: ISessionToExerciseRepository;
+  exerciseRepository: IExerciseRepository;
   idGeneratorRepository: IdGeneratorRepository;
 };
 
 export const makeSessionModule = ({
   idGeneratorRepository,
   sessionRepository,
-  sessionToExerciseRepository,
+  exerciseRepository,
 }: Props) => {
   return {
     CreateSessionUseCase: new CreateSession(
       sessionRepository,
-      sessionToExerciseRepository,
+      exerciseRepository,
       idGeneratorRepository
     ),
     GetAllSessionsUseCase: new GetAllSessions(sessionRepository),
