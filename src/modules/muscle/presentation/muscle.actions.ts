@@ -27,7 +27,11 @@ export async function getMuscleById(id: MuscleProps['id']): ActionResponse<Muscl
 
   if (!muscleResult.success) return ActionFailure(muscleResult.error.message);
 
-  return ActionSuccess(muscleResult.data, '');
+  if (!muscleResult.data) return ActionSuccess(muscleResult.data, 'No muscle was found');
+
+  const muscleDTO = MuscleMapper.toDTO(muscleResult.data);
+
+  return ActionSuccess(muscleDTO, 'Muscle obtained successfully');
 }
 
 export async function getAllMusclesByExercise(
