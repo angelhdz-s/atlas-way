@@ -1,9 +1,7 @@
 import { makeAuthModule } from '@/modules/auth/auth.container';
-import { makeBodySectionModule } from '@/modules/body-section/body-section.container';
 import { makeExerciseModule } from '@/modules/exercise/exercise.container';
 import { makeExerciseToMuscleModule } from '@/modules/exercise/link/muscle/exercise-to-muscle.container';
 import { makeMuscleModule } from '@/modules/muscle/muscle.container';
-import { makeMuscularGroupModule } from '@/modules/muscular-group/muscular-group.container';
 import { makeNotificationModule } from '@/modules/notification/notification.container';
 import { makeRoutineModule } from '@/modules/routine/routine.container';
 import { makeRoutineDaysModule } from '@/modules/routine-days/routine-days.container';
@@ -14,7 +12,6 @@ import {
   InfrastructureErrorTranslator,
 } from '@/shared/infrastructure/errors/error.translator';
 import { AuthNextAuthRepository } from '@/modules/auth/infrastructure/next-auth/auth.next-auth.repository';
-import { BodySectionPrismaRepository } from '@/modules/body-section/infrastructure/prisma/body-section.prisma.repository';
 import { prisma } from '@/shared/infrastructure/prisma/client';
 import { ExercisePrismaRepository } from '@/modules/exercise/infrastructure/prisma/exercise.prisma.repository';
 import { ExerciseToMusclePrismaRepository } from '@/modules/exercise/link/muscle/infrastructure/prisma/exercise-to-muscle.prisma.repository';
@@ -22,7 +19,6 @@ import { ExerciseInitialStatsPrismaRepository } from '@/modules/exercise-initial
 import { UUIDGenerator } from '@/shared/infrastructure/generators/uuid-generator';
 import { makeExerciseInitialStatsModule } from '@/modules/exercise-initial-stats/exercise-initial-stats.container';
 import { MusclePrismaRepository } from '@/modules/muscle/infrastructure/prisma/muscle.prisma.repository';
-import { MuscularGroupPrismaReporitory } from '@/modules/muscular-group/infrastructure/prisma/muscular-group.prisma.repository';
 import { NotificationPrismaRepository } from '@/modules/notification/infrastructure/prisma/notification.prisma.repository';
 import { RoutinePrismaRepository } from '@/modules/routine/infrastructure/prisma/routine.prisma.repository';
 import { RoutineDaysPrismaRepository } from '@/modules/routine-days/infrastructure/prisma/routine-days.prisma.repository';
@@ -41,7 +37,6 @@ export const getContainer = () => {
   const idGeneratorRepository = new UUIDGenerator();
 
   // Database respositories
-  const bodySectionRepository = new BodySectionPrismaRepository(prisma, errorMapper);
   const exerciseRepository = new ExercisePrismaRepository(prisma, errorMapper);
   const exerciseInitialStatsRepository = new ExerciseInitialStatsPrismaRepository(
     prisma,
@@ -49,7 +44,6 @@ export const getContainer = () => {
   );
   const exerciseToMuscleRepository = new ExerciseToMusclePrismaRepository(prisma, errorMapper);
   const muscleRepository = new MusclePrismaRepository(prisma, errorMapper);
-  const muscularGroupRepository = new MuscularGroupPrismaReporitory(prisma, errorMapper);
   const notificationRepository = new NotificationPrismaRepository(prisma, errorMapper);
   const routineRepository = new RoutinePrismaRepository(prisma, errorMapper);
   const routineDaysRepository = new RoutineDaysPrismaRepository(prisma, errorMapper);
@@ -59,9 +53,6 @@ export const getContainer = () => {
 
   return {
     auth: makeAuthModule({ authRepository }),
-    bodySection: makeBodySectionModule({
-      bodySectionRepository,
-    }),
     exercise: makeExerciseModule({
       exerciseRepository,
       exerciseToMuscleRepository,
@@ -76,9 +67,6 @@ export const getContainer = () => {
       exerciseToMuscleRepository,
     }),
     muscle: makeMuscleModule({ muscleRepository }),
-    muscularGroup: makeMuscularGroupModule({
-      muscularGroupRepository,
-    }),
     notification: makeNotificationModule({
       notificationRepository,
       idGeneratorRepository,
