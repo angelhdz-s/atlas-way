@@ -61,6 +61,22 @@ export class ExercisePrismaRepository implements IExerciseRepository {
       return Failure(this.errorMapper.translate(e));
     }
   }
+  async findByIds(ids: ExerciseProps['id'][]) {
+    try {
+      const exercises = await this.prisma.exercises.findMany({
+        where: {
+          id: {
+            in: ids,
+          },
+        },
+        ...exerciseIncludeAnatomy,
+      });
+      const domainExercises = exercises.map((e) => ExerciseMapper.toDomain(e));
+      return Success(domainExercises);
+    } catch (e) {
+      return Failure(this.errorMapper.translate(e));
+    }
+  }
   async findAllByUserId(userId: ExerciseProps['userId']) {
     try {
       const exercises = await this.prisma.exercises.findMany({
