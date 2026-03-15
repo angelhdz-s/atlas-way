@@ -4,30 +4,16 @@ import { GetExerciseById } from '@/modules/exercise/application/use-cases/get-ex
 import { UpdateExercise } from '@/modules/exercise/application/use-cases/update-exercise';
 import { GetAllUserExercises } from './application/use-cases/get-user-exercises';
 import type { IExerciseRepository } from './domain/exercise.repository';
-import type { IExerciseToMuscleRepository } from './link/muscle/domain/exercise-to-muscle.repository';
-import type { IExerciseInitialStatsRepository } from '../exercise-initial-stats/domain/exercise-initial-stats.repository';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
 
 type Props = {
   exerciseRepository: IExerciseRepository;
-  exerciseToMuscleRepository: IExerciseToMuscleRepository;
-  exerciseInitialStatsRepository: IExerciseInitialStatsRepository;
   idGeneratorRepository: IdGeneratorRepository;
 };
 
-export const makeExerciseModule = ({
-  exerciseInitialStatsRepository,
-  exerciseRepository,
-  exerciseToMuscleRepository,
-  idGeneratorRepository,
-}: Props) => {
+export const makeExerciseModule = ({ exerciseRepository, idGeneratorRepository }: Props) => {
   return {
-    CreateExerciseUseCase: new CreateExercise(
-      exerciseRepository,
-      exerciseToMuscleRepository,
-      exerciseInitialStatsRepository,
-      idGeneratorRepository
-    ),
+    CreateExerciseUseCase: new CreateExercise(exerciseRepository, idGeneratorRepository),
     UpdateExerciseUseCase: new UpdateExercise(exerciseRepository),
     GetExerciseByIdUseCase: new GetExerciseById(exerciseRepository),
     GetAllExerciseUseCase: new GetAllExercises(exerciseRepository),
