@@ -4,16 +4,12 @@ import { PageHeader } from '@/presentation/modules/dashboard/page/components/Pag
 import { getAllUserExercises } from '@/modules/exercise/presentation/exercise.actions';
 import { Exercises } from '@/modules/exercise/presentation/components/Exercises';
 import { VariantLink } from '@/presentation/modules/button/components/VariantLink';
-import type { FullExerciseDTO } from '@/modules/exercise/presentation/exercise.presentation.types';
 
 export default async function ExercisesPage() {
-  const exercises: FullExerciseDTO[] = [];
   const exercisesRequest = await getAllUserExercises();
-  if (exercisesRequest.data) {
-    for (const exercise of exercisesRequest.data) {
-      if (exercise) exercises.push(exercise);
-    }
-  }
+
+  const exercises = exercisesRequest.success ? exercisesRequest.data : [];
+
   return (
     <PageContainer>
       <PageHeader title="Exercises" className="flex items-center justify-between">

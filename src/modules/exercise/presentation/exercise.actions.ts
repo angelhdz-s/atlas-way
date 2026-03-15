@@ -15,8 +15,6 @@ import { getContainer } from '@/di/containers';
 import { ExerciseMapper } from '../infrastructure/exercise.mapper';
 import type { ExerciseDTO } from '../application/dtos/exercise.dto';
 import { revalidatePath } from 'next/cache';
-import type { FullExerciseDTO } from './exercise.presentation.types';
-import { getAllMuscles } from '@/modules/muscle/presentation/muscle.actions';
 
 export async function createExerciseAction(
   data: ExerciseFormProps
@@ -54,7 +52,7 @@ export async function createExerciseAction(
   return ActionSuccess(exerciseDTO, 'Exercise created successfully');
 }
 
-export async function getAllUserExercises(): ActionResponse<FullExerciseDTO[]> {
+export async function getAllUserExercises(): ActionResponse<ExerciseDTO[]> {
   const container = getContainer();
 
   const userIdResult = await getCurrentUserId();
@@ -67,21 +65,7 @@ export async function getAllUserExercises(): ActionResponse<FullExerciseDTO[]> {
   if (!exercisesResult.success) return ActionFailure(exercisesResult.error.message);
   const exercises = exercisesResult.data;
 
-  const fullExercises: FullExerciseDTO[] = [];
+  const exercisesDTOs = exercises.map((m) => ExerciseMapper.toDTO(m));
 
-  for (const exercise of exercises) {
-    const musclesResult = await getAllMuscles();
-    if (!musclesResult.success) return ActionFailure(musclesResult.message);
-    const muscles = musclesResult.data;
-    const exerciseDTO = ExerciseMapper.toDTO(exercise);
-
-    const fullExercise: FullExerciseDTO = {
-      ...exerciseDTO,
-      muscles,
-    };
-
-    fullExercises.push(fullExercise);
-  }
-
-  return ActionSuccess(fullExercises, 'User exercises found successfully');
+  return ActionSuccess(exercisesDTOs, 'User exercises found successfully');
 }
