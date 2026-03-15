@@ -18,8 +18,6 @@ export default async function MuscularGroupsPage() {
 
   const muscles = musclesResult.success ? musclesResult.data : [];
 
-  console.log(muscles);
-
   const muscularGroups: MuscularGroup[] = [];
 
   const bodySections: BodySections[] = [];
