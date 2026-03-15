@@ -2,10 +2,10 @@ import { Box } from '@/presentation/modules/form/components/Box';
 import { useState } from 'react';
 import Link from 'next/link';
 import { IconCirclePlus } from '@/presentation/globals/components/Icons';
-import type { FullSessionDTO } from '../../session.presentation.types';
+import type { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 
 export function FormSessionsBox() {
-  const [sessions, _setSessions] = useState<FullSessionDTO[]>([]);
+  const [sessions, _setSessions] = useState<SessionDTO[]>([]);
   return (
     <Box className="grid min-h-24 grid-cols-[1fr_auto]">
       <main>
