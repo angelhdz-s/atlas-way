@@ -723,3 +723,12 @@ export function IconZZ(props: IconProps) {
     </MainSvgBody>
   );
 }
+
+export function IconPlus(props: IconProps) {
+  return (
+    <MainSvgBody {...props}>
+      <path d="M12 5l0 14" />
+      <path d="M5 12l14 0" />
+    </MainSvgBody>
+  );
+}
