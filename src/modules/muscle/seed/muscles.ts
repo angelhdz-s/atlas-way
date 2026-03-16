@@ -18,7 +18,7 @@ export const MUSCLES: Prisma.MusclesCreateManyInput[] = [
     name: 'Biceps Short Head',
   },
   {
-    muscularGroupId: 1,
+    muscularGroupId: 2,
     userId: SYSTEM_ID,
     name: 'Forearms',
   },
