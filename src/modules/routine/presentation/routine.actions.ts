@@ -51,3 +51,16 @@ export async function createRoutineAction(data: RoutineForm): ActionResponse<Rou
 
   return ActionSuccess(routineDTO, 'Routine created successfully');
 }
+
+export async function getAllRoutines(): ActionResponse<RoutineDTO[]> {
+  const container = getContainer();
+  const createRoutine = container.routine.GetAllRoutinesUseCase;
+
+  const routinesResult = await createRoutine.execute();
+
+  if (!routinesResult.success) return ActionFailure(routinesResult.error.message);
+
+  const routineDTOs = routinesResult.data.map((r) => RoutineMapper.toDTO(r));
+
+  return ActionSuccess(routineDTOs, 'Routine created successfully');
+}
