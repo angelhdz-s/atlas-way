@@ -45,7 +45,5 @@ export async function getMusclesByIds(ids: MuscleProps['id'][]): ActionResponse<
 
   if (!musclesResult.success) return ActionFailure('Error fetching muscles by ids');
 
-  console.log(musclesResult.data);
-
   return ActionSuccess(null, 'Muscles gotten');
 }
