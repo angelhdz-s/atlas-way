@@ -15,8 +15,7 @@ export async function getAllMuscles(): ActionResponse<MuscleDTO[]> {
   const getAllMuscles = container.muscle.GetAllMusclesUseCase;
   const musclesResult = await getAllMuscles.execute();
   if (!musclesResult.success) return ActionFailure(musclesResult.error.message);
-  const musclesDTO = musclesResult.data.map((muscle, index) => {
-    console.log(index, muscle);
+  const musclesDTO = musclesResult.data.map((muscle) => {
     return MuscleMapper.toDTO(muscle);
   });
   return ActionSuccess(musclesDTO, 'Muscles were obtained successfully');
