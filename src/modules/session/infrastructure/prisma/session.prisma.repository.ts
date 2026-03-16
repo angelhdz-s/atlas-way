@@ -62,4 +62,20 @@ export class SessionPrismaRepository implements ISessionRepository {
       return Failure(this.errorMapper.translate(e));
     }
   }
+  async findByIds(ids: SessionProps['id'][]) {
+    try {
+      const sessions = await this.prisma.sessions.findMany({
+        where: {
+          id: {
+            in: ids,
+          },
+        },
+        ...sessionIncludeAnatomy,
+      });
+      const result = sessions.map((s) => SessionMapper.toDomain(s));
+      return Success(result);
+    } catch (e) {
+      return Failure(this.errorMapper.translate(e));
+    }
+  }
 }

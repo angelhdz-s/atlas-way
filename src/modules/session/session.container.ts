@@ -5,6 +5,7 @@ import { UpdateSessions } from '@/modules/session/application/use-cases/update-s
 import type { ISessionRepository } from './domain/session.repository';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
 import type { IExerciseRepository } from '../exercise/domain/exercise.repository';
+import { GetSessionsByIds } from './application/use-cases/get-sessions-by-ids';
 
 type Props = {
   sessionRepository: ISessionRepository;
@@ -25,6 +26,7 @@ export const makeSessionModule = ({
     ),
     GetAllSessionsUseCase: new GetAllSessions(sessionRepository),
     GetSessionByIdUseCase: new GetSessionById(sessionRepository),
+    GetSessionsByIdsUseCase: new GetSessionsByIds(sessionRepository),
     UpdateSessionUseCase: new UpdateSessions(sessionRepository),
   };
 };
