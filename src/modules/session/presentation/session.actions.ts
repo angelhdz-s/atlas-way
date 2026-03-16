@@ -12,6 +12,7 @@ import { getContainer } from '@/di/containers';
 import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
 import type { SessionDTO } from '../application/dtos/session.dto';
 import { SessionMapper } from '../infrastructure/session.mapper';
+import type { SessionProps } from '../domain/session.types';
 
 export async function createSessionAction(data: SessionForm): ActionResponse<SessionDTO> {
   const parseResult = sessionFormSchema.safeParse(data);
@@ -46,6 +47,31 @@ export async function getAllSessions(): ActionResponse<SessionDTO[]> {
   const getAllSessions = container.session.GetAllSessionsUseCase;
 
   const sessionsResult = await getAllSessions.execute();
+
+  if (!sessionsResult.success)
+    return {
+      message: 'Error fetching sessions',
+      success: false,
+      data: null,
+    };
+
+  const { data } = sessionsResult;
+
+  const sessionsDTO = data.map((session) => SessionMapper.toDTO(session));
+
+  return {
+    message: 'Sessions obtained successfully',
+    success: true,
+    data: sessionsDTO,
+  };
+}
+
+export async function getSessionsByIds(ids: SessionProps['id'][]): ActionResponse<SessionDTO[]> {
+  const container = getContainer();
+
+  const getAllSessions = container.session.GetSessionsByIdsUseCase;
+
+  const sessionsResult = await getAllSessions.execute(ids);
 
   if (!sessionsResult.success)
     return {
