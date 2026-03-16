@@ -20,8 +20,11 @@ export class Muscle {
   get userId() {
     return this.data.userId;
   }
-  get muscularGroupId() {
-    return this.data.muscularGroupId;
+  get muscularGroup() {
+    return this.data.group;
+  }
+  get bodySection() {
+    return this.data.group.section;
   }
   changeName(name: MuscleProps['name']) {
     this.data.name = name;

@@ -16,7 +16,7 @@ import type {
   DnDFormFieldItemDraggableData,
   SelectOption,
 } from '@/presentation/modules/form/types';
-import type { RoutineForm } from '../../config/routine-schema';
+import type { RoutineForm } from '../../config/routine.schema';
 
 type Props = {
   sessions: SelectOption[];

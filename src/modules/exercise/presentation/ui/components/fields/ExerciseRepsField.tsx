@@ -1,8 +1,8 @@
 import { InputNumber } from '@/presentation/modules/form/components/fields/InputNumber';
+import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import { useFormContext } from 'react-hook-form';
 import type { ExerciseFormProps } from '../../schemas/exercise.schema';
-import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
 
 export function ExerciseRepsField() {
   const {
@@ -12,8 +12,8 @@ export function ExerciseRepsField() {
   return (
     <Label htmlFor="initialStats.reps" title="Reps">
       <InputNumber
-        {...register('initialStats.reps', inputNumberConfig)}
-        error={errors.initialStats?.reps?.message}
+        {...register('exercise.reps', inputNumberConfig)}
+        error={errors.exercise?.reps?.message}
       />
     </Label>
   );

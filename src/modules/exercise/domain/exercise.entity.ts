@@ -11,6 +11,15 @@ export class Exercise {
   get description() {
     return this.data.description;
   }
+  get sets() {
+    return this.data.sets;
+  }
+  get reps() {
+    return this.data.reps;
+  }
+  get weight() {
+    return this.data.weight;
+  }
   get createdAt() {
     return this.data.createdAt;
   }
@@ -19,6 +28,9 @@ export class Exercise {
   }
   get userId() {
     return this.data.userId;
+  }
+  get muscles() {
+    return this.data.muscles;
   }
   changeName(name: ExerciseProps['name']) {
     this.data.name = name;

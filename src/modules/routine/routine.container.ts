@@ -3,26 +3,26 @@ import { GetAllRoutines } from '@/modules/routine/application/use-cases/get-all-
 import { GetRoutineById } from '@/modules/routine/application/use-cases/get-routine-by-id';
 import { UpdateRoutine } from '@/modules/routine/application/use-cases/update-routine';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
-import type { RoutineDaysPrismaRepository } from '../routine-days/infrastructure/prisma/routine-days.prisma.repository';
-import type { RoutinePrismaRepository } from '@/modules/routine/infrastructure/prisma/routine.prisma.repository';
+import type { IRoutineRepository } from './domain/routine.repository';
+import type { ISessionRepository } from '../session/domain/session.repository';
 
 type Props = {
   idGeneratorRepository: IdGeneratorRepository;
-  routineRepository: RoutinePrismaRepository;
-  routineDaysRepository: RoutineDaysPrismaRepository;
+  routineRepository: IRoutineRepository;
+  sessionRepository: ISessionRepository;
 };
 
 export const makeRoutineModule = ({
   idGeneratorRepository,
   routineRepository,
-  routineDaysRepository,
+  sessionRepository,
 }: Props) => {
   return {
     GetAllRoutinesUseCase: new GetAllRoutines(routineRepository),
     GetRoutineByIdUseCase: new GetRoutineById(routineRepository),
     CreateRoutineUseCase: new CreateRoutine(
       routineRepository,
-      routineDaysRepository,
+      sessionRepository,
       idGeneratorRepository
     ),
     UpdateRoutineUseCase: new UpdateRoutine(routineRepository),

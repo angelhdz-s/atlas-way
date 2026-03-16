@@ -2,7 +2,7 @@ import { LabelGroup } from '@/presentation/modules/form/components/fields/LabelI
 import { routineFormConfig } from '../../routine.ui.constants';
 import { RadiobuttonGroup } from '@/presentation/modules/form/components/RadiobuttonGroup';
 import { useFormContext } from 'react-hook-form';
-import type { RoutineForm } from '../../config/routine-schema';
+import type { RoutineForm } from '../../config/routine.schema';
 
 type Props = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

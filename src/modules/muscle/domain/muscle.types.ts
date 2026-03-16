@@ -1,4 +1,3 @@
-import type { MuscularGroupProps } from '@/modules/muscular-group/domain/muscular-group.types';
 import type { UserProps } from '@/modules/user/domain/user.types';
 
 export type MuscleProps = {
@@ -8,5 +7,16 @@ export type MuscleProps = {
   readonly createdAt: Date;
   readonly updatedAt: Date;
   readonly userId: UserProps['id'];
-  readonly muscularGroupId: MuscularGroupProps['id'];
+  readonly group: {
+    id: number;
+    name: string;
+    createdAt: Date;
+    updatedAt: Date;
+    section: {
+      id: number;
+      name: string;
+      createdAt: Date;
+      updatedAt: Date;
+    };
+  };
 };

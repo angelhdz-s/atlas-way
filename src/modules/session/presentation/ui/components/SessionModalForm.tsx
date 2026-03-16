@@ -5,7 +5,7 @@ import { ModalForm } from '@/presentation/modules/form/components/modal-form/Mod
 import { ModalFormButtons } from '@/presentation/modules/form/components/modal-form/ModalFormButtons';
 import type { SelectOption } from '@/presentation/modules/form/types';
 import { createSessionAction } from '../../session.actions';
-import { sessionFormSchema } from '../config/session-schema';
+import { sessionFormSchema } from '../config/session.schema';
 import { SessionDescription } from './fields/SessionDescription';
 import { SessionName } from './fields/SessionName';
 import { SessionExercises } from './fields/SessionExercises';

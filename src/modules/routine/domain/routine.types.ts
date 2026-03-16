@@ -1,5 +1,6 @@
-import type { RoutineCycleTypeProps } from '@/modules/routine-cycle/domain/routine-cycle.types';
+import type { Session } from '@/modules/session/domain/session.entity';
 import type { UserProps } from '@/modules/user/domain/user.types';
+import type { RoutineCycleId } from './constants/routine.constants.cycle-types';
 
 export type RoutineProps = {
   readonly id: string;
@@ -8,8 +9,17 @@ export type RoutineProps = {
   active: boolean;
   days: number;
   initialDate: Date;
+  cycle: {
+    readonly id: RoutineCycleId;
+    readonly name: string;
+  };
   readonly createdAt: Date;
   readonly updatedAt: Date;
   readonly userId: UserProps['id'];
-  readonly routineCycleId: RoutineCycleTypeProps['id'];
+  readonly routineDays: {
+    id: string;
+    name: string;
+    day: number;
+    session: Session | null;
+  }[];
 };

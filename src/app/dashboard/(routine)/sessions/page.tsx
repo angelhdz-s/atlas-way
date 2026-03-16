@@ -1,12 +1,14 @@
-import { SESSIONS } from '@/presentation/globals/mocks/sessions';
 import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
 import { Session } from '@/modules/session/presentation/ui/components/Session';
 import { IconClipboardList } from '@/presentation/globals/components/Icons';
 import { VariantLink } from '@/presentation/modules/button/components/VariantLink';
+import { getAllSessions } from '@/modules/session/presentation/session.actions';
 
-export default function SessionsPage() {
+export default async function SessionsPage() {
+  const sessionsResult = await getAllSessions();
+  const sessions = sessionsResult.success ? sessionsResult.data : [];
   return (
     <PageContainer>
       <PageHeader title="Sessions" description="Manage your days planifications" className="">
@@ -16,8 +18,8 @@ export default function SessionsPage() {
         </VariantLink>
       </PageHeader>
       <PageContent className="flex w-fit flex-wrap gap-4">
-        {SESSIONS.map((session) => (
-          <Session key={session.name} data={session} />
+        {sessions.map((session) => (
+          <Session key={session.id} session={session} />
         ))}
       </PageContent>
     </PageContainer>

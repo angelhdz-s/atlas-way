@@ -8,7 +8,6 @@ import {
 import { getContainer } from '@/di/containers';
 import { MuscleMapper } from '../infrastructure/muscle.mapper';
 import type { MuscleDTO } from '@/modules/muscle/application/dtos/muscle.dto';
-import type { ExerciseToMuscle } from '@/modules/exercise/link/muscle/domain/exercise-to-muscle.entity';
 import type { MuscleProps } from '../domain/muscle.types';
 
 export async function getAllMuscles(): ActionResponse<MuscleDTO[]> {
@@ -16,7 +15,9 @@ export async function getAllMuscles(): ActionResponse<MuscleDTO[]> {
   const getAllMuscles = container.muscle.GetAllMusclesUseCase;
   const musclesResult = await getAllMuscles.execute();
   if (!musclesResult.success) return ActionFailure(musclesResult.error.message);
-  const musclesDTO = musclesResult.data.map((muscle) => MuscleMapper.toDTO(muscle));
+  const musclesDTO = musclesResult.data.map((muscle) => {
+    return MuscleMapper.toDTO(muscle);
+  });
   return ActionSuccess(musclesDTO, 'Muscles were obtained successfully');
 }
 
@@ -27,27 +28,21 @@ export async function getMuscleById(id: MuscleProps['id']): ActionResponse<Muscl
 
   if (!muscleResult.success) return ActionFailure(muscleResult.error.message);
 
-  return ActionSuccess(muscleResult.data, '');
+  if (!muscleResult.data) return ActionSuccess(muscleResult.data, 'No muscle was found');
+
+  const muscleDTO = MuscleMapper.toDTO(muscleResult.data);
+
+  return ActionSuccess(muscleDTO, 'Muscle obtained successfully');
 }
 
-export async function getAllMusclesByExercise(
-  exerciseId: ExerciseToMuscle['exerciseId']
-): ActionResponse<MuscleDTO[]> {
-  const muscles: MuscleDTO[] = [];
+export async function getMusclesByIds(ids: MuscleProps['id'][]): ActionResponse<null> {
   const container = getContainer();
-  const getExercisesToMusclesByExerciseId =
-    container.exerciseToMuscle.GetExercisesToMusclesByExerciseIdUseCase;
-  const exerciseToMusclesResult = await getExercisesToMusclesByExerciseId.execute(exerciseId);
-  if (!exerciseToMusclesResult.success) return ActionFailure(exerciseToMusclesResult.error.message);
 
-  const exerciseToMuscles = exerciseToMusclesResult.data;
+  const getMusclesByIds = container.muscle.GetMusclesByIdsUseCase;
 
-  for (const { muscleId } of exerciseToMuscles) {
-    const muscleRequest = await getMuscleById(muscleId);
-    if (!muscleRequest.success) return ActionFailure(muscleRequest.message);
-    if (!muscleRequest.data) return ActionFailure(`Muscle with id ${muscleId} was not found`);
-    muscles.push(muscleRequest.data);
-  }
+  const musclesResult = await getMusclesByIds.execute(ids);
 
-  return ActionSuccess(muscles, 'Muscles gotten');
+  if (!musclesResult.success) return ActionFailure('Error fetching muscles by ids');
+
+  return ActionSuccess(null, 'Muscles gotten');
 }

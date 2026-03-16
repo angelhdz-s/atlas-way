@@ -1,7 +1,7 @@
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import { TextArea } from '@/presentation/modules/form/components/fields/TextArea';
 import { useFormContext } from 'react-hook-form';
-import type { SessionForm } from '../../config/session-schema';
+import type { SessionForm } from '../../config/session.schema';
 
 export function SessionDescription() {
   const {

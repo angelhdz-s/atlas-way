@@ -1,6 +1,10 @@
+import type { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 import type { RoutineProps } from '../../domain/routine.types';
 
-export type RoutineDTO = Pick<
-  RoutineProps,
-  'id' | 'name' | 'description' | 'active' | 'days' | 'initialDate' | 'createdAt'
->;
+export type RoutineDTO = Omit<RoutineProps, 'updatedAt' | 'routineDays'> & {
+  routineDays: {
+    name: RoutineProps['routineDays'][number]['name'];
+    day: RoutineProps['routineDays'][number]['day'];
+    session: SessionDTO | null;
+  }[];
+};

@@ -18,6 +18,9 @@ export class Routine {
   get active() {
     return this.data.active;
   }
+  get cycle() {
+    return this.data.cycle;
+  }
   get initialDate() {
     return this.data.initialDate;
   }
@@ -30,8 +33,8 @@ export class Routine {
   get userId() {
     return this.data.userId;
   }
-  get routineCycleId() {
-    return this.data.routineCycleId;
+  get routineDays() {
+    return this.data.routineDays;
   }
   changeName(name: string) {
     this.data.name = name;

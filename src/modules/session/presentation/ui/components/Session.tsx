@@ -1,6 +1,5 @@
 import { IconBarbell } from '@/presentation/globals/components/Icons';
 import { CardTags } from '../../../../../presentation/modules/dashboard/card/components/CardTags';
-import type { SessionDayType } from '@/presentation/globals/mocks/sessions';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 import { CardHeader } from '@/presentation/modules/dashboard/card/components/CardHeader';
 import { CardSubHeader } from '@/presentation/modules/dashboard/card/components/CardSubHeader';
@@ -8,18 +7,19 @@ import { CardMain } from '@/presentation/modules/dashboard/card/components/CardM
 import { CardFooter } from '@/presentation/modules/dashboard/card/components/CardFooter';
 import { CardButton } from '@/presentation/modules/dashboard/card/components/CardButton';
 import { SessionExercisesList } from './SessionExerciseList';
+import type { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 
-export function Session({ data }: { data: SessionDayType }) {
-  const { name, description, exercises, date, routines } = data;
+export function Session({ session }: { session: SessionDTO }) {
+  const { name, description, exercises } = session;
 
-  const muscularGroups = exercises.map((e) => e.muscleGroup);
+  const muscles = exercises.flatMap((e) => e.muscles);
+  const muscularGroupsList = muscles.map((m) => m.group.name);
 
-  const distinctMuscularGroups = [...new Set(muscularGroups)];
+  const muscularGroupsSet = new Set([...muscularGroupsList]);
 
-  const tags = distinctMuscularGroups.map((el) => ({
-    value: el,
-    selected: false,
-  }));
+  const muscularGroups = [...muscularGroupsSet];
+
+  const sortedExercises = exercises.toSorted((a, b) => a.name.localeCompare(b.name));
 
   return (
     <Card type="dashboard" width="lg">
@@ -28,18 +28,19 @@ export function Session({ data }: { data: SessionDayType }) {
         decoration={<span className="bg-unread block aspect-square size-4 rounded-full"></span>}
       >
         <CardSubHeader
-          counters={[
-            date,
-            `${exercises.length} exercises`,
-            `${routines} ${routines === 1 ? 'routine' : 'routines'}`,
-          ]}
-          description={description}
+          counters={['1 hour ago', `${exercises.length} exercises`, '0 routines']}
+          description={description ?? ''}
         />
       </CardHeader>
 
       <CardMain>
-        <CardTags values={tags} />
-        <SessionExercisesList exercises={exercises.sort((a, b) => a.name.localeCompare(b.name))} />
+        <CardTags
+          values={muscularGroups.map((m) => ({
+            selected: false,
+            value: m,
+          }))}
+        />
+        <SessionExercisesList exercises={sortedExercises} />
       </CardMain>
       <CardFooter>
         <CardButton>
