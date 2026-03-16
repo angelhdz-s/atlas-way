@@ -3,7 +3,6 @@ import { makeExerciseModule } from '@/modules/exercise/exercise.container';
 import { makeMuscleModule } from '@/modules/muscle/muscle.container';
 import { makeNotificationModule } from '@/modules/notification/notification.container';
 import { makeRoutineModule } from '@/modules/routine/routine.container';
-import { makeRoutineDaysModule } from '@/modules/routine-days/routine-days.container';
 import { makeSessionModule } from '@/modules/session/session.container';
 import { makeUserModule } from '@/modules/user/user.container';
 import {
@@ -17,7 +16,6 @@ import { UUIDGenerator } from '@/shared/infrastructure/generators/uuid-generator
 import { MusclePrismaRepository } from '@/modules/muscle/infrastructure/prisma/muscle.prisma.repository';
 import { NotificationPrismaRepository } from '@/modules/notification/infrastructure/prisma/notification.prisma.repository';
 import { RoutinePrismaRepository } from '@/modules/routine/infrastructure/prisma/routine.prisma.repository';
-import { RoutineDaysPrismaRepository } from '@/modules/routine-days/infrastructure/prisma/routine-days.prisma.repository';
 import { SessionPrismaRepository } from '@/modules/session/infrastructure/prisma/session.prisma.repository';
 import { UserPrismaRepository } from '@/modules/user/infrastructure/prisma/user.prisma.repository';
 
@@ -36,7 +34,6 @@ export const getContainer = () => {
   const muscleRepository = new MusclePrismaRepository(prisma, errorMapper);
   const notificationRepository = new NotificationPrismaRepository(prisma, errorMapper);
   const routineRepository = new RoutinePrismaRepository(prisma, errorMapper);
-  const routineDaysRepository = new RoutineDaysPrismaRepository(prisma, errorMapper);
   const sessionRepository = new SessionPrismaRepository(prisma, errorMapper);
   const userRepository = new UserPrismaRepository(prisma, errorMapper);
 
@@ -54,12 +51,8 @@ export const getContainer = () => {
     }),
     routine: makeRoutineModule({
       routineRepository,
-      routineDaysRepository,
+      sessionRepository,
       idGeneratorRepository,
-    }),
-    routineDays: makeRoutineDaysModule({
-      idGeneratorRepository,
-      routineDaysRepository,
     }),
     session: makeSessionModule({
       idGeneratorRepository,

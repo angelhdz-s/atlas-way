@@ -1,48 +1,52 @@
 import { Failure } from '@/shared/domain/result';
 import { Routine } from '../../domain/routine.entity';
-import { RoutineDays } from '@/modules/routine-days/domain/routine-days.entity';
-import type {
-  CreateRoutineDaysInput,
-  CreateRoutineDaysWithoutRoutineIdInput,
-} from '@/modules/routine-days/application/dtos/create-routine-days.dto';
+import { RoutineCycleNotFound, RoutineNotFoundError } from '../../domain/errors/routine.errors';
 import type { CreateRoutineInput } from '../dtos/create-routine.dto';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
-import type { IRoutineDaysRepository } from '@/modules/routine-days/domain/routine-days.resporitory';
 import type { IRoutineRepository } from '../../domain/routine.repository';
+import type { ISessionRepository } from '@/modules/session/domain/session.repository';
+import type { RoutineProps } from '../../domain/routine.types';
+import type { Session } from '@/modules/session/domain/session.entity';
 import type { UseCase } from '@/shared/application/use-case';
+import { CYCLE_TYPES } from '../../domain/constants/routine.constants.cycle-types';
 
 export class CreateRoutine implements UseCase {
   constructor(
     private routineRepository: IRoutineRepository,
-    private routineDayRepository: IRoutineDaysRepository,
+    private sessionRepository: ISessionRepository,
     private generator: IdGeneratorRepository
   ) {}
 
-  async execute(
-    routineData: CreateRoutineInput,
-    routineDaysData?: CreateRoutineDaysWithoutRoutineIdInput[]
-  ) {
+  async execute(routineData: CreateRoutineInput) {
     const routineId = this.generator.generate();
-    const newRoutine = Routine.create(routineId, routineData);
 
-    const routineCreateResult = await this.routineRepository.create(newRoutine);
-    if (!routineCreateResult.success) return routineCreateResult;
+    const sessions: (Session | null)[] = [];
 
-    if (routineDaysData && routineDaysData?.length > 0) {
-      for (const routineDay of routineDaysData) {
-        const routineDayId = this.generator.generate();
-        const routineDayInput: CreateRoutineDaysInput = {
-          dayNumber: routineDay.dayNumber,
-          name: routineDay.name,
-          sessionId: routineDay.sessionId,
-          routineId,
-        };
-        const newRoutineDay: RoutineDays = RoutineDays.create(routineDayId, routineDayInput);
-        const createRoutineDayResult = await this.routineDayRepository.create(newRoutineDay);
-        if (!createRoutineDayResult.success) return Failure(createRoutineDayResult.error);
+    const cycleType = Object.values(CYCLE_TYPES).find((c) => c.id === routineData.cycleId);
+    if (!cycleType) return Failure(new RoutineCycleNotFound());
+
+    for (const routineDay of routineData.routineDays) {
+      if (!routineDay.sessionId) {
+        sessions.push(null);
+        continue;
       }
+      const sessionResult = await this.sessionRepository.findById(routineDay.sessionId);
+      if (!sessionResult.success) return sessionResult;
+      sessions.push(sessionResult.data);
     }
 
-    return routineCreateResult;
+    if (sessions.length !== routineData.routineDays.length)
+      return Failure(new RoutineNotFoundError());
+
+    const routineDays: RoutineProps['routineDays'] = routineData.routineDays.map((r, index) => ({
+      id: this.generator.generate(),
+      day: r.day,
+      name: r.name,
+      session: sessions[index],
+    }));
+
+    const newRoutine = Routine.create(routineId, { ...routineData, cycle: cycleType, routineDays });
+
+    return await this.routineRepository.create(newRoutine);
   }
 }
