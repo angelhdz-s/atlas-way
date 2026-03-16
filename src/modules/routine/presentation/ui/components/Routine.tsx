@@ -1,5 +1,4 @@
 import { DAYS, type DayWeeksType } from '@/presentation/globals/config/defaults';
-import type { RoutineType } from '@/presentation/globals/mocks/routines';
 import { CardTags } from '@/presentation/modules/dashboard/card/components/CardTags';
 import { IconCalendarWeek } from '@/presentation/globals/components/Icons';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
@@ -9,14 +8,20 @@ import { CardMain } from '@/presentation/modules/dashboard/card/components/CardM
 import { CardButton } from '@/presentation/modules/dashboard/card/components/CardButton';
 import { CardFooter } from '@/presentation/modules/dashboard/card/components/CardFooter';
 import { RoutineDayItem } from './RoutineDayItem';
+import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 
-export function Routine({ data }: { data: RoutineType }) {
-  const { name, description, days, exercisesCount, date, sessions } = data;
+export function Routine({ data }: { data: RoutineDTO }) {
+  const { name, routineDays, description } = data;
 
-  const trainingSessions = days.filter((day) => day.type !== 'rest');
-  const sessionsTags = trainingSessions.map((day) => ({
-    value: day.name,
-    selected: day.status === 'current',
+  const routineDaysSessions = routineDays.map((r) => r.session);
+
+  const sessions = routineDaysSessions.filter((s) => s !== null);
+
+  const exercises = sessions.flatMap((s) => s.exercises);
+
+  const sessionsTags = sessions.map((s, index) => ({
+    value: s.name,
+    selected: index === 0,
   }));
 
   return (
@@ -26,8 +31,8 @@ export function Routine({ data }: { data: RoutineType }) {
         decoration={<span className="bg-unread block aspect-square size-4 rounded-full"></span>}
       >
         <CardSubHeader
-          counters={[date, `${exercisesCount} exercises`, `${sessions} sessions`]}
-          description={description}
+          counters={['1 hour ago', `${exercises.length} exercises`, `${sessions.length} sessions`]}
+          description={description ?? ''}
         />
       </CardHeader>
       <CardMain>
@@ -36,12 +41,12 @@ export function Routine({ data }: { data: RoutineType }) {
         </footer>
         <main>
           <ul className="flex flex-wrap items-center gap-2 text-sm">
-            {days.map(({ weekDay, type, status }) => (
+            {routineDays.map(({ day, session }) => (
               <RoutineDayItem
-                key={weekDay}
-                name={DAYS[weekDay as DayWeeksType].shortName}
-                type={type}
-                status={status}
+                key={day}
+                name={DAYS[(day + 1) as DayWeeksType].shortName}
+                type={session ? 'training' : 'rest'}
+                status="next"
               />
             ))}
           </ul>
