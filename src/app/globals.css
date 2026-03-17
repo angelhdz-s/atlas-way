@@ -5,7 +5,7 @@
   interpolate-size: allow-keywords;
   --header-height: calc(var(--spacing) * 14);
   --sidebar-height: calc(100% - var(--header-height));
-  --sidebar-width: calc(var(--spacing) * 64);
+  --sidebar-width: calc(var(--spacing) * 60);
 }
 
 @custom-variant light (&:where([data-theme=light], [data-theme=light] *));
@@ -159,5 +159,11 @@ body::before {
 
   &::-webkit-scrollbar-thumb:hover {
     background-color: var(--color-subtle);
+  }
+}
+
+@media (width <= 64rem) {
+  :root {
+    --sidebar-width: calc(var(--spacing) * 14);
   }
 }

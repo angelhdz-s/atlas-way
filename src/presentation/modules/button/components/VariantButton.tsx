@@ -6,8 +6,9 @@ import type { VariantButtonType } from '../button.types';
 export function VariantButton({
   variantConfig,
   className,
+  type = 'button',
   ...props
 }: VariantButtonType<ButtonElementProps>) {
   const variantClassNames = buttonVariant(variantConfig);
-  return <button className={twMerge(variantClassNames, className)} {...props}></button>;
+  return <button type={type} className={twMerge(variantClassNames, className)} {...props}></button>;
 }

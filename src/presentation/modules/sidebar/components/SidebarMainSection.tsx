@@ -7,26 +7,28 @@ import {
   IconRouteX,
   IconSchema,
 } from '@/presentation/globals/components/Icons';
-import { NavLink, NavLinks } from './nav/NavLink';
+import { NavLink } from './nav/NavLink';
+import { NavLinks } from './nav/NavLinks';
+import { NavLinkIcon } from './nav/NavLinkIcon';
 
 export function SidebarMainSection() {
   return (
     <SidebarSection name="Main">
       <NavLinks>
-        <NavLink href="/dashboard/routines" Icon={IconRouteX}>
-          Routines
+        <NavLink href="/dashboard/routines" label="Routines">
+          <NavLinkIcon Icon={IconRouteX} />
         </NavLink>
 
-        <NavLink href="/dashboard/sessions" Icon={IconSchema}>
-          Sessions
+        <NavLink href="/dashboard/sessions" label="Sessions">
+          <NavLinkIcon Icon={IconSchema} />
         </NavLink>
 
-        <NavLink href="/dashboard/exercises" Icon={IconBarbell}>
-          Exercises
+        <NavLink href="/dashboard/exercises" label="Exercises">
+          <NavLinkIcon Icon={IconBarbell} />
         </NavLink>
 
-        <NavLink href="/dashboard/muscles" Icon={IconMan}>
-          Muscles
+        <NavLink href="/dashboard/muscles" label="Muscles">
+          <NavLinkIcon Icon={IconMan} />
         </NavLink>
       </NavLinks>
     </SidebarSection>
