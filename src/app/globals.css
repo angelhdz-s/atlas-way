@@ -162,6 +162,13 @@ body::before {
   }
 }
 
+.no-scrollbar {
+  &::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
+}
+
 @media (width <= 64rem) {
   :root {
     --sidebar-width: calc(var(--spacing) * 14);
