@@ -18,8 +18,6 @@ export function Session({ session }: { session: SessionDTO }) {
 
   const muscularGroups = [...muscularGroupsSet];
 
-  const sortedExercises = exercises.toSorted((a, b) => a.name.localeCompare(b.name));
-
   return (
     <Card type="dashboard" width="lg">
       <CardHeader>
@@ -33,7 +31,7 @@ export function Session({ session }: { session: SessionDTO }) {
             <CardTag key={m} tag={{ value: m, selected: false }} />
           ))}
         </CardTagsWrapperFade>
-        <SessionExercisesList exercises={sortedExercises} />
+        <SessionExercisesList exercises={exercises} />
       </CardMain>
     </Card>
   );
