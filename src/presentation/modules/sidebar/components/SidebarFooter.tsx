@@ -29,7 +29,7 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
 
   return (
     <footer
-      className={`bg-front relative mx-1 mb-1 flex items-center rounded transition-colors lg:p-1 lg:pr-2 lg:pl-4 ${className}`}
+      className={`bg-middle relative mx-1 mb-1 flex items-center rounded transition-colors lg:p-1 lg:pr-2 lg:pl-4 ${className}`}
     >
       <div ref={containerRef} className="w-full">
         <div className="flex w-full items-center justify-center gap-1 lg:justify-between">

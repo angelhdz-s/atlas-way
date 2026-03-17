@@ -7,10 +7,10 @@ export function Header({ className = '' }: { className?: string }) {
   return (
     <header className="h-(--header-height) w-full">
       <main
-        className={`bg-middle font-funnel-display fixed top-0 left-0 z-10 grid h-(--header-height) w-full grid-cols-[1fr_auto_1fr] gap-4 pr-4 ${className}`}
+        className={`bg-back border-bd-muted font-funnel-display fixed top-0 left-0 z-10 grid h-(--header-height) w-full grid-cols-[1fr_auto_1fr] gap-4 border-b pr-4 ${className}`}
       >
         <section className="flex h-full items-center gap-2">
-          <main className="flex h-full w-(--sidebar-width) items-center justify-between gap-0 lg:pl-4">
+          <main className="border-bd-muted flex h-full w-(--sidebar-width) items-center justify-between gap-0 border-r lg:pl-4">
             <Link
               href="/"
               className="font-funnel-display mx-auto flex items-center gap-2 font-light lg:mx-0"
