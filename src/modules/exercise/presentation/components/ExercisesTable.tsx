@@ -16,32 +16,27 @@ export function ExercisesTable({ exercises }: Props) {
   return (
     <TableWrapper>
       <TableHeader>
-        <td className="w-12 pl-4">#</td>
-        <td className="w-50">Exercise</td>
-        <td className="">Description</td>
-        <td className="w-20">Sets</td>
-        <td className="w-20">Reps</td>
-        <td className="w-20">Weight</td>
-        <td className="w-30">Date</td>
-        <td className="w-36 text-center">Actions</td>
+        <td className="w-10 text-center md:w-12">#</td>
+        <td className="w-30 md:w-50">Exercise</td>
+        <td className="hidden xl:table-cell">Description</td>
+        <td className="text-center md:w-fit xl:w-20">Sets</td>
+        <td className="text-center md:w-fit xl:w-20">Reps</td>
+        <td className="text-center md:w-fit xl:w-20">Weight</td>
+        <td className="hidden md:w-30">Date</td>
+        <td className="w-24 text-center">Actions</td>
       </TableHeader>
       <TableBody>
         {exercises.map(({ id, name, description, sets, reps, weight, createdAt }, index) => (
           <TableBodyRow key={id}>
-            <td className="fg-muted pl-4 font-light">{index + 1}</td>
+            <td className="fg-muted w-10 text-center font-light md:w-12">{index + 1}</td>
             <td className="fg-strong truncate">{name}</td>
-            <td className="w-[40%] truncate pr-4">{description}</td>
-            <td>{sets}</td>
-            <td>{reps}</td>
-            <td>{weight}</td>
-            <td>{createdAt.toLocaleDateString()}</td>
+            <td className="hidden w-[40%] truncate pr-4 xl:table-cell">{description}</td>
+            <td className="text-center">{sets}</td>
+            <td className="text-center">{reps}</td>
+            <td className="text-center">{weight}</td>
+            <td className="hidden md:w-30">{createdAt.toLocaleDateString()}</td>
             <td>
               <ul className="flex w-full items-center justify-center">
-                <li>
-                  <VariantButton variantConfig={{ color: 'simple', type: 'square' }}>
-                    <IconEdit className="size-5" />
-                  </VariantButton>
-                </li>
                 <li>
                   <VariantButton variantConfig={{ color: 'simple', type: 'square' }}>
                     <IconEdit className="size-5" />

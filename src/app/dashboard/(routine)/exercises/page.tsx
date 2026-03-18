@@ -4,7 +4,7 @@ import { PageHeader } from '@/presentation/modules/dashboard/page/components/Pag
 import { getAllUserExercises } from '@/modules/exercise/presentation/exercise.actions';
 import { VariantLink } from '@/presentation/modules/button/components/VariantLink';
 import { IconPlus } from '@/presentation/globals/components/Icons';
-import { ExercisesTable } from '@/modules/exercise/presentation/components/ExerciseTable';
+import { ExercisesTable } from '@/modules/exercise/presentation/components/ExercisesTable';
 
 export default async function ExercisesPage() {
   const exercisesRequest = await getAllUserExercises();
