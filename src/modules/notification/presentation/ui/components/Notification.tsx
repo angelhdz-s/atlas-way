@@ -22,11 +22,17 @@ export function Notification({
         <input type="checkbox" className="size-5 cursor-pointer" />
       </div>
       <main className="w-full">
-        <header className="w-fit">
+        <header className="relative w-fit">
           <Link href={url || '/dashboard/notifications'} className="flex w-fit items-center gap-2">
-            <h3 className={`text-base ${notSeen ? 'fg-strong font-medium' : ''}`}>{title}</h3>
-            {notSeen && <span className="bg-unread block size-2.5 rounded-full"></span>}
+            <h3
+              className={`line-clamp-1 w-fit text-base ${notSeen ? 'fg-strong font-medium' : ''}`}
+            >
+              {title}
+            </h3>
           </Link>
+          {notSeen && (
+            <span className="bg-unread absolute inset-y-0 left-full my-auto ml-2 block size-2 rounded-full"></span>
+          )}
         </header>
         <footer>
           <p className={`text-sm font-light ${notSeen ? '' : 'text-default/60'}`}>
