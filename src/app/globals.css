@@ -54,8 +54,8 @@
   /* Dark */
   /* Background */
   --color-back-dark: #0a0a0a;
-  --color-middle-dark: #0e0e0e;
-  --color-front-dark: #151515;
+  --color-middle-dark: #0c0c0c;
+  --color-front-dark: #121212;
   /* Foreground */
   --color-strong-dark: #fafafa;
   --color-default-dark: #c0c0c0;
@@ -71,8 +71,8 @@
 
   /* Light */
   /* Background */
-  --color-back-light: #eeeef4;
-  --color-middle-light: var(--color-slate-50);
+  --color-back-light: #f8f8ff;
+  --color-middle-light: #fcfcff;
   --color-front-light: #eaeafa;
   /* Foreground */
   --color-strong-light: #050505;
