@@ -1,14 +1,15 @@
 export function Footer({ className = '' }: { className?: string }) {
   return (
-    <footer className={`flex items-center gap-4 p-4 ${className}`}>
+    <footer className={`flex items-center justify-center gap-4 p-4 md:justify-start ${className}`}>
       <main className="flex items-center gap-2">
         <h5>AtlasWay</h5>
         <p>&copy; {new Date().getFullYear()}</p>
       </main>
       <p>
-        Mail us at: <a href="mailto:info@atlasway.com">info@atlasway.com</a>
+        <span className="hidden md:inline">Mail us at: </span>
+        <a href="mailto:info@atlasway.com">info@atlasway.com</a>
       </p>
-      <a href="https://www.github.com/angelhdz-s/atlas-way">GitHub Repository</a>
+      <a href="https://www.github.com/angelhdz-s/atlas-way">GitHub</a>
     </footer>
   );
 }
