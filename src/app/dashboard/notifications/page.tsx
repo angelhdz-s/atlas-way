@@ -8,7 +8,7 @@ export default function Dashboard() {
   return (
     <PageContainer>
       <PageHeader title="Notifications" />
-      <PageContent className="flex flex-col gap-1">
+      <PageContent className="space-y-1">
         {NOTIFICATIONS.map((notification, index) => (
           <Notification key={index} data={notification} />
         ))}
