@@ -2,9 +2,9 @@ import { PageContainer } from '@/presentation/modules/dashboard/page/components/
 import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
 import { getAllUserExercises } from '@/modules/exercise/presentation/exercise.actions';
-import { Exercises } from '@/modules/exercise/presentation/components/Exercises';
 import { VariantLink } from '@/presentation/modules/button/components/VariantLink';
 import { IconPlus } from '@/presentation/globals/components/Icons';
+import { ExercisesTable } from '@/modules/exercise/presentation/components/ExerciseTable';
 
 export default async function ExercisesPage() {
   const exercisesRequest = await getAllUserExercises();
@@ -24,7 +24,7 @@ export default async function ExercisesPage() {
         </VariantLink>
       </PageHeader>
       <PageContent className="flex flex-wrap gap-4">
-        <Exercises exercises={exercises} />
+        <ExercisesTable exercises={exercises} />
       </PageContent>
     </PageContainer>
   );
