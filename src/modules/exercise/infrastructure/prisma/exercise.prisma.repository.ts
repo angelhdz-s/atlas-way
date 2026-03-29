@@ -89,4 +89,16 @@ export class ExercisePrismaRepository implements IExerciseRepository {
       return Failure(this.errorMapper.translate(e));
     }
   }
+  async delete(exerciseId: ExerciseProps['id']) {
+    try {
+      const exercise = await this.prisma.exercises.delete({
+        where: { id: exerciseId },
+        ...exerciseIncludeAnatomy,
+      });
+      const domainExercise = ExerciseMapper.toDomain(exercise);
+      return Success(domainExercise);
+    } catch (e) {
+      return Failure(this.errorMapper.translate(e));
+    }
+  }
 }
