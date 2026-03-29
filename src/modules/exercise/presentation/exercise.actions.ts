@@ -1,20 +1,16 @@
 'use server';
 
-import {
-  type ExerciseFormProps,
-  ExerciseFormSchema,
-} from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
-import {
-  ActionFailure,
-  type ActionResponse,
-  ActionSuccess,
-} from '@/shared/presentation/action.response';
-import type { CreateExerciseInput } from '../application/dtos/create-exercise.dto';
-import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
-import { getContainer } from '@/di/containers';
+import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.response';
+import { ExerciseFormSchema } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
 import { ExerciseMapper } from '../infrastructure/exercise.mapper';
-import type { ExerciseDTO } from '../application/dtos/exercise.dto';
+import { getContainer } from '@/di/containers';
+import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
 import { revalidatePath } from 'next/cache';
+import type { ActionResponse } from '@/shared/presentation/action.response';
+import type { CreateExerciseInput } from '../application/dtos/create-exercise.dto';
+import type { ExerciseDTO } from '../application/dtos/exercise.dto';
+import type { ExerciseProps } from '../domain/exercise.types';
+import type { ExerciseFormProps } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
 
 export async function createExerciseAction(
   data: ExerciseFormProps
@@ -68,4 +64,22 @@ export async function getAllUserExercises(): ActionResponse<ExerciseDTO[]> {
   const exercisesDTOs = exercises.map((m) => ExerciseMapper.toDTO(m));
 
   return ActionSuccess(exercisesDTOs, 'User exercises found successfully');
+}
+
+export async function deleteExercise(exerciseId: ExerciseProps['id']): ActionResponse<ExerciseDTO> {
+  const container = getContainer();
+
+  const userIdResult = await getCurrentUserId();
+  if (!userIdResult.success) return ActionFailure(userIdResult.message);
+  if (!userIdResult.data) return ActionFailure('User not found');
+  const userId = userIdResult.data;
+
+  const deleteExercise = container.exercise.DeleteExerciseUseCase;
+  const exercisesResult = await deleteExercise.execute(exerciseId, userId);
+  if (!exercisesResult.success) return ActionFailure(exercisesResult.error.message);
+  const exercise = exercisesResult.data;
+
+  const exerciseDTO = ExerciseMapper.toDTO(exercise);
+
+  return ActionSuccess(exerciseDTO, 'Exercise deleted successfully');
 }
