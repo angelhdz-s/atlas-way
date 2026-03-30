@@ -1,3 +1,4 @@
+import type { Exercise } from '@/modules/exercise/domain/exercise.entity';
 import type { SessionProps } from './session.types';
 
 export class Session {
@@ -31,6 +32,9 @@ export class Session {
   }
   changeDescription(description: SessionProps['description']) {
     this.data.description = description;
+  }
+  changeExercises(exercises: Exercise[]) {
+    this.data.exercises = exercises;
   }
   static create(
     id: SessionProps['id'],
