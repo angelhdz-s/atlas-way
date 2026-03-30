@@ -11,8 +11,8 @@ export type InputNumberProps = InputTextProps & {
   value?: string | number;
 };
 
-export type TextAreaProps = InputTextProps & {
-  rows?: number;
+export type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  error?: string;
 };
 
 export type SelectOptionValue = string;
