@@ -1,7 +1,7 @@
 import { CreateSession } from '@/modules/session/application/use-cases/create-session';
 import { GetAllSessions } from '@/modules/session/application/use-cases/get-all-sessions';
 import { GetSessionById } from '@/modules/session/application/use-cases/get-session-by-id';
-import { UpdateSessions } from '@/modules/session/application/use-cases/update-session';
+import { UpdateSession } from '@/modules/session/application/use-cases/update-session';
 import type { ISessionRepository } from './domain/session.repository';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
 import type { IExerciseRepository } from '../exercise/domain/exercise.repository';
@@ -28,7 +28,7 @@ export const makeSessionModule = ({
     GetAllSessionsUseCase: new GetAllSessions(sessionRepository),
     GetSessionByIdUseCase: new GetSessionById(sessionRepository),
     GetSessionsByIdsUseCase: new GetSessionsByIds(sessionRepository),
-    UpdateSessionUseCase: new UpdateSessions(sessionRepository, exerciseRepository),
+    UpdateSessionUseCase: new UpdateSession(sessionRepository, exerciseRepository),
     DeleteSessionUseCase: new DeleteSession(sessionRepository),
   };
 };

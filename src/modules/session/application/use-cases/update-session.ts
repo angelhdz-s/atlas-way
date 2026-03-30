@@ -6,7 +6,7 @@ import type { SessionProps } from '../../domain/session.types';
 import type { UpdateSessionInput } from '../dtos/update-session.dto';
 import type { UseCase } from '@/shared/application/use-case';
 
-export class UpdateSessions implements UseCase {
+export class UpdateSession implements UseCase {
   constructor(
     private sessionRepository: ISessionRepository,
     private exerciseRepository: IExerciseRepository
