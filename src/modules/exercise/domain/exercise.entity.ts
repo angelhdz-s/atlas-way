@@ -1,4 +1,5 @@
 import type { ExerciseProps } from './exercise.types';
+import type { Muscle } from '@/modules/muscle/domain/muscle.entity';
 
 export class Exercise {
   constructor(private data: ExerciseProps) {}
@@ -38,9 +39,17 @@ export class Exercise {
   changeDescription(description: ExerciseProps['description']) {
     this.data.description = description;
   }
-
-  changeId(description: ExerciseProps['description']) {
-    this.data.description = description;
+  changeSets(sets: ExerciseProps['sets']) {
+    this.data.sets = sets;
+  }
+  changeReps(reps: ExerciseProps['reps']) {
+    this.data.reps = reps;
+  }
+  changeWeight(weight: ExerciseProps['weight']) {
+    this.data.weight = weight;
+  }
+  changeMuscles(muscles: Muscle[]) {
+    this.data.muscles = muscles;
   }
 
   static create(

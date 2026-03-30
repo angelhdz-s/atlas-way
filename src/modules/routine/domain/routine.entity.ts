@@ -51,6 +51,12 @@ export class Routine {
   changeInitialDate(initialDate: Date) {
     this.data.initialDate = initialDate;
   }
+  changeCycle(cycle: RoutineProps['cycle']) {
+    this.data.cycle = cycle;
+  }
+  changeRoutineDays(routineDays: RoutineProps['routineDays']) {
+    this.data.routineDays = routineDays;
+  }
   static create(
     id: RoutineProps['id'],
     data: Omit<RoutineProps, 'id' | 'createdAt' | 'updatedAt'>

@@ -26,7 +26,7 @@ export const makeExerciseModule = ({
       muscleRepository,
       idGeneratorRepository
     ),
-    UpdateExerciseUseCase: new UpdateExercise(exerciseRepository),
+    UpdateExerciseUseCase: new UpdateExercise(exerciseRepository, muscleRepository),
     GetExerciseByIdUseCase: new GetExerciseById(exerciseRepository),
     GetExerciseByIdsUseCase: new GetExercisesByIds(exerciseRepository),
     GetAllExerciseUseCase: new GetAllExercises(exerciseRepository),

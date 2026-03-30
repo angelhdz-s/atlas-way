@@ -1,5 +1,8 @@
 import type { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
+import type { MuscleProps } from '@/modules/muscle/domain/muscle.types';
 import type { UpdateDto } from '@/shared/application/dtos/create.types';
 
-type UpdateProps = Pick<ExerciseProps, 'name' | 'description'>;
-export type UpdateExerciseInput = UpdateDto<UpdateProps>;
+type UpdateProps = Pick<ExerciseProps, 'name' | 'description' | 'sets' | 'reps' | 'weight'>;
+export type UpdateExerciseInput = UpdateDto<UpdateProps> & {
+  muscleIds?: MuscleProps['id'][];
+};

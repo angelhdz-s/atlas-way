@@ -16,7 +16,7 @@ export type RoutineProps = {
   readonly createdAt: Date;
   readonly updatedAt: Date;
   readonly userId: UserProps['id'];
-  readonly routineDays: {
+  routineDays: {
     id: string;
     name: string;
     day: number;

@@ -26,7 +26,11 @@ export const makeRoutineModule = ({
       sessionRepository,
       idGeneratorRepository
     ),
-    UpdateRoutineUseCase: new UpdateRoutine(routineRepository),
+    UpdateRoutineUseCase: new UpdateRoutine(
+      routineRepository,
+      sessionRepository,
+      idGeneratorRepository
+    ),
     DeleteRoutineUseCase: new DeleteRoutine(routineRepository),
   };
 };
