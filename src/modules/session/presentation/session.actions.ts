@@ -90,3 +90,20 @@ export async function getSessionsByIds(ids: SessionProps['id'][]): ActionRespons
     data: sessionsDTO,
   };
 }
+
+export async function deleteSession(sessionId: SessionProps['id']): ActionResponse<SessionDTO> {
+  const container = getContainer();
+
+  const userIdResult = await getCurrentUserId();
+  if (!userIdResult.success) return ActionFailure(userIdResult.message);
+  if (!userIdResult.data) return ActionFailure('User not found');
+  const userId = userIdResult.data;
+
+  const deleteSession = container.session.DeleteSessionUseCase;
+  const deleteSessionResult = await deleteSession.execute(sessionId, userId);
+  if (!deleteSessionResult.success) return ActionFailure(deleteSessionResult.error.message);
+
+  const sessionDTO = SessionMapper.toDTO(deleteSessionResult.data);
+
+  return ActionSuccess(sessionDTO, 'Session deleted successfully');
+}
