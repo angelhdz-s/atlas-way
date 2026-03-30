@@ -28,7 +28,7 @@ export const makeSessionModule = ({
     GetAllSessionsUseCase: new GetAllSessions(sessionRepository),
     GetSessionByIdUseCase: new GetSessionById(sessionRepository),
     GetSessionsByIdsUseCase: new GetSessionsByIds(sessionRepository),
-    UpdateSessionUseCase: new UpdateSessions(sessionRepository),
+    UpdateSessionUseCase: new UpdateSessions(sessionRepository, exerciseRepository),
     DeleteSessionUseCase: new DeleteSession(sessionRepository),
   };
 };
