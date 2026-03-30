@@ -1,24 +1,25 @@
-import { InputClasses } from '../../constants/classes';
-import type { InputTextProps } from '../../types';
 import { ErrorMessage } from '../ErrorMessage';
+import { InputClasses } from '../../constants/classes';
+import { useState } from 'react';
+import type { InputTextProps } from '../../types';
 
-export function InputText({
-  name,
-  className = '',
-  placeholder = '',
-  disabled = false,
-  error,
-  ...props
-}: InputTextProps) {
+export function InputText(props: InputTextProps) {
+  const { onChange, className, error, value, ...rest } = props;
+  const [valueState, setValueState] = useState(value ?? '');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange?.(e);
+    setValueState(e.currentTarget.value);
+  };
+
   return (
     <>
       <input
+        {...rest}
         type="text"
-        placeholder={placeholder}
-        name={name}
-        disabled={disabled}
         className={`${InputClasses} ${className}`}
-        {...props}
+        onChange={handleChange}
+        value={valueState}
       />
       <ErrorMessage message={error} />
     </>

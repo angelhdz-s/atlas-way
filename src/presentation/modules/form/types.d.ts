@@ -1,11 +1,8 @@
 import type { FieldArrayWithId } from 'react-hook-form';
 
-export type InputTextProps = {
-  className?: string;
-  name: string;
-  placeholder?: string;
-  disabled?: boolean;
+export type InputTextProps = React.InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
+  value?: string;
 };
 
 export type InputNumberProps = InputTextProps & {
