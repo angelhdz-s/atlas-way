@@ -8,5 +8,5 @@ export type SessionProps = {
   readonly createdAt: Date;
   readonly updatedAt: Date;
   readonly userId: UserProps['id'];
-  exercises: Exercise[];
+  readonly exercises: Exercise[];
 };
