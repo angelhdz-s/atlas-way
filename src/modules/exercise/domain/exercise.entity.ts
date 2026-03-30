@@ -38,9 +38,14 @@ export class Exercise {
   changeDescription(description: ExerciseProps['description']) {
     this.data.description = description;
   }
-
-  changeId(description: ExerciseProps['description']) {
-    this.data.description = description;
+  changeSets(sets: ExerciseProps['sets']) {
+    this.data.sets = sets;
+  }
+  changeReps(reps: ExerciseProps['reps']) {
+    this.data.reps = reps;
+  }
+  changeWeight(weight: ExerciseProps['weight']) {
+    this.data.weight = weight;
   }
 
   static create(
