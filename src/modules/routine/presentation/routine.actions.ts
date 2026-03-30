@@ -10,6 +10,7 @@ import type { CreateRoutineInput } from '../application/dtos/create-routine.dto'
 import type { RoutineDTO } from '../application/dtos/routine.dto';
 import type { RoutineForm } from './ui/config/routine.schema';
 import type { RoutineCycleId } from '../domain/constants/routine.constants.cycle-types';
+import type { RoutineProps } from '../domain/routine.types';
 
 export async function createRoutineAction(data: RoutineForm): ActionResponse<RoutineDTO> {
   const parsedRoutine = routineFormSchema.safeParse(data);
@@ -63,4 +64,22 @@ export async function getAllRoutines(): ActionResponse<RoutineDTO[]> {
   const routineDTOs = routinesResult.data.map((r) => RoutineMapper.toDTO(r));
 
   return ActionSuccess(routineDTOs, 'Routine created successfully');
+}
+
+export async function deleteRoutine(routineId: RoutineProps['id']): ActionResponse<RoutineDTO> {
+  const container = getContainer();
+
+  const userIdResult = await getCurrentUserId();
+  if (!userIdResult.success) return ActionFailure(userIdResult.message);
+  const userId = userIdResult.data;
+
+  const deleteRoutine = container.routine.DeleteRoutineUseCase;
+  const deleteRoutineResult = await deleteRoutine.execute(routineId, userId);
+  if (!deleteRoutineResult.success) return ActionFailure(deleteRoutineResult.error.message);
+
+  const domainRoutine = deleteRoutineResult.data;
+
+  const routineDTO = RoutineMapper.toDTO(domainRoutine);
+
+  return ActionSuccess(routineDTO, 'Routine created successfully');
 }

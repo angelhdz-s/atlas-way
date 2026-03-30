@@ -5,6 +5,7 @@ import { UpdateRoutine } from '@/modules/routine/application/use-cases/update-ro
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
 import type { IRoutineRepository } from './domain/routine.repository';
 import type { ISessionRepository } from '../session/domain/session.repository';
+import { DeleteRoutine } from './application/use-cases/delete-routine';
 
 type Props = {
   idGeneratorRepository: IdGeneratorRepository;
@@ -26,5 +27,6 @@ export const makeRoutineModule = ({
       idGeneratorRepository
     ),
     UpdateRoutineUseCase: new UpdateRoutine(routineRepository),
+    DeleteRoutineUseCase: new DeleteRoutine(routineRepository),
   };
 };

@@ -78,4 +78,18 @@ export class SessionPrismaRepository implements ISessionRepository {
       return Failure(this.errorMapper.translate(e));
     }
   }
+  async delete(sessionId: SessionProps['id']) {
+    try {
+      const session = await this.prisma.sessions.delete({
+        where: {
+          id: sessionId,
+        },
+        ...sessionIncludeAnatomy,
+      });
+      const domainSession = SessionMapper.toDomain(session);
+      return Success(domainSession);
+    } catch (e) {
+      return Failure(this.errorMapper.translate(e));
+    }
+  }
 }

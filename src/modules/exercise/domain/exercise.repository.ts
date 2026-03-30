@@ -7,4 +7,5 @@ export interface IExerciseRepository {
   findById: (id: Exercise['id']) => RepositoryResult<Exercise | null>;
   findByIds: (id: Exercise['id'][]) => RepositoryResult<Exercise[]>;
   findAllByUserId: (userId: Exercise['userId']) => RepositoryResult<Exercise[]>;
+  delete: (id: Exercise['id']) => RepositoryResult<Exercise>;
 }

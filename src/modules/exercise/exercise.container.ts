@@ -7,6 +7,7 @@ import type { IExerciseRepository } from './domain/exercise.repository';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
 import type { IMuscleRepository } from '../muscle/domain/muscle.repository';
 import { GetExercisesByIds } from './application/use-cases/get-exercises-by-ids';
+import { DeleteExercise } from './application/use-cases/delete-exercise';
 
 type Props = {
   exerciseRepository: IExerciseRepository;
@@ -30,5 +31,6 @@ export const makeExerciseModule = ({
     GetExerciseByIdsUseCase: new GetExercisesByIds(exerciseRepository),
     GetAllExerciseUseCase: new GetAllExercises(exerciseRepository),
     GetAllUserExercisesUseCase: new GetAllUserExercises(exerciseRepository),
+    DeleteExerciseUseCase: new DeleteExercise(exerciseRepository),
   };
 };

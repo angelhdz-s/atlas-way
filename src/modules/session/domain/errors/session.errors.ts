@@ -5,3 +5,9 @@ export class SessionNotFoundError extends DomainError {
     super('SESSION_NOT_FOUND');
   }
 }
+
+export class SessionOwnershipError extends DomainError {
+  constructor() {
+    super('SESSION_OWNERSHIP_ERROR');
+  }
+}

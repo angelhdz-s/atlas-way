@@ -62,4 +62,16 @@ export class RoutinePrismaRepository implements IRoutineRepository {
       return Failure(this.errorMapper.translate(e));
     }
   }
+  async delete(routineId: RoutineProps['id']) {
+    try {
+      const routine = await this.prisma.routines.delete({
+        where: { id: routineId },
+        ...routineIncludeAnatomy,
+      });
+      const result = RoutineMapper.toDomain(routine);
+      return Success(result);
+    } catch (e) {
+      return Failure(this.errorMapper.translate(e));
+    }
+  }
 }

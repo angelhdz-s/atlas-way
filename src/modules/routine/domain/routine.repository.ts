@@ -7,4 +7,5 @@ export interface IRoutineRepository {
   update: (data: Routine) => RepositoryResult<Routine>;
   findaAll: () => RepositoryResult<Routine[]>;
   findById: (id: RoutineProps['id']) => RepositoryResult<Routine | null>;
+  delete: (id: RoutineProps['id']) => RepositoryResult<Routine>;
 }
