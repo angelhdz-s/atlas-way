@@ -1,26 +1,45 @@
-import type { IconTypes } from '@/presentation/globals/types.d';
-import { NavIconSize } from '@/presentation/modules/sidebar/components/nav/NavConstants';
-import { SubLink } from '@/presentation/modules/sidebar/components/nav/SubLink';
+'use client';
 
-export function NavLinks({ children }: { children: React.ReactNode }) {
-  return <nav className="flex flex-col gap-1">{children}</nav>;
-}
+import Link from 'next/link';
+import {
+  type SidebarNavLinkVariant,
+  sidebarNavLinkVariants,
+} from '../../config/sidebar.nav-link.variants';
+import { twMerge } from 'tailwind-merge';
+import { usePathname } from 'next/navigation';
 
 export function NavLink({
   href,
+  label,
   children,
-  Icon,
+  className = '',
+  variant,
 }: {
   href: string;
+  label: string;
   children: React.ReactNode;
-  Icon: IconTypes;
+  className?: string;
+  variant?: SidebarNavLinkVariant;
 }) {
+  const url = usePathname();
+  const active = url === href || (url.startsWith(href) && href !== '/' && href !== '/dashboard');
+  const navLinkVariant = sidebarNavLinkVariants({ ...variant, active });
   return (
-    <div className="group relative">
-      <SubLink href={href}>
-        <NavIconSize Icon={Icon} />
-        {children}
-      </SubLink>
-    </div>
+    <Link href={href} className={twMerge(navLinkVariant, className)}>
+      {children}
+      <span
+        className={twMerge(
+          'bg-middle border-bd-default light:shadow-black/5 shadow-back/50 shadow-lg',
+          'absolute inset-y-0 left-14 my-auto hidden h-fit w-fit rounded-lg border px-3 py-1.5 transition-colors',
+          'group-hover:fg-strong group-hover:block',
+          active
+            ? 'bg-primary group-hover:fg-strong-dark fg-strong-dark'
+            : 'lg:group-hover:fg-default',
+          'lg:static lg:inset-auto lg:left-auto lg:inline lg:h-fit lg:w-auto lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none'
+        )}
+      >
+        {label}
+      </span>
+    </Link>
   );
 }

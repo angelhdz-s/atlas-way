@@ -19,9 +19,8 @@ export function Card({ children, Tag = 'div', className, color, type, width, bor
     width,
     border,
   });
-  const classNames = twMerge(variantClassNames, className);
   return (
-    <Tag id={id} className={classNames}>
+    <Tag id={id} className={twMerge(variantClassNames, className)}>
       {children}
       {border === 'highlighted' && (
         <>

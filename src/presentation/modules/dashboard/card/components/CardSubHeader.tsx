@@ -1,24 +1,14 @@
-type CountersType = [string?, string?, string?];
+import { twMerge } from 'tailwind-merge';
 
-export function CardSubHeader({
-  description,
-  counters,
-}: {
+type Props = {
   description: string;
-  counters?: CountersType;
-}) {
+  className?: string;
+};
+
+export function CardSubHeader({ description, className }: Props) {
   return (
-    <footer className="flex flex-col gap-1 text-lg font-light">
-      {counters && counters.length > 0 && (
-        <main className="fg-muted">
-          <ul className="divide-bd-muted flex items-center justify-between gap-2 text-base">
-            {counters.map((counter) => (
-              <li key={counter}>{counter}</li>
-            ))}
-          </ul>
-        </main>
-      )}
+    <div className={twMerge('flex flex-col gap-1 text-lg font-light', className)}>
       <p className="line-clamp-1">{description}</p>
-    </footer>
+    </div>
   );
 }

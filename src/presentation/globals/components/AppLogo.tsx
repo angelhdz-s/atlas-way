@@ -8,7 +8,7 @@ export function Imagotype({
   return (
     <div className={`flex gap-2 font-bold tracking-tight ${className}`}>
       <Logo size={isotypeSize} />
-      <span className="font-funnel-display fg-strong hidden text-2xl md:block">AtlasWay</span>
+      <span className="font-funnel-display fg-strong hidden text-2xl lg:block">AtlasWay</span>
     </div>
   );
 }

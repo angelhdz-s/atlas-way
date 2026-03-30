@@ -1,24 +1,25 @@
-import {
-  IconCalendarCheck,
-  IconCalendarWeek,
-  IconClipboardList,
-  IconHome,
-} from '@/presentation/globals/components/Icons';
+import { IconBell, IconCalendarCheck, IconHome } from '@/presentation/globals/components/Icons';
 import { NavLinkNotification } from './nav/custom/NavLinkNotification';
-import { NavLink, NavLinks } from './nav/NavLink';
+import { NavLink } from './nav/NavLink';
+import { NavLinks } from './nav/NavLinks';
+import { NavLinkIcon } from './nav/NavLinkIcon';
 
 export function SidebarHeader() {
   return (
     <header>
       <NavLinks>
-        <NavLink href="/dashboard" Icon={IconHome}>
-          Home
+        <NavLink href="/dashboard" label="Home">
+          <NavLinkIcon Icon={IconHome} />
         </NavLink>
 
-        <NavLinkNotification href="/dashboard/notifications" />
+        <NavLink href="/dashboard/notifications" label="Notifications">
+          <NavLinkIcon Icon={IconBell} />
+        </NavLink>
 
-        <NavLink href="/dashboard/tracking" Icon={IconCalendarCheck}>
-          Tracking
+        {/* <NavLinkNotification Icon={IconBell} href="/dashboard/notifications" /> */}
+
+        <NavLink href="/dashboard/tracking" label="Tracking">
+          <NavLinkIcon Icon={IconCalendarCheck} />
         </NavLink>
       </NavLinks>
     </header>

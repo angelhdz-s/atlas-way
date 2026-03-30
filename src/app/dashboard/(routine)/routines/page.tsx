@@ -1,7 +1,7 @@
 import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
-import { IconMapPlus } from '@/presentation/globals/components/Icons';
+import { IconPlus } from '@/presentation/globals/components/Icons';
 import { Routine } from '@/modules/routine/presentation/ui/components/Routine';
 import { VariantLink } from '@/presentation/modules/button/components/VariantLink';
 import { getAllRoutines } from '@/modules/routine/presentation/routine.actions';
@@ -17,9 +17,13 @@ export default async function RoutinesPage() {
         title="Your Routines"
         description="Create and manage your routines to automate tasks and workflows."
       >
-        <VariantLink variantConfig={{ color: 'simple' }} href="/dashboard/routines/create">
-          <IconMapPlus className="size-5" strokeWidth="2" />
-          New Routine
+        <VariantLink
+          variantConfig={{ color: 'primary' }}
+          href="/dashboard/routines/create"
+          className="gap-1 pl-3"
+        >
+          <IconPlus className="size-5" strokeWidth="2" />
+          Add Routine
         </VariantLink>
       </PageHeader>
       <PageContent className="flex flex-col gap-4">

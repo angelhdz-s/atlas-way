@@ -16,36 +16,44 @@ export function Notification({
 
   return (
     <article
-      className={`border-bd-default hover:border-bd-strong cursor-pointer rounded border px-4 py-1 ${notificationClass} ${className}`}
+      className={`border-bd-default hover:border-bd-strong flex w-full items-center gap-4 rounded-lg border px-4 py-1 ${notificationClass} ${className}`}
     >
-      <Link href={url || '/dashboard/notifications'} className="flex items-center gap-4">
-        <div className="my-auto grid place-content-center">
-          <input type="checkbox" className="size-5" />
-        </div>
-        <main className="flex flex-1 flex-col gap-0">
-          <header className="flex items-center gap-4">
-            <h3 className={`text-base ${notSeen ? 'fg-strong font-bold' : ''}`}>{title}</h3>
-            {notSeen && <span className="bg-unread block size-2.5 rounded-full"></span>}
-          </header>
-          <footer>
-            <p className={`text-sm ${notSeen ? '' : 'text-default/60'}`}>{description}</p>
-          </footer>
-        </main>
-        <aside className="text-default/50 w-12 text-center text-sm">{date}</aside>
-        <div className="flex items-center gap-2">
-          <VariantButton
-            type="button"
-            variantConfig={{
-              type: 'square',
-              color: 'subtle',
-              size: 'sm',
-            }}
-            className="text-red-800/80"
-          >
-            <IconTrash className="size-4" strokeWidth="2" />
-          </VariantButton>
-        </div>
-      </Link>
+      <div className="my-auto grid place-content-center">
+        <input type="checkbox" className="size-5 cursor-pointer" />
+      </div>
+      <main className="w-full">
+        <header className="relative w-fit">
+          <Link href={url || '/dashboard/notifications'} className="flex w-fit items-center gap-2">
+            <h3
+              className={`line-clamp-1 w-fit text-base ${notSeen ? 'fg-strong font-medium' : ''}`}
+            >
+              {title}
+            </h3>
+          </Link>
+          {notSeen && (
+            <span className="bg-unread absolute inset-y-0 left-full my-auto ml-2 block size-2 rounded-full"></span>
+          )}
+        </header>
+        <footer>
+          <p className={`text-sm font-light ${notSeen ? '' : 'text-default/60'}`}>
+            <span className="line-clamp-1">{description}</span>
+          </p>
+        </footer>
+      </main>
+      <aside className="text-default/50 w-fit text-center text-sm whitespace-nowrap">{date}</aside>
+      <div className="flex items-center gap-2">
+        <VariantButton
+          type="button"
+          variantConfig={{
+            type: 'square',
+            color: 'subtle',
+            size: 'sm',
+          }}
+          className="text-red-800/80"
+        >
+          <IconTrash className="size-4" strokeWidth="2" />
+        </VariantButton>
+      </div>
     </article>
   );
 }

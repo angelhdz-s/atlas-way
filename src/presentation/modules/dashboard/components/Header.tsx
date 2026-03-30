@@ -1,21 +1,20 @@
 import { Breadcrumb } from './Breadcrumb';
-import { ToggleTheme } from '@/presentation/globals/components/ToggleTheme';
-import { LangButton } from '@/presentation/globals/components/LangButton';
-import { SettingsButton } from '@/presentation/globals/components/SettingsButton';
-import { UserInfo } from '../../../../modules/user/presentation/ui/components/UserInfo';
-import { NotificationsButton } from '../../../../modules/notification/presentation/ui/components/NotificationsButton';
-import Link from 'next/link';
 import { Imagotype } from '@/presentation/globals/components/AppLogo';
+import { UserInfo } from '../../../../modules/user/presentation/ui/components/UserInfo';
+import Link from 'next/link';
 
 export function Header({ className = '' }: { className?: string }) {
   return (
     <header className="h-(--header-height) w-full">
       <main
-        className={`bg-middle font-funnel-display fixed top-0 left-0 z-10 grid h-(--header-height) w-full grid-cols-[1fr_auto_1fr] gap-4 pr-2 ${className}`}
+        className={`bg-back border-bd-muted font-funnel-display fixed top-0 left-0 z-10 grid h-(--header-height) w-full grid-cols-[auto_auto_auto] gap-4 border-b pr-4 md:grid-cols-[1fr_auto_1fr] ${className}`}
       >
         <section className="flex h-full items-center gap-2">
-          <main className="flex h-full w-(--sidebar-width) items-center justify-between gap-0 pl-4">
-            <Link href="/" className="font-funnel-display flex items-center gap-2 font-light">
+          <main className="border-bd-muted flex h-full w-(--sidebar-width) items-center justify-between gap-0 border-r lg:pl-4">
+            <Link
+              href="/"
+              className="font-funnel-display mx-auto flex items-center gap-2 font-light lg:mx-0"
+            >
               <Imagotype />
             </Link>
           </main>
@@ -25,24 +24,8 @@ export function Header({ className = '' }: { className?: string }) {
           <input
             type="search"
             placeholder="Search"
-            className="h-8 flex-1 rounded-4xl border border-current/20 px-4 outline-none"
+            className="border-bd-default outline-strong h-10 w-36 rounded-4xl border px-4 focus:outline-2 md:w-auto md:flex-1"
           />
-          <nav>
-            <ul className="flex items-center">
-              <li>
-                <NotificationsButton />
-              </li>
-              <li>
-                <SettingsButton />
-              </li>
-              <li>
-                <ToggleTheme />
-              </li>
-              <li>
-                <LangButton />
-              </li>
-            </ul>
-          </nav>
         </section>
         <section className="flex h-full items-center justify-end gap-2">
           <UserInfo />

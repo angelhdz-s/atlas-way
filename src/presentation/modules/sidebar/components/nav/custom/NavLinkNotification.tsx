@@ -1,15 +1,17 @@
 import { SubLink } from '@/presentation/modules/sidebar/components/nav/SubLink';
-import { NavIconSize } from '@/presentation/modules/sidebar/components/nav/NavConstants';
 import { NotificationsCounter } from '@/modules/notification/presentation/ui/components/NotificationsCounter';
-import { IconBell } from '@/presentation/globals/components/Icons';
+import type { IconTypes } from '@/presentation/globals/types';
 
-export function NavLinkNotification({ href }: { href: string }) {
+export function NavLinkNotification({ href, Icon }: { href: string; Icon: IconTypes }) {
   const notificationsCount = 5;
   return (
     <div className="group relative">
       <SubLink href={href}>
-        <NavIconSize Icon={IconBell} /> Notifications
-        {notificationsCount && <NotificationsCounter count={notificationsCount} />}
+        <Icon className="size-6" />
+        <span className="hidden lg:inline">Notifications</span>
+        <div className="absolute top-1 left-5">
+          {notificationsCount && <NotificationsCounter count={notificationsCount} />}
+        </div>
       </SubLink>
     </div>
   );

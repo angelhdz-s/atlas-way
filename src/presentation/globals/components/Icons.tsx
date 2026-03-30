@@ -359,9 +359,9 @@ export function IconMoon(props: IconProps) {
 export function IconDots(props: IconProps) {
   return (
     <MainSvgBody {...props}>
-      <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-      <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-      <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+      <path d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+      <path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+      <path d="M18 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
     </MainSvgBody>
   );
 }
@@ -720,6 +720,25 @@ export function IconZZ(props: IconProps) {
     <MainSvgBody {...props}>
       <path d="M4 12h6l-6 8h6" />
       <path d="M14 4h6l-6 8h6" />
+    </MainSvgBody>
+  );
+}
+
+export function IconPlus(props: IconProps) {
+  return (
+    <MainSvgBody {...props}>
+      <path d="M12 5l0 14" />
+      <path d="M5 12l14 0" />
+    </MainSvgBody>
+  );
+}
+
+export function IconLogout(props: IconProps) {
+  return (
+    <MainSvgBody {...props}>
+      <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+      <path d="M9 12h12l-3 -3" />
+      <path d="M18 15l3 -3" />
     </MainSvgBody>
   );
 }

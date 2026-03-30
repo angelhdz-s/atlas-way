@@ -1,14 +1,13 @@
 import { DAYS, type DayWeeksType } from '@/presentation/globals/config/defaults';
-import { CardTags } from '@/presentation/modules/dashboard/card/components/CardTags';
-import { IconCalendarWeek } from '@/presentation/globals/components/Icons';
+import { CardTag } from '@/presentation/modules/dashboard/card/components/CardTag';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 import { CardHeader } from '@/presentation/modules/dashboard/card/components/CardHeader';
 import { CardSubHeader } from '@/presentation/modules/dashboard/card/components/CardSubHeader';
 import { CardMain } from '@/presentation/modules/dashboard/card/components/CardMain';
-import { CardButton } from '@/presentation/modules/dashboard/card/components/CardButton';
-import { CardFooter } from '@/presentation/modules/dashboard/card/components/CardFooter';
 import { RoutineDayItem } from './RoutineDayItem';
 import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { CardTagsWrapperFade } from '@/presentation/modules/dashboard/card/components/CardTagsWrapperFade';
 
 export function Routine({ data }: { data: RoutineDTO }) {
   const { name, routineDays, description } = data;
@@ -17,7 +16,7 @@ export function Routine({ data }: { data: RoutineDTO }) {
 
   const sessions = routineDaysSessions.filter((s) => s !== null);
 
-  const exercises = sessions.flatMap((s) => s.exercises);
+  // const exercises = sessions.flatMap((s) => s.exercises);
 
   const sessionsTags = sessions.map((s, index) => ({
     value: s.name,
@@ -26,19 +25,16 @@ export function Routine({ data }: { data: RoutineDTO }) {
 
   return (
     <Card type="dashboard" width="lg">
-      <CardHeader
-        title={name}
-        decoration={<span className="bg-unread block aspect-square size-4 rounded-full"></span>}
-      >
-        <CardSubHeader
-          counters={['1 hour ago', `${exercises.length} exercises`, `${sessions.length} sessions`]}
-          description={description ?? ''}
-        />
+      <CardHeader>
+        <CardTitle title={name} />
+        <CardSubHeader description={description ?? ''} />
       </CardHeader>
       <CardMain>
-        <footer>
-          <CardTags values={sessionsTags} />
-        </footer>
+        <CardTagsWrapperFade>
+          {sessionsTags.map((tag) => (
+            <CardTag key={tag.value} tag={tag} />
+          ))}
+        </CardTagsWrapperFade>
         <main>
           <ul className="flex flex-wrap items-center gap-2 text-sm">
             {routineDays.map(({ day, session }) => (
@@ -52,12 +48,6 @@ export function Routine({ data }: { data: RoutineDTO }) {
           </ul>
         </main>
       </CardMain>
-      <CardFooter>
-        <CardButton>
-          <IconCalendarWeek className="size-6" strokeWidth="1.3" />
-          Edit
-        </CardButton>
-      </CardFooter>
     </Card>
   );
 }
