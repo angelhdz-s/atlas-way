@@ -8,4 +8,5 @@ export interface ISessionRepository {
   findAll: () => RepositoryResult<Session[]>;
   findById: (id: SessionProps['id']) => RepositoryResult<Session | null>;
   findByIds: (id: SessionProps['id'][]) => RepositoryResult<Session[]>;
+  delete: (id: SessionProps['id']) => RepositoryResult<Session>;
 }
