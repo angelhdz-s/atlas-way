@@ -11,5 +11,5 @@ export type ExerciseProps = {
   readonly createdAt: Date;
   readonly updatedAt: Date;
   readonly userId: UserProps['id'];
-  readonly muscles: Muscle[];
+  muscles: Muscle[];
 };
