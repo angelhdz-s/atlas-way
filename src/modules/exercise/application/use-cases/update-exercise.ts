@@ -17,6 +17,9 @@ export class UpdateExercise implements UseCase {
 
     if (data.name) exercise.changeName(data.name);
     if (data.description) exercise.changeDescription(data.description);
+    if (data.sets) exercise.changeSets(data.sets);
+    if (data.reps) exercise.changeReps(data.reps);
+    if (data.weight) exercise.changeWeight(data.weight);
 
     return await this.repository.update(exercise);
   }
