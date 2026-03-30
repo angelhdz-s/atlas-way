@@ -13,6 +13,6 @@ export class DeleteRoutine implements UseCase {
     if (!exerciseResult.success) return exerciseResult;
     if (!exerciseResult.data) return Failure(new RoutineNotFoundError());
     if (exerciseResult.data.userId !== userId) return Failure(new RoutineOwnershipError());
-    return this.repository.findById(exerciseId);
+    return this.repository.delete(exerciseId);
   }
 }
