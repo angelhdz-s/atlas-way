@@ -5,7 +5,7 @@ import { ErrorMessage } from '../ErrorMessage';
 
 export function InputNumber(props: InputNumberProps) {
   const { onChange, value, error, className, ...rest } = props;
-  const [currentValue, setCurrentValue] = useState<string | number | undefined>(value);
+  const [currentValue, setCurrentValue] = useState(value);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     if (val !== currentValue) setCurrentValue(val);
