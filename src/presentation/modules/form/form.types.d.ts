@@ -5,7 +5,7 @@ export type InputTextProps = React.InputHTMLAttributes<HTMLInputElement> & {
   value?: string;
 };
 
-export type InputNumberProps = InputTextProps & {
+export type InputNumberProps = Omit<InputTextProps, 'value'> & {
   value?: string | number;
 };
 
