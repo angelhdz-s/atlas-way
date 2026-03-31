@@ -6,7 +6,13 @@ import type { SessionForm } from '../../config/session.schema';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 
-export function SessionExercises({ exercises }: { exercises: SelectOption[] }) {
+export function SessionExercises({
+  exercises,
+  itemsSelected,
+}: {
+  exercises: SelectOption[];
+  itemsSelected: string[];
+}) {
   const {
     control,
     formState: { errors },
@@ -20,6 +26,7 @@ export function SessionExercises({ exercises }: { exercises: SelectOption[] }) {
         items={exercises}
         selectingTitle="Select Exercises"
         addButtonLabel="Add Exercise"
+        itemsSelected={itemsSelected}
       />
       <ErrorMessage message={errors.exercises?.message} />
     </FormFieldSection>
