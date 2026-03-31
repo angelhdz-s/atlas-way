@@ -1,15 +1,25 @@
 import { InputClasses } from '@/presentation/modules/form/constants/classes';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
+import { InputDateProps } from '../../form.types';
+import { useState } from 'react';
 
-type InputDateProps = {
-  className?: string;
-  error?: string;
-};
-
-export function InputDate({ className = '', error, ...props }: InputDateProps) {
+export function InputDate(props: InputDateProps) {
+  const { className, onChange, value, error, ...rest } = props;
+  const [date, setDate] = useState(value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange?.(e);
+    const newDate = e.currentTarget.value;
+    setDate(newDate);
+  };
   return (
     <>
-      <input type="date" className={`${InputClasses} ${className}`} {...props} />
+      <input
+        {...rest}
+        type="date"
+        className={`${InputClasses} ${className}`}
+        onChange={handleChange}
+        value={date}
+      />
       {<ErrorMessage message={error} />}
     </>
   );
