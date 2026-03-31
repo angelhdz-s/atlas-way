@@ -9,6 +9,10 @@ export type InputNumberProps = Omit<InputTextProps, 'value'> & {
   value?: string | number;
 };
 
+export type InputDateProps = Omit<InputTextProps, 'value'> & {
+  value?: string;
+};
+
 export type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
   error?: string;
 };
