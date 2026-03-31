@@ -33,11 +33,13 @@ export function SessionModalForm({
     onSuccess: handleSuccess,
   };
 
+  const exerciseIds = data?.exercises.map((e) => e.id) ?? [];
+
   return (
     <ModalForm config={config} title="Plan the session" onClose={handleClose}>
-      <SessionName />
-      <SessionDescription />
-      <SessionExercises exercises={exercises} />
+      <SessionName value={data?.name} />
+      <SessionDescription value={data?.description} />
+      <SessionExercises exercises={exercises} itemsSelected={exerciseIds} />
 
       <ModalFormButtons onClose={handleClose} />
     </ModalForm>
