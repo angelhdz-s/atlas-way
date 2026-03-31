@@ -15,12 +15,14 @@ import { RoutineSessionPlanField } from './fields/RoutineSessionPlanField';
 import { DEFAULT_WEEK_CYCLE_DAYS_DATA } from '../routine.ui.constants';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { RoutineActiveField } from './fields/RoutineActiveField';
+import { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 
 type Props = {
   sessions: SelectOption[];
+  data?: RoutineDTO;
 };
 
-export function RoutineModalForm({ sessions }: Props) {
+export function RoutineModalForm({ sessions, data }: Props) {
   const router = useRouter();
 
   const handleSuccess = () => {
