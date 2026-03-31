@@ -9,8 +9,15 @@ import { sessionFormSchema } from '../config/session.schema';
 import { SessionDescription } from './fields/SessionDescription';
 import { SessionName } from './fields/SessionName';
 import { SessionExercises } from './fields/SessionExercises';
+import { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 
-export function SessionModalForm({ exercises }: { exercises: SelectOption[] }) {
+export function SessionModalForm({
+  exercises,
+  data,
+}: {
+  exercises: SelectOption[];
+  data?: SessionDTO;
+}) {
   const router = useRouter();
   const handleSuccess = () => {
     router.back();
