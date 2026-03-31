@@ -1,7 +1,7 @@
 import { ErrorMessage } from '../ErrorMessage';
 import { TextAreaClasses } from '../../constants/classes';
 import { useState } from 'react';
-import type { TextAreaProps } from '../../types';
+import type { TextAreaProps } from '../../form.types';
 
 export function TextArea(props: TextAreaProps) {
   const { className, error, value, onChange, ...rest } = props;

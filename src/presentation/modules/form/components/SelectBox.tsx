@@ -1,7 +1,7 @@
 'use client';
 
 import { Box } from '@/presentation/modules/form/components/Box';
-import type { SelectOption } from '@/presentation/modules/form/types';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { IconSearch, IconXMark } from '@/presentation/globals/components/Icons';
 import { VariantButton } from '../../button/components/VariantButton';
 import { useSelectBox } from '../hooks/useSelectBox';

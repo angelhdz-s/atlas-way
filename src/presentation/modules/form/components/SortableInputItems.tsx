@@ -1,7 +1,7 @@
 import type { FieldArrayPath, Control, FieldValues } from 'react-hook-form';
 import { DragDropProvider } from '@dnd-kit/react';
 import { isSortable } from '@dnd-kit/react/sortable';
-import type { SelectOption } from '../types';
+import type { SelectOption } from '../form.types';
 import { SortableInputItem } from './SortableInputItem';
 import { VariantButton } from '../../button/components/VariantButton';
 import { IconCirclePlus, IconTrash } from '@/presentation/globals/components/Icons';

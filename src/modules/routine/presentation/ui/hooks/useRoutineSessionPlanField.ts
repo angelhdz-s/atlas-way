@@ -2,7 +2,7 @@ import { removeObjectKey } from '@/presentation/globals/lib/utils';
 import { useEffect, useRef, useState } from 'react';
 import { useFieldArray } from 'react-hook-form';
 import type { ArrayPath, Control, FieldArrayWithId, FieldValues } from 'react-hook-form';
-import type { SelectOption } from '@/presentation/modules/form/types';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 type ContainersKey = Props['containers'][number]['value'];
 

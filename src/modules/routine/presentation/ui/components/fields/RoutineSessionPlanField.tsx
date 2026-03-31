@@ -15,7 +15,7 @@ import type {
   DnDFormFieldItemData,
   DnDFormFieldItemDraggableData,
   SelectOption,
-} from '@/presentation/modules/form/types';
+} from '@/presentation/modules/form/form.types';
 import type { RoutineForm } from '../../config/routine.schema';
 
 type Props = {

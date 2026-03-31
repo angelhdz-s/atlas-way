@@ -1,7 +1,7 @@
 import { IconMan } from '@/presentation/globals/components/Icons';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
 import { MultipleSelectBox } from '@/presentation/modules/form/components/MultipleSelectBox';
-import type { SelectOption } from '@/presentation/modules/form/types';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { useFormContext } from 'react-hook-form';
 import type { ExerciseFormProps } from '../../schemas/exercise.schema';
 

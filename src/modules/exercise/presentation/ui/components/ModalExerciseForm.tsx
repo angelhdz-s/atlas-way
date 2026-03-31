@@ -14,8 +14,7 @@ import { ExerciseDescriptionField } from './fields/ExerciseDescriptionField';
 import { ExerciseSetsField } from './fields/ExerciseSetsField';
 import { ExerciseRepsField } from './fields/ExerciseRepsField';
 import { ExerciseWeightField } from './fields/ExerciseWeightField';
-
-export function ModalExerciseForm({ muscles }: { muscles: SelectOption[] }) {
+import type { SelectOption } from '@/presentation/modules/form/form.types';
   const router = useRouter();
 
   const handleSuccess = () => {

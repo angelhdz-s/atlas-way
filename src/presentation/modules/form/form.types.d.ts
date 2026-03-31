@@ -6,8 +6,6 @@ export type InputTextProps = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export type InputNumberProps = InputTextProps & {
-  min?: string | number;
-  max?: string | number;
   value?: string | number;
 };
 

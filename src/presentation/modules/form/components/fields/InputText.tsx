@@ -1,7 +1,7 @@
 import { ErrorMessage } from '../ErrorMessage';
 import { InputClasses } from '../../constants/classes';
 import { useState } from 'react';
-import type { InputTextProps } from '../../types';
+import type { InputTextProps } from '../../form.types';
 
 export function InputText(props: InputTextProps) {
   const { onChange, className, error, value, ...rest } = props;

@@ -4,7 +4,7 @@ import {
   type FieldValues,
   useFieldArray,
 } from 'react-hook-form';
-import type { SelectOption } from '../types';
+import type { SelectOption } from '../form.types';
 import { useMemo, useState } from 'react';
 
 type Props<TForm extends FieldValues, TName extends FieldArrayPath<TForm>> = {

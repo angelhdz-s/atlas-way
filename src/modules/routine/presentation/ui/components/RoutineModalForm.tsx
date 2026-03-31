@@ -13,7 +13,7 @@ import { RoutineDayField } from './fields/RoutineDayField';
 import { useState } from 'react';
 import { RoutineSessionPlanField } from './fields/RoutineSessionPlanField';
 import { DEFAULT_WEEK_CYCLE_DAYS_DATA } from '../routine.ui.constants';
-import type { SelectOption } from '@/presentation/modules/form/types';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { RoutineActiveField } from './fields/RoutineActiveField';
 
 type Props = {

@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { ModalForm } from '@/presentation/modules/form/components/modal-form/ModalForm';
 import { ModalFormButtons } from '@/presentation/modules/form/components/modal-form/ModalFormButtons';
-import type { SelectOption } from '@/presentation/modules/form/types';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { createSessionAction } from '../../session.actions';
 import { sessionFormSchema } from '../config/session.schema';
 import { SessionDescription } from './fields/SessionDescription';
