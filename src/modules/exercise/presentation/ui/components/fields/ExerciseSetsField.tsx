@@ -3,8 +3,13 @@ import { inputNumberConfig } from '@/presentation/modules/form/config/input-conf
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import { useFormContext } from 'react-hook-form';
 import type { ExerciseFormProps } from '../../schemas/exercise.schema';
+import { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 
-export function ExerciseSetsField() {
+type Props = {
+  value?: ExerciseDTO['sets'];
+};
+
+export function ExerciseSetsField({ value }: Props) {
   const {
     register,
     formState: { errors },
@@ -14,6 +19,7 @@ export function ExerciseSetsField() {
       <InputNumber
         {...register('exercise.sets', inputNumberConfig)}
         error={errors.exercise?.sets?.message}
+        value={value}
       />
     </Label>
   );
