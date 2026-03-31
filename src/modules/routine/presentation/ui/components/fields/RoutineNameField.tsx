@@ -1,8 +1,13 @@
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import { InputText } from '@/presentation/modules/form/components/fields/InputText';
 import { useFormContext } from 'react-hook-form';
+import { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 
-export function RoutineNameField() {
+type Props = {
+  value?: RoutineDTO['name'];
+};
+
+export function RoutineNameField({ value }: Props) {
   const {
     register,
     formState: { errors },
