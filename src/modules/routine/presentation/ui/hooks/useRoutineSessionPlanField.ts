@@ -43,13 +43,7 @@ export function useRoutineSessionPlanField<
   TForm extends FieldValues,
   TName extends ArrayPath<TForm>,
 >({ options, containers, control, name, fieldMappers, data }: FullProps<TForm, TName>) {
-  const [state, setState] = useState<{
-    droppeds: DroppedItem;
-    nonDroppedItems: SelectOption[];
-  }>({
-    droppeds: {},
-    nonDroppedItems: options,
-  });
+  const [droppeds, setDroppeds] = useState<DroppedItem>({});
 
   const { fields, update, replace } = useFieldArray<TForm>({
     control,
@@ -60,7 +54,7 @@ export function useRoutineSessionPlanField<
   const typedFields: TField<TForm, TName>[] = fields;
 
   const findOption = (key: ContainersKey): SelectOption | undefined => {
-    return state.droppeds[key];
+    return droppeds[key];
   };
 
   const addItem = ({
@@ -80,21 +74,14 @@ export function useRoutineSessionPlanField<
     const targetField = typedFields[containerData.index];
     if (!targetField) return;
 
-    setState((prev) => {
+    setDroppeds((prev) => {
       const newSession = {
         [containerData.key]: item,
       };
-      const newNonDroppedItems = [
-        ...prev.nonDroppedItems.filter((item) => item.value !== itemData.id),
-      ];
-      const newDroppeds = {
-        ...prev.droppeds,
-        ...newSession,
-      };
 
       return {
-        droppeds: newDroppeds,
-        nonDroppedItems: newNonDroppedItems,
+        ...prev,
+        ...newSession,
       };
     });
     if (!fieldMappers?.add) return;
@@ -125,21 +112,18 @@ export function useRoutineSessionPlanField<
     const item = options.find((option) => option.value === source.id);
     if (!item) return;
 
-    setState((prev) => {
+    setDroppeds((prev) => {
       const newDropped = {
         [target.containerKey]: item,
       };
-      const removeKeyDroppreds = removeObjectKey({ ...prev.droppeds }, source.containerKey);
+      const removeKeyDroppreds = removeObjectKey({ ...prev }, source.containerKey);
       const newDroppeds = {
         ...removeKeyDroppreds,
         ...newDropped,
       };
 
       return {
-        ...prev,
-        droppeds: {
-          ...newDroppeds,
-        },
+        ...newDroppeds,
       };
     });
 
@@ -171,14 +155,12 @@ export function useRoutineSessionPlanField<
     const field = typedFields[containerData.index];
     if (!field) return;
 
-    setState((prev) => {
-      const item = prev.droppeds[containerData.id];
+    setDroppeds((prev) => {
+      const item = prev[containerData.id];
       if (!item) return prev;
-      const newDroppeds = removeObjectKey({ ...prev.droppeds }, containerData.id);
-      const newNonDroppedItems = [...prev.nonDroppedItems, item];
+      const newDroppeds = removeObjectKey({ ...prev }, containerData.id);
       return {
-        droppeds: newDroppeds,
-        nonDroppedItems: newNonDroppedItems,
+        ...newDroppeds,
       };
     });
 
@@ -206,17 +188,16 @@ export function useRoutineSessionPlanField<
 
     if (!sourceField || !targetField) return;
 
-    setState((prev) => {
-      const prevCopy = { ...prev.droppeds };
-      const sourceValue = prevCopy[source.containerKey];
-      const targetValue = prevCopy[target.containerKey];
+    setDroppeds((prev) => {
+      const droppedsCopy = { ...prev };
+      const sourceValue = droppedsCopy[source.containerKey];
+      const targetValue = droppedsCopy[target.containerKey];
 
-      prevCopy[source.containerKey] = targetValue;
-      prevCopy[target.containerKey] = sourceValue;
+      droppedsCopy[source.containerKey] = targetValue;
+      droppedsCopy[target.containerKey] = sourceValue;
 
       return {
-        ...prev,
-        droppeds: prevCopy,
+        ...droppedsCopy,
       };
     });
 
@@ -237,8 +218,8 @@ export function useRoutineSessionPlanField<
       replace(newFields);
     } else {
       replace(data as any);
-      setState((prev) => {
-        const { droppeds } = { ...prev };
+      setDroppeds((prev) => {
+        const droppedsCopy = { ...prev };
 
         const droppedOptions: string[] = [];
         for (let i = 0; i < data.length; i++) {
@@ -247,16 +228,13 @@ export function useRoutineSessionPlanField<
             const option = options.find((o) => o.value === routineDay.sessionId);
             if (!option) continue;
             const dayKey = containers[i].value;
-            droppeds[dayKey] = option;
+            droppedsCopy[dayKey] = option;
             droppedOptions.push(option.value);
           }
         }
 
-        const nonDroppedItems = options.filter((o) => !droppedOptions.includes(o.value));
-
         return {
-          droppeds,
-          nonDroppedItems,
+          ...droppedsCopy,
         };
       });
     }
@@ -265,10 +243,6 @@ export function useRoutineSessionPlanField<
   }, [replace, containers, fieldMappers, data, options]);
 
   return {
-    data: {
-      nonDroppedItems: state.nonDroppedItems,
-      options,
-    },
     get: {
       findOption,
     },
