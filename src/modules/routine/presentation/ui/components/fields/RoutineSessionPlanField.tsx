@@ -21,11 +21,12 @@ import type { RoutineForm } from '../../config/routine.schema';
 type Props = {
   sessions: SelectOption[];
   days: SelectOption[];
+  routineDays?: RoutineForm['sessions'];
 };
 
 type RoutineSessionField = FieldArrayWithId<RoutineForm, 'sessions'>;
 
-export function RoutineSessionPlanField({ sessions, days }: Props) {
+export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) {
   const {
     control,
     formState: { errors },
@@ -79,6 +80,7 @@ export function RoutineSessionPlanField({ sessions, days }: Props) {
       swap: swapMapper,
       remove: removeMapper,
     },
+    data: routineDays,
   });
 
   return (
