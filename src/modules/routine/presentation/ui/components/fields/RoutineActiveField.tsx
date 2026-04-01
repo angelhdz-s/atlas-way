@@ -1,8 +1,8 @@
+import { InputCheckBox } from '@/presentation/modules/form/components/fields/InputCheckBox';
 import { LabelGroup } from '@/presentation/modules/form/components/fields/LabelInput';
 import { useFormContext } from 'react-hook-form';
+import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 import type { RoutineForm } from '../../config/routine.schema';
-import { InputCheckBox } from '@/presentation/modules/form/components/fields/InputCheckBox';
-import { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 
 type Props = {
   value?: RoutineDTO['active'];

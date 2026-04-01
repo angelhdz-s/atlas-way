@@ -1,8 +1,8 @@
 import { InputDate } from '@/presentation/modules/form/components/fields/InputDate';
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import { useFormContext } from 'react-hook-form';
+import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 import type { RoutineForm } from '../../config/routine.schema';
-import { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 
 type Props = {
   value?: RoutineDTO['initialDate'];
