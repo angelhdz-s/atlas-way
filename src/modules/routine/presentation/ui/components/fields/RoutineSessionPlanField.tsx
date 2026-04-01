@@ -1,14 +1,12 @@
 'use client';
 
 import { DragDropProvider } from '@dnd-kit/react';
-import { DroppableArea } from '@/presentation/globals/components/DroppabelArea';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
 import { IconBarbell, IconCalendarWeek, IconZZ } from '@/presentation/globals/components/Icons';
 import { isSortableOperation } from '@dnd-kit/react/sortable';
 import { RoutineSessionPlanDraggableItem } from './RoutineSessionPlanDraggableItem';
 import { RoutineSessionPlanDroppableItem } from './RoutineSessionPlanDroppableItem';
-import { RoutineSessionPlanSortableItem } from './RoutineSessionPlanSortableItem';
 import { type FieldArrayWithId, useFormContext } from 'react-hook-form';
 import { useRoutineSessionPlanField } from '../../hooks/useRoutineSessionPlanField';
 import type {
@@ -17,7 +15,6 @@ import type {
   SelectOption,
 } from '@/presentation/modules/form/form.types';
 import type { RoutineForm } from '../../config/routine.schema';
-
 type Props = {
   sessions: SelectOption[];
   days: SelectOption[];
@@ -227,30 +224,6 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
                 </RoutineSessionPlanDroppableItem>
               );
             })}
-          </div>
-          <div className="">
-            {data.nonDroppedItems.length > 0 && <header>Your sessions</header>}
-            <DroppableArea
-              key={`unsortable-items-${data.nonDroppedItems.length}`}
-              id="undropped-sessions"
-              className="mt-2 flex w-full flex-wrap items-center gap-1"
-            >
-              {data.nonDroppedItems.map((session, index) => {
-                return (
-                  <RoutineSessionPlanSortableItem
-                    key={`${session.value}`}
-                    id={`${session.value}`}
-                    text={session.label}
-                    index={index}
-                    dndConfig={{
-                      id: session.value,
-                      containerId: undefined,
-                      type: 'draggable',
-                    }}
-                  />
-                );
-              })}
-            </DroppableArea>
           </div>
         </div>
         <p>Empty days are rest days</p>
