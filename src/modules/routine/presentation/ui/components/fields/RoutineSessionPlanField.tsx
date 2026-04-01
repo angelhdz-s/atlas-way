@@ -64,7 +64,6 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
 
   const {
     actions: { addItem, moveSessionBetweenCycleDays, removeDroppedCycleDay, swapDroppeds },
-    data,
     get: { findOption },
   } = useRoutineSessionPlanField({
     containers: days,
