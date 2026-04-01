@@ -2,7 +2,8 @@ import { removeObjectKey } from '@/presentation/globals/lib/utils';
 import { useEffect, useRef, useState } from 'react';
 import { useFieldArray } from 'react-hook-form';
 import type { ArrayPath, Control, FieldArrayWithId, FieldValues } from 'react-hook-form';
-import type { SelectOption } from '@/presentation/modules/form/types';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
+import type { RoutineForm } from '../config/routine.schema';
 
 type ContainersKey = Props['containers'][number]['value'];
 
@@ -35,12 +36,13 @@ type FullProps<TForm extends FieldValues, TName extends ArrayPath<TForm>> = {
     remove?: (field: TField<TForm, TName>) => TField<TForm, TName>;
     add: (field: TField<TForm, TName>, item: SelectOption) => TField<TForm, TName>;
   };
+  data?: RoutineForm['sessions'];
 };
 
 export function useRoutineSessionPlanField<
   TForm extends FieldValues,
   TName extends ArrayPath<TForm>,
->({ options, containers, control, name, fieldMappers }: FullProps<TForm, TName>) {
+>({ options, containers, control, name, fieldMappers, data }: FullProps<TForm, TName>) {
   const [state, setState] = useState<{
     droppeds: DroppedItem;
     nonDroppedItems: SelectOption[];
@@ -230,10 +232,37 @@ export function useRoutineSessionPlanField<
 
   useEffect(() => {
     if (!initialRender.current) return;
-    const newFields = containers.map(fieldMappers.initialMapper);
-    replace(newFields);
+    if (!data || data.length < 1) {
+      const newFields = containers.map(fieldMappers.initialMapper);
+      replace(newFields);
+    } else {
+      replace(data as any);
+      setState((prev) => {
+        const { droppeds } = { ...prev };
+
+        const droppedOptions: string[] = [];
+        for (let i = 0; i < data.length; i++) {
+          const routineDay = data[i];
+          if (routineDay.sessionId !== null) {
+            const option = options.find((o) => o.value === routineDay.sessionId);
+            if (!option) continue;
+            const dayKey = containers[i].value;
+            droppeds[dayKey] = option;
+            droppedOptions.push(option.value);
+          }
+        }
+
+        const nonDroppedItems = options.filter((o) => !droppedOptions.includes(o.value));
+
+        return {
+          droppeds,
+          nonDroppedItems,
+        };
+      });
+    }
+
     initialRender.current = false;
-  }, [replace, containers, fieldMappers]);
+  }, [replace, containers, fieldMappers, data, options]);
 
   return {
     data: {

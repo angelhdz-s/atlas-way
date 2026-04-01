@@ -1,21 +1,20 @@
 import type { FieldArrayWithId } from 'react-hook-form';
 
-export type InputTextProps = {
-  className?: string;
-  name: string;
-  placeholder?: string;
-  disabled?: boolean;
+export type InputTextProps = React.InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
+  value?: string;
 };
 
-export type InputNumberProps = InputTextProps & {
-  min?: string | number;
-  max?: string | number;
+export type InputNumberProps = Omit<InputTextProps, 'value'> & {
   value?: string | number;
 };
 
-export type TextAreaProps = InputTextProps & {
-  rows?: number;
+export type InputDateProps = Omit<InputTextProps, 'value'> & {
+  value?: string;
+};
+
+export type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  error?: string;
 };
 
 export type SelectOptionValue = string;

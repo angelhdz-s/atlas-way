@@ -3,8 +3,13 @@ import { inputNumberConfig } from '@/presentation/modules/form/config/input-conf
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import { useFormContext } from 'react-hook-form';
 import type { ExerciseFormProps } from '../../schemas/exercise.schema';
+import { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 
-export function ExerciseWeightField() {
+type Props = {
+  value?: ExerciseDTO['weight'];
+};
+
+export function ExerciseWeightField({ value }: Props) {
   const {
     register,
     formState: { errors },
@@ -15,6 +20,7 @@ export function ExerciseWeightField() {
       <InputNumber
         {...register('exercise.weight', inputNumberConfig)}
         error={errors.exercise?.weight?.message}
+        value={value}
       />
     </Label>
   );

@@ -1,9 +1,15 @@
 import { InputDate } from '@/presentation/modules/form/components/fields/InputDate';
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import { useFormContext } from 'react-hook-form';
+import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 import type { RoutineForm } from '../../config/routine.schema';
 
-export function RoutineInitialDateField() {
+type Props = {
+  value?: RoutineDTO['initialDate'];
+};
+
+export function RoutineInitialDateField({ value }: Props) {
+  const date = value?.toISOString().split('T')[0];
   const {
     register,
     formState: { errors },
@@ -15,6 +21,7 @@ export function RoutineInitialDateField() {
           setValueAs: (value) => (value ? new Date(value) : undefined),
         })}
         error={errors.initialDate?.message}
+        value={date}
       />
     </Label>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import { useDroppable } from '@dnd-kit/react';
-import type { DnDFormFieldItemDroppableData } from '@/presentation/modules/form/types';
+import type { DnDFormFieldItemDroppableData } from '@/presentation/modules/form/form.types';
 import type { IconTypes } from '@/presentation/globals/types';
 
 type Props = {

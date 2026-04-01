@@ -2,7 +2,7 @@
 
 import { Box } from '@/presentation/modules/form/components/Box';
 import { useMultipleSelectBox } from '@/presentation/modules/form/hooks/useMultipleSelectBox';
-import type { SelectOption } from '@/presentation/modules/form/types';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { IconCirclePlus, IconTrash, IconXMark } from '@/presentation/globals/components/Icons';
 import { ErrorMessage } from './ErrorMessage';
 import { VariantButton } from '../../button/components/VariantButton';

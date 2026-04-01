@@ -1,6 +1,6 @@
 import { IconGripVertical, IconTrash } from '@/presentation/globals/components/Icons';
 import { useSortable } from '@dnd-kit/react/sortable';
-import type { SelectOption } from '../types';
+import type { SelectOption } from '../form.types';
 
 type Props = {
   item: SelectOption;

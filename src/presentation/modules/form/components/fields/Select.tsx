@@ -1,7 +1,7 @@
 import { InputClasses } from '../../constants/classes';
 
 import styles from './Select.module.css';
-import type { SelectOption, SelectOptionValue } from '../../types';
+import type { SelectOption, SelectOptionValue } from '../../form.types';
 import { ErrorMessage } from '../ErrorMessage';
 
 type multipleSelectedType =

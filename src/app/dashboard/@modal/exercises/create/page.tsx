@@ -1,6 +1,6 @@
 import { ModalExerciseForm } from '@/modules/exercise/presentation/ui/components/ModalExerciseForm';
 import { getAllMuscles } from '@/modules/muscle/presentation/muscle.actions';
-import type { SelectOption } from '@/presentation/modules/form/types';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 export default async function CreateExercisePage() {
   const dbMuscles = await getAllMuscles();

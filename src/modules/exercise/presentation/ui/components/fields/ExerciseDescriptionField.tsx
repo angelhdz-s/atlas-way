@@ -2,8 +2,13 @@ import { Label } from '@/presentation/modules/form/components/fields/LabelInput'
 import { TextArea } from '@/presentation/modules/form/components/fields/TextArea';
 import { useFormContext } from 'react-hook-form';
 import type { ExerciseFormProps } from '../../schemas/exercise.schema';
+import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 
-export function ExerciseDescriptionField() {
+type Props = {
+  value?: ExerciseDTO['description'];
+};
+
+export function ExerciseDescriptionField({ value }: Props) {
   const {
     register,
     formState: { errors },
@@ -14,6 +19,7 @@ export function ExerciseDescriptionField() {
         {...register('exercise.description')}
         error={errors.exercise?.description?.message}
         placeholder="A compound exercise that targets the chest, shoulders, and triceps."
+        value={value ?? undefined}
       />
     </Label>
   );

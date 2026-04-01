@@ -1,35 +1,22 @@
 import { useState } from 'react';
 import { InputClasses } from '../../constants/classes';
-import type { InputNumberProps } from '../../types';
+import type { InputNumberProps } from '../../form.types';
 import { ErrorMessage } from '../ErrorMessage';
 
-export function InputNumber({
-  name,
-  className = '',
-  disabled = false,
-  placeholder,
-  min,
-  max,
-  value = '',
-  error,
-  ...props
-}: InputNumberProps) {
-  const [currentValue, setCurrentValue] = useState<string | number | undefined>(value);
+export function InputNumber(props: InputNumberProps) {
+  const { onChange, value, error, className, ...rest } = props;
+  const [currentValue, setCurrentValue] = useState(value ?? '');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange?.(e);
     const val = e.target.value;
     if (val !== currentValue) setCurrentValue(val);
   };
   return (
     <>
       <input
-        {...props}
+        {...rest}
         type="number"
-        name={name}
-        disabled={disabled}
         className={`${InputClasses} ${className}`}
-        placeholder={placeholder}
-        min={min}
-        max={max}
         value={currentValue}
         onChange={handleChange}
       />

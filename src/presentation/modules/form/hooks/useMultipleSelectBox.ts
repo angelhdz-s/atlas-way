@@ -4,8 +4,8 @@ import {
   type FieldValues,
   useFieldArray,
 } from 'react-hook-form';
-import type { SelectOption } from '../types';
-import { useMemo, useState } from 'react';
+import type { SelectOption } from '../form.types';
+import { useEffect, useMemo, useState } from 'react';
 
 type Props<TForm extends FieldValues, TName extends FieldArrayPath<TForm>> = {
   items: SelectOption[];
@@ -86,6 +86,12 @@ export function useMultipleSelectBox<
   const clearAllItems = () => {
     replace([]);
   };
+
+  useEffect(() => {
+    if (itemsSelected.length < 1) return;
+    const selectedFields = itemsSelected.map((i) => ({ id: i }));
+    replace(selectedFields as any);
+  }, [itemsSelected]);
 
   return {
     fields,

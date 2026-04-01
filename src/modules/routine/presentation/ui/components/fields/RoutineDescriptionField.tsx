@@ -1,8 +1,13 @@
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import { TextArea } from '@/presentation/modules/form/components/fields/TextArea';
 import { useFormContext } from 'react-hook-form';
+import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 
-export function RoutineDescriptionField() {
+type Props = {
+  value?: RoutineDTO['description'];
+};
+
+export function RoutineDescriptionField({ value }: Props) {
   const {
     register,
     formState: { errors },
@@ -13,6 +18,7 @@ export function RoutineDescriptionField() {
         {...register('description')}
         error={errors.description?.message as string}
         placeholder="A workout routine for the whole body"
+        value={value ?? ''}
       />
     </Label>
   );

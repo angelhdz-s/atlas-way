@@ -2,8 +2,13 @@ import { InputText } from '@/presentation/modules/form/components/fields/InputTe
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import { useFormContext } from 'react-hook-form';
 import type { SessionForm } from '../../config/session.schema';
+import { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 
-export function SessionName() {
+type Props = {
+  value?: SessionDTO['name'];
+};
+
+export function SessionName({ value }: Props) {
   const {
     register,
     formState: { errors },
@@ -14,6 +19,7 @@ export function SessionName() {
         {...register('name')}
         placeholder="Enter Session name"
         error={errors.name?.message}
+        value={value}
       />
     </Label>
   );

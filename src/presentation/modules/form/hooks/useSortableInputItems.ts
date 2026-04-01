@@ -4,8 +4,8 @@ import {
   type FieldValues,
   useFieldArray,
 } from 'react-hook-form';
-import type { SelectOption } from '../types';
-import { useMemo, useState } from 'react';
+import type { SelectOption } from '../form.types';
+import { useEffect, useMemo, useState } from 'react';
 
 type Props<TForm extends FieldValues, TName extends FieldArrayPath<TForm>> = {
   items: SelectOption[];
@@ -91,6 +91,12 @@ export function useSortableInputItems<
     setSelectedItems([]);
     setSelectableItems(items);
   };
+
+  useEffect(() => {
+    if (itemsSelected.length < 1) return;
+    const initialFields = itemsSelected.map((i) => ({ id: i }));
+    replace(initialFields as any);
+  }, [itemsSelected]);
 
   return {
     fields,

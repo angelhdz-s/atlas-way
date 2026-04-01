@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import type { SelectOption } from '@/presentation/modules/form/types';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 export function useSelectBox({
   options,
