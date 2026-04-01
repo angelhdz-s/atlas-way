@@ -1,7 +1,7 @@
-import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import { InputText } from '@/presentation/modules/form/components/fields/InputText';
+import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import { useFormContext } from 'react-hook-form';
-import { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
+import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 
 type Props = {
   value?: RoutineDTO['name'];
@@ -19,6 +19,7 @@ export function RoutineNameField({ value }: Props) {
         {...register('name')}
         placeholder="Full Body Workout"
         error={errors.name?.message as string}
+        value={value}
       />
     </Label>
   );
