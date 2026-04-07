@@ -32,4 +32,4 @@ export type ActionResponseType = {
 
 export type AtomicElement = 'div' | 'span' | 'button' | 'li' | 'a';
 
-export type DivProps = React.ComponentPropsWithRef;
+export type DivProps = React.ComponentPropsWithRef<'div'>;
