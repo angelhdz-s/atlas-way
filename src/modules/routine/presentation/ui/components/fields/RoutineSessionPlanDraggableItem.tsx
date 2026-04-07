@@ -8,14 +8,20 @@ export function RoutineSessionPlanDraggableItem({
   id,
   text,
   dndConfig,
+  onRemove,
 }: {
   id: string;
   text: string;
   dndConfig: DnDFormFieldItemDraggableData;
+  onRemove?: () => void;
 }) {
   const { ref } = useDraggable({
     id,
     data: dndConfig,
   });
-  return <DraggableBadge ref={ref}>{text}</DraggableBadge>;
+  return (
+    <DraggableBadge onRemove={onRemove} ref={ref}>
+      {text}
+    </DraggableBadge>
+  );
 }
