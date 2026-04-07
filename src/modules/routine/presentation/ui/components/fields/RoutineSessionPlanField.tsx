@@ -1,14 +1,12 @@
 'use client';
 
 import { DragDropProvider } from '@dnd-kit/react';
-import { DroppableArea } from '@/presentation/globals/components/DroppabelArea';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
-import { IconBarbell, IconCalendarWeek, IconZZ } from '@/presentation/globals/components/Icons';
+import { IconCalendarWeek } from '@/presentation/globals/components/Icons';
 import { isSortableOperation } from '@dnd-kit/react/sortable';
 import { RoutineSessionPlanDraggableItem } from './RoutineSessionPlanDraggableItem';
 import { RoutineSessionPlanDroppableItem } from './RoutineSessionPlanDroppableItem';
-import { RoutineSessionPlanSortableItem } from './RoutineSessionPlanSortableItem';
 import { type FieldArrayWithId, useFormContext } from 'react-hook-form';
 import { useRoutineSessionPlanField } from '../../hooks/useRoutineSessionPlanField';
 import type {
@@ -17,7 +15,7 @@ import type {
   SelectOption,
 } from '@/presentation/modules/form/form.types';
 import type { RoutineForm } from '../../config/routine.schema';
-
+import { TooltipSelect } from '@/presentation/modules/form/components/tooltip/TooltipSelect';
 type Props = {
   sessions: SelectOption[];
   days: SelectOption[];
@@ -67,8 +65,9 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
 
   const {
     actions: { addItem, moveSessionBetweenCycleDays, removeDroppedCycleDay, swapDroppeds },
-    data,
     get: { findOption },
+    selecting,
+    selection: { closeSelection, setSelection },
   } = useRoutineSessionPlanField({
     containers: days,
     options: sessions,
@@ -82,6 +81,24 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
     },
     data: routineDays,
   });
+
+  const handleAddItem = (containerIndex: number, containerKey: string) => (value: string) => {
+    const itemId = value;
+    if (!itemId) return;
+    addItem({
+      itemId,
+      containerIndex,
+      containerKey,
+    });
+  };
+
+  const handleRemoveItem = (containerId: string, containerIndex: number, itemId: string) => () => {
+    removeDroppedCycleDay({
+      containerId,
+      containerIndex,
+      itemId,
+    });
+  };
 
   return (
     <DragDropProvider
@@ -97,20 +114,7 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
 
         const sourceData = source.data as DnDFormFieldItemDraggableData;
 
-        if (!target) {
-          if (sourceData.containerId) {
-            removeDroppedCycleDay({
-              containerData: {
-                id: sourceData.containerId,
-                index: sourceData.containerIndex,
-              },
-              itemData: {
-                id: sourceData.id,
-              },
-            });
-          }
-          return;
-        }
+        if (!target) return;
 
         const targetData = target.data as DnDFormFieldItemData;
 
@@ -119,77 +123,32 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
         if (targetData.type !== 'droppable') {
           if (sourceData.containerId)
             removeDroppedCycleDay({
-              containerData: {
-                id: sourceData.containerId,
-                index: sourceData.containerIndex,
-              },
-              itemData: {
-                id: sourceData.id,
-              },
+              containerId: sourceData.containerId,
+              containerIndex: sourceData.containerIndex,
+              itemId: sourceData.id,
             });
           return;
         }
 
-        if (!targetData.droppedId && !sourceData.containerId) {
-          addItem({
-            itemData: {
-              id: sourceData.id,
-            },
-            containerData: {
-              index: targetData.index,
-              key: targetData.id,
-            },
-          });
-          return;
-        }
-
-        if (!sourceData.containerId) {
-          removeDroppedCycleDay({
-            containerData: {
-              id: targetData.id,
-              index: targetData.index,
-            },
-            itemData: {
-              id: sourceData.id,
-            },
-          });
-          addItem({
-            itemData: {
-              id: sourceData.id,
-            },
-            containerData: {
-              index: targetData.index,
-              key: targetData.id,
-            },
-          });
-          return;
-        }
+        if (!sourceData.containerId) return;
 
         if (!targetData.droppedId) {
           moveSessionBetweenCycleDays({
-            source: {
-              containerIndex: sourceData.containerIndex,
-              containerKey: sourceData.containerId,
-              id: sourceData.id,
-            },
-            target: {
-              containerIndex: targetData.index,
-              containerKey: targetData.id,
-            },
+            sourceContainerIndex: sourceData.containerIndex,
+            sourceContainerKey: sourceData.containerId,
+            sourceId: sourceData.id,
+            targetContainerIndex: targetData.index,
+            targetContainerKey: targetData.id,
           });
           return;
         }
 
         if (sourceData.containerId && sourceData.containerId !== targetData.id) {
           swapDroppeds({
-            source: {
-              containerIndex: sourceData.containerIndex,
-              containerKey: sourceData.containerId,
-            },
-            target: {
-              containerIndex: targetData.index,
-              containerKey: targetData.id,
-            },
+            sourceContainerIndex: sourceData.containerIndex,
+            sourceContainerKey: sourceData.containerId,
+            targetContainerIndex: targetData.index,
+            targetContainerKey: targetData.id,
           });
           return;
         }
@@ -198,7 +157,6 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
     >
       <FormFieldSection title="Your Plan" Icon={IconCalendarWeek}>
         <div className="space-y-2">
-          <header className="fg-strong font-medium">Your days plan</header>
           <div className="grid w-full grid-cols-4 items-center gap-2">
             {days.map((day, index) => {
               const option = findOption(day.value);
@@ -208,14 +166,15 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
                   key={key}
                   id={key}
                   text={day.label}
-                  Icon={option ? IconBarbell : IconZZ}
+                  onAdd={option ? undefined : () => setSelection(index)}
                   dndConfig={{ droppedId: option?.value, id: day.value, index, type: 'droppable' }}
                 >
                   {option && (
                     <RoutineSessionPlanDraggableItem
-                      key={`${option.value}`}
-                      id={`${option.value}`}
+                      key={`${day.value}-${option.value}`}
+                      id={`${day.value}-${option.value}`}
                       text={option.label}
+                      onRemove={handleRemoveItem(day.value, index, option.value)}
                       dndConfig={{
                         containerId: day.value,
                         id: option.value,
@@ -228,34 +187,19 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
               );
             })}
           </div>
-          <div className="">
-            {data.nonDroppedItems.length > 0 && <header>Your sessions</header>}
-            <DroppableArea
-              key={`unsortable-items-${data.nonDroppedItems.length}`}
-              id="undropped-sessions"
-              className="mt-2 flex w-full flex-wrap items-center gap-1"
-            >
-              {data.nonDroppedItems.map((session, index) => {
-                return (
-                  <RoutineSessionPlanSortableItem
-                    key={`${session.value}`}
-                    id={`${session.value}`}
-                    text={session.label}
-                    index={index}
-                    dndConfig={{
-                      id: session.value,
-                      containerId: undefined,
-                      type: 'draggable',
-                    }}
-                  />
-                );
-              })}
-            </DroppableArea>
-          </div>
         </div>
         <p>Empty days are rest days</p>
         <ErrorMessage message={errors.sessions?.message} />
       </FormFieldSection>
+      {selecting !== null && days[selecting] !== undefined && (
+        <TooltipSelect
+          label="Session"
+          selectOptions={sessions}
+          title={`${days[selecting].label}'s Session`}
+          onClose={closeSelection}
+          onSelectChange={handleAddItem(selecting, days[selecting].value)}
+        />
+      )}
     </DragDropProvider>
   );
 }
