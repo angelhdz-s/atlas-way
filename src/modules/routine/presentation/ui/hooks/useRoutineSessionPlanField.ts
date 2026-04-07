@@ -44,6 +44,7 @@ export function useRoutineSessionPlanField<
   TName extends ArrayPath<TForm>,
 >({ options, containers, control, name, fieldMappers, data }: FullProps<TForm, TName>) {
   const [droppeds, setDroppeds] = useState<DroppedItem>({});
+  const [selecting, setSelecting] = useState<number | null>(null);
 
   const { fields, update, replace } = useFieldArray<TForm>({
     control,
@@ -52,6 +53,18 @@ export function useRoutineSessionPlanField<
 
   // Typed fields variable
   const typedFields: TField<TForm, TName>[] = fields;
+
+  // selecting handling functions
+
+  const closeSelection = () => {
+    if (selecting !== null) setSelecting(null);
+  };
+
+  const setSelection = (containerIndex: number) => {
+    if (containerIndex > -1 && containerIndex < containers.length) setSelecting(containerIndex);
+  };
+
+  // dropped handling functions
 
   const findOption = (key: ContainersKey): SelectOption | undefined => {
     return droppeds[key];
