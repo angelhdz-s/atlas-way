@@ -71,25 +71,22 @@ export function useRoutineSessionPlanField<
   };
 
   const addItem = ({
-    itemData,
-    containerData,
+    itemId,
+    containerIndex,
+    containerKey,
   }: {
-    itemData: {
-      id: string;
-    };
-    containerData: {
-      key: ContainersKey;
-      index: number;
-    };
+    itemId: string;
+    containerKey: ContainersKey;
+    containerIndex: number;
   }) => {
-    const item = options.find((option) => option.value === itemData.id);
+    const item = options.find((option) => option.value === itemId);
     if (!item) return;
-    const targetField = typedFields[containerData.index];
+    const targetField = typedFields[containerIndex];
     if (!targetField) return;
 
     setDroppeds((prev) => {
       const newSession = {
-        [containerData.key]: item,
+        [containerKey]: item,
       };
 
       return {
@@ -100,36 +97,35 @@ export function useRoutineSessionPlanField<
     if (!fieldMappers?.add) return;
 
     const newField = fieldMappers.add(targetField, item);
-    update(containerData.index, newField);
+    update(containerIndex, newField);
   };
 
   const moveSessionBetweenCycleDays = ({
-    source,
-    target,
+    sourceId,
+    sourceContainerIndex,
+    sourceContainerKey,
+    targetContainerIndex,
+    targetContainerKey,
   }: {
-    source: {
-      id: string;
-      containerKey: ContainersKey;
-      containerIndex: number;
-    };
-    target: {
-      containerKey: ContainersKey;
-      containerIndex: number;
-    };
+    sourceId: string;
+    sourceContainerKey: ContainersKey;
+    sourceContainerIndex: number;
+    targetContainerKey: ContainersKey;
+    targetContainerIndex: number;
   }) => {
-    const sourceField = typedFields[source.containerIndex];
-    const targetField = typedFields[target.containerIndex];
+    const sourceField = typedFields[sourceContainerIndex];
+    const targetField = typedFields[targetContainerIndex];
 
     if (!sourceField && !targetField) return;
 
-    const item = options.find((option) => option.value === source.id);
+    const item = options.find((option) => option.value === sourceId);
     if (!item) return;
 
     setDroppeds((prev) => {
       const newDropped = {
-        [target.containerKey]: item,
+        [targetContainerKey]: item,
       };
-      const removeKeyDroppreds = removeObjectKey({ ...prev }, source.containerKey);
+      const removeKeyDroppreds = removeObjectKey({ ...prev }, sourceContainerKey);
       const newDroppeds = {
         ...removeKeyDroppreds,
         ...newDropped,
@@ -145,33 +141,30 @@ export function useRoutineSessionPlanField<
     const [newSourceField, newTargetField] = fieldMappers.swap(sourceField, targetField);
 
     // remove old source
-    update(source.containerIndex, newSourceField);
+    update(sourceContainerIndex, newSourceField);
     // add new target
-    update(target.containerIndex, newTargetField);
+    update(targetContainerIndex, newTargetField);
   };
 
   const removeDroppedCycleDay = ({
-    containerData,
-    itemData,
+    containerId,
+    containerIndex,
+    itemId,
   }: {
-    containerData: {
-      id: ContainersKey;
-      index: number;
-    };
-    itemData: {
-      id: string;
-    };
+    containerId: ContainersKey;
+    containerIndex: number;
+    itemId: string;
   }) => {
-    const item = options.find((option) => option.value === itemData.id);
+    const item = options.find((option) => option.value === itemId);
     if (!item) return;
 
-    const field = typedFields[containerData.index];
+    const field = typedFields[containerIndex];
     if (!field) return;
 
     setDroppeds((prev) => {
-      const item = prev[containerData.id];
+      const item = prev[containerId];
       if (!item) return prev;
-      const newDroppeds = removeObjectKey({ ...prev }, containerData.id);
+      const newDroppeds = removeObjectKey({ ...prev }, containerId);
       return {
         ...newDroppeds,
       };
@@ -180,34 +173,32 @@ export function useRoutineSessionPlanField<
     if (!fieldMappers.remove) return;
 
     const newField = fieldMappers.remove(field);
-    update(containerData.index, newField);
+    update(containerIndex, newField);
   };
 
   const swapDroppeds = ({
-    source,
-    target,
+    sourceContainerIndex,
+    sourceContainerKey,
+    targetContainerIndex,
+    targetContainerKey,
   }: {
-    source: {
-      containerKey: ContainersKey;
-      containerIndex: number;
-    };
-    target: {
-      containerKey: ContainersKey;
-      containerIndex: number;
-    };
+    sourceContainerKey: ContainersKey;
+    sourceContainerIndex: number;
+    targetContainerKey: ContainersKey;
+    targetContainerIndex: number;
   }) => {
-    const sourceField = typedFields[source.containerIndex];
-    const targetField = typedFields[target.containerIndex];
+    const sourceField = typedFields[sourceContainerIndex];
+    const targetField = typedFields[targetContainerIndex];
 
     if (!sourceField || !targetField) return;
 
     setDroppeds((prev) => {
       const droppedsCopy = { ...prev };
-      const sourceValue = droppedsCopy[source.containerKey];
-      const targetValue = droppedsCopy[target.containerKey];
+      const sourceValue = droppedsCopy[sourceContainerKey];
+      const targetValue = droppedsCopy[targetContainerKey];
 
-      droppedsCopy[source.containerKey] = targetValue;
-      droppedsCopy[target.containerKey] = sourceValue;
+      droppedsCopy[sourceContainerKey] = targetValue;
+      droppedsCopy[targetContainerKey] = sourceValue;
 
       return {
         ...droppedsCopy,
@@ -218,8 +209,8 @@ export function useRoutineSessionPlanField<
 
     const [newSourceField, newTargetField] = fieldMappers.swap(sourceField, targetField);
 
-    update(source.containerIndex, newSourceField);
-    update(target.containerIndex, newTargetField);
+    update(sourceContainerIndex, newSourceField);
+    update(targetContainerIndex, newTargetField);
   };
 
   const initialRender = useRef(true);
@@ -261,7 +252,6 @@ export function useRoutineSessionPlanField<
       findOption,
     },
     actions: {
-      replace,
       swapDroppeds,
       addItem,
       moveSessionBetweenCycleDays,
