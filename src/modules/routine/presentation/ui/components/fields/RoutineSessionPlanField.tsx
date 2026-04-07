@@ -130,7 +130,7 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
           return;
         }
 
-        if (!targetData.droppedId || !sourceData.containerId) return;
+        if (!sourceData.containerId) return;
 
         if (!targetData.droppedId) {
           moveSessionBetweenCycleDays({
