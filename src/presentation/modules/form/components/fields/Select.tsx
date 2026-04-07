@@ -15,6 +15,7 @@ type multipleSelectedType =
     };
 
 type SelectProps = {
+  ref?: React.Ref<HTMLSelectElement>;
   className?: string;
   name?: string;
   placeholder?: string;
