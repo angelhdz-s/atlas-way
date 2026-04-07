@@ -5,7 +5,7 @@ import type { InputDateProps } from '../../form.types';
 
 export function InputDate(props: InputDateProps) {
   const { className, onChange, value, error, ...rest } = props;
-  const [date, setDate] = useState(value);
+  const [date, setDate] = useState<string>(value ?? '');
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e);
     const newDate = e.currentTarget.value;
