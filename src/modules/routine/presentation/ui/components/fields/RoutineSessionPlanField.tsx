@@ -157,7 +157,6 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
     >
       <FormFieldSection title="Your Plan" Icon={IconCalendarWeek}>
         <div className="space-y-2">
-          <header className="fg-strong font-medium">Your days plan</header>
           <div className="grid w-full grid-cols-4 items-center gap-2">
             {days.map((day, index) => {
               const option = findOption(day.value);
