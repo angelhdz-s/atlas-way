@@ -3,7 +3,7 @@
 import { DragDropProvider } from '@dnd-kit/react';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
-import { IconBarbell, IconCalendarWeek, IconZZ } from '@/presentation/globals/components/Icons';
+import { IconCalendarWeek } from '@/presentation/globals/components/Icons';
 import { isSortableOperation } from '@dnd-kit/react/sortable';
 import { RoutineSessionPlanDraggableItem } from './RoutineSessionPlanDraggableItem';
 import { RoutineSessionPlanDroppableItem } from './RoutineSessionPlanDroppableItem';
@@ -15,6 +15,7 @@ import type {
   SelectOption,
 } from '@/presentation/modules/form/form.types';
 import type { RoutineForm } from '../../config/routine.schema';
+import { TooltipSelect } from '@/presentation/modules/form/components/tooltip/TooltipSelect';
 type Props = {
   sessions: SelectOption[];
   days: SelectOption[];
@@ -65,6 +66,8 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
   const {
     actions: { addItem, moveSessionBetweenCycleDays, removeDroppedCycleDay, swapDroppeds },
     get: { findOption },
+    selecting,
+    selection: { closeSelection, setSelection },
   } = useRoutineSessionPlanField({
     containers: days,
     options: sessions,
@@ -79,6 +82,15 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
     data: routineDays,
   });
 
+  const handleAddItem = (containerIndex: number, containerKey: string) => (value: string) => {
+    const itemId = value;
+    if (!itemId) return;
+    addItem({
+      itemId,
+      containerIndex,
+      containerKey,
+    });
+  };
   return (
     <DragDropProvider
       onDragEnd={(e) => {
@@ -146,7 +158,7 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
                   key={key}
                   id={key}
                   text={day.label}
-                  Icon={option ? IconBarbell : IconZZ}
+                  onAdd={option ? undefined : () => setSelection(index)}
                   dndConfig={{ droppedId: option?.value, id: day.value, index, type: 'droppable' }}
                 >
                   {option && (
@@ -170,6 +182,14 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
         <p>Empty days are rest days</p>
         <ErrorMessage message={errors.sessions?.message} />
       </FormFieldSection>
+      {selecting !== null && days[selecting] !== undefined && (
+        <TooltipSelect
+          selectOptions={sessions}
+          title={`${days[selecting].label}'s Session`}
+          onClose={closeSelection}
+          onSelectChange={handleAddItem(selecting, days[selecting].value)}
+        />
+      )}
     </DragDropProvider>
   );
 }
