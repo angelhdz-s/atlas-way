@@ -102,13 +102,9 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
         if (targetData.type !== 'droppable') {
           if (sourceData.containerId)
             removeDroppedCycleDay({
-              containerData: {
-                id: sourceData.containerId,
-                index: sourceData.containerIndex,
-              },
-              itemData: {
-                id: sourceData.id,
-              },
+              containerId: sourceData.containerId,
+              containerIndex: sourceData.containerIndex,
+              itemId: sourceData.id,
             });
           return;
         }
@@ -117,29 +113,21 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
 
         if (!targetData.droppedId) {
           moveSessionBetweenCycleDays({
-            source: {
-              containerIndex: sourceData.containerIndex,
-              containerKey: sourceData.containerId,
-              id: sourceData.id,
-            },
-            target: {
-              containerIndex: targetData.index,
-              containerKey: targetData.id,
-            },
+            sourceContainerIndex: sourceData.containerIndex,
+            sourceContainerKey: sourceData.containerId,
+            sourceId: sourceData.id,
+            targetContainerIndex: targetData.index,
+            targetContainerKey: targetData.id,
           });
           return;
         }
 
         if (sourceData.containerId && sourceData.containerId !== targetData.id) {
           swapDroppeds({
-            source: {
-              containerIndex: sourceData.containerIndex,
-              containerKey: sourceData.containerId,
-            },
-            target: {
-              containerIndex: targetData.index,
-              containerKey: targetData.id,
-            },
+            sourceContainerIndex: sourceData.containerIndex,
+            sourceContainerKey: sourceData.containerId,
+            targetContainerIndex: targetData.index,
+            targetContainerKey: targetData.id,
           });
           return;
         }
