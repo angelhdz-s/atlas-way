@@ -256,6 +256,7 @@ export function useRoutineSessionPlanField<
   }, [replace, containers, fieldMappers, data, options]);
 
   return {
+    selecting,
     get: {
       findOption,
     },
@@ -265,6 +266,10 @@ export function useRoutineSessionPlanField<
       addItem,
       moveSessionBetweenCycleDays,
       removeDroppedCycleDay,
+    },
+    selection: {
+      closeSelection,
+      setSelection,
     },
   };
 }
