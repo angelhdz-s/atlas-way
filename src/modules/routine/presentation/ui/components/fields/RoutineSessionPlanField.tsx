@@ -91,6 +91,15 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
       containerKey,
     });
   };
+
+  const handleRemoveItem = (containerId: string, containerIndex: number, itemId: string) => () => {
+    removeDroppedCycleDay({
+      containerId,
+      containerIndex,
+      itemId,
+    });
+  };
+
   return (
     <DragDropProvider
       onDragEnd={(e) => {
@@ -163,9 +172,10 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
                 >
                   {option && (
                     <RoutineSessionPlanDraggableItem
-                      key={`${option.value}`}
-                      id={`${option.value}`}
+                      key={`${day.value}-${option.value}`}
+                      id={`${day.value}-${option.value}`}
                       text={option.label}
+                      onRemove={handleRemoveItem(day.value, index, option.value)}
                       dndConfig={{
                         containerId: day.value,
                         id: option.value,
@@ -184,6 +194,7 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
       </FormFieldSection>
       {selecting !== null && days[selecting] !== undefined && (
         <TooltipSelect
+          label="Session"
           selectOptions={sessions}
           title={`${days[selecting].label}'s Session`}
           onClose={closeSelection}
