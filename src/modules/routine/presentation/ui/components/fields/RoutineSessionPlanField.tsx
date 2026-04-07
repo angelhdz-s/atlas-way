@@ -93,20 +93,7 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
 
         const sourceData = source.data as DnDFormFieldItemDraggableData;
 
-        if (!target) {
-          if (sourceData.containerId) {
-            removeDroppedCycleDay({
-              containerData: {
-                id: sourceData.containerId,
-                index: sourceData.containerIndex,
-              },
-              itemData: {
-                id: sourceData.id,
-              },
-            });
-          }
-          return;
-        }
+        if (!target) return;
 
         const targetData = target.data as DnDFormFieldItemData;
 
@@ -126,40 +113,7 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
           return;
         }
 
-        if (!targetData.droppedId && !sourceData.containerId) {
-          addItem({
-            itemData: {
-              id: sourceData.id,
-            },
-            containerData: {
-              index: targetData.index,
-              key: targetData.id,
-            },
-          });
-          return;
-        }
-
-        if (!sourceData.containerId) {
-          removeDroppedCycleDay({
-            containerData: {
-              id: targetData.id,
-              index: targetData.index,
-            },
-            itemData: {
-              id: sourceData.id,
-            },
-          });
-          addItem({
-            itemData: {
-              id: sourceData.id,
-            },
-            containerData: {
-              index: targetData.index,
-              key: targetData.id,
-            },
-          });
-          return;
-        }
+        if (!targetData.droppedId || !sourceData.containerId) return;
 
         if (!targetData.droppedId) {
           moveSessionBetweenCycleDays({
