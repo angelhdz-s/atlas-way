@@ -1,0 +1,28 @@
+name: '📝 Test: Form Integration (Server Actions)'
+description: 'Integration tests for forms using React Hook Form and Next.js Server Actions.'
+title: 'test: [Module] Form - [Form Name]'
+labels: ['test', 'test: integration', 'ui', 'layer: presentation']
+body:
+  - type: input
+    id: form_name
+    attributes:
+      label: 'Form Component'
+      placeholder: 'e.g., RoutineForm, ExerciseForm...'
+  - type: checkboxes
+    id: technical_criteria
+    attributes:
+      label: 'Technical Acceptance Criteria'
+      description: 'Select the specific form features that the tests must validate.'
+      options:
+        - label: 'Initial Render (Default values from props or server-side init)'
+        - label: 'Client-side Validation (Zod schema: immediate user feedback)'
+        - label: 'Server Action Submission (Mocking the action call and payload)'
+        - label: 'Server-side Error Handling (Displaying errors returned by the action)'
+        - label: 'Optimistic Updates / UI Feedback (Success messages or redirects)'
+        - label: 'Loading States (Pending state management via useFormStatus or useTransition)'
+        - label: 'Edge Cases (Network failures, session timeouts during submission)'
+  - type: textarea
+    id: server_action_details
+    attributes:
+      label: 'Server Action Integration'
+      placeholder: 'Specify the Server Action to be mocked (e.g., createRoutineAction) and the expected result (Success/State objects).'
