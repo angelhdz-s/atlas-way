@@ -1,0 +1,28 @@
+name: '🎨 Test: UI Components'
+description: 'Tests for rendering, accessibility, and visual states of UI components.'
+title: 'test: [Module/UI] Components - [Category or Name]'
+labels: ['test', 'test: unit', 'ui', 'layer: presentation']
+body:
+  - type: input
+    id: component_list
+    attributes:
+      label: 'Components Included'
+      placeholder: 'e.g., Button, InputText, Card...'
+  - type: checkboxes
+    id: technical_criteria
+    attributes:
+      label: 'Technical Acceptance Criteria'
+      description: 'Select the specific features that the tests must validate for these components.'
+      options:
+        - label: 'Basic Rendering (Ensures the component mounts without errors)'
+        - label: 'Conditional Rendering (Validates if/else display logic)'
+        - label: 'Internal State (Tests internal hooks or local state changes)'
+        - label: 'Integration with Props (Verifies component reacts to prop updates)'
+        - label: 'User Interactions (Clicks, typing, focus, and hover events)'
+        - label: 'Accessibility (Aria-roles, keyboard navigation, and contrast)'
+        - label: 'Edge Cases (Empty states, long text overflow, or null/undefined data)'
+  - type: textarea
+    id: technical_notes
+    attributes:
+      label: 'Implementation Details & Context'
+      placeholder: 'Describe any specific behavior to validate, theme constraints, or shared logic across these components.'
