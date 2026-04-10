@@ -6,23 +6,19 @@ import { Button } from '@/presentation/modules/button/components/Button';
 describe('<Button />', () => {
   describe('Basic Rendering', () => {
     it('should render correctly with minimum props', () => {
-      render(<Button variantConfig={{}}>Click</Button>);
+      render(<Button>Click</Button>);
       expect(screen.getByRole('button')).toBeInTheDocument();
     });
   });
 
   describe('Integration with Props', () => {
     it('should render the children text', () => {
-      render(<Button variantConfig={{}}>Click me</Button>);
+      render(<Button>Click me</Button>);
       expect(screen.getByRole('button')).toHaveTextContent('Click me');
     });
 
     it('should reflect the disabled state from props', () => {
-      render(
-        <Button variantConfig={{}} disabled>
-          Click
-        </Button>
-      );
+      render(<Button disabled>Click</Button>);
       expect(screen.getByRole('button')).toBeDisabled();
     });
 
@@ -73,11 +69,7 @@ describe('<Button />', () => {
   describe('User Interactions', () => {
     it('should trigger onClick callback when clicked', () => {
       const fn = jest.fn();
-      render(
-        <Button variantConfig={{}} onClick={fn}>
-          Click
-        </Button>
-      );
+      render(<Button onClick={fn}>Click</Button>);
       screen.getByRole('button').click();
       expect(fn).toHaveBeenCalledTimes(1);
     });
@@ -86,7 +78,7 @@ describe('<Button />', () => {
   describe('Accessibility', () => {
     it('should support keyboard navigation (focus)', async () => {
       const user = userEvent.setup();
-      render(<Button variantConfig={{}}>Click</Button>);
+      render(<Button>Click</Button>);
       await user.tab();
       expect(screen.getByRole('button')).toHaveFocus();
     });
