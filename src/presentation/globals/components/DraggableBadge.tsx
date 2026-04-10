@@ -1,7 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 import type { DivProps } from '../types';
 import { IconGripVertical, IconXMark } from './Icons';
-import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
+import { Button } from '@/presentation/modules/button/components/Button';
 
 type Props = DivProps & {
   onRemove?: () => void;
@@ -22,12 +22,9 @@ export function DraggableBadge(props: Props) {
       <IconGripVertical className="size-4" />
       <span className="w-15 truncate">{children}</span>
       {onRemove && (
-        <VariantButton
-          variantConfig={{ type: 'square', size: 'xs', color: 'simple' }}
-          onClick={onRemove}
-        >
+        <Button variantConfig={{ type: 'square', size: 'xs', color: 'simple' }} onClick={onRemove}>
           <IconXMark className="size-5" />
-        </VariantButton>
+        </Button>
       )}
     </div>
   );

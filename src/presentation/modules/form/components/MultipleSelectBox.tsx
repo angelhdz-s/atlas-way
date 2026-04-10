@@ -5,7 +5,7 @@ import { useMultipleSelectBox } from '@/presentation/modules/form/hooks/useMulti
 import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { IconCirclePlus, IconTrash, IconXMark } from '@/presentation/globals/components/Icons';
 import { ErrorMessage } from './ErrorMessage';
-import { VariantButton } from '../../button/components/VariantButton';
+import { Button } from '../../button/components/Button';
 import type { Control, FieldArrayPath, FieldValues } from 'react-hook-form';
 import { SelectBox } from './SelectBox';
 
@@ -22,14 +22,14 @@ function SelectedOptions({ option, onCrossClick }: SelectedOption) {
     <div className="bg-middle border-bd-muted flex w-fit max-w-36 items-center gap-0.5 rounded-lg border px-1 py-1 pl-3 hover:border-transparent">
       <span className="truncate">{option.label}</span>
       {onCrossClick && (
-        <VariantButton
+        <Button
           variantConfig={{ size: 'xs', type: 'square' }}
           type="button"
           onClick={handleClick}
           className="cursor-pointer transition-opacity hover:opacity-50"
         >
           <IconXMark className="size-5" strokeWidth="1" />
-        </VariantButton>
+        </Button>
       )}
     </div>
   );

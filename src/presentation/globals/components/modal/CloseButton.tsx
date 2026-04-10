@@ -1,6 +1,6 @@
 'use client';
 
-import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
+import { Button } from '@/presentation/modules/button/components/Button';
 import { useRouter } from 'next/navigation';
 
 export default function CloseButton({
@@ -15,7 +15,7 @@ export default function CloseButton({
     router.back();
   };
   return (
-    <VariantButton
+    <Button
       type="button"
       variantConfig={{
         color: 'simple',
@@ -24,6 +24,6 @@ export default function CloseButton({
       onClick={handleClose}
     >
       {children}
-    </VariantButton>
+    </Button>
   );
 }

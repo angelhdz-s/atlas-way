@@ -5,7 +5,7 @@ import {
   type SessionDetailsType,
 } from '../../session/presentation/ui/components/SessionDetails';
 import { SubtleCard } from '@/presentation/globals/components/SubtleCard';
-import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
+import { Button } from '@/presentation/modules/button/components/Button';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 
 const session = {
@@ -61,7 +61,7 @@ export function ActivitiesToday({ className }: { className?: string }) {
         </SubtleCard>
       </main>
       <footer>
-        <VariantButton
+        <Button
           type="button"
           variantConfig={{
             size: 'sm',
@@ -71,7 +71,7 @@ export function ActivitiesToday({ className }: { className?: string }) {
         >
           <IconCirclePlus className="size-5" />
           <span>Register</span>
-        </VariantButton>
+        </Button>
       </footer>
     </Card>
   );

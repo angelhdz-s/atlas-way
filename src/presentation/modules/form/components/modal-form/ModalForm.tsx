@@ -1,5 +1,5 @@
 import { IconXMark } from '@/presentation/globals/components/Icons';
-import { VariantButton } from '../../../button/components/VariantButton';
+import { Button } from '../../../button/components/Button';
 import { FormProvider } from 'react-hook-form';
 import { type ModalFormHookProps, useFormHook } from '../../hooks/useFormHook';
 import type { ZodSchema } from 'zod/v3';
@@ -24,7 +24,7 @@ export function ModalForm<T extends ZodSchema<any, any>>({
       <header className="border-bd-muted flex h-10 items-center justify-between border-b p-8 text-xl">
         <h3 className="font-funnel-display fg-strong truncate text-2xl font-medium">{title}</h3>
         <aside>
-          <VariantButton
+          <Button
             type="button"
             variantConfig={{
               color: 'simple',
@@ -33,7 +33,7 @@ export function ModalForm<T extends ZodSchema<any, any>>({
             onClick={onClose}
           >
             <IconXMark />
-          </VariantButton>
+          </Button>
         </aside>
       </header>
       <FormProvider {...methods}>

@@ -1,33 +1,33 @@
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
-import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
+import { Button } from '@/presentation/modules/button/components/Button';
 
-describe('<VariantButton />', () => {
+describe('<Button />', () => {
   describe('Basic Rendering', () => {
     it('should render correctly with minimum props', () => {
-      render(<VariantButton variantConfig={{}}>Click</VariantButton>);
+      render(<Button variantConfig={{}}>Click</Button>);
       expect(screen.getByRole('button')).toBeInTheDocument();
     });
   });
 
   describe('Integration with Props', () => {
     it('should render the children text', () => {
-      render(<VariantButton variantConfig={{}}>Click me</VariantButton>);
+      render(<Button variantConfig={{}}>Click me</Button>);
       expect(screen.getByRole('button')).toHaveTextContent('Click me');
     });
 
     it('should reflect the disabled state from props', () => {
       render(
-        <VariantButton variantConfig={{}} disabled>
+        <Button variantConfig={{}} disabled>
           Click
-        </VariantButton>
+        </Button>
       );
       expect(screen.getByRole('button')).toBeDisabled();
     });
 
     it('should apply p-0 class based on square variantConfig type', () => {
-      render(<VariantButton variantConfig={{ type: 'square' }}>Click</VariantButton>);
+      render(<Button variantConfig={{ type: 'square' }}>Click</Button>);
       expect(screen.getByRole('button')).toHaveClass('p-0');
     });
 
@@ -42,9 +42,9 @@ describe('<VariantButton />', () => {
         'should apply $expectedClass when color is $color',
         ({ color, expectedClass }) => {
           render(
-            <VariantButton variantConfig={{ color: color as 'simple' | 'primary' | 'subtle' }}>
+            <Button variantConfig={{ color: color as 'simple' | 'primary' | 'subtle' }}>
               Click
-            </VariantButton>
+            </Button>
           );
           expect(screen.getByRole('button')).toHaveClass(expectedClass);
         }
@@ -62,9 +62,7 @@ describe('<VariantButton />', () => {
         'should apply $expectedClass when size is $size',
         ({ size, expectedClass }) => {
           render(
-            <VariantButton variantConfig={{ size: size as 'xs' | 'sm' | 'md' | 'lg' }}>
-              Click
-            </VariantButton>
+            <Button variantConfig={{ size: size as 'xs' | 'sm' | 'md' | 'lg' }}>Click</Button>
           );
           expect(screen.getByRole('button')).toHaveClass(expectedClass);
         }
@@ -76,9 +74,9 @@ describe('<VariantButton />', () => {
     it('should trigger onClick callback when clicked', () => {
       const fn = jest.fn();
       render(
-        <VariantButton variantConfig={{}} onClick={fn}>
+        <Button variantConfig={{}} onClick={fn}>
           Click
-        </VariantButton>
+        </Button>
       );
       screen.getByRole('button').click();
       expect(fn).toHaveBeenCalledTimes(1);
@@ -88,16 +86,16 @@ describe('<VariantButton />', () => {
   describe('Accessibility', () => {
     it('should support keyboard navigation (focus)', async () => {
       const user = userEvent.setup();
-      render(<VariantButton variantConfig={{}}>Click</VariantButton>);
+      render(<Button variantConfig={{}}>Click</Button>);
       await user.tab();
       expect(screen.getByRole('button')).toHaveFocus();
     });
 
     it('should be identifiable via aria-label when provided', async () => {
       render(
-        <VariantButton variantConfig={{ type: 'square' }} aria-label="Create">
+        <Button variantConfig={{ type: 'square' }} aria-label="Create">
           +
-        </VariantButton>
+        </Button>
       );
       const button = screen.getByRole('button', { name: /create/i });
       expect(button).toBeInTheDocument();

@@ -5,7 +5,7 @@ import { TableBody } from '@/presentation/globals/components/table/TableBody';
 import { TableBodyRow } from '@/presentation/globals/components/table/TableBodyRow';
 import { TableHeader } from '@/presentation/globals/components/table/TableHeader';
 import { TableWrapper } from '@/presentation/globals/components/table/TableWrapper';
-import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
+import { Button } from '@/presentation/modules/button/components/Button';
 import type { ExerciseDTO } from '../../application/dtos/exercise.dto';
 
 type Props = {
@@ -38,14 +38,14 @@ export function ExercisesTable({ exercises }: Props) {
             <td>
               <ul className="flex w-full items-center justify-center">
                 <li>
-                  <VariantButton variantConfig={{ color: 'simple', type: 'square' }}>
+                  <Button variantConfig={{ color: 'simple', type: 'square' }}>
                     <IconEdit className="size-5" />
-                  </VariantButton>
+                  </Button>
                 </li>
                 <li>
-                  <VariantButton variantConfig={{ color: 'simple', type: 'square' }}>
+                  <Button variantConfig={{ color: 'simple', type: 'square' }}>
                     <IconTrash className="size-5" />
-                  </VariantButton>
+                  </Button>
                 </li>
               </ul>
             </td>

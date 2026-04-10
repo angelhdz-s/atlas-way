@@ -3,7 +3,7 @@ import { buttonVariant } from '@/presentation/modules/button/button.config';
 import { twMerge } from 'tailwind-merge';
 import type { VariantButtonType } from '../button.types';
 
-export function VariantButton({
+export function Button({
   variantConfig,
   className,
   type = 'button',

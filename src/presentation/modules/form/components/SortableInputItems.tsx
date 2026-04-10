@@ -3,7 +3,7 @@ import { DragDropProvider } from '@dnd-kit/react';
 import { isSortable } from '@dnd-kit/react/sortable';
 import type { SelectOption } from '../form.types';
 import { SortableInputItem } from './SortableInputItem';
-import { VariantButton } from '../../button/components/VariantButton';
+import { Button } from '../../button/components/Button';
 import { IconCirclePlus, IconTrash } from '@/presentation/globals/components/Icons';
 import { SelectBox } from './SelectBox';
 import { useSortableInputItems } from '../hooks/useSortableInputItems';
@@ -79,7 +79,7 @@ export function SortableInputItems<TForm extends FieldValues, TName extends Fiel
         </main>
       </DragDropProvider>
       <footer className="flex items-center justify-between">
-        <VariantButton
+        <Button
           variantConfig={{ color: 'simple' }}
           type="button"
           onClick={openSelection}
@@ -87,8 +87,8 @@ export function SortableInputItems<TForm extends FieldValues, TName extends Fiel
         >
           <IconCirclePlus />
           {addButtonLabel ?? 'Add'}
-        </VariantButton>
-        <VariantButton
+        </Button>
+        <Button
           variantConfig={{ color: 'simple' }}
           type="button"
           onClick={crearAllItems}
@@ -96,7 +96,7 @@ export function SortableInputItems<TForm extends FieldValues, TName extends Fiel
         >
           <IconTrash />
           Clear All
-        </VariantButton>
+        </Button>
       </footer>
       {isSelecting && (
         <div className="fixed inset-0 grid place-content-center">

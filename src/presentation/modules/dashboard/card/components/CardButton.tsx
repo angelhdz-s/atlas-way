@@ -1,4 +1,4 @@
-import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
+import { Button } from '@/presentation/modules/button/components/Button';
 import { twMerge } from 'tailwind-merge';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 
 export function CardButton({ children, className }: Props) {
   return (
-    <VariantButton
+    <Button
       type="button"
       variantConfig={{
         color: 'simple',
@@ -16,6 +16,6 @@ export function CardButton({ children, className }: Props) {
       className={twMerge('ml-auto flex items-center gap-1', className)}
     >
       {children}
-    </VariantButton>
+    </Button>
   );
 }

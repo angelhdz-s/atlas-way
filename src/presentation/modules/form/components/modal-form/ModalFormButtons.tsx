@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormContext } from 'react-hook-form';
-import { VariantButton } from '../../../button/components/VariantButton';
+import { Button } from '../../../button/components/Button';
 
 export function ModalFormButtons({ onClose }: { onClose?: () => void }) {
   const handleClose = () => {
@@ -13,7 +13,7 @@ export function ModalFormButtons({ onClose }: { onClose?: () => void }) {
 
   return (
     <footer className="mt-2 flex justify-end">
-      <VariantButton
+      <Button
         type="button"
         variantConfig={{
           color: 'simple',
@@ -21,8 +21,8 @@ export function ModalFormButtons({ onClose }: { onClose?: () => void }) {
         onClick={handleClose}
       >
         Cancel
-      </VariantButton>
-      <VariantButton
+      </Button>
+      <Button
         type="submit"
         variantConfig={{
           color: 'primary',
@@ -30,7 +30,7 @@ export function ModalFormButtons({ onClose }: { onClose?: () => void }) {
         className={isSubmitting ? 'cursor-not-allowed opacity-50' : ''}
       >
         Create
-      </VariantButton>
+      </Button>
     </footer>
   );
 }

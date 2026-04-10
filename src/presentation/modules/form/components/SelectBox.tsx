@@ -3,7 +3,7 @@
 import { Box } from '@/presentation/modules/form/components/Box';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { IconSearch, IconXMark } from '@/presentation/globals/components/Icons';
-import { VariantButton } from '../../button/components/VariantButton';
+import { Button } from '../../button/components/Button';
 import { useSelectBox } from '../hooks/useSelectBox';
 import { SelectBoxOption } from './SelectBoxOption';
 
@@ -36,9 +36,9 @@ export function SelectBox({
     <div className="bg-middle border-subtle/20 flex w-160 flex-col gap-2 rounded-lg border p-6">
       <header className="flex items-center justify-between gap-2">
         <h5 className="fg-strong truncate text-xl font-medium">{title}</h5>
-        <VariantButton variantConfig={{ color: 'simple', type: 'square' }} onClick={onClose}>
+        <Button variantConfig={{ color: 'simple', type: 'square' }} onClick={onClose}>
           <IconXMark />
-        </VariantButton>
+        </Button>
       </header>
       <div>
         <label className="hover:outline-bd-default bg-back mb-2 flex w-full items-center gap-2 rounded-lg px-4 py-2 text-base font-light hover:outline-1">
@@ -63,7 +63,7 @@ export function SelectBox({
         ))}
       </Box>
       <footer className="mt-4 flex justify-end">
-        <VariantButton
+        <Button
           type="button"
           variantConfig={{
             color: 'simple',
@@ -71,8 +71,8 @@ export function SelectBox({
           onClick={handleClose}
         >
           Cancel
-        </VariantButton>
-        <VariantButton
+        </Button>
+        <Button
           type="button"
           variantConfig={{
             color: 'primary',
@@ -80,7 +80,7 @@ export function SelectBox({
           onClick={handleAddOptions}
         >
           Add
-        </VariantButton>
+        </Button>
       </footer>
     </div>
   );

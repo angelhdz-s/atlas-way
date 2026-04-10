@@ -3,7 +3,7 @@
 import { useTheme } from 'next-themes';
 import { THEME } from '@/presentation/globals/constants/client';
 import { DefaultIcon, IconMoon, IconSun } from '@/presentation/globals/components/Icons';
-import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
+import { Button } from '@/presentation/modules/button/components/Button';
 import { twMerge } from 'tailwind-merge';
 
 export function ToggleThemeLabelButton({ className = '' }: { className?: string }) {
@@ -14,7 +14,7 @@ export function ToggleThemeLabelButton({ className = '' }: { className?: string 
   };
 
   return (
-    <VariantButton
+    <Button
       type="button"
       variantConfig={{
         color: 'simple',
@@ -25,6 +25,6 @@ export function ToggleThemeLabelButton({ className = '' }: { className?: string 
       <DefaultIcon Icon={IconSun} className="light:hidden" />
       <DefaultIcon Icon={IconMoon} className="light:block hidden" />
       Theme
-    </VariantButton>
+    </Button>
   );
 }

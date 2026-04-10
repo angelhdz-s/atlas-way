@@ -4,7 +4,7 @@ import {
   getISOStringDate,
 } from '@/presentation/globals/lib/dates';
 import { IconBarbellOff } from '@/presentation/globals/components/Icons';
-import { VariantButton } from '../../button/components/VariantButton';
+import { Button } from '../../button/components/Button';
 
 function CalendarDayItem({
   children,
@@ -16,7 +16,7 @@ function CalendarDayItem({
   onClick?: () => void;
 }) {
   return (
-    <VariantButton
+    <Button
       type="button"
       variantConfig={{
         type: 'square',
@@ -29,7 +29,7 @@ function CalendarDayItem({
       <div className={`flex size-6 items-center justify-center rounded-full ${className}`}>
         {children}
       </div>
-    </VariantButton>
+    </Button>
   );
 }
 

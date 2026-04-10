@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { VariantButton } from '../../button/components/VariantButton';
+import { Button } from '../../button/components/Button';
 import { IconCog, IconLanguage, IconLogout } from '@/presentation/globals/components/Icons';
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
 import { useTooltipBackdrop } from '@/presentation/globals/hooks/useTooltipBackdrop';
@@ -38,12 +38,9 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
           <aside>
             <ul className="flex flex-col items-center lg:flex-row">
               <li>
-                <VariantButton
-                  variantConfig={{ type: 'square', color: 'simple' }}
-                  onClick={handleClick}
-                >
+                <Button variantConfig={{ type: 'square', color: 'simple' }} onClick={handleClick}>
                   <IconCog strokeWidth="1.5" />
-                </VariantButton>
+                </Button>
               </li>
               <li>
                 <VariantLink
@@ -69,10 +66,10 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
                 <ToggleThemeLabelButton className="w-full" />
               </li>
               <li className="flex items-center gap-0">
-                <VariantButton variantConfig={{ color: 'simple' }} className="pl-2">
+                <Button variantConfig={{ color: 'simple' }} className="pl-2">
                   <IconLanguage strokeWidth="1.5" />
                   Language
-                </VariantButton>
+                </Button>
               </li>
             </ul>
           </div>

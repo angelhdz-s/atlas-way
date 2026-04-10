@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { NotificationType } from '@/presentation/globals/mocks/notifications';
 import { IconTrash } from '@/presentation/globals/components/Icons';
-import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
+import { Button } from '@/presentation/modules/button/components/Button';
 
 export function Notification({
   className = '',
@@ -42,7 +42,7 @@ export function Notification({
       </main>
       <aside className="text-default/50 w-fit text-center text-sm whitespace-nowrap">{date}</aside>
       <div className="flex items-center gap-2">
-        <VariantButton
+        <Button
           type="button"
           variantConfig={{
             type: 'square',
@@ -52,7 +52,7 @@ export function Notification({
           className="text-red-800/80"
         >
           <IconTrash className="size-4" strokeWidth="2" />
-        </VariantButton>
+        </Button>
       </div>
     </article>
   );

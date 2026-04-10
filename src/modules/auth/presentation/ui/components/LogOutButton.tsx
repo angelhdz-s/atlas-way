@@ -1,6 +1,6 @@
 'use client';
 
-import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
+import { Button } from '@/presentation/modules/button/components/Button';
 import { redirect } from 'next/navigation';
 
 export function LogOutButton() {
@@ -8,12 +8,8 @@ export function LogOutButton() {
     redirect('/api/auth/signout');
   };
   return (
-    <VariantButton
-      type="button"
-      variantConfig={{ color: 'subtle', size: 'sm' }}
-      onClick={handleSignOut}
-    >
+    <Button type="button" variantConfig={{ color: 'subtle', size: 'sm' }} onClick={handleSignOut}>
       Log Out
-    </VariantButton>
+    </Button>
   );
 }

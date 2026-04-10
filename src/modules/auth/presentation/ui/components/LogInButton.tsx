@@ -1,6 +1,6 @@
 'use client';
 
-import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
+import { Button } from '@/presentation/modules/button/components/Button';
 import { redirect } from 'next/navigation';
 
 export function LogInButton() {
@@ -8,12 +8,8 @@ export function LogInButton() {
     redirect('/api/auth/signin');
   };
   return (
-    <VariantButton
-      type="button"
-      variantConfig={{ size: 'sm', color: 'primary' }}
-      onClick={handleSignIn}
-    >
+    <Button type="button" variantConfig={{ size: 'sm', color: 'primary' }} onClick={handleSignIn}>
       Log in
-    </VariantButton>
+    </Button>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useDroppable } from '@dnd-kit/react';
 import type { DnDFormFieldItemDroppableData } from '@/presentation/modules/form/form.types';
-import { VariantButton } from '@/presentation/modules/button/components/VariantButton';
+import { Button } from '@/presentation/modules/button/components/Button';
 import { IconPlus } from '@/presentation/globals/components/Icons';
 
 type Props = {
@@ -26,7 +26,7 @@ export function RoutineSessionPlanDroppableItem({ id, text, children, dndConfig,
       <header className="bg-middle border-bd-muted flex h-9 items-center justify-between rounded-t border px-1.5 leading-none">
         <h4 className={dndConfig.droppedId ? 'fg-strong font-medium' : ''}>{text}</h4>
         {onAdd !== undefined && (
-          <VariantButton
+          <Button
             aria-label="Select a session"
             title="Select a session"
             variantConfig={{ color: 'simple', type: 'square' }}
@@ -34,7 +34,7 @@ export function RoutineSessionPlanDroppableItem({ id, text, children, dndConfig,
             onClick={onAdd}
           >
             <IconPlus className="size-4" />
-          </VariantButton>
+          </Button>
         )}
       </header>
       <main className="w-full p-2">{children}</main>
