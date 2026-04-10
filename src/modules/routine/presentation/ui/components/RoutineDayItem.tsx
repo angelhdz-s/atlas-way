@@ -6,7 +6,7 @@ import {
   IconXCircle,
 } from '@/presentation/globals/components/Icons';
 import type { DayTypeProps, StatusDayType } from '@/presentation/globals/mocks/routines';
-import type { IconTypes } from '@/presentation/globals/types';
+import type { IconTypes } from '@/presentation/globals/presentation.types';
 import { routineDayItemClassConfig } from '../routine.ui.config';
 
 interface DayObjectType {

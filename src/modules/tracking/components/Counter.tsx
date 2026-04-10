@@ -1,4 +1,4 @@
-import type { IconTypes } from '@/presentation/globals/types';
+import type { IconTypes } from '@/presentation/globals/presentation.types';
 
 export function Counter({ className, number }: { className?: string; number: number }) {
   return (

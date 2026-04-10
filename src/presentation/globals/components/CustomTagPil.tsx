@@ -1,4 +1,4 @@
-import type { AtomicElement } from '../types';
+import type { AtomicElement } from '../presentation.types';
 
 interface Props {
   className?: string;

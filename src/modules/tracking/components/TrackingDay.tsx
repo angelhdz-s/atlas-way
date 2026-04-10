@@ -10,7 +10,7 @@ import {
   IconXCircle,
   IconAlertTriangle,
 } from '@/presentation/globals/components/Icons';
-import type { IconTypes } from '@/presentation/globals/types';
+import type { IconTypes } from '@/presentation/globals/presentation.types';
 
 export const STATUS_ICONS = {
   completed: IconCircleCheck,

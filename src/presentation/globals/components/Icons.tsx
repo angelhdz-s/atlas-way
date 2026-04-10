@@ -1,4 +1,4 @@
-import type { IconProps, IconTypes } from '@/presentation/globals/types.d';
+import type { IconProps, IconTypes } from '@/presentation/globals/presentation.types';
 import { twMerge } from 'tailwind-merge';
 
 export const defaultIconStrokeWidth = '1.5';

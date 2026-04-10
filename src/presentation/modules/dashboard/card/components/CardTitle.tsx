@@ -1,4 +1,4 @@
-import type { IconTypes } from '@/presentation/globals/types';
+import type { IconTypes } from '@/presentation/globals/presentation.types';
 import { twMerge } from 'tailwind-merge';
 
 export function CardTitle({

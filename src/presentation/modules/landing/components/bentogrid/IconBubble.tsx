@@ -1,4 +1,4 @@
-import type { IconTypes } from '@/presentation/globals/types';
+import type { IconTypes } from '@/presentation/globals/presentation.types';
 
 export function IconBubble({ className = '', Icon }: { className?: string; Icon: IconTypes }) {
   return (

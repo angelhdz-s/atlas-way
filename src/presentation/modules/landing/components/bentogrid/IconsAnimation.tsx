@@ -12,7 +12,7 @@ import {
   IconTrophy,
   IconPlayerTrackNext,
 } from '@/presentation/globals/components/Icons';
-import type { IconTypes } from '@/presentation/globals/types.d';
+import type { IconTypes } from '@/presentation/globals/presentation.types';
 import styles from './IconsAnimation.module.css';
 import { useEffect, useState } from 'react';
 

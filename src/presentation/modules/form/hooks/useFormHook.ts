@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { TypeOf, ZodSchema } from 'zod/v3';
 import { useForm } from 'react-hook-form';
-import type { ActionResponseType } from '@/presentation/globals/types';
+import type { ActionResponseType } from '@/presentation/globals/presentation.types';
 import { useToast } from '@/presentation/modules/toast/hooks/useToast';
 import { zodResolver } from '@hookform/resolvers/zod';
 

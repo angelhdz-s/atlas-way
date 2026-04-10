@@ -1,4 +1,4 @@
-import type { AtomicElement } from '@/presentation/globals/types';
+import type { AtomicElement } from '@/presentation/globals/presentation.types';
 import { cardVariant, type CardVariantProps } from '../card.config';
 import { twMerge } from 'tailwind-merge';
 import { CardHighlightBorder } from './decoration/CardHighlightBorder';

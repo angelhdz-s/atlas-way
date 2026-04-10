@@ -1,5 +1,5 @@
 import type { NotificationRelevanceType } from '@/presentation/globals/mocks/notifications';
-import type { ToastType } from '@/presentation/globals/types.d';
+import type { ToastType } from '@/presentation/globals/presentation.types';
 
 export const NOTIFICATION_DEFAULT_RELEVANCE: NotificationRelevanceType = 'info';
 

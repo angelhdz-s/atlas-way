@@ -3,7 +3,7 @@ import { WEEK_DAYS } from '@/presentation/globals/constants/date';
 import { getNextDates, getSessionFromDate } from '@/presentation/globals/lib/dates';
 import type { StatusDayType } from '@/presentation/globals/mocks/routines';
 import { TODAY } from '@/presentation/globals/mocks/tracking';
-import type { IconTypes, SolidIconTypes } from '@/presentation/globals/types';
+import type { IconTypes, SolidIconTypes } from '@/presentation/globals/presentation.types';
 import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
 import { getStatusTextColorClass } from '@/presentation/globals/lib/get-classes';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';

@@ -8,7 +8,7 @@ import {
   IconXCircle,
   IconXMark,
 } from '@/presentation/globals/components/Icons';
-import type { Toast } from '@/presentation/globals/types.d';
+import type { Toast } from '@/presentation/globals/presentation.types';
 import styles from './Toast.module.css';
 
 interface Props {

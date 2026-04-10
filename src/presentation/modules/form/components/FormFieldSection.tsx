@@ -1,4 +1,4 @@
-import type { IconTypes } from '@/presentation/globals/types';
+import type { IconTypes } from '@/presentation/globals/presentation.types';
 
 type Props = {
   title: string;

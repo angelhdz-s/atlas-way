@@ -1,6 +1,6 @@
 import { SubLink } from '@/presentation/modules/sidebar/components/nav/SubLink';
 import { NotificationsCounter } from '@/modules/notification/presentation/ui/components/NotificationsCounter';
-import type { IconTypes } from '@/presentation/globals/types';
+import type { IconTypes } from '@/presentation/globals/presentation.types';
 
 export function NavLinkNotification({ href, Icon }: { href: string; Icon: IconTypes }) {
   const notificationsCount = 5;
