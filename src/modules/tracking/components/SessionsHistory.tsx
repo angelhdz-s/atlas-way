@@ -8,7 +8,7 @@ import { YearDateSelector } from '@/presentation/modules/calendar/components/Yea
 import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
 import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
 import { IconCalendarClock, IconClipboardList } from '@/presentation/globals/components/Icons';
-import { SubtleCard } from '@/presentation/globals/components/SubtleCard';
+import { SubtleCard } from '@/presentation/modules/dashboard/card/components/SubtleCard';
 import { getSessionFromDate } from '@/presentation/globals/lib/dates';
 import { LastSessions } from '@/modules/session/presentation/ui/components/LastSessions';
 import {

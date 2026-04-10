@@ -4,7 +4,7 @@ import {
   SessionDetails,
   type SessionDetailsType,
 } from '../../session/presentation/ui/components/SessionDetails';
-import { SubtleCard } from '@/presentation/globals/components/SubtleCard';
+import { SubtleCard } from '@/presentation/modules/dashboard/card/components/SubtleCard';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 
