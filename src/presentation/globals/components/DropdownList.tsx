@@ -22,6 +22,7 @@ export function DropdownList({
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onChange?.(e);
+    setSelectedOption(e.currentTarget.value);
   };
 
   useEffect(() => {
@@ -34,6 +35,11 @@ export function DropdownList({
       onChange={handleChange}
       value={selectedOption}
     >
+      {values.length === 0 && (
+        <option value="" disabled>
+          No options found
+        </option>
+      )}
       {values.map((value) => (
         <option key={value.value} value={value.value} className="bg-back">
           {value.label}
