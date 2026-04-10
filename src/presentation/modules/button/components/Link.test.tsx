@@ -8,31 +8,19 @@ describe('<Link />', () => {
 
   describe('Basic Rendering', () => {
     it('should render correctly with minimum props', () => {
-      render(
-        <Link href={href} variantConfig={{}}>
-          Click
-        </Link>
-      );
+      render(<Link href={href}>Click</Link>);
       expect(screen.getByRole('link', { name: /click/i })).toBeInTheDocument();
     });
   });
 
   describe('Integration with Props', () => {
     it('should render the children text', () => {
-      render(
-        <Link href={href} variantConfig={{}}>
-          Click me
-        </Link>
-      );
+      render(<Link href={href}>Click me</Link>);
       expect(screen.getByRole('link')).toHaveTextContent('Click me');
     });
 
     it('should have href attribute correctly', () => {
-      render(
-        <Link href={href} variantConfig={{}}>
-          Click me
-        </Link>
-      );
+      render(<Link href={href}>Click me</Link>);
       expect(screen.getByRole('link')).toHaveAttribute('href', href);
     });
 
@@ -90,11 +78,7 @@ describe('<Link />', () => {
   describe('Accessibility', () => {
     it('should support keyboard navigation (focus)', async () => {
       const user = userEvent.setup();
-      render(
-        <Link href={href} variantConfig={{}}>
-          Click
-        </Link>
-      );
+      render(<Link href={href}>Click</Link>);
       await user.tab();
       expect(screen.getByRole('link')).toHaveFocus();
     });
