@@ -33,3 +33,6 @@ export type ActionResponseType = {
 export type AtomicElement = 'div' | 'span' | 'button' | 'li' | 'a';
 
 export type DivProps = React.ComponentPropsWithRef<'div'>;
+
+export type ButtonElementProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+export type AnchorElementProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
