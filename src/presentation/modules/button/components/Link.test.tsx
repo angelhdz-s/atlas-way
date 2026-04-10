@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { Link } from '@/presentation/modules/button/components/Link';
 
-describe('<VariantLink />', () => {
+describe('<Link />', () => {
   const href = '/dashboard';
 
   describe('Basic Rendering', () => {
