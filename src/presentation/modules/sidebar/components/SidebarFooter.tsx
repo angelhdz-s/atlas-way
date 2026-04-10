@@ -5,7 +5,7 @@ import { Button } from '../../button/components/Button';
 import { IconCog, IconLanguage, IconLogout } from '@/presentation/globals/components/Icons';
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
 import { useTooltipBackdrop } from '@/presentation/globals/hooks/useTooltipBackdrop';
-import { ToggleThemeLabelButton } from '@/presentation/globals/components/ToggleThemeLabelButton';
+import { ToggleThemeLabelButton } from '@/presentation/modules/theme/components/ToggleThemeLabelButton';
 import { Link } from '../../button/components/Link';
 
 export function SidebarFooter({ className = '' }: { className?: string }) {

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Funnel_Display, Outfit } from 'next/font/google';
-import { ThemeProvider } from '@/presentation/globals/components/ThemeProvider';
+import { ThemeProvider } from '@/presentation/modules/theme/components/ThemeProvider';
 import { ToastProvider } from '@/presentation/modules/toast/components/ToastProvider';
 import '@/app/globals.css';
 
