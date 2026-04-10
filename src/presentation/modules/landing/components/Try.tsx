@@ -1,4 +1,4 @@
-import { VariantLink } from '../../button/components/VariantLink';
+import { Link } from '../../button/components/Link';
 
 export function Try({ className = '' }: { className?: string }) {
   return (
@@ -7,7 +7,7 @@ export function Try({ className = '' }: { className?: string }) {
     >
       <h2 className="font-funnel-display text-2xl font-bold">Try for free</h2>
       <main className="flex w-fit items-center justify-center gap-4">
-        <VariantLink
+        <Link
           href="/dashboard"
           variantConfig={{
             color: 'primary',
@@ -15,7 +15,7 @@ export function Try({ className = '' }: { className?: string }) {
           }}
         >
           <span className="text-lg">Get Started</span>
-        </VariantLink>
+        </Link>
       </main>
     </section>
   );

@@ -1,5 +1,5 @@
 import { IconArrowUp } from '@/presentation/globals/components/Icons';
-import { VariantLink } from '../../button/components/VariantLink';
+import { Link } from '../../button/components/Link';
 
 export function Hero() {
   return (
@@ -18,7 +18,7 @@ export function Hero() {
           </p>
 
           <footer className="animate-fade-down animate-delay-200 animate-ease-out flex items-center gap-4">
-            <VariantLink
+            <Link
               variantConfig={{
                 color: 'primary',
                 size: 'lg',
@@ -30,7 +30,7 @@ export function Hero() {
               <span className="material-icons">
                 <IconArrowUp className="size-5 rotate-90" />
               </span>
-            </VariantLink>
+            </Link>
           </footer>
         </header>
       </main>

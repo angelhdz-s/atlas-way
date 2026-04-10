@@ -6,7 +6,7 @@ import { IconCog, IconLanguage, IconLogout } from '@/presentation/globals/compon
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
 import { useTooltipBackdrop } from '@/presentation/globals/hooks/useTooltipBackdrop';
 import { ToggleThemeLabelButton } from '@/presentation/globals/components/ToggleThemeLabelButton';
-import { VariantLink } from '../../button/components/VariantLink';
+import { Link } from '../../button/components/Link';
 
 export function SidebarFooter({ className = '' }: { className?: string }) {
   const [open, setOpen] = useState<boolean>(false);
@@ -43,7 +43,7 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
                 </Button>
               </li>
               <li>
-                <VariantLink
+                <Link
                   href="/api/auth/signout"
                   type="button"
                   variantConfig={{
@@ -52,7 +52,7 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
                   }}
                 >
                   <IconLogout className="-mr-1 size-6" />
-                </VariantLink>
+                </Link>
               </li>
             </ul>
           </aside>

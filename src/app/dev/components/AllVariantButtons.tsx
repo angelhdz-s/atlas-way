@@ -1,6 +1,6 @@
 import { IconRocket } from '@/presentation/globals/components/Icons';
 import type { ButtonVariantProps } from '@/presentation/modules/button/button.config';
-import { VariantLink } from '@/presentation/modules/button/components/VariantLink';
+import { Link } from '@/presentation/modules/button/components/Link';
 
 type Props = {
   colors: ButtonVariantProps['color'][];
@@ -41,18 +41,18 @@ function AllButtonSizes({
 }) {
   return (
     <>
-      <VariantLink href="#" variantConfig={{ size: 'xs', color, type }}>
+      <Link href="#" variantConfig={{ size: 'xs', color, type }}>
         {type === 'normal' ? 'Button XS' : <IconRocket />}
-      </VariantLink>
-      <VariantLink href="#" variantConfig={{ size: 'sm', color, type }}>
+      </Link>
+      <Link href="#" variantConfig={{ size: 'sm', color, type }}>
         {type === 'normal' ? 'Button SM' : <IconRocket />}
-      </VariantLink>
-      <VariantLink href="#" variantConfig={{ size: 'md', color, type }}>
+      </Link>
+      <Link href="#" variantConfig={{ size: 'md', color, type }}>
         {type === 'normal' ? 'Button MD' : <IconRocket />}
-      </VariantLink>
-      <VariantLink href="#" variantConfig={{ size: 'lg', color, type }}>
+      </Link>
+      <Link href="#" variantConfig={{ size: 'lg', color, type }}>
         {type === 'normal' ? 'Button LG' : <IconRocket className="size-6" />}
-      </VariantLink>
+      </Link>
     </>
   );
 }

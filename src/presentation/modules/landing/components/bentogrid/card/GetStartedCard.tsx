@@ -1,6 +1,6 @@
 import { IconRocket } from '@/presentation/globals/components/Icons';
 import { BentoCard } from '../BentoCard';
-import { VariantLink } from '@/presentation/modules/button/components/VariantLink';
+import { Link } from '@/presentation/modules/button/components/Link';
 
 type Props = {
   className?: string;
@@ -9,7 +9,7 @@ type Props = {
 export function GetStartedCard({ className }: Props) {
   return (
     <BentoCard className={`xs:grid hidden place-content-center md:row-span-2 ${className}`}>
-      <VariantLink
+      <Link
         href="/dashboard"
         variantConfig={{
           size: 'lg',
@@ -18,7 +18,7 @@ export function GetStartedCard({ className }: Props) {
       >
         <IconRocket className="-ml-2 size-7" strokeWidth="1.4" />
         <span className="text-lg whitespace-nowrap">Start Now</span>
-      </VariantLink>
+      </Link>
     </BentoCard>
   );
 }
