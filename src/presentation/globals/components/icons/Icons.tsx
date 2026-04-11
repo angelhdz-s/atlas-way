@@ -15,15 +15,6 @@ export function IconBarbell(props: IconProps) {
   );
 }
 
-export function IconLayoutSidebar(props: IconProps) {
-  return (
-    <IconWrapper {...props}>
-      <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-      <path d="M9 4l0 16" />
-    </IconWrapper>
-  );
-}
-
 export function IconBell(props: IconProps) {
   return (
     <IconWrapper {...props}>
@@ -40,28 +31,6 @@ export function IconBellRinging(props: IconProps) {
       <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
       <path d="M21 6.727a11.05 11.05 0 0 0 -2.794 -3.727" />
       <path d="M3 6.727a11.05 11.05 0 0 1 2.792 -3.727" />
-    </IconWrapper>
-  );
-}
-
-export function IconBellOff(props: IconProps) {
-  return (
-    <IconWrapper {...props}>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9.143 17.082a24.248 24.248 0 0 0 3.844.148m-3.844-.148a23.856 23.856 0 0 1-5.455-1.31 8.964 8.964 0 0 0 2.3-5.542m3.155 6.852a3 3 0 0 0 5.667 1.97m1.965-2.277L21 21m-4.225-4.225a23.81 23.81 0 0 0 3.536-1.003A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6.53 6.53m10.245 10.245L6.53 6.53M3 3l3.53 3.53"
-      />
-    </IconWrapper>
-  );
-}
-
-export function IconBellZ(props: IconProps) {
-  return (
-    <IconWrapper {...props}>
-      <path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" />
-      <path d="M9 17v1a3 3 0 0 0 6 0v-1" />
-      <path d="M10 9h4l-4 4h4" />
     </IconWrapper>
   );
 }
@@ -219,18 +188,6 @@ export function IconAlertTriangle(props: IconProps) {
   );
 }
 
-export function IconFaceHappy(props: IconProps) {
-  return (
-    <IconWrapper {...props}>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z"
-      />
-    </IconWrapper>
-  );
-}
-
 export function IconPlayerTrackNext(props: IconProps) {
   return (
     <IconWrapper {...props}>
@@ -362,15 +319,6 @@ export function IconTrash(props: IconProps) {
   );
 }
 
-export function IconTrendingDown(props: IconProps) {
-  return (
-    <IconWrapper {...props}>
-      <path d="M3 7l6 6l4 -4l8 8" />
-      <path d="M21 10l0 7l-7 0" />
-    </IconWrapper>
-  );
-}
-
 export function IconTrendingUp(props: IconProps) {
   return (
     <IconWrapper {...props}>
@@ -446,15 +394,6 @@ export function IconMan(props: IconProps) {
   );
 }
 
-export function IconChartPie(props: IconProps) {
-  return (
-    <IconWrapper {...props}>
-      <path d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-6.8a2 2 0 0 1 -2 -2v-7a.9 .9 0 0 0 -1 -.8" />
-      <path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a1 1 0 0 1 -1 -1v-4.5" />
-    </IconWrapper>
-  );
-}
-
 export function IconReportAnalytics(props: IconProps) {
   return (
     <IconWrapper {...props}>
@@ -494,18 +433,6 @@ export function IconCalendarClock(props: IconProps) {
       <path d="M4 11h10" />
       <path d="M18 18m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
       <path d="M18 16.5v1.5l.5 .5" />
-    </IconWrapper>
-  );
-}
-
-export function IconMapPlus(props: IconProps) {
-  return (
-    <IconWrapper {...props}>
-      <path d="M12 18.5l-3 -1.5l-6 3v-13l6 -3l6 3l6 -3v8.5" />
-      <path d="M9 4v13" />
-      <path d="M15 7v8" />
-      <path d="M16 19h6" />
-      <path d="M19 16v6" />
     </IconWrapper>
   );
 }
@@ -608,31 +535,6 @@ export function IconSchema(props: IconProps) {
   );
 }
 
-export function IconSitemap(props: IconProps) {
-  return (
-    <IconWrapper {...props}>
-      <path d="M3 17a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2l0 -2" />
-      <path d="M15 17a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2l0 -2" />
-      <path d="M9 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2l0 -2" />
-      <path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" />
-      <path d="M12 9l0 3" />
-    </IconWrapper>
-  );
-}
-
-export function IconRotateClockwise(props: IconProps) {
-  return (
-    <IconWrapper {...props}>
-      <path d="M9 4.55a8 8 0 0 1 6 14.9m0 -4.45v5h5" />
-      <path d="M5.63 7.16l0 .01" />
-      <path d="M4.06 11l0 .01" />
-      <path d="M4.63 15.1l0 .01" />
-      <path d="M7.16 18.37l0 .01" />
-      <path d="M11 19.94l0 .01" />
-    </IconWrapper>
-  );
-}
-
 export function IconRocket(props: IconProps) {
   return (
     <IconWrapper {...props}>
@@ -652,15 +554,6 @@ export function IconGripVertical(props: IconProps) {
       <path d="M14 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
       <path d="M14 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
       <path d="M14 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-    </IconWrapper>
-  );
-}
-
-export function IconZZ(props: IconProps) {
-  return (
-    <IconWrapper {...props}>
-      <path d="M4 12h6l-6 8h6" />
-      <path d="M14 4h6l-6 8h6" />
     </IconWrapper>
   );
 }
