@@ -1,10 +1,10 @@
-import type { IconProps } from '@/presentation/globals/presentation.types';
+import type { SIconProps } from '@/presentation/globals/presentation.types';
 
 export function SIconWrapper({
   children,
   className,
   ariaHidden = true,
-}: Omit<IconProps, 'strokeWidth'> & {
+}: SIconProps & {
   children: React.ReactNode;
 }) {
   return (
