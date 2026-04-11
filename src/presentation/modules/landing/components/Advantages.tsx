@@ -1,11 +1,8 @@
-import {
-  IconBellRinging,
-  IconDeviceDesktop,
-  IconDeviceDesktopAnalytics,
-  IconHammer,
-} from '@/presentation/globals/components/icons/Icons';
-
-import { AdvantageItem } from './advantages/AdvantageItem';
+import { IconBellRinging } from '@/presentation/globals/components/icons/outline/IconBellRinging';
+import { IconDeviceDesktop } from '@/presentation/globals/components/icons/outline/IconDeviceDesktop';
+import { IconDeviceDesktopAnalytics } from '@/presentation/globals/components/icons/outline/IconDeviceDesktopAnalytics';
+import { IconHammer } from '@/presentation/globals/components/icons/outline/IconHammer';
+import { AdvantageItem } from '@/presentation/modules/landing/components/advantages/AdvantageItem';
 
 export function Advantages({ className = '' }: { className?: string }) {
   return (
