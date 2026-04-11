@@ -1,8 +1,8 @@
 import { EXERCISES } from '@/presentation/globals/constants/db';
-import { CardTitle } from '../../card/components/CardTitle';
-import { SimpleTable } from './SimpleTable';
-import { Card } from '../../card/components/Card';
-import { IconBarbell } from '@/presentation/globals/components/icons/Icons';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { SimpleTable } from '@/presentation/modules/dashboard/home/components/SimpleTable';
+import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
 
 export function ExercisesList({ className = '' }: { className?: string }) {
   const exerciseKeys = Object.keys(EXERCISES)

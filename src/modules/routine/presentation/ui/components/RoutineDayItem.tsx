@@ -1,13 +1,11 @@
-import {
-  IconBarbell,
-  IconBarbellOff,
-  IconCalendarWeek,
-  IconCircleCheck,
-  IconXCircle,
-} from '@/presentation/globals/components/icons/Icons';
+import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
+import { IconBarbellOff } from '@/presentation/globals/components/icons/outline/IconBarbellOff';
+import { IconCalendarWeek } from '@/presentation/globals/components/icons/outline/IconCalendarWeek';
+import { IconCircleCheck } from '@/presentation/globals/components/icons/outline/IconCircleCheck';
+import { IconXCircle } from '@/presentation/globals/components/icons/outline/IconXCircle';
+import { routineDayItemClassConfig } from '@/modules/routine/presentation/ui/routine.ui.config';
 import type { DayTypeProps, StatusDayType } from '@/presentation/globals/mocks/routines';
 import type { IconTypes } from '@/presentation/globals/presentation.types';
-import { routineDayItemClassConfig } from '../routine.ui.config';
 
 interface DayObjectType {
   title: string;

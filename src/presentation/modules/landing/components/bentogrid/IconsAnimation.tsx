@@ -1,20 +1,18 @@
 'use client';
 
-import {
-  IconAlarm,
-  IconBarbell,
-  IconBell,
-  IconEdit,
-  IconMapRoute,
-  IconHeart,
-  IconScale,
-  IconTrendingUp,
-  IconTrophy,
-  IconPlayerTrackNext,
-} from '@/presentation/globals/components/icons/Icons';
-import type { IconTypes } from '@/presentation/globals/presentation.types';
-import styles from './IconsAnimation.module.css';
 import { useEffect, useState } from 'react';
+import { IconAlarm } from '@/presentation/globals/components/icons/outline/IconAlarm';
+import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
+import { IconBell } from '@/presentation/globals/components/icons/outline/IconBell';
+import { IconEdit } from '@/presentation/globals/components/icons/outline/IconEdit';
+import { IconMapRoute } from '@/presentation/globals/components/icons/outline/IconMapRoute';
+import { IconHeart } from '@/presentation/globals/components/icons/outline/IconHeart';
+import { IconScale } from '@/presentation/globals/components/icons/outline/IconScale';
+import { IconTrendingUp } from '@/presentation/globals/components/icons/outline/IconTrendingUp';
+import { IconTrophy } from '@/presentation/globals/components/icons/outline/IconTrophy';
+import { IconPlayerTrackNext } from '@/presentation/globals/components/icons/outline/IconPlayerTrackNext';
+import styles from '@/presentation/modules/landing/components/bentogrid/IconsAnimation.module.css';
+import type { IconTypes } from '@/presentation/globals/presentation.types';
 
 const ICONS: IconTypes[] = [
   IconBell,

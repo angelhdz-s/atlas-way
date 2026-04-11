@@ -1,18 +1,16 @@
 import { SidebarFooter } from '@/presentation/modules/sidebar/components/SidebarFooter';
-import { SidebarSection } from './SidebarSection';
-import { NavLinks } from './nav/NavLinks';
-import { NavLink } from './nav/NavLink';
-import { NavLinkIcon } from './nav/NavLinkIcon';
-import {
-  IconBarbell,
-  IconBell,
-  IconCalendarCheck,
-  IconHome,
-  IconMan,
-  IconReportAnalytics,
-  IconRouteX,
-  IconSchema,
-} from '@/presentation/globals/components/icons/Icons';
+import { SidebarSection } from '@/presentation/modules/sidebar/components/SidebarSection';
+import { NavLinks } from '@/presentation/modules/sidebar/components/nav/NavLinks';
+import { NavLink } from '@/presentation/modules/sidebar/components/nav/NavLink';
+import { NavLinkIcon } from '@/presentation/modules/sidebar/components/nav/NavLinkIcon';
+import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
+import { IconBell } from '@/presentation/globals/components/icons/outline/IconBell';
+import { IconCalendarCheck } from '@/presentation/globals/components/icons/outline/IconCalendarCheck';
+import { IconHome } from '@/presentation/globals/components/icons/outline/IconHome';
+import { IconMan } from '@/presentation/globals/components/icons/outline/IconMan';
+import { IconReportAnalytics } from '@/presentation/globals/components/icons/outline/IconReportAnalytics';
+import { IconRouteX } from '@/presentation/globals/components/icons/outline/IconRouteX';
+import { IconSchema } from '@/presentation/globals/components/icons/outline/IconSchema';
 
 export function Sidebar({ className = '' }: { className?: string }) {
   return (

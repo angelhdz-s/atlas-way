@@ -1,10 +1,10 @@
-import { IconBarbell } from '@/presentation/globals/components/icons/Icons';
+import { useFormContext } from 'react-hook-form';
+import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
 import { SortableInputItems } from '@/presentation/modules/form/components/SortableInputItems';
-import { useFormContext } from 'react-hook-form';
-import type { SessionForm } from '../../config/session.schema';
-import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
+import type { SessionForm } from '@/modules/session/presentation/ui/config/session.schema';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 export function SessionExercises({
   exercises,
