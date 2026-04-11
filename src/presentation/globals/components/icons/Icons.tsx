@@ -1,21 +1,8 @@
-import type { IconProps, IconTypes } from '@/presentation/globals/presentation.types';
+import type { IconProps } from '@/presentation/globals/presentation.types';
 import { IconWrapper } from '@/presentation/globals/components/icons/IconWrapper';
-import { twMerge } from 'tailwind-merge';
 
 export const defaultIconStrokeWidth = '1.5';
 export const defaultIconSizeClass = 'size-6';
-
-export function DefaultIcon({
-  Icon,
-  className = '',
-  strokeWidth = defaultIconStrokeWidth,
-}: {
-  Icon: IconTypes;
-  className?: string;
-  strokeWidth?: string;
-}) {
-  return <Icon className={twMerge(defaultIconSizeClass, className)} strokeWidth={strokeWidth} />;
-}
 
 export function IconArrowUp(props: IconProps) {
   return (

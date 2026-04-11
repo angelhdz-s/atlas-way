@@ -2,7 +2,8 @@
 
 import { useTheme } from 'next-themes';
 import { THEME } from '@/presentation/modules/theme/constants/client';
-import { DefaultIcon, IconMoon, IconSun } from '@/presentation/globals/components/icons/Icons';
+import { DefaultIcon } from '@/presentation/globals/components/icons/DefaultIcon';
+import { IconMoon, IconSun } from '@/presentation/globals/components/icons/Icons';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { twMerge } from 'tailwind-merge';
 
