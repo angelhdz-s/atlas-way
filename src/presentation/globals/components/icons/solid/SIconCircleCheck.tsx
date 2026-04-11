@@ -1,5 +1,5 @@
 import type { SIconProps } from '@/presentation/globals/presentation.types';
-import { SIconWrapper } from '@/presentation/globals/components/icons/SolidIcons';
+import { SIconWrapper } from '@/presentation/globals/components/icons/SIconWrapper';
 
 export function SIconCircleCheck(props: SIconProps) {
   return (
