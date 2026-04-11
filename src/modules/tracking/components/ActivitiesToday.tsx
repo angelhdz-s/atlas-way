@@ -1,9 +1,10 @@
 import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
-import { IconCalendarClock, IconCirclePlus } from '@/presentation/globals/components/icons/Icons';
+import { IconCalendarClock } from '@/presentation/globals/components/icons/outline/IconCalendarClock';
+import { IconCirclePlus } from '@/presentation/globals/components/icons/outline/IconCirclePlus';
 import {
   SessionDetails,
   type SessionDetailsType,
-} from '../../session/presentation/ui/components/SessionDetails';
+} from '@/modules/session/presentation/ui/components/SessionDetails';
 import { SubtleCard } from '@/presentation/modules/dashboard/card/components/SubtleCard';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';

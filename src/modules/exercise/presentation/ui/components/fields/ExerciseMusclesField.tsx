@@ -1,9 +1,9 @@
-import { IconMan } from '@/presentation/globals/components/icons/Icons';
+import { useFormContext } from 'react-hook-form';
+import { IconMan } from '@/presentation/globals/components/icons/outline/IconMan';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
 import { MultipleSelectBox } from '@/presentation/modules/form/components/MultipleSelectBox';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
-import { useFormContext } from 'react-hook-form';
-import type { ExerciseFormProps } from '../../schemas/exercise.schema';
+import type { ExerciseFormProps } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
 
 type Props = {
   items: SelectOption[];

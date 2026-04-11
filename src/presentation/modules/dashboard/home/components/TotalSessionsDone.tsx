@@ -1,6 +1,6 @@
-import { IconTrophy } from '@/presentation/globals/components/icons/Icons';
-import { Card } from '../../card/components/Card';
-import { CardTitle } from '../../card/components/CardTitle';
+import { IconTrophy } from '@/presentation/globals/components/icons/outline/IconTrophy';
+import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
 
 export function TotalSessionsDone({ className = '' }: { className?: string }) {
   return (

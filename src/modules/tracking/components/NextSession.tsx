@@ -1,10 +1,10 @@
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
-import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
 import {
   SessionDetails,
   type SessionDetailsType,
-} from '../../session/presentation/ui/components/SessionDetails';
-import { IconPlayerTrackNext } from '@/presentation/globals/components/icons/Icons';
+} from '@/modules/session/presentation/ui/components/SessionDetails';
+import { IconPlayerTrackNext } from '@/presentation/globals/components/icons/outline/IconPlayerTrackNext';
 
 const session = {
   id: 2,

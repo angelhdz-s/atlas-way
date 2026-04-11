@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import { CardTitle } from '../../card/components/CardTitle';
-import { ImageBackground } from './ImageBackground';
-import { Card } from '../../card/components/Card';
 import { twMerge } from 'tailwind-merge';
-import { IconClipboardList } from '@/presentation/globals/components/icons/Icons';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { ImageBackground } from '@/presentation/modules/dashboard/home/components/ImageBackground';
+import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { IconClipboardList } from '@/presentation/globals/components/icons/outline/IconClipboardList';
 
 export function FirstSession({ className = '' }: { className?: string }) {
   return (

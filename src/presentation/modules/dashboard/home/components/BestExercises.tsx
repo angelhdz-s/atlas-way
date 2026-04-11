@@ -1,6 +1,6 @@
-import { IconAward } from '@/presentation/globals/components/icons/Icons';
-import { Card } from '../../card/components/Card';
-import { CardTitle } from '../../card/components/CardTitle';
+import { IconAward } from '@/presentation/globals/components/icons/outline/IconAward';
+import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
 
 export function BestExercises({ className = '' }: { className?: string }) {
   return (

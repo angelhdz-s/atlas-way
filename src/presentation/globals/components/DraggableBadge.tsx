@@ -1,7 +1,8 @@
 import { twMerge } from 'tailwind-merge';
-import type { DivProps } from '../presentation.types';
-import { IconGripVertical, IconXMark } from './icons/Icons';
+import { IconGripVertical } from '@/presentation/globals/components/icons/outline/IconGripVertical';
+import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
 import { Button } from '@/presentation/modules/button/components/Button';
+import type { DivProps } from '@/presentation/globals/presentation.types';
 
 type Props = DivProps & {
   onRemove?: () => void;

@@ -1,8 +1,8 @@
 import { MUSCLES } from '@/presentation/globals/constants/db';
-import { CardTitle } from '../../card/components/CardTitle';
-import { SimpleTable } from './SimpleTable';
-import { Card } from '../../card/components/Card';
-import { IconMan } from '@/presentation/globals/components/icons/Icons';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { SimpleTable } from '@/presentation/modules/dashboard/home/components/SimpleTable';
+import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { IconMan } from '@/presentation/globals/components/icons/outline/IconMan';
 
 export function MusclesList({ className = '' }: { className?: string }) {
   const muscleKeys = Object.keys(MUSCLES)

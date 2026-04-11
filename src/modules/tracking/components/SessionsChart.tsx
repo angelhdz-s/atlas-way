@@ -1,7 +1,7 @@
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
-import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
-import { LineChart } from '../../../presentation/modules/statistics/components/Charts';
-import { IconChartLine } from '@/presentation/globals/components/icons/Icons';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { LineChart } from '@/presentation/modules/statistics/components/Charts';
+import { IconChartLine } from '@/presentation/globals/components/icons/outline/IconChartLine';
 
 export function SessionsChart({ className }: { className?: string }) {
   return (

@@ -1,12 +1,13 @@
 import type { FieldArrayPath, Control, FieldValues } from 'react-hook-form';
 import { DragDropProvider } from '@dnd-kit/react';
 import { isSortable } from '@dnd-kit/react/sortable';
-import type { SelectOption } from '../form.types';
-import { SortableInputItem } from './SortableInputItem';
-import { Button } from '../../button/components/Button';
-import { IconCirclePlus, IconTrash } from '@/presentation/globals/components/icons/Icons';
-import { SelectBox } from './SelectBox';
-import { useSortableInputItems } from '../hooks/useSortableInputItems';
+import { SortableInputItem } from '@/presentation/modules/form/components/SortableInputItem';
+import { Button } from '@/presentation/modules/button/components/Button';
+import { SelectBox } from '@/presentation/modules/form/components/SelectBox';
+import { useSortableInputItems } from '@/presentation/modules/form/hooks/useSortableInputItems';
+import { IconCirclePlus } from '@/presentation/globals/components/icons/outline/IconCirclePlus';
+import { IconTrash } from '@/presentation/globals/components/icons/outline/IconTrash';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 type Props<TForm extends FieldValues, TName extends FieldArrayPath<TForm>> = {
   addButtonLabel?: string;

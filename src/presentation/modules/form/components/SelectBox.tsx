@@ -1,11 +1,12 @@
 'use client';
 
 import { Box } from '@/presentation/modules/form/components/Box';
+import { IconSearch } from '@/presentation/globals/components/icons/outline/IconSearch';
+import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
+import { Button } from '@/presentation/modules/button/components/Button';
+import { useSelectBox } from '@/presentation/modules/form/hooks/useSelectBox';
+import { SelectBoxOption } from '@/presentation/modules/form/components/SelectBoxOption';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
-import { IconSearch, IconXMark } from '@/presentation/globals/components/icons/Icons';
-import { Button } from '../../button/components/Button';
-import { useSelectBox } from '../hooks/useSelectBox';
-import { SelectBoxOption } from './SelectBoxOption';
 
 export function SelectBox({
   title,

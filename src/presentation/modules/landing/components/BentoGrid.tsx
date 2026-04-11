@@ -1,12 +1,13 @@
-import { IconHeart, IconTrendingUp } from '@/presentation/globals/components/icons/Icons';
-import { StartYourJourney } from './bentogrid/card/StartYourJourney';
-import { AtlasWayCard } from './bentogrid/card/AtlasWayCard';
-import { ScheduleYourSessions } from './bentogrid/card/ScheduleYourSessions';
-import { CreateYourOwnRoutines } from './bentogrid/card/CreateYourOwnRoutines';
-import { FlexibleRoutines } from './bentogrid/card/FlexibleRoutines';
-import { CarruselIcons } from './bentogrid/card/CarruselIcons';
-import { GetStartedCard } from './bentogrid/card/GetStartedCard';
-import { IconHeaderCard } from './bentogrid/card/IconHeaderCard';
+import { StartYourJourney } from '@/presentation/modules/landing/components/bentogrid/card/StartYourJourney';
+import { AtlasWayCard } from '@/presentation/modules/landing/components/bentogrid/card/AtlasWayCard';
+import { ScheduleYourSessions } from '@/presentation/modules/landing/components/bentogrid/card/ScheduleYourSessions';
+import { CreateYourOwnRoutines } from '@/presentation/modules/landing/components/bentogrid/card/CreateYourOwnRoutines';
+import { FlexibleRoutines } from '@/presentation/modules/landing/components/bentogrid/card/FlexibleRoutines';
+import { CarruselIcons } from '@/presentation/modules/landing/components/bentogrid/card/CarruselIcons';
+import { GetStartedCard } from '@/presentation/modules/landing/components/bentogrid/card/GetStartedCard';
+import { IconHeaderCard } from '@/presentation/modules/landing/components/bentogrid/card/IconHeaderCard';
+import { IconHeart } from '@/presentation/globals/components/icons/outline/IconHeart';
+import { IconTrendingUp } from '@/presentation/globals/components/icons/outline/IconTrendingUp';
 
 export function BentoGrid({ className = '' }: { className?: string }) {
   return (

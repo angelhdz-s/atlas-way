@@ -1,6 +1,6 @@
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
-import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
-import { IconAward } from '@/presentation/globals/components/icons/Icons';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { IconAward } from '@/presentation/globals/components/icons/outline/IconAward';
 
 type BestRecordItemType = {
   id: number;

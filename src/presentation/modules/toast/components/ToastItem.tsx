@@ -1,15 +1,13 @@
 'use client';
 
 import { TOAST_TYPE } from '@/presentation/globals/config/defaults';
-import {
-  IconCircleCheck,
-  IconAlertTriangle,
-  IconInformationCircle,
-  IconXCircle,
-  IconXMark,
-} from '@/presentation/globals/components/icons/Icons';
+import { IconCircleCheck } from '@/presentation/globals/components/icons/outline/IconCircleCheck';
+import { IconAlertTriangle } from '@/presentation/globals/components/icons/outline/IconAlertTriangle';
+import { IconInformationCircle } from '@/presentation/globals/components/icons/outline/IconInformationCircle';
+import { IconXCircle } from '@/presentation/globals/components/icons/outline/IconXCircle';
+import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
+import styles from '@/presentation/modules/toast/components/Toast.module.css';
 import type { Toast } from '@/presentation/globals/presentation.types';
-import styles from './Toast.module.css';
 
 interface Props {
   toast: Toast;

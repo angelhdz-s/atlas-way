@@ -3,7 +3,7 @@ import { PageContent } from '@/presentation/modules/dashboard/page/components/Pa
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
 import { getAllUserExercises } from '@/modules/exercise/presentation/exercise.actions';
 import { Link } from '@/presentation/modules/button/components/Link';
-import { IconPlus } from '@/presentation/globals/components/icons/Icons';
+import { IconPlus } from '@/presentation/globals/components/icons/outline/IconPlus';
 import { ExercisesTable } from '@/modules/exercise/presentation/components/ExercisesTable';
 
 export default async function ExercisesPage() {
