@@ -1,4 +1,4 @@
-import type { IconProps } from '../presentation.types';
+import type { IconProps } from '@/presentation/globals/presentation.types';
 
 function MainSolidSvgBody({
   children,
