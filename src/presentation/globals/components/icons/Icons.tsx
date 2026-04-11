@@ -1,9 +1,6 @@
 import type { IconProps } from '@/presentation/globals/presentation.types';
 import { IconWrapper } from '@/presentation/globals/components/icons/IconWrapper';
 
-export const defaultIconStrokeWidth = '1.5';
-export const defaultIconSizeClass = 'size-6';
-
 export function IconArrowUp(props: IconProps) {
   return (
     <IconWrapper {...props}>
