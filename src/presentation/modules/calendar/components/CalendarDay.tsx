@@ -3,8 +3,8 @@ import {
   getCalendarStatusDay,
   getISOStringDate,
 } from '@/presentation/globals/lib/dates';
-import { IconBarbellOff } from '@/presentation/globals/components/icons/Icons';
-import { Button } from '../../button/components/Button';
+import { IconBarbellOff } from '@/presentation/globals/components/icons/outline/IconBarbellOff';
+import { Button } from '@/presentation/modules/button/components/Button';
 
 function CalendarDayItem({
   children,
@@ -21,7 +21,7 @@ function CalendarDayItem({
       variantConfig={{
         type: 'square',
         color: 'simple',
-        size: 'xxs',
+        size: 'xs',
       }}
       onClick={onClick}
       className="flex w-full cursor-pointer justify-center hover:bg-transparent"

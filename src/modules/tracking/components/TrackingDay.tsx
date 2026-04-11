@@ -1,15 +1,13 @@
 import { DAYS, type DayWeeksType } from '@/presentation/globals/config/defaults';
 import { getISOStringDate, getSessionFromDate } from '@/presentation/globals/lib/dates';
 import { TODAY } from '@/presentation/globals/mocks/tracking';
-import {
-  IconBarbellOff,
-  IconCircle,
-  IconCircleCheck,
-  IconCircleOutline,
-  IconAlarm,
-  IconXCircle,
-  IconAlertTriangle,
-} from '@/presentation/globals/components/icons/Icons';
+import { IconBarbellOff } from '@/presentation/globals/components/icons/outline/IconBarbellOff';
+import { IconCircle } from '@/presentation/globals/components/icons/outline/IconCircle';
+import { IconCircleCheck } from '@/presentation/globals/components/icons/outline/IconCircleCheck';
+import { IconCircleOutline } from '@/presentation/globals/components/icons/outline/IconCircleOutline';
+import { IconAlarm } from '@/presentation/globals/components/icons/outline/IconAlarm';
+import { IconXCircle } from '@/presentation/globals/components/icons/outline/IconXCircle';
+import { IconAlertTriangle } from '@/presentation/globals/components/icons/outline/IconAlertTriangle';
 import type { IconTypes } from '@/presentation/globals/presentation.types';
 
 export const STATUS_ICONS = {
