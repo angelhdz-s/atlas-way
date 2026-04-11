@@ -1,6 +1,6 @@
-import { IconBell } from '@/presentation/globals/components/icons/Icons';
-import { Card } from '../../card/components/Card';
-import { CardTitle } from '../../card/components/CardTitle';
+import { IconBell } from '@/presentation/globals/components/icons/outline/IconBell';
+import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
 
 function NotificationListItem({
   className = '',
