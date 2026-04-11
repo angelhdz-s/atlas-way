@@ -1,10 +1,8 @@
-import {
-  IconBarbell,
-  IconBarbellOff,
-  IconCircleCheck,
-  IconAlarm,
-} from '@/presentation/globals/components/Icons';
-import { Card } from '../../card/components/Card';
+import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
+import { IconBarbellOff } from '@/presentation/globals/components/icons/outline/IconBarbellOff';
+import { IconCircleCheck } from '@/presentation/globals/components/icons/outline/IconCircleCheck';
+import { IconAlarm } from '@/presentation/globals/components/icons/outline/IconAlarm';
+import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 
 function CalendarHeader({ className = '' }: { className?: string }) {
   return (

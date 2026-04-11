@@ -1,12 +1,14 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { Button } from '../../button/components/Button';
-import { IconCog, IconLanguage, IconLogout } from '@/presentation/globals/components/Icons';
+import { Button } from '@/presentation/modules/button/components/Button';
+import { IconCog } from '@/presentation/globals/components/icons/outline/IconCog';
+import { IconLanguage } from '@/presentation/globals/components/icons/outline/IconLanguage';
+import { IconLogout } from '@/presentation/globals/components/icons/outline/IconLogout';
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
 import { useTooltipBackdrop } from '@/presentation/globals/hooks/useTooltipBackdrop';
 import { ToggleThemeLabelButton } from '@/presentation/modules/theme/components/ToggleThemeLabelButton';
-import { Link } from '../../button/components/Link';
+import { Link } from '@/presentation/modules/button/components/Link';
 
 export function SidebarFooter({ className = '' }: { className?: string }) {
   const [open, setOpen] = useState<boolean>(false);

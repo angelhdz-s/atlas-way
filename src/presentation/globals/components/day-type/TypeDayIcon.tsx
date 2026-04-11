@@ -1,4 +1,5 @@
-import { IconBarbell, IconBarbellOff } from '../Icons';
+import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
+import { IconBarbellOff } from '@/presentation/globals/components/icons/outline/IconBarbellOff';
 
 export function TrainingIcon({
   className = '',

@@ -1,7 +1,7 @@
-import { Box } from '@/presentation/modules/form/components/Box';
 import { useState } from 'react';
 import Link from 'next/link';
-import { IconCirclePlus } from '@/presentation/globals/components/Icons';
+import { Box } from '@/presentation/modules/form/components/Box';
+import { IconCirclePlus } from '@/presentation/globals/components/icons/outline/IconCirclePlus';
 import type { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 
 export function FormSessionsBox() {

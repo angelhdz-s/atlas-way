@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import { CardTitle } from '../../card/components/CardTitle';
-import { ImageBackground } from './ImageBackground';
-import { Card } from '../../card/components/Card';
 import { twMerge } from 'tailwind-merge';
-import { IconMapRoute } from '@/presentation/globals/components/Icons';
+import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { IconMapRoute } from '@/presentation/globals/components/icons/outline/IconMapRoute';
+import { ImageBackground } from '@/presentation/modules/dashboard/home/components/ImageBackground';
 
 export function FirstRoutine({ className = '' }: { className?: string }) {
   return (

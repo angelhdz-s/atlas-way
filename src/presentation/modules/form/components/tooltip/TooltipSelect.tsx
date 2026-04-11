@@ -1,9 +1,9 @@
-import { IconXMark } from '@/presentation/globals/components/Icons';
-import { Select } from '../fields/Select';
-import { Button } from '@/presentation/modules/button/components/Button';
-import type { SelectOption } from '../../form.types';
 import { useRef } from 'react';
-import { LabelGroup } from '../fields/LabelInput';
+import { Select } from '@/presentation/modules/form/components/fields/Select';
+import { Button } from '@/presentation/modules/button/components/Button';
+import { LabelGroup } from '@/presentation/modules/form/components/fields/LabelInput';
+import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 type Props = {
   title: string;

@@ -1,5 +1,5 @@
-import { IconArrowUp } from '@/presentation/globals/components/Icons';
-import { Link } from '../../button/components/Link';
+import { IconArrowUp } from '@/presentation/globals/components/icons/outline/IconArrowUp';
+import { Link } from '@/presentation/modules/button/components/Link';
 
 export function Hero() {
   return (

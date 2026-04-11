@@ -1,7 +1,7 @@
-import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
-import { IconDots } from '@/presentation/globals/components/Icons';
 import { twMerge } from 'tailwind-merge';
-import { SessionExerciseRow } from './SessionExerciseRow';
+import { IconDots } from '@/presentation/globals/components/icons/outline/IconDots';
+import { SessionExerciseRow } from '@/modules/session/presentation/ui/components/SessionExerciseRow';
+import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 
 export function SessionExercisesList({ exercises }: { exercises: ExerciseDTO[] }) {
   return (

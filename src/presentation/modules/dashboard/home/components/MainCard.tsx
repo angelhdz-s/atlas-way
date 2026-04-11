@@ -1,6 +1,8 @@
-import { IconBarbell, IconMapRoute, IconAlarm } from '@/presentation/globals/components/Icons';
-import { Card } from '../../card/components/Card';
-import { IconSolidCircleCheck } from '@/presentation/globals/components/SolidIcons';
+import { SIconCircleCheck } from '@/presentation/globals/components/icons/solid/SIconCircleCheck';
+import { IconMapRoute } from '@/presentation/globals/components/icons/outline/IconMapRoute';
+import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
+import { IconAlarm } from '@/presentation/globals/components/icons/outline/IconAlarm';
+import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 
 export function MainCard({ className = '' }: { className?: string }) {
   return (
@@ -14,13 +16,13 @@ export function MainCard({ className = '' }: { className?: string }) {
         <ul className="flex flex-col gap-0 text-lg *:relative *:flex *:items-start *:gap-2">
           <li>
             <span className="pt-1">
-              <IconSolidCircleCheck className="size-6" />
+              <SIconCircleCheck className="size-6" />
             </span>
             <span className="flex-1">Create Your Own Path</span>
           </li>
           <li>
             <span className="pt-1">
-              <IconSolidCircleCheck className="size-6" />
+              <SIconCircleCheck className="size-6" />
             </span>
             <span className="flex-1">{"You Don't Need to Be an Expert"}</span>
           </li>

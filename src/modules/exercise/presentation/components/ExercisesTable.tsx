@@ -1,12 +1,13 @@
 'use client';
 
-import { IconEdit, IconTrash } from '@/presentation/globals/components/Icons';
+import { IconEdit } from '@/presentation/globals/components/icons/outline/IconEdit';
+import { IconTrash } from '@/presentation/globals/components/icons/outline/IconTrash';
 import { TableBody } from '@/presentation/globals/components/table/TableBody';
 import { TableBodyRow } from '@/presentation/globals/components/table/TableBodyRow';
 import { TableHeader } from '@/presentation/globals/components/table/TableHeader';
 import { TableWrapper } from '@/presentation/globals/components/table/TableWrapper';
 import { Button } from '@/presentation/modules/button/components/Button';
-import type { ExerciseDTO } from '../../application/dtos/exercise.dto';
+import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 
 type Props = {
   exercises: ExerciseDTO[];

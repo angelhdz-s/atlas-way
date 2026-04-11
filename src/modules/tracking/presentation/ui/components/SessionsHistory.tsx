@@ -1,0 +1,90 @@
+'use client';
+
+import { useContext } from 'react';
+import { Calendar } from '@/presentation/modules/calendar/components/Calendar';
+import { CalendarProvider } from '@/presentation/modules/calendar/components/CalendarProvider';
+import { MonthDateSelector } from '@/presentation/modules/calendar/components/MonthDateSelector';
+import { YearDateSelector } from '@/presentation/modules/calendar/components/YearDateSelector';
+import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { IconClipboardList } from '@/presentation/globals/components/icons/outline/IconClipboardList';
+import { IconCalendarClock } from '@/presentation/globals/components/icons/outline/IconCalendarClock';
+import { SubtleCard } from '@/presentation/modules/dashboard/card/components/SubtleCard';
+import { getSessionFromDate } from '@/presentation/globals/lib/dates';
+import { LastSessions } from '@/modules/session/presentation/ui/components/LastSessions';
+import {
+  SessionDetails,
+  type SessionDetailsType,
+} from '@/modules/session/presentation/ui/components/SessionDetails';
+import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+
+const session = {
+  id: 1,
+  name: 'Push Day',
+  description: 'Take it easy today!',
+  exercises: [
+    {
+      id: 1,
+      name: 'Push Ups',
+      sets: 3,
+      reps: 10,
+      weight: 0,
+      status: 'next',
+    },
+    {
+      id: 2,
+      name: 'Shoulder Press',
+      sets: 3,
+      reps: 12,
+      weight: 20,
+      status: 'next',
+    },
+    {
+      id: 3,
+      name: 'Tricep Dips',
+      sets: 3,
+      reps: 10,
+      weight: 10,
+      status: 'next',
+    },
+    {
+      id: 4,
+      name: 'Lateral Raises',
+      sets: 3,
+      reps: 15,
+      weight: 5,
+      status: 'next',
+    },
+  ],
+  status: 'next',
+} as SessionDetailsType;
+
+export function SessionsHistory({ className }: { className?: string }) {
+  const { selectedDate } = useContext(CalendarContext);
+  const _currentSession = getSessionFromDate(selectedDate); // Here will be a function to get session from date
+  return (
+    <CalendarProvider>
+      <Card className={`flex flex-col gap-4 ${className}`}>
+        <header>
+          <CardTitle Icon={IconClipboardList} title="Session History" />
+        </header>
+        <main className="grid grid-cols-[auto_1fr_auto] gap-4">
+          <section className="flex h-61.5 flex-col justify-between">
+            <Calendar />
+          </section>
+          <section className="flex flex-col gap-4">
+            <header className="flex items-center gap-2">
+              <IconCalendarClock className="fg-muted" strokeWidth="1.5" />
+              <MonthDateSelector />
+              <YearDateSelector />
+            </header>
+            <SubtleCard className="border-subtle/10 rounded-lg border">
+              <SessionDetails session={session} />
+            </SubtleCard>
+          </section>
+          <LastSessions />
+        </main>
+      </Card>
+    </CalendarProvider>
+  );
+}

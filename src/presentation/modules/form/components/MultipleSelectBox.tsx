@@ -2,12 +2,14 @@
 
 import { Box } from '@/presentation/modules/form/components/Box';
 import { useMultipleSelectBox } from '@/presentation/modules/form/hooks/useMultipleSelectBox';
-import type { SelectOption } from '@/presentation/modules/form/form.types';
-import { IconCirclePlus, IconTrash, IconXMark } from '@/presentation/globals/components/Icons';
-import { ErrorMessage } from './ErrorMessage';
-import { Button } from '../../button/components/Button';
+import { IconCirclePlus } from '@/presentation/globals/components/icons/outline/IconCirclePlus';
+import { IconTrash } from '@/presentation/globals/components/icons/outline/IconTrash';
+import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
+import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
+import { Button } from '@/presentation/modules/button/components/Button';
+import { SelectBox } from '@/presentation/modules/form/components/SelectBox';
 import type { Control, FieldArrayPath, FieldValues } from 'react-hook-form';
-import { SelectBox } from './SelectBox';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 type SelectedOption = {
   option: SelectOption;

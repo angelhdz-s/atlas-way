@@ -1,7 +1,7 @@
-import { CardTitle } from '../../card/components/CardTitle';
-import { Card } from '../../card/components/Card';
-import { IconSolidCircleCheck } from '@/presentation/globals/components/SolidIcons';
-import { IconPlayerTrackPrev } from '@/presentation/globals/components/Icons';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { SIconCircleCheck } from '@/presentation/globals/components/icons/solid/SIconCircleCheck';
+import { IconPlayerTrackPrev } from '@/presentation/globals/components/icons/outline/IconPlayerTrackPrev';
 
 export function LastSession({ className = '' }: { className?: string }) {
   return (
@@ -18,7 +18,7 @@ export function LastSession({ className = '' }: { className?: string }) {
           <ul className="font-sm font-light">
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <IconSolidCircleCheck className="fg-complete mr-1 size-6" />
+                <SIconCircleCheck className="fg-complete mr-1 size-6" />
                 <span className="leading-none">Push Ups</span>
               </main>
               <aside>
@@ -28,7 +28,7 @@ export function LastSession({ className = '' }: { className?: string }) {
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <IconSolidCircleCheck className="fg-complete mr-1 size-6" />
+                <SIconCircleCheck className="fg-complete mr-1 size-6" />
                 <span className="leading-none">Lateral Raises</span>
               </main>
               <aside>
@@ -38,7 +38,7 @@ export function LastSession({ className = '' }: { className?: string }) {
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <IconSolidCircleCheck className="fg-complete mr-1 size-6" />
+                <SIconCircleCheck className="fg-complete mr-1 size-6" />
                 <span className="leading-none">Abs</span>
               </main>
               <aside>
@@ -48,7 +48,7 @@ export function LastSession({ className = '' }: { className?: string }) {
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <IconSolidCircleCheck className="fg-complete mr-1 size-6" />
+                <SIconCircleCheck className="fg-complete mr-1 size-6" />
                 <span className="leading-none">Dips</span>
               </main>
               <aside>

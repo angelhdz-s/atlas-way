@@ -6,10 +6,10 @@ import { FirstSession } from '@/presentation/modules/dashboard/home/components/F
 import { LastSession } from '@/presentation/modules/dashboard/home/components/LastSession';
 import { MainCard } from '@/presentation/modules/dashboard/home/components/MainCard';
 import { MusclesList } from '@/presentation/modules/dashboard/home/components/MusclesList';
-import { NextSession } from '@/modules/tracking/components/NextSession';
+import { NextSession } from '@/modules/tracking/presentation/ui/components/NextSession';
 import { NotificationsList } from '@/presentation/modules/dashboard/home/components/NotificationsList';
 import { RoutinesList } from '@/presentation/modules/dashboard/home/components/RoutinesList';
-import { SessionStreak } from '@/modules/tracking/components/SessionStreak';
+import { SessionStreak } from '@/modules/tracking/presentation/ui/components/SessionStreak';
 import { TotalSessionsDone } from '@/presentation/modules/dashboard/home/components/TotalSessionsDone';
 import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';

@@ -1,5 +1,5 @@
-import { IconRocket } from '@/presentation/globals/components/Icons';
-import { BentoCard } from '../BentoCard';
+import { IconRocket } from '@/presentation/globals/components/icons/outline/IconRocket';
+import { BentoCard } from '@/presentation/modules/landing/components/bentogrid/BentoCard';
 import { Link } from '@/presentation/modules/button/components/Link';
 
 type Props = {

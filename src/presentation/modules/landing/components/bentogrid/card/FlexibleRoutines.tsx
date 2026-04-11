@@ -1,5 +1,5 @@
-import { IconArrowsLeftRight } from '@/presentation/globals/components/Icons';
-import { BentoCard } from '../BentoCard';
+import { IconArrowsLeftRight } from '@/presentation/globals/components/icons/outline/IconArrowsLeftRight';
+import { BentoCard } from '@/presentation/modules/landing/components/bentogrid/BentoCard';
 
 type Props = {
   className?: string;

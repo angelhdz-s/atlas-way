@@ -1,9 +1,9 @@
 'use client';
 
-import { IconMenu } from '@/presentation/globals/components/Icons';
 import Link from 'next/link';
-import { useHeaderNav } from '../hooks/useHeaderNav';
-import { Button } from '../../button/components/Button';
+import { IconMenu } from '@/presentation/globals/components/icons/outline/IconMenu';
+import { useHeaderNav } from '@/presentation/modules/nav/hooks/useHeaderNav';
+import { Button } from '@/presentation/modules/button/components/Button';
 
 export function HeaderNav() {
   const { showing, handleClick, handleClickOut, hiddenClass } = useHeaderNav();

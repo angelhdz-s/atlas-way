@@ -1,7 +1,7 @@
-import { IconArrowUp } from '@/presentation/globals/components/Icons';
-import { ArrowButton } from './ArrowButton';
+import { IconArrowUp } from '@/presentation/globals/components/icons/outline/IconArrowUp';
+import { ArrowButton } from '@/presentation/modules/calendar/components/ArrowButton';
 
-type DateControlProps = {
+type Props = {
   className?: string;
   children: React.ReactNode;
   onLeftClick?: () => void;
@@ -10,12 +10,7 @@ type DateControlProps = {
 
 const iconSize = 'size-4';
 
-export function DateControl({
-  className = '',
-  children,
-  onLeftClick,
-  onRightClick,
-}: DateControlProps) {
+export function DateControl({ className = '', children, onLeftClick, onRightClick }: Props) {
   return (
     <div className={`flex h-full items-center ${className}`}>
       <ArrowButton className="rounded-l" onClick={onLeftClick}>

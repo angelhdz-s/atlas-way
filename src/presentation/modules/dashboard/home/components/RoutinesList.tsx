@@ -1,6 +1,8 @@
-import { IconBarbell, IconAlarm, IconRouteX } from '@/presentation/globals/components/Icons';
-import { CardTitle } from '../../card/components/CardTitle';
-import { Card } from '../../card/components/Card';
+import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
+import { IconRouteX } from '@/presentation/globals/components/icons/outline/IconRouteX';
+import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { IconAlarm } from '@/presentation/globals/components/icons/outline/IconAlarm';
+import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 
 export function RoutinesList({ className = '' }: { className?: string }) {
   return (

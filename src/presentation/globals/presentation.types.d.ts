@@ -8,7 +8,12 @@ export interface IconProps {
   ariaHidden?: boolean;
 }
 
-export type IconTypes = React.FC<IconProps>;
+export interface SIconProps {
+  className?: string;
+  ariaHidden?: boolean;
+}
+
+export type IconTypes = React.FC<IconProps> | React.FC<SIconProps>;
 
 export interface SolidIconProps {
   className?: string;
