@@ -1,21 +1,22 @@
 'use client';
 
 import { DragDropProvider } from '@dnd-kit/react';
+import { isSortableOperation } from '@dnd-kit/react/sortable';
+import { type FieldArrayWithId, useFormContext } from 'react-hook-form';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
-import { IconCalendarWeek } from '@/presentation/globals/components/icons/Icons';
-import { isSortableOperation } from '@dnd-kit/react/sortable';
-import { RoutineSessionPlanDraggableItem } from './RoutineSessionPlanDraggableItem';
-import { RoutineSessionPlanDroppableItem } from './RoutineSessionPlanDroppableItem';
-import { type FieldArrayWithId, useFormContext } from 'react-hook-form';
-import { useRoutineSessionPlanField } from '../../hooks/useRoutineSessionPlanField';
+import { IconCalendarWeek } from '@/presentation/globals/components/icons/outline/IconCalendarWeek';
+import { RoutineSessionPlanDraggableItem } from '@/modules/routine/presentation/ui/components/fields/RoutineSessionPlanDraggableItem';
+import { RoutineSessionPlanDroppableItem } from '@/modules/routine/presentation/ui/components/fields/RoutineSessionPlanDroppableItem';
+import { useRoutineSessionPlanField } from '@/modules/routine/presentation/ui/hooks/useRoutineSessionPlanField';
+import { TooltipSelect } from '@/presentation/modules/form/components/tooltip/TooltipSelect';
 import type {
   DnDFormFieldItemData,
   DnDFormFieldItemDraggableData,
   SelectOption,
 } from '@/presentation/modules/form/form.types';
-import type { RoutineForm } from '../../config/routine.schema';
-import { TooltipSelect } from '@/presentation/modules/form/components/tooltip/TooltipSelect';
+import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
+
 type Props = {
   sessions: SelectOption[];
   days: SelectOption[];

@@ -1,16 +1,15 @@
-import { IconCalendarWeek, IconCircleOutline } from '@/presentation/globals/components/icons/Icons';
+import { IconCalendarWeek } from '@/presentation/globals/components/icons/outline/IconCalendarWeek';
+import { IconCircleOutline } from '@/presentation/globals/components/icons/outline/IconCircleOutline';
 import { WEEK_DAYS } from '@/presentation/globals/constants/date';
 import { getNextDates, getSessionFromDate } from '@/presentation/globals/lib/dates';
-import type { StatusDayType } from '@/presentation/globals/mocks/routines';
 import { TODAY } from '@/presentation/globals/mocks/tracking';
-import type { IconTypes, SolidIconTypes } from '@/presentation/globals/presentation.types';
 import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
 import { getStatusTextColorClass } from '@/presentation/globals/lib/get-classes';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
-import {
-  IconSolidCircleCheck,
-  IconSolidCircleX,
-} from '@/presentation/globals/components/SolidIcons';
+import { SIconCircleCheck } from '@/presentation/globals/components/icons/solid/SIconCircleCheck';
+import { SIconCircleX } from '@/presentation/globals/components/icons/solid/SIconCircleX';
+import type { StatusDayType } from '@/presentation/globals/mocks/routines';
+import type { IconTypes, SolidIconTypes } from '@/presentation/globals/presentation.types';
 
 const ICON_SIZE_CLASS = 'size-7';
 
@@ -57,14 +56,14 @@ function StatusDay({ status, className }: { status: StatusDayType; className?: s
   if (status === 'completed')
     return (
       <span className={` ${className}`}>
-        <StatusDaySolidIcon className="fg-complete" icon={IconSolidCircleCheck} />
+        <StatusDaySolidIcon className="fg-complete" icon={SIconCircleCheck} />
       </span>
     );
 
   if (status === 'canceled')
     return (
       <span className={` ${className}`}>
-        <StatusDaySolidIcon className="fg-cancel" icon={IconSolidCircleX} />
+        <StatusDaySolidIcon className="fg-cancel" icon={SIconCircleX} />
       </span>
     );
 
