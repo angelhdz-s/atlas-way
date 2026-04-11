@@ -1,9 +1,9 @@
 import type { IconProps } from '@/presentation/globals/presentation.types';
-import { MainSvgBody } from '../Icons';
+import { IconWrapper } from '@/presentation/globals/components/icons/IconWrapper';
 
 export function IconSchema(props: IconProps) {
   return (
-    <MainSvgBody {...props}>
+    <IconWrapper {...props}>
       <path d="M5 2h5v4h-5l0 -4" />
       <path d="M15 10h5v4h-5l0 -4" />
       <path d="M5 18h5v4h-5l0 -4" />
@@ -11,6 +11,6 @@ export function IconSchema(props: IconProps) {
       <path d="M10 12h5" />
       <path d="M7.5 6v4" />
       <path d="M7.5 14v4" />
-    </MainSvgBody>
+    </IconWrapper>
   );
 }

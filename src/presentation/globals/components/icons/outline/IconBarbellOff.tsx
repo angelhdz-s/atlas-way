@@ -1,9 +1,9 @@
 import type { IconProps } from '@/presentation/globals/presentation.types';
-import { MainSvgBody } from '../Icons';
+import { IconWrapper } from '@/presentation/globals/components/icons/IconWrapper';
 
 export function IconBarbellOff(props: IconProps) {
   return (
-    <MainSvgBody {...props}>
+    <IconWrapper {...props}>
       <path d="M2 12h1" />
       <path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" />
       <path d="M6.298 6.288a1 1 0 0 0 -.298 .712v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-8" />
@@ -12,6 +12,6 @@ export function IconBarbellOff(props: IconProps) {
       <path d="M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1" />
       <path d="M22 12h-1" />
       <path d="M3 3l18 18" />
-    </MainSvgBody>
+    </IconWrapper>
   );
 }

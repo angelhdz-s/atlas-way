@@ -1,9 +1,9 @@
 import type { IconProps } from '@/presentation/globals/presentation.types';
-import { MainSvgBody } from '../Icons';
+import { IconWrapper } from '@/presentation/globals/components/icons/IconWrapper';
 
 export function IconCalendarWeek(props: IconProps) {
   return (
-    <MainSvgBody {...props}>
+    <IconWrapper {...props}>
       <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" />
       <path d="M16 3v4" />
       <path d="M8 3v4" />
@@ -15,6 +15,6 @@ export function IconCalendarWeek(props: IconProps) {
       <path d="M13.015 17h.005" />
       <path d="M7.01 17h.005" />
       <path d="M10.01 17h.005" />
-    </MainSvgBody>
+    </IconWrapper>
   );
 }
