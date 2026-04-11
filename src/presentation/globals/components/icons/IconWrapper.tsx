@@ -1,9 +1,9 @@
 import type { IconProps } from '@/presentation/globals/presentation.types';
-import { defaultIconStrokeWidth } from './Icons';
+import { DEFAULT_STROKE_WIDTH } from '@/presentation/globals/constants/icons';
 
 export function IconWrapper({
   children,
-  strokeWidth = defaultIconStrokeWidth,
+  strokeWidth = DEFAULT_STROKE_WIDTH,
   className,
   ariaHidden = true,
 }: IconProps & { children: React.ReactNode }) {
