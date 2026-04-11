@@ -1,4 +1,4 @@
-import { IconBell } from '@/presentation/globals/components/Icons';
+import { IconBell } from '@/presentation/globals/components/icons/Icons';
 import { Card } from '../../card/components/Card';
 import { CardTitle } from '../../card/components/CardTitle';
 

@@ -9,7 +9,7 @@ import { ExerciseRepsField } from './fields/ExerciseRepsField';
 import { ExerciseSetsField } from './fields/ExerciseSetsField';
 import { ExerciseWeightField } from './fields/ExerciseWeightField';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
-import { IconBarbell } from '@/presentation/globals/components/Icons';
+import { IconBarbell } from '@/presentation/globals/components/icons/Icons';
 import { ModalForm } from '@/presentation/modules/form/components/modal-form/ModalForm';
 import { ModalFormButtons } from '@/presentation/modules/form/components/modal-form/ModalFormButtons';
 import { useRouter } from 'next/navigation';

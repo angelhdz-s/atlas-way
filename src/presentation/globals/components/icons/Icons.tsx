@@ -16,7 +16,7 @@ export function DefaultIcon({
   return <Icon className={twMerge(defaultIconSizeClass, className)} strokeWidth={strokeWidth} />;
 }
 
-function MainSvgBody({
+export function MainSvgBody({
   children,
   strokeWidth = defaultIconStrokeWidth,
   className,

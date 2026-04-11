@@ -1,4 +1,4 @@
-import { IconRocket } from '@/presentation/globals/components/Icons';
+import { IconRocket } from '@/presentation/globals/components/icons/Icons';
 import { BentoCard } from '../BentoCard';
 import { Link } from '@/presentation/modules/button/components/Link';
 

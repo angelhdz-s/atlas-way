@@ -6,7 +6,7 @@ import {
   IconMan,
   IconRouteX,
   IconSchema,
-} from '@/presentation/globals/components/Icons';
+} from '@/presentation/globals/components/icons/Icons';
 import { NavLink } from './nav/NavLink';
 import { NavLinks } from './nav/NavLinks';
 import { NavLinkIcon } from './nav/NavLinkIcon';

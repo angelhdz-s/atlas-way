@@ -1,4 +1,4 @@
-import { IconXMark } from '@/presentation/globals/components/Icons';
+import { IconXMark } from '@/presentation/globals/components/icons/Icons';
 import { Button } from '../../../button/components/Button';
 import { FormProvider } from 'react-hook-form';
 import { type ModalFormHookProps, useFormHook } from '../../hooks/useFormHook';

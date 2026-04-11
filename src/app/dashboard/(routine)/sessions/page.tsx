@@ -2,7 +2,7 @@ import { PageContainer } from '@/presentation/modules/dashboard/page/components/
 import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
 import { Session } from '@/modules/session/presentation/ui/components/Session';
-import { IconPlus } from '@/presentation/globals/components/Icons';
+import { IconPlus } from '@/presentation/globals/components/icons/Icons';
 import { Link } from '@/presentation/modules/button/components/Link';
 import { getAllSessions } from '@/modules/session/presentation/session.actions';
 

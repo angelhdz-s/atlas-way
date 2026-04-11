@@ -1,4 +1,4 @@
-import { IconCalendarWeek, IconCircleOutline } from '@/presentation/globals/components/Icons';
+import { IconCalendarWeek, IconCircleOutline } from '@/presentation/globals/components/icons/Icons';
 import { WEEK_DAYS } from '@/presentation/globals/constants/date';
 import { getNextDates, getSessionFromDate } from '@/presentation/globals/lib/dates';
 import type { StatusDayType } from '@/presentation/globals/mocks/routines';

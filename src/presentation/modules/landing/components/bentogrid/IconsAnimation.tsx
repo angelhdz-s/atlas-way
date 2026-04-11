@@ -11,7 +11,7 @@ import {
   IconTrendingUp,
   IconTrophy,
   IconPlayerTrackNext,
-} from '@/presentation/globals/components/Icons';
+} from '@/presentation/globals/components/icons/Icons';
 import type { IconTypes } from '@/presentation/globals/presentation.types';
 import styles from './IconsAnimation.module.css';
 import { useEffect, useState } from 'react';

@@ -4,7 +4,7 @@ import { isSortable } from '@dnd-kit/react/sortable';
 import type { SelectOption } from '../form.types';
 import { SortableInputItem } from './SortableInputItem';
 import { Button } from '../../button/components/Button';
-import { IconCirclePlus, IconTrash } from '@/presentation/globals/components/Icons';
+import { IconCirclePlus, IconTrash } from '@/presentation/globals/components/icons/Icons';
 import { SelectBox } from './SelectBox';
 import { useSortableInputItems } from '../hooks/useSortableInputItems';
 

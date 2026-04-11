@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 import type { DivProps } from '../presentation.types';
-import { IconGripVertical, IconXMark } from './Icons';
+import { IconGripVertical, IconXMark } from './icons/Icons';
 import { Button } from '@/presentation/modules/button/components/Button';
 
 type Props = DivProps & {

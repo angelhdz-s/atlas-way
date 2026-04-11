@@ -4,7 +4,7 @@ import {
   SessionDetails,
   type SessionDetailsType,
 } from '../../session/presentation/ui/components/SessionDetails';
-import { IconPlayerTrackNext } from '@/presentation/globals/components/Icons';
+import { IconPlayerTrackNext } from '@/presentation/globals/components/icons/Icons';
 
 const session = {
   id: 2,

@@ -1,4 +1,4 @@
-import { IconMan } from '@/presentation/globals/components/Icons';
+import { IconMan } from '@/presentation/globals/components/icons/Icons';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
 import { MultipleSelectBox } from '@/presentation/modules/form/components/MultipleSelectBox';
 import type { SelectOption } from '@/presentation/modules/form/form.types';

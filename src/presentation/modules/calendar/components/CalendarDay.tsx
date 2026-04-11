@@ -3,7 +3,7 @@ import {
   getCalendarStatusDay,
   getISOStringDate,
 } from '@/presentation/globals/lib/dates';
-import { IconBarbellOff } from '@/presentation/globals/components/Icons';
+import { IconBarbellOff } from '@/presentation/globals/components/icons/Icons';
 import { Button } from '../../button/components/Button';
 
 function CalendarDayItem({

@@ -3,7 +3,7 @@ import {
   IconDeviceDesktop,
   IconDeviceDesktopAnalytics,
   IconHammer,
-} from '@/presentation/globals/components/Icons';
+} from '@/presentation/globals/components/icons/Icons';
 
 import { AdvantageItem } from './advantages/AdvantageItem';
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { IconArrowUp } from '@/presentation/globals/components/Icons';
+import { IconArrowUp } from '@/presentation/globals/components/icons/Icons';
 import Link from 'next/link';
 
 function joinUrlParts(urls: string[], index: number): string {

@@ -4,7 +4,7 @@ import {
   IconCalendarWeek,
   IconCircleCheck,
   IconXCircle,
-} from '@/presentation/globals/components/Icons';
+} from '@/presentation/globals/components/icons/Icons';
 import type { DayTypeProps, StatusDayType } from '@/presentation/globals/mocks/routines';
 import type { IconTypes } from '@/presentation/globals/presentation.types';
 import { routineDayItemClassConfig } from '../routine.ui.config';

@@ -1,5 +1,5 @@
 import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
-import { IconCalendarClock, IconCirclePlus } from '@/presentation/globals/components/Icons';
+import { IconCalendarClock, IconCirclePlus } from '@/presentation/globals/components/icons/Icons';
 import {
   SessionDetails,
   type SessionDetailsType,

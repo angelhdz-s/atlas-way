@@ -1,4 +1,4 @@
-import { IconXMark } from '@/presentation/globals/components/Icons';
+import { IconXMark } from '@/presentation/globals/components/icons/Icons';
 import { Select } from '../fields/Select';
 import { Button } from '@/presentation/modules/button/components/Button';
 import type { SelectOption } from '../../form.types';

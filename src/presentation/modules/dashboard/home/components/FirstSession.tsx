@@ -3,7 +3,7 @@ import { CardTitle } from '../../card/components/CardTitle';
 import { ImageBackground } from './ImageBackground';
 import { Card } from '../../card/components/Card';
 import { twMerge } from 'tailwind-merge';
-import { IconClipboardList } from '@/presentation/globals/components/Icons';
+import { IconClipboardList } from '@/presentation/globals/components/icons/Icons';
 
 export function FirstSession({ className = '' }: { className?: string }) {
   return (

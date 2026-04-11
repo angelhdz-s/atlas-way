@@ -3,7 +3,7 @@
 import { DragDropProvider } from '@dnd-kit/react';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
-import { IconCalendarWeek } from '@/presentation/globals/components/Icons';
+import { IconCalendarWeek } from '@/presentation/globals/components/icons/Icons';
 import { isSortableOperation } from '@dnd-kit/react/sortable';
 import { RoutineSessionPlanDraggableItem } from './RoutineSessionPlanDraggableItem';
 import { RoutineSessionPlanDroppableItem } from './RoutineSessionPlanDroppableItem';

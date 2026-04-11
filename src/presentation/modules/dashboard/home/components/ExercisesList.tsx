@@ -2,7 +2,7 @@ import { EXERCISES } from '@/presentation/globals/constants/db';
 import { CardTitle } from '../../card/components/CardTitle';
 import { SimpleTable } from './SimpleTable';
 import { Card } from '../../card/components/Card';
-import { IconBarbell } from '@/presentation/globals/components/Icons';
+import { IconBarbell } from '@/presentation/globals/components/icons/Icons';
 
 export function ExercisesList({ className = '' }: { className?: string }) {
   const exerciseKeys = Object.keys(EXERCISES)

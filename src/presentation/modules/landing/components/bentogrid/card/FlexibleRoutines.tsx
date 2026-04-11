@@ -1,4 +1,4 @@
-import { IconArrowsLeftRight } from '@/presentation/globals/components/Icons';
+import { IconArrowsLeftRight } from '@/presentation/globals/components/icons/Icons';
 import { BentoCard } from '../BentoCard';
 
 type Props = {

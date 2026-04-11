@@ -9,7 +9,7 @@ import {
   IconAlarm,
   IconXCircle,
   IconAlertTriangle,
-} from '@/presentation/globals/components/Icons';
+} from '@/presentation/globals/components/icons/Icons';
 import type { IconTypes } from '@/presentation/globals/presentation.types';
 
 export const STATUS_ICONS = {

@@ -1,7 +1,7 @@
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
 import styles from './CurrentGoals.module.css';
-import { IconListCheck } from '@/presentation/globals/components/Icons';
+import { IconListCheck } from '@/presentation/globals/components/icons/Icons';
 
 function PercentageBar({ value, target }: { value: number; target: number }) {
   const percentage = Math.min((value / target) * 100, 100);

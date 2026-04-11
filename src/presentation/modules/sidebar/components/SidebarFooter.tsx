@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { Button } from '../../button/components/Button';
-import { IconCog, IconLanguage, IconLogout } from '@/presentation/globals/components/Icons';
+import { IconCog, IconLanguage, IconLogout } from '@/presentation/globals/components/icons/Icons';
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
 import { useTooltipBackdrop } from '@/presentation/globals/hooks/useTooltipBackdrop';
 import { ToggleThemeLabelButton } from '@/presentation/modules/theme/components/ToggleThemeLabelButton';

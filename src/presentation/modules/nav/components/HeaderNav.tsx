@@ -1,6 +1,6 @@
 'use client';
 
-import { IconMenu } from '@/presentation/globals/components/Icons';
+import { IconMenu } from '@/presentation/globals/components/icons/Icons';
 import Link from 'next/link';
 import { useHeaderNav } from '../hooks/useHeaderNav';
 import { Button } from '../../button/components/Button';

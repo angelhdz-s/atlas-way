@@ -1,4 +1,4 @@
-import { IconBarbell, IconAlarm, IconRouteX } from '@/presentation/globals/components/Icons';
+import { IconBarbell, IconAlarm, IconRouteX } from '@/presentation/globals/components/icons/Icons';
 import { CardTitle } from '../../card/components/CardTitle';
 import { Card } from '../../card/components/Card';
 

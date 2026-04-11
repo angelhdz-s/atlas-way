@@ -1,4 +1,4 @@
-import { IconXMark } from '@/presentation/globals/components/Icons';
+import { IconXMark } from '@/presentation/globals/components/icons/Icons';
 import {
   getGridColsClassFromWithStatus,
   getStatusTextColorClass,

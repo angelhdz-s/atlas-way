@@ -1,7 +1,7 @@
 import { CardTitle } from '../../card/components/CardTitle';
 import { Card } from '../../card/components/Card';
 import { IconSolidCircleCheck } from '@/presentation/globals/components/SolidIcons';
-import { IconPlayerTrackPrev } from '@/presentation/globals/components/Icons';
+import { IconPlayerTrackPrev } from '@/presentation/globals/components/icons/Icons';
 
 export function LastSession({ className = '' }: { className?: string }) {
   return (

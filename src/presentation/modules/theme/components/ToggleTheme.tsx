@@ -2,7 +2,7 @@
 
 import { useTheme } from 'next-themes';
 import { THEME } from '@/presentation/modules/theme/constants/client';
-import { DefaultIcon, IconMoon, IconSun } from '@/presentation/globals/components/Icons';
+import { DefaultIcon, IconMoon, IconSun } from '@/presentation/globals/components/icons/Icons';
 import { Button } from '@/presentation/modules/button/components/Button';
 
 export function ToggleTheme({ className = '' }: { className?: string }) {

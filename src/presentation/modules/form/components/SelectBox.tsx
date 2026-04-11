@@ -2,7 +2,7 @@
 
 import { Box } from '@/presentation/modules/form/components/Box';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
-import { IconSearch, IconXMark } from '@/presentation/globals/components/Icons';
+import { IconSearch, IconXMark } from '@/presentation/globals/components/icons/Icons';
 import { Button } from '../../button/components/Button';
 import { useSelectBox } from '../hooks/useSelectBox';
 import { SelectBoxOption } from './SelectBoxOption';

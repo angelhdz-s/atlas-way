@@ -1,4 +1,8 @@
-import { IconBell, IconCalendarCheck, IconHome } from '@/presentation/globals/components/Icons';
+import {
+  IconBell,
+  IconCalendarCheck,
+  IconHome,
+} from '@/presentation/globals/components/icons/Icons';
 import { NavLinkNotification } from './nav/custom/NavLinkNotification';
 import { NavLink } from './nav/NavLink';
 import { NavLinks } from './nav/NavLinks';

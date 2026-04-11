@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { NotificationType } from '@/presentation/globals/mocks/notifications';
-import { IconTrash } from '@/presentation/globals/components/Icons';
+import { IconTrash } from '@/presentation/globals/components/icons/Icons';
 import { Button } from '@/presentation/modules/button/components/Button';
 
 export function Notification({

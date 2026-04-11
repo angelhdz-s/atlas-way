@@ -1,7 +1,7 @@
 import { SESSIONS_COUNTERS } from '@/presentation/globals/mocks/tracking';
 import { CardTitle } from '../../../presentation/modules/dashboard/card/components/CardTitle';
 import { Counter } from './Counter';
-import { IconFlame } from '@/presentation/globals/components/Icons';
+import { IconFlame } from '@/presentation/globals/components/icons/Icons';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
 
 export function SessionStreak({ className = '' }: { className?: string }) {

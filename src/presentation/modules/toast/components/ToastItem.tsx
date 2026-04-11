@@ -7,7 +7,7 @@ import {
   IconInformationCircle,
   IconXCircle,
   IconXMark,
-} from '@/presentation/globals/components/Icons';
+} from '@/presentation/globals/components/icons/Icons';
 import type { Toast } from '@/presentation/globals/presentation.types';
 import styles from './Toast.module.css';
 

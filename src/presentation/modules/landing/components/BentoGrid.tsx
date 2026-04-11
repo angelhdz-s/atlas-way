@@ -1,4 +1,4 @@
-import { IconHeart, IconTrendingUp } from '@/presentation/globals/components/Icons';
+import { IconHeart, IconTrendingUp } from '@/presentation/globals/components/icons/Icons';
 import { StartYourJourney } from './bentogrid/card/StartYourJourney';
 import { AtlasWayCard } from './bentogrid/card/AtlasWayCard';
 import { ScheduleYourSessions } from './bentogrid/card/ScheduleYourSessions';

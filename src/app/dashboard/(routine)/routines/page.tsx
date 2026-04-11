@@ -1,7 +1,7 @@
 import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
-import { IconPlus } from '@/presentation/globals/components/Icons';
+import { IconPlus } from '@/presentation/globals/components/icons/Icons';
 import { Routine } from '@/modules/routine/presentation/ui/components/Routine';
 import { Link } from '@/presentation/modules/button/components/Link';
 import { getAllRoutines } from '@/modules/routine/presentation/routine.actions';

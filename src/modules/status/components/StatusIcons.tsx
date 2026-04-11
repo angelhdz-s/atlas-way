@@ -1,4 +1,4 @@
-import { IconCircleOutline } from '@/presentation/globals/components/Icons';
+import { IconCircleOutline } from '@/presentation/globals/components/icons/Icons';
 import {
   IconSolidCircleCheck,
   IconSolidCircleX,

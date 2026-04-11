@@ -1,4 +1,4 @@
-import { IconBarbell } from '@/presentation/globals/components/Icons';
+import { IconBarbell } from '@/presentation/globals/components/icons/Icons';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
 import { SortableInputItems } from '@/presentation/modules/form/components/SortableInputItems';
 import { useFormContext } from 'react-hook-form';

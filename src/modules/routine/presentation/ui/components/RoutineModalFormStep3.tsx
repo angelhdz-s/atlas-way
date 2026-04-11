@@ -2,7 +2,7 @@
 
 import { Box } from '@/presentation/modules/form/components/Box';
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
-import { IconCirclePlus } from '@/presentation/globals/components/Icons';
+import { IconCirclePlus } from '@/presentation/globals/components/icons/Icons';
 import Link from 'next/link';
 
 export function RoutineModalFormStep3({ title, sessions }: { title: string; sessions: string[] }) {

@@ -1,5 +1,5 @@
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
-import { IconDots } from '@/presentation/globals/components/Icons';
+import { IconDots } from '@/presentation/globals/components/icons/Icons';
 import { twMerge } from 'tailwind-merge';
 import { SessionExerciseRow } from './SessionExerciseRow';
 

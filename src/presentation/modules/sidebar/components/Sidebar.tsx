@@ -12,7 +12,7 @@ import {
   IconReportAnalytics,
   IconRouteX,
   IconSchema,
-} from '@/presentation/globals/components/Icons';
+} from '@/presentation/globals/components/icons/Icons';
 
 export function Sidebar({ className = '' }: { className?: string }) {
   return (

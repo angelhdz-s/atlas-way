@@ -1,4 +1,4 @@
-import { IconUser } from '@/presentation/globals/components/Icons';
+import { IconUser } from '@/presentation/globals/components/icons/Icons';
 import Image from 'next/image';
 
 export function UserAvatar({ src, size = 32 }: { src?: string | null; size?: number }) {

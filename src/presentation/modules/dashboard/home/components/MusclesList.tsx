@@ -2,7 +2,7 @@ import { MUSCLES } from '@/presentation/globals/constants/db';
 import { CardTitle } from '../../card/components/CardTitle';
 import { SimpleTable } from './SimpleTable';
 import { Card } from '../../card/components/Card';
-import { IconMan } from '@/presentation/globals/components/Icons';
+import { IconMan } from '@/presentation/globals/components/icons/Icons';
 
 export function MusclesList({ className = '' }: { className?: string }) {
   const muscleKeys = Object.keys(MUSCLES)

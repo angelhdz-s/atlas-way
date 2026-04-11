@@ -1,4 +1,8 @@
-import { IconBarbell, IconMapRoute, IconAlarm } from '@/presentation/globals/components/Icons';
+import {
+  IconBarbell,
+  IconMapRoute,
+  IconAlarm,
+} from '@/presentation/globals/components/icons/Icons';
 import { Card } from '../../card/components/Card';
 import { IconSolidCircleCheck } from '@/presentation/globals/components/SolidIcons';
 

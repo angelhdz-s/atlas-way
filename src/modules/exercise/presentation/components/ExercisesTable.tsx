@@ -1,6 +1,6 @@
 'use client';
 
-import { IconEdit, IconTrash } from '@/presentation/globals/components/Icons';
+import { IconEdit, IconTrash } from '@/presentation/globals/components/icons/Icons';
 import { TableBody } from '@/presentation/globals/components/table/TableBody';
 import { TableBodyRow } from '@/presentation/globals/components/table/TableBodyRow';
 import { TableHeader } from '@/presentation/globals/components/table/TableHeader';

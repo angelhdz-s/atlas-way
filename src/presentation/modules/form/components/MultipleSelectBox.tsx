@@ -3,7 +3,11 @@
 import { Box } from '@/presentation/modules/form/components/Box';
 import { useMultipleSelectBox } from '@/presentation/modules/form/hooks/useMultipleSelectBox';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
-import { IconCirclePlus, IconTrash, IconXMark } from '@/presentation/globals/components/Icons';
+import {
+  IconCirclePlus,
+  IconTrash,
+  IconXMark,
+} from '@/presentation/globals/components/icons/Icons';
 import { ErrorMessage } from './ErrorMessage';
 import { Button } from '../../button/components/Button';
 import type { Control, FieldArrayPath, FieldValues } from 'react-hook-form';

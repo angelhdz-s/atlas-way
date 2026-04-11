@@ -3,7 +3,7 @@ import {
   IconBarbellOff,
   IconCircleCheck,
   IconAlarm,
-} from '@/presentation/globals/components/Icons';
+} from '@/presentation/globals/components/icons/Icons';
 import { Card } from '../../card/components/Card';
 
 function CalendarHeader({ className = '' }: { className?: string }) {

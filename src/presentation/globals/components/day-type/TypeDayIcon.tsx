@@ -1,4 +1,4 @@
-import { IconBarbell, IconBarbellOff } from '../Icons';
+import { IconBarbell, IconBarbellOff } from '../icons/Icons';
 
 export function TrainingIcon({
   className = '',

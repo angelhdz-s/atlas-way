@@ -3,7 +3,7 @@ import { SESSIONS_COUNTERS, TODAY } from '@/presentation/globals/mocks/tracking'
 import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
 import { Counter } from './Counter';
 import { Card } from '@/presentation/modules/dashboard/card/components/Card';
-import { IconCalendarCheck } from '@/presentation/globals/components/Icons';
+import { IconCalendarCheck } from '@/presentation/globals/components/icons/Icons';
 
 export function CurrentMonthSessionsCounter({ className }: { className?: string }) {
   const { currentMonth } = SESSIONS_COUNTERS;
