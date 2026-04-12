@@ -7,7 +7,7 @@ import {
   getPreviousNextMonthDate,
   getPreviousNextYearDate,
 } from '@/presentation/globals/lib/dates';
-import type { CalendarContextType } from '../contexts/calendar-context';
+import type { CalendarContextType } from '@/presentation/modules/calendar/contexts/calendar-context';
 
 export function useCalendar({ selectedDate, setCurrentDate }: CalendarContextType) {
   const [[currentYear, currentMonth], setCurrentYearMonth] = useState<[number, number]>([

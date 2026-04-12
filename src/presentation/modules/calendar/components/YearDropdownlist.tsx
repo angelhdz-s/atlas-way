@@ -1,6 +1,6 @@
 import { TODAY } from '@/presentation/globals/mocks/tracking';
-import { DROPDOWN_LIST_YEARS_RANGE } from '../constants/dropdown-list';
-import { DateDropdownlist } from './DateDropdrownList';
+import { DROPDOWN_LIST_YEARS_RANGE } from '@/presentation/modules/calendar/constants/dropdown-list';
+import { DateDropdownlist } from '@/presentation/modules/calendar/components/DateDropdrownList';
 
 function generateYearOptions<T>(_value: T, i: number) {
   const rangeHalf = Math.floor(DROPDOWN_LIST_YEARS_RANGE / 2);
