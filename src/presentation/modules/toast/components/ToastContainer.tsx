@@ -1,8 +1,8 @@
 'use client';
 
 import { createPortal } from 'react-dom';
-import type { Toast } from '@/presentation/globals/presentation.types';
 import { ToastItem } from '@/presentation/modules/toast/components/ToastItem';
+import type { Toast } from '@/presentation/globals/presentation.types';
 
 interface Props {
   toasts: Toast[];
