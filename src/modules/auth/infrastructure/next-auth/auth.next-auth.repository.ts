@@ -1,5 +1,5 @@
 import type { IAuthRepository } from '../../domain/auth.respository';
-import { getCurrentSession } from '../../../../shared/infrastructure/nextauth/next-auth.currentsession';
+import { getCurrentSession } from '../../../../shared/infrastructure/next-auth/next-auth.currentsession';
 import { Failure, Success } from '@/shared/domain/result';
 import { AuthMapper } from '../auth.mapper';
 import type { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';

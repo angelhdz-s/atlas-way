@@ -1,5 +1,5 @@
-import { getCurrentSession } from '@/shared/infrastructure/nextauth/next-auth.currentsession';
-import { UserAvatar } from './UserAvatar';
+import { getCurrentSession } from '@/shared/infrastructure/next-auth/next-auth.currentsession';
+import { UserAvatar } from '@/modules/user/presentation/ui/components/UserAvatar';
 
 export async function UserInfo({ className = '' }: { className?: string }) {
   const session = await getCurrentSession();

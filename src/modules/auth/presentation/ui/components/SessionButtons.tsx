@@ -1,6 +1,6 @@
 import { UserLogout } from '@/modules/user/presentation/ui/components/UserLogout';
-import { getCurrentSession } from '../../../../../shared/infrastructure/nextauth/next-auth.currentsession';
-import { LogInButton } from './LogInButton';
+import { getCurrentSession } from '@/shared/infrastructure/next-auth/next-auth.currentsession';
+import { LogInButton } from '@/modules/auth/presentation/ui/components/LogInButton';
 
 export async function SessionButtons({ className = '' }: { className?: string }) {
   const session = await getCurrentSession();
