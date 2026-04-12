@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import type { HTMLAttributes, KeyboardEvent } from 'react';
 import { twMerge } from 'tailwind-merge';
+import type { HTMLAttributes, KeyboardEvent } from 'react';
 
 interface Props extends HTMLAttributes<HTMLInputElement> {
   active?: boolean;

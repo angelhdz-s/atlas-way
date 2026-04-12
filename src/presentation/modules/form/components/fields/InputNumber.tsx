@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { InputClasses } from '../../constants/classes';
-import type { InputNumberProps } from '../../form.types';
-import { ErrorMessage } from '../ErrorMessage';
+import { InputClasses } from '@/presentation/modules/form/constants/classes';
+import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
+import type { InputNumberProps } from '@/presentation/modules/form/form.types';
 
 export function InputNumber(props: InputNumberProps) {
   const { onChange, value, error, className, ...rest } = props;

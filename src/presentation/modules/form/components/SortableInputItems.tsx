@@ -1,4 +1,3 @@
-import type { FieldArrayPath, Control, FieldValues } from 'react-hook-form';
 import { DragDropProvider } from '@dnd-kit/react';
 import { isSortable } from '@dnd-kit/react/sortable';
 import { SortableInputItem } from '@/presentation/modules/form/components/SortableInputItem';
@@ -7,6 +6,7 @@ import { SelectBox } from '@/presentation/modules/form/components/SelectBox';
 import { useSortableInputItems } from '@/presentation/modules/form/hooks/useSortableInputItems';
 import { IconCirclePlus } from '@/presentation/globals/components/icons/outline/IconCirclePlus';
 import { IconTrash } from '@/presentation/globals/components/icons/outline/IconTrash';
+import type { FieldArrayPath, Control, FieldValues } from 'react-hook-form';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 type Props<TForm extends FieldValues, TName extends FieldArrayPath<TForm>> = {

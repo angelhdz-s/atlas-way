@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, type HTMLInputTypeAttribute } from 'react';
-import './label-input.css';
+import styles from '@/presentation/modules/form/components/label/LabelInput.module.css';
 
 export function LabelInput({
   inputId,
@@ -23,7 +23,7 @@ export function LabelInput({
     setvalue(e.target.value);
   };
   return (
-    <label htmlFor={inputId} className="label-input">
+    <label htmlFor={inputId} className={`label-input ${styles}`}>
       <span className="">{label}</span>
       <input
         id={inputId}

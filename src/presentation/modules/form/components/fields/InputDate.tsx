@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { InputClasses } from '@/presentation/modules/form/constants/classes';
-import { useState } from 'react';
-import type { InputDateProps } from '../../form.types';
+import type { InputDateProps } from '@/presentation/modules/form/form.types';
 
 export function InputDate(props: InputDateProps) {
   const { className, onChange, value, error, ...rest } = props;

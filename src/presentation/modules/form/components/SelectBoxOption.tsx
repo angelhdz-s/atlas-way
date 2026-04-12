@@ -1,4 +1,4 @@
-import type { SelectOption } from '../form.types';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 export function SelectBoxOption({
   option,

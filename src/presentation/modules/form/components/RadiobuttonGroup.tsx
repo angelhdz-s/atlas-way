@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { Radiobutton } from '@/presentation/modules/form/components/Radiobutton';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 type RadiobuttonsProps = {
   className?: string;

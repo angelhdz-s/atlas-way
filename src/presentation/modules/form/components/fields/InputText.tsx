@@ -1,7 +1,7 @@
-import { ErrorMessage } from '../ErrorMessage';
-import { InputClasses } from '../../constants/classes';
 import { useState } from 'react';
-import type { InputTextProps } from '../../form.types';
+import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
+import { InputClasses } from '@/presentation/modules/form/constants/classes';
+import type { InputTextProps } from '@/presentation/modules/form/form.types';
 
 export function InputText(props: InputTextProps) {
   const { onChange, className, error, value, ...rest } = props;

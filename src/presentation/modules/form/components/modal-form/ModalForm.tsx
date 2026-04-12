@@ -1,11 +1,11 @@
 import { FormProvider } from 'react-hook-form';
+import type { ZodSchema } from 'zod/v3';
 import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
 import { Button } from '@/presentation/modules/button/components/Button';
 import {
   type ModalFormHookProps,
   useFormHook,
 } from '@/presentation/modules/form/hooks/useFormHook';
-import type { ZodSchema } from 'zod/v3';
 
 export function ModalForm<T extends ZodSchema<any, any>>({
   className,

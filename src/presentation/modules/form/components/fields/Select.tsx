@@ -1,8 +1,7 @@
-import { InputClasses } from '../../constants/classes';
-
-import styles from './Select.module.css';
-import type { SelectOption, SelectOptionValue } from '../../form.types';
-import { ErrorMessage } from '../ErrorMessage';
+import { InputClasses } from '@/presentation/modules/form/constants/classes';
+import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
+import styles from '@/presentation/modules/form/components/fields/Select.module.css';
+import type { SelectOption, SelectOptionValue } from '@/presentation/modules/form/form.types';
 
 type multipleSelectedType =
   | {
