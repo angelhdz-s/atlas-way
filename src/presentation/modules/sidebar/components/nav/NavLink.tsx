@@ -1,12 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import { twMerge } from 'tailwind-merge';
+import { usePathname } from 'next/navigation';
 import {
   type SidebarNavLinkVariant,
   sidebarNavLinkVariants,
-} from '../../config/sidebar.nav-link.variants';
-import { twMerge } from 'tailwind-merge';
-import { usePathname } from 'next/navigation';
+} from '@/presentation/modules/sidebar/config/sidebar.nav-link.variants';
 
 export function NavLink({
   href,
