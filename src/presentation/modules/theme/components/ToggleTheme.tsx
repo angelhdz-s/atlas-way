@@ -23,6 +23,7 @@ export function ToggleTheme({ className = '' }: { className?: string }) {
       }}
       className={className}
       onClick={handleClick}
+      aria-label="Switch between light and dark themes"
     >
       <DefaultIcon Icon={IconSun} className="light:hidden" />
       <DefaultIcon Icon={IconMoon} className="light:block hidden" />

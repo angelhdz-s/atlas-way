@@ -7,7 +7,7 @@ import { IconLanguage } from '@/presentation/globals/components/icons/outline/Ic
 import { IconLogout } from '@/presentation/globals/components/icons/outline/IconLogout';
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
 import { useTooltipBackdrop } from '@/presentation/globals/hooks/useTooltipBackdrop';
-import { ToggleThemeLabelButton } from '@/presentation/modules/theme/components/ToggleThemeLabelButton';
+import { ToggleTheme } from '@/presentation/modules/theme/components/ToggleTheme';
 import { Link } from '@/presentation/modules/button/components/Link';
 
 export function SidebarFooter({ className = '' }: { className?: string }) {
@@ -65,7 +65,7 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
             <header className="mb-2 px-2 text-base font-light">Settings</header>
             <ul>
               <li className="flex items-center gap-0">
-                <ToggleThemeLabelButton className="w-full" />
+                <ToggleTheme className="w-full pl-2" />
               </li>
               <li className="flex items-center gap-0">
                 <Button variantConfig={{ color: 'simple' }} className="pl-2">
