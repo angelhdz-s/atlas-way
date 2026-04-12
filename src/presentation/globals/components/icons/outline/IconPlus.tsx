@@ -1,5 +1,5 @@
 import type { IconProps } from '@/presentation/globals/presentation.types';
-import { IconWrapper } from '@/presentation/globals/components/icons/Icons';
+import { IconWrapper } from '@/presentation/globals/components/icons/IconWrapper';
 
 export function IconPlus(props: IconProps) {
   return (
