@@ -1,12 +1,12 @@
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
-import { CardHeader } from '@/presentation/modules/dashboard/card/components/CardHeader';
-import { CardMain } from '@/presentation/modules/dashboard/card/components/CardMain';
-import { CardSubHeader } from '@/presentation/modules/dashboard/card/components/CardSubHeader';
-import { CardTag } from '../../../../../presentation/modules/dashboard/card/components/CardTag';
-import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { Card } from '@/presentation/modules/card/components/Card';
+import { CardHeader } from '@/presentation/modules/card/components/CardHeader';
+import { CardMain } from '@/presentation/modules/card/components/CardMain';
+import { CardSubHeader } from '@/presentation/modules/card/components/CardSubHeader';
+import { CardTag } from '../../../../../presentation/modules/card/components/CardTag';
+import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { SessionExercisesList } from './SessionExerciseList';
 import type { SessionDTO } from '@/modules/session/application/dtos/session.dto';
-import { CardTagsWrapperFade } from '@/presentation/modules/dashboard/card/components/CardTagsWrapperFade';
+import { CardTagsWrapperFade } from '@/presentation/modules/card/components/CardTagsWrapperFade';
 
 export function Session({ session }: { session: SessionDTO }) {
   const { name, description, exercises } = session;

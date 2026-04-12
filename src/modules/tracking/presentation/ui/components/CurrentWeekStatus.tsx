@@ -3,9 +3,9 @@ import { IconCircleOutline } from '@/presentation/globals/components/icons/outli
 import { WEEK_DAYS } from '@/presentation/globals/constants/date';
 import { getNextDates, getSessionFromDate } from '@/presentation/globals/lib/dates';
 import { TODAY } from '@/presentation/globals/mocks/tracking';
-import { CardTitle } from '../../../../../presentation/modules/dashboard/card/components/CardTitle';
+import { CardTitle } from '../../../../../presentation/modules/card/components/CardTitle';
 import { getStatusTextColorClass } from '@/presentation/globals/lib/get-classes';
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { Card } from '@/presentation/modules/card/components/Card';
 import { SIconCircleCheck } from '@/presentation/globals/components/icons/solid/SIconCircleCheck';
 import { SIconCircleX } from '@/presentation/globals/components/icons/solid/SIconCircleX';
 import type { StatusDayType } from '@/presentation/globals/mocks/routines';

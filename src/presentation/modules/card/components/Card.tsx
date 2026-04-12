@@ -1,8 +1,8 @@
-import type { AtomicElement } from '@/presentation/globals/presentation.types';
-import { cardVariant, type CardVariantProps } from '../card.config';
-import { twMerge } from 'tailwind-merge';
-import { CardHighlightBorder } from './decoration/CardHighlightBorder';
 import { useId } from 'react';
+import { twMerge } from 'tailwind-merge';
+import { cardVariant, type CardVariantProps } from '@/presentation/modules/card/card.config';
+import { CardHighlightBorder } from '@/presentation/modules/card/components/decoration/CardHighlightBorder';
+import type { AtomicElement } from '@/presentation/globals/presentation.types';
 
 interface Props extends CardVariantProps {
   className?: string;

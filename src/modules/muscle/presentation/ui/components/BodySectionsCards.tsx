@@ -1,6 +1,6 @@
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
-import { CardSubHeader } from '@/presentation/modules/dashboard/card/components/CardSubHeader';
-import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { Card } from '@/presentation/modules/card/components/Card';
+import { CardSubHeader } from '@/presentation/modules/card/components/CardSubHeader';
+import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 
 type BodySections = { name: string; groups: string[] };
 

@@ -6,17 +6,17 @@ import { CalendarProvider } from '@/presentation/modules/calendar/components/Cal
 import { MonthDateSelector } from '@/presentation/modules/calendar/components/MonthDateSelector';
 import { YearDateSelector } from '@/presentation/modules/calendar/components/YearDateSelector';
 import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
-import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { IconClipboardList } from '@/presentation/globals/components/icons/outline/IconClipboardList';
 import { IconCalendarClock } from '@/presentation/globals/components/icons/outline/IconCalendarClock';
-import { SubtleCard } from '@/presentation/modules/dashboard/card/components/SubtleCard';
+import { SubtleCard } from '@/presentation/modules/card/components/SubtleCard';
 import { getSessionFromDate } from '@/presentation/globals/lib/dates';
 import { LastSessions } from '@/modules/session/presentation/ui/components/LastSessions';
 import {
   SessionDetails,
   type SessionDetailsType,
 } from '@/modules/session/presentation/ui/components/SessionDetails';
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { Card } from '@/presentation/modules/card/components/Card';
 
 const session = {
   id: 1,

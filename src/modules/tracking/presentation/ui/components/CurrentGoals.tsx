@@ -1,5 +1,5 @@
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
-import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { Card } from '@/presentation/modules/card/components/Card';
+import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { IconListCheck } from '@/presentation/globals/components/icons/outline/IconListCheck';
 import styles from '@/modules/tracking/components/CurrentGoals.module.css';
 

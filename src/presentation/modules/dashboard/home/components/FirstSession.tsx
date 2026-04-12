@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
-import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { ImageBackground } from '@/presentation/modules/dashboard/home/components/ImageBackground';
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { Card } from '@/presentation/modules/card/components/Card';
 import { IconClipboardList } from '@/presentation/globals/components/icons/outline/IconClipboardList';
 
 export function FirstSession({ className = '' }: { className?: string }) {

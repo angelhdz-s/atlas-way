@@ -1,13 +1,13 @@
-import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { IconCalendarClock } from '@/presentation/globals/components/icons/outline/IconCalendarClock';
 import { IconCirclePlus } from '@/presentation/globals/components/icons/outline/IconCirclePlus';
 import {
   SessionDetails,
   type SessionDetailsType,
 } from '@/modules/session/presentation/ui/components/SessionDetails';
-import { SubtleCard } from '@/presentation/modules/dashboard/card/components/SubtleCard';
+import { SubtleCard } from '@/presentation/modules/card/components/SubtleCard';
 import { Button } from '@/presentation/modules/button/components/Button';
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { Card } from '@/presentation/modules/card/components/Card';
 
 const session = {
   id: 1,

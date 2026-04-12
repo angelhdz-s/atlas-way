@@ -1,5 +1,5 @@
-import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
+import { Card } from '@/presentation/modules/card/components/Card';
 import { SIconCircleCheck } from '@/presentation/globals/components/icons/solid/SIconCircleCheck';
 import { IconPlayerTrackPrev } from '@/presentation/globals/components/icons/outline/IconPlayerTrackPrev';
 

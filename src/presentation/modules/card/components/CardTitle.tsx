@@ -1,5 +1,5 @@
-import type { IconTypes } from '@/presentation/globals/presentation.types';
 import { twMerge } from 'tailwind-merge';
+import type { IconTypes } from '@/presentation/globals/presentation.types';
 
 export function CardTitle({
   className = '',

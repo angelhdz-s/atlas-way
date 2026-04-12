@@ -2,7 +2,7 @@ import { SIconCircleCheck } from '@/presentation/globals/components/icons/solid/
 import { IconMapRoute } from '@/presentation/globals/components/icons/outline/IconMapRoute';
 import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
 import { IconAlarm } from '@/presentation/globals/components/icons/outline/IconAlarm';
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { Card } from '@/presentation/modules/card/components/Card';
 
 export function MainCard({ className = '' }: { className?: string }) {
   return (

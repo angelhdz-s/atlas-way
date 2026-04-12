@@ -1,7 +1,7 @@
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
-import { CardFooter } from '@/presentation/modules/dashboard/card/components/CardFooter';
-import { CardHeader } from '@/presentation/modules/dashboard/card/components/CardHeader';
-import { CardTag } from '@/presentation/modules/dashboard/card/components/CardTag';
+import { Card } from '@/presentation/modules/card/components/Card';
+import { CardFooter } from '@/presentation/modules/card/components/CardFooter';
+import { CardHeader } from '@/presentation/modules/card/components/CardHeader';
+import { CardTag } from '@/presentation/modules/card/components/CardTag';
 
 type MuscularGroup = {
   name: string;

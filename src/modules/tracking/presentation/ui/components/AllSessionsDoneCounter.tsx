@@ -1,7 +1,7 @@
 import { SESSIONS_COUNTERS } from '@/presentation/globals/mocks/tracking';
-import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { Counter } from '@/modules/tracking/presentation/ui/components/Counter';
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { Card } from '@/presentation/modules/card/components/Card';
 import { IconTrophy } from '@/presentation/globals/components/icons/outline/IconTrophy';
 
 export function AllSessionsDoneCounter({ className }: { className?: string }) {

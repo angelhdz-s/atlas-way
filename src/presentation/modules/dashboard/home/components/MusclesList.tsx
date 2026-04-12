@@ -1,7 +1,7 @@
 import { MUSCLES } from '@/presentation/globals/constants/db';
-import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { SimpleTable } from '@/presentation/modules/dashboard/home/components/SimpleTable';
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { Card } from '@/presentation/modules/card/components/Card';
 import { IconMan } from '@/presentation/globals/components/icons/outline/IconMan';
 
 export function MusclesList({ className = '' }: { className?: string }) {

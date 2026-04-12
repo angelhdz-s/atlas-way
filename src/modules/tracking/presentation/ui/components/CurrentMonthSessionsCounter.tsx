@@ -1,8 +1,8 @@
 import { MONTH_NAMES } from '@/presentation/globals/constants/date';
 import { SESSIONS_COUNTERS, TODAY } from '@/presentation/globals/mocks/tracking';
-import { CardTitle } from '@/presentation/modules/dashboard/card/components/CardTitle';
+import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { Counter } from '@/modules/tracking/presentation/ui/components/Counter';
-import { Card } from '@/presentation/modules/dashboard/card/components/Card';
+import { Card } from '@/presentation/modules/card/components/Card';
 import { IconCalendarCheck } from '@/presentation/globals/components/icons/outline/IconCalendarCheck';
 
 export function CurrentMonthSessionsCounter({ className }: { className?: string }) {
