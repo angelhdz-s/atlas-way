@@ -1,4 +1,4 @@
-import { Link } from '../../button/components/Link';
+import { Link } from '@/presentation/modules/button/components/Link';
 
 export function Try({ className = '' }: { className?: string }) {
   return (

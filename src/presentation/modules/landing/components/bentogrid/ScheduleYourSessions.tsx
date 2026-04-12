@@ -1,5 +1,5 @@
-import { DaysSelection } from './DaysSelection';
-import { BentoCard } from './BentoCard';
+import { DaysSelection } from '@/presentation/modules/landing/components/bentogrid/DaysSelection';
+import { BentoCard } from '@/presentation/modules/landing/components/bentogrid/BentoCard';
 
 type Props = {
   className?: string;

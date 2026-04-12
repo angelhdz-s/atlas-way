@@ -1,4 +1,4 @@
-import { BentoCard } from './BentoCard';
+import { BentoCard } from '@/presentation/modules/landing/components/bentogrid/BentoCard';
 
 type Props = {
   className?: string;

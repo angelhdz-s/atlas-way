@@ -1,5 +1,5 @@
-import { IconsAnimation } from './IconsAnimation';
-import { BentoCard } from './BentoCard';
+import { IconsAnimation } from '@/presentation/modules/landing/components/bentogrid/IconsAnimation';
+import { BentoCard } from '@/presentation/modules/landing/components/bentogrid/BentoCard';
 
 type Props = {
   className?: string;

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ToggleTheme } from '@/presentation/modules/theme/components/ToggleTheme';
 import { SessionButtons } from '@/modules/auth/presentation/ui/components/SessionButtons';
 import { Imagotype } from '@/presentation/globals/components/AppLogo';
-import { HeaderNav } from '../../nav/components/HeaderNav';
+import { HeaderNav } from '@/presentation/modules/nav/components/HeaderNav';
 
 export function Header({ className = '' }: { className?: string }) {
   return (
