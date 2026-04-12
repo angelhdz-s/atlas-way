@@ -65,7 +65,7 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
             <header className="mb-2 px-2 text-base font-light">Settings</header>
             <ul>
               <li className="flex items-center gap-0">
-                <ToggleTheme className="w-full pl-2" />
+                <ToggleTheme className="w-full pl-2">Theme</ToggleTheme>
               </li>
               <li className="flex items-center gap-0">
                 <Button variantConfig={{ color: 'simple' }} className="pl-2">

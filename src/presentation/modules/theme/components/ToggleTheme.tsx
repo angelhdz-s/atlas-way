@@ -7,7 +7,12 @@ import { IconMoon } from '@/presentation/globals/components/icons/outline/IconMo
 import { IconSun } from '@/presentation/globals/components/icons/outline/IconSun';
 import { Button } from '@/presentation/modules/button/components/Button';
 
-export function ToggleTheme({ className = '' }: { className?: string }) {
+type Props = {
+  className?: string;
+  children?: React.ReactNode;
+};
+
+export function ToggleTheme({ className, children }: Props) {
   const { theme, setTheme } = useTheme();
 
   const handleClick = () => {
@@ -18,15 +23,16 @@ export function ToggleTheme({ className = '' }: { className?: string }) {
     <Button
       type="button"
       variantConfig={{
-        type: 'square',
+        type: children ? undefined : 'square',
         color: 'simple',
       }}
       className={className}
       onClick={handleClick}
-      aria-label="Switch between light and dark themes"
+      aria-label={children ? undefined : 'Switch between light and dark themes'}
     >
       <DefaultIcon Icon={IconSun} className="light:hidden" />
       <DefaultIcon Icon={IconMoon} className="light:block hidden" />
+      {children}
     </Button>
   );
 }
