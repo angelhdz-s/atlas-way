@@ -1,7 +1,7 @@
-import type { ButtonElementProps } from '@/presentation/globals/presentation.types';
-import { buttonVariant } from '@/presentation/modules/button/button.config';
 import { twMerge } from 'tailwind-merge';
-import type { VariantButtonType } from '../button.types';
+import { buttonVariant } from '@/presentation/modules/button/button.config';
+import type { ButtonElementProps } from '@/presentation/globals/presentation.types';
+import type { VariantButtonType } from '@/presentation/modules/button/button.types';
 
 export function Button({
   variantConfig,

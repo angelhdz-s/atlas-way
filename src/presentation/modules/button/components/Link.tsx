@@ -1,8 +1,8 @@
 import NextLink from 'next/link';
-import type { ComponentProps } from 'react';
-import { buttonVariant } from '@/presentation/modules/button/button.config';
 import { twMerge } from 'tailwind-merge';
-import type { VariantButtonType } from '../button.types';
+import { buttonVariant } from '@/presentation/modules/button/button.config';
+import type { ComponentProps } from 'react';
+import type { VariantButtonType } from '@/presentation/modules/button/button.types';
 
 type LinkProps = ComponentProps<typeof NextLink>;
 
