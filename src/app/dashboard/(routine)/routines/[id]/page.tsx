@@ -1,9 +1,9 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
-import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
-import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
+import { PageContainer } from '@/presentation/modules/dashboard/components/page/PageContainer';
+import { PageContent } from '@/presentation/modules/dashboard/components/page/PageContent';
+import { PageHeader } from '@/presentation/modules/dashboard/components/page/PageHeader';
 import { Link } from '@/presentation/modules/button/components/Link';
 
 export default function RoutinesPage() {

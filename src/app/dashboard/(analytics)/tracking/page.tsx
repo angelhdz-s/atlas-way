@@ -1,6 +1,6 @@
-import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
-import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
-import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
+import { PageContainer } from '@/presentation/modules/dashboard/components/page/PageContainer';
+import { PageContent } from '@/presentation/modules/dashboard/components/page/PageContent';
+import { PageHeader } from '@/presentation/modules/dashboard/components/page/PageHeader';
 import { ActivitiesToday } from '@/modules/tracking/presentation/ui/components/ActivitiesToday';
 import { AllSessionsDoneCounter } from '@/modules/tracking/presentation/ui/components/AllSessionsDoneCounter';
 import { BestRecords } from '@/modules/tracking/presentation/ui/components/BestRecords';

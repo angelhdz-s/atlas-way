@@ -1,5 +1,5 @@
-import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
-import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
+import { PageContainer } from '@/presentation/modules/dashboard/components/page/PageContainer';
+import { PageContent } from '@/presentation/modules/dashboard/components/page/PageContent';
 import { BodySectionCards } from '@/modules/muscle/presentation/ui/components/BodySectionsCards';
 import { getAllMuscles } from '@/modules/muscle/presentation/muscle.actions';
 import type { MuscleDTO } from '@/modules/muscle/application/dtos/muscle.dto';

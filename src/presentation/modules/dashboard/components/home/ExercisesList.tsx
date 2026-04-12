@@ -1,6 +1,6 @@
 import { EXERCISES } from '@/presentation/globals/constants/db';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
-import { SimpleTable } from '@/presentation/modules/dashboard/home/components/SimpleTable';
+import { SimpleTable } from '@/presentation/modules/dashboard/components/home/SimpleTable';
 import { Card } from '@/presentation/modules/card/components/Card';
 import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
 

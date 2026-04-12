@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge';
 import { Card } from '@/presentation/modules/card/components/Card';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { IconMapRoute } from '@/presentation/globals/components/icons/outline/IconMapRoute';
-import { ImageBackground } from '@/presentation/modules/dashboard/home/components/ImageBackground';
+import { ImageBackground } from '@/presentation/modules/dashboard/components/home/ImageBackground';
 
 export function FirstRoutine({ className = '' }: { className?: string }) {
   return (

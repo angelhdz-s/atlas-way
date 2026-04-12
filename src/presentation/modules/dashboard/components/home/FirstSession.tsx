@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
-import { ImageBackground } from '@/presentation/modules/dashboard/home/components/ImageBackground';
+import { ImageBackground } from '@/presentation/modules/dashboard/components/home/ImageBackground';
 import { Card } from '@/presentation/modules/card/components/Card';
 import { IconClipboardList } from '@/presentation/globals/components/icons/outline/IconClipboardList';
 

@@ -1,6 +1,6 @@
-import { PageContainer } from '@/presentation/modules/dashboard/page/components/PageContainer';
-import { PageContent } from '@/presentation/modules/dashboard/page/components/PageContent';
-import { PageHeader } from '@/presentation/modules/dashboard/page/components/PageHeader';
+import { PageContainer } from '@/presentation/modules/dashboard/components/page/PageContainer';
+import { PageContent } from '@/presentation/modules/dashboard/components/page/PageContent';
+import { PageHeader } from '@/presentation/modules/dashboard/components/page/PageHeader';
 import { IconPlus } from '@/presentation/globals/components/icons/outline/IconPlus';
 import { Routine } from '@/modules/routine/presentation/ui/components/Routine';
 import { Link } from '@/presentation/modules/button/components/Link';
