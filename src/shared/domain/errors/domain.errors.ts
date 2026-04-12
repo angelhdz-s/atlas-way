@@ -1,4 +1,4 @@
-import type { DomainErrorCode } from './error.types';
+import type { DomainErrorCode } from '@/shared/domain/errors/error.types';
 
 export abstract class DomainError extends Error {
   constructor(code: DomainErrorCode) {

@@ -1,7 +1,7 @@
-import { type DomainError, TechnicalError } from '../../domain/errors/domain.errors';
-import type { IErrorTranslator } from './error-translator.types';
-import { NextAuthErrorHandler } from '../nextauth/errors/next-auth.error.handler';
-import { PrismaErrorHandler } from '../prisma/errors/prisma.error.handler';
+import { NextAuthErrorHandler } from '@/shared/infrastructure/next-auth/errors/next-auth.error.handler';
+import { PrismaErrorHandler } from '@/shared/infrastructure/prisma/errors/prisma.error.handler';
+import { type DomainError, TechnicalError } from '@/shared/domain/errors/domain.errors';
+import type { IErrorTranslator } from '@/shared/infrastructure/errors/error-translator.types';
 
 export const errorHandlersContainer: IErrorTranslator[] = [
   new NextAuthErrorHandler(),
