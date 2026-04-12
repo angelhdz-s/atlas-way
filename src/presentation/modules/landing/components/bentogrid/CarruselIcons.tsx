@@ -1,5 +1,5 @@
-import { IconsAnimation } from '../IconsAnimation';
-import { BentoCard } from '../BentoCard';
+import { IconsAnimation } from './IconsAnimation';
+import { BentoCard } from './BentoCard';
 
 type Props = {
   className?: string;

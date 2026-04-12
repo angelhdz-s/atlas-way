@@ -1,11 +1,11 @@
-import { StartYourJourney } from '@/presentation/modules/landing/components/bentogrid/card/StartYourJourney';
-import { AtlasWayCard } from '@/presentation/modules/landing/components/bentogrid/card/AtlasWayCard';
-import { ScheduleYourSessions } from '@/presentation/modules/landing/components/bentogrid/card/ScheduleYourSessions';
-import { CreateYourOwnRoutines } from '@/presentation/modules/landing/components/bentogrid/card/CreateYourOwnRoutines';
-import { FlexibleRoutines } from '@/presentation/modules/landing/components/bentogrid/card/FlexibleRoutines';
-import { CarruselIcons } from '@/presentation/modules/landing/components/bentogrid/card/CarruselIcons';
-import { GetStartedCard } from '@/presentation/modules/landing/components/bentogrid/card/GetStartedCard';
-import { IconHeaderCard } from '@/presentation/modules/landing/components/bentogrid/card/IconHeaderCard';
+import { StartYourJourney } from '@/presentation/modules/landing/components/bentogrid/StartYourJourney';
+import { AtlasWayCard } from '@/presentation/modules/landing/components/bentogrid/AtlasWayCard';
+import { ScheduleYourSessions } from '@/presentation/modules/landing/components/bentogrid/ScheduleYourSessions';
+import { CreateYourOwnRoutines } from '@/presentation/modules/landing/components/bentogrid/CreateYourOwnRoutines';
+import { FlexibleRoutines } from '@/presentation/modules/landing/components/bentogrid/FlexibleRoutines';
+import { CarruselIcons } from '@/presentation/modules/landing/components/bentogrid/CarruselIcons';
+import { GetStartedCard } from '@/presentation/modules/landing/components/bentogrid/GetStartedCard';
+import { IconHeaderCard } from '@/presentation/modules/landing/components/bentogrid/IconHeaderCard';
 import { IconHeart } from '@/presentation/globals/components/icons/outline/IconHeart';
 import { IconTrendingUp } from '@/presentation/globals/components/icons/outline/IconTrendingUp';
 

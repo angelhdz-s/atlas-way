@@ -1,4 +1,4 @@
-import { BentoCard } from '../BentoCard';
+import { BentoCard } from './BentoCard';
 
 type Props = {
   className?: string;

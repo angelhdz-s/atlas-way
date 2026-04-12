@@ -1,5 +1,5 @@
 import { type IconProps, IconTypes } from '@/presentation/globals/presentation.types';
-import { BentoCard } from '../BentoCard';
+import { BentoCard } from './BentoCard';
 
 type Props = {
   className?: string;

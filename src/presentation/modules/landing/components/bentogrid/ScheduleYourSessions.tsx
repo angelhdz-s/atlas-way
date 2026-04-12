@@ -1,5 +1,5 @@
-import { DaysSelection } from '../DaysSelection';
-import { BentoCard } from '../BentoCard';
+import { DaysSelection } from './DaysSelection';
+import { BentoCard } from './BentoCard';
 
 type Props = {
   className?: string;
