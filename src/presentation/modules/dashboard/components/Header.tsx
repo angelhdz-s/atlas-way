@@ -1,7 +1,7 @@
-import { Breadcrumb } from './Breadcrumb';
-import { Imagotype } from '@/presentation/globals/components/AppLogo';
-import { UserInfo } from '../../../../modules/user/presentation/ui/components/UserInfo';
 import Link from 'next/link';
+import { Breadcrumb } from '@/presentation/modules/dashboard/components/Breadcrumb';
+import { Imagotype } from '@/presentation/globals/components/AppLogo';
+import { UserInfo } from '@/modules/user/presentation/ui/components/UserInfo';
 
 export function Header({ className = '' }: { className?: string }) {
   return (
