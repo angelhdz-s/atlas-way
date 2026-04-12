@@ -1,7 +1,7 @@
 import { getPastDate, isToday } from '@/presentation/globals/lib/dates';
-import { ROUTINES, type StatusDayType } from './routines';
-import { type ExerciseType, LEGS_DAY, PULL_DAY, PUSH_DAY } from './sessions';
+import { ROUTINES, type StatusDayType } from '@/presentation/globals/mocks/routines';
 import { minorValue } from '@/presentation/globals/lib/utils';
+import { type ExerciseType, LEGS_DAY, PULL_DAY, PUSH_DAY } from './sessions';
 
 type TrainingtDayNameType = 'Training Day';
 type RestDayNameType = 'Rest Day';

@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/presentation/modules/button/components/Button';
 import { useRouter } from 'next/navigation';
+import { Button } from '@/presentation/modules/button/components/Button';
 
 export default function CloseButton({
   className = '',

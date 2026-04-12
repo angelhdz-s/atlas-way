@@ -4,17 +4,17 @@ import {
   MONTH_LIMITS,
   type MonthDisplacement,
 } from '@/presentation/globals/constants/date';
-import type { StatusDayType } from '@/presentation/globals/mocks/routines';
-import { type NextSessionType, SESSIONS } from '@/presentation/globals/mocks/sessions';
 import {
   getRestDay,
-  type NextRestDayPlanifiedType,
   TODAY,
   TRACKED_DAYS,
-  type TrackedDayType,
   TRACKING_DAYS_OFFSET,
   TRACKING_DAYS,
+  type NextRestDayPlanifiedType,
+  type TrackedDayType,
 } from '@/presentation/globals/mocks/tracking';
+import { type NextSessionType, SESSIONS } from '@/presentation/globals/mocks/sessions';
+import type { StatusDayType } from '@/presentation/globals/mocks/routines';
 
 export function getTrackingDates() {
   return [

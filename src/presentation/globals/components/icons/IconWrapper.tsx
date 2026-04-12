@@ -1,5 +1,5 @@
-import type { IconProps } from '@/presentation/globals/presentation.types';
 import { DEFAULT_STROKE_WIDTH } from '@/presentation/globals/constants/icons';
+import type { IconProps } from '@/presentation/globals/presentation.types';
 
 export function IconWrapper({
   children,

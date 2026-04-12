@@ -1,6 +1,6 @@
 import type { DayWeeksType } from '@/presentation/globals/config/defaults';
-import type { StatusDayType } from './routines';
-import type { TypesOfDayType } from './tracking';
+import type { StatusDayType } from '@/presentation/globals/mocks/routines';
+import type { TypesOfDayType } from '@/presentation/globals/mocks/tracking';
 
 export interface ExerciseType {
   name: string;
