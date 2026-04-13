@@ -1,5 +1,5 @@
 import { GetCurrentSession } from '@/modules/auth/application/use-cases/get-current-session';
-import type { IAuthRepository } from './domain/auth.respository';
+import type { IAuthRepository } from '@/modules/auth/domain/auth.respository';
 
 type Props = {
   authRepository: IAuthRepository;

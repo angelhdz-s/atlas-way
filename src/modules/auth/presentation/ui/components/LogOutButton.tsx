@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@/presentation/modules/button/components/Button';
 import { redirect } from 'next/navigation';
+import { Button } from '@/presentation/modules/button/components/Button';
 
 export function LogOutButton() {
   const handleSignOut = () => {

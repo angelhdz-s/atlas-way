@@ -1,6 +1,6 @@
 import { getContainer } from '@/di/containers';
 import type { ActionResponse } from '@/shared/presentation/action.response';
-import type { AuthSession } from '../domain/errors/auth-session.types';
+import type { AuthSession } from '@/modules/auth/domain/errors/auth-session.types';
 
 export async function getSession(): ActionResponse<AuthSession | null> {
   const container = getContainer();
