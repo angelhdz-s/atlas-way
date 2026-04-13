@@ -3,9 +3,9 @@ import { CardHeader } from '@/presentation/modules/card/components/CardHeader';
 import { CardSubHeader } from '@/presentation/modules/card/components/CardSubHeader';
 import { CardMain } from '@/presentation/modules/card/components/CardMain';
 import { CardTag } from '@/presentation/modules/card/components/CardTag';
-import type { ExerciseDTO } from '../../application/dtos/exercise.dto';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { CardTagsWrapperFade } from '@/presentation/modules/card/components/CardTagsWrapperFade';
+import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 
 export function ExerciseCard({ exercise }: { exercise: ExerciseDTO }) {
   const { muscles, name, reps, description, sets, weight } = exercise;

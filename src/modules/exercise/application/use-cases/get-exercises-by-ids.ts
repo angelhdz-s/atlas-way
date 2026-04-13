@@ -1,6 +1,6 @@
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
 import type { UseCase } from '@/shared/application/use-case';
-import type { ExerciseProps } from '../../domain/exercise.types';
+import type { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
 
 export class GetExercisesByIds implements UseCase {
   constructor(private repository: IExerciseRepository) {}

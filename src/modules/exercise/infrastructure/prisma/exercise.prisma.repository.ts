@@ -1,11 +1,11 @@
-import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
 import { ExerciseMapper } from '@/modules/exercise/infrastructure/exercise.mapper';
 import { Failure, Success } from '@/shared/domain/result';
-import type { Exercise } from '@/modules/exercise/domain/exercise.entity';
+import { exerciseIncludeAnatomy } from '@/modules/exercise/infrastructure/prisma/exercise.prisma.types';
 import type { PrismaClient } from '@/prisma/client';
-import type { ExerciseProps } from '../../domain/exercise.types';
+import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
+import type { Exercise } from '@/modules/exercise/domain/exercise.entity';
+import type { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
 import type { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
-import { exerciseIncludeAnatomy } from './exercise.prisma.types';
 
 export class ExercisePrismaRepository implements IExerciseRepository {
   constructor(

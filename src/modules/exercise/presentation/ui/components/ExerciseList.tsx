@@ -3,8 +3,8 @@ import {
   getGridColsClassFromWithStatus,
   getStatusTextColorClass,
 } from '@/presentation/globals/lib/get-classes';
-import type { StatusDayType } from '@/presentation/globals/mocks/routines';
 import { StatusIcon } from '@/modules/status/components/StatusIcons';
+import type { StatusDayType } from '@/presentation/globals/mocks/routines';
 
 const iconSize = 'size-4.5';
 

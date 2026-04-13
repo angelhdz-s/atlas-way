@@ -1,12 +1,12 @@
-import { Exercise } from '../domain/exercise.entity';
-import type { ExerciseProps } from '../domain/exercise.types';
-import type { ExerciseDTO } from '../application/dtos/exercise.dto';
+import { Exercise } from '@/modules/exercise/domain/exercise.entity';
+import { MuscleMapper } from '@/modules/muscle/infrastructure/muscle.mapper';
+import type { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
+import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 import type {
   ExercisePrisma,
   ExercisePrismaCreate,
   ExercisePrismaUpdate,
-} from './prisma/exercise.prisma.types';
-import { MuscleMapper } from '@/modules/muscle/infrastructure/muscle.mapper';
+} from '@/modules/exercise/infrastructure/prisma/exercise.prisma.types';
 
 export class ExerciseMapper {
   static toDomain(data: ExercisePrisma): Exercise {

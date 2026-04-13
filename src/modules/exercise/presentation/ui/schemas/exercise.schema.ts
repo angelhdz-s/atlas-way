@@ -1,4 +1,5 @@
 import { z } from 'zod/v3';
+
 export const ExerciseSchema = z.object({
   name: z
     .string()

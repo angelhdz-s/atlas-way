@@ -1,7 +1,7 @@
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
 import { TextArea } from '@/presentation/modules/form/components/fields/TextArea';
 import { useFormContext } from 'react-hook-form';
-import type { ExerciseFormProps } from '../../schemas/exercise.schema';
+import type { ExerciseFormProps } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 
 type Props = {

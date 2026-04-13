@@ -1,4 +1,4 @@
-import type { ExerciseProps } from './exercise.types';
+import type { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
 import type { Muscle } from '@/modules/muscle/domain/muscle.entity';
 
 export class Exercise {

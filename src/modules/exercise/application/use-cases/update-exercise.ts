@@ -1,4 +1,4 @@
-import { ExerciseNotFoundError } from '../../domain/errors/exercise-errors';
+import { ExerciseNotFoundError } from '@/modules/exercise/domain/errors/exercise-errors';
 import { Failure } from '@/shared/domain/result';
 import type { Exercise } from '@/modules/exercise/domain/exercise.entity';
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';

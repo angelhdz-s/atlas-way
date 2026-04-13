@@ -2,12 +2,12 @@ import { CreateExercise } from '@/modules/exercise/application/use-cases/create-
 import { GetAllExercises } from '@/modules/exercise/application/use-cases/get-all-exercises';
 import { GetExerciseById } from '@/modules/exercise/application/use-cases/get-exercise-by-id';
 import { UpdateExercise } from '@/modules/exercise/application/use-cases/update-exercise';
-import { GetAllUserExercises } from './application/use-cases/get-user-exercises';
-import type { IExerciseRepository } from './domain/exercise.repository';
+import { GetAllUserExercises } from '@/modules/exercise/application/use-cases/get-user-exercises';
+import { GetExercisesByIds } from '@/modules/exercise/application/use-cases/get-exercises-by-ids';
+import { DeleteExercise } from '@/modules/exercise/application/use-cases/delete-exercise';
+import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
-import type { IMuscleRepository } from '../muscle/domain/muscle.repository';
-import { GetExercisesByIds } from './application/use-cases/get-exercises-by-ids';
-import { DeleteExercise } from './application/use-cases/delete-exercise';
+import type { IMuscleRepository } from '@/modules/muscle/domain/muscle.repository';
 
 type Props = {
   exerciseRepository: IExerciseRepository;

@@ -1,8 +1,8 @@
+import { useFormContext } from 'react-hook-form';
 import { InputText } from '@/presentation/modules/form/components/fields/InputText';
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
-import { useFormContext } from 'react-hook-form';
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
-import type { ExerciseFormProps } from '../../schemas/exercise.schema';
+import type { ExerciseFormProps } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
 
 export function ExerciseNameField({ value }: { value?: ExerciseDTO['name'] }) {
   const {
