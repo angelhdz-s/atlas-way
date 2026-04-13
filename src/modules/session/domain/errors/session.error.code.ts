@@ -1,1 +1,1 @@
-export type SessionErrorCode = 'SESSION_NOT_FOUND';
+export type SessionErrorCode = 'SESSION_NOT_FOUND' | 'SESSION_OWNERSHIP_ERROR';
