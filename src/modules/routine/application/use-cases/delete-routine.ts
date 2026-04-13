@@ -1,9 +1,12 @@
-import type { UseCase } from '@/shared/application/use-case';
-import type { RoutineProps } from '../../domain/routine.types';
-import type { IRoutineRepository } from '../../domain/routine.repository';
-import type { UserProps } from '@/modules/user/domain/user.types';
 import { Failure } from '@/shared/domain/result';
-import { RoutineNotFoundError, RoutineOwnershipError } from '../../domain/errors/routine.errors';
+import {
+  RoutineNotFoundError,
+  RoutineOwnershipError,
+} from '@/modules/routine/domain/errors/routine.errors';
+import type { UseCase } from '@/shared/application/use-case';
+import type { RoutineProps } from '@/modules/routine/domain/routine.types';
+import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
+import type { UserProps } from '@/modules/user/domain/user.types';
 
 export class DeleteRoutine implements UseCase {
   constructor(private repository: IRoutineRepository) {}

@@ -2,10 +2,10 @@ import { CreateRoutine } from '@/modules/routine/application/use-cases/create-ro
 import { GetAllRoutines } from '@/modules/routine/application/use-cases/get-all-routines';
 import { GetRoutineById } from '@/modules/routine/application/use-cases/get-routine-by-id';
 import { UpdateRoutine } from '@/modules/routine/application/use-cases/update-routine';
+import { DeleteRoutine } from '@/modules/routine/application/use-cases/delete-routine';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
-import type { IRoutineRepository } from './domain/routine.repository';
-import type { ISessionRepository } from '../session/domain/session.repository';
-import { DeleteRoutine } from './application/use-cases/delete-routine';
+import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
+import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 
 type Props = {
   idGeneratorRepository: IdGeneratorRepository;

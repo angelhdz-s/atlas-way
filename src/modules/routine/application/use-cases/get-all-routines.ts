@@ -1,5 +1,5 @@
 import type { UseCase } from '@/shared/application/use-case';
-import type { IRoutineRepository } from '../../domain/routine.repository';
+import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
 
 export class GetAllRoutines implements UseCase {
   constructor(private repository: IRoutineRepository) {}

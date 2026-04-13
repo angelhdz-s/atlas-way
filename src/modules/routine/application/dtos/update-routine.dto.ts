@@ -1,5 +1,5 @@
 import type { UpdateDto } from '@/shared/application/dtos/create.types';
-import type { RoutineProps } from '../../domain/routine.types';
+import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 import type { SessionProps } from '@/modules/session/domain/session.types';
 
 type UpdateProps = Pick<RoutineProps, 'name' | 'description' | 'active' | 'days' | 'initialDate'>;

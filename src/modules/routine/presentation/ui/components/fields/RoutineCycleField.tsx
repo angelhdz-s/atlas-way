@@ -1,8 +1,8 @@
-import { LabelGroup } from '@/presentation/modules/form/components/fields/LabelInput';
-import { routineFormConfig } from '../../routine.ui.constants';
-import { RadiobuttonGroup } from '@/presentation/modules/form/components/RadiobuttonGroup';
 import { useFormContext } from 'react-hook-form';
-import type { RoutineForm } from '../../config/routine.schema';
+import { LabelGroup } from '@/presentation/modules/form/components/fields/LabelInput';
+import { routineFormConfig } from '@/modules/routine/presentation/ui/routine.ui.constants';
+import { RadiobuttonGroup } from '@/presentation/modules/form/components/RadiobuttonGroup';
+import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
 
 type Props = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

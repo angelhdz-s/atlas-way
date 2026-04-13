@@ -1,8 +1,8 @@
+import { useFormContext } from 'react-hook-form';
 import { InputNumber } from '@/presentation/modules/form/components/fields/InputNumber';
 import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
-import { useFormContext } from 'react-hook-form';
-import type { RoutineForm } from '../../config/routine.schema';
 import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
+import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
 
 type Props = {
   daysEnabled: boolean;

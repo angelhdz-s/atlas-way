@@ -2,7 +2,6 @@
 
 import { DragDropProvider } from '@dnd-kit/react';
 import { isSortableOperation } from '@dnd-kit/react/sortable';
-import { type FieldArrayWithId, useFormContext } from 'react-hook-form';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
 import { IconCalendarWeek } from '@/presentation/globals/components/icons/outline/IconCalendarWeek';
@@ -10,6 +9,7 @@ import { RoutineSessionPlanDraggableItem } from '@/modules/routine/presentation/
 import { RoutineSessionPlanDroppableItem } from '@/modules/routine/presentation/ui/components/fields/RoutineSessionPlanDroppableItem';
 import { useRoutineSessionPlanField } from '@/modules/routine/presentation/ui/hooks/useRoutineSessionPlanField';
 import { TooltipSelect } from '@/presentation/modules/form/components/tooltip/TooltipSelect';
+import { type FieldArrayWithId, useFormContext } from 'react-hook-form';
 import type {
   DnDFormFieldItemData,
   DnDFormFieldItemDraggableData,

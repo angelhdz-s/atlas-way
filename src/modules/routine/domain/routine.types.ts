@@ -1,6 +1,6 @@
 import type { Session } from '@/modules/session/domain/session.entity';
 import type { UserProps } from '@/modules/user/domain/user.types';
-import type { RoutineCycleId } from './constants/routine.constants.cycle-types';
+import type { RoutineCycleId } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
 
 export type RoutineProps = {
   readonly id: string;

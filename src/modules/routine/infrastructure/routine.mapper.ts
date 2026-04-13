@@ -1,13 +1,13 @@
-import { Routine } from '../domain/routine.entity';
-import type { RoutineProps } from '../domain/routine.types';
-import type { RoutineDTO } from '../application/dtos/routine.dto';
+import { Routine } from '@/modules/routine/domain/routine.entity';
+import { SessionMapper } from '@/modules/session/infrastructure/session.mapper';
+import type { RoutineProps } from '@/modules/routine/domain/routine.types';
+import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 import type {
   RoutinePrisma,
   RoutinePrismaCreate,
   RoutinePrismaUpdate,
-} from './prisma/routine.prisma.types';
-import { SessionMapper } from '@/modules/session/infrastructure/session.mapper';
-import type { RoutineCycleId } from '../domain/constants/routine.constants.cycle-types';
+} from '@/modules/routine/infrastructure/prisma/routine.prisma.types';
+import type { RoutineCycleId } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
 
 export class RoutineMapper {
   static toDomain(data: RoutinePrisma): Routine {

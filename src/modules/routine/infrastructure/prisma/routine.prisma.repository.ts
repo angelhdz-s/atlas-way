@@ -1,11 +1,11 @@
 import { Failure, Success } from '@/shared/domain/result';
-import { routineIncludeAnatomy } from './routine.prisma.types';
-import { RoutineMapper } from '../routine.mapper';
-import type { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
-import type { IRoutineRepository } from '../../domain/routine.repository';
+import { routineIncludeAnatomy } from '@/modules/routine/infrastructure/prisma/routine.prisma.types';
+import { RoutineMapper } from '@/modules/routine/infrastructure/routine.mapper';
 import type { PrismaClient } from '@/prisma/client';
-import type { Routine } from '../../domain/routine.entity';
-import type { RoutineProps } from '../../domain/routine.types';
+import type { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
+import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
+import type { Routine } from '@/modules/routine/domain/routine.entity';
+import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 
 export class RoutinePrismaRepository implements IRoutineRepository {
   constructor(

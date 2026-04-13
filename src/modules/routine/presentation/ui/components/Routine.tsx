@@ -4,10 +4,10 @@ import { Card } from '@/presentation/modules/card/components/Card';
 import { CardHeader } from '@/presentation/modules/card/components/CardHeader';
 import { CardSubHeader } from '@/presentation/modules/card/components/CardSubHeader';
 import { CardMain } from '@/presentation/modules/card/components/CardMain';
-import { RoutineDayItem } from './RoutineDayItem';
-import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
+import { RoutineDayItem } from '@/modules/routine/presentation/ui/components/RoutineDayItem';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { CardTagsWrapperFade } from '@/presentation/modules/card/components/CardTagsWrapperFade';
+import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 
 export function Routine({ data }: { data: RoutineDTO }) {
   const { name, routineDays, description } = data;

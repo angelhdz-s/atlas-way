@@ -1,6 +1,6 @@
 import type { RepositoryResult } from '@/shared/domain/repository.result';
-import type { Routine } from './routine.entity';
-import type { RoutineProps } from './routine.types';
+import type { Routine } from '@/modules/routine/domain/routine.entity';
+import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 
 export interface IRoutineRepository {
   create: (data: Routine) => RepositoryResult<Routine>;

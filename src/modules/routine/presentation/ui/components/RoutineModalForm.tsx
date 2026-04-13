@@ -1,21 +1,21 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { createRoutineAction } from '@/modules/routine/presentation/routine.actions';
-import { DEFAULT_WEEK_CYCLE_DAYS_DATA } from '../routine.ui.constants';
+import { DEFAULT_WEEK_CYCLE_DAYS_DATA } from '@/modules/routine/presentation/ui/routine.ui.constants';
 import { ModalForm } from '@/presentation/modules/form/components/modal-form/ModalForm';
 import { ModalFormButtons } from '@/presentation/modules/form/components/modal-form/ModalFormButtons';
-import { RoutineActiveField } from './fields/RoutineActiveField';
-import { RoutineCycleField } from './fields/RoutineCycleField';
-import { RoutineDayField } from './fields/RoutineDayField';
-import { RoutineDescriptionField } from './fields/RoutineDescriptionField';
-import { routineFormSchema } from '../config/routine.schema';
-import { RoutineInitialDateField } from './fields/RoutineInitialDateField';
-import { RoutineNameField } from './fields/RoutineNameField';
-import { RoutineSessionPlanField } from './fields/RoutineSessionPlanField';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { RoutineActiveField } from '@/modules/routine/presentation/ui/components/fields/RoutineActiveField';
+import { RoutineCycleField } from '@/modules/routine/presentation/ui/components/fields/RoutineCycleField';
+import { RoutineDayField } from '@/modules/routine/presentation/ui/components/fields/RoutineDayField';
+import { RoutineDescriptionField } from '@/modules/routine/presentation/ui/components/fields/RoutineDescriptionField';
+import { RoutineInitialDateField } from '@/modules/routine/presentation/ui/components/fields/RoutineInitialDateField';
+import { RoutineNameField } from '@/modules/routine/presentation/ui/components/fields/RoutineNameField';
+import { RoutineSessionPlanField } from '@/modules/routine/presentation/ui/components/fields/RoutineSessionPlanField';
+import { routineFormSchema } from '@/modules/routine/presentation/ui/config/routine.schema';
 import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
-import type { RoutineForm } from '../config/routine.schema';
+import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 type Props = {

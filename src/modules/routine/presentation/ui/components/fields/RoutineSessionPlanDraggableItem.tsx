@@ -1,8 +1,8 @@
 'use client';
 
+import { useDraggable } from '@dnd-kit/react';
 import { DraggableBadge } from '@/presentation/globals/components/DraggableBadge';
 import type { DnDFormFieldItemDraggableData } from '@/presentation/modules/form/form.types';
-import { useDraggable } from '@dnd-kit/react';
 
 export function RoutineSessionPlanDraggableItem({
   id,

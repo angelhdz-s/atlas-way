@@ -1,1 +1,4 @@
-export type RoutineErrorCode = 'ROUTINE_NOT_FOUND';
+export type RoutineErrorCode =
+  | 'ROUTINE_NOT_FOUND'
+  | 'ROUTINE_CYCLE_NOT_FOUND'
+  | 'ROUTINE_OWNERSHIP_ERROR';

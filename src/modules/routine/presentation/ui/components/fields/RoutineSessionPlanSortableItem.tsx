@@ -1,8 +1,8 @@
 'use client';
 
 import { useSortable } from '@dnd-kit/react/sortable';
-import type { DnDFormFieldItemDraggableData } from '@/presentation/modules/form/form.types';
 import { DraggableBadge } from '@/presentation/globals/components/DraggableBadge';
+import type { DnDFormFieldItemDraggableData } from '@/presentation/modules/form/form.types';
 
 export function RoutineSessionPlanSortableItem({
   id,

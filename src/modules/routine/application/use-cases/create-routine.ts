@@ -1,14 +1,17 @@
 import { Failure } from '@/shared/domain/result';
-import { Routine } from '../../domain/routine.entity';
-import { RoutineCycleNotFound, RoutineNotFoundError } from '../../domain/errors/routine.errors';
-import type { CreateRoutineInput } from '../dtos/create-routine.dto';
+import { Routine } from '@/modules/routine/domain/routine.entity';
+import {
+  RoutineCycleNotFound,
+  RoutineNotFoundError,
+} from '@/modules/routine/domain/errors/routine.errors';
+import { CYCLE_TYPES } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
+import type { CreateRoutineInput } from '@/modules/routine/application/dtos/create-routine.dto';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
-import type { IRoutineRepository } from '../../domain/routine.repository';
+import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
 import type { ISessionRepository } from '@/modules/session/domain/session.repository';
-import type { RoutineProps } from '../../domain/routine.types';
+import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 import type { Session } from '@/modules/session/domain/session.entity';
 import type { UseCase } from '@/shared/application/use-case';
-import { CYCLE_TYPES } from '../../domain/constants/routine.constants.cycle-types';
 
 export class CreateRoutine implements UseCase {
   constructor(

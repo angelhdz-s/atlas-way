@@ -1,16 +1,16 @@
 'use server';
 
-import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.response';
 import { getContainer } from '@/di/containers';
+import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.response';
 import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
-import { routineFormSchema } from './ui/config/routine.schema';
-import { RoutineMapper } from '../infrastructure/routine.mapper';
+import { routineFormSchema } from '@/modules/routine/presentation/ui/config/routine.schema';
+import { RoutineMapper } from '@/modules/routine/infrastructure/routine.mapper';
 import type { ActionResponse } from '@/shared/presentation/action.response';
-import type { CreateRoutineInput } from '../application/dtos/create-routine.dto';
-import type { RoutineDTO } from '../application/dtos/routine.dto';
-import type { RoutineForm } from './ui/config/routine.schema';
-import type { RoutineCycleId } from '../domain/constants/routine.constants.cycle-types';
-import type { RoutineProps } from '../domain/routine.types';
+import type { CreateRoutineInput } from '@/modules/routine/application/dtos/create-routine.dto';
+import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
+import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
+import type { RoutineCycleId } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
+import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 
 export async function createRoutineAction(data: RoutineForm): ActionResponse<RoutineDTO> {
   const parsedRoutine = routineFormSchema.safeParse(data);

@@ -1,11 +1,14 @@
-import { CYCLE_TYPES } from '../../domain/constants/routine.constants.cycle-types';
+import { CYCLE_TYPES } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
 import { Failure } from '@/shared/domain/result';
-import { RoutineCycleNotFound, RoutineNotFoundError } from '../../domain/errors/routine.errors';
-import type { IRoutineRepository } from '../../domain/routine.repository';
-import type { ISessionRepository } from '@/modules/session/domain/session.repository';
-import type { RoutineProps } from '../../domain/routine.types';
-import type { UpdateRoutineInput } from '../dtos/update-routine.dto';
+import {
+  RoutineCycleNotFound,
+  RoutineNotFoundError,
+} from '@/modules/routine/domain/errors/routine.errors';
 import type { UseCase } from '@/shared/application/use-case';
+import type { RoutineProps } from '@/modules/routine/domain/routine.types';
+import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
+import type { ISessionRepository } from '@/modules/session/domain/session.repository';
+import type { UpdateRoutineInput } from '@/modules/routine/application/dtos/update-routine.dto';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
 
 export class UpdateRoutine implements UseCase {

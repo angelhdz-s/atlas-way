@@ -1,9 +1,9 @@
-import { removeObjectKey } from '@/presentation/globals/lib/utils';
 import { useEffect, useRef, useState } from 'react';
 import { useFieldArray } from 'react-hook-form';
+import { removeObjectKey } from '@/presentation/globals/lib/utils';
 import type { ArrayPath, Control, FieldArrayWithId, FieldValues } from 'react-hook-form';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
-import type { RoutineForm } from '../config/routine.schema';
+import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
 
 type ContainersKey = Props['containers'][number]['value'];
 

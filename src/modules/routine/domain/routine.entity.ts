@@ -1,4 +1,4 @@
-import type { RoutineProps } from './routine.types';
+import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 
 export class Routine {
   constructor(private data: RoutineProps) {}

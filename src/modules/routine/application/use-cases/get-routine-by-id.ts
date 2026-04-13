@@ -1,6 +1,6 @@
 import type { UseCase } from '@/shared/application/use-case';
-import type { RoutineProps } from '../../domain/routine.types';
-import type { IRoutineRepository } from '../../domain/routine.repository';
+import type { RoutineProps } from '@/modules/routine/domain/routine.types';
+import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
 
 export class GetRoutineById implements UseCase {
   constructor(private repository: IRoutineRepository) {}
