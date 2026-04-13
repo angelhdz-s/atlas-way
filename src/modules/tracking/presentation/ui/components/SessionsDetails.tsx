@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { getPrevAndNextDate } from '@/presentation/globals/lib/dates';
-import { CalendarContext } from '../../../../../presentation/modules/calendar/contexts/calendar-context';
-import { TrackingDay } from './TrackingDay';
+import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
+import { TrackingDay } from '@/modules/tracking/presentation/ui/components/TrackingDay';
 
 export function SessionsDetails({ className }: { className?: string }) {
   const { selectedDate } = useContext(CalendarContext);
