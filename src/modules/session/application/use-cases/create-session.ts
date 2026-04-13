@@ -1,6 +1,6 @@
-import type { ISessionRepository } from '../../domain/session.repository';
-import type { CreateSessionInput } from '../dtos/create-session.dto';
-import { Session } from '../../domain/session.entity';
+import { Session } from '@/modules/session/domain/session.entity';
+import type { ISessionRepository } from '@/modules/session/domain/session.repository';
+import type { CreateSessionInput } from '@/modules/session/application/dtos/create-session.dto';
 import type { UseCase } from '@/shared/application/use-case';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';

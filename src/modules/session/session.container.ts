@@ -2,11 +2,11 @@ import { CreateSession } from '@/modules/session/application/use-cases/create-se
 import { GetAllSessions } from '@/modules/session/application/use-cases/get-all-sessions';
 import { GetSessionById } from '@/modules/session/application/use-cases/get-session-by-id';
 import { UpdateSession } from '@/modules/session/application/use-cases/update-session';
-import type { ISessionRepository } from './domain/session.repository';
+import { GetSessionsByIds } from '@/modules/session/application/use-cases/get-sessions-by-ids';
+import { DeleteSession } from '@/modules/session/application/use-cases/delete-session';
+import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
-import type { IExerciseRepository } from '../exercise/domain/exercise.repository';
-import { GetSessionsByIds } from './application/use-cases/get-sessions-by-ids';
-import { DeleteSession } from './application/use-cases/delete-session';
+import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
 
 type Props = {
   sessionRepository: ISessionRepository;

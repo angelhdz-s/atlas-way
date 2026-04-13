@@ -1,18 +1,18 @@
 'use server';
 
+import { getContainer } from '@/di/containers';
+import { sessionFormSchema } from '@/modules/session/presentation/ui/config/session.schema';
+import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
+import { SessionMapper } from '@/modules/session/infrastructure/session.mapper';
 import {
   ActionFailure,
   type ActionResponse,
   ActionSuccess,
 } from '@/shared/presentation/action.response';
-import type { SessionForm } from './ui/config/session.schema';
-import { sessionFormSchema } from './ui/config/session.schema';
-import type { CreateSessionInput } from '../application/dtos/create-session.dto';
-import { getContainer } from '@/di/containers';
-import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
-import type { SessionDTO } from '../application/dtos/session.dto';
-import { SessionMapper } from '../infrastructure/session.mapper';
-import type { SessionProps } from '../domain/session.types';
+import type { SessionForm } from '@/modules/session/presentation/ui/config/session.schema';
+import type { CreateSessionInput } from '@/modules/session/application/dtos/create-session.dto';
+import type { SessionDTO } from '@/modules/session/application/dtos/session.dto';
+import type { SessionProps } from '@/modules/session/domain/session.types';
 
 export async function createSessionAction(data: SessionForm): ActionResponse<SessionDTO> {
   const parseResult = sessionFormSchema.safeParse(data);

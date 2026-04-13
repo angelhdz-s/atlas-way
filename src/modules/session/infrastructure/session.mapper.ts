@@ -1,12 +1,12 @@
-import { Session } from '../domain/session.entity';
-import type { SessionProps } from '../domain/session.types';
-import type { SessionDTO } from '../application/dtos/session.dto';
+import { Session } from '@/modules/session/domain/session.entity';
+import { ExerciseMapper } from '@/modules/exercise/infrastructure/exercise.mapper';
+import type { SessionProps } from '@/modules/session/domain/session.types';
+import type { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 import type {
   SessionPrisma,
   SessionPrismaCreate,
   SessionPrismaUpdate,
-} from './prisma/session.prisma.types';
-import { ExerciseMapper } from '@/modules/exercise/infrastructure/exercise.mapper';
+} from '@/modules/session/infrastructure/prisma/session.prisma.types';
 
 export class SessionMapper {
   static toDomain(data: SessionPrisma): Session {

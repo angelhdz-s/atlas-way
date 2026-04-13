@@ -1,9 +1,9 @@
 import { Failure } from '@/shared/domain/result';
-import { SessionNotFoundError } from '../../domain/errors/session.errors';
+import { SessionNotFoundError } from '@/modules/session/domain/errors/session.errors';
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
-import type { ISessionRepository } from '../../domain/session.repository';
-import type { SessionProps } from '../../domain/session.types';
-import type { UpdateSessionInput } from '../dtos/update-session.dto';
+import type { ISessionRepository } from '@/modules/session/domain/session.repository';
+import type { SessionProps } from '@/modules/session/domain/session.types';
+import type { UpdateSessionInput } from '@/modules/session/application/dtos/update-session.dto';
 import type { UseCase } from '@/shared/application/use-case';
 
 export class UpdateSession implements UseCase {

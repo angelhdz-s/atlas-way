@@ -3,13 +3,13 @@
 import { useRouter } from 'next/navigation';
 import { ModalForm } from '@/presentation/modules/form/components/modal-form/ModalForm';
 import { ModalFormButtons } from '@/presentation/modules/form/components/modal-form/ModalFormButtons';
-import type { SelectOption } from '@/presentation/modules/form/form.types';
-import { createSessionAction } from '../../session.actions';
-import { sessionFormSchema } from '../config/session.schema';
-import { SessionDescription } from './fields/SessionDescription';
-import { SessionName } from './fields/SessionName';
-import { SessionExercises } from './fields/SessionExercises';
+import { createSessionAction } from '@/modules/session/presentation/session.actions';
+import { sessionFormSchema } from '@/modules/session/presentation/ui/config/session.schema';
+import { SessionDescription } from '@/modules/session/presentation/ui/components/fields/SessionDescription';
+import { SessionName } from '@/modules/session/presentation/ui/components/fields/SessionName';
+import { SessionExercises } from '@/modules/session/presentation/ui/components/fields/SessionExercises';
 import { SessionDTO } from '@/modules/session/application/dtos/session.dto';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 export function SessionModalForm({
   exercises,

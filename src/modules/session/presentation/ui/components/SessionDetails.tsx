@@ -1,10 +1,10 @@
 import { ExerciseRow } from '@/modules/exercise/presentation/ui/components/ExerciseList';
+import { StatusIcon } from '@/modules/status/components/StatusIcons';
 import {
   getGridColsClassFromWithStatus,
   getStatusTextColorClass,
 } from '@/presentation/globals/lib/get-classes';
 import type { StatusDayType } from '@/presentation/globals/mocks/routines';
-import { StatusIcon } from '@/modules/status/components/StatusIcons';
 
 export type exerciseType = {
   id: number;

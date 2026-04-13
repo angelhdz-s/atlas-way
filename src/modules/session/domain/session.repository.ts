@@ -1,6 +1,6 @@
 import type { RepositoryResult } from '@/shared/domain/repository.result';
-import type { Session } from './session.entity';
-import type { SessionProps } from './session.types';
+import type { Session } from '@/modules/session/domain/session.entity';
+import type { SessionProps } from '@/modules/session/domain/session.types';
 
 export interface ISessionRepository {
   create: (data: Session) => RepositoryResult<Session>;

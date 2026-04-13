@@ -1,11 +1,11 @@
 import { Failure, Success } from '@/shared/domain/result';
-import { sessionIncludeAnatomy } from './session.prisma.types';
-import { SessionMapper } from '../session.mapper';
-import type { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
-import type { ISessionRepository } from '../../domain/session.repository';
+import { sessionIncludeAnatomy } from '@/modules/session/infrastructure/prisma/session.prisma.types';
+import { SessionMapper } from '@/modules/session/infrastructure/session.mapper';
 import type { PrismaClient } from '@/prisma/client';
-import type { Session } from '../../domain/session.entity';
-import type { SessionProps } from '../../domain/session.types';
+import type { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
+import type { ISessionRepository } from '@/modules/session/domain/session.repository';
+import type { Session } from '@/modules/session/domain/session.entity';
+import type { SessionProps } from '@/modules/session/domain/session.types';
 
 export class SessionPrismaRepository implements ISessionRepository {
   constructor(

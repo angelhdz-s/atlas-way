@@ -1,5 +1,5 @@
 import type { Exercise } from '@/modules/exercise/domain/exercise.entity';
-import type { SessionProps } from './session.types';
+import type { SessionProps } from '@/modules/session/domain/session.types';
 
 export class Session {
   constructor(private data: SessionProps) {}

@@ -1,5 +1,5 @@
 import type { UseCase } from '@/shared/application/use-case';
-import type { ISessionRepository } from '../../domain/session.repository';
+import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 
 export class GetAllSessions implements UseCase {
   constructor(private repository: ISessionRepository) {}
