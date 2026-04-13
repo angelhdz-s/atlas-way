@@ -1,4 +1,4 @@
-import type { NotificationProps } from './notification.types';
+import type { NotificationProps } from '@/modules/notification/domain/notification.types';
 
 export class Notification {
   constructor(private data: NotificationProps) {}

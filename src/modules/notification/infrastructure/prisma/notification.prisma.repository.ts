@@ -1,9 +1,9 @@
-import type { Notification } from '../../domain/notification.entity';
-import type { INotificationRepository } from '../../domain/notification.repository';
 import { Failure, Success } from '@/shared/domain/result';
-import type { NotificationProps } from '../../domain/notification.types';
-import { NotificationMapper } from '../notification.mapper';
+import { NotificationMapper } from '@/modules/notification/infrastructure/notification.mapper';
 import type { PrismaClient } from '@/prisma/client';
+import type { Notification } from '@/modules/notification/domain/notification.entity';
+import type { INotificationRepository } from '@/modules/notification/domain/notification.repository';
+import type { NotificationProps } from '@/modules/notification/domain/notification.types';
 import type { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
 
 export class NotificationPrismaRepository implements INotificationRepository {

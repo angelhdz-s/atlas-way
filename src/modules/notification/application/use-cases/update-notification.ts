@@ -1,9 +1,9 @@
-import type { UseCase } from '@/shared/application/use-case';
-import type { INotificationRepository } from '../../domain/notification.repository';
-import type { NotificationProps } from '../../domain/notification.types';
-import type { UpdateNotificationInput } from '../dtos/update-notification.dto';
 import { Failure } from '@/shared/domain/result';
-import { NotificationNotFoundError } from '../../domain/errors/notification.errors';
+import { NotificationNotFoundError } from '@/modules/notification/domain/errors/notification.errors';
+import type { UseCase } from '@/shared/application/use-case';
+import type { INotificationRepository } from '@/modules/notification/domain/notification.repository';
+import type { NotificationProps } from '@/modules/notification/domain/notification.types';
+import type { UpdateNotificationInput } from '@/modules/notification/application/dtos/update-notification.dto';
 
 export class UpdateNotification implements UseCase {
   constructor(private repository: INotificationRepository) {}

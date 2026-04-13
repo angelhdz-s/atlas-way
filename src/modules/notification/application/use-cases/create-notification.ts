@@ -1,7 +1,7 @@
+import { Notification } from '@/modules/notification/domain/notification.entity';
 import type { UseCase } from '@/shared/application/use-case';
-import type { INotificationRepository } from '../../domain/notification.repository';
-import type { CreateNotificationInput } from '../dtos/create-notification.dto';
-import { Notification } from '../../domain/notification.entity';
+import type { INotificationRepository } from '@/modules/notification/domain/notification.repository';
+import type { CreateNotificationInput } from '@/modules/notification/application/dtos/create-notification.dto';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
 
 export class CreateNotification implements UseCase {

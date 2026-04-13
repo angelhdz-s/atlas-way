@@ -2,7 +2,7 @@ import { CreateNotification } from '@/modules/notification/application/use-cases
 import { GetAllNotifications } from '@/modules/notification/application/use-cases/get-all-notifications';
 import { GetNotificationById } from '@/modules/notification/application/use-cases/get-notification-by-id';
 import { UpdateNotification } from '@/modules/notification/application/use-cases/update-notification';
-import type { INotificationRepository } from './domain/notification.repository';
+import type { INotificationRepository } from '@/modules/notification/domain/notification.repository';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
 
 type Props = {

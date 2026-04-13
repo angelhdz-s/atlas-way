@@ -1,7 +1,7 @@
 import type { Notifications as PrismaNotification } from '@/prisma/client';
-import { Notification } from '../domain/notification.entity';
-import type { NotificationProps } from '../domain/notification.types';
-import type { NotificationDTO } from '../application/dtos/notification.dto';
+import { Notification } from '@/modules/notification/domain/notification.entity';
+import type { NotificationProps } from '@/modules/notification/domain/notification.types';
+import type { NotificationDTO } from '@/modules/notification/application/dtos/notification.dto';
 
 export class NotificationMapper {
   static toDomain(data: PrismaNotification): Notification {

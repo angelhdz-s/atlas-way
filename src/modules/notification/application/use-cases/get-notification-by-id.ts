@@ -1,6 +1,6 @@
 import type { UseCase } from '@/shared/application/use-case';
-import type { INotificationRepository } from '../../domain/notification.repository';
-import type { NotificationProps } from '../../domain/notification.types';
+import type { INotificationRepository } from '@/modules/notification/domain/notification.repository';
+import type { NotificationProps } from '@/modules/notification/domain/notification.types';
 
 export class GetNotificationById implements UseCase {
   constructor(private repository: INotificationRepository) {}
