@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { InputText } from '@/presentation/modules/form/components/fields/InputText';
-import { Label } from '@/presentation/modules/form/components/fields/LabelInput';
+import { Label } from '@/presentation/modules/form/components/fields/LabelGroup';
 import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 
 type Props = {

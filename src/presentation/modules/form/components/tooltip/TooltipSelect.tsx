@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { Select } from '@/presentation/modules/form/components/fields/Select';
 import { Button } from '@/presentation/modules/button/components/Button';
-import { LabelGroup } from '@/presentation/modules/form/components/fields/LabelInput';
+import { LabelGroup } from '@/presentation/modules/form/components/fields/LabelGroup';
 import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
 
