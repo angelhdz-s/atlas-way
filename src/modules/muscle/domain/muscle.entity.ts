@@ -1,4 +1,4 @@
-import type { MuscleProps } from './muscle.types';
+import type { MuscleProps } from '@/modules/muscle/domain/muscle.types';
 
 export class Muscle {
   constructor(private data: MuscleProps) {}

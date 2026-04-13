@@ -1,6 +1,6 @@
 import type { UseCase } from '@/shared/application/use-case';
-import type { IMuscleRepository } from '../../domain/muscle.repository';
-import type { MuscleProps } from '../../domain/muscle.types';
+import type { IMuscleRepository } from '@/modules/muscle/domain/muscle.repository';
+import type { MuscleProps } from '@/modules/muscle/domain/muscle.types';
 
 export class GetMuscleById implements UseCase {
   constructor(private repository: IMuscleRepository) {}

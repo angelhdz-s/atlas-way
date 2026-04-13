@@ -1,10 +1,10 @@
 import { Failure, Success } from '@/shared/domain/result';
-import { muscleAnatomyInclude } from './muscle.prisma.types';
-import { MuscleMapper } from '../muscle.mapper';
-import type { IMuscleRepository } from '../../domain/muscle.repository';
-import type { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
-import type { MuscleProps } from '../../domain/muscle.types';
+import { muscleAnatomyInclude } from '@/modules/muscle/infrastructure/prisma/muscle.prisma.types';
+import { MuscleMapper } from '@/modules/muscle/infrastructure/muscle.mapper';
 import type { PrismaClient } from '@/prisma/client';
+import type { IMuscleRepository } from '@/modules/muscle/domain/muscle.repository';
+import type { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
+import type { MuscleProps } from '@/modules/muscle/domain/muscle.types';
 
 export class MusclePrismaRepository implements IMuscleRepository {
   constructor(

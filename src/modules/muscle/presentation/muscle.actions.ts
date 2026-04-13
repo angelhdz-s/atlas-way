@@ -6,9 +6,9 @@ import {
   ActionSuccess,
 } from '@/shared/presentation/action.response';
 import { getContainer } from '@/di/containers';
-import { MuscleMapper } from '../infrastructure/muscle.mapper';
+import { MuscleMapper } from '@/modules/muscle/infrastructure/muscle.mapper';
 import type { MuscleDTO } from '@/modules/muscle/application/dtos/muscle.dto';
-import type { MuscleProps } from '../domain/muscle.types';
+import type { MuscleProps } from '@/modules/muscle/domain/muscle.types';
 
 export async function getAllMuscles(): ActionResponse<MuscleDTO[]> {
   const container = getContainer();

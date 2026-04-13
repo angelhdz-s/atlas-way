@@ -1,6 +1,6 @@
-import type { Muscle } from './muscle.entity';
+import type { Muscle } from '@/modules/muscle/domain/muscle.entity';
 import type { RepositoryResult } from '@/shared/domain/repository.result';
-import type { MuscleProps } from './muscle.types';
+import type { MuscleProps } from '@/modules/muscle/domain/muscle.types';
 
 export interface IMuscleRepository {
   findAll: () => RepositoryResult<Muscle[]>;

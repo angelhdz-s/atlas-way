@@ -1,7 +1,7 @@
-import { Muscle } from '../domain/muscle.entity';
+import { Muscle } from '@/modules/muscle/domain/muscle.entity';
 import type { MuscleDTO } from '@/modules/muscle/application/dtos/muscle.dto';
-import type { MusclePrisma } from './prisma/muscle.prisma.types';
-import type { MuscleProps } from '../domain/muscle.types';
+import type { MusclePrisma } from '@/modules/muscle/infrastructure/prisma/muscle.prisma.types';
+import type { MuscleProps } from '@/modules/muscle/domain/muscle.types';
 
 export class MuscleMapper {
   static toDomain(data: MusclePrisma): Muscle {

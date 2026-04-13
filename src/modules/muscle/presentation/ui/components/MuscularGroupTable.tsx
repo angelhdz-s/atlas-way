@@ -1,8 +1,8 @@
-import type { MuscleDTO } from '@/modules/muscle/application/dtos/muscle.dto';
 import { TableBody } from '@/presentation/globals/components/table/TableBody';
 import { TableBodyRow } from '@/presentation/globals/components/table/TableBodyRow';
 import { TableHeader } from '@/presentation/globals/components/table/TableHeader';
 import { TableWrapper } from '@/presentation/globals/components/table/TableWrapper';
+import type { MuscleDTO } from '@/modules/muscle/application/dtos/muscle.dto';
 
 export async function MuscularGroupsTable({ muscles }: { muscles: MuscleDTO[] }) {
   const sortedMuscles = muscles.toSorted((a, b) => a.name.localeCompare(b.name));

@@ -13,7 +13,7 @@ export async function MuscularGroupsCards({ groups }: { groups: MuscularGroup[] 
 
   return sortedGroups.map((group) => (
     <Card type="dashboard" width="sm" key={group.name} className="gap-2 p-4">
-      <CardHeader title={group.name} />
+      <CardHeader>{group.name}</CardHeader>
       <CardFooter>
         <ul className="flex flex-wrap gap-2">
           {group.muscles.map((name) => (
