@@ -9,44 +9,51 @@ interface Props extends HTMLAttributes<HTMLInputElement> {
 }
 
 export function InputCheckBox(props: Props) {
-  const [active, setActive] = useState<boolean>(props.active === true);
+  const { active: activeProp, ...inputProps } = props;
+  const [active, setActive] = useState<boolean>(activeProp === true);
 
-  const handleClick = () => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     setActive((prev) => !prev);
   };
 
-  const handleEnterKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    if (e.key === 'Enter') setActive((prev) => !prev);
+  const handleEnterKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      setActive((prev) => !prev);
+    }
+    if (e.key === ' ') {
+      e.preventDefault();
+      setActive((prev) => !prev);
+    }
   };
 
-  const { active: activeProp, ...inputProps } = props;
-
   return (
-    <div
-      className="bg-back min-h-10 min-w-20 cursor-pointer rounded-lg"
-      onKeyDown={handleEnterKeyDown}
-      onClick={handleClick}
-    >
-      <ul className="flex h-full w-full items-center gap-1 p-1 text-sm">
-        <li
+    <>
+      <input
+        {...inputProps}
+        onChange={handleChange}
+        onKeyDown={handleEnterKeyDown}
+        type="checkbox"
+        checked={active}
+        aria-checked={active ? 'true' : 'false'}
+        role="switch"
+        className="peer absolute size-0 opacity-0"
+      />
+      <div
+        data-testid="input-checkbox"
+        onClick={() => setActive((prev) => !prev)}
+        className="bg-back grid h-10 w-16 cursor-pointer place-items-center rounded-md p-1 peer-focus-visible:outline"
+      >
+        <span
           className={twMerge(
             'flex h-full w-full items-center justify-center rounded px-2 py-1 transition-colors',
-            active ? 'bg-transparent' : 'bg-middle'
+            active ? 'bg-primary fg-strong-dark' : 'bg-middle'
           )}
         >
-          Off
-        </li>
-        <li
-          className={twMerge(
-            'flex h-full w-full items-center justify-center rounded px-2 py-1 transition-colors',
-            active ? 'bg-primary fg-strong-dark' : 'bg-transparent'
-          )}
-        >
-          On
-        </li>
-      </ul>
-      <input {...inputProps} type="checkbox" checked={active} hidden />
-    </div>
+          {active ? 'On' : 'Off'}
+        </span>
+      </div>
+    </>
   );
 }
