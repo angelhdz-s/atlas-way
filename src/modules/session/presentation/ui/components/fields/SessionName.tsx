@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
 import { InputText } from '@/presentation/modules/form/components/fields/InputText';
-import { Label } from '@/presentation/modules/form/components/fields/LabelGroup';
+import { Label } from '@/presentation/modules/form/components/fields/Label';
 import { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 import type { SessionForm } from '@/modules/session/presentation/ui/config/session.schema';
 

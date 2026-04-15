@@ -1,4 +1,4 @@
-import { Label } from '@/presentation/modules/form/components/fields/LabelGroup';
+import { Label } from '@/presentation/modules/form/components/fields/Label';
 import { TextArea } from '@/presentation/modules/form/components/fields/TextArea';
 import { useFormContext } from 'react-hook-form';
 import type { ExerciseFormProps } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';

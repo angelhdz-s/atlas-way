@@ -11,6 +11,7 @@ export function InputDate(props: InputDateProps) {
     const newDate = e.currentTarget.value;
     setDate(newDate);
   };
+
   return (
     <>
       <input
@@ -19,6 +20,7 @@ export function InputDate(props: InputDateProps) {
         className={`${InputClasses} ${className}`}
         onChange={handleChange}
         value={date}
+        data-testid="input-date"
       />
       {<ErrorMessage message={error} />}
     </>

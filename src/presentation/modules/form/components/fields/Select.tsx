@@ -5,7 +5,7 @@ import type { SelectOption, SelectOptionValue } from '@/presentation/modules/for
 
 type multipleSelectedType =
   | {
-      multiple: false;
+      multiple?: false | undefined;
       selected?: SelectOptionValue;
     }
   | {
@@ -43,7 +43,7 @@ export function Select({
   error,
   ...props
 }: SelectProps) {
-  const defaultValue = selected ? selectedValue(multiple, selected) : undefined;
+  const defaultValue = selected ? selectedValue(multiple ?? false, selected) : undefined;
 
   return (
     <>
@@ -56,6 +56,7 @@ export function Select({
         onChange={onChange}
         {...props}
       >
+        {options.length < 1 && <option disabled>No options found</option>}
         {options.map((option) => (
           <option
             key={option.value}
