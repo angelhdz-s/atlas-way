@@ -56,11 +56,7 @@ export function Select({
         onChange={onChange}
         {...props}
       >
-        {options.length < 1 && (
-          <option selected disabled>
-            No options found
-          </option>
-        )}
+        {options.length < 1 && <option disabled>No options found</option>}
         {options.map((option) => (
           <option
             key={option.value}
