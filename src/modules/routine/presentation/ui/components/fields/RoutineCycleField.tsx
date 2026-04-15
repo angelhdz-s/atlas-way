@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import { LabelGroup } from '@/presentation/modules/form/components/fields/Label';
+import { LabelGroup } from '@/presentation/modules/form/components/fields/LabelGroup';
 import { routineFormConfig } from '@/modules/routine/presentation/ui/routine.ui.constants';
 import { RadiobuttonGroup } from '@/presentation/modules/form/components/RadiobuttonGroup';
 import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
