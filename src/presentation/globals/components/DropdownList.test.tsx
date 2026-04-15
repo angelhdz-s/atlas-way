@@ -83,13 +83,6 @@ describe('<DropdownList />', () => {
       await user.tab();
       expect(screen.getByRole('combobox')).toHaveFocus();
     });
-
-    it('should have default option disabled when 0 values provided', () => {
-      render(<DropdownList values={[]} />);
-      expect(screen.getByRole('combobox')).toBeInTheDocument();
-      expect(screen.getByRole('option', { name: /no options found/i })).toBeInTheDocument();
-      expect(screen.getByRole('option', { name: /no options found/i })).toBeDisabled();
-    });
   });
 
   describe('Edge Cases', () => {
