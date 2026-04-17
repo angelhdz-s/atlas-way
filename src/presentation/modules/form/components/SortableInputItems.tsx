@@ -99,16 +99,13 @@ export function SortableInputItems<TForm extends FieldValues, TName extends Fiel
           Clear All
         </Button>
       </footer>
-      {isSelecting && (
-        <div className="fixed inset-0 grid place-content-center">
-          <SelectBox
-            options={selectableItems}
-            title={selectingTitle}
-            onClose={closeSelection}
-            onAdd={addMultipleItems}
-          />
-        </div>
-      )}
+      <SelectBox
+        isOpen={isSelecting}
+        options={selectableItems}
+        title={selectingTitle}
+        onClose={closeSelection}
+        onAdd={addMultipleItems}
+      />
     </div>
   );
 }

@@ -2,16 +2,24 @@
 
 import { useState } from 'react';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
+import { useLayer } from '@/presentation/globals/hooks/useLayer';
 
 export function useSelectBox({
   options,
   onAdd,
   onClose,
+  isOpen,
 }: {
   options: SelectOption[];
   onAdd: (options: SelectOption['value'][]) => void;
-  onClose?: () => void;
+  onClose: () => void;
+  isOpen: boolean;
 }) {
+  const { ref } = useLayer({
+    isOpen,
+    onClose,
+  });
+
   const [search, setSearch] = useState<string>('');
   const [selectedOptions, setSelectedOptions] = useState<SelectOption['value'][]>([]);
 
@@ -44,6 +52,7 @@ export function useSelectBox({
   };
 
   return {
+    ref,
     search,
     selectedOptions,
     filteredOptions,
