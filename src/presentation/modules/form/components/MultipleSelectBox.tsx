@@ -106,25 +106,13 @@ export function MultipleSelectBox<TForm extends FieldValues, TName extends Field
         </Box>
         <ErrorMessage message={error} />
       </div>
-      {isSelecting && (
-        <>
-          <div className="fixed top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 rounded shadow-lg">
-            <SelectBox
-              title={selectingTitle}
-              options={selectableItems}
-              onAdd={addMultipleItems}
-              onClose={closeSelection}
-            />
-          </div>
-          <div
-            onClick={closeSelection}
-            onKeyDown={(e) => {
-              if (e.key === 'Escape') closeSelection();
-            }}
-            className="light:bg-black/25 fixed inset-0 z-40 bg-black/50"
-          />
-        </>
-      )}
+      <SelectBox
+        isOpen={isSelecting}
+        title={selectingTitle}
+        options={selectableItems}
+        onAdd={addMultipleItems}
+        onClose={closeSelection}
+      />
     </>
   );
 }
