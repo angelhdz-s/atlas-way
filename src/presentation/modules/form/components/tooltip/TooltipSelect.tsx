@@ -4,17 +4,31 @@ import { Button } from '@/presentation/modules/button/components/Button';
 import { LabelGroup } from '@/presentation/modules/form/components/fields/LabelGroup';
 import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
+import { useLayer } from '@/presentation/globals/hooks/useLayer';
 
 type Props = {
   title: string;
   label: string;
   selectOptions: SelectOption[];
   onSelectChange?: (value: SelectOption['value']) => void;
-  onClose?: () => void;
+  onClose: () => void;
+  isOpen: boolean;
 };
 
-export function TooltipSelect({ label, title, onClose, onSelectChange, selectOptions }: Props) {
-  const selectRef = useRef<null | HTMLSelectElement>(null);
+export function TooltipSelect({
+  isOpen,
+  label,
+  title,
+  onClose,
+  onSelectChange,
+  selectOptions,
+}: Props) {
+  const selectRef = useRef<HTMLSelectElement | null>(null);
+
+  const { ref: tooltipRef } = useLayer({
+    onClose: onClose,
+    isOpen: true,
+  });
 
   const handleSelectOption = () => {
     if (!selectRef.current) return;
@@ -23,9 +37,11 @@ export function TooltipSelect({ label, title, onClose, onSelectChange, selectOpt
     onClose?.();
   };
 
+  if (!isOpen) return null;
+
   return (
     <div className="fixed inset-0 grid size-full place-items-center bg-black/50">
-      <div className="bg-middle w-90 space-y-4 rounded-2xl border border-white/5">
+      <div ref={tooltipRef} className="bg-middle w-90 space-y-4 rounded-2xl border border-white/5">
         <header className="flex items-center justify-between gap-2 pl-4">
           <h5>{title}</h5>
           <Button onClick={onClose} variantConfig={{ type: 'square', color: 'simple' }}>
