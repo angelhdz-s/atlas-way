@@ -1,39 +1,28 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { IconCog } from '@/presentation/globals/components/icons/outline/IconCog';
-import { IconLanguage } from '@/presentation/globals/components/icons/outline/IconLanguage';
 import { IconLogout } from '@/presentation/globals/components/icons/outline/IconLogout';
-import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
-import { useTooltipBackdrop } from '@/presentation/globals/hooks/useTooltipBackdrop';
-import { ToggleTheme } from '@/presentation/modules/theme/components/ToggleTheme';
 import { Link } from '@/presentation/modules/button/components/Link';
+import { SettingsTooltip } from '@/presentation/modules/sidebar/components/SettingsTooltip';
 
 export function SidebarFooter({ className = '' }: { className?: string }) {
-  const [open, setOpen] = useState<boolean>(false);
-
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [settingsOpen, setSettingsOpen] = useState<boolean>(false);
 
   const handleClick = () => {
-    setOpen((prev) => !prev);
+    setSettingsOpen((prev) => !prev);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setSettingsOpen(false);
   };
-
-  useTooltipBackdrop({
-    isOpen: open,
-    onClose: handleClose,
-    ref: containerRef,
-  });
 
   return (
     <footer
       className={`bg-middle relative mx-1 mb-1 flex items-center rounded transition-colors lg:p-1 lg:pr-2 lg:pl-4 ${className}`}
     >
-      <div ref={containerRef} className="w-full">
+      <div className="w-full">
         <div className="flex w-full items-center justify-center gap-1 lg:justify-between">
           <span className="hidden font-light lg:inline">General</span>
 
@@ -60,24 +49,8 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
           </aside>
         </div>
 
-        {open && (
-          <div className="bg-middle border-bd-default absolute bottom-full left-4 z-10 mb-4 ml-0 rounded-lg border p-2 shadow-lg shadow-black/30">
-            <header className="mb-2 px-2 text-base font-light">Settings</header>
-            <ul>
-              <li className="flex items-center gap-0">
-                <ToggleTheme className="w-full pl-2">Theme</ToggleTheme>
-              </li>
-              <li className="flex items-center gap-0">
-                <Button variantConfig={{ color: 'simple' }} className="pl-2">
-                  <IconLanguage strokeWidth="1.5" />
-                  Language
-                </Button>
-              </li>
-            </ul>
-          </div>
-        )}
+        <SettingsTooltip isOpen={settingsOpen} onClose={handleClose} />
       </div>
-      {open && <TooltipBackdrop />}
     </footer>
   );
 }
