@@ -1,11 +1,19 @@
 import { FormProvider } from 'react-hook-form';
-import type { ZodSchema } from 'zod/v3';
 import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
 import { Button } from '@/presentation/modules/button/components/Button';
 import {
   type ModalFormHookProps,
   useFormHook,
 } from '@/presentation/modules/form/hooks/useFormHook';
+import type { ZodSchema } from 'zod/v3';
+
+type Props<T extends ZodSchema<any, any>> = {
+  className?: string;
+  onClose?: () => void;
+  children: React.ReactNode;
+  title: string;
+  config: ModalFormHookProps<T>;
+};
 
 export function ModalForm<T extends ZodSchema<any, any>>({
   className,
@@ -13,13 +21,7 @@ export function ModalForm<T extends ZodSchema<any, any>>({
   title,
   onClose,
   config,
-}: {
-  className?: string;
-  onClose?: () => void;
-  children: React.ReactNode;
-  title: string;
-  config: ModalFormHookProps<T>;
-}) {
+}: Props<T>) {
   const { methods, handleSubmit } = useFormHook(config);
 
   return (
