@@ -8,7 +8,7 @@ import { sessionFormSchema } from '@/modules/session/presentation/ui/config/sess
 import { SessionDescription } from '@/modules/session/presentation/ui/components/fields/SessionDescription';
 import { SessionName } from '@/modules/session/presentation/ui/components/fields/SessionName';
 import { SessionExercises } from '@/modules/session/presentation/ui/components/fields/SessionExercises';
-import { SessionDTO } from '@/modules/session/application/dtos/session.dto';
+import type { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 export function SessionModalForm({
