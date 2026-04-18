@@ -18,7 +18,7 @@ const options = [
   },
 ];
 
-describe('<Radiobutton />', () => {
+describe('<RadiobuttonGroup />', () => {
   describe('Basic Rendering', () => {
     it('Should be rendered with minimum props', () => {
       render(<RadiobuttonGroup options={[]} />);
