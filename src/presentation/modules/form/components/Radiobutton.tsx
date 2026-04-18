@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
+import type { HTMLInputProps } from '@/presentation/modules/form/form.types';
 
 function RadiobuttonMark({ isChecked }: { isChecked: boolean }) {
   const borderColor = isChecked ? 'outline-bd-strong' : 'outline-bd-default';
@@ -14,12 +15,10 @@ function RadiobuttonMark({ isChecked }: { isChecked: boolean }) {
   );
 }
 
-type RadiobuttonProps = {
-  className?: string;
+type RadiobuttonProps = HTMLInputProps & {
   label: string;
   value: string;
   checked?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 export function Radiobutton({
   className = '',
@@ -29,28 +28,27 @@ export function Radiobutton({
   onChange,
   ...props
 }: RadiobuttonProps) {
-  const [isChecked, setIsChecked] = useState(checked);
-
-  const labelCheckedClass = isChecked ? 'outline-subtle/50' : 'text-default/50 outline-subtle/20';
-
-  useEffect(() => {
-    if (checked !== isChecked) setIsChecked(checked);
-  }, [checked, isChecked]);
-
   return (
-    <label
-      className={`flex h-10 items-center gap-2 rounded px-2 py-1 outline transition-colors ${labelCheckedClass} ${className}`}
-    >
-      <RadiobuttonMark isChecked={isChecked} />
+    <label className="relative">
       <input
-        checked={isChecked}
+        checked={checked}
         type="radio"
         value={value}
         onChange={onChange}
-        className="hidden"
+        className="peer absolute size-0 opacity-0"
         {...props}
+        readOnly
       />
-      <span>{label}</span>
+      <div
+        className={twMerge(
+          'outline-focus flex h-10 items-center gap-2 rounded px-2 py-1 transition-colors peer-focus:outline-2',
+          checked ? '' : 'text-default/50',
+          className
+        )}
+      >
+        <RadiobuttonMark isChecked={checked} />
+        {label}
+      </div>
     </label>
   );
 }
