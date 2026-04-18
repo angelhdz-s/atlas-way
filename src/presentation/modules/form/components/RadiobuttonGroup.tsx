@@ -32,7 +32,7 @@ export function RadiobuttonGroup({
 
   return (
     <>
-      <div className={`${className}`}>
+      <div className={`${className}`} role="radiogroup">
         {options.map((option) => (
           <Radiobutton
             key={option.value}
