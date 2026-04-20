@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-export function AllVariantButtons({ className, colors }: Props) {
+export function DevButtons({ className, colors }: Props) {
   return (
     <div className={className}>
       {colors.map((color) => (
