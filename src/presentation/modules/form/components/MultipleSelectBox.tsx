@@ -88,20 +88,20 @@ export function MultipleSelectBox<TForm extends FieldValues, TName extends Field
             ))}
           </main>
           <aside className="flex flex-col items-center justify-between gap-2">
-            <button
-              type="button"
-              className="bg-middle border-bd-default fg-strong hover:bg-back block aspect-square size-fit cursor-pointer rounded border p-1 transition-colors"
+            <Button
               onClick={openSelection}
+              variantConfig={{ type: 'square', color: 'subtle' }}
+              aria-label="Add new element"
             >
               <IconCirclePlus strokeWidth="1" />
-            </button>
-            <button
-              type="button"
-              className="bg-middle border-bd-default fg-strong hover:bg-back block aspect-square size-fit cursor-pointer rounded border p-1 transition-colors"
+            </Button>
+            <Button
               onClick={clearAllItems}
+              variantConfig={{ type: 'square', color: 'subtle' }}
+              aria-label="Clear all elements"
             >
               <IconTrash strokeWidth="1" />
-            </button>
+            </Button>
           </aside>
         </Box>
         <ErrorMessage message={error} />
