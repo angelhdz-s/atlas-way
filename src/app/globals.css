@@ -68,6 +68,8 @@
   --color-complete-dark: var(--color-green-500);
   --color-cancel-dark: var(--color-red-600);
   --color-unread-dark: var(--color-blue-500);
+  /* Accessibility */
+  --color-focus-dark: #fff;
 
   /* Light */
   /* Background */
@@ -86,6 +88,8 @@
   --color-complete-light: var(--color-green-700);
   --color-cancel-light: var(--color-red-700);
   --color-unread-light: var(--color-blue-700);
+  /* Accessibility */
+  --color-focus-light: #000;
 
   /* Dynamic Colors */
   /* Background */
