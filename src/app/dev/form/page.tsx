@@ -1,3 +1,4 @@
+import { Link } from '@/presentation/modules/button/components/Link';
 import { DevFormComponents } from './components/DevFormComponents';
 
 const Group = ({ title, children }: { title: string; children: React.ReactNode }) => (
@@ -10,6 +11,7 @@ const Group = ({ title, children }: { title: string; children: React.ReactNode }
 export default function FormPage() {
   return (
     <div className="w-full space-y-8 overflow-x-auto">
+      <Link href="/dev">Back</Link>
       <section className="flex items-center justify-center gap-4">
         <Group title="Back">
           <DevFormComponents className="outline-bd-default" />
