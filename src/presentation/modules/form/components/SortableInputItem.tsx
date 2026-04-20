@@ -1,6 +1,7 @@
 import { useSortable } from '@dnd-kit/react/sortable';
 import { IconGripVertical } from '@/presentation/globals/components/icons/outline/IconGripVertical';
 import { IconTrash } from '@/presentation/globals/components/icons/outline/IconTrash';
+import { Button } from '@/presentation/modules/button/components/Button';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 type Props = {
@@ -24,23 +25,24 @@ export function SortableInputItem({ item, index, onRemoveOption }: Props) {
       ref={ref}
     >
       <div className="flex w-full items-center">
-        <button
-          type="button"
-          className="flex aspect-square w-8 cursor-pointer items-center justify-center"
+        <Button
+          variantConfig={{ type: 'square', color: 'simple' }}
+          className="cursor-grab"
           ref={handleRef}
+          aria-label="Drag item"
         >
           <IconGripVertical className="size-5" />
-        </button>
+        </Button>
         <span className="px-2 text-sm">{index + 1}</span>
         <div>{item.label}</div>
       </div>
-      <button
-        type="button"
+      <Button
+        variantConfig={{ type: 'square', color: 'simple' }}
         onClick={handleRemoveOption}
-        className="flex aspect-square size-8 cursor-pointer items-center justify-center hover:text-current/50"
+        aria-label="Remove item"
       >
         <IconTrash className="size-5" />
-      </button>
+      </Button>
     </div>
   );
 }
