@@ -23,6 +23,7 @@ export function SortableInputItem({ item, index, onRemoveOption }: Props) {
     <div
       className="bg-middle flex min-h-10 w-full items-center gap-2 rounded-lg py-1 pr-3 pl-1"
       ref={ref}
+      data-testid="sortable-item"
     >
       <div className="flex w-full items-center">
         <Button
