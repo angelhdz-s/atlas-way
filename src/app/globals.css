@@ -108,6 +108,8 @@
   --color-complete: var(--color-complete-dark);
   --color-cancel: var(--color-cancel-dark);
   --color-unread: var(--color-unread-dark);
+  /* Accessibility */
+  --color-focus: var(--color-focus-dark);
 }
 
 /* Light Color Versions */
@@ -128,6 +130,8 @@ html[data-theme='light'] {
   --color-complete: var(--color-complete-light);
   --color-cancel: var(--color-cancel-light);
   --color-unread: var(--color-unread-light);
+  /* Accessibility */
+  --color-focus: var(--color-focus-light);
 }
 
 body {
