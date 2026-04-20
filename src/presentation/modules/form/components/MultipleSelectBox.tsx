@@ -88,10 +88,18 @@ export function MultipleSelectBox<TForm extends FieldValues, TName extends Field
             ))}
           </main>
           <aside className="flex flex-col items-center justify-between gap-2">
-            <Button onClick={openSelection} variantConfig={{ type: 'square', color: 'subtle' }}>
+            <Button
+              onClick={openSelection}
+              variantConfig={{ type: 'square', color: 'subtle' }}
+              aria-label="Add new element"
+            >
               <IconCirclePlus strokeWidth="1" />
             </Button>
-            <Button onClick={clearAllItems} variantConfig={{ type: 'square', color: 'subtle' }}>
+            <Button
+              onClick={clearAllItems}
+              variantConfig={{ type: 'square', color: 'subtle' }}
+              aria-label="Clear all elements"
+            >
               <IconTrash strokeWidth="1" />
             </Button>
           </aside>
