@@ -12,6 +12,9 @@ export default function DevPage() {
       <li>
         <Link href="/dev/form">Form</Link>
       </li>
+      <li>
+        <Link href="/dev/card">Card</Link>
+      </li>
     </ul>
   );
 }
