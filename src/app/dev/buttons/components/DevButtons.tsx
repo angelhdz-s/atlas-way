@@ -8,22 +8,22 @@ type Props = {
   className?: string;
 };
 
-export function AllVariantButtons({ className, colors }: Props) {
+export function DevButtons({ className, colors }: Props) {
   return (
     <div className={className}>
       {colors.map((color) => (
-        <div key={color} className="w-fit">
+        <div key={color} className="bg-middle w-fit space-y-4 p-8">
           <header className="fg-strong font-funnel-display text-2xl font-medium">
             {color?.toUpperCase()}
           </header>
-          <main className="flex gap-2 *:flex *:flex-col-reverse *:items-center *:justify-end *:gap-1">
-            <div className="p-4">
-              <AllButtonSizes type="normal" color={color} />
+          <main className="flex items-start gap-2 *:space-y-4">
+            <div>
               <p>Normal</p>
+              <AllButtonSizes type="normal" color={color} />
             </div>
             <div>
-              <AllButtonSizes type="square" color={color} />
               <p>Thin</p>
+              <AllButtonSizes type="square" color={color} />
             </div>
           </main>
         </div>
@@ -40,7 +40,7 @@ function AllButtonSizes({
   type?: ButtonVariantProps['type'];
 }) {
   return (
-    <>
+    <div className="space-y-2">
       <Link href="#" variantConfig={{ size: 'xs', color, type }}>
         {type === 'normal' ? 'Button XS' : <IconRocket />}
       </Link>
@@ -53,6 +53,6 @@ function AllButtonSizes({
       <Link href="#" variantConfig={{ size: 'lg', color, type }}>
         {type === 'normal' ? 'Button LG' : <IconRocket className="size-6" />}
       </Link>
-    </>
+    </div>
   );
 }
