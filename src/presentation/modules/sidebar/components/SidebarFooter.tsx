@@ -4,11 +4,12 @@ import { useState } from 'react';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { IconCog } from '@/presentation/globals/components/icons/outline/IconCog';
 import { IconLogout } from '@/presentation/globals/components/icons/outline/IconLogout';
-import { Link } from '@/presentation/modules/button/components/Link';
 import { SettingsTooltip } from '@/presentation/modules/sidebar/components/SettingsTooltip';
+import { useLogout } from '@/modules/auth/presentation/ui/hooks/useLogout';
 
 export function SidebarFooter({ className = '' }: { className?: string }) {
   const [settingsOpen, setSettingsOpen] = useState<boolean>(false);
+  const { handleLogout } = useLogout();
 
   const handleClick = () => {
     setSettingsOpen((prev) => !prev);
@@ -34,8 +35,8 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
                 </Button>
               </li>
               <li>
-                <Link
-                  href="/api/auth/signout"
+                <Button
+                  onClick={handleLogout}
                   type="button"
                   variantConfig={{
                     type: 'square',
@@ -43,7 +44,7 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
                   }}
                 >
                   <IconLogout className="-mr-1 size-6" />
-                </Link>
+                </Button>
               </li>
             </ul>
           </aside>
