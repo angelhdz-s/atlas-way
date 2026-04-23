@@ -6,9 +6,9 @@ import type { UseCase } from '@/shared/application/use-case';
 export class Logout implements UseCase {
   constructor(readonly authRepository: IAuthRepository) {}
   async execute() {
-    const session = await this.authRepository.getSession();
-    if (!session.success) return session;
-    if (!session.data) {
+    const sessionResult = await this.authRepository.getSession();
+    if (!sessionResult.success) return sessionResult;
+    if (!sessionResult.data) {
       return Failure(new SessionNotFoundError());
     }
     return await this.authRepository.logout();
