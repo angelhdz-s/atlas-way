@@ -1,4 +1,4 @@
-import { Failure } from '@/shared/domain/result';
+import { Failure, Success } from '@/shared/domain/result';
 import { SessionNotFoundError } from '@/modules/auth/domain/errors/auth.errors';
 import type { IAuthRepository } from '@/modules/auth/domain/auth.respository';
 import type { UseCase } from '@/shared/application/use-case';
@@ -11,6 +11,6 @@ export class Logout implements UseCase {
     if (!sessionResult.data) {
       return Failure(new SessionNotFoundError());
     }
-    return await this.authRepository.logout();
+    return Success(null);
   }
 }
