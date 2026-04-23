@@ -3,4 +3,5 @@ import type { AuthSession } from '@/modules/auth/domain/errors/auth-session.type
 
 export interface IAuthRepository {
   getSession(): RepositoryResult<AuthSession | null>;
+  logout(): RepositoryResult<null>;
 }
