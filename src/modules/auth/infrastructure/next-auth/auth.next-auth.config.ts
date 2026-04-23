@@ -8,5 +8,6 @@ export const nextAuthLogin = () =>
 
 export const nextAuthLogout = () =>
   nextAuthSignOut({
-    redirect: false,
+    redirect: true,
+    callbackUrl: '/',
   });
