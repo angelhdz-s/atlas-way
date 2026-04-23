@@ -38,7 +38,7 @@ export const getContainer = () => {
   const userRepository = new UserPrismaRepository(prisma, errorMapper);
 
   return {
-    auth: makeAuthModule({ authRepository }),
+    auth: makeAuthModule({ authRepository, userRepository, idGeneratorRepository }),
     exercise: makeExerciseModule({
       exerciseRepository,
       muscleRepository,
