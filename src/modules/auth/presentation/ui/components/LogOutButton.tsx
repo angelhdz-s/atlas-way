@@ -1,14 +1,12 @@
 'use client';
 
-import { redirect } from 'next/navigation';
 import { Button } from '@/presentation/modules/button/components/Button';
+import { useLogout } from '@/modules/auth/presentation/ui/hooks/useLogout';
 
 export function LogOutButton() {
-  const handleSignOut = () => {
-    redirect('/api/auth/signout');
-  };
+  const { handleLogout } = useLogout();
   return (
-    <Button type="button" variantConfig={{ color: 'subtle', size: 'sm' }} onClick={handleSignOut}>
+    <Button type="button" variantConfig={{ color: 'subtle', size: 'sm' }} onClick={handleLogout}>
       Log Out
     </Button>
   );

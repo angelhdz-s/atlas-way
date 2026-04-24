@@ -11,3 +11,9 @@ export class AutenticationServiceUnavailable extends DomainError {
     super('UNAVAILABLE_AUTENTICATION_SERVICE');
   }
 }
+
+export class SessionAlreadyActive extends DomainError {
+  constructor() {
+    super('SESSION_ALREADY_ACTIVE');
+  }
+}
