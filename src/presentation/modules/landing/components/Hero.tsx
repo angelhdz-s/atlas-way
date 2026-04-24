@@ -1,7 +1,10 @@
-import { IconArrowUp } from '@/presentation/globals/components/icons/outline/IconArrowUp';
-import { Link } from '@/presentation/modules/button/components/Link';
+import { getSession } from '@/modules/auth/presentation/auth.actions';
+import { HeroFooter } from '@/presentation/modules/landing/components/HeroFooter';
 
-export function Hero() {
+export async function Hero() {
+  const sessionResult = await getSession();
+  const isLogged = sessionResult?.data !== null;
+
   return (
     <section className="relative grid place-items-center py-16 md:min-h-160 xl:min-h-180">
       <main className="relative z-1 mx-auto flex w-full max-w-360 justify-center">
@@ -17,21 +20,7 @@ export function Hero() {
             fitness journey.
           </p>
 
-          <footer className="animate-fade-down animate-delay-200 animate-ease-out flex items-center gap-4">
-            <Link
-              variantConfig={{
-                color: 'primary',
-                size: 'lg',
-              }}
-              href="/dashboard"
-              className="mx-auto inline-flex min-h-14 items-center gap-2 rounded-full"
-            >
-              Try AtlasWay
-              <span className="material-icons">
-                <IconArrowUp className="size-5 rotate-90" />
-              </span>
-            </Link>
-          </footer>
+          <HeroFooter logged={isLogged} />
         </header>
       </main>
       <div className="light:bg-white light:mask-radial-from-10% absolute inset-0 z-0 bg-white/10 mask-radial-[50%_50%] mask-radial-from-0% mask-radial-to-50% mask-radial-at-[50%_45%] opacity-50 transition-colors"></div>
