@@ -16,7 +16,7 @@ export function DraggableBadge(props: Props) {
       className={twMerge(
         `flex h-8 w-fit items-center justify-center gap-1 border`,
         'text-strong cursor-grab rounded-lg py-1 pl-1 text-sm',
-        'bg-base shadow-back light:shadow-black/5 border-bd-default shadow-lg',
+        'bg-fill-base shadow-back light:shadow-black/5 border-bd-default shadow-lg',
         className ?? ''
       )}
     >

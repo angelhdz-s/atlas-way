@@ -1,6 +1,6 @@
 export function Footer({ className = '' }: { className?: string }) {
   return (
-    <footer className={`bg-base mt-16 flex h-48 w-full items-center ${className}`}>
+    <footer className={`bg-fill-base mt-16 flex h-48 w-full items-center ${className}`}>
       <main className="text-strong mx-auto flex max-w-5xl flex-col items-center justify-between gap-2 md:flex-row md:gap-16">
         <aside>
           <h5 className="text-2xl">

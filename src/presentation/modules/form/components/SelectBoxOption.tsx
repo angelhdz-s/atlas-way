@@ -24,7 +24,7 @@ export function SelectBoxOption({
       />
       <div
         className={twMerge(
-          'outline-focus bg-base hover:border-complete hover:text-complete light:hover:text-green-900 w-fit cursor-pointer rounded-lg border px-3 py-1 text-sm peer-focus:outline-2',
+          'outline-focus bg-fill-base hover:border-complete hover:text-complete light:hover:text-green-900 w-fit cursor-pointer rounded-lg border px-3 py-1 text-sm peer-focus:outline-2',
           isActiveClass
         )}
       >

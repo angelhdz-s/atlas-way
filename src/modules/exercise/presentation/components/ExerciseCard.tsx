@@ -29,7 +29,7 @@ export function ExerciseCard({ exercise }: { exercise: ExerciseDTO }) {
         </CardTagsWrapperFade>
         <section className="text-strong flex items-center gap-4">
           <span className="text-5xl">{`${sets} x ${reps}`}</span>
-          <div className="bg-front border-bd-muted w-fit rounded-full border px-3 py-0.5">
+          <div className="bg-fill-middle border-bd-muted w-fit rounded-full border px-3 py-0.5">
             <span className="text-2xl">{weight}</span>{' '}
             <span className="text-default text-xl font-light">lb</span>
           </div>

@@ -19,7 +19,7 @@ export function CardTitle({
       )}
     >
       {Icon && (
-        <div className="bg-front text-muted grid aspect-square size-9 place-content-center rounded-xl">
+        <div className="bg-fill-middle text-muted grid aspect-square size-9 place-content-center rounded-xl">
           <Icon strokeWidth="1.5" className="size-6" />
         </div>
       )}

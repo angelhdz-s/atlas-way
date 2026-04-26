@@ -16,7 +16,7 @@ export function Sidebar({ className = '' }: { className?: string }) {
   return (
     <aside className="w-(--sidebar-width)">
       <main
-        className={`bg-back border-bd-muted fixed top-(--header-height) left-0 z-10 flex h-(--sidebar-height) w-(--sidebar-width) flex-col gap-4 border-r shadow-2xl shadow-black/5 ${className}`}
+        className={`bg-fill-back border-bd-muted fixed top-(--header-height) left-0 z-10 flex h-(--sidebar-height) w-(--sidebar-width) flex-col gap-4 border-r shadow-2xl shadow-black/5 ${className}`}
       >
         <div className="flex-1 space-y-4 py-2 lg:p-2 lg:pt-4">
           <header>

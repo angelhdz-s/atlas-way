@@ -68,7 +68,7 @@ export function SortableInputItems<TForm extends FieldValues, TName extends Fiel
           sortField(initialIndex, index);
         }}
       >
-        <main className="bg-back min-h-16 space-y-2 rounded-lg p-2">
+        <main className="bg-fill-back min-h-16 space-y-2 rounded-lg p-2">
           {fields.map((field, index) => (
             <SortableInputItem
               key={field.fieldId}

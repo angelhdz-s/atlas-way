@@ -16,8 +16,8 @@ export const cardVariant = tv({
       dashboard: 'flex flex-col gap-6 p-8 tracking-tight shadow-xl shadow-black/2',
     },
     color: {
-      default: 'before:bg-base',
-      disabled: 'before:bg-base border-bd-default opacity-50',
+      default: 'before:bg-fill-base',
+      disabled: 'before:bg-fill-base border-bd-default opacity-50',
       main: 'bg-primary text-strong-dark before:from-accent bg-linear-45 bg-radial-[100%_100%_at_25%_25%] before:absolute before:inset-0 before:rounded-xl before:bg-radial-[200%_150%_at_200%_0%] before:to-transparent after:border-transparent',
       special: 'bg-accent text-strong-dark border-accent',
     },

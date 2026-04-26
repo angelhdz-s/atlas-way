@@ -10,7 +10,7 @@ export function LastSession({ className = '' }: { className?: string }) {
       <main className="flex flex-col gap-4">
         <header className="flex items-center">
           <h4 className="text-complete inline text-xl leading-none font-bold">Push Day</h4>
-          <span className="bg-front text-default/70 ml-2 inline rounded-full px-3 py-1 text-sm font-light">
+          <span className="bg-fill-middle text-default/70 ml-2 inline rounded-full px-3 py-1 text-sm font-light">
             Yesterday
           </span>
         </header>

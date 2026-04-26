@@ -50,11 +50,11 @@
   /* Dark */
 
   /* Background */
-  --color-back-dark: #0a0a0a;
-  --color-base-dark: #0c0c0c;
-  --color-middle-dark: #121212;
-  --color-front-dark: #161616;
-  --color-top-dark: #202020;
+  --color-fill-back-dark: #0a0a0a;
+  --color-fill-base-dark: #0c0c0c;
+  --color-fill-middle-dark: #121212;
+  --color-fill-front-dark: #161616;
+  --color-fill-top-dark: #202020;
 
   /* Foreground */
   --color-strong-dark: #fafafa;
@@ -78,11 +78,11 @@
   /* Light */
 
   /* Background */
-  --color-back-light: #f8f8ff;
-  --color-base-light: #fcfcff;
-  --color-middle-light: #eaeafa;
-  --color-front-light: #e8e8fa;
-  --color-top-light: #e4e4fa;
+  --color-fill-back-light: #f8f8ff;
+  --color-fill-base-light: #fcfcff;
+  --color-fill-middle-light: #eaeafa;
+  --color-fill-front-light: #e8e8fa;
+  --color-fill-top-light: #e4e4fa;
 
   /* Foreground */
   --color-strong-light: #050505;
@@ -106,11 +106,11 @@
   /* Dynamic Colors */
 
   /* Background */
-  --color-back: var(--color-back-dark);
-  --color-base: var(--color-base-dark);
-  --color-middle: var(--color-middle-dark);
-  --color-front: var(--color-front-dark);
-  --color-top: var(--color-top-dark);
+  --color-fill-back: var(--color-fill-back-dark);
+  --color-fill-base: var(--color-fill-base-dark);
+  --color-fill-middle: var(--color-fill-middle-dark);
+  --color-fill-front: var(--color-fill-front-dark);
+  --color-fill-top: var(--color-fill-top-dark);
 
   /* Foreground */
   --color-strong: var(--color-strong-dark);
@@ -135,11 +135,11 @@
 /* Light Color Versions */
 html[data-theme='light'] {
   /* Backgound Colors*/
-  --color-back: var(--color-back-light);
-  --color-base: var(--color-base-light);
-  --color-middle: var(--color-middle-light);
-  --color-front: var(--color-front-light);
-  --color-top: var(--color-top-light);
+  --color-fill-back: var(--color-fill-back-light);
+  --color-fill-base: var(--color-fill-base-light);
+  --color-fill-middle: var(--color-fill-middle-light);
+  --color-fill-front: var(--color-fill-front-light);
+  --color-fill-top: var(--color-fill-top-light);
 
   /* Foreground Colors */
   --color-strong: var(--color-strong-light);
@@ -163,7 +163,7 @@ html[data-theme='light'] {
 
 body {
   position: relative;
-  background: var(--color-back);
+  background: var(--color-fill-back);
   color: var(--color-default);
   font-family: 'Outfit', sans-serif;
   font-size: 1rem;

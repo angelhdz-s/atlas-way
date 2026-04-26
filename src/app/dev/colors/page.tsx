@@ -43,9 +43,9 @@ export default function ColorsPage() {
         <div className="grid grid-cols-[156px_1fr] items-center">
           <SectionHeading text="Fill" />
           <ul className="flex items-center justify-start gap-8">
-            <li className="bg-front rounded p-2">Front</li>
-            <li className="bg-base rounded p-2">Middle</li>
-            <li className="bg-back rounded p-2">Back</li>
+            <li className="bg-fill-middle rounded p-2">Front</li>
+            <li className="bg-fill-base rounded p-2">Middle</li>
+            <li className="bg-fill-back rounded p-2">Back</li>
           </ul>
         </div>
 

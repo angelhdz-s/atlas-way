@@ -21,9 +21,9 @@ export function RoutineSessionPlanDroppableItem({ id, text, children, dndConfig,
   return (
     <div
       ref={ref}
-      className={`bg-back h-20 rounded text-sm ${dndConfig.droppedId ? 'outline-bd-default outline' : 'opacity-80'}`}
+      className={`bg-fill-back h-20 rounded text-sm ${dndConfig.droppedId ? 'outline-bd-default outline' : 'opacity-80'}`}
     >
-      <header className="bg-base border-bd-muted flex h-9 items-center justify-between rounded-t border px-1.5 leading-none">
+      <header className="bg-fill-base border-bd-muted flex h-9 items-center justify-between rounded-t border px-1.5 leading-none">
         <h4 className={dndConfig.droppedId ? 'text-strong font-medium' : ''}>{text}</h4>
         {onAdd !== undefined && (
           <Button

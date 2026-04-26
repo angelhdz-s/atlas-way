@@ -44,7 +44,7 @@ function DefaultStatusIcon({ Icon }: { Icon: IconTypes }) {
 function WeekDayTooltip({ date }: { date: Date }) {
   const dayOfWeek = DAYS[(date.getDay() + 1) as DayWeeksType].shortName;
   return (
-    <div className="bg-sec after:bg-base absolute bottom-[calc(100%+0.75rem)] left-2 hidden h-fit w-fit rounded-full px-4 group-hover:block after:absolute after:inset-0 after:top-auto after:-bottom-1 after:z-0 after:mx-auto after:size-2 after:rotate-45">
+    <div className="bg-sec after:bg-fill-base absolute bottom-[calc(100%+0.75rem)] left-2 hidden h-fit w-fit rounded-full px-4 group-hover:block after:absolute after:inset-0 after:top-auto after:-bottom-1 after:z-0 after:mx-auto after:size-2 after:rotate-45">
       <span className="block w-fit py-1.5 text-xs leading-none font-medium text-zinc-400">
         {dayOfWeek}
       </span>

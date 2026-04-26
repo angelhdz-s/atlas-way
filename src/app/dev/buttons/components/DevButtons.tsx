@@ -12,7 +12,7 @@ export function DevButtons({ className, colors }: Props) {
   return (
     <div className={className}>
       {colors.map((color) => (
-        <div key={color} className="bg-base w-fit space-y-4 p-8">
+        <div key={color} className="bg-fill-base w-fit space-y-4 p-8">
           <header className="text-strong font-funnel-display text-2xl font-medium">
             {color?.toUpperCase()}
           </header>

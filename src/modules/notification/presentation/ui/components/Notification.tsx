@@ -12,7 +12,7 @@ export function Notification({
 }) {
   const { title, description, date, notSeen, url } = data;
 
-  const notificationClass = notSeen ? 'bg-base' : '';
+  const notificationClass = notSeen ? 'bg-fill-base' : '';
 
   return (
     <article

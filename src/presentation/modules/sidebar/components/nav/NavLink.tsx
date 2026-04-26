@@ -29,7 +29,7 @@ export function NavLink({
       {children}
       <span
         className={twMerge(
-          'bg-base border-bd-default light:shadow-black/5 shadow-back/50 shadow-lg',
+          'bg-fill-base border-bd-default light:shadow-black/5 shadow-back/50 shadow-lg',
           'absolute inset-y-0 left-14 my-auto hidden h-fit w-fit rounded-lg border px-3 py-1.5 transition-colors',
           'group-hover:text-strong group-hover:block',
           active

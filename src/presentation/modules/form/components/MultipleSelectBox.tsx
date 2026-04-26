@@ -21,7 +21,7 @@ function SelectedOptions({ option, onCrossClick }: SelectedOption) {
     onCrossClick?.(option.value);
   };
   return (
-    <div className="bg-base border-bd-muted flex w-fit max-w-36 items-center gap-0.5 rounded-lg border px-1 py-1 pl-3 hover:border-transparent">
+    <div className="bg-fill-base border-bd-muted flex w-fit max-w-36 items-center gap-0.5 rounded-lg border px-1 py-1 pl-3 hover:border-transparent">
       <span className="truncate">{option.label}</span>
       {onCrossClick && (
         <Button

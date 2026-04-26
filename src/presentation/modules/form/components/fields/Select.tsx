@@ -61,7 +61,7 @@ export function Select({
           <option
             key={option.value}
             value={option.value}
-            className="bg-base focus:bg-back hover:bg-back"
+            className="bg-fill-base focus:bg-fill-back hover:bg-fill-back"
           >
             {option.label}
           </option>

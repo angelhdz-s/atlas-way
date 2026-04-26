@@ -17,10 +17,10 @@ export default function FormPage() {
           <DevFormComponents className="outline-bd-default" />
         </Group>
         <Group title="Middle">
-          <DevFormComponents className="bg-base outline-bd-default" />
+          <DevFormComponents className="bg-fill-base outline-bd-default" />
         </Group>
         <Group title="Front">
-          <DevFormComponents className="bg-front outline-bd-default" />
+          <DevFormComponents className="bg-fill-middle outline-bd-default" />
         </Group>
       </section>
     </div>
