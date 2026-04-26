@@ -9,7 +9,7 @@ export function LastSession({ className = '' }: { className?: string }) {
       <CardTitle Icon={IconPlayerTrackPrev} title="Last Sessions" />
       <main className="flex flex-col gap-4">
         <header className="flex items-center">
-          <h4 className="text-complete inline text-xl leading-none font-bold">Push Day</h4>
+          <h4 className="text-success inline text-xl leading-none font-bold">Push Day</h4>
           <span className="bg-fill-middle text-fg-default/70 ml-2 inline rounded-full px-3 py-1 text-sm font-light">
             Yesterday
           </span>
@@ -18,7 +18,7 @@ export function LastSession({ className = '' }: { className?: string }) {
           <ul className="font-sm font-light">
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SIconCircleCheck className="text-complete mr-1 size-6" />
+                <SIconCircleCheck className="text-success mr-1 size-6" />
                 <span className="leading-none">Push Ups</span>
               </main>
               <aside>
@@ -28,7 +28,7 @@ export function LastSession({ className = '' }: { className?: string }) {
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SIconCircleCheck className="text-complete mr-1 size-6" />
+                <SIconCircleCheck className="text-success mr-1 size-6" />
                 <span className="leading-none">Lateral Raises</span>
               </main>
               <aside>
@@ -38,7 +38,7 @@ export function LastSession({ className = '' }: { className?: string }) {
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SIconCircleCheck className="text-complete mr-1 size-6" />
+                <SIconCircleCheck className="text-success mr-1 size-6" />
                 <span className="leading-none">Abs</span>
               </main>
               <aside>
@@ -48,7 +48,7 @@ export function LastSession({ className = '' }: { className?: string }) {
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SIconCircleCheck className="text-complete mr-1 size-6" />
+                <SIconCircleCheck className="text-success mr-1 size-6" />
                 <span className="leading-none">Dips</span>
               </main>
               <aside>

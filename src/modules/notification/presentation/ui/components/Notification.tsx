@@ -31,7 +31,7 @@ export function Notification({
             </h3>
           </Link>
           {notSeen && (
-            <span className="bg-unread absolute inset-y-0 left-full my-auto ml-2 block size-2 rounded-full"></span>
+            <span className="bg-info absolute inset-y-0 left-full my-auto ml-2 block size-2 rounded-full"></span>
           )}
         </header>
         <footer>

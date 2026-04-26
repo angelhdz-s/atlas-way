@@ -56,14 +56,14 @@ function StatusDay({ status, className }: { status: StatusDayType; className?: s
   if (status === 'completed')
     return (
       <span className={` ${className}`}>
-        <StatusDaySolidIcon className="text-complete" icon={SIconCircleCheck} />
+        <StatusDaySolidIcon className="text-success" icon={SIconCircleCheck} />
       </span>
     );
 
   if (status === 'canceled')
     return (
       <span className={` ${className}`}>
-        <StatusDaySolidIcon className="text-cancel" icon={SIconCircleX} />
+        <StatusDaySolidIcon className="text-danger" icon={SIconCircleX} />
       </span>
     );
 

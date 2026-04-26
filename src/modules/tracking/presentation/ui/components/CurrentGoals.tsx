@@ -8,7 +8,7 @@ function PercentageBar({ value, target }: { value: number; target: number }) {
   return (
     <div className="bg-subtle/20 h-1 w-full overflow-hidden rounded-full">
       <div
-        className={`bg-complete h-1 rounded-full transition-all duration-500 ${styles['animate-scale-x-right']}`}
+        className={`bg-success h-1 rounded-full transition-all duration-500 ${styles['animate-scale-x-right']}`}
         style={{ width: `${percentage}%` }}
       ></div>
     </div>
@@ -25,7 +25,7 @@ type GoalItemType = {
 function GoalItem({ className = '', goal }: { className?: string; goal: GoalItemType }) {
   const { name, value, target } = goal;
 
-  const completedClass = value >= target ? 'text-complete' : '';
+  const completedClass = value >= target ? 'text-success' : '';
 
   return (
     <article

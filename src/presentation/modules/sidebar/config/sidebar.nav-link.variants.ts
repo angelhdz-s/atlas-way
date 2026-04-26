@@ -8,7 +8,7 @@ export const sidebarNavLinkVariants = tv({
     },
     notice: {
       unread:
-        'before:bg-unread before:absolute before:top-2.5 before:left-5.5 before:z-1 before:size-2.5 before:rounded-full lg:before:inset-y-0 lg:before:right-4 lg:before:left-auto lg:before:my-auto',
+        'before:bg-info before:absolute before:top-2.5 before:left-5.5 before:z-1 before:size-2.5 before:rounded-full lg:before:inset-y-0 lg:before:right-4 lg:before:left-auto lg:before:my-auto',
     },
   },
   compoundVariants: [

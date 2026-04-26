@@ -1,6 +1,6 @@
 export const STATUS_TEXT_COLORS = {
-  completed: 'text-complete font-medium',
-  canceled: 'text-cancel font-medium',
+  completed: 'text-success font-medium',
+  canceled: 'text-danger font-medium',
   pending: 'text-fg-default',
 };
 

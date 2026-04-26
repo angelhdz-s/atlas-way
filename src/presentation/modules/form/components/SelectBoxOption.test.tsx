@@ -74,7 +74,7 @@ describe('<SelectBoxOption />', () => {
 
     it('Should be highlighted when isSelected prop is "true"', async () => {
       render(<SelectBoxOption onSelect={() => {}} option={options[0]} isSelected />);
-      expect(screen.getByText(options[0].label)).toHaveClass('border-complete');
+      expect(screen.getByText(options[0].label)).toHaveClass('border-success');
     });
 
     it('Should not be highlighted when isSelected prop is not provided or as "false"', () => {

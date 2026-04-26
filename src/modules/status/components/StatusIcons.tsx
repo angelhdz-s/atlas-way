@@ -3,11 +3,11 @@ import { SIconCircleCheck } from '@/presentation/globals/components/icons/solid/
 import { SIconCircleX } from '@/presentation/globals/components/icons/solid/SIconCircleX';
 
 export function CompletedIcon({ className }: { className?: string }) {
-  return <SIconCircleCheck className={`${className} text-complete`} />;
+  return <SIconCircleCheck className={`${className} text-success`} />;
 }
 
 export function CanceledIcon({ className }: { className?: string }) {
-  return <SIconCircleX className={`${className} text-cancel`} />;
+  return <SIconCircleX className={`${className} text-danger`} />;
 }
 
 export function PendingIcon({ className }: { className?: string }) {
