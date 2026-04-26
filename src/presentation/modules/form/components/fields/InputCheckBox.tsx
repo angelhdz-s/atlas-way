@@ -48,7 +48,7 @@ export function InputCheckBox(props: Props) {
         <span
           className={twMerge(
             'flex h-full w-full items-center justify-center rounded px-2 py-1 transition-colors',
-            active ? 'bg-primary fg-strong-dark' : 'bg-middle'
+            active ? 'bg-primary text-strong-dark' : 'bg-base'
           )}
         >
           {active ? 'On' : 'Off'}

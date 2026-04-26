@@ -21,7 +21,7 @@ export function Modal({
 
   return (
     <div className={`fixed inset-0 z-50 m-auto flex items-center justify-center ${className}`}>
-      <div ref={ref} className="bg-middle z-50 rounded-2xl shadow-lg">
+      <div ref={ref} className="bg-base z-50 rounded-2xl shadow-lg">
         {children}
       </div>
       <div className="fixed inset-0 z-0 bg-black/30 select-none"></div>

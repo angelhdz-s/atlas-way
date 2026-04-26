@@ -41,7 +41,7 @@ export function TooltipSelect({
 
   return (
     <div className="fixed inset-0 grid size-full place-items-center bg-black/50">
-      <div ref={tooltipRef} className="bg-middle w-90 space-y-4 rounded-2xl border border-white/5">
+      <div ref={tooltipRef} className="bg-base w-90 space-y-4 rounded-2xl border border-white/5">
         <header className="flex items-center justify-between gap-2 pl-4">
           <h5>{title}</h5>
           <Button onClick={onClose} variantConfig={{ type: 'square', color: 'simple' }}>

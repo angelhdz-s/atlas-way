@@ -1,10 +1,10 @@
 import { tv, type VariantProps } from 'tailwind-variants';
 
 export const sidebarNavLinkVariants = tv({
-  base: 'group fg-strong hover:fg-default relative mx-auto grid aspect-square h-10 w-10 place-content-center justify-center rounded-lg font-light transition-colors lg:mx-auto lg:flex lg:aspect-auto lg:w-full lg:place-content-start lg:items-center lg:gap-2 lg:px-4',
+  base: 'group text-strong hover:text-default relative mx-auto grid aspect-square h-10 w-10 place-content-center justify-center rounded-lg font-light transition-colors lg:mx-auto lg:flex lg:aspect-auto lg:w-full lg:place-content-start lg:items-center lg:gap-2 lg:px-4',
   variants: {
     active: {
-      true: 'bg-primary fg-strong-dark hover:fg-strong-dark',
+      true: 'bg-primary text-strong-dark hover:text-strong-dark',
     },
     notice: {
       unread:

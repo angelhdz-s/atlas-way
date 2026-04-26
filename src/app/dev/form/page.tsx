@@ -3,7 +3,7 @@ import { DevFormComponents } from './components/DevFormComponents';
 
 const Group = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <div className="w-100 space-y-4">
-    <h5 className="font-funnel-display fg-strong text-center text-4xl font-bold">{title}</h5>
+    <h5 className="font-funnel-display text-strong text-center text-4xl font-bold">{title}</h5>
     <div>{children}</div>
   </div>
 );
@@ -17,7 +17,7 @@ export default function FormPage() {
           <DevFormComponents className="outline-bd-default" />
         </Group>
         <Group title="Middle">
-          <DevFormComponents className="bg-middle outline-bd-default" />
+          <DevFormComponents className="bg-base outline-bd-default" />
         </Group>
         <Group title="Front">
           <DevFormComponents className="bg-front outline-bd-default" />

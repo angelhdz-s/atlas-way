@@ -11,7 +11,7 @@ export function Label({
 }) {
   return (
     <label htmlFor={htmlFor} className={`flex flex-col gap-2 ${className}`}>
-      <span className="fg-strong pl-0.5 font-medium whitespace-nowrap">{title}</span>
+      <span className="text-strong pl-0.5 font-medium whitespace-nowrap">{title}</span>
       {children}
     </label>
   );

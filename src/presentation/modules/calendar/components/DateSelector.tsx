@@ -16,7 +16,7 @@ function ArrowButton({
     <button
       type="button"
       onClick={onClick}
-      className={`hover:fg-strong grid size-6 cursor-pointer place-content-center rounded-full transition-colors ${className} `}
+      className={`hover:text-strong grid size-6 cursor-pointer place-content-center rounded-full transition-colors ${className} `}
     >
       {children}
     </button>
@@ -41,7 +41,7 @@ function DateController({
       <ArrowButton onClick={onPreviousClick} className="text-default/25">
         <IconArrowUp className="-mb-1.5 size-8" strokeWidth="2" />
       </ArrowButton>
-      <span className="fg-strong text-3xl font-bold">{children}</span>
+      <span className="text-strong text-3xl font-bold">{children}</span>
       <ArrowButton onClick={onNextClick} className="text-default/25">
         <IconArrowUp className="size-8 rotate-180" strokeWidth="2" />
       </ArrowButton>
@@ -65,7 +65,7 @@ export function DateSelector({ className = '' }: { className?: string }) {
     <section
       className={`border-bd-default flex w-full flex-1 flex-col items-center justify-center gap-4 rounded-xl border p-6 ${className}`}
     >
-      <header className="font-funnel-display fg-strong text-4xl font-medium">
+      <header className="font-funnel-display text-strong text-4xl font-medium">
         <h2>Friday, July 5</h2>
       </header>
       <main className="flex gap-4">

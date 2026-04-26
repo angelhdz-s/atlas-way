@@ -42,7 +42,7 @@ export function ToastItem({ toast, onClose }: Props) {
       <button
         type="button"
         onClick={onClose}
-        className="fg-muted cursor-pointer transition-opacity hover:opacity-50"
+        className="text-muted cursor-pointer transition-opacity hover:opacity-50"
       >
         <IconXMark className="size-5" />
       </button>

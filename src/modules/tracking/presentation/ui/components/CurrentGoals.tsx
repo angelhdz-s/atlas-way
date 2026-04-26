@@ -25,11 +25,11 @@ type GoalItemType = {
 function GoalItem({ className = '', goal }: { className?: string; goal: GoalItemType }) {
   const { name, value, target } = goal;
 
-  const completedClass = value >= target ? 'fg-complete' : '';
+  const completedClass = value >= target ? 'text-complete' : '';
 
   return (
     <article
-      className={`bg-subtle/5 fg-strong flex flex-col gap-1 rounded-lg px-4 py-2 ${completedClass} ${className}`}
+      className={`bg-subtle/5 text-strong flex flex-col gap-1 rounded-lg px-4 py-2 ${completedClass} ${className}`}
     >
       <header className="flex items-center justify-between gap-2">
         <h3 className="text-base">{name}</h3>

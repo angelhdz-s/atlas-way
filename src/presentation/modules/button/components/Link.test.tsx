@@ -36,7 +36,7 @@ describe('<Link />', () => {
     describe('should apply class based on variantConfig color', () => {
       const cases = [
         { color: 'primary', expectedClass: 'bg-primary' },
-        { color: 'simple', expectedClass: 'fg-default' },
+        { color: 'simple', expectedClass: 'text-default' },
         { color: 'subtle', expectedClass: 'bg-subtle/20' },
       ];
 

@@ -29,8 +29,8 @@ export function ExercisesTable({ exercises }: Props) {
       <TableBody>
         {exercises.map(({ id, name, description, sets, reps, weight, createdAt }, index) => (
           <TableBodyRow key={id}>
-            <td className="fg-muted w-10 text-center font-light md:w-12">{index + 1}</td>
-            <td className="fg-strong truncate">{name}</td>
+            <td className="text-muted w-10 text-center font-light md:w-12">{index + 1}</td>
+            <td className="text-strong truncate">{name}</td>
             <td className="hidden w-[40%] truncate pr-4 xl:table-cell">{description}</td>
             <td className="text-center">{sets}</td>
             <td className="text-center">{reps}</td>

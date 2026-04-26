@@ -9,7 +9,7 @@ function CalendarHeader({ className = '' }: { className?: string }) {
     <header className={` ${className}`}>
       <ul className="font-funnel-display grid grid-cols-[1fr_auto_1fr] font-light">
         <li className="text-default/50">July</li>
-        <li className="fg-strong text-xl">August 2024</li>
+        <li className="text-strong text-xl">August 2024</li>
         <li className="text-default/50 text-right">September</li>
       </ul>
     </header>
@@ -39,7 +39,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
           <IconCircleCheck className="mx-auto size-5" />
         </footer>
       </li>
-      <li className="bg-subtle/10 fg-accent flex flex-col items-center gap-2 text-xl leading-[1.2] font-medium">
+      <li className="bg-subtle/10 text-accent flex flex-col items-center gap-2 text-xl leading-[1.2] font-medium">
         <main>
           <header>Sat</header>
           <footer>09</footer>

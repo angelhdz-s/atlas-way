@@ -12,7 +12,7 @@ export function Notification({
 }) {
   const { title, description, date, notSeen, url } = data;
 
-  const notificationClass = notSeen ? 'bg-middle' : '';
+  const notificationClass = notSeen ? 'bg-base' : '';
 
   return (
     <article
@@ -25,7 +25,7 @@ export function Notification({
         <header className="relative w-fit">
           <Link href={url || '/dashboard/notifications'} className="flex w-fit items-center gap-2">
             <h3
-              className={`line-clamp-1 w-fit text-base ${notSeen ? 'fg-strong font-medium' : ''}`}
+              className={`line-clamp-1 w-fit text-base ${notSeen ? 'text-strong font-medium' : ''}`}
             >
               {title}
             </h3>

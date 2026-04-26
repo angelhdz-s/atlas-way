@@ -10,10 +10,6 @@
 
 @custom-variant light (&:where([data-theme=light], [data-theme=light] *));
 
-@utility fg-* {
-  color: --value(--color-*);
-}
-
 @utility no-scrollbar {
   &::-webkit-scrollbar {
     display: none;
@@ -52,62 +48,86 @@
 	*/
 
   /* Dark */
+
   /* Background */
   --color-back-dark: #0a0a0a;
-  --color-middle-dark: #0c0c0c;
-  --color-front-dark: #121212;
+  --color-base-dark: #0c0c0c;
+  --color-middle-dark: #121212;
+  --color-front-dark: #161616;
+  --color-top-dark: #202020;
+
   /* Foreground */
   --color-strong-dark: #fafafa;
   --color-default-dark: #c0c0c0;
+  --color-subtle-dark: #a0a0a0;
   --color-muted-dark: #a0a0a0;
+
   /* Borders */
   --color-bd-strong-dark: #272727;
   --color-bd-default-dark: #202020;
   --color-bd-muted-dark: #1a1a1a;
+
   /* Status */
   --color-complete-dark: var(--color-green-500);
   --color-cancel-dark: var(--color-red-600);
   --color-unread-dark: var(--color-blue-500);
+
   /* Accessibility */
   --color-focus-dark: #fff;
 
   /* Light */
+
   /* Background */
   --color-back-light: #f8f8ff;
-  --color-middle-light: #fcfcff;
-  --color-front-light: #eaeafa;
+  --color-base-light: #fcfcff;
+  --color-middle-light: #eaeafa;
+  --color-front-light: #e8e8fa;
+  --color-top-light: #e4e4fa;
+
   /* Foreground */
   --color-strong-light: #050505;
   --color-default-light: #2a2a2a;
+  --color-subtle-light: #2a2a2a;
   --color-muted-light: #4a4a4a;
+
   /* Borders */
   --color-bd-strong-light: #d0d0d0;
   --color-bd-default-light: #d9d9d9;
   --color-bd-muted-light: #e0e0e0;
+
   /* Status */
   --color-complete-light: var(--color-green-700);
   --color-cancel-light: var(--color-red-700);
   --color-unread-light: var(--color-blue-700);
+
   /* Accessibility */
   --color-focus-light: #000;
 
   /* Dynamic Colors */
+
   /* Background */
   --color-back: var(--color-back-dark);
+  --color-base: var(--color-base-dark);
   --color-middle: var(--color-middle-dark);
   --color-front: var(--color-front-dark);
+  --color-top: var(--color-top-dark);
+
   /* Foreground */
   --color-strong: var(--color-strong-dark);
   --color-default: var(--color-default-dark);
+  --color-subtle: var(--color-subtle-dark);
   --color-muted: var(--color-muted-dark);
+
   /* Border */
   --color-bd-strong: var(--color-bd-strong-dark);
   --color-bd-default: var(--color-bd-default-dark);
   --color-bd-muted: var(--color-bd-muted-dark);
+
   /* Status */
   --color-complete: var(--color-complete-dark);
   --color-cancel: var(--color-cancel-dark);
   --color-unread: var(--color-unread-dark);
+
   /* Accessibility */
   --color-focus: var(--color-focus-dark);
 }
@@ -116,20 +136,27 @@
 html[data-theme='light'] {
   /* Backgound Colors*/
   --color-back: var(--color-back-light);
+  --color-base: var(--color-base-light);
   --color-middle: var(--color-middle-light);
   --color-front: var(--color-front-light);
+  --color-top: var(--color-top-light);
+
   /* Foreground Colors */
   --color-strong: var(--color-strong-light);
   --color-default: var(--color-default-light);
+  --color-subtle: var(--color-subtle-light);
   --color-muted: var(--color-muted-light);
+
   /* Border Colors */
   --color-bd-strong: var(--color-bd-strong-light);
   --color-bd-default: var(--color-bd-default-light);
   --color-bd-muted: var(--color-bd-muted-light);
+
   /* Status */
   --color-complete: var(--color-complete-light);
   --color-cancel: var(--color-cancel-light);
   --color-unread: var(--color-unread-light);
+
   /* Accessibility */
   --color-focus: var(--color-focus-light);
 }

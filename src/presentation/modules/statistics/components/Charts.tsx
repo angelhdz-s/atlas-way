@@ -39,7 +39,7 @@ export function LineChart({
         <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="0%">
           <animate attributeName="y2" values="0%;100%" dur="0.3s" begin="0.3s" fill="freeze" />
 
-          <stop offset="0%" stopColor="currentColor" className="fg-primary"></stop>
+          <stop offset="0%" stopColor="currentColor" className="text-primary"></stop>
           <stop offset="100%" stopColor="currentColor" className="text-secondary/0" />
         </linearGradient>
       </defs>
@@ -53,7 +53,7 @@ export function LineChart({
         stroke="currentColor"
         strokeWidth={1}
         strokeLinecap="round"
-        className="fg-bd-strong"
+        className="text-bd-strong"
       />
 
       {data.map((p, i) => (
@@ -63,7 +63,7 @@ export function LineChart({
           cy={scaleY(p.y)}
           r={3}
           fill="currentColor"
-          className="fg-primary"
+          className="text-primary"
           opacity={0}
         >
           <animate
@@ -81,7 +81,7 @@ export function LineChart({
         d={pathD + ` V ${height - padding} H ${scaleX(data[0].x)} Z`}
         fill="url(#lineGradient)"
         stroke="none"
-        className="fg-primary"
+        className="text-primary"
       ></path>
 
       <path
@@ -91,7 +91,7 @@ export function LineChart({
         strokeWidth={3}
         strokeLinejoin="round"
         strokeLinecap="round"
-        className="fg-primary"
+        className="text-primary"
         strokeDasharray={3000}
         strokeDashoffset={3000}
       >
@@ -146,7 +146,7 @@ export function BarCharts({
           <stop offset="100%" stopColor="currentColor" className="text-primary/5" opacity={0} />
         </linearGradient>
         <linearGradient id="strokeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="10%" stopColor="currentColor" className="fg-primary" />
+          <stop offset="10%" stopColor="currentColor" className="text-primary" />
           <stop offset="80%" stopColor="currentColor" className="text-primary/5" />
           <stop offset="100%" stopColor="currentColor" className="text-primary/0" opacity={0} />
         </linearGradient>
@@ -161,7 +161,7 @@ export function BarCharts({
         stroke="currentColor"
         strokeWidth={1}
         strokeLinecap="round"
-        className="fg-bd-strong"
+        className="text-bd-strong"
       />
 
       {Array.from({ length: maxY - 1 }).map((_, i) => (
@@ -174,7 +174,7 @@ export function BarCharts({
           stroke="currentColor"
           strokeWidth={1}
           strokeLinecap="round"
-          className="fg-bd-default"
+          className="text-bd-default"
         />
       ))}
 

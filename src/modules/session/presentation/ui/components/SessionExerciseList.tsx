@@ -21,7 +21,7 @@ export function SessionExercisesList({ exercises }: { exercises: ExerciseDTO[] }
 
       {exercises.map(({ name, sets, reps, weight, id }, index) => (
         <SessionExerciseRow key={id}>
-          <li className="fg-muted">{index + 1}</li>
+          <li className="text-muted">{index + 1}</li>
           <li className="truncate">{name}</li>
           <li className="text-center">{sets}</li>
           <li className="text-center">{reps}</li>

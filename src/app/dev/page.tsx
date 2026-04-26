@@ -4,6 +4,9 @@ export default function DevPage() {
   return (
     <ul className="space-y-4">
       <li>
+        <Link href="/dev/colors">Colors</Link>
+      </li>
+      <li>
         <Link href="/dev/buttons">Buttons</Link>
       </li>
       <li>

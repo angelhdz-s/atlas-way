@@ -14,13 +14,13 @@ function BestRecordItem({ record }: { record: BestRecordItemType }) {
   return (
     <article className="bg-subtle/5 rounded-lg px-4 py-1">
       <header className="flex items-center justify-between">
-        <h3 className="fg-strong">{name}</h3>
+        <h3 className="text-strong">{name}</h3>
         <aside>
-          <span className="fg-default/50 text-sm font-light">{date}</span>
+          <span className="text-default/50 text-sm font-light">{date}</span>
         </aside>
       </header>
       <main className="flex items-baseline gap-1">
-        <span className="fg-strong text-base">{value}</span>{' '}
+        <span className="text-strong text-base">{value}</span>{' '}
         <span className="text-sm font-light">{metric}</span>
       </main>
     </article>

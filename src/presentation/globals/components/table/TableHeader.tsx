@@ -4,7 +4,7 @@ type Props = {
 export function TableHeader({ children }: Props) {
   return (
     <thead className="h-10 divide-y">
-      <tr className="fg-muted text-sm font-light md:text-base">{children}</tr>
+      <tr className="text-muted text-sm font-light md:text-base">{children}</tr>
     </thead>
   );
 }

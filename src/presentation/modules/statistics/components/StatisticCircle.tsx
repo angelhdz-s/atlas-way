@@ -11,11 +11,11 @@ export function StatisticCircle({
 }) {
   return (
     <div className="relative grid size-28 place-content-center text-center">
-      <header className="fg-muted relative z-1 text-sm leading-[1.2]">{title}</header>
-      <main className="fg-strong font-funnel-display relative z-1 text-xl leading-[1.2]">
+      <header className="text-muted relative z-1 text-sm leading-[1.2]">{title}</header>
+      <main className="text-strong font-funnel-display relative z-1 text-xl leading-[1.2]">
         {value}
       </main>
-      <div className="fg-primary absolute inset-0 rounded-full">
+      <div className="text-primary absolute inset-0 rounded-full">
         <IconCircle
           className="size-28 -rotate-90"
           strokeWidth="0.5"

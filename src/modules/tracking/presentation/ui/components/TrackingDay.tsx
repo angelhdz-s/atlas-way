@@ -44,7 +44,7 @@ function DefaultStatusIcon({ Icon }: { Icon: IconTypes }) {
 function WeekDayTooltip({ date }: { date: Date }) {
   const dayOfWeek = DAYS[(date.getDay() + 1) as DayWeeksType].shortName;
   return (
-    <div className="bg-sec after:bg-middle absolute bottom-[calc(100%+0.75rem)] left-2 hidden h-fit w-fit rounded-full px-4 group-hover:block after:absolute after:inset-0 after:top-auto after:-bottom-1 after:z-0 after:mx-auto after:size-2 after:rotate-45">
+    <div className="bg-sec after:bg-base absolute bottom-[calc(100%+0.75rem)] left-2 hidden h-fit w-fit rounded-full px-4 group-hover:block after:absolute after:inset-0 after:top-auto after:-bottom-1 after:z-0 after:mx-auto after:size-2 after:rotate-45">
       <span className="block w-fit py-1.5 text-xs leading-none font-medium text-zinc-400">
         {dayOfWeek}
       </span>
@@ -79,9 +79,9 @@ export function TrackingDay({
       className={`group group border-subtle/20 relative flex w-full flex-col rounded-md border transition-colors hover:border-zinc-900 ${main ? 'min-h-54' : 'min-h-48'} ${className} ${dayTypeClass}`}
     >
       <header
-        className={`flex items-center justify-between bg-zinc-900/80 ${main ? 'h-10 px-4 text-base' : 'h-8 px-2 text-sm'} group-hover:fg-strong rounded-t transition-colors`}
+        className={`flex items-center justify-between bg-zinc-900/80 ${main ? 'h-10 px-4 text-base' : 'h-8 px-2 text-sm'} group-hover:text-strong rounded-t transition-colors`}
       >
-        <span className="fg-strong flex-1 cursor-pointer overflow-hidden pr-2 font-medium text-ellipsis whitespace-nowrap hover:text-current/50">
+        <span className="text-strong flex-1 cursor-pointer overflow-hidden pr-2 font-medium text-ellipsis whitespace-nowrap hover:text-current/50">
           {session.name}
         </span>
         <aside className="flex items-center gap-1">

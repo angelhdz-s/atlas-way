@@ -12,7 +12,7 @@ export function RoutinesList({ className = '' }: { className?: string }) {
         <ul className="flex flex-col gap-2">
           <li className="flex flex-col gap-1">
             <header className="">
-              <h4 className="fg-strong text-base">1. Push, Pull, Legs</h4>
+              <h4 className="text-strong text-base">1. Push, Pull, Legs</h4>
             </header>
             <ul className="text-default/70 flex flex-col gap-1 text-sm *:leading-none">
               <li className="flex items-center gap-2">
@@ -27,7 +27,7 @@ export function RoutinesList({ className = '' }: { className?: string }) {
           </li>
           <li className="flex flex-col gap-1">
             <header className="">
-              <h4 className="fg-strong text-base">2. Full Body</h4>
+              <h4 className="text-strong text-base">2. Full Body</h4>
             </header>
             <ul className="text-default/70 flex flex-col gap-1 text-sm *:leading-none">
               <li className="flex items-center gap-2">

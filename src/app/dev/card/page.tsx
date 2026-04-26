@@ -12,17 +12,17 @@ export default function DevCardPage() {
       <Link href="/dev">Back</Link>
       <div className="space-y-8">
         <section className="space-y-4">
-          <h2 className="fg-strong text-4xl">Sizes</h2>
+          <h2 className="text-strong text-4xl">Sizes</h2>
           <DevCardSizes className="flex items-center gap-8" />
         </section>
 
         <section className="space-y-4">
-          <h2 className="fg-strong text-4xl">Colors</h2>
+          <h2 className="text-strong text-4xl">Colors</h2>
           <DevCardColors className="flex items-center gap-8" />
         </section>
 
         <section className="space-y-4">
-          <h2 className="fg-strong text-4xl">Types</h2>
+          <h2 className="text-strong text-4xl">Types</h2>
           <main className="flex items-center gap-8">
             <Card className="h-50 space-y-4" width="md">
               <CardHeader>
@@ -41,7 +41,7 @@ export default function DevCardPage() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="fg-strong text-4xl">Highlighted Borders</h2>
+          <h2 className="text-strong text-4xl">Highlighted Borders</h2>
           <DevCardColors border="highlighted" className="flex items-center gap-8" />
         </section>
       </div>

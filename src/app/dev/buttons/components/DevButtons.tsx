@@ -12,8 +12,8 @@ export function DevButtons({ className, colors }: Props) {
   return (
     <div className={className}>
       {colors.map((color) => (
-        <div key={color} className="bg-middle w-fit space-y-4 p-8">
-          <header className="fg-strong font-funnel-display text-2xl font-medium">
+        <div key={color} className="bg-base w-fit space-y-4 p-8">
+          <header className="text-strong font-funnel-display text-2xl font-medium">
             {color?.toUpperCase()}
           </header>
           <main className="flex items-start gap-2 *:space-y-4">

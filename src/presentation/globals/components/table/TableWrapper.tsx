@@ -4,7 +4,7 @@ type Props = {
 
 export function TableWrapper({ children }: Props) {
   return (
-    <div className="bg-middle border-bd-default rounded-xl border">
+    <div className="bg-base border-bd-default rounded-xl border">
       <table className="w-full table-fixed">{children}</table>
     </div>
   );

@@ -23,7 +23,7 @@ export function SettingsTooltip({ isOpen, onClose }: Props) {
     <>
       <div
         ref={ref}
-        className="bg-middle border-bd-default absolute bottom-full left-4 z-10 mb-4 ml-0 rounded-lg border p-2 shadow-lg shadow-black/30"
+        className="bg-base border-bd-default absolute bottom-full left-4 z-10 mb-4 ml-0 rounded-lg border p-2 shadow-lg shadow-black/30"
       >
         <header className="mb-2 px-2 text-base font-light">Settings</header>
         <ul>

@@ -33,8 +33,8 @@ export async function MuscularGroupsTable({ muscles }: { muscles: MuscleDTO[] })
       <TableBody>
         {muscularGroups.map(({ name, muscles, section }, index) => (
           <TableBodyRow key={name}>
-            <td className="fg-muted pl-4 font-light">{index + 1}</td>
-            <td className="fg-strong">{name}</td>
+            <td className="text-muted pl-4 font-light">{index + 1}</td>
+            <td className="text-strong">{name}</td>
             <td className="text-sm">
               <div className="bg-front w-fit rounded-full px-3 py-1 font-light">{section.name}</div>
             </td>

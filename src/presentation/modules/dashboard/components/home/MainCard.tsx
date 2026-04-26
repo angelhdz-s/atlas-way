@@ -9,7 +9,7 @@ export function MainCard({ className = '' }: { className?: string }) {
     <Card color="main" className={`relative flex flex-col gap-4 ${className}`}>
       <header className="relative z-1">
         <h3 className="font-funnel-display max-w-100 text-2xl tracking-tight">
-          Start achieving your goals with <span className="fg-accent">AtlasWay</span>
+          Start achieving your goals with <span className="text-accent">AtlasWay</span>
         </h3>
       </header>
       <main className="relative z-1 flex max-w-140 flex-1 flex-col">

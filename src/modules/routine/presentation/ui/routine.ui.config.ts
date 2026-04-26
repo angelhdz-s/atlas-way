@@ -6,8 +6,9 @@ export const routineDayItemClassConfig = tv({
     status: {
       canceled: 'light:border-red-300 light:text-red-400 border-red-950 text-red-800',
       completed: 'light:border-green-400 light:text-green-600 border-green-950 text-green-800',
-      current: 'fg-strong light:bg-green-600 light:border-green-600 border-green-800 bg-green-800',
-      next: 'border-subtle/50 fg-strong',
+      current:
+        'text-strong light:bg-green-600 light:border-green-600 border-green-800 bg-green-800',
+      next: 'border-subtle/50 text-strong',
     },
     type: {
       rest: 'opacity-50',

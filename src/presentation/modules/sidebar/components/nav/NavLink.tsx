@@ -29,12 +29,12 @@ export function NavLink({
       {children}
       <span
         className={twMerge(
-          'bg-middle border-bd-default light:shadow-black/5 shadow-back/50 shadow-lg',
+          'bg-base border-bd-default light:shadow-black/5 shadow-back/50 shadow-lg',
           'absolute inset-y-0 left-14 my-auto hidden h-fit w-fit rounded-lg border px-3 py-1.5 transition-colors',
-          'group-hover:fg-strong group-hover:block',
+          'group-hover:text-strong group-hover:block',
           active
-            ? 'bg-primary group-hover:fg-strong-dark fg-strong-dark'
-            : 'lg:group-hover:fg-default',
+            ? 'bg-primary group-hover:text-strong-dark text-strong-dark'
+            : 'lg:group-hover:text-default',
           'lg:static lg:inset-auto lg:left-auto lg:inline lg:h-fit lg:w-auto lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none'
         )}
       >

@@ -10,7 +10,7 @@ export function ScheduleYourSessions({ className }: Props) {
     <BentoCard
       className={`relative flex h-full flex-col gap-4 p-4 md:row-span-2 md:px-0 ${className}`}
     >
-      <main className="font-funnel-display fg-strong z-3 px-4 py-4 text-center text-2xl leading-none md:py-0 md:text-right">
+      <main className="font-funnel-display text-strong z-3 px-4 py-4 text-center text-2xl leading-none md:py-0 md:text-right">
         Schedule Your Sessions
       </main>
       <div className="absolute inset-0 h-full flex-1 overflow-hidden rounded-b-lg opacity-40">

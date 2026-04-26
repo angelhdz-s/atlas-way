@@ -14,7 +14,7 @@ export async function UserInfo({ className = '' }: { className?: string }) {
           <UserAvatar src={user?.image} size={36} />
         </figure>
         <header className={`hidden leading-normal lg:block`}>
-          <h4 className="fg-strong h-5 text-left text-base font-normal">{user.name}</h4>
+          <h4 className="text-strong h-5 text-left text-base font-normal">{user.name}</h4>
           <p className="overflow-y-clip text-sm font-light">{user.email}</p>
         </header>
       </main>

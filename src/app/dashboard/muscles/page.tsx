@@ -42,7 +42,7 @@ export default async function MuscularGroupsPage() {
           <BodySectionCards sections={bodySections} />
         </section>
         <div>
-          <h2 className="fg-strong text-2xl font-medium">Muscular Groups</h2>
+          <h2 className="text-strong text-2xl font-medium">Muscular Groups</h2>
         </div>
         <section>
           <MuscularGroupsTable muscles={muscles} />

@@ -41,7 +41,7 @@ export function ExerciseRow({
       <div className="grid grid-cols-[1fr_auto_1fr] gap-0.5">
         <span className="text-right">{sets}</span>
         <span className="text-default/50 flex items-center justify-center">
-          <IconXMark className="fg-muted size-3" strokeWidth="3" />
+          <IconXMark className="text-muted size-3" strokeWidth="3" />
         </span>
         <span className="text-left">{reps}</span>
       </div>
