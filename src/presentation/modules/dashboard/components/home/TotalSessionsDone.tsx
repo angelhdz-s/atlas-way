@@ -10,7 +10,7 @@ export function TotalSessionsDone({ className = '' }: { className?: string }) {
         <span className="font-funnel-display text-accent text-8xl font-medium tracking-tighter">
           120
         </span>
-        <span className="text-default/50 text-base leading-none font-light">Sessions</span>
+        <span className="text-fg-default/50 text-base leading-none font-light">Sessions</span>
       </main>
     </Card>
   );

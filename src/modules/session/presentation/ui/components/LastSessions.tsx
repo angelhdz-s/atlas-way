@@ -88,7 +88,7 @@ function SessionListItem({
         <StatusIcon status={status} className="size-5" />
         {name}
       </span>
-      <span className="text-default/50 flex items-center gap-4 text-right text-sm font-light">
+      <span className="text-fg-default/50 flex items-center gap-4 text-right text-sm font-light">
         {date}
         <TypeDayIcon type={type} className="size-5" />
       </span>

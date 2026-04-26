@@ -74,7 +74,7 @@ export function SessionsHistory({ className }: { className?: string }) {
           </section>
           <section className="flex flex-col gap-4">
             <header className="flex items-center gap-2">
-              <IconCalendarClock className="text-muted" strokeWidth="1.5" />
+              <IconCalendarClock className="text-fg-subtle" strokeWidth="1.5" />
               <MonthDateSelector />
               <YearDateSelector />
             </header>

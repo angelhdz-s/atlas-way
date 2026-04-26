@@ -27,7 +27,9 @@ export function ModalForm<T extends ZodSchema<any, any>>({
   return (
     <div className={`flex w-160 flex-col gap-4 ${className}`}>
       <header className="border-bd-muted flex h-16 items-center justify-between border-b p-8">
-        <h3 className="font-funnel-display text-strong truncate text-2xl font-medium">{title}</h3>
+        <h3 className="font-funnel-display text-fg-strong truncate text-2xl font-medium">
+          {title}
+        </h3>
         <aside>
           <Button
             type="button"

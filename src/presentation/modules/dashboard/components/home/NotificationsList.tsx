@@ -13,13 +13,13 @@ function NotificationListItem({
   date: string;
   notseen?: boolean;
 }) {
-  const notSeenClassName = notseen ? 'font-medium bg-subtle/10 text-strong' : '';
+  const notSeenClassName = notseen ? 'font-medium bg-subtle/10 text-fg-strong' : '';
   return (
     <li
       className={`outline-subtle/10 flex items-center justify-between gap-2 px-3 py-2 outline-1 ${notSeenClassName} ${className}`}
     >
       <main>{notification}</main>
-      <aside className={`${notseen ? 'text-default/80' : 'text-default/50'}`}>{date}</aside>
+      <aside className={`${notseen ? 'text-fg-default/80' : 'text-fg-default/50'}`}>{date}</aside>
     </li>
   );
 }

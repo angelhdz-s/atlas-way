@@ -77,7 +77,7 @@ function StatusDay({ status, className }: { status: StatusDayType; className?: s
   // default return if status === "next"
   return (
     <span className={`${className}`}>
-      <StatusDayIcon className="text-default/25" icon={IconCircleOutline} />
+      <StatusDayIcon className="text-fg-default/25" icon={IconCircleOutline} />
     </span>
   );
 }
@@ -96,7 +96,9 @@ export function CurrentWeekStatus({ className = '' }: { className?: string }) {
           const className = getStatusTextColorClass(status);
           return (
             <div key={day} className="flex flex-col justify-center" title={title}>
-              <span className={`text-center text-sm font-black ${className || 'text-default/75'}`}>
+              <span
+                className={`text-center text-sm font-black ${className || 'text-fg-default/75'}`}
+              >
                 {dayName}
               </span>
               <StatusDay status={status} />

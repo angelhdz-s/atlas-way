@@ -76,7 +76,7 @@ export function MultipleSelectBox<TForm extends FieldValues, TName extends Field
   return (
     <>
       <div className="flex flex-col gap-2">
-        <header className="text-strong font-medium">{label}</header>
+        <header className="text-fg-strong font-medium">{label}</header>
         <Box className="flex h-48 gap-1">
           <main className="scrollbar-y flex flex-1 flex-wrap content-start gap-2 pb-4">
             {fields.map((field, index) => (

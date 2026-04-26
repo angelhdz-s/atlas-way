@@ -1,7 +1,7 @@
 import { Link } from '@/presentation/modules/button/components/Link';
 
 function SectionHeading({ text }: { text: string }) {
-  return <h3 className="text-strong font-funnel-display text-2xl">{text}</h3>;
+  return <h3 className="text-fg-strong font-funnel-display text-2xl">{text}</h3>;
 }
 
 export default function ColorsPage() {
@@ -34,9 +34,9 @@ export default function ColorsPage() {
         <div className="grid grid-cols-[156px_1fr] items-center">
           <SectionHeading text="Text" />
           <ul className="flex items-center justify-start gap-8">
-            <li className="text-strong">Strong</li>
-            <li className="text-default">Default</li>
-            <li className="text-muted">Muted</li>
+            <li className="text-fg-strong">Strong</li>
+            <li className="text-fg-default">Default</li>
+            <li className="text-fg-subtle">Muted</li>
           </ul>
         </div>
 

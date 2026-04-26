@@ -79,9 +79,9 @@ export function TrackingDay({
       className={`group group border-subtle/20 relative flex w-full flex-col rounded-md border transition-colors hover:border-zinc-900 ${main ? 'min-h-54' : 'min-h-48'} ${className} ${dayTypeClass}`}
     >
       <header
-        className={`flex items-center justify-between bg-zinc-900/80 ${main ? 'h-10 px-4 text-base' : 'h-8 px-2 text-sm'} group-hover:text-strong rounded-t transition-colors`}
+        className={`flex items-center justify-between bg-zinc-900/80 ${main ? 'h-10 px-4 text-base' : 'h-8 px-2 text-sm'} group-hover:text-fg-strong rounded-t transition-colors`}
       >
-        <span className="text-strong flex-1 cursor-pointer overflow-hidden pr-2 font-medium text-ellipsis whitespace-nowrap hover:text-current/50">
+        <span className="text-fg-strong flex-1 cursor-pointer overflow-hidden pr-2 font-medium text-ellipsis whitespace-nowrap hover:text-current/50">
           {session.name}
         </span>
         <aside className="flex items-center gap-1">

@@ -29,13 +29,13 @@ function GoalItem({ className = '', goal }: { className?: string; goal: GoalItem
 
   return (
     <article
-      className={`bg-subtle/5 text-strong flex flex-col gap-1 rounded-lg px-4 py-2 ${completedClass} ${className}`}
+      className={`bg-subtle/5 text-fg-strong flex flex-col gap-1 rounded-lg px-4 py-2 ${completedClass} ${className}`}
     >
       <header className="flex items-center justify-between gap-2">
         <h3 className="text-base">{name}</h3>
         <aside>
           <span
-            className={`font-light ${completedClass || 'text-default/50'}`}
+            className={`font-light ${completedClass || 'text-fg-default/50'}`}
           >{`${value} / ${target}`}</span>
         </aside>
       </header>

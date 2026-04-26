@@ -9,7 +9,7 @@ export async function Hero() {
     <section className="relative grid place-items-center py-16 md:min-h-160 xl:min-h-180">
       <main className="relative z-1 mx-auto flex w-full max-w-360 justify-center">
         <header className="flex flex-col items-center gap-4 text-center md:max-w-5xl md:gap-8 xl:max-w-7xl">
-          <h1 className="font-funnel-display text-strong animate-fade text-5xl leading-none font-bold tracking-tight text-pretty md:text-7xl xl:text-8xl">
+          <h1 className="font-funnel-display text-fg-strong animate-fade text-5xl leading-none font-bold tracking-tight text-pretty md:text-7xl xl:text-8xl">
             Track your <Highilight>planning</Highilight>, build your{' '}
             <Highilight>progress</Highilight> and achieve your <Highilight>goals</Highilight>
           </h1>

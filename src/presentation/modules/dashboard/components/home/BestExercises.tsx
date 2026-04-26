@@ -9,7 +9,7 @@ export function BestExercises({ className = '' }: { className?: string }) {
       <main>
         <table className="w-full text-left">
           <thead>
-            <tr className="text-strong *:px-1">
+            <tr className="text-fg-strong *:px-1">
               <th>Top</th>
               <th>Exercise</th>
               <th>Progress</th>

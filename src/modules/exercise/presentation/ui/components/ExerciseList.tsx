@@ -40,8 +40,8 @@ export function ExerciseRow({
       <span className="text-left">{name}</span>
       <div className="grid grid-cols-[1fr_auto_1fr] gap-0.5">
         <span className="text-right">{sets}</span>
-        <span className="text-default/50 flex items-center justify-center">
-          <IconXMark className="text-muted size-3" strokeWidth="3" />
+        <span className="text-fg-default/50 flex items-center justify-center">
+          <IconXMark className="text-fg-subtle size-3" strokeWidth="3" />
         </span>
         <span className="text-left">{reps}</span>
       </div>

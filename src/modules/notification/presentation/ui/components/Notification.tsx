@@ -25,7 +25,7 @@ export function Notification({
         <header className="relative w-fit">
           <Link href={url || '/dashboard/notifications'} className="flex w-fit items-center gap-2">
             <h3
-              className={`line-clamp-1 w-fit text-base ${notSeen ? 'text-strong font-medium' : ''}`}
+              className={`line-clamp-1 w-fit text-base ${notSeen ? 'text-fg-strong font-medium' : ''}`}
             >
               {title}
             </h3>
@@ -35,12 +35,14 @@ export function Notification({
           )}
         </header>
         <footer>
-          <p className={`text-sm font-light ${notSeen ? '' : 'text-default/60'}`}>
+          <p className={`text-sm font-light ${notSeen ? '' : 'text-fg-default/60'}`}>
             <span className="line-clamp-1">{description}</span>
           </p>
         </footer>
       </main>
-      <aside className="text-default/50 w-fit text-center text-sm whitespace-nowrap">{date}</aside>
+      <aside className="text-fg-default/50 w-fit text-center text-sm whitespace-nowrap">
+        {date}
+      </aside>
       <div className="flex items-center gap-2">
         <Button
           type="button"

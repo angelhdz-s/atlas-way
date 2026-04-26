@@ -57,10 +57,10 @@
   --color-fill-top-dark: #202020;
 
   /* Foreground */
-  --color-strong-dark: #fafafa;
-  --color-default-dark: #c0c0c0;
-  --color-subtle-dark: #a0a0a0;
-  --color-muted-dark: #a0a0a0;
+  --color-fg-strong-dark: #fafafa;
+  --color-fg-default-dark: #c0c0c0;
+  --color-fg-subtle-dark: #a0a0a0;
+  --color-fg-muted-dark: #a0a0a0;
 
   /* Borders */
   --color-bd-strong-dark: #272727;
@@ -85,10 +85,10 @@
   --color-fill-top-light: #e4e4fa;
 
   /* Foreground */
-  --color-strong-light: #050505;
-  --color-default-light: #2a2a2a;
-  --color-subtle-light: #2a2a2a;
-  --color-muted-light: #4a4a4a;
+  --color-fg-strong-light: #050505;
+  --color-fg-default-light: #2a2a2a;
+  --color-fg-subtle-light: #2a2a2a;
+  --color-fg-muted-light: #4a4a4a;
 
   /* Borders */
   --color-bd-strong-light: #d0d0d0;
@@ -113,10 +113,10 @@
   --color-fill-top: var(--color-fill-top-dark);
 
   /* Foreground */
-  --color-strong: var(--color-strong-dark);
-  --color-default: var(--color-default-dark);
-  --color-subtle: var(--color-subtle-dark);
-  --color-muted: var(--color-muted-dark);
+  --color-fg-strong: var(--color-fg-strong-dark);
+  --color-fg-default: var(--color-fg-default-dark);
+  --color-fg-subtle: var(--color-fg-subtle-dark);
+  --color-fg-muted: var(--color-fg-muted-dark);
 
   /* Border */
   --color-bd-strong: var(--color-bd-strong-dark);
@@ -142,10 +142,10 @@ html[data-theme='light'] {
   --color-fill-top: var(--color-fill-top-light);
 
   /* Foreground Colors */
-  --color-strong: var(--color-strong-light);
-  --color-default: var(--color-default-light);
-  --color-subtle: var(--color-subtle-light);
-  --color-muted: var(--color-muted-light);
+  --color-fg-strong: var(--color-fg-strong-light);
+  --color-fg-default: var(--color-fg-default-light);
+  --color-fg-subtle: var(--color-fg-subtle-light);
+  --color-fg-muted: var(--color-fg-muted-light);
 
   /* Border Colors */
   --color-bd-strong: var(--color-bd-strong-light);

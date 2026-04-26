@@ -47,14 +47,14 @@ export function SelectBox({
         className="bg-fill-base border-subtle/20 fixed inset-0 z-10 m-auto flex size-fit w-160 flex-col gap-2 rounded-lg border p-6"
       >
         <header className="flex items-center justify-between gap-2">
-          <h5 className="text-strong truncate text-xl font-medium">{title}</h5>
+          <h5 className="text-fg-strong truncate text-xl font-medium">{title}</h5>
           <Button variantConfig={{ color: 'simple', type: 'square' }} onClick={onClose}>
             <IconXMark />
           </Button>
         </header>
         <div>
           <label className="hover:outline-bd-default bg-fill-back mb-2 flex w-full items-center gap-2 rounded-lg px-4 py-2 text-base font-light hover:outline-1">
-            <IconSearch className="text-muted size-5" strokeWidth="2" />
+            <IconSearch className="text-fg-subtle size-5" strokeWidth="2" />
             <input
               type="search"
               className="w-full appearance-none outline-none"

@@ -7,7 +7,7 @@ function Day({
 }) {
   const className = !unselected
     ? 'border-accent text-accent light:border-black light:text-black'
-    : 'text-default border-strong opacity-50 light:opacity-100 light:border-black/40 light:text-black';
+    : 'text-fg-default border-strong opacity-50 light:opacity-100 light:border-black/40 light:text-black';
   return (
     <li className={`rounded-full border px-2 py-1 text-xs font-light ${className}`}>{children}</li>
   );

@@ -9,7 +9,7 @@ export function LabelGroup({
 }) {
   return (
     <div className={`flex flex-col gap-2 ${className}`}>
-      <span className="text-strong font-medium whitespace-nowrap">{title}</span>
+      <span className="text-fg-strong font-medium whitespace-nowrap">{title}</span>
       {children}
     </div>
   );

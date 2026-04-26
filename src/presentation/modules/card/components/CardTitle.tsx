@@ -13,13 +13,13 @@ export function CardTitle({
   return (
     <h3
       className={twMerge(
-        'font-funnel-display text-strong truncate overflow-hidden text-xl',
+        'font-funnel-display text-fg-strong truncate overflow-hidden text-xl',
         Icon ? 'flex w-full items-center gap-4' : '',
         className
       )}
     >
       {Icon && (
-        <div className="bg-fill-middle text-muted grid aspect-square size-9 place-content-center rounded-xl">
+        <div className="bg-fill-middle text-fg-subtle grid aspect-square size-9 place-content-center rounded-xl">
           <Icon strokeWidth="1.5" className="size-6" />
         </div>
       )}

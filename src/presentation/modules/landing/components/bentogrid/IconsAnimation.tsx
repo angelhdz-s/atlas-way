@@ -48,7 +48,7 @@ function IconContainer({
   return (
     <figure className={`absolute top-0 left-0 block ${className}`} style={style}>
       <Icon
-        className="text-strong animate-wiggle-more animate-infinite animate-duration-5000 size-8"
+        className="text-fg-strong animate-wiggle-more animate-infinite animate-duration-5000 size-8"
         strokeWidth="1"
       />
     </figure>

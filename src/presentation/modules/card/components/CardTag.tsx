@@ -15,8 +15,8 @@ type Props = {
 export function CardTag({ tag, className }: Props) {
   const { value, selected } = tag;
   const selectedClassName = selected
-    ? 'bg-accent text-strong-light light:text-strong-dark'
-    : 'bg-fill-middle text-strong';
+    ? 'bg-accent text-fg-strong-light light:text-fg-strong-dark'
+    : 'bg-fill-middle text-fg-strong';
   return (
     <div
       className={twMerge(

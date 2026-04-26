@@ -23,7 +23,7 @@ export function SubLink({
   return (
     <Link
       href={href}
-      className={`text-strong hover:bg-fill-middle hover:text-default relative aspect-square ${styles.nav_link} ${className} ${aditionalClassName}`}
+      className={`text-fg-strong hover:bg-fill-middle hover:text-fg-default relative aspect-square ${styles.nav_link} ${className} ${aditionalClassName}`}
     >
       {children}
     </Link>
