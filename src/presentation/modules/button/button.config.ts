@@ -6,13 +6,6 @@ export const buttonVariant = tv({
   variants: {
     color: {
       primary: 'bg-primary fg-strong-dark hover:bg-primary/90',
-      primaryDeluxe: twMerge(
-        'fg-strong-dark to-primary from-secondary from-10%',
-        'bg-primary shadow-[0px_0px_30px_0px_var(--color-primary)]/80 hover:shadow-[0px_0px_30px_0px_var(--color-primary)]/50',
-        'hover:bg-amber-900',
-        'relative before:absolute before:-inset-0.5 before:-z-1 before:rounded-[calc(var(--rounding)+2px)]',
-        'before:to-primary before:from-primary before:via-accent light:before:via-white before:bg-linear-10'
-      ),
       subtle: 'bg-subtle/20 fg-default hover:bg-subtle/30',
       simple: twMerge(
         'fg-default hover:fg-muted hover:bg-bd-muted/50 border border-transparent bg-transparent',
