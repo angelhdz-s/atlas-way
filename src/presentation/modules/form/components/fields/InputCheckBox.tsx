@@ -43,16 +43,22 @@ export function InputCheckBox(props: Props) {
       <div
         data-testid="input-checkbox"
         onClick={() => setActive((prev) => !prev)}
-        className="bg-fill-back grid h-10 w-16 cursor-pointer place-items-center rounded-md p-1 peer-focus-visible:outline"
+        className="ring-bd-strong grid h-8 w-16 cursor-pointer place-items-center rounded-full ring peer-focus-visible:outline"
       >
-        <span
+        <div
           className={twMerge(
-            'flex h-full w-full items-center justify-center rounded px-2 py-1 transition-colors',
+            'relative flex h-full w-full items-center justify-center rounded-full py-1 transition-colors',
             active ? 'bg-primary text-fg-strong-dark' : 'bg-fill-base'
           )}
         >
-          {active ? 'On' : 'Off'}
-        </span>
+          <div
+            className={twMerge(
+              'ring-bd-strong absolute inset-0 top-0 my-auto block size-8 rounded-full bg-white ring transition-[left]',
+              'before:absolute before:inset-0 before:m-auto before:size-6 before:rounded-full before:bg-linear-275 before:from-white before:to-zinc-200',
+              active ? 'left-8' : 'left-0'
+            )}
+          />
+        </div>
       </div>
     </>
   );
