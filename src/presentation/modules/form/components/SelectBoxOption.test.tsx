@@ -79,7 +79,7 @@ describe('<SelectBoxOption />', () => {
 
     it('Should not be highlighted when isSelected prop is not provided or as "false"', () => {
       render(<SelectBoxOption onSelect={() => {}} option={options[0]} />);
-      expect(screen.getByText(options[0].label)).toHaveClass('border-subtle/20');
+      expect(screen.getByText(options[0].label)).toHaveClass('border-bd-default');
     });
   });
 });

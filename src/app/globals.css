@@ -25,11 +25,6 @@
   --color-tertiary: #eb5e31;
   --color-accent: #e6a737;
 
-  /* Utility Colors */
-
-  --color-subtle: var(--color-zinc-600);
-  --color-full-black: #0a0a0a;
-
   /* Font families */
 
   --font-funnel-display: var(--font-funnel-display);

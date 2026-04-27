@@ -34,7 +34,12 @@ export function LineChart({
     .join(' ');
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} className="bg-subtle/5">
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      width={width}
+      height={height}
+      className="bg-fill-middle"
+    >
       <defs>
         <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="0%">
           <animate attributeName="y2" values="0%;100%" dur="0.3s" begin="0.3s" fill="freeze" />
@@ -139,7 +144,12 @@ export function BarCharts({
   const scaleY = (val: number) => height - padding - (val / maxY) * absoluteHeight;
 
   return (
-    <svg viewBox={`0 0 ${width} ${height}`} width={width} height={height} className="bg-subtle/5">
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      width={width}
+      height={height}
+      className="bg-fill-middle"
+    >
       <defs>
         <linearGradient id="barGradient" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor="currentColor" className="text-primary/50"></stop>

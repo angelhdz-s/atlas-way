@@ -47,7 +47,7 @@ export function SessionDetails({
         </main>
         {session.date && (
           <aside>
-            <span className="bg-subtle/5 text-fg-default/50 rounded-full px-3 py-1 text-sm">
+            <span className="text-fg-default/50 bg-fill-middle rounded-full px-3 py-1 text-sm">
               {session.date}
             </span>
           </aside>

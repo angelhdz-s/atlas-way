@@ -12,7 +12,7 @@ export function SelectBoxOption({
 }) {
   const isActiveClass = isSelected
     ? 'border-success text-success font-medium light:text-green-700 light:border-green-600'
-    : 'border-subtle/20';
+    : 'border-bd-default';
   return (
     <label className="relative">
       <input

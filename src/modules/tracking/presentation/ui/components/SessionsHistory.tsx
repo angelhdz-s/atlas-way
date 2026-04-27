@@ -78,7 +78,7 @@ export function SessionsHistory({ className }: { className?: string }) {
               <MonthDateSelector />
               <YearDateSelector />
             </header>
-            <SubtleCard className="border-subtle/10 rounded-lg border">
+            <SubtleCard className="border-bd-default rounded-lg border">
               <SessionDetails session={session} />
             </SubtleCard>
           </section>

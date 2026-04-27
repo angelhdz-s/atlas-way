@@ -44,7 +44,7 @@ export function SelectBox({
     <>
       <div
         ref={ref}
-        className="bg-fill-base border-subtle/20 fixed inset-0 z-10 m-auto flex size-fit w-160 flex-col gap-2 rounded-lg border p-6"
+        className="bg-fill-base border-bd-default fixed inset-0 z-10 m-auto flex size-fit w-160 flex-col gap-2 rounded-lg border p-6"
       >
         <header className="flex items-center justify-between gap-2">
           <h5 className="text-fg-strong truncate text-xl font-medium">{title}</h5>

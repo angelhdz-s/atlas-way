@@ -76,7 +76,7 @@ export function TrackingDay({
 
   return (
     <article
-      className={`group group border-subtle/20 relative flex w-full flex-col rounded-md border transition-colors hover:border-zinc-900 ${main ? 'min-h-54' : 'min-h-48'} ${className} ${dayTypeClass}`}
+      className={`group group border-bd-default relative flex w-full flex-col rounded-md border transition-colors hover:border-zinc-900 ${main ? 'min-h-54' : 'min-h-48'} ${className} ${dayTypeClass}`}
     >
       <header
         className={`flex items-center justify-between bg-zinc-900/80 ${main ? 'h-10 px-4 text-base' : 'h-8 px-2 text-sm'} group-hover:text-fg-strong rounded-t transition-colors`}

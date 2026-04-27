@@ -30,8 +30,8 @@ describe('<Button />', () => {
     describe('should apply class based on variantConfig color', () => {
       const cases = [
         { color: 'primary', expectedClass: 'bg-primary' },
-        { color: 'simple', expectedClass: 'text-fg-default' },
-        { color: 'subtle', expectedClass: 'bg-subtle/20' },
+        { color: 'simple', expectedClass: 'hover:text-fg-subtle' },
+        { color: 'subtle', expectedClass: 'bg-fill-top' },
       ];
 
       test.each(cases)(

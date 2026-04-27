@@ -15,7 +15,7 @@ export const sidebarNavLinkVariants = tv({
     {
       active: true,
       notice: 'unread',
-      class: 'before:bg-strong-dark',
+      class: 'before:bg-fg-strong-dark',
     },
   ],
 });

@@ -6,7 +6,7 @@ export const buttonVariant = tv({
   variants: {
     color: {
       primary: 'bg-primary text-fg-strong-dark hover:bg-primary/90',
-      subtle: 'bg-subtle/20 hover:text-fg-subtle',
+      subtle: 'bg-fill-top hover:text-fg-subtle',
       simple: twMerge(
         'hover:text-fg-subtle hover:bg-bd-muted/50 border border-transparent bg-transparent',
         'light:hover:bg-black/3'

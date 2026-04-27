@@ -8,7 +8,7 @@ export const routineDayItemClassConfig = tv({
       completed: 'light:border-green-400 light:text-green-600 border-green-950 text-green-800',
       current:
         'text-fg-strong light:bg-green-600 light:border-green-600 border-green-800 bg-green-800',
-      next: 'border-subtle/50 text-fg-strong',
+      next: 'border-bd-default text-fg-strong',
     },
     type: {
       rest: 'opacity-50',

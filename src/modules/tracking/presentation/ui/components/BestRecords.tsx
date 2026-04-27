@@ -12,7 +12,7 @@ type BestRecordItemType = {
 function BestRecordItem({ record }: { record: BestRecordItemType }) {
   const { name, metric, value, date } = record;
   return (
-    <article className="bg-subtle/5 rounded-lg px-4 py-1">
+    <article className="bg-fill-middle rounded-lg px-4 py-1">
       <header className="flex items-center justify-between">
         <h3 className="text-fg-strong">{name}</h3>
         <aside>
