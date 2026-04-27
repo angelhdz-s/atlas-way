@@ -71,7 +71,7 @@ function CalendarDayCurrent({
   return (
     <CalendarDayItem
       onClick={onClick}
-      className={`${isSelected ? 'bg-strong text-fg-strong-light light:text-fg-strong-dark' : 'bg-subtle/20'}`}
+      className={`${isSelected ? 'bg-fg-strong text-fg-strong-light light:text-fg-strong-dark' : 'bg-fill-top'}`}
     >
       <IconBarbellOff className="size-4.5" strokeWidth={isSelected ? '2' : '1.5'} />
     </CalendarDayItem>
@@ -82,7 +82,7 @@ function CalendarDayNormalSelected({ day, onClick }: CalendarDayTypeProps) {
   return (
     <CalendarDayItem
       onClick={onClick}
-      className="bg-strong text-full-black light:text-fg-strong-dark"
+      className="bg-fg-strong text-full-black light:text-fg-strong-dark"
     >
       {day}
     </CalendarDayItem>
