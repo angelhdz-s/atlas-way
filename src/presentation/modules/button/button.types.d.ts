@@ -8,7 +8,7 @@ type PossibleButtonVariantProps =
   | {
       variant?: {
         size?: ButtonVariantProps['size'];
-        size?: ButtonVariantProps['color'];
+        color?: ButtonVariantProps['color'];
         type?: undefined;
       };
       variantConfig?: ButtonVariantProps;
@@ -20,7 +20,7 @@ type PossibleButtonVariantProps =
   | {
       variant?: {
         size?: ButtonVariantProps['size'];
-        size?: ButtonVariantProps['color'];
+        color?: ButtonVariantProps['color'];
         type?: 'icon';
       };
       variantConfig?: ButtonVariantProps;
@@ -32,7 +32,7 @@ type PossibleButtonVariantProps =
   | {
       variant?: {
         size?: ButtonVariantProps['size'];
-        size?: ButtonVariantProps['color'];
+        color?: ButtonVariantProps['color'];
         type?: 'iconText';
       };
       variantConfig?: ButtonVariantProps;
@@ -44,7 +44,7 @@ type PossibleButtonVariantProps =
   | {
       variant?: {
         size?: ButtonVariantProps['size'];
-        size?: ButtonVariantProps['color'];
+        color?: ButtonVariantProps['color'];
         type?: 'text';
       };
       variantConfig?: ButtonVariantProps;
