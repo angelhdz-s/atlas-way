@@ -36,7 +36,8 @@ export default function ColorsPage() {
           <ul className="flex items-center justify-start gap-8">
             <li className="text-fg-strong">Strong</li>
             <li className="text-fg-default">Default</li>
-            <li className="text-fg-subtle">Muted</li>
+            <li className="text-fg-subtle">Subtle</li>
+            <li className="text-fg-muted">Muted</li>
           </ul>
         </div>
 
