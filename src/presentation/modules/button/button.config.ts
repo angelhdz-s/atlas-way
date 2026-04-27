@@ -1,17 +1,13 @@
-import { twMerge } from 'tailwind-merge';
 import { tv, type VariantProps } from 'tailwind-variants';
 
 export const buttonVariant = tv({
-  base: 'text-fg-strong flex w-fit cursor-pointer items-center gap-2 rounded-full py-0.5 whitespace-nowrap transition-colors [--rounding:10px] disabled:cursor-not-allowed disabled:opacity-50',
+  base: 'flex w-fit cursor-pointer items-center gap-2 rounded-full py-0.5 whitespace-nowrap transition-colors [--rounding:10px] disabled:cursor-not-allowed disabled:opacity-50',
   variants: {
     color: {
       primary: 'bg-primary text-fg-strong-dark hover:bg-primary/90',
-      subtle: 'bg-fill-top hover:text-fg-subtle',
-      outline: 'hover:text-fg-subtle hover:bg-fill-top ring-bd-strong ring-1',
-      simple: twMerge(
-        'hover:text-fg-subtle hover:bg-bd-muted/50 border border-transparent bg-transparent',
-        'light:hover:bg-black/3'
-      ),
+      subtle: 'text-fg-strong bg-fill-top hover:text-fg-subtle',
+      outline: 'text-fg-strong hover:text-fg-subtle hover:bg-fill-top ring-bd-strong ring-1',
+      simple: 'text-fg-strong hover:text-fg-subtle',
     },
     type: {
       text: true,
