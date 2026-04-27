@@ -95,8 +95,8 @@
   /* Foreground */
   --color-fg-strong-light: #050505;
   --color-fg-default-light: #2a2a2a;
-  --color-fg-subtle-light: #2a2a2a;
-  --color-fg-muted-light: #4a4a4a;
+  --color-fg-subtle-light: #4a4a4a;
+  --color-fg-muted-light: #6a6a6a;
 
   /* Borders */
   --color-bd-strong-light: #d0d0d0;
@@ -104,21 +104,21 @@
   --color-bd-muted-light: #e0e0e0;
 
   /* Status */
-  --color-success-light: var(--color-green-700);
-  --color-success-bd-light: var(--color-green-800);
-  --color-success-fill-light: var(--color-green-900);
+  --color-success-light: #369a00;
+  --color-success-bd-light: #33be17;
+  --color-success-fill-light: #02fe70;
 
-  --color-danger-light: var(--color-red-700);
-  --color-danger-bd-light: var(--color-red-800);
-  --color-danger-fill-light: var(--color-red-900);
+  --color-danger-light: #ba0000;
+  --color-danger-bd-light: #ef1e1e;
+  --color-danger-fill-light: #ff6e6e;
 
-  --color-info-light: var(--color-blue-700);
-  --color-info-bd-light: var(--color-blue-800);
-  --color-info-fill-light: var(--color-blue-900);
+  --color-info-light: #2f5dd0;
+  --color-info-bd-light: #7e80ff;
+  --color-info-fill-light: #b2a9ff;
 
-  --color-warning-light: var(--color-yellow-600);
-  --color-warning-bd-light: var(--color-yellow-700);
-  --color-warning-fill-light: var(--color-yellow-800);
+  --color-warning-light: #869800;
+  --color-warning-bd-light: #bfc500;
+  --color-warning-fill-light: #f0ff9c;
 
   /* Accessibility */
   --color-focus-light: #000;
