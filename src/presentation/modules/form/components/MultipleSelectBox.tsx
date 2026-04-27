@@ -25,13 +25,13 @@ function SelectedOptions({ option, onCrossClick }: SelectedOption) {
       <span className="truncate">{option.label}</span>
       {onCrossClick && (
         <Button
-          variantConfig={{ size: 'xs', type: 'square' }}
+          variant={{ size: 'xs', type: 'icon' }}
           type="button"
           onClick={handleClick}
-          className="cursor-pointer transition-opacity hover:opacity-50"
-        >
-          <IconXMark className="size-5" strokeWidth="1" />
-        </Button>
+          className="transition-opacity hover:opacity-50"
+          Icon={IconXMark}
+          aria-label="Remove option selected"
+        />
       )}
     </div>
   );
@@ -90,18 +90,16 @@ export function MultipleSelectBox<TForm extends FieldValues, TName extends Field
           <aside className="flex flex-col items-center justify-between gap-2">
             <Button
               onClick={openSelection}
-              variantConfig={{ type: 'square', color: 'subtle' }}
+              variant={{ type: 'icon', color: 'subtle' }}
+              Icon={IconCirclePlus}
               aria-label="Add new element"
-            >
-              <IconCirclePlus strokeWidth="1" />
-            </Button>
+            />
             <Button
               onClick={clearAllItems}
-              variantConfig={{ type: 'square', color: 'subtle' }}
+              variant={{ type: 'icon', color: 'subtle' }}
               aria-label="Clear all elements"
-            >
-              <IconTrash strokeWidth="1" />
-            </Button>
+              Icon={IconTrash}
+            />
           </aside>
         </Box>
         <ErrorMessage message={error} />

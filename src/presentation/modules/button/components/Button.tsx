@@ -6,9 +6,9 @@ import type { VariantButtonType } from '@/presentation/modules/button/button.typ
 type Props = VariantButtonType<ButtonElementProps>;
 
 export function Button(props: Props) {
-  const { children, Icon, variantConfig, className, type, ...restProps } = props;
+  const { children, Icon, variant, className, type, ...restProps } = props;
 
-  const variantClassNames = buttonVariant({ ...variantConfig, disabled: props.disabled });
+  const variantClassNames = buttonVariant({ ...variant, disabled: props.disabled });
   return (
     <button
       type={type ?? 'button'}

@@ -24,12 +24,11 @@ export function DraggableBadge(props: Props) {
       <span className="w-15 truncate">{children}</span>
       {onRemove && (
         <Button
-          variantConfig={{ type: 'square', size: 'xs', color: 'simple' }}
+          variant={{ type: 'icon', size: 'xs', color: 'simple' }}
           aria-label="Remove item"
+          Icon={IconXMark}
           onClick={onRemove}
-        >
-          <IconXMark className="size-5" />
-        </Button>
+        />
       )}
     </div>
   );

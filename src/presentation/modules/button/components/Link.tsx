@@ -6,9 +6,9 @@ import type { VariantButtonType } from '@/presentation/modules/button/button.typ
 type LinkProps = React.ComponentProps<typeof NextLink>;
 
 export function Link(props: VariantButtonType<LinkProps>) {
-  const { children, Icon, variantConfig, className, ...restProps } = props;
+  const { children, Icon, variant, className, ...restProps } = props;
 
-  const variantClassNames = buttonVariant(variantConfig);
+  const variantClassNames = buttonVariant(variant);
   return (
     <NextLink className={twMerge(variantClassNames, className)} {...restProps}>
       {Icon && <Icon />}

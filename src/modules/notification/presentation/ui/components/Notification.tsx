@@ -46,15 +46,14 @@ export function Notification({
       <div className="flex items-center gap-2">
         <Button
           type="button"
-          variantConfig={{
-            type: 'square',
+          variant={{
             color: 'subtle',
             size: 'sm',
+            type: 'icon',
           }}
-          className="text-red-800/80"
-        >
-          <IconTrash className="size-4" strokeWidth="2" />
-        </Button>
+          aria-label="Edit exercise"
+          Icon={IconTrash}
+        />
       </div>
     </article>
   );

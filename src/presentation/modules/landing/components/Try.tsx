@@ -9,7 +9,7 @@ export function Try({ className = '' }: { className?: string }) {
       <main className="flex w-fit items-center justify-center gap-4">
         <Link
           href="/dashboard"
-          variantConfig={{
+          variant={{
             color: 'primary',
             size: 'lg',
           }}

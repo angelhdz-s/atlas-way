@@ -11,7 +11,7 @@ export function GetStartedCard({ className }: Props) {
     <BentoCard className={`xs:grid hidden place-content-center md:row-span-2 ${className}`}>
       <Link
         href="/dashboard"
-        variantConfig={{
+        variant={{
           size: 'lg',
         }}
         className="from-accent to-primary text-fg-strong-dark border-back outline-bd-default flex min-h-14 items-center gap-2 rounded-full border-4 bg-radial-[50%_50%_at_50%_0%] outline"

@@ -31,7 +31,7 @@ export function SettingsTooltip({ isOpen, onClose }: Props) {
             <ToggleTheme className="w-full pl-2">Theme</ToggleTheme>
           </li>
           <li className="flex items-center gap-0">
-            <Button variantConfig={{ color: 'simple' }} className="pl-2">
+            <Button variant={{ color: 'simple' }} className="pl-2">
               <IconLanguage strokeWidth="1.5" />
               Language
             </Button>

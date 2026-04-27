@@ -7,7 +7,7 @@ export function LogInButton() {
   const { handleLogin } = useLogin();
 
   return (
-    <Button type="button" variantConfig={{ size: 'sm', color: 'primary' }} onClick={handleLogin}>
+    <Button type="button" variant={{ size: 'sm', color: 'primary' }} onClick={handleLogin}>
       Log in
     </Button>
   );

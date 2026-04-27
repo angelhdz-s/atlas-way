@@ -18,10 +18,10 @@ function CalendarDayItem({
   return (
     <Button
       type="button"
-      variantConfig={{
-        type: 'square',
+      variant={{
         color: 'simple',
         size: 'xs',
+        type: 'square',
       }}
       onClick={onClick}
       className="flex w-full cursor-pointer justify-center hover:bg-transparent"

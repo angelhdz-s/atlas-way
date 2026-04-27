@@ -39,14 +39,18 @@ export function ExercisesTable({ exercises }: Props) {
             <td>
               <ul className="flex w-full items-center justify-center">
                 <li>
-                  <Button variantConfig={{ color: 'simple', type: 'square' }}>
-                    <IconEdit className="size-5" />
-                  </Button>
+                  <Button
+                    variant={{ color: 'simple', type: 'icon' }}
+                    aria-label="Edit exercise"
+                    Icon={IconEdit}
+                  />
                 </li>
                 <li>
-                  <Button variantConfig={{ color: 'simple', type: 'square' }}>
-                    <IconTrash className="size-5" />
-                  </Button>
+                  <Button
+                    variant={{ color: 'simple', type: 'icon' }}
+                    aria-label="Delete exercise"
+                    Icon={IconTrash}
+                  />
                 </li>
               </ul>
             </td>

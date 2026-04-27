@@ -33,14 +33,14 @@ export function ModalForm<T extends ZodSchema<any, any>>({
         <aside>
           <Button
             type="button"
-            variantConfig={{
+            variant={{
               color: 'simple',
-              type: 'square',
+              type: 'icon',
             }}
             onClick={onClose}
-          >
-            <IconXMark />
-          </Button>
+            Icon={IconXMark}
+            aria-label="Close modal"
+          />
         </aside>
       </header>
       <FormProvider {...methods}>

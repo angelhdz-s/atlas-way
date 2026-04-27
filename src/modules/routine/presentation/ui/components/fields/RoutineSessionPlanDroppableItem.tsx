@@ -27,14 +27,13 @@ export function RoutineSessionPlanDroppableItem({ id, text, children, dndConfig,
         <h4 className={dndConfig.droppedId ? 'text-fg-strong font-medium' : ''}>{text}</h4>
         {onAdd !== undefined && (
           <Button
-            aria-label="Select a session"
             title="Select a session"
-            variantConfig={{ color: 'simple', type: 'square' }}
-            className="size-7 rounded-lg"
+            variant={{ color: 'simple', type: 'icon' }}
             onClick={onAdd}
-          >
-            <IconPlus className="size-4" />
-          </Button>
+            className="size-7 rounded-lg"
+            Icon={IconPlus}
+            aria-label="Select a session"
+          />
         )}
       </header>
       <main className="w-full p-2">{children}</main>

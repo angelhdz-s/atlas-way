@@ -45,10 +45,10 @@ export function DevButtons({ className, colors }: Props) {
 function AllButtonSizes(props: React.ComponentProps<typeof Button>) {
   return (
     <div className="space-y-2">
-      <Button {...props} variantConfig={{ ...props.variant, size: 'lg' }} />
-      <Button {...props} variantConfig={{ ...props.variant, size: 'md' }} />
-      <Button {...props} variantConfig={{ ...props.variant, size: 'sm' }} />
-      <Button {...props} variantConfig={{ ...props.variant, size: 'xs' }} />
+      <Button {...props} variant={{ ...props.variant, size: 'lg' }} />
+      <Button {...props} variant={{ ...props.variant, size: 'md' }} />
+      <Button {...props} variant={{ ...props.variant, size: 'sm' }} />
+      <Button {...props} variant={{ ...props.variant, size: 'xs' }} />
     </div>
   );
 }
