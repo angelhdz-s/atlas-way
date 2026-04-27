@@ -82,7 +82,7 @@ function CalendarDayNormalSelected({ day, onClick }: CalendarDayTypeProps) {
   return (
     <CalendarDayItem
       onClick={onClick}
-      className="bg-fg-strong text-full-black light:text-fg-strong-dark"
+      className="bg-fg-strong text-fg-strong-light light:text-fg-strong-dark"
     >
       {day}
     </CalendarDayItem>
