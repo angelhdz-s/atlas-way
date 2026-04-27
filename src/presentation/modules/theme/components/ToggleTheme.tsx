@@ -28,7 +28,7 @@ export function ToggleTheme({ className, children }: Props) {
             type: 'iconText',
             color: 'simple',
           }}
-          className={twMerge('light:hidden', className)}
+          className={twMerge('light:hidden flex', className)}
           onClick={handleClick}
           Icon={IconSun}
         >
@@ -40,7 +40,7 @@ export function ToggleTheme({ className, children }: Props) {
             type: 'iconText',
             color: 'simple',
           }}
-          className={twMerge('light:block hidden', className)}
+          className={twMerge('light:flex hidden', className)}
           onClick={handleClick}
           Icon={IconMoon}
         >
@@ -57,7 +57,7 @@ export function ToggleTheme({ className, children }: Props) {
           type: 'icon',
           color: 'simple',
         }}
-        className={twMerge('light:hidden', className)}
+        className={twMerge('light:hidden flex', className)}
         onClick={handleClick}
         aria-label={'Switch to light theme'}
         Icon={IconSun}
@@ -68,7 +68,7 @@ export function ToggleTheme({ className, children }: Props) {
           type: 'icon',
           color: 'simple',
         }}
-        className={twMerge('light:block hidden', className)}
+        className={twMerge('light:flex hidden', className)}
         onClick={handleClick}
         aria-label={'Switch to dark theme'}
         Icon={IconMoon}
