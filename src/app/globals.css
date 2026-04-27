@@ -65,11 +65,11 @@
 
   /* Status */
   --color-success-dark: #00c951;
-  --color-success-fg-dark: #0bbv3f;
+  --color-success-bd-dark: #0bbc3f;
   --color-success-fill-dark: #07480f;
 
   --color-danger-dark: #e7000b;
-  --color-danger-fg-dark: #a30a11;
+  --color-danger-bd-dark: #a30a11;
   --color-danger-fill-dark: #480003;
 
   --color-info-dark: #3694ff;
@@ -77,7 +77,7 @@
   --color-info-fill-dark: #112b62;
 
   --color-warning-dark: #efef1c;
-  --color-warning-fg-dark: #bcaf20;
+  --color-warning-bd-dark: #bcaf20;
   --color-warning-fill-dark: #5c550c;
 
   /* Accessibility */
