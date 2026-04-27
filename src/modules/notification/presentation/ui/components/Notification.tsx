@@ -47,8 +47,8 @@ export function Notification({
         <Button
           type="button"
           variant={{
-            color: 'subtle',
-            size: 'sm',
+            color: 'muted',
+            size: 'xs',
             type: 'icon',
           }}
           aria-label="Edit exercise"
