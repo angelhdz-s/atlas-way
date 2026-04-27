@@ -1,13 +1,15 @@
 import { tv, type VariantProps } from 'tailwind-variants';
 
 export const buttonVariant = tv({
-  base: 'flex w-fit cursor-pointer items-center gap-2 rounded-full py-0.5 font-medium whitespace-nowrap transition-colors [--rounding:10px] disabled:cursor-not-allowed disabled:opacity-50',
+  base: 'flex w-fit cursor-pointer items-center gap-2 rounded-full py-0.5 font-medium whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-50',
   variants: {
     color: {
-      primary: 'bg-primary text-fg-strong-dark hover:bg-primary/90',
+      primary: 'bg-primary text-fg-strong-dark hover:bg-primary/90 bg-linear-45',
       subtle: 'text-fg-strong bg-fill-top hover:text-fg-subtle',
       outline: 'text-fg-strong hover:text-fg-subtle hover:bg-fill-top ring-bd-strong ring-1',
       simple: 'text-fg-strong hover:text-fg-subtle',
+      muted: 'text-fg-muted hover:text-fg-default',
+      danger: 'text-danger bg-danger-fill hover:text-danger/80 hover:bg-danger-fill/50',
     },
     type: {
       text: true,
