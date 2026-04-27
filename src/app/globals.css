@@ -106,7 +106,7 @@
   /* Status */
   --color-success-light: #369a00;
   --color-success-bd-light: #33be17;
-  --color-success-fill-light: #02fe70;
+  --color-success-fill-light: #a2fe70;
 
   --color-danger-light: #ba0000;
   --color-danger-bd-light: #ef1e1e;
@@ -118,7 +118,7 @@
 
   --color-warning-light: #869800;
   --color-warning-bd-light: #bfc500;
-  --color-warning-fill-light: #f0ff9c;
+  --color-warning-fill-light: #e6f97b;
 
   /* Accessibility */
   --color-focus-light: #000;
