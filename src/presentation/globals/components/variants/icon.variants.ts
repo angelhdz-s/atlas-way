@@ -9,4 +9,8 @@ export const iconVariant = tv({
       lg: 'size-6 stroke-2',
     },
   },
+
+  defaultVariants: {
+    button: 'md',
+  },
 });
