@@ -1,8 +1,8 @@
 'use client';
 
 import { useTheme } from 'next-themes';
+import { twMerge } from 'tailwind-merge';
 import { THEME } from '@/presentation/modules/theme/constants/client';
-import { DefaultIcon } from '@/presentation/globals/components/icons/DefaultIcon';
 import { IconMoon } from '@/presentation/globals/components/icons/outline/IconMoon';
 import { IconSun } from '@/presentation/globals/components/icons/outline/IconSun';
 import { Button } from '@/presentation/modules/button/components/Button';
@@ -19,20 +19,60 @@ export function ToggleTheme({ className, children }: Props) {
     setTheme(theme === THEME.DARK ? THEME.LIGHT : THEME.DARK);
   };
 
+  if (children)
+    return (
+      <>
+        <Button
+          type="button"
+          variant={{
+            type: 'iconText',
+            color: 'simple',
+          }}
+          className={twMerge('light:hidden flex', className)}
+          onClick={handleClick}
+          Icon={IconSun}
+        >
+          {children}
+        </Button>
+        <Button
+          type="button"
+          variant={{
+            type: 'iconText',
+            color: 'simple',
+          }}
+          className={twMerge('light:flex hidden', className)}
+          onClick={handleClick}
+          Icon={IconMoon}
+        >
+          {children && children}
+        </Button>
+      </>
+    );
+
   return (
-    <Button
-      type="button"
-      variantConfig={{
-        type: children ? undefined : 'square',
-        color: 'simple',
-      }}
-      className={className}
-      onClick={handleClick}
-      aria-label={children ? undefined : 'Switch between light and dark themes'}
-    >
-      <DefaultIcon Icon={IconSun} className="light:hidden" />
-      <DefaultIcon Icon={IconMoon} className="light:block hidden" />
-      {children}
-    </Button>
+    <>
+      <Button
+        type="button"
+        variant={{
+          type: 'icon',
+          color: 'simple',
+        }}
+        className={twMerge('light:hidden flex', className)}
+        onClick={handleClick}
+        aria-label={'Switch to light theme'}
+        Icon={IconSun}
+      />
+      <Button
+        type="button"
+        variant={{
+          type: 'icon',
+          color: 'simple',
+        }}
+        className={twMerge('light:flex hidden', className)}
+        onClick={handleClick}
+        aria-label={'Switch to dark theme'}
+        Icon={IconMoon}
+      />
+    </>
   );
 }

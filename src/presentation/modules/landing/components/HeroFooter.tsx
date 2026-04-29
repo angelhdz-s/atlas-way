@@ -25,7 +25,7 @@ export function HeroFooter({ className, logged }: Props) {
     >
       <Button
         onClick={handleClick}
-        variantConfig={{
+        variant={{
           color: 'primary',
           size: 'lg',
         }}

@@ -16,7 +16,7 @@ export function DevSelectBox() {
   };
   return (
     <Label title="Select Box" htmlFor="select-box">
-      <Button variantConfig={{ color: 'subtle' }} onClick={handleOpen}>
+      <Button variant={{ color: 'subtle' }} onClick={handleOpen}>
         Open Select Box
       </Button>
       <SelectBox

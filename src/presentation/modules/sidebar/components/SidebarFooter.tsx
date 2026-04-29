@@ -21,7 +21,7 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
 
   return (
     <footer
-      className={`bg-middle relative mx-1 mb-1 flex items-center rounded transition-colors lg:p-1 lg:pr-2 lg:pl-4 ${className}`}
+      className={`bg-fill-base relative mx-1 mb-1 flex items-center rounded transition-colors lg:p-1 lg:pr-2 lg:pl-4 ${className}`}
     >
       <div className="w-full">
         <div className="flex w-full items-center justify-center gap-1 lg:justify-between">
@@ -30,21 +30,24 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
           <aside>
             <ul className="flex flex-col items-center lg:flex-row">
               <li>
-                <Button variantConfig={{ type: 'square', color: 'simple' }} onClick={handleClick}>
-                  <IconCog strokeWidth="1.5" />
-                </Button>
+                <Button
+                  variant={{ type: 'icon', color: 'simple' }}
+                  Icon={IconCog}
+                  aria-label="Configuration"
+                  onClick={handleClick}
+                />
               </li>
               <li>
                 <Button
                   onClick={handleLogout}
                   type="button"
-                  variantConfig={{
-                    type: 'square',
+                  variant={{
+                    type: 'icon',
                     color: 'simple',
                   }}
-                >
-                  <IconLogout className="-mr-1 size-6" />
-                </Button>
+                  Icon={IconLogout}
+                  aria-label="Log out"
+                />
               </li>
             </ul>
           </aside>

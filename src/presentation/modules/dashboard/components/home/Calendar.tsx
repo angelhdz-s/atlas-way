@@ -8,9 +8,9 @@ function CalendarHeader({ className = '' }: { className?: string }) {
   return (
     <header className={` ${className}`}>
       <ul className="font-funnel-display grid grid-cols-[1fr_auto_1fr] font-light">
-        <li className="text-default/50">July</li>
-        <li className="fg-strong text-xl">August 2024</li>
-        <li className="text-default/50 text-right">September</li>
+        <li className="text-fg-default/50">July</li>
+        <li className="text-fg-strong text-xl">August 2024</li>
+        <li className="text-fg-default/50 text-right">September</li>
       </ul>
     </header>
   );
@@ -21,7 +21,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
     <ul
       className={`flex items-end justify-around gap-2 text-sm leading-[1.2] *:w-full *:rounded-lg *:px-3 *:py-1 ${className}`}
     >
-      <li className="bg-subtle/5 text-default/70 flex flex-col items-center gap-2 text-xs font-normal">
+      <li className="bg-fill-middle text-fg-default/70 flex flex-col items-center gap-2 text-xs font-normal">
         <main>
           <header>Thu</header>
           <footer>07</footer>
@@ -30,7 +30,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
           <IconCircleCheck className="mx-auto size-5" />
         </footer>
       </li>
-      <li className="bg-subtle/10 flex flex-col items-center gap-2">
+      <li className="bg-fill-middle flex flex-col items-center gap-2">
         <main>
           <header>Fri</header>
           <footer>08</footer>
@@ -39,7 +39,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
           <IconCircleCheck className="mx-auto size-5" />
         </footer>
       </li>
-      <li className="bg-subtle/10 fg-accent flex flex-col items-center gap-2 text-xl leading-[1.2] font-medium">
+      <li className="bg-fill-middle text-accent flex flex-col items-center gap-2 text-xl leading-[1.2] font-medium">
         <main>
           <header>Sat</header>
           <footer>09</footer>
@@ -48,7 +48,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
           <IconAlarm className="mx-auto size-5" />
         </footer>
       </li>
-      <li className="bg-subtle/10 flex flex-col items-center gap-2">
+      <li className="bg-fill-middle flex flex-col items-center gap-2">
         <main>
           <header>Sun</header>
           <footer>10</footer>
@@ -57,7 +57,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
           <IconBarbell className="mx-auto size-5" />
         </footer>
       </li>
-      <li className="bg-subtle/5 text-default/70 flex flex-col items-center gap-2 text-xs font-normal">
+      <li className="bg-fill-middle text-fg-default/70 flex flex-col items-center gap-2 text-xs font-normal">
         <main>
           <header>Mon</header>
           <footer>11</footer>
@@ -73,7 +73,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
 function CalendarNextWeek({ className }: { className?: string }) {
   return (
     <ul
-      className={`text-default/50 *:bg-subtle/5 flex items-end justify-around gap-2 text-xs *:flex *:w-full *:flex-col *:items-center *:gap-1 *:rounded-lg *:px-3 *:py-1 ${className} `}
+      className={`text-fg-default/50 *:bg-fill-middle flex items-end justify-around gap-2 text-xs *:flex *:w-full *:flex-col *:items-center *:gap-1 *:rounded-lg *:px-3 *:py-1 ${className} `}
     >
       <li>
         <main>Tue 12</main>

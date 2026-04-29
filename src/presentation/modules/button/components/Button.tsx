@@ -2,13 +2,23 @@ import { twMerge } from 'tailwind-merge';
 import { buttonVariant } from '@/presentation/modules/button/button.config';
 import type { ButtonElementProps } from '@/presentation/globals/presentation.types';
 import type { VariantButtonType } from '@/presentation/modules/button/button.types';
+import { iconVariant } from '@/presentation/globals/components/variants/icon.variants';
 
-export function Button({
-  variantConfig,
-  className,
-  type = 'button',
-  ...props
-}: VariantButtonType<ButtonElementProps>) {
-  const variantClassNames = buttonVariant(variantConfig);
-  return <button type={type} className={twMerge(variantClassNames, className)} {...props}></button>;
+type Props = VariantButtonType<ButtonElementProps>;
+
+export function Button(props: Props) {
+  const { children, Icon, variant, className, type, ...restProps } = props;
+
+  const variantClassNames = buttonVariant({ ...variant, disabled: props.disabled });
+  const iconClassNames = iconVariant({ button: variant?.size });
+  return (
+    <button
+      type={type ?? 'button'}
+      className={twMerge(variantClassNames, className)}
+      {...restProps}
+    >
+      {Icon && <Icon className={iconClassNames} />}
+      {children}
+    </button>
+  );
 }

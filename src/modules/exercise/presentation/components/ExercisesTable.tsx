@@ -29,8 +29,8 @@ export function ExercisesTable({ exercises }: Props) {
       <TableBody>
         {exercises.map(({ id, name, description, sets, reps, weight, createdAt }, index) => (
           <TableBodyRow key={id}>
-            <td className="fg-muted w-10 text-center font-light md:w-12">{index + 1}</td>
-            <td className="fg-strong truncate">{name}</td>
+            <td className="text-fg-subtle w-10 text-center font-light md:w-12">{index + 1}</td>
+            <td className="text-fg-strong truncate">{name}</td>
             <td className="hidden w-[40%] truncate pr-4 xl:table-cell">{description}</td>
             <td className="text-center">{sets}</td>
             <td className="text-center">{reps}</td>
@@ -39,14 +39,18 @@ export function ExercisesTable({ exercises }: Props) {
             <td>
               <ul className="flex w-full items-center justify-center">
                 <li>
-                  <Button variantConfig={{ color: 'simple', type: 'square' }}>
-                    <IconEdit className="size-5" />
-                  </Button>
+                  <Button
+                    variant={{ color: 'simple', type: 'icon' }}
+                    aria-label="Edit exercise"
+                    Icon={IconEdit}
+                  />
                 </li>
                 <li>
-                  <Button variantConfig={{ color: 'simple', type: 'square' }}>
-                    <IconTrash className="size-5" />
-                  </Button>
+                  <Button
+                    variant={{ color: 'simple', type: 'icon' }}
+                    aria-label="Delete exercise"
+                    Icon={IconTrash}
+                  />
                 </li>
               </ul>
             </td>

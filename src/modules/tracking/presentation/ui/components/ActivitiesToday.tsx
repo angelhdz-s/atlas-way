@@ -64,14 +64,15 @@ export function ActivitiesToday({ className }: { className?: string }) {
       <footer>
         <Button
           type="button"
-          variantConfig={{
+          variant={{
             size: 'sm',
             color: 'primary',
+            type: 'iconText',
           }}
           className="flex items-center gap-1"
+          Icon={IconCirclePlus}
         >
-          <IconCirclePlus className="size-5" />
-          <span>Register</span>
+          Register
         </Button>
       </footer>
     </Card>

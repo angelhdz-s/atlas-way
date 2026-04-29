@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { Link } from '@/presentation/modules/button/components/Link';
+import { IconRocket } from '@/presentation/globals/components/icons/outline/IconRocket';
 
 describe('<Link />', () => {
   const href = '/dashboard';
@@ -26,9 +27,7 @@ describe('<Link />', () => {
 
     it('should apply p-0 class based on square variantConfig type', () => {
       render(
-        <Link href={href} variantConfig={{ type: 'square' }}>
-          Click
-        </Link>
+        <Link href={href} variant={{ type: 'icon' }} aria-label="Click" Icon={IconRocket}></Link>
       );
       expect(screen.getByRole('link')).toHaveClass('p-0');
     });
@@ -36,15 +35,15 @@ describe('<Link />', () => {
     describe('should apply class based on variantConfig color', () => {
       const cases = [
         { color: 'primary', expectedClass: 'bg-primary' },
-        { color: 'simple', expectedClass: 'fg-default' },
-        { color: 'subtle', expectedClass: 'bg-subtle/20' },
+        { color: 'simple', expectedClass: 'hover:text-fg-subtle' },
+        { color: 'subtle', expectedClass: 'bg-fill-top' },
       ];
 
       test.each(cases)(
         'should apply $expectedClass when color is $color',
         ({ color, expectedClass }) => {
           render(
-            <Link href={href} variantConfig={{ color: color as 'simple' | 'primary' | 'subtle' }}>
+            <Link href={href} variant={{ color: color as 'simple' | 'primary' | 'subtle' }}>
               Click
             </Link>
           );
@@ -65,7 +64,7 @@ describe('<Link />', () => {
         'should apply $expectedClass when size is $size',
         ({ size, expectedClass }) => {
           render(
-            <Link href={href} variantConfig={{ size: size as 'xs' | 'sm' | 'md' | 'lg' }}>
+            <Link href={href} variant={{ size: size as 'xs' | 'sm' | 'md' | 'lg' }}>
               Click
             </Link>
           );
@@ -85,9 +84,7 @@ describe('<Link />', () => {
 
     it('should be identifiable via aria-label when provided', async () => {
       render(
-        <Link href={href} variantConfig={{ type: 'square' }} aria-label="Routines">
-          +
-        </Link>
+        <Link href={href} variant={{ type: 'icon' }} aria-label="Routines" Icon={IconRocket}></Link>
       );
       const anchor = screen.getByRole('link', { name: /routines/i });
       expect(anchor).toBeInTheDocument();

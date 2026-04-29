@@ -41,22 +41,28 @@ export function TooltipSelect({
 
   return (
     <div className="fixed inset-0 grid size-full place-items-center bg-black/50">
-      <div ref={tooltipRef} className="bg-middle w-90 space-y-4 rounded-2xl border border-white/5">
+      <div
+        ref={tooltipRef}
+        className="bg-fill-base w-90 space-y-4 rounded-2xl border border-white/5"
+      >
         <header className="flex items-center justify-between gap-2 pl-4">
           <h5>{title}</h5>
-          <Button onClick={onClose} variantConfig={{ type: 'square', color: 'simple' }}>
-            <IconXMark />
-          </Button>
+          <Button
+            onClick={onClose}
+            variant={{ type: 'icon', color: 'simple' }}
+            Icon={IconXMark}
+            aria-label="Close tooltip"
+          />
         </header>
         <main className="space-y-4 px-4 pb-4">
           <LabelGroup title={label}>
             <Select ref={selectRef} multiple={false} options={selectOptions} />
           </LabelGroup>
           <footer className="flex items-center justify-end gap-2">
-            <Button variantConfig={{ color: 'simple', size: 'sm' }} onClick={onClose}>
+            <Button variant={{ color: 'simple', size: 'sm' }} onClick={onClose}>
               Cancel
             </Button>
-            <Button variantConfig={{ color: 'primary', size: 'sm' }} onClick={handleSelectOption}>
+            <Button variant={{ color: 'primary', size: 'sm' }} onClick={handleSelectOption}>
               Done
             </Button>
           </footer>

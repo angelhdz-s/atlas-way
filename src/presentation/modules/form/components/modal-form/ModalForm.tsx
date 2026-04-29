@@ -26,19 +26,21 @@ export function ModalForm<T extends ZodSchema<any, any>>({
 
   return (
     <div className={`flex w-160 flex-col gap-4 ${className}`}>
-      <header className="border-bd-muted flex h-10 items-center justify-between border-b p-8 text-xl">
-        <h3 className="font-funnel-display fg-strong truncate text-2xl font-medium">{title}</h3>
+      <header className="border-bd-muted flex h-16 items-center justify-between border-b p-8">
+        <h3 className="font-funnel-display text-fg-strong truncate text-2xl font-medium">
+          {title}
+        </h3>
         <aside>
           <Button
             type="button"
-            variantConfig={{
+            variant={{
               color: 'simple',
-              type: 'square',
+              type: 'icon',
             }}
             onClick={onClose}
-          >
-            <IconXMark />
-          </Button>
+            Icon={IconXMark}
+            aria-label="Close modal"
+          />
         </aside>
       </header>
       <FormProvider {...methods}>

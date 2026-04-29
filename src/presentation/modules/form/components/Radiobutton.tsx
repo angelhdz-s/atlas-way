@@ -42,7 +42,7 @@ export function Radiobutton({
       <div
         className={twMerge(
           'outline-focus flex h-10 items-center gap-2 rounded px-2 py-1 transition-colors peer-focus:outline-2',
-          checked ? '' : 'text-default/50',
+          checked ? '' : 'text-fg-default/50',
           className
         )}
       >

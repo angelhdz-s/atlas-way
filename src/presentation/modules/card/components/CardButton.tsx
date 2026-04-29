@@ -10,7 +10,7 @@ export function CardButton({ children, className }: Props) {
   return (
     <Button
       type="button"
-      variantConfig={{
+      variant={{
         color: 'simple',
       }}
       className={twMerge('ml-auto flex items-center gap-1', className)}

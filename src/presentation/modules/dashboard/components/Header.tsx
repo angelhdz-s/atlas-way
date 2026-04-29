@@ -7,7 +7,7 @@ export function Header({ className = '' }: { className?: string }) {
   return (
     <header className="h-(--header-height) w-full">
       <main
-        className={`bg-back border-bd-muted font-funnel-display fixed top-0 left-0 z-10 grid h-(--header-height) w-full grid-cols-[auto_auto_auto] gap-4 border-b pr-4 md:grid-cols-[1fr_auto_1fr] ${className}`}
+        className={`bg-fill-back border-bd-muted font-funnel-display fixed top-0 left-0 z-10 grid h-(--header-height) w-full grid-cols-[auto_auto_auto] gap-4 border-b pr-4 md:grid-cols-[1fr_auto_1fr] ${className}`}
       >
         <section className="flex h-full items-center gap-2">
           <main className="border-bd-muted flex h-full w-(--sidebar-width) items-center justify-between gap-0 border-r lg:pl-4">

@@ -15,7 +15,7 @@ export function ModalFormButtons({ onClose }: { onClose?: () => void }) {
     <footer className="mt-2 flex justify-end">
       <Button
         type="button"
-        variantConfig={{
+        variant={{
           color: 'simple',
         }}
         onClick={handleClose}
@@ -24,7 +24,7 @@ export function ModalFormButtons({ onClose }: { onClose?: () => void }) {
       </Button>
       <Button
         type="submit"
-        variantConfig={{
+        variant={{
           color: 'primary',
         }}
         className={isSubmitting ? 'cursor-not-allowed opacity-50' : ''}

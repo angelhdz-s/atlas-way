@@ -12,7 +12,7 @@ export function Notification({
 }) {
   const { title, description, date, notSeen, url } = data;
 
-  const notificationClass = notSeen ? 'bg-middle' : '';
+  const notificationClass = notSeen ? 'bg-fill-base' : '';
 
   return (
     <article
@@ -25,34 +25,35 @@ export function Notification({
         <header className="relative w-fit">
           <Link href={url || '/dashboard/notifications'} className="flex w-fit items-center gap-2">
             <h3
-              className={`line-clamp-1 w-fit text-base ${notSeen ? 'fg-strong font-medium' : ''}`}
+              className={`line-clamp-1 w-fit text-base ${notSeen ? 'text-fg-strong font-medium' : ''}`}
             >
               {title}
             </h3>
           </Link>
           {notSeen && (
-            <span className="bg-unread absolute inset-y-0 left-full my-auto ml-2 block size-2 rounded-full"></span>
+            <span className="bg-info absolute inset-y-0 left-full my-auto ml-2 block size-2 rounded-full"></span>
           )}
         </header>
         <footer>
-          <p className={`text-sm font-light ${notSeen ? '' : 'text-default/60'}`}>
+          <p className={`text-sm font-light ${notSeen ? '' : 'text-fg-default/60'}`}>
             <span className="line-clamp-1">{description}</span>
           </p>
         </footer>
       </main>
-      <aside className="text-default/50 w-fit text-center text-sm whitespace-nowrap">{date}</aside>
+      <aside className="text-fg-default/50 w-fit text-center text-sm whitespace-nowrap">
+        {date}
+      </aside>
       <div className="flex items-center gap-2">
         <Button
           type="button"
-          variantConfig={{
-            type: 'square',
-            color: 'subtle',
-            size: 'sm',
+          variant={{
+            color: 'muted',
+            size: 'xs',
+            type: 'icon',
           }}
-          className="text-red-800/80"
-        >
-          <IconTrash className="size-4" strokeWidth="2" />
-        </Button>
+          aria-label="Edit exercise"
+          Icon={IconTrash}
+        />
       </div>
     </article>
   );

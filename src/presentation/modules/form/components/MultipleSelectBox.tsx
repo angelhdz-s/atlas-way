@@ -21,17 +21,17 @@ function SelectedOptions({ option, onCrossClick }: SelectedOption) {
     onCrossClick?.(option.value);
   };
   return (
-    <div className="bg-middle border-bd-muted flex w-fit max-w-36 items-center gap-0.5 rounded-lg border px-1 py-1 pl-3 hover:border-transparent">
+    <div className="bg-fill-base border-bd-muted flex w-fit max-w-36 items-center gap-0.5 rounded-lg border px-1 py-1 pl-3 hover:border-transparent">
       <span className="truncate">{option.label}</span>
       {onCrossClick && (
         <Button
-          variantConfig={{ size: 'xs', type: 'square' }}
+          variant={{ size: 'xs', type: 'icon' }}
           type="button"
           onClick={handleClick}
-          className="cursor-pointer transition-opacity hover:opacity-50"
-        >
-          <IconXMark className="size-5" strokeWidth="1" />
-        </Button>
+          className="transition-opacity hover:opacity-50"
+          Icon={IconXMark}
+          aria-label="Remove option selected"
+        />
       )}
     </div>
   );
@@ -76,7 +76,7 @@ export function MultipleSelectBox<TForm extends FieldValues, TName extends Field
   return (
     <>
       <div className="flex flex-col gap-2">
-        <header className="fg-strong font-medium">{label}</header>
+        <header className="text-fg-strong font-medium">{label}</header>
         <Box className="flex h-48 gap-1">
           <main className="scrollbar-y flex flex-1 flex-wrap content-start gap-2 pb-4">
             {fields.map((field, index) => (
@@ -90,18 +90,16 @@ export function MultipleSelectBox<TForm extends FieldValues, TName extends Field
           <aside className="flex flex-col items-center justify-between gap-2">
             <Button
               onClick={openSelection}
-              variantConfig={{ type: 'square', color: 'subtle' }}
+              variant={{ type: 'icon', color: 'subtle' }}
+              Icon={IconCirclePlus}
               aria-label="Add new element"
-            >
-              <IconCirclePlus strokeWidth="1" />
-            </Button>
+            />
             <Button
               onClick={clearAllItems}
-              variantConfig={{ type: 'square', color: 'subtle' }}
+              variant={{ type: 'icon', color: 'subtle' }}
               aria-label="Clear all elements"
-            >
-              <IconTrash strokeWidth="1" />
-            </Button>
+              Icon={IconTrash}
+            />
           </aside>
         </Box>
         <ErrorMessage message={error} />

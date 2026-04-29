@@ -2,6 +2,7 @@ import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 import { Button } from '@/presentation/modules/button/components/Button';
+import { IconRocket } from '@/presentation/globals/components/icons/outline/IconRocket';
 
 describe('<Button />', () => {
   describe('Basic Rendering', () => {
@@ -22,25 +23,23 @@ describe('<Button />', () => {
       expect(screen.getByRole('button')).toBeDisabled();
     });
 
-    it('should apply p-0 class based on square variantConfig type', () => {
-      render(<Button variantConfig={{ type: 'square' }}>Click</Button>);
+    it('should apply p-0 class based on icon variantConfig type', () => {
+      render(<Button variant={{ type: 'icon' }} aria-label="Click" Icon={IconRocket}></Button>);
       expect(screen.getByRole('button')).toHaveClass('p-0');
     });
 
     describe('should apply class based on variantConfig color', () => {
       const cases = [
         { color: 'primary', expectedClass: 'bg-primary' },
-        { color: 'simple', expectedClass: 'fg-default' },
-        { color: 'subtle', expectedClass: 'bg-subtle/20' },
+        { color: 'simple', expectedClass: 'hover:text-fg-subtle' },
+        { color: 'subtle', expectedClass: 'bg-fill-top' },
       ];
 
       test.each(cases)(
         'should apply $expectedClass when color is $color',
         ({ color, expectedClass }) => {
           render(
-            <Button variantConfig={{ color: color as 'simple' | 'primary' | 'subtle' }}>
-              Click
-            </Button>
+            <Button variant={{ color: color as 'simple' | 'primary' | 'subtle' }}>Click</Button>
           );
           expect(screen.getByRole('button')).toHaveClass(expectedClass);
         }
@@ -57,9 +56,7 @@ describe('<Button />', () => {
       test.each(cases)(
         'should apply $expectedClass when size is $size',
         ({ size, expectedClass }) => {
-          render(
-            <Button variantConfig={{ size: size as 'xs' | 'sm' | 'md' | 'lg' }}>Click</Button>
-          );
+          render(<Button variant={{ size: size as 'xs' | 'sm' | 'md' | 'lg' }}>Click</Button>);
           expect(screen.getByRole('button')).toHaveClass(expectedClass);
         }
       );
@@ -84,11 +81,7 @@ describe('<Button />', () => {
     });
 
     it('should be identifiable via aria-label when provided', async () => {
-      render(
-        <Button variantConfig={{ type: 'square' }} aria-label="Create">
-          +
-        </Button>
-      );
+      render(<Button variant={{ type: 'icon' }} aria-label="Create" Icon={IconRocket}></Button>);
       const button = screen.getByRole('button', { name: /create/i });
       expect(button).toBeInTheDocument();
     });

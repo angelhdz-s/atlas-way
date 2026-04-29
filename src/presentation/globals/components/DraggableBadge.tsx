@@ -15,8 +15,8 @@ export function DraggableBadge(props: Props) {
       {...restProps}
       className={twMerge(
         `flex h-8 w-fit items-center justify-center gap-1 border`,
-        'fg-strong cursor-grab rounded-lg py-1 pl-1 text-sm',
-        'bg-middle shadow-back light:shadow-black/5 border-bd-default shadow-lg',
+        'text-fg-strong cursor-grab rounded-lg py-1 pl-1 text-sm',
+        'bg-fill-base shadow-back light:shadow-black/5 border-bd-default shadow-lg',
         className ?? ''
       )}
     >
@@ -24,12 +24,11 @@ export function DraggableBadge(props: Props) {
       <span className="w-15 truncate">{children}</span>
       {onRemove && (
         <Button
-          variantConfig={{ type: 'square', size: 'xs', color: 'simple' }}
+          variant={{ type: 'icon', size: 'xs', color: 'simple' }}
           aria-label="Remove item"
+          Icon={IconXMark}
           onClick={onRemove}
-        >
-          <IconXMark className="size-5" />
-        </Button>
+        />
       )}
     </div>
   );

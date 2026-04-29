@@ -21,29 +21,27 @@ export function SortableInputItem({ item, index, onRemoveOption }: Props) {
 
   return (
     <div
-      className="bg-middle flex min-h-10 w-full items-center gap-2 rounded-lg py-1 pr-3 pl-1"
+      className="bg-fill-base flex min-h-10 w-full items-center gap-2 rounded-lg py-1 pr-3 pl-1"
       ref={ref}
       data-testid="sortable-item"
     >
       <div className="flex w-full items-center">
         <Button
-          variantConfig={{ type: 'square', color: 'simple' }}
           className="cursor-grab"
           ref={handleRef}
+          variant={{ type: 'icon', color: 'simple' }}
+          Icon={IconGripVertical}
           aria-label="Drag item"
-        >
-          <IconGripVertical className="size-5" />
-        </Button>
+        />
         <span className="px-2 text-sm">{index + 1}</span>
         <div>{item.label}</div>
       </div>
       <Button
-        variantConfig={{ type: 'square', color: 'simple' }}
+        variant={{ type: 'icon', color: 'simple' }}
+        Icon={IconTrash}
         onClick={handleRemoveOption}
         aria-label="Remove item"
-      >
-        <IconTrash className="size-5" />
-      </Button>
+      />
     </div>
   );
 }

@@ -56,28 +56,28 @@ function StatusDay({ status, className }: { status: StatusDayType; className?: s
   if (status === 'completed')
     return (
       <span className={` ${className}`}>
-        <StatusDaySolidIcon className="fg-complete" icon={SIconCircleCheck} />
+        <StatusDaySolidIcon className="text-success" icon={SIconCircleCheck} />
       </span>
     );
 
   if (status === 'canceled')
     return (
       <span className={` ${className}`}>
-        <StatusDaySolidIcon className="fg-cancel" icon={SIconCircleX} />
+        <StatusDaySolidIcon className="text-danger" icon={SIconCircleX} />
       </span>
     );
 
   if (status === 'current')
     return (
       <span className={` ${className}`}>
-        <StatusDayIcon className="fg-accent" icon={IconCircleOutline} />
+        <StatusDayIcon className="text-accent" icon={IconCircleOutline} />
       </span>
     );
 
   // default return if status === "next"
   return (
     <span className={`${className}`}>
-      <StatusDayIcon className="text-default/25" icon={IconCircleOutline} />
+      <StatusDayIcon className="text-fg-default/25" icon={IconCircleOutline} />
     </span>
   );
 }
@@ -96,7 +96,9 @@ export function CurrentWeekStatus({ className = '' }: { className?: string }) {
           const className = getStatusTextColorClass(status);
           return (
             <div key={day} className="flex flex-col justify-center" title={title}>
-              <span className={`text-center text-sm font-black ${className || 'text-default/75'}`}>
+              <span
+                className={`text-center text-sm font-black ${className || 'text-fg-default/75'}`}
+              >
                 {dayName}
               </span>
               <StatusDay status={status} />

@@ -21,20 +21,19 @@ export function RoutineSessionPlanDroppableItem({ id, text, children, dndConfig,
   return (
     <div
       ref={ref}
-      className={`bg-back h-20 rounded text-sm ${dndConfig.droppedId ? 'outline-bd-default outline' : 'opacity-80'}`}
+      className={`bg-fill-back h-20 rounded text-sm ${dndConfig.droppedId ? 'outline-bd-default outline' : 'opacity-80'}`}
     >
-      <header className="bg-middle border-bd-muted flex h-9 items-center justify-between rounded-t border px-1.5 leading-none">
-        <h4 className={dndConfig.droppedId ? 'fg-strong font-medium' : ''}>{text}</h4>
+      <header className="bg-fill-base border-bd-muted flex h-9 items-center justify-between rounded-t border px-1.5 leading-none">
+        <h4 className={dndConfig.droppedId ? 'text-fg-strong font-medium' : ''}>{text}</h4>
         {onAdd !== undefined && (
           <Button
-            aria-label="Select a session"
             title="Select a session"
-            variantConfig={{ color: 'simple', type: 'square' }}
-            className="size-7 rounded-lg"
+            variant={{ color: 'simple', type: 'icon' }}
             onClick={onAdd}
-          >
-            <IconPlus className="size-4" />
-          </Button>
+            className="size-7 rounded-lg"
+            Icon={IconPlus}
+            aria-label="Select a session"
+          />
         )}
       </header>
       <main className="w-full p-2">{children}</main>

@@ -74,11 +74,11 @@ export function SessionsHistory({ className }: { className?: string }) {
           </section>
           <section className="flex flex-col gap-4">
             <header className="flex items-center gap-2">
-              <IconCalendarClock className="fg-muted" strokeWidth="1.5" />
+              <IconCalendarClock className="text-fg-subtle" strokeWidth="1.5" />
               <MonthDateSelector />
               <YearDateSelector />
             </header>
-            <SubtleCard className="border-subtle/10 rounded-lg border">
+            <SubtleCard className="border-bd-default rounded-lg border">
               <SessionDetails session={session} />
             </SubtleCard>
           </section>

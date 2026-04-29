@@ -91,11 +91,13 @@ export function DevFormComponents({ className }: Props) {
       <DevFormGroup className={className}>
         <Label title="Form buttons" htmlFor="">
           <div className="flex items-center gap-2">
-            <Button variantConfig={{ color: 'simple', type: 'square' }}>
-              <IconXMark />
-            </Button>
-            <Button variantConfig={{ color: 'simple' }}>Cancel</Button>
-            <Button variantConfig={{ color: 'primary' }}>Done</Button>
+            <Button
+              variant={{ color: 'simple', type: 'icon' }}
+              Icon={IconXMark}
+              aria-label="Close"
+            />
+            <Button variant={{ color: 'simple' }}>Cancel</Button>
+            <Button variant={{ color: 'primary' }}>Done</Button>
           </div>
         </Label>
       </DevFormGroup>

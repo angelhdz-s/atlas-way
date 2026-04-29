@@ -6,9 +6,9 @@ import styles from '@/modules/tracking/presentation/ui/components/CurrentGoals.m
 function PercentageBar({ value, target }: { value: number; target: number }) {
   const percentage = Math.min((value / target) * 100, 100);
   return (
-    <div className="bg-subtle/20 h-1 w-full overflow-hidden rounded-full">
+    <div className="bg-fill-top h-1 w-full overflow-hidden rounded-full">
       <div
-        className={`bg-complete h-1 rounded-full transition-all duration-500 ${styles['animate-scale-x-right']}`}
+        className={`bg-success h-1 rounded-full transition-all duration-500 ${styles['animate-scale-x-right']}`}
         style={{ width: `${percentage}%` }}
       ></div>
     </div>
@@ -25,17 +25,17 @@ type GoalItemType = {
 function GoalItem({ className = '', goal }: { className?: string; goal: GoalItemType }) {
   const { name, value, target } = goal;
 
-  const completedClass = value >= target ? 'fg-complete' : '';
+  const completedClass = value >= target ? 'text-success' : '';
 
   return (
     <article
-      className={`bg-subtle/5 fg-strong flex flex-col gap-1 rounded-lg px-4 py-2 ${completedClass} ${className}`}
+      className={`bg-fill-middle text-fg-strong flex flex-col gap-1 rounded-lg px-4 py-2 ${completedClass} ${className}`}
     >
       <header className="flex items-center justify-between gap-2">
         <h3 className="text-base">{name}</h3>
         <aside>
           <span
-            className={`font-light ${completedClass || 'text-default/50'}`}
+            className={`font-light ${completedClass || 'text-fg-default/50'}`}
           >{`${value} / ${target}`}</span>
         </aside>
       </header>

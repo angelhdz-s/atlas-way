@@ -18,11 +18,10 @@ export default async function RoutinesPage() {
         description="Create and manage your routines to automate tasks and workflows."
       >
         <Link
-          variantConfig={{ color: 'primary' }}
+          variant={{ color: 'primary', type: 'iconText' }}
+          Icon={IconPlus}
           href="/dashboard/routines/create"
-          className="gap-1 pl-3"
         >
-          <IconPlus className="size-5" strokeWidth="2" />
           Add Routine
         </Link>
       </PageHeader>

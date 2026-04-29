@@ -13,11 +13,10 @@ export default async function SessionsPage() {
     <PageContainer>
       <PageHeader title="Sessions" description="Manage your days planifications" className="">
         <Link
-          variantConfig={{ color: 'primary' }}
+          variant={{ color: 'primary', type: 'iconText' }}
+          Icon={IconPlus}
           href="/dashboard/sessions/create"
-          className="gap-1 pl-3"
         >
-          <IconPlus className="size-5" strokeWidth="2" />
           Add Session
         </Link>
       </PageHeader>

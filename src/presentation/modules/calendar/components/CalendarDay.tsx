@@ -18,10 +18,10 @@ function CalendarDayItem({
   return (
     <Button
       type="button"
-      variantConfig={{
-        type: 'square',
+      variant={{
         color: 'simple',
         size: 'xs',
+        type: 'square',
       }}
       onClick={onClick}
       className="flex w-full cursor-pointer justify-center hover:bg-transparent"
@@ -43,7 +43,7 @@ function CalendarDayCompleted({ day, isSelected = false, onClick }: CalendarDayT
   return (
     <CalendarDayItem
       onClick={onClick}
-      className={isSelected ? 'fg-strong bg-green-600' : 'bg-green-600/50'}
+      className={isSelected ? 'text-fg-strong bg-green-600' : 'bg-green-600/50'}
     >
       {day}
     </CalendarDayItem>
@@ -54,7 +54,7 @@ function CalendarDayCanceled({ day, isSelected = false, onClick }: CalendarDayTy
   return (
     <CalendarDayItem
       onClick={onClick}
-      className={isSelected ? 'fg-strong bg-red-600' : 'bg-red-600/50'}
+      className={isSelected ? 'text-fg-strong bg-red-600' : 'bg-red-600/50'}
     >
       {day}
     </CalendarDayItem>
@@ -71,7 +71,7 @@ function CalendarDayCurrent({
   return (
     <CalendarDayItem
       onClick={onClick}
-      className={`${isSelected ? 'bg-strong fg-strong-light light:fg-strong-dark' : 'bg-subtle/20'}`}
+      className={`${isSelected ? 'bg-fg-strong text-fg-strong-light light:text-fg-strong-dark' : 'bg-fill-top'}`}
     >
       <IconBarbellOff className="size-4.5" strokeWidth={isSelected ? '2' : '1.5'} />
     </CalendarDayItem>
@@ -80,7 +80,10 @@ function CalendarDayCurrent({
 
 function CalendarDayNormalSelected({ day, onClick }: CalendarDayTypeProps) {
   return (
-    <CalendarDayItem onClick={onClick} className="bg-strong fg-full-black light:fg-strong-dark">
+    <CalendarDayItem
+      onClick={onClick}
+      className="bg-fg-strong text-fg-strong-light light:text-fg-strong-dark"
+    >
       {day}
     </CalendarDayItem>
   );
@@ -90,7 +93,7 @@ function CalendarDayNextTraining({ day, onClick }: CalendarDayTypeProps) {
   return (
     <CalendarDayItem
       onClick={onClick}
-      className={`fg-strong outline-bd-default outline-1 outline-offset-1`}
+      className={`text-fg-strong outline-bd-default outline-1 outline-offset-1`}
     >
       {day}
     </CalendarDayItem>

@@ -33,20 +33,25 @@ export async function MuscularGroupsTable({ muscles }: { muscles: MuscleDTO[] })
       <TableBody>
         {muscularGroups.map(({ name, muscles, section }, index) => (
           <TableBodyRow key={name}>
-            <td className="fg-muted pl-4 font-light">{index + 1}</td>
-            <td className="fg-strong">{name}</td>
+            <td className="text-fg-subtle pl-4 font-light">{index + 1}</td>
+            <td className="text-fg-strong">{name}</td>
             <td className="text-sm">
-              <div className="bg-front w-fit rounded-full px-3 py-1 font-light">{section.name}</div>
+              <div className="bg-fill-middle w-fit rounded-full px-3 py-1 font-light">
+                {section.name}
+              </div>
             </td>
             <td className="text-sm">
               <div className="hidden w-fit items-center gap-2 lg:flex">
                 {muscles.map((m) => (
-                  <div key={m} className="bg-front mx-auto w-fit rounded-full px-3 py-1 font-light">
+                  <div
+                    key={m}
+                    className="bg-fill-middle mx-auto w-fit rounded-full px-3 py-1 font-light"
+                  >
                     {m}
                   </div>
                 ))}
               </div>
-              <div className="bg-front w-fit rounded-full px-3 py-1 font-light lg:hidden">
+              <div className="bg-fill-middle w-fit rounded-full px-3 py-1 font-light lg:hidden">
                 {`${muscles.length} muscles`}
               </div>
             </td>

@@ -11,7 +11,7 @@ export default function RoutinesPage() {
   return (
     <PageContainer>
       <PageHeader title={id} className="flex items-center justify-between">
-        <Link href={`/dashboard/routines/${id}/add-session`} variantConfig={{ color: 'primary' }}>
+        <Link href={`/dashboard/routines/${id}/add-session`} variant={{ color: 'primary' }}>
           Add Session
         </Link>
       </PageHeader>

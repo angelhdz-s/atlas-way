@@ -17,7 +17,7 @@ export default function CloseButton({
   return (
     <Button
       type="button"
-      variantConfig={{
+      variant={{
         color: 'simple',
       }}
       className={className}

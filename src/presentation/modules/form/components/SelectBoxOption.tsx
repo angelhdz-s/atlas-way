@@ -11,8 +11,8 @@ export function SelectBoxOption({
   onSelect: (value: SelectOption['value']) => void;
 }) {
   const isActiveClass = isSelected
-    ? 'border-complete fg-complete font-medium light:fg-green-700 light:border-green-600'
-    : 'border-subtle/20';
+    ? 'border-success text-success font-medium light:text-green-700 light:border-green-600'
+    : 'border-bd-default';
   return (
     <label className="relative">
       <input
@@ -24,7 +24,7 @@ export function SelectBoxOption({
       />
       <div
         className={twMerge(
-          'outline-focus bg-middle hover:border-complete hover:fg-complete light:hover:fg-green-900 w-fit cursor-pointer rounded-lg border px-3 py-1 text-sm peer-focus:outline-2',
+          'outline-focus bg-fill-base hover:border-success hover:text-success light:hover:text-green-900 w-fit cursor-pointer rounded-lg border px-3 py-1 text-sm peer-focus:outline-2',
           isActiveClass
         )}
       >

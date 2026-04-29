@@ -15,11 +15,10 @@ export default async function ExercisesPage() {
     <PageContainer>
       <PageHeader title="Exercises" className="flex items-center justify-between">
         <Link
-          variantConfig={{ color: 'primary' }}
+          variant={{ color: 'primary', type: 'iconText' }}
           href="/dashboard/exercises/create"
-          className="gap-1 pl-3"
+          Icon={IconPlus}
         >
-          <IconPlus className="size-5" strokeWidth="2" />
           Add Exercise
         </Link>
       </PageHeader>

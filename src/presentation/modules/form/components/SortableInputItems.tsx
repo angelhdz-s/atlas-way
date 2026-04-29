@@ -68,7 +68,7 @@ export function SortableInputItems<TForm extends FieldValues, TName extends Fiel
           sortField(initialIndex, index);
         }}
       >
-        <main className="bg-back min-h-16 space-y-2 rounded-lg p-2">
+        <main className="bg-fill-back min-h-16 space-y-2 rounded-lg p-2">
           {fields.map((field, index) => (
             <SortableInputItem
               key={field.fieldId}
@@ -81,7 +81,7 @@ export function SortableInputItems<TForm extends FieldValues, TName extends Fiel
       </DragDropProvider>
       <footer className="flex items-center justify-between">
         <Button
-          variantConfig={{ color: 'simple' }}
+          variant={{ color: 'simple' }}
           type="button"
           onClick={openSelection}
           className="pr-3 pl-2"
@@ -90,7 +90,7 @@ export function SortableInputItems<TForm extends FieldValues, TName extends Fiel
           {addButtonLabel ?? 'Add'}
         </Button>
         <Button
-          variantConfig={{ color: 'simple' }}
+          variant={{ color: 'simple' }}
           type="button"
           onClick={crearAllItems}
           className="pr-3 pl-2"
