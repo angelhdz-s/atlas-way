@@ -6,7 +6,7 @@ export default function ButtonsPage() {
     <div>
       <Link href="/dev">Back</Link>
       <DevButtons
-        colors={['primary', 'subtle', 'outline', 'simple']}
+        colors={['primary', 'subtle', 'outline', 'simple', 'danger']}
         className="flex flex-wrap items-start gap-4"
       />
     </div>
