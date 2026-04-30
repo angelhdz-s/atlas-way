@@ -31,9 +31,13 @@ export function DropdownList({
 
   return (
     <select
-      className={`bg-fill-back border ${className} appearance:[base-select]`}
+      className={className}
       onChange={handleChange}
       value={selectedOption}
+      style={{
+        backgroundColor: 'var(--color-fill-back)',
+        borderColor: 'var(--color-bd-strong)',
+      }}
     >
       {values.length === 0 && (
         <option value="" disabled>
