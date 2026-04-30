@@ -42,13 +42,23 @@ export function DevButtons({ className, colors }: Props) {
   );
 }
 
-function AllButtonSizes(props: React.ComponentProps<typeof Button>) {
+function AllButtonSizes({ variant, ...props }: React.ComponentProps<typeof Button>) {
+  if (!variant) return;
+  if (!variant.type) return;
+
+  const variantSize = (size: ButtonVariantProps['size']): ButtonVariantProps => {
+    return {
+      ...variant,
+      size,
+    };
+  };
+
   return (
     <div className="space-y-2">
-      <Button {...props} variant={{ ...props.variant, size: 'lg' }} />
-      <Button {...props} variant={{ ...props.variant, size: 'md' }} />
-      <Button {...props} variant={{ ...props.variant, size: 'sm' }} />
-      <Button {...props} variant={{ ...props.variant, size: 'xs' }} />
+      <Button {...props} variant={variantSize('lg') as any} />
+      <Button {...props} variant={variantSize('md') as any} />
+      <Button {...props} variant={variantSize('sm') as any} />
+      <Button {...props} variant={variantSize('xs') as any} />
     </div>
   );
 }
