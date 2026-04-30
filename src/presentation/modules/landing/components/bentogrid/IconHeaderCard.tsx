@@ -1,5 +1,5 @@
 import { BentoCard } from '@/presentation/modules/landing/components/bentogrid/BentoCard';
-import { type IconProps } from '@/presentation/globals/presentation.types';
+import type { IconProps } from '@/presentation/globals/presentation.types';
 
 type Props = {
   className?: string;
