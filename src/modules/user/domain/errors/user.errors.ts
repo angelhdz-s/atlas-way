@@ -5,3 +5,9 @@ export class UserNotFoundError extends DomainError {
     super('USER_NOT_FOUND');
   }
 }
+
+export class RoleNotFound extends DomainError {
+  constructor() {
+    super('ROLE_NOT_FOUND');
+  }
+}
