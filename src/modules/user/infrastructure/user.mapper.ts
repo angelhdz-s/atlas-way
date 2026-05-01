@@ -1,29 +1,54 @@
-import type { Users as PrismaUser } from '@/prisma/client';
-import { User } from '../domain/user.entity';
-import type { UserProps } from '../domain/user.types';
-import type { UserDTO } from '../application/dtos/user.dto';
+import { User } from '@/modules/user/domain/user.entity';
+import type { UserProps } from '@/modules/user/domain/user.types';
+import type { UserDTO } from '@/modules/user/application/dtos/user.dto';
+import type {
+  UserPrisma,
+  UserPrismaCreate,
+  UserPrismaUpdate,
+} from '@/modules/user/infrastructure/prisma/user.prisma.types';
 
 export class UserMapper {
-  static toDomain(data: PrismaUser): User {
+  static toDomain(data: UserPrisma): User {
     const props: UserProps = {
       id: data.id,
       name: data.name,
       email: data.email,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
-      roleId: data.roleId,
+      role: {
+        id: data.role.id as any,
+        name: data.role.name,
+      },
     };
     return new User(props);
   }
 
-  static toPersistence(data: User): PrismaUser {
+  static toPersistenceCreate(data: User): UserPrismaCreate {
     return {
       id: data.id,
       name: data.name,
       email: data.email,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
-      roleId: data.roleId,
+      role: {
+        connect: {
+          id: data.role.id,
+        },
+      },
+    };
+  }
+  static toPersistenceUpdate(data: User): UserPrismaUpdate {
+    return {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+      role: {
+        update: {
+          id: data.role.id,
+        },
+      },
     };
   }
   static toDTO(data: User): UserDTO {
