@@ -1,4 +1,4 @@
-import type { Role } from '@/modules/role/domain/role.types';
+import type { RoleIds } from '@/modules/user/domain/user.constants.roles';
 
 export type UserProps = {
   readonly id: string;
@@ -6,5 +6,8 @@ export type UserProps = {
   email: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
-  readonly roleId: Role['id'];
+  readonly role: {
+    id: RoleIds;
+    name: string;
+  };
 };
