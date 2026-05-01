@@ -4,6 +4,7 @@ import { UserMapper } from '@/modules/user/infrastructure/user.mapper';
 import { Failure, Success } from '@/shared/domain/result';
 import type { PrismaClient } from '@/prisma/client';
 import type { InfrastructureErrorTranslator } from '@/shared/infrastructure/errors/error.translator';
+import { userIncludeAnatomy } from './user.prisma.types';
 
 export class UserPrismaRepository implements IUserRepository {
   constructor(
@@ -11,10 +12,11 @@ export class UserPrismaRepository implements IUserRepository {
     private readonly errorMapper: InfrastructureErrorTranslator
   ) {}
   async create(data: User) {
-    const persistenceData = UserMapper.toPersistence(data);
+    const persistenceData = UserMapper.toPersistenceCreate(data);
 
     try {
       const created = await this.prisma.users.create({
+        ...userIncludeAnatomy,
         data: persistenceData,
       });
       const domainUser = UserMapper.toDomain(created);
@@ -25,11 +27,12 @@ export class UserPrismaRepository implements IUserRepository {
   }
 
   async update(data: User) {
-    const persistenceData = UserMapper.toPersistence(data);
+    const persistenceData = UserMapper.toPersistenceUpdate(data);
     try {
       const updated = await this.prisma.users.update({
+        ...userIncludeAnatomy,
         data: persistenceData,
-        where: { id: persistenceData.id },
+        where: { id: data.id },
       });
 
       const domainUser = UserMapper.toDomain(updated);
@@ -41,7 +44,9 @@ export class UserPrismaRepository implements IUserRepository {
 
   async findAll() {
     try {
-      const users = await this.prisma.users.findMany();
+      const users = await this.prisma.users.findMany({
+        ...userIncludeAnatomy,
+      });
       const domainUsers = users.map((user) => UserMapper.toDomain(user));
       return Success(domainUsers);
     } catch (e) {
@@ -52,6 +57,7 @@ export class UserPrismaRepository implements IUserRepository {
   async findById(id: User['id']) {
     try {
       const user = await this.prisma.users.findUnique({
+        ...userIncludeAnatomy,
         where: {
           id,
         },
@@ -64,6 +70,7 @@ export class UserPrismaRepository implements IUserRepository {
   async findByEmail(email: User['email']) {
     try {
       const user = await this.prisma.users.findUnique({
+        ...userIncludeAnatomy,
         where: {
           email,
         },
