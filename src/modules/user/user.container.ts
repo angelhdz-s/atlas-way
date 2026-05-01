@@ -3,7 +3,6 @@ import { GetAllUsers } from './application/use-cases/get-all-users';
 import { GetUserByEmail } from './application/use-cases/get-user-by-email';
 import { GetUserById } from './application/use-cases/get-user-by-id';
 import { UpdateUser } from './application/use-cases/update-user';
-import { CreateIfNotExistsUser } from './application/use-cases/create-if-not-exists-user';
 import { GetCurrentUser } from './application/use-cases/get-current-user';
 import { GetCurrentUserId } from './application/use-cases/get-current-user-id';
 import type { IUserRepository } from './domain/user.repository';
@@ -24,7 +23,6 @@ export const makeUserModule = ({
   return {
     CreateUserUseCase: new CreateUser(userRepository, idGeneratorRepository),
     UpdateUserUseCase: new UpdateUser(userRepository),
-    CreateIfNotExistsUserUseCase: new CreateIfNotExistsUser(userRepository, idGeneratorRepository),
     GetAllUsersUseCase: new GetAllUsers(userRepository),
     GetUserByIdUseCase: new GetUserById(userRepository),
     GetUserByeEmailUseCase: new GetUserByEmail(userRepository),
