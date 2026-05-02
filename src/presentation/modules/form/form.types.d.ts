@@ -3,12 +3,12 @@ import type { FieldArrayWithId } from 'react-hook-form';
 export type HTMLInputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 export type InputTextProps = InputProps & {
-  error?: string;
-  value?: string;
+  error?: string | undefined;
+  value?: string | undefined;
 };
 
 export type InputNumberProps = Omit<InputTextProps, 'value'> & {
-  value?: string | number;
+  value?: string | number | undefined;
 };
 
 export type InputDateProps = Omit<InputTextProps, 'value'> & {
@@ -16,7 +16,7 @@ export type InputDateProps = Omit<InputTextProps, 'value'> & {
 };
 
 export type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
-  error?: string;
+  error?: string | undefined;
 };
 
 export type SelectOptionValue = string;

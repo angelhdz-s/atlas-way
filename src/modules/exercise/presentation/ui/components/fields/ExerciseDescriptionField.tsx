@@ -5,7 +5,7 @@ import type { ExerciseFormProps } from '@/modules/exercise/presentation/ui/schem
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 
 type Props = {
-  value?: ExerciseDTO['description'];
+  value?: ExerciseDTO['description'] | undefined;
 };
 
 export function ExerciseDescriptionField({ value }: Props) {

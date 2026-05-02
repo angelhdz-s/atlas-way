@@ -4,7 +4,9 @@ import { Label } from '@/presentation/modules/form/components/fields/Label';
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 import type { ExerciseFormProps } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
 
-export function ExerciseNameField({ value }: { value?: ExerciseDTO['name'] }) {
+type Props = { value?: ExerciseDTO['name'] | undefined };
+
+export function ExerciseNameField({ value }: Props) {
   const {
     register,
     formState: { errors },
