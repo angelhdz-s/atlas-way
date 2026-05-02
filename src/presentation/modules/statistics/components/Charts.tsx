@@ -83,7 +83,7 @@ export function LineChart({
       ))}
 
       <path
-        d={pathD + ` V ${height - padding} H ${scaleX(data[0].x)} Z`}
+        d={`${pathD} V ${height - padding} H ${scaleX(data[0]?.x ?? 0)} Z`}
         fill="url(#lineGradient)"
         stroke="none"
         className="text-primary"
