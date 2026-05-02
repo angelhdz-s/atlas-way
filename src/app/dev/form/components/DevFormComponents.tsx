@@ -22,7 +22,7 @@ type Props = {
   className?: string;
 };
 
-export function DevFormComponents({ className }: Props) {
+export function DevFormComponents({ className = '' }: Props) {
   return (
     <div className="space-y-4">
       <DevFormGroup className={className}>

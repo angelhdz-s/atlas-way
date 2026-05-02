@@ -9,7 +9,7 @@ type Props = {
 } & CardVariantProps;
 
 export function DevCardVariants(props: Props) {
-  const { className, ...rest } = props;
+  const { className = '', ...rest } = props;
   return (
     <div className={className}>
       <Card className="h-50 space-y-4" {...rest}>

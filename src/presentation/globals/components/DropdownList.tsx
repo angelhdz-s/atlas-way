@@ -13,7 +13,7 @@ export type DropdownListProps = {
 
 export function DropdownList({
   selectedValue = '',
-  className,
+  className = '',
   values,
   onChange,
 }: DropdownListProps) {

@@ -7,7 +7,7 @@ type Props = {
   className?: string;
 };
 
-export function DevCardSizes({ className }: Props) {
+export function DevCardSizes({ className = '' }: Props) {
   return (
     <div className={className}>
       <Card className="h-50 space-y-4">

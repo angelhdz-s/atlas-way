@@ -72,7 +72,7 @@ const LAST_SESSIONS: SessionListItemType[] = [
 ];
 
 function SessionListItem({
-  className,
+  className = '',
   session,
 }: {
   className?: string;
@@ -96,7 +96,7 @@ function SessionListItem({
   );
 }
 
-export function LastSessions({ className }: { className?: string }) {
+export function LastSessions({ className = '' }: { className?: string }) {
   return (
     <ul className={`flex w-full flex-col gap-1 ${className}`}>
       {LAST_SESSIONS.map((session) => (
