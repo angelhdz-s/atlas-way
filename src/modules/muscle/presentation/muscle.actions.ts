@@ -2,7 +2,7 @@
 
 import {
   ActionFailure,
-  type ActionResponse,
+  type ActionResponseProps,
   ActionSuccess,
 } from '@/shared/presentation/action.response';
 import { getContainer } from '@/di/containers';
@@ -10,7 +10,7 @@ import { MuscleMapper } from '@/modules/muscle/infrastructure/muscle.mapper';
 import type { MuscleDTO } from '@/modules/muscle/application/dtos/muscle.dto';
 import type { MuscleProps } from '@/modules/muscle/domain/muscle.types';
 
-export async function getAllMuscles(): ActionResponse<MuscleDTO[]> {
+export async function getAllMuscles(): Promise<ActionResponseProps<MuscleDTO[]>> {
   const container = getContainer();
   const getAllMuscles = container.muscle.GetAllMusclesUseCase;
   const musclesResult = await getAllMuscles.execute();
@@ -21,7 +21,9 @@ export async function getAllMuscles(): ActionResponse<MuscleDTO[]> {
   return ActionSuccess(musclesDTO, 'Muscles were obtained successfully');
 }
 
-export async function getMuscleById(id: MuscleProps['id']): ActionResponse<MuscleDTO | null> {
+export async function getMuscleById(
+  id: MuscleProps['id']
+): Promise<ActionResponseProps<MuscleDTO | null>> {
   const container = getContainer();
   const getMuscleById = container.muscle.GetMuscleByIdUseCase;
   const muscleResult = await getMuscleById.execute(id);
@@ -35,7 +37,9 @@ export async function getMuscleById(id: MuscleProps['id']): ActionResponse<Muscl
   return ActionSuccess(muscleDTO, 'Muscle obtained successfully');
 }
 
-export async function getMusclesByIds(ids: MuscleProps['id'][]): ActionResponse<null> {
+export async function getMusclesByIds(
+  ids: MuscleProps['id'][]
+): Promise<ActionResponseProps<null>> {
   const container = getContainer();
 
   const getMusclesByIds = container.muscle.GetMusclesByIdsUseCase;

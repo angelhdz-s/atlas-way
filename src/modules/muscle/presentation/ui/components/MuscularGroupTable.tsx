@@ -11,7 +11,7 @@ export async function MuscularGroupsTable({ muscles }: { muscles: MuscleDTO[] })
 
   for (const muscle of sortedMuscles) {
     const index = muscularGroups.findIndex((m) => m.name === muscle.group.name);
-    if (index === -1) {
+    if (index === -1 || !muscularGroups[index]) {
       muscularGroups.push({
         ...muscle.group,
         muscles: [muscle.name],
