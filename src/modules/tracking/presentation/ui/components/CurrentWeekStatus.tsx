@@ -92,7 +92,8 @@ export function CurrentWeekStatus({ className = '' }: { className?: string }) {
       </header>
       <main className="flex items-center justify-center gap-2">
         {currentWeekStatusDays.map(({ day, status, title }) => {
-          const dayName = WEEK_DAYS[day].initial;
+          if (!WEEK_DAYS[day]) return null;
+          const dayName = WEEK_DAYS[day].initial ?? 'Day';
           const className = getStatusTextColorClass(status);
           return (
             <div key={day} className="flex flex-col justify-center" title={title}>

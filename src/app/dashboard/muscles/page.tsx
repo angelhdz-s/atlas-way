@@ -18,7 +18,7 @@ export default async function MuscularGroupsPage() {
     const sectionIndex = bodySections.findIndex((s) => s.name === section.name);
     if (sectionIndex !== -1) {
       const bodySection = bodySections[sectionIndex];
-      if (!bodySection.groups.includes(groupName))
+      if (!bodySection?.groups.includes(groupName) && bodySections[sectionIndex])
         bodySections[sectionIndex].groups.push(groupName);
       return;
     }

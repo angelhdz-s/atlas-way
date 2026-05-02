@@ -8,7 +8,7 @@ import { Button } from '@/presentation/modules/button/components/Button';
 
 function CalendarDayItem({
   children,
-  className,
+  className = '',
   onClick,
 }: {
   children: React.ReactNode;
@@ -39,7 +39,11 @@ type CalendarDayTypeProps = {
   onClick?: () => void;
 };
 
-function CalendarDayCompleted({ day, isSelected = false, onClick }: CalendarDayTypeProps) {
+function CalendarDayCompleted({
+  day,
+  isSelected = false,
+  onClick = () => {},
+}: CalendarDayTypeProps) {
   return (
     <CalendarDayItem
       onClick={onClick}
@@ -50,7 +54,11 @@ function CalendarDayCompleted({ day, isSelected = false, onClick }: CalendarDayT
   );
 }
 
-function CalendarDayCanceled({ day, isSelected = false, onClick }: CalendarDayTypeProps) {
+function CalendarDayCanceled({
+  day,
+  isSelected = false,
+  onClick = () => {},
+}: CalendarDayTypeProps) {
   return (
     <CalendarDayItem
       onClick={onClick}
@@ -63,7 +71,7 @@ function CalendarDayCanceled({ day, isSelected = false, onClick }: CalendarDayTy
 
 function CalendarDayCurrent({
   isSelected = false,
-  onClick,
+  onClick = () => {},
 }: {
   isSelected: boolean;
   onClick?: () => void;
@@ -78,7 +86,7 @@ function CalendarDayCurrent({
   );
 }
 
-function CalendarDayNormalSelected({ day, onClick }: CalendarDayTypeProps) {
+function CalendarDayNormalSelected({ day, onClick = () => {} }: CalendarDayTypeProps) {
   return (
     <CalendarDayItem
       onClick={onClick}
@@ -89,7 +97,7 @@ function CalendarDayNormalSelected({ day, onClick }: CalendarDayTypeProps) {
   );
 }
 
-function CalendarDayNextTraining({ day, onClick }: CalendarDayTypeProps) {
+function CalendarDayNextTraining({ day, onClick = () => {} }: CalendarDayTypeProps) {
   return (
     <CalendarDayItem
       onClick={onClick}
@@ -104,7 +112,7 @@ export function CalendarDay({
   day,
   currentDate,
   initialDate,
-  onClick,
+  onClick = () => {},
 }: {
   day: CalendarDayType;
   currentDate: Date;

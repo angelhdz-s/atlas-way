@@ -9,7 +9,7 @@ type Props = {
 } & CardVariantProps;
 
 export function DevCardColors(props: Props) {
-  const { className, ...rest } = props;
+  const { className = '', ...rest } = props;
 
   return (
     <div className={className}>
