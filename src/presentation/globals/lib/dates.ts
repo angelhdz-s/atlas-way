@@ -84,14 +84,16 @@ export function getSessionFromDate(date: Date): SessionsTypes {
 }
 
 export function getISOStringDate(date: Date): string {
-  return date.toISOString().split('T')[0];
+  return date.toISOString().split('T')[0] ?? '';
 }
 
 export function isToday(date: Date): boolean {
   return getISOStringDate(date) === getISOStringDate(TODAY);
 }
 
-function getMonthDays(year: number, month: number) {
+type MonthDays = (typeof MONTH_DAYS_LEAP)[number] | (typeof MONTH_DAYS)[number];
+function getMonthDays(year: number, month: number): MonthDays {
+  if (!MONTH_DAYS_LEAP[month] || !MONTH_DAYS[month]) return 31;
   return isLeapYear(year) ? MONTH_DAYS_LEAP[month] : MONTH_DAYS[month];
 }
 
@@ -188,7 +190,9 @@ function getPrevNextMonthYear(
 }
 
 function getPrevNextMonthDay(month: number, day: number): number {
-  return day > MONTH_DAYS[month] ? MONTH_DAYS[month] : day;
+  const monthLimit = MONTH_DAYS[month];
+  if (!monthLimit) return 0;
+  return day > monthLimit ? monthLimit : day;
 }
 
 export function getPreviousNextMonthDate(prevDate: Date, config: MonthDisplacement = 'next') {
@@ -203,7 +207,7 @@ export function getPreviousNextMonthDate(prevDate: Date, config: MonthDisplaceme
   return new Date(newYear, newMonth, newDay);
 }
 
-export function getPrevAndNextDate(date: Date) {
+export function getPrevAndNextDate(date: Date): [Date, Date] {
   return [getPastDate(date, 1), getNextDate(date, 1)];
 }
 
