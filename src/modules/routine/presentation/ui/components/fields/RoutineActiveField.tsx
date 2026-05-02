@@ -8,7 +8,7 @@ type Props = {
   value?: RoutineDTO['active'] | undefined;
 };
 
-export function RoutineActiveField({ value }: Props) {
+export function RoutineActiveField({ value = false }: Props) {
   const { register } = useFormContext<RoutineForm>();
   return (
     <LabelGroup title="Active">

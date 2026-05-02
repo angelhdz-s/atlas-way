@@ -5,11 +5,11 @@ import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto'
 import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
 
 type Props = {
-  value?: RoutineDTO['initialDate'];
+  value?: RoutineDTO['initialDate'] | undefined;
 };
 
-export function RoutineInitialDateField({ value }: Props) {
-  const date = value?.toISOString().split('T')[0];
+export function RoutineInitialDateField({ value = new Date() }: Props) {
+  const date = value.toISOString().split('T')[0];
   const {
     register,
     formState: { errors },

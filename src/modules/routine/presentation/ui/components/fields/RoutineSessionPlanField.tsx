@@ -169,7 +169,7 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
                   key={key}
                   id={key}
                   text={day.label}
-                  onAdd={option ? undefined : () => setSelection(index)}
+                  onAdd={option ? () => {} : () => setSelection(index)}
                   dndConfig={{ droppedId: option?.value, id: day.value, index, type: 'droppable' }}
                 >
                   {option && (

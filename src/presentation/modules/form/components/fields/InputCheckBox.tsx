@@ -9,8 +9,8 @@ interface Props extends HTMLAttributes<HTMLInputElement> {
 }
 
 export function InputCheckBox(props: Props) {
-  const { active: activeProp, ...inputProps } = props;
-  const [active, setActive] = useState<boolean>(activeProp === true);
+  const { active: activeProp = false, ...inputProps } = props;
+  const [active, setActive] = useState<boolean>(activeProp);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
