@@ -7,12 +7,12 @@ import { IconCalendarCheck } from '@/presentation/globals/components/icons/outli
 
 export function CurrentMonthSessionsCounter({ className }: { className?: string }) {
   const { currentMonth } = SESSIONS_COUNTERS;
-  const monthName = MONTH_NAMES[TODAY.getMonth()].name;
+  const monthName = MONTH_NAMES[TODAY.getMonth()]?.name;
 
   return (
     <Card className={`flex flex-col gap-1 font-light ${className}`}>
       <header>
-        <CardTitle Icon={IconCalendarCheck} title={`${monthName}'s Reached Sessions`} />
+        <CardTitle Icon={IconCalendarCheck} title={`${monthName ?? 'Month'}'s Reached Sessions`} />
       </header>
       <main className="flex flex-1 items-center gap-1">
         <Counter number={currentMonth} />
