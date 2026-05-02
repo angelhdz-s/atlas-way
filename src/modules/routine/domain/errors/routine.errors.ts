@@ -17,3 +17,9 @@ export class RoutineOwnershipError extends DomainError {
     super('ROUTINE_OWNERSHIP_ERROR');
   }
 }
+
+export class InvalidRoutineDays extends DomainError {
+  constructor() {
+    super('INVALID_ROUTINE_DAYS');
+  }
+}

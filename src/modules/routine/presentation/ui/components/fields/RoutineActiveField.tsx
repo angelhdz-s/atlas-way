@@ -5,10 +5,10 @@ import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto'
 import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
 
 type Props = {
-  value?: RoutineDTO['active'];
+  value?: RoutineDTO['active'] | undefined;
 };
 
-export function RoutineActiveField({ value }: Props) {
+export function RoutineActiveField({ value = false }: Props) {
   const { register } = useFormContext<RoutineForm>();
   return (
     <LabelGroup title="Active">

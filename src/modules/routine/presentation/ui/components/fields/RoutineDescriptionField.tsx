@@ -4,7 +4,7 @@ import { TextArea } from '@/presentation/modules/form/components/fields/TextArea
 import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 
 type Props = {
-  value?: RoutineDTO['description'];
+  value?: RoutineDTO['description'] | undefined;
 };
 
 export function RoutineDescriptionField({ value }: Props) {

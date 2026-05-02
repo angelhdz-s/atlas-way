@@ -12,7 +12,7 @@ export type InputNumberProps = Omit<InputTextProps, 'value'> & {
 };
 
 export type InputDateProps = Omit<InputTextProps, 'value'> & {
-  value?: string;
+  value?: string | undefined;
 };
 
 export type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {

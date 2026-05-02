@@ -4,7 +4,7 @@ import { Label } from '@/presentation/modules/form/components/fields/Label';
 import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 
 type Props = {
-  value?: RoutineDTO['name'];
+  value?: RoutineDTO['name'] | undefined;
 };
 
 export function RoutineNameField({ value }: Props) {

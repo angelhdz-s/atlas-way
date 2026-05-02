@@ -1,6 +1,7 @@
 import { Failure } from '@/shared/domain/result';
 import { Routine } from '@/modules/routine/domain/routine.entity';
 import {
+  InvalidRoutineDays,
   RoutineCycleNotFound,
   RoutineNotFoundError,
 } from '@/modules/routine/domain/errors/routine.errors';
@@ -41,12 +42,19 @@ export class CreateRoutine implements UseCase {
     if (sessions.length !== routineData.routineDays.length)
       return Failure(new RoutineNotFoundError());
 
-    const routineDays: RoutineProps['routineDays'] = routineData.routineDays.map((r, index) => ({
-      id: this.generator.generate(),
-      day: r.day,
-      name: r.name,
-      session: sessions[index],
-    }));
+    const routineDays: RoutineProps['routineDays'] = [];
+
+    for (let i = 0; i < routineData.routineDays.length; i++) {
+      const routineDay = routineData.routineDays[i];
+      if (!routineDay) return Failure(new InvalidRoutineDays());
+
+      routineDays.push({
+        id: this.generator.generate(),
+        day: routineDay.day,
+        name: routineDay.name,
+        session: sessions[i] ?? null,
+      });
+    }
 
     const newRoutine = Routine.create(routineId, { ...routineData, cycle: cycleType, routineDays });
 

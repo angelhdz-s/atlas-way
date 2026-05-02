@@ -1,8 +1,6 @@
 import { z } from 'zod/v3';
-import { ROUTINE_CYCLES } from '@/presentation/globals/seed/cycle-types';
 
-export const routineCycleLiterals = ROUTINE_CYCLES.map((cycle) => cycle.id);
-const routineCycleSchema = z.enum([routineCycleLiterals[0], ...routineCycleLiterals.slice(1)], {
+const routineCycleSchema = z.enum(['week', 'custom'], {
   message: 'Invalid option',
 });
 

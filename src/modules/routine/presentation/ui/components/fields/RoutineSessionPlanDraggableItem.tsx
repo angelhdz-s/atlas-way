@@ -8,7 +8,7 @@ export function RoutineSessionPlanDraggableItem({
   id,
   text,
   dndConfig,
-  onRemove,
+  onRemove = () => {},
 }: {
   id: string;
   text: string;

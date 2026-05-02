@@ -7,7 +7,7 @@ import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 type RadiobuttonsProps = {
   className?: string;
-  error?: string;
+  error?: string | undefined;
   checked?: string;
   options: SelectOption[];
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
