@@ -5,14 +5,16 @@ import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.respo
 import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
 import { routineFormSchema } from '@/modules/routine/presentation/ui/config/routine.schema';
 import { RoutineMapper } from '@/modules/routine/infrastructure/routine.mapper';
-import type { ActionResponse } from '@/shared/presentation/action.response';
+import type { ActionResponseProps } from '@/shared/presentation/action.response';
 import type { CreateRoutineInput } from '@/modules/routine/application/dtos/create-routine.dto';
 import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
 import type { RoutineCycleId } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
 import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 
-export async function createRoutineAction(data: RoutineForm): ActionResponse<RoutineDTO> {
+export async function createRoutineAction(
+  data: RoutineForm
+): Promise<ActionResponseProps<RoutineDTO>> {
   const parsedRoutine = routineFormSchema.safeParse(data);
   if (!parsedRoutine.success) {
     const errors = parsedRoutine.error.issues.map((issue) => issue.message).join(', ');
@@ -53,7 +55,7 @@ export async function createRoutineAction(data: RoutineForm): ActionResponse<Rou
   return ActionSuccess(routineDTO, 'Routine created successfully');
 }
 
-export async function getAllRoutines(): ActionResponse<RoutineDTO[]> {
+export async function getAllRoutines(): Promise<ActionResponseProps<RoutineDTO[]>> {
   const container = getContainer();
   const createRoutine = container.routine.GetAllRoutinesUseCase;
 
@@ -66,7 +68,9 @@ export async function getAllRoutines(): ActionResponse<RoutineDTO[]> {
   return ActionSuccess(routineDTOs, 'Routine created successfully');
 }
 
-export async function deleteRoutine(routineId: RoutineProps['id']): ActionResponse<RoutineDTO> {
+export async function deleteRoutine(
+  routineId: RoutineProps['id']
+): Promise<ActionResponseProps<RoutineDTO>> {
   const container = getContainer();
 
   const userIdResult = await getCurrentUserId();
