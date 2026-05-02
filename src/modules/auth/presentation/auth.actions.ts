@@ -4,11 +4,11 @@ import { getContainer } from '@/di/containers';
 import {
   ActionFailure,
   ActionSuccess,
-  type ActionResponse,
+  type ActionResponseProps,
 } from '@/shared/presentation/action.response';
 import type { AuthSession } from '@/modules/auth/domain/errors/auth-session.types';
 
-export async function getSession(): ActionResponse<AuthSession | null> {
+export async function getSession(): Promise<ActionResponseProps<AuthSession | null>> {
   const container = getContainer();
   const getCurrentSession = container.auth.GetCurrentSessionUseCase;
   const sessionResult = await getCurrentSession.execute();
@@ -25,7 +25,7 @@ export async function getSession(): ActionResponse<AuthSession | null> {
   };
 }
 
-export async function logout(): ActionResponse<null> {
+export async function logout(): Promise<ActionResponseProps<null>> {
   const container = getContainer();
   const logout = container.auth.LogoutUseCase;
   const logoutResult = await logout.execute();
