@@ -28,15 +28,15 @@ type FullProps<TForm extends FieldValues, TName extends ArrayPath<TForm>> = {
   name: TName;
   fieldMappers: {
     initialMapper: (container: SelectOption, containerIndex: number) => TForm[TName][number];
-    replace?: (field: TField<TForm, TName>) => TField<TForm, TName>;
+    replace?: ((field: TField<TForm, TName>) => TField<TForm, TName>) | undefined;
     swap: (
       fieldA: TField<TForm, TName>,
       fieldB: TField<TForm, TName>
     ) => [TField<TForm, TName>, TField<TForm, TName>];
-    remove?: (field: TField<TForm, TName>) => TField<TForm, TName>;
+    remove?: ((field: TField<TForm, TName>) => TField<TForm, TName>) | undefined;
     add: (field: TField<TForm, TName>, item: SelectOption) => TField<TForm, TName>;
   };
-  data?: RoutineForm['sessions'];
+  data?: RoutineForm['sessions'] | undefined;
 };
 
 export function useRoutineSessionPlanField<
@@ -116,7 +116,7 @@ export function useRoutineSessionPlanField<
     const sourceField = typedFields[sourceContainerIndex];
     const targetField = typedFields[targetContainerIndex];
 
-    if (!sourceField && !targetField) return;
+    if (!sourceField || !targetField) return;
 
     const item = options.find((option) => option.value === sourceId);
     if (!item) return;
@@ -228,13 +228,17 @@ export function useRoutineSessionPlanField<
         const droppedOptions: string[] = [];
         for (let i = 0; i < data.length; i++) {
           const routineDay = data[i];
-          if (routineDay.sessionId !== null) {
-            const option = options.find((o) => o.value === routineDay.sessionId);
-            if (!option) continue;
-            const dayKey = containers[i].value;
-            droppedsCopy[dayKey] = option;
-            droppedOptions.push(option.value);
-          }
+          if (!routineDay || routineDay.sessionId === null) continue;
+
+          const option = options.find((o) => o.value === routineDay.sessionId);
+
+          if (!option) continue;
+          const container = containers[i];
+          if (!container) continue;
+
+          const dayKey = container.value;
+          droppedsCopy[dayKey] = option;
+          droppedOptions.push(option.value);
         }
 
         return {
