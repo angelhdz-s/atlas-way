@@ -6,7 +6,7 @@ import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.d
 import type { ExerciseFormProps } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
 
 type Props = {
-  value?: ExerciseDTO['weight'];
+  value?: ExerciseDTO['weight'] | undefined;
 };
 
 export function ExerciseWeightField({ value }: Props) {
