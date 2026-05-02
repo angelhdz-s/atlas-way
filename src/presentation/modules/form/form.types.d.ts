@@ -16,7 +16,7 @@ export type InputDateProps = Omit<InputTextProps, 'value'> & {
 };
 
 export type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
-  error?: string;
+  error?: string | undefined;
 };
 
 export type SelectOptionValue = string;
