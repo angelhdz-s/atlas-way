@@ -5,7 +5,7 @@ import type { SessionDTO } from '@/modules/session/application/dtos/session.dto'
 import type { SessionForm } from '@/modules/session/presentation/ui/config/session.schema';
 
 type Props = {
-  value?: SessionDTO['description'];
+  value?: SessionDTO['description'] | undefined;
 };
 
 export function SessionDescription({ value }: Props) {
