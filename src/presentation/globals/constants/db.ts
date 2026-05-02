@@ -8,7 +8,7 @@ export const BODY_SECTIONS = {
   ARMS: 'Arms',
   LEGS: 'Legs',
   TORSO: 'Torso',
-};
+} as const;
 
 export const MUSCULAR_GROUPS = {
   // ARMS
@@ -64,7 +64,7 @@ export const MUSCULAR_GROUPS = {
     name: 'Chest',
     bodySection: BODY_SECTIONS.TORSO,
   },
-};
+} as const;
 
 export type MuscleType = {
   name: string;
@@ -76,9 +76,8 @@ export type MusclesType = {
   [key: string]: MuscleType;
 };
 
-export const MUSCLES: MusclesType = {
+export const MUSCLES = {
   // ARMS
-
   // BICEPS
   BICEPS: {
     name: 'Biceps',
@@ -266,7 +265,7 @@ export const MUSCLES: MusclesType = {
     muscularGroup: MUSCULAR_GROUPS.CHEST.name,
     bodySection: BODY_SECTIONS.TORSO,
   },
-};
+} as const satisfies MusclesType;
 
 export type ExerciseType = {
   name: string;
@@ -278,7 +277,7 @@ export type ExercisesType = {
   [key: string]: ExerciseType;
 };
 
-export const EXERCISES: ExercisesType = {
+export const EXERCISES = {
   // PUSH DAY
   ABS: {
     name: 'Abs',
@@ -364,4 +363,4 @@ export const EXERCISES: ExercisesType = {
     description: 'Wide Grip',
     muscles: [MUSCLES.BACK, MUSCLES.BICEPS],
   },
-};
+} as const satisfies ExercisesType;
