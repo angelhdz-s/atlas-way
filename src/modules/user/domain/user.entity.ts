@@ -17,8 +17,8 @@ export class User {
   get updatedAt() {
     return this.props.updatedAt;
   }
-  get roleId() {
-    return this.props.roleId;
+  get role() {
+    return this.props.role;
   }
   changeName(name: UserProps['name']) {
     this.props.name = name;
