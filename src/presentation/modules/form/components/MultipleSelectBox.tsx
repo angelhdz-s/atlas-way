@@ -44,7 +44,7 @@ type Props<TForm extends FieldValues, TName extends FieldArrayPath<TForm>> = {
   control: Control<TForm>;
   label: string;
   selectingTitle: string;
-  error?: string;
+  error?: string | undefined;
 };
 
 export function MultipleSelectBox<TForm extends FieldValues, TName extends FieldArrayPath<TForm>>({
