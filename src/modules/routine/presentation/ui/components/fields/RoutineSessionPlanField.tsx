@@ -101,7 +101,7 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
     });
   };
 
-  const isSelectionOpen = selecting !== null && days[selecting] !== undefined;
+  const isSelectionOpen = selecting !== null;
 
   return (
     <DragDropProvider
@@ -194,7 +194,7 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
         <p>Empty days are rest days</p>
         <ErrorMessage message={errors.sessions?.message} />
       </FormFieldSection>
-      {isSelectionOpen && (
+      {isSelectionOpen && days[selecting] && (
         <TooltipSelect
           isOpen={isSelectionOpen}
           label="Session"
