@@ -5,5 +5,5 @@ export const SidebarContext = createContext<{
   toggleOpen?: () => void;
 }>({
   isOpen: true,
-  toggleOpen: undefined,
+  toggleOpen: () => {},
 });
