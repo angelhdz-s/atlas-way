@@ -1,13 +1,13 @@
 'use server';
+import { getContainer } from '@/di/containers';
 import type { User } from '@/modules/user/domain/user.entity';
 import {
   ActionFailure,
-  type ActionResponse,
   ActionSuccess,
+  type ActionResponseProps,
 } from '@/shared/presentation/action.response';
-import type { UserProps } from '../domain/user.types';
-import { getContainer } from '@/di/containers';
-export async function getUser(): ActionResponse<User | null> {
+import type { UserProps } from '@/modules/user/domain/user.types';
+export async function getUser(): Promise<ActionResponseProps<User | null>> {
   return {
     success: false,
     data: null,
@@ -15,7 +15,7 @@ export async function getUser(): ActionResponse<User | null> {
   };
 }
 
-export async function getCurrentUser(): ActionResponse<User> {
+export async function getCurrentUser(): Promise<ActionResponseProps<User>> {
   const container = getContainer();
   const getCurrentUser = container.user.GetCurrentUserUseCase;
 
@@ -27,7 +27,7 @@ export async function getCurrentUser(): ActionResponse<User> {
   return ActionSuccess(userResult.data, 'User found');
 }
 
-export async function getCurrentUserId(): ActionResponse<UserProps['id']> {
+export async function getCurrentUserId(): Promise<ActionResponseProps<UserProps['id']>> {
   const container = getContainer();
   const getCurrentUserId = container.user.GetCurrentUserIdUseCase;
 
