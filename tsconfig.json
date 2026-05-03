@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "target": "ES2022",
+    "target": "es2022",
     "plugins": [
       {
         "name": "next"
