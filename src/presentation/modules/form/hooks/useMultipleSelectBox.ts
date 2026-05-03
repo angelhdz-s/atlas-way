@@ -91,7 +91,7 @@ export function useMultipleSelectBox<
     if (itemsSelected.length < 1) return;
     const selectedFields = itemsSelected.map((i) => ({ id: i }));
     replace(selectedFields as any);
-  }, [itemsSelected]);
+  }, [itemsSelected, replace]);
 
   return {
     fields,

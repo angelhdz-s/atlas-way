@@ -96,7 +96,7 @@ export function useSortableInputItems<
     if (itemsSelected.length < 1) return;
     const initialFields = itemsSelected.map((i) => ({ id: i }));
     replace(initialFields as any);
-  }, [itemsSelected]);
+  }, [itemsSelected, replace]);
 
   return {
     fields,
