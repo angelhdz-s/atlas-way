@@ -15,7 +15,7 @@ export class InfrastructureErrorTranslator {
       const domainError = handler.translate(error);
       if (domainError) return domainError;
     }
-    // biome-ignore lint: <suspicious>
+    // biome-ignore lint/suspicious/noConsole: It is used console to show those non-controlled errors
     console.error(error);
     return new TechnicalError();
   }
