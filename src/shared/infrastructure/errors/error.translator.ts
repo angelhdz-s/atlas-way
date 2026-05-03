@@ -15,7 +15,8 @@ export class InfrastructureErrorTranslator {
       const domainError = handler.translate(error);
       if (domainError) return domainError;
     }
-    console.log(error);
+    // biome-ignore lint: <suspicious>
+    console.error(error);
     return new TechnicalError();
   }
 }
