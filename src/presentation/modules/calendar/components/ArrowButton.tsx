@@ -5,7 +5,7 @@ export function ArrowButton({
 }: {
   className?: string;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (() => void) | undefined;
 }) {
   return (
     <button
