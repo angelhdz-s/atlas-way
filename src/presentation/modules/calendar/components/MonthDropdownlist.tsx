@@ -2,13 +2,13 @@ import { MONTH_NAMES } from '@/presentation/globals/constants/date';
 import { DateDropdownlist } from '@/presentation/modules/calendar/components/DateDropdrownList';
 
 export function MonthDropdownlist({
-  className,
+  className = '',
   selectedValue,
   onChange,
 }: {
   className?: string;
-  selectedValue?: number;
-  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  selectedValue?: number | undefined;
+  onChange?: ((e: React.ChangeEvent<HTMLSelectElement>) => void) | undefined;
 }) {
   const monthOptions = MONTH_NAMES.map((month) => ({
     value: month.month,

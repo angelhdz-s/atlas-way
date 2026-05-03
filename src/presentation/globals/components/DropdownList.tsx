@@ -5,10 +5,10 @@ type DropdownListValueType = {
   value: string | number;
 };
 export type DropdownListProps = {
-  selectedValue?: DropdownListValueType['value'];
+  selectedValue?: DropdownListValueType['value'] | undefined;
   className?: string;
   values: DropdownListValueType[];
-  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange?: ((e: React.ChangeEvent<HTMLSelectElement>) => void) | undefined;
 };
 
 export function DropdownList({

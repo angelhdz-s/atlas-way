@@ -40,7 +40,7 @@ export function useCalendar({ selectedDate, setCurrentDate }: CalendarContextTyp
     return newDate;
   };
 
-  const monthName = MONTH_NAMES[currentMonth].name;
+  const monthName = MONTH_NAMES[currentMonth]?.name ?? 'Month';
 
   const handlePreviousMonth = () => {
     setCurrentDate((prev) => {
