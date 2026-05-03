@@ -2,7 +2,7 @@ import { MONTH_NAMES } from '@/presentation/globals/constants/date';
 import { DateDropdownlist } from '@/presentation/modules/calendar/components/DateDropdrownList';
 
 export function MonthDropdownlist({
-  className,
+  className = '',
   selectedValue,
   onChange,
 }: {

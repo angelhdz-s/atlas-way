@@ -4,7 +4,7 @@ import { MonthDropdownlist } from '@/presentation/modules/calendar/components/Mo
 import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
 import { useCalendar } from '@/presentation/modules/calendar/hooks/useCalendar';
 
-export function MonthDateSelector({ className }: { className?: string }) {
+export function MonthDateSelector({ className = '' }: { className?: string }) {
   const { selectedDate, setCurrentDate } = useContext(CalendarContext);
   const {
     selectedDate: currentDate,
