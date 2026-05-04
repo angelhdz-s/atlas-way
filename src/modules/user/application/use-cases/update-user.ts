@@ -1,9 +1,9 @@
-import type { IUserRepository } from '@/modules/user/domain/user.repository';
-import type { UseCase } from '@/shared/application/use-case';
-import type { UpdateUserInput } from '../dtos/update-user.dto';
-import type { UserProps } from '../../domain/user.types';
 import { Failure } from '@/shared/domain/result';
-import { UserNotFoundError } from '../../domain/errors/user.errors';
+import { UserNotFoundError } from '@/modules/user/domain/errors/user.errors';
+import type { UseCase } from '@/shared/application/use-case';
+import type { UserProps } from '@/modules/user/domain/user.types';
+import type { IUserRepository } from '@/modules/user/domain/user.repository';
+import type { UpdateUserInput } from '@/modules/user/application/dtos/update-user.dto';
 
 export class UpdateUser implements UseCase {
   constructor(private repository: IUserRepository) {}
@@ -11,7 +11,8 @@ export class UpdateUser implements UseCase {
   async execute(id: UserProps['id'], data: UpdateUserInput) {
     const userResult = await this.repository.findById(id);
 
-    if (!userResult.success || !userResult.data) return Failure(new UserNotFoundError());
+    if (!userResult.success) return userResult;
+    if (!userResult.data) return Failure(new UserNotFoundError());
     const user = userResult.data;
 
     if (data.name) user.changeName(data.name);
