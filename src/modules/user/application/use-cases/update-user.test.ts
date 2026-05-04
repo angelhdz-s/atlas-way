@@ -94,5 +94,31 @@ describe('UpdateUser use case', () => {
       // Verify DB state
       expect(userRepoMock.users).toHaveLength(10); // no users added
     });
+
+    it('sould return failure when repository finById operation fails', async () => {
+      // Set up
+      const userRepoMock = new InMemoryUserRepository();
+      const useCase = new UpdateUser(userRepoMock);
+      jest
+        .spyOn(userRepoMock, 'findById')
+        .mockResolvedValue(Failure(new TechnicalError() as never));
+
+      // Data
+      const user = userRepoMock.users[0] as User;
+      const userData: UpdateUserInput = {
+        email: 'angel1234@gmail.com',
+        name: 'Angel',
+      };
+
+      // Execute
+      const createUserResult = await useCase.execute(user.id, userData);
+
+      // Assert result pattern
+      expect(createUserResult.success).toBe(false);
+      expect(!createUserResult.success && createUserResult.error.code).toBe('TECHNICAL_ERROR');
+
+      // Verify DB state
+      expect(userRepoMock.users).toHaveLength(10); // no users added
+    });
   });
 });
