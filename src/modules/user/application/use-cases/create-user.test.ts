@@ -97,7 +97,7 @@ describe('CreateUser use case', () => {
 
       // Assert result pattern
       expect(createUserResult.success).toBe(false);
-      expect(!createUserResult.success && createUserResult.error.code).toBe('ROLE_NOT_FOUND'); // <- update for the correspondent User error
+      expect(!createUserResult.success && createUserResult.error.code).toBe('ROLE_NOT_FOUND');
 
       // Verify DB state
       expect(userRepoMock2.users).toHaveLength(10); // no users added
@@ -105,7 +105,7 @@ describe('CreateUser use case', () => {
   });
 
   describe('Dependency Interaction', () => {
-    it('sould return failure when repository create operation fails', async () => {
+    it('should return failure when repository create operation fails', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const idGeneratorMock = new MockIdGenerator();
@@ -130,7 +130,7 @@ describe('CreateUser use case', () => {
       expect(userRepoMock.users).toHaveLength(10); // no users added
     });
 
-    it('sould return failure when repository findByEmail operation fails', async () => {
+    it('should return failure when repository findByEmail operation fails', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const idGeneratorMock = new MockIdGenerator();

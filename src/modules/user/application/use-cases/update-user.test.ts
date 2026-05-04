@@ -71,7 +71,7 @@ describe('UpdateUser use case', () => {
   });
 
   describe('Dependency Interaction', () => {
-    it('sould return failure when repository update operation fails', async () => {
+    it('should return failure when repository update operation fails', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const useCase = new UpdateUser(userRepoMock);
@@ -92,10 +92,10 @@ describe('UpdateUser use case', () => {
       expect(!createUserResult.success && createUserResult.error.code).toBe('TECHNICAL_ERROR');
 
       // Verify DB state
-      expect(userRepoMock.users).toHaveLength(10); // no users added
+      expect(userRepoMock.users).toHaveLength(10);
     });
 
-    it('sould return failure when repository finById operation fails', async () => {
+    it('should return failure when repository finById operation fails', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const useCase = new UpdateUser(userRepoMock);
@@ -118,7 +118,7 @@ describe('UpdateUser use case', () => {
       expect(!createUserResult.success && createUserResult.error.code).toBe('TECHNICAL_ERROR');
 
       // Verify DB state
-      expect(userRepoMock.users).toHaveLength(10); // no users added
+      expect(userRepoMock.users).toHaveLength(10);
     });
   });
 });
