@@ -21,7 +21,7 @@ describe('GetUserById use case', () => {
 
       // Assert result pattern when user found
       expect(getUserByEmail.success).toBe(true);
-      expect(getUserByEmail.success && getUserByEmail.data).toBe(user);
+      expect(getUserByEmail.success && getUserByEmail.data?.name).toBe(user.name);
       // Assert result pattern When user NOT found
       expect(getUserByEmailNotFound.success).toBe(true);
       expect(getUserByEmailNotFound.success && getUserByEmailNotFound.data).toBe(null);

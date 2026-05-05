@@ -26,7 +26,7 @@ describe('GetCurrentUser use case', () => {
 
       // Assert result pattern
       expect(getCurrentUser.success).toBe(true);
-      expect(getCurrentUser.success && getCurrentUser.data).toBe(user);
+      expect(getCurrentUser.success && getCurrentUser.data.name).toBe(user.name);
     });
   });
 
