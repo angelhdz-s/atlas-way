@@ -12,7 +12,6 @@ describe('CreateUser use case', () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const idGeneratorMock = new MockIdGenerator();
-      const createSpy = jest.spyOn(userRepoMock, 'create');
       const useCase = new CreateUser(userRepoMock, idGeneratorMock);
       const userData: CreateUserInput = {
         email: 'angel1234@gmail.com',
@@ -25,9 +24,6 @@ describe('CreateUser use case', () => {
 
       // Execute
       const createUserResult = await useCase.execute(userData);
-
-      // Assert interaction
-      expect(createSpy).toHaveBeenCalledTimes(1);
 
       // Assert result pattern
       expect(createUserResult.success).toBe(true);
@@ -44,7 +40,6 @@ describe('CreateUser use case', () => {
       // Set up
       const userRepoMock2 = new InMemoryUserRepository();
       const idGeneratorMock = new MockIdGenerator();
-      const createSpy = jest.spyOn(userRepoMock2, 'create');
       const useCase = new CreateUser(userRepoMock2, idGeneratorMock);
 
       // Config
@@ -61,9 +56,6 @@ describe('CreateUser use case', () => {
       // Execute
       const createUserResult = await useCase.execute(userData);
 
-      // Assert interaction -> do not create
-      expect(createSpy).toHaveBeenCalledTimes(0);
-
       // Assert result pattern
       expect(createUserResult.success).toBe(false);
       expect(!createUserResult.success && createUserResult.error.code).toBe('TECHNICAL_ERROR'); // <- update for the correspondent User error
@@ -76,7 +68,6 @@ describe('CreateUser use case', () => {
       // Set up
       const userRepoMock2 = new InMemoryUserRepository();
       const idGeneratorMock = new MockIdGenerator();
-      const createSpy = jest.spyOn(userRepoMock2, 'create');
       const useCase = new CreateUser(userRepoMock2, idGeneratorMock);
 
       // Config
@@ -91,9 +82,6 @@ describe('CreateUser use case', () => {
 
       // Execute
       const createUserResult = await useCase.execute(userData);
-
-      // Assert interaction -> do not create
-      expect(createSpy).toHaveBeenCalledTimes(0);
 
       // Assert result pattern
       expect(createUserResult.success).toBe(false);

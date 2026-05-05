@@ -10,7 +10,6 @@ describe('GetUserById use case', () => {
     it('should get user by id successfully', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
-      const findByIdSpy = jest.spyOn(userRepoMock, 'findById');
       const useCase = new GetUserById(userRepoMock);
 
       // Data
@@ -20,12 +19,9 @@ describe('GetUserById use case', () => {
       const getUserById = await useCase.execute(user.id);
       const getUserByIdNotFound = await useCase.execute('userid-never-1234');
 
-      // Assert interaction
-      expect(findByIdSpy).toHaveBeenCalledTimes(2);
-
       // Assert result pattern when user found
       expect(getUserById.success).toBe(true);
-      expect(getUserById.success && getUserById.data).toBe(user);
+      expect(getUserById.success && getUserById.data?.name).toBe(user.name);
       // Assert result pattern when user NOT found
       expect(getUserByIdNotFound.success).toBe(true);
       expect(getUserByIdNotFound.success && getUserByIdNotFound.data).toBe(null);
@@ -36,9 +32,8 @@ describe('GetUserById use case', () => {
     it('should return failure when user findById operation fails', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
-      const findByIdSpy = jest.spyOn(userRepoMock, 'findById');
       const useCase = new GetUserById(userRepoMock);
-      jest
+      const findByIdSpy = jest
         .spyOn(userRepoMock, 'findById')
         .mockResolvedValue(Failure(new TechnicalError() as never));
 

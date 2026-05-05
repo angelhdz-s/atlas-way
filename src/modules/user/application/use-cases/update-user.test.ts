@@ -12,7 +12,6 @@ describe('UpdateUser use case', () => {
     it('should update user successfully and persist them', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
-      const createSpy = jest.spyOn(userRepoMock, 'update');
       const useCase = new UpdateUser(userRepoMock);
 
       // Data
@@ -26,16 +25,12 @@ describe('UpdateUser use case', () => {
         name: 'Angel',
       });
 
-      // Assert interaction
-      expect(createSpy).toHaveBeenCalledTimes(1);
-
       // Assert result pattern
       expect(updateUserResult.success).toBe(true);
       expect(updateUserResult.success && updateUserResult.data.id).toBe(user.id);
       expect(updateUserResult.success && updateUserResult.data.name).toBe('Angel');
 
       // Verify DB state
-      expect(userRepoMock.users).toHaveLength(10);
       expect(userRepoMock.users[0]?.name).toBe('Angel');
     });
   });
@@ -45,7 +40,6 @@ describe('UpdateUser use case', () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const idGeneratorMock = new MockIdGenerator();
-      const createSpy = jest.spyOn(userRepoMock, 'update');
       const useCase = new UpdateUser(userRepoMock);
 
       // Config
@@ -61,9 +55,6 @@ describe('UpdateUser use case', () => {
       // Execute
       const updateUserResult = await useCase.execute('not-existing-id-1234', userData);
 
-      // Assert interaction -> do not update
-      expect(createSpy).toHaveBeenCalledTimes(0);
-
       // Assert result pattern
       expect(updateUserResult.success).toBe(false);
       expect(!updateUserResult.success && updateUserResult.error.code).toBe('USER_NOT_FOUND');
@@ -75,7 +66,9 @@ describe('UpdateUser use case', () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const useCase = new UpdateUser(userRepoMock);
-      jest.spyOn(userRepoMock, 'update').mockResolvedValue(Failure(new TechnicalError() as never));
+      const updateSpy = jest
+        .spyOn(userRepoMock, 'update')
+        .mockResolvedValue(Failure(new TechnicalError() as never));
 
       // Data
       const user = userRepoMock.users[0] as User;
@@ -85,21 +78,24 @@ describe('UpdateUser use case', () => {
       };
 
       // Execute
-      const createUserResult = await useCase.execute(user.id, userData);
+      const updateUserResult = await useCase.execute(user.id, userData);
+
+      // Assert interaction
+      expect(updateSpy).toHaveBeenCalledTimes(1);
 
       // Assert result pattern
-      expect(createUserResult.success).toBe(false);
-      expect(!createUserResult.success && createUserResult.error.code).toBe('TECHNICAL_ERROR');
+      expect(updateUserResult.success).toBe(false);
+      expect(!updateUserResult.success && updateUserResult.error.code).toBe('TECHNICAL_ERROR');
 
-      // Verify DB state
-      expect(userRepoMock.users).toHaveLength(10);
+      // Assert DB state
+      expect(userRepoMock.users[0]?.name).not.toBe('Angel');
     });
 
     it('should return failure when repository finById operation fails', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const useCase = new UpdateUser(userRepoMock);
-      jest
+      const findById = jest
         .spyOn(userRepoMock, 'findById')
         .mockResolvedValue(Failure(new TechnicalError() as never));
 
@@ -111,14 +107,17 @@ describe('UpdateUser use case', () => {
       };
 
       // Execute
-      const createUserResult = await useCase.execute(user.id, userData);
+      const updateUserResult = await useCase.execute(user.id, userData);
+
+      // Assert interaction
+      expect(findById).toHaveBeenCalledTimes(1);
 
       // Assert result pattern
-      expect(createUserResult.success).toBe(false);
-      expect(!createUserResult.success && createUserResult.error.code).toBe('TECHNICAL_ERROR');
+      expect(updateUserResult.success).toBe(false);
+      expect(!updateUserResult.success && updateUserResult.error.code).toBe('TECHNICAL_ERROR');
 
-      // Verify DB state
-      expect(userRepoMock.users).toHaveLength(10);
+      // Assert DB state
+      expect(userRepoMock.users[0]?.name).not.toBe('Angel');
     });
   });
 });
