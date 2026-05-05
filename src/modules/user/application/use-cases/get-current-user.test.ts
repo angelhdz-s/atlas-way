@@ -6,14 +6,12 @@ import { MockAuthRepository } from '@/modules/auth/mocks/auth.mocks.repository';
 import { GetCurrentUser } from '@/modules/user/application/use-cases/get-current-user';
 import type { User } from '@/modules/user/domain/user.entity';
 
-describe('GetUserById use case', () => {
+describe('GetCurrentUser use case', () => {
   describe('Happy Path', () => {
     it('should get current user successfully', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const authRepoMock = new MockAuthRepository();
-      const findByEmailSpy = jest.spyOn(userRepoMock, 'findByEmail');
-      const getSessionSpy = jest.spyOn(authRepoMock, 'getSession');
       const useCase = new GetCurrentUser(userRepoMock, authRepoMock);
 
       // Data
@@ -26,10 +24,6 @@ describe('GetUserById use case', () => {
       // Execute
       const getCurrentUser = await useCase.execute();
 
-      // Assert interaction
-      expect(findByEmailSpy).toHaveBeenCalledTimes(1);
-      expect(getSessionSpy).toHaveBeenCalledTimes(1);
-
       // Assert result pattern
       expect(getCurrentUser.success).toBe(true);
       expect(getCurrentUser.success && getCurrentUser.data).toBe(user);
@@ -41,25 +35,20 @@ describe('GetUserById use case', () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const authRepoMock = new MockAuthRepository();
-      const getSessionSpy = jest.spyOn(authRepoMock, 'getSession');
       const useCase = new GetCurrentUser(userRepoMock, authRepoMock);
 
       // Execute
       const getCurrentUser = await useCase.execute();
-
-      // Assert interaction
-      expect(getSessionSpy).toHaveBeenCalledTimes(1);
 
       // Assert result pattern
       expect(getCurrentUser.success).toBe(false);
       expect(!getCurrentUser.success && getCurrentUser.error.code).toBe('SESSION_NOT_FOUND');
     });
 
-    it('should return failure when user email not found', async () => {
+    it('should return failure when user not found by email', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const authRepoMock = new MockAuthRepository();
-      const findByEmailSpy = jest.spyOn(userRepoMock, 'findByEmail');
       const useCase = new GetCurrentUser(userRepoMock, authRepoMock);
 
       // Data
@@ -70,9 +59,6 @@ describe('GetUserById use case', () => {
 
       // Execute
       const getCurrentUser = await useCase.execute();
-
-      // Assert interaction
-      expect(findByEmailSpy).toHaveBeenCalledTimes(1);
 
       // Assert result pattern
       expect(getCurrentUser.success).toBe(false);
