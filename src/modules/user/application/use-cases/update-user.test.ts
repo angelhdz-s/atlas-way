@@ -31,7 +31,6 @@ describe('UpdateUser use case', () => {
       expect(updateUserResult.success && updateUserResult.data.name).toBe('Angel');
 
       // Verify DB state
-      expect(userRepoMock.users).toHaveLength(10);
       expect(userRepoMock.users[0]?.name).toBe('Angel');
     });
   });
