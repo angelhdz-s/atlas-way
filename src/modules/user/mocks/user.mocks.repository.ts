@@ -14,7 +14,8 @@ export class InMemoryUserRepository implements IUserRepository {
   public users: User[] = [...USERS_MOCK];
   async create(data: User) {
     this.users.push(data);
-    return Success(data);
+    const userCopy = this.getCopy(data);
+    return Success(userCopy);
   }
   async findAll() {
     const users = this.users;
@@ -39,7 +40,8 @@ export class InMemoryUserRepository implements IUserRepository {
     const userIndex = this.users.findIndex((u) => u.id === data.id);
     if (userIndex === -1) return Failure(new UserNotFoundError());
     this.users[userIndex] = data;
-    return Success(data);
+    const userCopy = this.getCopy(data);
+    return Success(userCopy);
   }
 
   private getCopy(user: User): User {
