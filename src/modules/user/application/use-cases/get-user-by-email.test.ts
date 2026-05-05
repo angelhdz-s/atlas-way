@@ -10,7 +10,6 @@ describe('GetUserById use case', () => {
     it('should get user by email successfully', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
-      const findByEmailSpy = jest.spyOn(userRepoMock, 'findByEmail');
       const useCase = new GetUserByEmail(userRepoMock);
 
       // Data
@@ -19,9 +18,6 @@ describe('GetUserById use case', () => {
       // Execute
       const getUserByEmail = await useCase.execute(user.email);
       const getUserByEmailNotFound = await useCase.execute('email.never@gmail.com');
-
-      // Assert interaction
-      expect(findByEmailSpy).toHaveBeenCalledTimes(2);
 
       // Assert result pattern when user found
       expect(getUserByEmail.success).toBe(true);

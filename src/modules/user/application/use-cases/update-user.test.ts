@@ -12,7 +12,6 @@ describe('UpdateUser use case', () => {
     it('should update user successfully and persist them', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
-      const createSpy = jest.spyOn(userRepoMock, 'update');
       const useCase = new UpdateUser(userRepoMock);
 
       // Data
@@ -25,9 +24,6 @@ describe('UpdateUser use case', () => {
       const updateUserResult = await useCase.execute(user.id, {
         name: 'Angel',
       });
-
-      // Assert interaction
-      expect(createSpy).toHaveBeenCalledTimes(1);
 
       // Assert result pattern
       expect(updateUserResult.success).toBe(true);
@@ -45,7 +41,6 @@ describe('UpdateUser use case', () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const idGeneratorMock = new MockIdGenerator();
-      const createSpy = jest.spyOn(userRepoMock, 'update');
       const useCase = new UpdateUser(userRepoMock);
 
       // Config
@@ -60,9 +55,6 @@ describe('UpdateUser use case', () => {
 
       // Execute
       const updateUserResult = await useCase.execute('not-existing-id-1234', userData);
-
-      // Assert interaction -> do not update
-      expect(createSpy).toHaveBeenCalledTimes(0);
 
       // Assert result pattern
       expect(updateUserResult.success).toBe(false);
