@@ -5,7 +5,7 @@ import { InMemoryUserRepository } from '@/modules/user/mocks/user.mocks.reposito
 import { GetUserByEmail } from '@/modules/user/application/use-cases/get-user-by-email';
 import type { User } from '@/modules/user/domain/user.entity';
 
-describe('GetUserById use case', () => {
+describe('GetUserByEmail use case', () => {
   describe('Happy Path', () => {
     it('should get user by email successfully', async () => {
       // Set up
