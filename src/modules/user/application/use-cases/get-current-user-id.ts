@@ -1,9 +1,9 @@
+import { Failure, Success } from '@/shared/domain/result';
+import { UserNotFoundError } from '@/modules/user/domain/errors/user.errors';
+import { SessionNotFoundError } from '@/modules/auth/domain/errors/auth.errors';
 import type { UseCase } from '@/shared/application/use-case';
 import type { IUserRepository } from '@/modules/user/domain/user.repository';
 import type { IAuthRepository } from '@/modules/auth/domain/auth.respository';
-import { Failure, Success } from '@/shared/domain/result';
-import { UserNotFoundError } from '../../domain/errors/user.errors';
-import { SessionNotFoundError } from '@/modules/auth/domain/errors/auth.errors';
 
 export class GetCurrentUserId implements UseCase {
   constructor(
@@ -12,11 +12,15 @@ export class GetCurrentUserId implements UseCase {
   ) {}
 
   async execute() {
-    const session = await this.authRepo.getSession();
-    if (!session.success || !session.data) return Failure(new SessionNotFoundError());
-    const { email } = session.data;
-    const user = await this.repository.findByEmail(email);
-    if (!user.success || !user.data) return Failure(new UserNotFoundError());
-    return Success(user.data.id);
+    const sessionResult = await this.authRepo.getSession();
+    if (!sessionResult.success) return sessionResult;
+    if (!sessionResult.data) return Failure(new SessionNotFoundError());
+
+    const { email } = sessionResult.data;
+    const userResult = await this.repository.findByEmail(email);
+    if (!userResult.success) return userResult;
+    if (!userResult.data) return Failure(new UserNotFoundError());
+
+    return Success(userResult.data.id);
   }
 }
