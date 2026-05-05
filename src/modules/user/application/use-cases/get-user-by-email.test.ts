@@ -32,9 +32,8 @@ describe('GetUserById use case', () => {
     it('should return failure when user findByEmail operation fails', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
-      const findByEmailSpy = jest.spyOn(userRepoMock, 'findByEmail');
       const useCase = new GetUserByEmail(userRepoMock);
-      jest
+      const findByEmailSpy = jest
         .spyOn(userRepoMock, 'findByEmail')
         .mockResolvedValue(Failure(new TechnicalError() as never));
 
