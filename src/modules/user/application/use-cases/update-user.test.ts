@@ -86,8 +86,8 @@ describe('UpdateUser use case', () => {
       expect(createUserResult.success).toBe(false);
       expect(!createUserResult.success && createUserResult.error.code).toBe('TECHNICAL_ERROR');
 
-      // Verify DB state
-      expect(userRepoMock.users).toHaveLength(10);
+      // Assert DB state
+      expect(userRepoMock.users[0]?.name).not.toBe('Angel');
     });
 
     it('should return failure when repository finById operation fails', async () => {
@@ -113,8 +113,8 @@ describe('UpdateUser use case', () => {
       expect(createUserResult.success).toBe(false);
       expect(!createUserResult.success && createUserResult.error.code).toBe('TECHNICAL_ERROR');
 
-      // Verify DB state
-      expect(userRepoMock.users).toHaveLength(10);
+      // Assert DB state
+      expect(userRepoMock.users[0]?.name).not.toBe('Angel');
     });
   });
 });
