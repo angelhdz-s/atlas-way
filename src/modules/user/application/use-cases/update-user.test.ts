@@ -67,7 +67,9 @@ describe('UpdateUser use case', () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const useCase = new UpdateUser(userRepoMock);
-      jest.spyOn(userRepoMock, 'update').mockResolvedValue(Failure(new TechnicalError() as never));
+      const updateSpy = jest
+        .spyOn(userRepoMock, 'update')
+        .mockResolvedValue(Failure(new TechnicalError() as never));
 
       // Data
       const user = userRepoMock.users[0] as User;
@@ -77,7 +79,9 @@ describe('UpdateUser use case', () => {
       };
 
       // Execute
-      const createUserResult = await useCase.execute(user.id, userData);
+
+      // Assert interaction
+      expect(updateSpy).toHaveBeenCalledTimes(1);
 
       // Assert result pattern
       expect(createUserResult.success).toBe(false);
@@ -91,7 +95,7 @@ describe('UpdateUser use case', () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const useCase = new UpdateUser(userRepoMock);
-      jest
+      const findById = jest
         .spyOn(userRepoMock, 'findById')
         .mockResolvedValue(Failure(new TechnicalError() as never));
 
@@ -103,7 +107,8 @@ describe('UpdateUser use case', () => {
       };
 
       // Execute
-      const createUserResult = await useCase.execute(user.id, userData);
+      // Assert interaction
+      expect(findById).toHaveBeenCalledTimes(1);
 
       // Assert result pattern
       expect(createUserResult.success).toBe(false);

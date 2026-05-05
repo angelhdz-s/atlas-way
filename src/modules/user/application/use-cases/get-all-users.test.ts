@@ -25,10 +25,15 @@ describe('GetAllUsers use case', () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const useCase = new GetAllUsers(userRepoMock);
-      jest.spyOn(userRepoMock, 'findAll').mockResolvedValue(Failure(new TechnicalError() as never));
+      const getAllUsersSpy = jest
+        .spyOn(userRepoMock, 'findAll')
+        .mockResolvedValue(Failure(new TechnicalError() as never));
 
       // Execute
       const createUserResult = await useCase.execute();
+
+      // Assert interaction
+      expect(getAllUsersSpy).toHaveBeenCalledTimes(1);
 
       // Assert result pattern
       expect(createUserResult.success).toBe(false);
