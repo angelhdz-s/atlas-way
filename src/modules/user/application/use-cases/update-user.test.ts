@@ -78,13 +78,14 @@ describe('UpdateUser use case', () => {
       };
 
       // Execute
+      const updateUserResult = await useCase.execute(user.id, userData);
 
       // Assert interaction
       expect(updateSpy).toHaveBeenCalledTimes(1);
 
       // Assert result pattern
-      expect(createUserResult.success).toBe(false);
-      expect(!createUserResult.success && createUserResult.error.code).toBe('TECHNICAL_ERROR');
+      expect(updateUserResult.success).toBe(false);
+      expect(!updateUserResult.success && updateUserResult.error.code).toBe('TECHNICAL_ERROR');
 
       // Assert DB state
       expect(userRepoMock.users[0]?.name).not.toBe('Angel');
@@ -106,12 +107,14 @@ describe('UpdateUser use case', () => {
       };
 
       // Execute
+      const updateUserResult = await useCase.execute(user.id, userData);
+
       // Assert interaction
       expect(findById).toHaveBeenCalledTimes(1);
 
       // Assert result pattern
-      expect(createUserResult.success).toBe(false);
-      expect(!createUserResult.success && createUserResult.error.code).toBe('TECHNICAL_ERROR');
+      expect(updateUserResult.success).toBe(false);
+      expect(!updateUserResult.success && updateUserResult.error.code).toBe('TECHNICAL_ERROR');
 
       // Assert DB state
       expect(userRepoMock.users[0]?.name).not.toBe('Angel');
