@@ -1,4 +1,4 @@
-import type { UseCase } from '@/shared/application/use-case';
+import type { UseCase } from '@/shared/application/shared.use-case';
 import type { IUserRepository } from '@/modules/user/domain/user.repository';
 import type { UserProps } from '@/modules/user/domain/user.types';
 
