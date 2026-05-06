@@ -11,8 +11,12 @@ export class CreateNotification implements UseCase {
   ) {}
 
   async execute(data: CreateNotificationInput) {
-    const id = this.generator.generate();
-    const newNotification = Notification.create(id, data);
+    const idResult = await this.generator.generate();
+    if (!idResult.success) return idResult;
+
+    const notificationId = idResult.data;
+
+    const newNotification = Notification.create(notificationId, data);
     return this.repository.create(newNotification);
   }
 }
