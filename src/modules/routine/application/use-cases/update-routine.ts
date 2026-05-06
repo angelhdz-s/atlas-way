@@ -9,7 +9,7 @@ import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
 import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 import type { UpdateRoutineInput } from '@/modules/routine/application/dtos/update-routine.dto';
-import type { IdGeneratorRepository } from '@/shared/application/id-generator';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 
 export class UpdateRoutine implements UseCase {
   constructor(

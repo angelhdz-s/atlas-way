@@ -3,7 +3,7 @@ import { GetAllRoutines } from '@/modules/routine/application/use-cases/get-all-
 import { GetRoutineById } from '@/modules/routine/application/use-cases/get-routine-by-id';
 import { UpdateRoutine } from '@/modules/routine/application/use-cases/update-routine';
 import { DeleteRoutine } from '@/modules/routine/application/use-cases/delete-routine';
-import type { IdGeneratorRepository } from '@/shared/application/id-generator';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
 import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 
