@@ -1,4 +1,4 @@
-import type { UseCase } from '@/shared/application/use-case';
+import type { UseCase } from '@/shared/application/shared.use-case';
 import type { INotificationRepository } from '@/modules/notification/domain/notification.repository';
 import type { NotificationProps } from '@/modules/notification/domain/notification.types';
 

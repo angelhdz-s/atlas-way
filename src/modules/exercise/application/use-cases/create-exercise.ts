@@ -5,7 +5,7 @@ import type { CreateExerciseInput } from '@/modules/exercise/application/dtos/cr
 import type { IdGeneratorRepository } from '@/shared/application/id-generator';
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
 import type { IMuscleRepository } from '@/modules/muscle/domain/muscle.repository';
-import type { UseCase } from '@/shared/application/use-case';
+import type { UseCase } from '@/shared/application/shared.use-case';
 
 export class CreateExercise implements UseCase {
   constructor(

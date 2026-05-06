@@ -3,7 +3,7 @@ import {
   SessionNotFoundError,
   SessionOwnershipError,
 } from '@/modules/session/domain/errors/session.errors';
-import type { UseCase } from '@/shared/application/use-case';
+import type { UseCase } from '@/shared/application/shared.use-case';
 import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 import type { SessionProps } from '@/modules/session/domain/session.types';
 import type { UserProps } from '@/modules/user/domain/user.types';

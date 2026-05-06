@@ -1,4 +1,4 @@
-import type { UseCase } from '@/shared/application/use-case';
+import type { UseCase } from '@/shared/application/shared.use-case';
 import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 
 export class GetAllSessions implements UseCase {

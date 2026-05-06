@@ -2,7 +2,7 @@ import { Failure, Success } from '@/shared/domain/result';
 import { User } from '@/modules/user/domain/user.entity';
 import { SessionAlreadyActive } from '@/modules/auth/domain/errors/auth.errors';
 import { ROLES } from '@/modules/user/domain/user.constants.roles';
-import type { UseCase } from '@/shared/application/use-case';
+import type { UseCase } from '@/shared/application/shared.use-case';
 import type { IAuthRepository } from '@/modules/auth/domain/auth.respository';
 import type { IUserRepository } from '@/modules/user/domain/user.repository';
 import type { LoginInput } from '@/modules/auth/application/dtos/login-input.dto';
