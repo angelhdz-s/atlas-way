@@ -15,10 +15,12 @@ export class CreateExercise implements UseCase {
   ) {}
 
   async execute(exerciseData: CreateExerciseInput) {
-    const exerciseId = this.generator.generate();
+    const idResult = await this.generator.generate();
+    if(!idResult.success) return idResult;
+
+    const exerciseId = idResult.data;
 
     const muscles = await this.muscleRepository.findByIds(exerciseData.muscleIds);
-
     if (!muscles.success) return Failure(new MuscleNotFoundError());
 
     const { muscleIds, ...createExerciseData } = exerciseData;
