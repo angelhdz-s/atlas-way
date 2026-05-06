@@ -40,8 +40,13 @@ export class UpdateRoutine implements UseCase {
     if (data.routineDays) {
       const routineDays: RoutineProps['routineDays'] = [];
       for (const routineDay of data.routineDays) {
+        const idResult = await this.generatorRepository.generate();
+        if (!idResult.success) return idResult;
+
+        const routineDayId = idResult.data;
+
         const routineDayBaseProps: Omit<RoutineProps['routineDays'][number], 'session'> = {
-          id: this.generatorRepository.generate(),
+          id: routineDayId,
           day: routineDay.day,
           name: routineDay.name,
         };
