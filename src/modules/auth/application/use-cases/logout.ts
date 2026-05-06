@@ -1,7 +1,7 @@
 import { Failure, Success } from '@/shared/domain/result';
 import { SessionNotFoundError } from '@/modules/auth/domain/errors/auth.errors';
 import type { IAuthRepository } from '@/modules/auth/domain/auth.respository';
-import type { UseCase } from '@/shared/application/use-case';
+import type { UseCase } from '@/shared/application/shared.use-case';
 
 export class Logout implements UseCase {
   constructor(readonly authRepository: IAuthRepository) {}
