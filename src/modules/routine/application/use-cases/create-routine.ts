@@ -12,7 +12,7 @@ import type { IRoutineRepository } from '@/modules/routine/domain/routine.reposi
 import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 import type { Session } from '@/modules/session/domain/session.entity';
-import type { UseCase } from '@/shared/application/use-case';
+import type { UseCase } from '@/shared/application/shared.use-case';
 
 export class CreateRoutine implements UseCase {
   constructor(

@@ -4,7 +4,7 @@ import {
   RoutineCycleNotFound,
   RoutineNotFoundError,
 } from '@/modules/routine/domain/errors/routine.errors';
-import type { UseCase } from '@/shared/application/use-case';
+import type { UseCase } from '@/shared/application/shared.use-case';
 import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
 import type { ISessionRepository } from '@/modules/session/domain/session.repository';
