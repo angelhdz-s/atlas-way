@@ -2,7 +2,7 @@ import { Session } from '@/modules/session/domain/session.entity';
 import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 import type { CreateSessionInput } from '@/modules/session/application/dtos/create-session.dto';
 import type { UseCase } from '@/shared/application/shared.use-case';
-import type { IdGeneratorRepository } from '@/shared/application/id-generator';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
 
 export class CreateSession implements UseCase {
@@ -13,7 +13,10 @@ export class CreateSession implements UseCase {
   ) {}
 
   async execute(data: CreateSessionInput) {
-    const sessionId = this.generator.generate();
+    const idResult = await this.generator.generate();
+    if (!idResult.success) return idResult;
+
+    const sessionId = idResult.data;
 
     const { exerciseIds, ...sessionData } = data;
 

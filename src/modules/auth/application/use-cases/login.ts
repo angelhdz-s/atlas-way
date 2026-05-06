@@ -6,7 +6,7 @@ import type { UseCase } from '@/shared/application/shared.use-case';
 import type { IAuthRepository } from '@/modules/auth/domain/auth.respository';
 import type { IUserRepository } from '@/modules/user/domain/user.repository';
 import type { LoginInput } from '@/modules/auth/application/dtos/login-input.dto';
-import type { IdGeneratorRepository } from '@/shared/application/id-generator';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 
 export class Login implements UseCase {
   constructor(
@@ -18,10 +18,16 @@ export class Login implements UseCase {
     const sessionResult = await this.authRepository.getSession();
     if (!sessionResult.success) return sessionResult;
     if (sessionResult.data) return Failure(new SessionAlreadyActive());
+
     const userResult = await this.userRepository.findByEmail(data.email);
     if (!userResult.success) return userResult;
     if (userResult.data) return Success(null);
-    const userId = this.generatorRepository.generate();
+
+    const idResult = await this.generatorRepository.generate();
+    if(!idResult.success) return idResult;
+
+    const userId = idResult.data
+
     const domainUser = User.create(userId, {
       email: data.email,
       name: data.name,
@@ -30,6 +36,7 @@ export class Login implements UseCase {
 
     const createUserResult = await this.userRepository.create(domainUser);
     if (!createUserResult.success) return createUserResult;
+    
     return Success(null);
   }
 }

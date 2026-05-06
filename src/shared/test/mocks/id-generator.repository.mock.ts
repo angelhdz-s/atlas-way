@@ -1,4 +1,5 @@
-import type { IdGeneratorRepository } from '@/shared/application/id-generator';
+import { Success } from '@/shared/domain/result';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 
 /**
  * Mock for IdGeneratorRepository to control ID generation in tests.
@@ -7,7 +8,7 @@ import type { IdGeneratorRepository } from '@/shared/application/id-generator';
  */
 export class MockIdGenerator implements IdGeneratorRepository {
   public id: string = 'Hello';
-  generate() {
-    return this.id;
+  async generate() {
+    return Success(this.id);
   }
 }

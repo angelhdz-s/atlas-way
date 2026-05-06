@@ -27,7 +27,7 @@ export const getContainer = () => {
   // System repositories
   const errorMapper = new InfrastructureErrorTranslator(errorHandlersContainer);
   const authRepository = new AuthNextAuthRepository(errorMapper);
-  const idGeneratorRepository = new UUIDGenerator();
+  const idGeneratorRepository = new UUIDGenerator(errorMapper);
 
   // Database respositories
   const exerciseRepository = new ExercisePrismaRepository(prisma, errorMapper);
