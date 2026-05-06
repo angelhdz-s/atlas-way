@@ -4,7 +4,7 @@ import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.rep
 import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 import type { SessionProps } from '@/modules/session/domain/session.types';
 import type { UpdateSessionInput } from '@/modules/session/application/dtos/update-session.dto';
-import type { UseCase } from '@/shared/application/use-case';
+import type { UseCase } from '@/shared/application/shared.use-case';
 
 export class UpdateSession implements UseCase {
   constructor(
