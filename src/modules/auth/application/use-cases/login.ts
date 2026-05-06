@@ -6,7 +6,7 @@ import type { UseCase } from '@/shared/application/shared.use-case';
 import type { IAuthRepository } from '@/modules/auth/domain/auth.respository';
 import type { IUserRepository } from '@/modules/user/domain/user.repository';
 import type { LoginInput } from '@/modules/auth/application/dtos/login-input.dto';
-import type { IdGeneratorRepository } from '@/shared/application/id-generator';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 
 export class Login implements UseCase {
   constructor(
