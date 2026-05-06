@@ -1,10 +1,10 @@
 import '@testing-library/jest-dom';
-import { MockAuthRepository } from '../../mocks/auth.mocks.repository';
 import { Failure } from '@/shared/domain/result';
-import { TechnicalError } from '@/shared/domain/errors/domain.errors';
-import { Login } from './login';
-import { InMemoryUserRepository } from '@/modules/user/mocks/user.mocks.repository';
 import { MockIdGenerator } from '@/shared/test/mocks/id-generator.repository.mock';
+import { InMemoryUserRepository } from '@/modules/user/mocks/user.mocks.repository';
+import { MockAuthRepository } from '@/modules/auth/mocks/auth.mocks.repository';
+import { TechnicalError } from '@/shared/domain/errors/domain.errors';
+import { Login } from '@/modules/auth/application/use-cases/login';
 import type { User } from '@/modules/user/domain/user.entity';
 
 describe('Login use case', () => {

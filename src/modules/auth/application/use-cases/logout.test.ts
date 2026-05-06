@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
-import { MockAuthRepository } from '../../mocks/auth.mocks.repository';
-import { Logout } from './logout';
-import { TechnicalError } from '@/shared/domain/errors/domain.errors';
 import { Failure } from '@/shared/domain/result';
+import { TechnicalError } from '@/shared/domain/errors/domain.errors';
+import { MockAuthRepository } from '@/modules/auth/mocks/auth.mocks.repository';
+import { Logout } from '@/modules/auth/application/use-cases/logout';
 
 describe('Logout use case', () => {
   describe('Happy Path', () => {
