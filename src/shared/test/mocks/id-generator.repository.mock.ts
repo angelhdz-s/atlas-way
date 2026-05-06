@@ -1,4 +1,4 @@
-import type { IdGeneratorRepository } from '@/shared/application/id-generator';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 
 /**
  * Mock for IdGeneratorRepository to control ID generation in tests.
