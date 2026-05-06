@@ -2,7 +2,7 @@ import { Exercise } from '@/modules/exercise/domain/exercise.entity';
 import { Failure } from '@/shared/domain/result';
 import { MuscleNotFoundError } from '@/modules/muscle/domain/errors/muscle.errors';
 import type { CreateExerciseInput } from '@/modules/exercise/application/dtos/create-exercise.dto';
-import type { IdGeneratorRepository } from '@/shared/application/id-generator';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
 import type { IMuscleRepository } from '@/modules/muscle/domain/muscle.repository';
 import type { UseCase } from '@/shared/application/shared.use-case';

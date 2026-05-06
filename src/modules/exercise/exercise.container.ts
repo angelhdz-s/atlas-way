@@ -6,7 +6,7 @@ import { GetAllUserExercises } from '@/modules/exercise/application/use-cases/ge
 import { GetExercisesByIds } from '@/modules/exercise/application/use-cases/get-exercises-by-ids';
 import { DeleteExercise } from '@/modules/exercise/application/use-cases/delete-exercise';
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
-import type { IdGeneratorRepository } from '@/shared/application/id-generator';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 import type { IMuscleRepository } from '@/modules/muscle/domain/muscle.repository';
 
 type Props = {
