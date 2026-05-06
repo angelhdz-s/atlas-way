@@ -1,3 +1,4 @@
+import { Success } from '@/shared/domain/result';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 
 /**
@@ -7,7 +8,7 @@ import type { IdGeneratorRepository } from '@/shared/application/id-generator.re
  */
 export class MockIdGenerator implements IdGeneratorRepository {
   public id: string = 'Hello';
-  generate() {
-    return this.id;
+  async generate() {
+    return Success(this.id);
   }
 }
