@@ -22,7 +22,10 @@ export class CreateRoutine implements UseCase {
   ) {}
 
   async execute(routineData: CreateRoutineInput) {
-    const routineId = this.generator.generate();
+    const idResult = await this.generator.generate();
+    if (!idResult.success) return idResult;
+
+    const routineId = idResult.data;
 
     const sessions: (Session | null)[] = [];
 
@@ -48,8 +51,12 @@ export class CreateRoutine implements UseCase {
       const routineDay = routineData.routineDays[i];
       if (!routineDay) return Failure(new InvalidRoutineDays());
 
+      const sessionIdResult = await this.generator.generate();
+      if (!sessionIdResult.success) return sessionIdResult;
+      const sessionId = sessionIdResult.data;
+
       routineDays.push({
-        id: this.generator.generate(),
+        id: sessionId,
         day: routineDay.day,
         name: routineDay.name,
         session: sessions[i] ?? null,
