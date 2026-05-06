@@ -5,7 +5,7 @@ import { UpdateSession } from '@/modules/session/application/use-cases/update-se
 import { GetSessionsByIds } from '@/modules/session/application/use-cases/get-sessions-by-ids';
 import { DeleteSession } from '@/modules/session/application/use-cases/delete-session';
 import type { ISessionRepository } from '@/modules/session/domain/session.repository';
-import type { IdGeneratorRepository } from '@/shared/application/id-generator';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
 
 type Props = {
