@@ -5,7 +5,7 @@ import {
 import { Failure } from '@/shared/domain/result';
 import type { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
-import type { UseCase } from '@/shared/application/use-case';
+import type { UseCase } from '@/shared/application/shared.use-case';
 import type { UserProps } from '@/modules/user/domain/user.types';
 
 export class DeleteExercise implements UseCase {

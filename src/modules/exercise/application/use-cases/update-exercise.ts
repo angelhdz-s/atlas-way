@@ -4,7 +4,7 @@ import type { Exercise } from '@/modules/exercise/domain/exercise.entity';
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
 import type { IMuscleRepository } from '@/modules/muscle/domain/muscle.repository';
 import type { UpdateExerciseInput } from '@/modules/exercise/application/dtos/update-exercise.dto';
-import type { UseCase } from '@/shared/application/use-case';
+import type { UseCase } from '@/shared/application/shared.use-case';
 
 export class UpdateExercise implements UseCase {
   constructor(
