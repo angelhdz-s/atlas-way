@@ -7,7 +7,7 @@ import { GetCurrentUser } from './application/use-cases/get-current-user';
 import { GetCurrentUserId } from './application/use-cases/get-current-user-id';
 import type { IUserRepository } from './domain/user.repository';
 import type { IAuthRepository } from '../auth/domain/auth.respository';
-import type { IdGeneratorRepository } from '@/shared/application/id-generator';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 
 type Props = {
   userRepository: IUserRepository;
