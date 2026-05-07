@@ -72,6 +72,22 @@ describe('Login use case', () => {
       expect(loginResult.success).toBe(false);
       expect(!loginResult.success && loginResult.error.code).toBe('SESSION_ALREADY_ACTIVE');
     });
+
+    it('should return failure when invalid email provided', async () => {
+      const authRepoMock = new MockAuthRepository();
+      const userRepoMock = new InMemoryUserRepository();
+      const idGeneratorRepoMock = new MockIdGenerator();
+      const login = new Login(authRepoMock, userRepoMock, idGeneratorRepoMock);
+
+      const loginResult = await login.execute({
+        email: 'email@not.allowed.service.com',
+        name: 'New Name',
+      });
+
+      // Assert result pattern
+      expect(loginResult.success).toBe(false);
+      expect(!loginResult.success && loginResult.error.code).toBe('INVALID_USER_DATA.EMAIL');
+    });
   });
 
   describe('Dependency Interaction', () => {
