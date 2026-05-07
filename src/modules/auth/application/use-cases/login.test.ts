@@ -122,7 +122,7 @@ describe('Login use case', () => {
         .mockResolvedValue(Failure(new TechnicalError() as never));
       const login = new Login(authRepoMock, userRepoMock, idGeneratorRepoMock);
 
-      const loginResult = await login.execute({ email: '', name: '' });
+      const loginResult = await login.execute({ email: 'new.user@gmail.com', name: 'New User' });
 
       // Assert Interaction
       expect(createSpy).toHaveBeenCalledTimes(1);
@@ -141,7 +141,7 @@ describe('Login use case', () => {
         .mockResolvedValue(Failure(new TechnicalError() as never));
       const login = new Login(authRepoMock, userRepoMock, idGeneratorRepoMock);
 
-      const loginResult = await login.execute({ email: '', name: '' });
+      const loginResult = await login.execute({ email: 'new.user@gmail.com', name: 'New User' });
 
       // Assert Interaction
       expect(generateSpy).toHaveBeenCalledTimes(1);
