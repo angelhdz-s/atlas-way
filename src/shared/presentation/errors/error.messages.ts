@@ -16,4 +16,8 @@ export const errorMessages: Record<DomainErrorCode, string> = {
   SESSION_ALREADY_ACTIVE: '',
   SESSION_OWNERSHIP_ERROR: '',
   INVALID_ROUTINE_DAYS: '',
+  INVALID_USER_DATA: '',
+  'INVALID_USER_DATA.EMAIL': '',
+  'INVALID_USER_DATA.NAME': '',
+  USER_EMAIL_ALREADY_EXISTS: '',
 };
