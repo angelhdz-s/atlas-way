@@ -1,3 +1,5 @@
+import type { ClassMethods } from '@/shared/shared.types';
+import type { User } from '@/modules/user/domain/user.entity';
 import type { RoleIds } from '@/modules/user/domain/user.constants.roles';
 
 export type UserProps = {
@@ -15,3 +17,5 @@ export type UserProps = {
 export type UserFactoryData = Omit<UserProps, 'id' | 'createdAt' | 'updatedAt' | 'role'> & {
   roleId: string;
 };
+
+export type UserMethods = ClassMethods<User>;
