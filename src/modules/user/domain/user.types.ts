@@ -11,3 +11,7 @@ export type UserProps = {
     name: string;
   };
 };
+
+export type UserFactoryData = Omit<UserProps, 'id' | 'createdAt' | 'updatedAt' | 'role'> & {
+  roleId: string;
+};

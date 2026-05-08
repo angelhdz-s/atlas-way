@@ -1,4 +1,4 @@
-import { Failure } from '@/shared/domain/result';
+import { Failure, Success } from '@/shared/domain/result';
 import { UserNotFoundError } from '@/modules/user/domain/errors/user.errors';
 import type { UseCase } from '@/shared/application/shared.use-case';
 import type { UserProps } from '@/modules/user/domain/user.types';
@@ -15,8 +15,12 @@ export class UpdateUser implements UseCase {
     if (!userResult.data) return Failure(new UserNotFoundError());
     const user = userResult.data;
 
-    if (data.name) user.changeName(data.name);
-    if (data.email) user.changeEmail(data.email);
+    const nameResult = data.name ? user.changeName(data.name) : Success(null);
+    if (!nameResult.success) return nameResult;
+
+    const emailResult = data.email ? user.changeEmail(data.email) : Success(null);
+    if (!emailResult.success) return emailResult;
+
     return await this.repository.update(user);
   }
 }

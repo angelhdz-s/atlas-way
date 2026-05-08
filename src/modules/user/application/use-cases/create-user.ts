@@ -1,8 +1,6 @@
 import { Failure } from '@/shared/domain/result';
 import { User } from '@/modules/user/domain/user.entity';
-import { ROLES } from '@/modules/user/domain/user.constants.roles';
-import { TechnicalError } from '@/shared/domain/errors/domain.errors';
-import { RoleNotFound } from '@/modules/user/domain/errors/user.errors';
+import { UserEmailAlreadyExists } from '@/modules/user/domain/errors/user.errors';
 import type { UseCase } from '@/shared/application/shared.use-case';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 import type { IUserRepository } from '@/modules/user/domain/user.repository';
@@ -15,24 +13,25 @@ export class CreateUser implements UseCase {
   ) {}
 
   async execute(data: CreateUserInput) {
-    const role = Object.values(ROLES).find((r) => r.id === data.roleId);
-    if (!role) return Failure(new RoleNotFound());
-    
     const userByEmailResult = await this.repository.findByEmail(data.email);
     if (!userByEmailResult.success) return userByEmailResult;
-    if (userByEmailResult.data) return Failure(new TechnicalError()); // more User exceptions needed
+    if (userByEmailResult.data) return Failure(new UserEmailAlreadyExists());
 
     const idResult = await this.generator.generate();
-    if(!idResult.success) return idResult;
+    if (!idResult.success) return idResult;
 
-    const userId = idResult.data
+    const userId = idResult.data;
 
-    const user = User.create(userId, {
+    const newUserResult = User.create(userId, {
       email: data.email,
       name: data.name,
-      role,
+      roleId: data.roleId,
     });
 
-    return await this.repository.create(user);
+    if (!newUserResult.success) return newUserResult;
+
+    const newUser = newUserResult.data;
+
+    return await this.repository.create(newUser);
   }
 }

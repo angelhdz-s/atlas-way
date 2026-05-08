@@ -24,19 +24,23 @@ export class Login implements UseCase {
     if (userResult.data) return Success(null);
 
     const idResult = await this.generatorRepository.generate();
-    if(!idResult.success) return idResult;
+    if (!idResult.success) return idResult;
 
-    const userId = idResult.data
+    const userId = idResult.data;
 
-    const domainUser = User.create(userId, {
+    const domainUserResult = User.create(userId, {
       email: data.email,
       name: data.name,
-      role: ROLES.BASE,
+      roleId: ROLES.BASE.id,
     });
+
+    if (!domainUserResult.success) return domainUserResult;
+
+    const domainUser = domainUserResult.data;
 
     const createUserResult = await this.userRepository.create(domainUser);
     if (!createUserResult.success) return createUserResult;
-    
+
     return Success(null);
   }
 }
