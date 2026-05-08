@@ -83,8 +83,9 @@ describe('UpdateUser use case', () => {
       // Data
       const user = userRepoMock.users[0] as User;
       const userData: UpdateUserInput = {
+        invalidKey: 'Skipped',
         name: 'New',
-      };
+      } as UpdateUserInput;
 
       // Execute
       const updateUserResult = await useCase.execute(user.id, userData);
