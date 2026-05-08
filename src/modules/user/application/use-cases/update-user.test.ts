@@ -63,7 +63,6 @@ describe('UpdateUser use case', () => {
       const user = userRepoMock.users[0] as User;
       const userData: UpdateUserInput = {
         email: 'user.email@outlook.com',
-        name: 'New Name',
       };
 
       // Execute
@@ -84,7 +83,6 @@ describe('UpdateUser use case', () => {
       // Data
       const user = userRepoMock.users[0] as User;
       const userData: UpdateUserInput = {
-        email: 'user.email@gmail.com',
         name: 'New',
       };
 
