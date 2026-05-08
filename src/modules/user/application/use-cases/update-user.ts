@@ -15,8 +15,12 @@ export class UpdateUser implements UseCase {
     if (!userResult.data) return Failure(new UserNotFoundError());
     const user = userResult.data;
 
-    if (data.name) user.changeName(data.name);
-    if (data.email) user.changeEmail(data.email);
+    const nameResult = data.name ? user.changeName(data.name) : Success(null);
+    if (!nameResult.success) return nameResult;
+
+    const emailResult = data.email ? user.changeEmail(data.email) : Success(null);
+    if (!emailResult.success) return emailResult;
+
     return await this.repository.update(user);
   }
 }
