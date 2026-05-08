@@ -6,12 +6,6 @@ export class SessionNotFoundError extends DomainError {
   }
 }
 
-export class AutenticationServiceUnavailable extends DomainError {
-  constructor() {
-    super('UNAVAILABLE_AUTENTICATION_SERVICE');
-  }
-}
-
 export class SessionAlreadyActive extends DomainError {
   constructor() {
     super('SESSION_ALREADY_ACTIVE');
