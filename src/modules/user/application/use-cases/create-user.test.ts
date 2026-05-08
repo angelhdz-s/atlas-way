@@ -15,19 +15,21 @@ describe('CreateUser use case', () => {
       const useCase = new CreateUser(userRepoMock, idGeneratorMock);
       const userData: CreateUserInput = {
         email: 'angel1234@gmail.com',
-        name: 'Angel',
+        name: 'Angel 1234',
         roleId: 'base',
       };
 
       // Config
-      idGeneratorMock.id = 'user-id-1234';
+      idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da4';
 
       // Execute
       const createUserResult = await useCase.execute(userData);
 
       // Assert result pattern
       expect(createUserResult.success).toBe(true);
-      expect(createUserResult.success && createUserResult.data.id).toBe('user-id-1234');
+      expect(createUserResult.success && createUserResult.data.id).toBe(
+        '1df38173-6fae-4abb-8cb2-ce33b6c24da4'
+      );
       expect(createUserResult.success && createUserResult.data.email).toBe('angel1234@gmail.com');
 
       // Verify DB state
@@ -43,8 +45,64 @@ describe('CreateUser use case', () => {
       const useCase = new CreateUser(userRepoMock2, idGeneratorMock);
 
       // Config
-      userRepoMock2.users[0]?.changeEmail('angel1234@gmail.com');
-      idGeneratorMock.id = 'user-id-1234';
+      userRepoMock2.users[0]?.changeEmail('existing@gmail.com');
+      idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da4';
+
+      // Data
+      const userData: CreateUserInput = {
+        email: 'existing@gmail.com',
+        name: 'Angel 1234',
+        roleId: 'base',
+      };
+
+      // Execute
+      const createUserResult = await useCase.execute(userData);
+
+      // Assert result pattern
+      expect(createUserResult.success).toBe(false);
+      expect(!createUserResult.success && createUserResult.error.code).toBe(
+        'USER_EMAIL_ALREADY_EXISTS'
+      ); // <- update for the correspondent User error
+
+      // Verify DB state
+      expect(userRepoMock2.users).toHaveLength(10); // no users added
+    });
+
+    it('should return failure result when user role not exists', async () => {
+      // Set up
+      const userRepoMock2 = new InMemoryUserRepository();
+      const idGeneratorMock = new MockIdGenerator();
+      const useCase = new CreateUser(userRepoMock2, idGeneratorMock);
+
+      // Config
+      idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da4';
+
+      // Data
+      const userData: CreateUserInput = {
+        email: 'angel1234@gmail.com',
+        name: 'Angel 1234',
+        roleId: 'notExistingRole',
+      };
+
+      // Execute
+      const createUserResult = await useCase.execute(userData);
+
+      // Assert result pattern
+      expect(createUserResult.success).toBe(false);
+      expect(!createUserResult.success && createUserResult.error.code).toBe('ROLE_NOT_FOUND');
+
+      // Verify DB state
+      expect(userRepoMock2.users).toHaveLength(10); // no users added
+    });
+
+    it('should return failure result when user name is invalid', async () => {
+      // Set up
+      const userRepoMock2 = new InMemoryUserRepository();
+      const idGeneratorMock = new MockIdGenerator();
+      const useCase = new CreateUser(userRepoMock2, idGeneratorMock);
+
+      // Config
+      idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da4';
 
       // Data
       const userData: CreateUserInput = {
@@ -58,26 +116,28 @@ describe('CreateUser use case', () => {
 
       // Assert result pattern
       expect(createUserResult.success).toBe(false);
-      expect(!createUserResult.success && createUserResult.error.code).toBe('TECHNICAL_ERROR'); // <- update for the correspondent User error
+      expect(!createUserResult.success && createUserResult.error.code).toBe(
+        'INVALID_USER_DATA.NAME'
+      );
 
       // Verify DB state
       expect(userRepoMock2.users).toHaveLength(10); // no users added
     });
 
-    it('should return failure result when user role not exists', async () => {
+    it('should return failure result when user email is invalid', async () => {
       // Set up
       const userRepoMock2 = new InMemoryUserRepository();
       const idGeneratorMock = new MockIdGenerator();
       const useCase = new CreateUser(userRepoMock2, idGeneratorMock);
 
       // Config
-      idGeneratorMock.id = 'user-id-1234';
+      idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da4';
 
       // Data
       const userData: CreateUserInput = {
-        email: 'angel1234@gmail.com',
-        name: 'Angel',
-        roleId: 'notExistingRole',
+        email: 'angel1234@not.valid.email.com',
+        name: 'Angel 1234',
+        roleId: 'base',
       };
 
       // Execute
@@ -85,7 +145,9 @@ describe('CreateUser use case', () => {
 
       // Assert result pattern
       expect(createUserResult.success).toBe(false);
-      expect(!createUserResult.success && createUserResult.error.code).toBe('ROLE_NOT_FOUND');
+      expect(!createUserResult.success && createUserResult.error.code).toBe(
+        'INVALID_USER_DATA.EMAIL'
+      );
 
       // Verify DB state
       expect(userRepoMock2.users).toHaveLength(10); // no users added
@@ -103,7 +165,7 @@ describe('CreateUser use case', () => {
       // Data
       const userData: CreateUserInput = {
         email: 'angel1234@gmail.com',
-        name: 'Angel',
+        name: 'Angel 1234',
         roleId: 'base',
       };
 
@@ -130,7 +192,34 @@ describe('CreateUser use case', () => {
       // Data
       const userData: CreateUserInput = {
         email: 'angel1234@gmail.com',
-        name: 'Angel',
+        name: 'Angel 1234',
+        roleId: 'base',
+      };
+
+      // Execute
+      const createUserResult = await useCase.execute(userData);
+
+      // Assert result pattern
+      expect(createUserResult.success).toBe(false);
+      expect(!createUserResult.success && createUserResult.error.code).toBe('TECHNICAL_ERROR');
+
+      // Verify DB state
+      expect(userRepoMock.users).toHaveLength(10); // no users added
+    });
+
+    it('should return failure when idGenerator generate operation fails', async () => {
+      // Set up
+      const userRepoMock = new InMemoryUserRepository();
+      const idGeneratorMock = new MockIdGenerator();
+      const useCase = new CreateUser(userRepoMock, idGeneratorMock);
+      jest
+        .spyOn(idGeneratorMock, 'generate')
+        .mockResolvedValue(Failure(new TechnicalError() as never));
+
+      // Data
+      const userData: CreateUserInput = {
+        email: 'angel1234@gmail.com',
+        name: 'Angel 1234',
         roleId: 'base',
       };
 
