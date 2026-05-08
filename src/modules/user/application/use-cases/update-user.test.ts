@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 import { Failure } from '@/shared/domain/result';
 import { TechnicalError } from '@/shared/domain/errors/domain.errors';
-import { MockIdGenerator } from '@/shared/test/mocks/id-generator.repository.mock';
 import { UpdateUser } from '@/modules/user/application/use-cases/update-user';
 import { InMemoryUserRepository } from '@/modules/user/mocks/user.mocks.repository';
 import type { User } from '@/modules/user/domain/user.entity';
@@ -39,12 +38,11 @@ describe('UpdateUser use case', () => {
     it('should return failure result when user not found', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
-      const idGeneratorMock = new MockIdGenerator();
+
       const useCase = new UpdateUser(userRepoMock);
 
       // Config
       userRepoMock.users[0]?.changeEmail('angel1234@gmail.com');
-      idGeneratorMock.id = 'user-id-1234';
 
       // Data
       const userData: UpdateUserInput = {
