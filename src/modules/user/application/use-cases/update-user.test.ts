@@ -17,20 +17,20 @@ describe('UpdateUser use case', () => {
       const user = userRepoMock.users[0] as User;
 
       // Verify DB state before execution
-      expect(userRepoMock.users[0]?.name).not.toBe('Angel');
+      expect(userRepoMock.users[0]?.name).not.toBe('Updated Name');
 
       // Execute
       const updateUserResult = await useCase.execute(user.id, {
-        name: 'Angel',
+        name: 'Updated Name',
       });
 
       // Assert result pattern
       expect(updateUserResult.success).toBe(true);
       expect(updateUserResult.success && updateUserResult.data.id).toBe(user.id);
-      expect(updateUserResult.success && updateUserResult.data.name).toBe('Angel');
+      expect(updateUserResult.success && updateUserResult.data.name).toBe('Updated Name');
 
       // Verify DB state
-      expect(userRepoMock.users[0]?.name).toBe('Angel');
+      expect(userRepoMock.users[0]?.name).toBe('Updated Name');
     });
   });
 
@@ -38,16 +38,12 @@ describe('UpdateUser use case', () => {
     it('should return failure result when user not found', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
-
       const useCase = new UpdateUser(userRepoMock);
-
-      // Config
-      userRepoMock.users[0]?.changeEmail('angel1234@gmail.com');
 
       // Data
       const userData: UpdateUserInput = {
-        email: 'angel@gmail.com',
-        name: 'Angel',
+        email: 'user.email@gmail.com',
+        name: 'New Name',
       };
 
       // Execute
@@ -56,6 +52,50 @@ describe('UpdateUser use case', () => {
       // Assert result pattern
       expect(updateUserResult.success).toBe(false);
       expect(!updateUserResult.success && updateUserResult.error.code).toBe('USER_NOT_FOUND');
+    });
+
+    it('should return failure result when invalid email provided', async () => {
+      // Set up
+      const userRepoMock = new InMemoryUserRepository();
+      const useCase = new UpdateUser(userRepoMock);
+
+      // Data
+      const user = userRepoMock.users[0] as User;
+      const userData: UpdateUserInput = {
+        email: 'user.email@outlook.com',
+        name: 'New Name',
+      };
+
+      // Execute
+      const updateUserResult = await useCase.execute(user.id, userData);
+
+      // Assert result pattern
+      expect(updateUserResult.success).toBe(false);
+      expect(!updateUserResult.success && updateUserResult.error.code).toBe(
+        'INVALID_USER_DATA.EMAIL'
+      );
+    });
+
+    it('should return failure result when invalid name provided', async () => {
+      // Set up
+      const userRepoMock = new InMemoryUserRepository();
+      const useCase = new UpdateUser(userRepoMock);
+
+      // Data
+      const user = userRepoMock.users[0] as User;
+      const userData: UpdateUserInput = {
+        email: 'user.email@gmail.com',
+        name: 'New',
+      };
+
+      // Execute
+      const updateUserResult = await useCase.execute(user.id, userData);
+
+      // Assert result pattern
+      expect(updateUserResult.success).toBe(false);
+      expect(!updateUserResult.success && updateUserResult.error.code).toBe(
+        'INVALID_USER_DATA.NAME'
+      );
     });
   });
 
@@ -71,8 +111,8 @@ describe('UpdateUser use case', () => {
       // Data
       const user = userRepoMock.users[0] as User;
       const userData: UpdateUserInput = {
-        email: 'angel1234@gmail.com',
-        name: 'Angel',
+        email: 'user.email@gmail.com',
+        name: 'New Name',
       };
 
       // Execute
@@ -86,7 +126,7 @@ describe('UpdateUser use case', () => {
       expect(!updateUserResult.success && updateUserResult.error.code).toBe('TECHNICAL_ERROR');
 
       // Assert DB state
-      expect(userRepoMock.users[0]?.name).not.toBe('Angel');
+      expect(userRepoMock.users[0]?.name).not.toBe('New Name');
     });
 
     it('should return failure when repository finById operation fails', async () => {
@@ -100,8 +140,8 @@ describe('UpdateUser use case', () => {
       // Data
       const user = userRepoMock.users[0] as User;
       const userData: UpdateUserInput = {
-        email: 'angel1234@gmail.com',
-        name: 'Angel',
+        email: 'user.email@gmail.com',
+        name: 'New Name',
       };
 
       // Execute
@@ -115,7 +155,7 @@ describe('UpdateUser use case', () => {
       expect(!updateUserResult.success && updateUserResult.error.code).toBe('TECHNICAL_ERROR');
 
       // Assert DB state
-      expect(userRepoMock.users[0]?.name).not.toBe('Angel');
+      expect(userRepoMock.users[0]?.name).not.toBe('New Name');
     });
   });
 });
