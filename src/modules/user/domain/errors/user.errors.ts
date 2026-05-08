@@ -22,3 +22,9 @@ export class InvalidUserData extends DomainError {
     }
   }
 }
+
+export class UserEmailAlreadyExists extends DomainError {
+  constructor(readonly error_code: UserInvalidDataErrorCodes | undefined = undefined) {
+    super('USER_EMAIL_ALREADY_EXISTS');
+  }
+}
