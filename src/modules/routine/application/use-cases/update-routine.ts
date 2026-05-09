@@ -1,9 +1,5 @@
-import { CYCLE_TYPES } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
 import { Failure } from '@/shared/domain/result';
-import {
-  RoutineCycleNotFound,
-  RoutineNotFoundError,
-} from '@/modules/routine/domain/errors/routine.errors';
+import { RoutineNotFoundError } from '@/modules/routine/domain/errors/routine.errors';
 import type { UseCase } from '@/shared/application/shared.use-case';
 import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
@@ -27,15 +23,29 @@ export class UpdateRoutine implements UseCase {
 
     const routine = routineResult.data;
 
-    if (data.name) routine.changeName(data.name);
-    if (data.description) routine.changeDescription(data.description);
-    if (data.active) routine.changeActive(data.active);
-    if (data.days) routine.changeDays(data.days);
-    if (data.initialDate) routine.changeInitialDate(data.initialDate);
+    if (data.name) {
+      const nameResult = routine.changeName(data.name);
+      if (!nameResult.success) return nameResult;
+    }
+    if (data.description) {
+      const descResult = routine.changeDescription(data.description);
+      if (!descResult.success) return descResult;
+    }
+    if (data.active !== undefined) {
+      const activeResult = routine.changeActive(data.active);
+      if (!activeResult.success) return activeResult;
+    }
+    if (data.days) {
+      const daysResult = routine.changeDays(data.days);
+      if (!daysResult.success) return daysResult;
+    }
+    if (data.initialDate) {
+      const dateResult = routine.changeInitialDate(data.initialDate);
+      if (!dateResult.success) return dateResult;
+    }
     if (data.cycleId) {
-      const cycleType = Object.values(CYCLE_TYPES).find((c) => c.id === data.cycleId);
-      if (!cycleType) return Failure(new RoutineCycleNotFound());
-      routine.changeCycle(cycleType);
+      const cycleResult = routine.changeCycle(data.cycleId);
+      if (!cycleResult.success) return cycleResult;
     }
     if (data.routineDays) {
       const routineDays: RoutineProps['routineDays'] = [];
@@ -64,7 +74,8 @@ export class UpdateRoutine implements UseCase {
           session: sessionResult.data,
         });
       }
-      routine.changeRoutineDays(routineDays);
+      const routineDaysResult = routine.changeRoutineDays(routineDays);
+      if (!routineDaysResult.success) return routineDaysResult;
     }
 
     return await this.routineRepository.update(routine);

@@ -2,10 +2,8 @@ import { Failure } from '@/shared/domain/result';
 import { Routine } from '@/modules/routine/domain/routine.entity';
 import {
   InvalidRoutineDays,
-  RoutineCycleNotFound,
   RoutineNotFoundError,
 } from '@/modules/routine/domain/errors/routine.errors';
-import { CYCLE_TYPES } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
 import type { CreateRoutineInput } from '@/modules/routine/application/dtos/create-routine.dto';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
@@ -28,9 +26,6 @@ export class CreateRoutine implements UseCase {
     const routineId = idResult.data;
 
     const sessions: (Session | null)[] = [];
-
-    const cycleType = Object.values(CYCLE_TYPES).find((c) => c.id === routineData.cycleId);
-    if (!cycleType) return Failure(new RoutineCycleNotFound());
 
     for (const routineDay of routineData.routineDays) {
       if (!routineDay.sessionId) {
@@ -63,8 +58,12 @@ export class CreateRoutine implements UseCase {
       });
     }
 
-    const newRoutine = Routine.create(routineId, { ...routineData, cycle: cycleType, routineDays });
+    const newRoutineResult = Routine.create(routineId, {
+      ...routineData,
+      routineDays,
+    });
+    if (!newRoutineResult.success) return newRoutineResult;
 
-    return await this.routineRepository.create(newRoutine);
+    return await this.routineRepository.create(newRoutineResult.data);
   }
 }
