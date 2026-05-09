@@ -1,4 +1,12 @@
-export type RoutineInvalidDataErrorCodes = 'NAME' | 'DAYS' | 'CYCLE' | 'ROUTINE_DAYS_LENGTH';
+export type RoutineInvalidDataErrorCodes =
+  | 'NAME'
+  | 'DESCRIPTION'
+  | 'INITIAL_DATE'
+  | 'ACTIVE'
+  | 'ROUTINE_DAYS'
+  | 'DAYS'
+  | 'CYCLE'
+  | 'ROUTINE_DAYS_LENGTH';
 
 export type RoutineErrorCode =
   | 'ROUTINE_NOT_FOUND'
