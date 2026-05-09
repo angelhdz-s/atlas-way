@@ -7,3 +7,5 @@ export type EntityMethod = (...args: any[]) => Result<any, DomainError>;
 export type ClassMethods<T> = {
   [K in keyof T as T[K] extends EntityMethod ? K : never]: T[K];
 };
+
+export type ValidationFunction = (arg: unknown) => boolean;
