@@ -23,3 +23,8 @@ export type RoutineProps = {
     session: Session | null;
   }[];
 };
+
+export type RoutineFactoryData = Omit<RoutineProps, 'id' | 'createdAt' | 'updatedAt' | 'cycle'> & {
+  cycleId: string;
+};
+
