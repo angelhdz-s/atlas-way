@@ -73,6 +73,29 @@ import { User } from '@/modules/user/domain/user.entity';
 import { Failure } from '@/shared/domain/result';
 ```
 
+### Import Conventions
+
+- **Absolute imports required**: Use `@/` prefix for all imports from `src/`
+- **Exception**: Only `prisma/seed.ts` may use relative imports
+- All other files MUST use absolute paths
+- **Type imports**: Always use `import type` for type-only imports
+- **Separate imports**: When importing both types and values from the same file, use separate import statements
+
+```typescript
+// Correct - type-only import
+import type { Result } from '@/shared/domain/result';
+
+// Correct - value import
+import { Success, Failure } from '@/shared/domain/result';
+
+// Correct - separate lines for types and values
+import type { UserProps } from '@/modules/user/domain/user.types';
+import { User } from '@/modules/user/domain/user.entity';
+
+// Incorrect - mixed type and value import
+import { User, type UserProps } from '@/modules/user/domain/user.entity';
+```
+
 ### Naming Conventions
 
 - **Files**: kebab-case (e.g., `user-entity.ts`, `get-user-by-id.ts`)
