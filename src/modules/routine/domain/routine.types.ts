@@ -1,6 +1,8 @@
-import type { Session } from '@/modules/session/domain/session.entity';
+import type { ClassMethods } from '@/shared/shared.types';
 import type { UserProps } from '@/modules/user/domain/user.types';
+import type { Session } from '@/modules/session/domain/session.entity';
 import type { RoutineCycleId } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
+import type { Routine } from '@/modules/routine/domain/routine.entity';
 
 export type RoutineProps = {
   readonly id: string;
@@ -28,3 +30,4 @@ export type RoutineFactoryData = Omit<RoutineProps, 'id' | 'createdAt' | 'update
   cycleId: string;
 };
 
+export type RoutineMethods = ClassMethods<Routine>;
