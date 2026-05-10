@@ -62,6 +62,9 @@ export function validateRoutine(routine: RoutineMiminumProps): Result<Routine, D
     if (!validator.validate(value)) return Failure(validator.error);
   }
 
+  if (routine.days !== routine.routineDays.length)
+    return Failure(new InvalidRoutineData('ROUTINE_DAYS_LENGTH'));
+
   const cycle = Object.values(CYCLE_TYPES).find((c) => c.id === routine.cycleId);
   if (!cycle) return Failure(new InvalidRoutineData('CYCLE'));
 
