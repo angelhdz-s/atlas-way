@@ -1,4 +1,4 @@
-name: '🧪 Test: Use Case (Logic)'
+name: 'Test: Use Case (Logic)'
 description: 'Unit tests for business logic and use cases using dependency injection.'
 title: 'test: [Module] Use Case - [Use Case Name]'
 labels: ['test', 'test: unit', 'layer: application', 'layer: domain']

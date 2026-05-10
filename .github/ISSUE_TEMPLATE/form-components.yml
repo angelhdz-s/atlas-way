@@ -1,4 +1,4 @@
-name: '📝 Test: Form Integration (Server Actions)'
+name: 'Test: Form Integration (Server Actions)'
 description: 'Integration tests for forms using React Hook Form and Next.js Server Actions.'
 title: 'test: [Module] Form - [Form Name]'
 labels: ['test', 'test: integration', 'ui', 'layer: presentation']

@@ -1,4 +1,4 @@
-name: '🎨 Test: UI Components'
+name: 'Test: UI Components'
 description: 'Tests for rendering, accessibility, and visual states of UI components.'
 title: 'test: [Module/UI] Components - [Category or Name]'
 labels: ['test', 'test: unit', 'ui', 'layer: presentation']
