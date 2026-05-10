@@ -1,6 +1,7 @@
 import { Failure, Success } from '@/shared/domain/result';
 import { InvalidRoutineData } from '@/modules/routine/domain/errors/routine.errors';
 import { CYCLE_TYPES } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
+import { validateRoutine } from '@/modules/routine/domain/validation/routine.validation';
 import type { Result } from '@/shared/domain/result';
 import type { DomainError } from '@/shared/domain/errors/domain.errors';
 import type { RoutineFactoryData, RoutineProps } from '@/modules/routine/domain/routine.types';
@@ -75,21 +76,13 @@ export class Routine {
     return Success(null);
   }
   static create(id: RoutineProps['id'], data: RoutineFactoryData): Result<Routine, DomainError> {
-    if (!data.routineDays || data.routineDays.length !== data.days) {
-      return Failure(new InvalidRoutineData('ROUTINE_DAYS_LENGTH'));
-    }
+    const routineValidationResult = validateRoutine({
+      ...data,
+      id,
+    });
 
-    const cycle = Object.values(CYCLE_TYPES).find((c) => c.id === data.cycleId);
-    if (!cycle) return Failure(new InvalidRoutineData('CYCLE'));
-
-    return Success(
-      new Routine({
-        ...data,
-        id,
-        cycle,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      })
-    );
+    if (!routineValidationResult.success) return routineValidationResult;
+    const routine = routineValidationResult.data;
+    return Success(routine);
   }
 }
