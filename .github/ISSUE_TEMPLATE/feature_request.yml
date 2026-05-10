@@ -1,0 +1,36 @@
+name: 'Feature Request'
+description: Suggest an idea or a new business requirement
+labels: ['enhancement', 'triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### "The goal is to turn business needs into architectural boundaries."
+  - type: textarea
+    id: user_story
+    attributes:
+      label: User Story
+      description: Help us understand the "Who", "What", and "Why".
+      placeholder: 'As a [user type], I want to [action] so that [benefit].'
+    validations:
+      required: true
+  - type: checkboxes
+    id: architectural_impact
+    attributes:
+      label: Predicted Architectural Impact
+      description: Which layers do you think this will touch?
+      options:
+        - label: 'Domain (Business Rules/Entities)'
+        - label: 'Application (Use Cases/Orchestration)'
+        - label: 'Infrastructure (Database/External APIs)'
+        - label: 'Presentation (UI/UX Components)'
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: List the specific requirements that must be met.
+      placeholder: |
+        - Must support [X]
+        - Should not allow [Y]
+    validations:
+      required: true

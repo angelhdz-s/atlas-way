@@ -1,0 +1,26 @@
+name: 'Refactor / Technical Debt'
+description: Propose an improvement to code quality or architecture
+labels: ['refactor', 'tech-debt']
+body:
+  - type: textarea
+    id: current_problem
+    attributes:
+      label: Current Architectural Problem
+      description: Why does this need refactoring? (e.g., Dependency rule violation, high coupling)
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - 'Low (Code Smell)'
+        - 'Medium (Hard to Test)'
+        - 'High (Blocking Features/Violating Clean Arch)'
+    validations:
+      required: true
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution
+      description: How should we fix the boundary or logic?

@@ -1,0 +1,39 @@
+name: 'Bug Report'
+description: Report something that is broken
+labels: ['bug', 'triage: needed']
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is the current behavior?
+    validations:
+      required: true
+  - type: dropdown
+    id: layer_leak
+    attributes:
+      label: Observed Layer of Failure
+      description: Where is the bug manifesting?
+      options:
+        - 'Presentation (UI Glitch/Interaction)'
+        - 'Application/Domain (Wrong Logic/Math)'
+        - 'Infrastructure (DB Error/API Timeout)'
+        - 'Unknown'
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Info
+      description: Browser, OS, Node version, etc.
+      placeholder: 'Next.js 14, pnpm 8, Chrome...'
