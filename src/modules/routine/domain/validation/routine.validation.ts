@@ -27,7 +27,7 @@ type RoutineValidators = Record<
   }
 >;
 
-const routineValidators: RoutineValidators = {
+export const routineValidators: RoutineValidators = {
   id: { validate: isValidRoutineId, error: new InvalidRoutineData() },
   name: { validate: isValidRoutineName, error: new InvalidRoutineData('NAME') },
   description: {
