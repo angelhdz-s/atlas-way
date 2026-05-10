@@ -49,6 +49,7 @@ export const isValidRoutineDays: ValidationFunction = (days: unknown) => {
 
 export const areValidRoutineRoutineDays: ValidationFunction = (routineDays: unknown) => {
   if (!isArray(routineDays)) return false;
+  if (!isValidRoutineDays(routineDays.length)) return false;
   for (const routineDay of routineDays) {
     if (!isValidRoutineRoutineDay(routineDay)) return false;
   }
