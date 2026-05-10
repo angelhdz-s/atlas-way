@@ -1,6 +1,10 @@
 import { Failure, Success } from '@/shared/domain/result';
 import { InvalidRoutineData } from '@/modules/routine/domain/errors/routine.errors';
 import { CYCLE_TYPES } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
+import {
+  routineValidators,
+  validateRoutine,
+} from '@/modules/routine/domain/validation/routine.validation';
 import type { Result } from '@/shared/domain/result';
 import type { DomainError } from '@/shared/domain/errors/domain.errors';
 import type { RoutineFactoryData, RoutineProps } from '@/modules/routine/domain/routine.types';
@@ -42,22 +46,29 @@ export class Routine {
     return this.data.routineDays;
   }
   changeName(name: RoutineProps['name']): Result<null, DomainError> {
+    if (!routineValidators.name.validate(name)) return Failure(routineValidators.name.error);
     this.data.name = name;
     return Success(null);
   }
   changeDescription(description: RoutineProps['description']): Result<null, DomainError> {
+    if (!routineValidators.description.validate(description))
+      return Failure(routineValidators.description.error);
     this.data.description = description;
     return Success(null);
   }
   changeActive(active: RoutineProps['active']): Result<null, DomainError> {
+    if (!routineValidators.active.validate(active)) return Failure(routineValidators.active.error);
     this.data.active = active;
     return Success(null);
   }
   changeDays(days: RoutineProps['days']): Result<null, DomainError> {
+    if (!routineValidators.days.validate(days)) return Failure(routineValidators.days.error);
     this.data.days = days;
     return Success(null);
   }
   changeInitialDate(initialDate: RoutineProps['initialDate']): Result<null, DomainError> {
+    if (!routineValidators.initialDate.validate(initialDate))
+      return Failure(routineValidators.initialDate.error);
     this.data.initialDate = initialDate;
     return Success(null);
   }
@@ -68,28 +79,22 @@ export class Routine {
     return Success(null);
   }
   changeRoutineDays(routineDays: RoutineProps['routineDays']): Result<null, DomainError> {
-    if (!routineDays || routineDays.length !== this.data.days) {
-      return Failure(new InvalidRoutineData('ROUTINE_DAYS_LENGTH'));
-    }
+    if (!routineValidators.routineDays.validate(routineDays))
+      return Failure(routineValidators.routineDays.error);
+    const daysResult = this.changeDays(routineDays.length);
+    if (!daysResult.success) return daysResult;
+
     this.data.routineDays = routineDays;
     return Success(null);
   }
   static create(id: RoutineProps['id'], data: RoutineFactoryData): Result<Routine, DomainError> {
-    if (!data.routineDays || data.routineDays.length !== data.days) {
-      return Failure(new InvalidRoutineData('ROUTINE_DAYS_LENGTH'));
-    }
+    const routineValidationResult = validateRoutine({
+      ...data,
+      id,
+    });
 
-    const cycle = Object.values(CYCLE_TYPES).find((c) => c.id === data.cycleId);
-    if (!cycle) return Failure(new InvalidRoutineData('CYCLE'));
-
-    return Success(
-      new Routine({
-        ...data,
-        id,
-        cycle,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      })
-    );
+    if (!routineValidationResult.success) return routineValidationResult;
+    const routine = routineValidationResult.data;
+    return Success(routine);
   }
 }
