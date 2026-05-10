@@ -1,6 +1,6 @@
 name: 'Feature Request'
 description: Suggest an idea or a new business requirement
-labels: ['enhancement', 'triage']
+labels: ['feature', 'triage: needed']
 body:
   - type: markdown
     attributes:
