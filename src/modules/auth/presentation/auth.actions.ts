@@ -6,7 +6,7 @@ import {
   ActionSuccess,
   type ActionResponseProps,
 } from '@/shared/presentation/action.response';
-import type { AuthSession } from '@/modules/auth/domain/errors/auth-session.types';
+import type { AuthSession } from '@/modules/auth/domain/auth-session.types';
 
 export async function getSession(): Promise<ActionResponseProps<AuthSession | null>> {
   const container = getContainer();
