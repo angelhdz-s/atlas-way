@@ -1,5 +1,7 @@
+import type { ClassMethods } from '@/shared/shared.types';
 import type { Muscle } from '@/modules/muscle/domain/muscle.entity';
 import type { UserProps } from '@/modules/user/domain/user.types';
+import type { Exercise } from '@/modules/exercise/domain/exercise.entity';
 
 export type ExerciseProps = {
   readonly id: string;
@@ -15,3 +17,5 @@ export type ExerciseProps = {
 };
 
 export type ExerciseFactoryData = Omit<ExerciseProps, 'id' | 'createdAt' | 'updatedAt'>;
+
+export type ExerciseMethods = ClassMethods<Exercise>;
