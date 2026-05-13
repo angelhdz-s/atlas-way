@@ -1,7 +1,7 @@
 import {
   ExerciseNotFoundError,
   ExerciseOwnershipError,
-} from '@/modules/exercise/domain/errors/exercise-errors';
+} from '@/modules/exercise/domain/errors/exercise.errors';
 import { Failure } from '@/shared/domain/result';
 import type { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
