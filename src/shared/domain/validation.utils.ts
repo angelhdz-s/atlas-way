@@ -25,7 +25,7 @@ export function isArray(value: unknown): value is Array<unknown> {
 }
 
 export function isObject(value: unknown): value is object {
-  return typeof value === 'object';
+  return value?.constructor === Object;
 }
 
 export function isDate(value: unknown): value is Date {
