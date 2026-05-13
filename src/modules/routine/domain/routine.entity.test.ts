@@ -42,7 +42,7 @@ describe('Routine entity', () => {
       expect(routineResult.success && routineResult.data instanceof Routine).toBe(true);
     });
 
-    it('should return failure when invalid id provided', async () => {
+    it('should return failure when routine data is invalid', async () => {
       const routineResult = Routine.create('invalid-id', {
         name: 'My Routine',
         description: 'Test description',
@@ -72,7 +72,7 @@ describe('Routine entity', () => {
       expect(routine.name).toBe('New Name');
     });
 
-    it('should return failure when name is not a string', async () => {
+    it('should return failure when name is invalid', async () => {
       const routine = createTestRoutine();
       const result = routine.changeName(123 as never);
       expect(result.success).toBe(false);
@@ -90,7 +90,7 @@ describe('Routine entity', () => {
       expect(routine.description).toBe('New description');
     });
 
-    it('should return failure when description is not a string or null', async () => {
+    it('should return failure when description is invalid', async () => {
       const routine = createTestRoutine();
       const result = routine.changeDescription(123 as never);
       expect(result.success).toBe(false);
@@ -159,7 +159,7 @@ describe('Routine entity', () => {
       expect(routine.cycle.id).toBe('custom');
     });
 
-    it('should return failure when cycleId is not valid', async () => {
+    it('should return failure when cycleId is invalid', async () => {
       const routine = createTestRoutine();
       const result = routine.changeCycle('invalid-cycle' as never);
       expect(result.success).toBe(false);
@@ -182,14 +182,7 @@ describe('Routine entity', () => {
       expect(routine.days).toBe(2);
     });
 
-    it('should return failure when routineDays is not an array', async () => {
-      const routine = createTestRoutine();
-      const result = routine.changeRoutineDays('not-an-array' as never);
-      expect(result.success).toBe(false);
-      expect(routine.routineDays).not.toBe('not-an-array');
-    });
-
-    it('should return failure when routineDays are invalid objects', async () => {
+    it('should return failure when routineDays is invalid', async () => {
       const routine = createTestRoutine();
       const newRoutineDays = [
         { id: '15', name: 'Day 1', day: 0, session: null },

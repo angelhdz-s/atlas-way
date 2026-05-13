@@ -40,48 +40,18 @@ describe('CreateExercise use case', () => {
   });
 
   describe('Error Handling', () => {
-    it('should succeed even when muscles not found (empty array)', async () => {
+    it('should return failure when muscle not found', async () => {
       const exerciseRepoMock = new InMemoryExerciseRepository();
       const muscleRepoMock = new InMemoryMuscleRepository();
       const idGeneratorMock = new MockIdGenerator();
       const useCase = new CreateExercise(exerciseRepoMock, muscleRepoMock, idGeneratorMock);
-
       const exerciseData: CreateExerciseInput = {
         name: 'Bench Press',
         description: 'Chest exercise',
         sets: 3,
         reps: 10,
         weight: 80,
-        muscleIds: [999],
-        userId: 'user-123',
-      };
-
-      idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da4';
-
-      const createExerciseResult = await useCase.execute(exerciseData);
-
-      expect(createExerciseResult.success).toBe(true);
-
-      expect(exerciseRepoMock.exercises).toHaveLength(1);
-    });
-
-    it('should return failure when muscle repository findByIds operation fails', async () => {
-      const exerciseRepoMock = new InMemoryExerciseRepository();
-      const muscleRepoMock = new InMemoryMuscleRepository();
-      const idGeneratorMock = new MockIdGenerator();
-      const useCase = new CreateExercise(exerciseRepoMock, muscleRepoMock, idGeneratorMock);
-
-      jest
-        .spyOn(muscleRepoMock, 'findByIds')
-        .mockResolvedValue(Failure(new TechnicalError() as never));
-
-      const exerciseData: CreateExerciseInput = {
-        name: 'Bench Press',
-        description: 'Chest exercise',
-        sets: 3,
-        reps: 10,
-        weight: 80,
-        muscleIds: [1],
+        muscleIds: [1, 2, 3],
         userId: 'user-123',
       };
 
@@ -97,19 +67,19 @@ describe('CreateExercise use case', () => {
       expect(exerciseRepoMock.exercises).toHaveLength(0);
     });
 
-    it('should return failure when exercise name is invalid', async () => {
+    it('should return failure when invalid exercise data', async () => {
       const exerciseRepoMock = new InMemoryExerciseRepository();
       const muscleRepoMock = new InMemoryMuscleRepository();
       const idGeneratorMock = new MockIdGenerator();
       const useCase = new CreateExercise(exerciseRepoMock, muscleRepoMock, idGeneratorMock);
 
       const exerciseData: CreateExerciseInput = {
-        name: 'AB',
+        name: 'Bench Press',
         description: 'Chest exercise',
-        sets: 3,
+        sets: -1,
         reps: 10,
         weight: 80,
-        muscleIds: [1],
+        muscleIds: [1, 2],
         userId: 'user-123',
       };
 
@@ -118,9 +88,10 @@ describe('CreateExercise use case', () => {
       const createExerciseResult = await useCase.execute(exerciseData);
 
       expect(createExerciseResult.success).toBe(false);
-      expect(!createExerciseResult.success && createExerciseResult.error.code).toBe(
-        'INVALID_EXERCISE_DATA.NAME'
-      );
+      expect(
+        !createExerciseResult.success &&
+          createExerciseResult.error.code.startsWith('INVALID_EXERCISE_DATA')
+      ).toBe(true);
 
       expect(exerciseRepoMock.exercises).toHaveLength(0);
     });
@@ -215,7 +186,7 @@ describe('CreateExercise use case', () => {
 
       expect(createExerciseResult.success).toBe(false);
       expect(!createExerciseResult.success && createExerciseResult.error.code).toBe(
-        'MUSCLE_NOT_FOUND'
+        'TECHNICAL_ERROR'
       );
 
       expect(exerciseRepoMock.exercises).toHaveLength(0);

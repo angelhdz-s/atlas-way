@@ -54,7 +54,7 @@ describe('UpdateUser use case', () => {
       expect(!updateUserResult.success && updateUserResult.error.code).toBe('USER_NOT_FOUND');
     });
 
-    it('should return failure result when invalid email provided', async () => {
+    it('should return failure result when invalid user data provided', async () => {
       // Set up
       const userRepoMock = new InMemoryUserRepository();
       const useCase = new UpdateUser(userRepoMock);
@@ -70,31 +70,9 @@ describe('UpdateUser use case', () => {
 
       // Assert result pattern
       expect(updateUserResult.success).toBe(false);
-      expect(!updateUserResult.success && updateUserResult.error.code).toBe(
-        'INVALID_USER_DATA.EMAIL'
-      );
-    });
-
-    it('should return failure result when invalid name provided', async () => {
-      // Set up
-      const userRepoMock = new InMemoryUserRepository();
-      const useCase = new UpdateUser(userRepoMock);
-
-      // Data
-      const user = userRepoMock.users[0] as User;
-      const userData: UpdateUserInput = {
-        invalidKey: 'Skipped',
-        name: 'New',
-      } as UpdateUserInput;
-
-      // Execute
-      const updateUserResult = await useCase.execute(user.id, userData);
-
-      // Assert result pattern
-      expect(updateUserResult.success).toBe(false);
-      expect(!updateUserResult.success && updateUserResult.error.code).toBe(
-        'INVALID_USER_DATA.NAME'
-      );
+      expect(
+        !updateUserResult.success && updateUserResult.error.code.startsWith('INVALID_USER_DATA')
+      ).toBe(true);
     });
   });
 

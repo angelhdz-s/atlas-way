@@ -60,10 +60,10 @@ describe('validateExercise', () => {
     };
 
     describe('Input', () => {
-      it('should fail when invalid input', () => {
-        expect(() =>
-          validateExercise(null as unknown as Parameters<typeof validateExercise>[0])
-        ).toThrow();
+      it('should fail when invalid input provided', () => {
+        const validation = validateExercise(null as never);
+        expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe('INVALID_EXERCISE_DATA');
       });
 
       it('should fail when any required key is missing', () => {
