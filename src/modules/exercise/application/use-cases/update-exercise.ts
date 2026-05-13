@@ -5,6 +5,7 @@ import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.rep
 import type { IMuscleRepository } from '@/modules/muscle/domain/muscle.repository';
 import type { UpdateExerciseInput } from '@/modules/exercise/application/dtos/update-exercise.dto';
 import type { UseCase } from '@/shared/application/shared.use-case';
+import { MuscleNotFoundError } from '@/modules/muscle/domain/errors/muscle.errors';
 
 export class UpdateExercise implements UseCase {
   constructor(
@@ -14,8 +15,8 @@ export class UpdateExercise implements UseCase {
 
   async execute(id: Exercise['id'], data: UpdateExerciseInput) {
     const exerciseResult = await this.exerciseRepository.findById(id);
-    if (!exerciseResult.success || !exerciseResult.data)
-      return Failure(new ExerciseNotFoundError());
+    if (!exerciseResult.success) return exerciseResult;
+    if (!exerciseResult.data) return Failure(new ExerciseNotFoundError());
 
     const exercise = exerciseResult.data;
 
@@ -24,7 +25,7 @@ export class UpdateExercise implements UseCase {
       if (!nameResult.success) return nameResult;
     }
 
-    if (data.description) {
+    if (data.description !== undefined) {
       const descriptionResult = exercise.changeDescription(data.description);
       if (!descriptionResult.success) return descriptionResult;
     }
@@ -47,6 +48,8 @@ export class UpdateExercise implements UseCase {
     if (data.muscleIds) {
       const musclesResult = await this.muscleRepository.findByIds(data.muscleIds);
       if (!musclesResult.success) return musclesResult;
+      if (data.muscleIds.length !== musclesResult.data.length)
+        return Failure(new MuscleNotFoundError());
       exercise.changeMuscles(musclesResult.data);
     }
 
