@@ -1,9 +1,6 @@
 import { Failure } from '@/shared/domain/result';
 import { Routine } from '@/modules/routine/domain/routine.entity';
-import {
-  InvalidRoutineDays,
-  RoutineNotFoundError,
-} from '@/modules/routine/domain/errors/routine.errors';
+import { InvalidRoutineData } from '@/modules/routine/domain/errors/routine.errors';
 import type { CreateRoutineInput } from '@/modules/routine/application/dtos/create-routine.dto';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
@@ -11,6 +8,7 @@ import type { ISessionRepository } from '@/modules/session/domain/session.reposi
 import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 import type { Session } from '@/modules/session/domain/session.entity';
 import type { UseCase } from '@/shared/application/shared.use-case';
+import { SessionNotFoundError } from '@/modules/auth/domain/errors/auth.errors';
 
 export class CreateRoutine implements UseCase {
   constructor(
@@ -34,17 +32,15 @@ export class CreateRoutine implements UseCase {
       }
       const sessionResult = await this.sessionRepository.findById(routineDay.sessionId);
       if (!sessionResult.success) return sessionResult;
+      if (!sessionResult.data) return Failure(new SessionNotFoundError());
       sessions.push(sessionResult.data);
     }
-
-    if (sessions.length !== routineData.routineDays.length)
-      return Failure(new RoutineNotFoundError());
 
     const routineDays: RoutineProps['routineDays'] = [];
 
     for (let i = 0; i < routineData.routineDays.length; i++) {
       const routineDay = routineData.routineDays[i];
-      if (!routineDay) return Failure(new InvalidRoutineDays());
+      if (!routineDay) return Failure(new InvalidRoutineData('ROUTINE_DAYS'));
 
       const sessionIdResult = await this.generator.generate();
       if (!sessionIdResult.success) return sessionIdResult;
