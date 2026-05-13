@@ -63,7 +63,7 @@ export function validateExercise(exercise: ExerciseMinimumProps): Result<Exercis
 
   const domainExercise = new Exercise({
     id: exercise.id,
-    name: exercise.id,
+    name: exercise.name,
     description: exercise.description,
     sets: exercise.sets,
     reps: exercise.reps,
