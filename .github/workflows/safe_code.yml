@@ -10,6 +10,25 @@ jobs:
   verify:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:17.5
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: my_db
+        ports:
+          - 5432:5432
+        # Espera a que postgres esté listo
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://user:password@localhost:5432/my_db
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -17,19 +36,22 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24.12.0'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Set up prisma
+      - name: Generate Prisma Client
         run: npx prisma generate
+
+      - name: Push Schema to DB (Shadow DB for CI)
+        run: npx prisma db push --skip-generate
 
       - name: Type Check
         run: npm run typecheck
 
-      - name: Safe Fixes (Linting)
+      - name: Safe Fixes
         run: npm run safe-fixes
 
       - name: Run Tests
