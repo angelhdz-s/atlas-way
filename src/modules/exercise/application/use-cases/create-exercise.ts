@@ -20,14 +20,16 @@ export class CreateExercise implements UseCase {
 
     const exerciseId = idResult.data;
 
-    const muscles = await this.muscleRepository.findByIds(exerciseData.muscleIds);
-    if (!muscles.success) return Failure(new MuscleNotFoundError());
+    const musclesResult = await this.muscleRepository.findByIds(exerciseData.muscleIds);
+    if (!musclesResult.success) return musclesResult;
+    if (musclesResult.data.length !== exerciseData.muscleIds.length)
+      return Failure(new MuscleNotFoundError());
 
     const { muscleIds, ...createExerciseData } = exerciseData;
 
     const newExerciseResult = Exercise.create(exerciseId, {
       ...createExerciseData,
-      muscles: muscles.data,
+      muscles: musclesResult.data,
     });
 
     if (!newExerciseResult.success) return newExerciseResult;
