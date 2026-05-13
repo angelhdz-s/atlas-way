@@ -107,7 +107,7 @@ describe('UpdateExercise use case', () => {
       );
 
       expect(updateResult.success).toBe(false);
-      expect(!updateResult.success && updateResult.error.code).toBe('INVALID_EXERCISE_DATA.NAME');
+      expect(!updateResult.success && updateResult.error.code).toBe('INVALID_EXERCISE_DATA');
     });
 
     it('should return failure when muscles not found', async () => {
