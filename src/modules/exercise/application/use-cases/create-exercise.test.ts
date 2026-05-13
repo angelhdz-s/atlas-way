@@ -3,7 +3,7 @@ import { Failure } from '@/shared/domain/result';
 import { TechnicalError } from '@/shared/domain/errors/domain.errors';
 import { CreateExercise } from '@/modules/exercise/application/use-cases/create-exercise';
 import { InMemoryExerciseRepository } from '@/modules/exercise/mocks/exercise.mocks.repository';
-import { InMemoryMuscleRepository } from '@/modules/exercise/mocks/muscle.mocks.repository';
+import { InMemoryMuscleRepository } from '@/modules/muscle/mocks/muscle.mocks.repository';
 import { MockIdGenerator } from '@/shared/test/mocks/id-generator.repository.mock';
 import type { CreateExerciseInput } from '@/modules/exercise/application/dtos/create-exercise.dto';
 

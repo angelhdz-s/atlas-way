@@ -3,7 +3,7 @@ import { Failure } from '@/shared/domain/result';
 import { TechnicalError } from '@/shared/domain/errors/domain.errors';
 import { UpdateExercise } from '@/modules/exercise/application/use-cases/update-exercise';
 import { InMemoryExerciseRepository } from '@/modules/exercise/mocks/exercise.mocks.repository';
-import { InMemoryMuscleRepository } from '@/modules/exercise/mocks/muscle.mocks.repository';
+import { InMemoryMuscleRepository } from '@/modules/muscle/mocks/muscle.mocks.repository';
 import { Exercise } from '@/modules/exercise/domain/exercise.entity';
 
 describe('UpdateExercise use case', () => {
