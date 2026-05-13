@@ -70,6 +70,7 @@ describe('validateExercise', () => {
         const { id: _, ...rest } = validExerciseData;
         const validation = validateExercise(rest as never);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe('INVALID_EXERCISE_DATA');
       });
     });
 
@@ -80,6 +81,7 @@ describe('validateExercise', () => {
           id: 'invalid-uuid',
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe('INVALID_EXERCISE_DATA');
       });
 
       it('should fail when is not a string', () => {
@@ -88,6 +90,7 @@ describe('validateExercise', () => {
           id: 123,
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe('INVALID_EXERCISE_DATA');
       });
     });
 
@@ -98,6 +101,9 @@ describe('validateExercise', () => {
           name: 'ab',
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.NAME'
+        );
       });
 
       it('should fail when is too long (more than 30 chars)', () => {
@@ -106,6 +112,9 @@ describe('validateExercise', () => {
           name: 'a'.repeat(31),
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.NAME'
+        );
       });
 
       it('should fail when is not a string', () => {
@@ -114,6 +123,9 @@ describe('validateExercise', () => {
           name: 123,
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.NAME'
+        );
       });
     });
 
@@ -124,6 +136,9 @@ describe('validateExercise', () => {
           description: 123,
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.DESCRIPTION'
+        );
       });
 
       it('should fail when is too long (more than 100 chars)', () => {
@@ -132,6 +147,9 @@ describe('validateExercise', () => {
           description: 'a'.repeat(101),
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.DESCRIPTION'
+        );
       });
     });
 
@@ -142,6 +160,9 @@ describe('validateExercise', () => {
           sets: 3.5,
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.SETS'
+        );
       });
 
       it('should fail when is out of range (less than 1)', () => {
@@ -150,6 +171,9 @@ describe('validateExercise', () => {
           sets: 0,
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.SETS'
+        );
       });
 
       it('should fail when is not a number', () => {
@@ -158,6 +182,9 @@ describe('validateExercise', () => {
           sets: '3',
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.SETS'
+        );
       });
     });
 
@@ -168,6 +195,9 @@ describe('validateExercise', () => {
           reps: 10.5,
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.REPS'
+        );
       });
 
       it('should fail when is out of range (less than 1)', () => {
@@ -176,6 +206,9 @@ describe('validateExercise', () => {
           reps: 0,
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.REPS'
+        );
       });
 
       it('should fail when is not a number', () => {
@@ -184,6 +217,9 @@ describe('validateExercise', () => {
           reps: '10',
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.REPS'
+        );
       });
     });
 
@@ -194,6 +230,9 @@ describe('validateExercise', () => {
           weight: '80',
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.WEIGHT'
+        );
       });
 
       it('should fail when is negative', () => {
@@ -202,6 +241,9 @@ describe('validateExercise', () => {
           weight: -10,
         } as unknown as Parameters<typeof validateExercise>[0]);
         expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.WEIGHT'
+        );
       });
     });
 
