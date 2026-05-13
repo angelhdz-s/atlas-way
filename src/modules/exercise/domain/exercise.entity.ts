@@ -1,4 +1,4 @@
-import type { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
+import type { ExerciseFactoryData, ExerciseProps } from '@/modules/exercise/domain/exercise.types';
 import type { Muscle } from '@/modules/muscle/domain/muscle.entity';
 
 export class Exercise {
@@ -52,10 +52,7 @@ export class Exercise {
     this.data.muscles = muscles;
   }
 
-  static create(
-    id: ExerciseProps['id'],
-    data: Omit<ExerciseProps, 'id' | 'createdAt' | 'updatedAt'>
-  ) {
+  static create(id: ExerciseProps['id'], data: ExerciseFactoryData) {
     return new Exercise({
       ...data,
       createdAt: new Date(),
