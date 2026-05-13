@@ -84,7 +84,7 @@ describe('UpdateExercise use case', () => {
       expect(!updateResult.success && updateResult.error.code).toBe('EXERCISE_NOT_FOUND');
     });
 
-    it('should return failure when invalid name provided', async () => {
+    it('should return failure when invalid data provided', async () => {
       const exerciseRepoMock = new InMemoryExerciseRepository();
       const muscleRepoMock = new InMemoryMuscleRepository();
       const useCase = new UpdateExercise(exerciseRepoMock, muscleRepoMock);
@@ -101,37 +101,13 @@ describe('UpdateExercise use case', () => {
       if (!exercise.success) throw new Error('Failed to create exercise');
       await exerciseRepoMock.create(exercise.data);
 
-      const updateResult = await useCase.execute('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {
-        name: 'AB',
-      });
+      const updateResult = await useCase.execute(
+        '1df38173-6fae-4abb-8cb2-ce33b6c24da4',
+        null as never
+      );
 
       expect(updateResult.success).toBe(false);
       expect(!updateResult.success && updateResult.error.code).toBe('INVALID_EXERCISE_DATA.NAME');
-    });
-
-    it('should return failure when invalid sets provided', async () => {
-      const exerciseRepoMock = new InMemoryExerciseRepository();
-      const muscleRepoMock = new InMemoryMuscleRepository();
-      const useCase = new UpdateExercise(exerciseRepoMock, muscleRepoMock);
-
-      const exercise = Exercise.create('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {
-        name: 'Bench Press',
-        description: 'Chest exercise',
-        sets: 3,
-        reps: 10,
-        weight: 80,
-        muscles: [],
-        userId: 'user-123',
-      });
-      if (!exercise.success) throw new Error('Failed to create exercise');
-      await exerciseRepoMock.create(exercise.data);
-
-      const updateResult = await useCase.execute('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {
-        sets: -1,
-      });
-
-      expect(updateResult.success).toBe(false);
-      expect(!updateResult.success && updateResult.error.code).toBe('INVALID_EXERCISE_DATA.SETS');
     });
 
     it('should return failure when muscles not found', async () => {

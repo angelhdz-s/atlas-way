@@ -58,9 +58,9 @@ describe('validateRoutine', () => {
 
     describe('Input', () => {
       it('should fail when invalid input', () => {
-        expect(() =>
-          validateRoutine(null as unknown as Parameters<typeof validateRoutine>[0])
-        ).toThrow();
+        const validation = validateRoutine(null as never);
+        expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe('INVALID_ROUTINE_DATA');
       });
 
       it('should fail when any required key is missing', () => {
