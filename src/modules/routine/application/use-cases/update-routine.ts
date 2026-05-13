@@ -6,6 +6,7 @@ import type { IRoutineRepository } from '@/modules/routine/domain/routine.reposi
 import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 import type { UpdateRoutineInput } from '@/modules/routine/application/dtos/update-routine.dto';
 import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
+import { SessionNotFoundError } from '@/modules/session/domain/errors/session.errors';
 
 export class UpdateRoutine implements UseCase {
   constructor(
@@ -69,6 +70,7 @@ export class UpdateRoutine implements UseCase {
         }
         const sessionResult = await this.sessionRepository.findById(routineDay.sessionId);
         if (!sessionResult.success) return sessionResult;
+        if (!sessionResult.data) return Failure(new SessionNotFoundError());
         routineDays.push({
           ...routineDayBaseProps,
           session: sessionResult.data,
