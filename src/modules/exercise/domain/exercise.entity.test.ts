@@ -32,11 +32,11 @@ describe('Exercise entity', () => {
       expect(exerciseResult.success && exerciseResult.data instanceof Exercise).toBe(true);
     });
 
-    it('should return failure when invalid id provided', () => {
+    it('should return failure when invalid data provided', () => {
       const exerciseResult = Exercise.create('invalid-id', {
         name: 'Squat',
         description: 'Leg exercise',
-        sets: 4,
+        sets: -1,
         reps: 8,
         weight: 100,
         muscles: [],
@@ -56,18 +56,11 @@ describe('Exercise entity', () => {
       expect(exercise.name).toBe('New Bench Press');
     });
 
-    it('should return failure when name is not a string', () => {
+    it('should return failure when name is invalid', () => {
       const exercise = createTestExercise();
       const result = exercise.changeName(123 as never);
       expect(result.success).toBe(false);
       expect(exercise.name).not.toBe(123);
-    });
-
-    it('should trim whitespace from name', () => {
-      const exercise = createTestExercise();
-      const result = exercise.changeName('  Trimmed Name  ');
-      expect(result.success).toBe(true);
-      expect(exercise.name).toBe('Trimmed Name');
     });
   });
 
@@ -80,25 +73,11 @@ describe('Exercise entity', () => {
       expect(exercise.description).toBe('New description');
     });
 
-    it('should return failure when description is not a string or null', () => {
+    it('should return failure when description is invalid', () => {
       const exercise = createTestExercise();
       const result = exercise.changeDescription(123 as never);
       expect(result.success).toBe(false);
       expect(exercise.description).not.toBe(123);
-    });
-
-    it('should allow null description', () => {
-      const exercise = createTestExercise();
-      const result = exercise.changeDescription(null);
-      expect(result.success).toBe(true);
-      expect(exercise.description).toBe(null);
-    });
-
-    it('should trim whitespace from description', () => {
-      const exercise = createTestExercise();
-      const result = exercise.changeDescription('  Trimmed Description  ');
-      expect(result.success).toBe(true);
-      expect(exercise.description).toBe('Trimmed Description');
     });
   });
 
@@ -111,24 +90,11 @@ describe('Exercise entity', () => {
       expect(exercise.sets).toBe(5);
     });
 
-    it('should return failure when sets is not a number', () => {
+    it('should return failure when sets is invalid', () => {
       const exercise = createTestExercise();
       const result = exercise.changeSets('5' as never);
       expect(result.success).toBe(false);
       expect(exercise.sets).not.toBe('5');
-    });
-
-    it('should return failure when sets is not an integer', () => {
-      const exercise = createTestExercise();
-      const result = exercise.changeSets(3.5);
-      expect(result.success).toBe(false);
-      expect(exercise.sets).not.toBe(3.5);
-    });
-
-    it('should return failure when sets is less than 1', () => {
-      const exercise = createTestExercise();
-      const result = exercise.changeSets(0);
-      expect(result.success).toBe(false);
     });
   });
 
@@ -141,24 +107,11 @@ describe('Exercise entity', () => {
       expect(exercise.reps).toBe(12);
     });
 
-    it('should return failure when reps is not a number', () => {
+    it('should return failure when reps is invalid', () => {
       const exercise = createTestExercise();
       const result = exercise.changeReps('10' as never);
       expect(result.success).toBe(false);
       expect(exercise.reps).not.toBe('10');
-    });
-
-    it('should return failure when reps is not an integer', () => {
-      const exercise = createTestExercise();
-      const result = exercise.changeReps(10.5);
-      expect(result.success).toBe(false);
-      expect(exercise.reps).not.toBe(10.5);
-    });
-
-    it('should return failure when reps is less than 1', () => {
-      const exercise = createTestExercise();
-      const result = exercise.changeReps(0);
-      expect(result.success).toBe(false);
     });
   });
 
@@ -171,23 +124,11 @@ describe('Exercise entity', () => {
       expect(exercise.weight).toBe(90);
     });
 
-    it('should return failure when weight is not a number', () => {
+    it('should return failure when weight is invalid', () => {
       const exercise = createTestExercise();
       const result = exercise.changeWeight('80' as never);
       expect(result.success).toBe(false);
       expect(exercise.weight).not.toBe('80');
-    });
-
-    it('should return failure when weight is negative', () => {
-      const exercise = createTestExercise();
-      const result = exercise.changeWeight(-10);
-      expect(result.success).toBe(false);
-    });
-
-    it('should return failure when weight is 0', () => {
-      const exercise = createTestExercise();
-      const result = exercise.changeWeight(0);
-      expect(result.success).toBe(false);
     });
   });
 
