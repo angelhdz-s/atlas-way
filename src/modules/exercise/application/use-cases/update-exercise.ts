@@ -19,16 +19,37 @@ export class UpdateExercise implements UseCase {
 
     const exercise = exerciseResult.data;
 
-    if (data.name) exercise.changeName(data.name);
-    if (data.description) exercise.changeDescription(data.description);
-    if (data.sets) exercise.changeSets(data.sets);
-    if (data.reps) exercise.changeReps(data.reps);
-    if (data.weight) exercise.changeWeight(data.weight);
+    if (data.name) {
+      const nameResult = exercise.changeName(data.name);
+      if (!nameResult.success) return nameResult;
+    }
+
+    if (data.description) {
+      const descriptionResult = exercise.changeDescription(data.description);
+      if (!descriptionResult.success) return descriptionResult;
+    }
+
+    if (data.sets) {
+      const setsResult = exercise.changeSets(data.sets);
+      if (!setsResult.success) return setsResult;
+    }
+
+    if (data.reps) {
+      const repsResult = exercise.changeReps(data.reps);
+      if (!repsResult.success) return repsResult;
+    }
+
+    if (data.weight) {
+      const weightResult = exercise.changeWeight(data.weight);
+      if (!weightResult.success) return weightResult;
+    }
+
     if (data.muscleIds) {
       const musclesResult = await this.muscleRepository.findByIds(data.muscleIds);
       if (!musclesResult.success) return musclesResult;
       exercise.changeMuscles(musclesResult.data);
     }
+
     return await this.exerciseRepository.update(exercise);
   }
 }

@@ -13,3 +13,5 @@ export type ExerciseProps = {
   readonly userId: UserProps['id'];
   muscles: Muscle[];
 };
+
+export type ExerciseFactoryData = Omit<ExerciseProps, 'id' | 'createdAt' | 'updatedAt'>;

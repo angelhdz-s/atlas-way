@@ -24,7 +24,7 @@ type ExerciseValidators = {
 };
 
 // ToDo: update each field with relevant domain errors
-const exerciseValidators: ExerciseValidators = {
+export const exerciseValidators: ExerciseValidators = {
   id: {
     validate: isValidUuid,
     error: new TechnicalError(),
