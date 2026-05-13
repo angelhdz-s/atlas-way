@@ -2,6 +2,12 @@ import type { DomainErrorCode } from '@/shared/domain/errors/error.types';
 
 export const errorMessages: Record<DomainErrorCode, string> = {
   EXERCISE_NOT_FOUND: '',
+  INVALID_EXERCISE_DATA: '',
+  'INVALID_EXERCISE_DATA.DESCRIPTION': '',
+  'INVALID_EXERCISE_DATA.NAME': '',
+  'INVALID_EXERCISE_DATA.REPS': '',
+  'INVALID_EXERCISE_DATA.SETS': '',
+  'INVALID_EXERCISE_DATA.WEIGHT': '',
   MUSCLE_NOT_FOUND: '',
   NOTIFICATION_NOT_FOUND: '',
   ROUTINE_NOT_FOUND: '',
