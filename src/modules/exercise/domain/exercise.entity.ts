@@ -3,7 +3,10 @@ import type { ExerciseFactoryData, ExerciseProps } from '@/modules/exercise/doma
 import type { Muscle } from '@/modules/muscle/domain/muscle.entity';
 import type { DomainError } from '@/shared/domain/errors/domain.errors';
 import { Failure, Success } from '@/shared/domain/result';
-import { exerciseValidators } from '@/modules/exercise/domain/validation/exercise.validation';
+import {
+  exerciseValidators,
+  validateExercise,
+} from '@/modules/exercise/domain/validation/exercise.validation';
 
 export class Exercise {
   constructor(private data: ExerciseProps) {}
@@ -69,12 +72,14 @@ export class Exercise {
     return Success(null);
   }
 
-  static create(id: ExerciseProps['id'], data: ExerciseFactoryData) {
-    return new Exercise({
-      ...data,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+  static create(id: ExerciseProps['id'], data: ExerciseFactoryData): Result<Exercise, DomainError> {
+    const exerciseResult = validateExercise({
       id,
+      ...data,
     });
+
+    if (!exerciseResult.success) return exerciseResult;
+    const exercise = exerciseResult.data;
+    return Success(exercise);
   }
 }
