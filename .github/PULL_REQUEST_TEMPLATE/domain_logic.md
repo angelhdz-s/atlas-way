@@ -25,16 +25,6 @@ These commands **must** pass locally before marking the PR as "Ready for Review.
 
 ### 4. Technical Nuances
 
--
-
-### 5. Automated Check Confirmation
-
-| Command           | Status  |
-| :---------------- | :------ |
-| `pnpm typecheck`  | ✅ / ❌ |
-| `pnpm safe-fixes` | ✅ / ❌ |
-| `pnpm test`       | ✅ / ❌ |
-
 ---
 
 _Note: If this PR touches UI or Database schemas, please use the **Infrastructure** or **Presentation** templates instead._

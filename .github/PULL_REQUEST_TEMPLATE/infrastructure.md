@@ -41,10 +41,4 @@ These commands **must** pass locally.
 
 ---
 
-| Command           | Status  |
-| :---------------- | :------ |
-| `pnpm typecheck`  | ✅ / ❌ |
-| `pnpm safe-fixes` | ✅ / ❌ |
-| `pnpm test`       | ✅ / ❌ |
-
 _Note: If this PR only touches Business Logic or UI, please use the **Domain** or **Presentation** templates._

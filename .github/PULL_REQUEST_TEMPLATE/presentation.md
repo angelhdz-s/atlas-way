@@ -37,14 +37,6 @@ These commands **must** pass locally.
 - **Client/Server Balance:** (e.g., "Marked this as 'use client' because it requires the `useGeolocation` hook.")
 - **UX Trade-offs:** (e.g., "Used a skeleton loader instead of a spinner to reduce perceived latency.")
 
-### 6. Automated Check Confirmation
-
-| Command           | Status  |
-| :---------------- | :------ |
-| `pnpm typecheck`  | ✅ / ❌ |
-| `pnpm safe-fixes` | ✅ / ❌ |
-| `pnpm test`       | ✅ / ❌ |
-
 ---
 
 _Note: If this PR touches Business Logic or External APIs, please use the **Domain** or **Infrastructure** templates._
