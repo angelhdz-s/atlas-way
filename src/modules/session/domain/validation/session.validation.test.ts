@@ -38,14 +38,14 @@ describe('validateSession', () => {
       it('should fail when invalid input', () => {
         const validation = validateSession(null as never);
         expect(validation.success).toBe(false);
-        expect(validation.success === false && validation.error.code).toBe('TECHNICAL_ERROR');
+        expect(validation.success === false && validation.error.code).toBe('INVALID_SESSION_DATA');
       });
 
       it('should fail when any required key is missing', () => {
         const { id: _, ...rest } = validSessionData;
         const validation = validateSession(rest as never);
         expect(validation.success).toBe(false);
-        expect(validation.success === false && validation.error.code).toBe('TECHNICAL_ERROR');
+        expect(validation.success === false && validation.error.code).toBe('INVALID_SESSION_DATA');
       });
     });
 
@@ -56,7 +56,7 @@ describe('validateSession', () => {
           id: 'invalid-uuid',
         } as unknown as Parameters<typeof validateSession>[0]);
         expect(validation.success).toBe(false);
-        expect(validation.success === false && validation.error.code).toBe('TECHNICAL_ERROR');
+        expect(validation.success === false && validation.error.code).toBe('INVALID_SESSION_DATA');
       });
 
       it('should fail when is not a string', () => {
@@ -65,7 +65,7 @@ describe('validateSession', () => {
           id: 123,
         } as unknown as Parameters<typeof validateSession>[0]);
         expect(validation.success).toBe(false);
-        expect(validation.success === false && validation.error.code).toBe('TECHNICAL_ERROR');
+        expect(validation.success === false && validation.error.code).toBe('INVALID_SESSION_DATA');
       });
     });
 
@@ -76,7 +76,9 @@ describe('validateSession', () => {
           name: 'ab',
         } as unknown as Parameters<typeof validateSession>[0]);
         expect(validation.success).toBe(false);
-        expect(validation.success === false && validation.error.code).toBe('TECHNICAL_ERROR');
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_SESSION_DATA.NAME'
+        );
       });
 
       it('should fail when is too long (more than 30 chars)', () => {
@@ -85,7 +87,9 @@ describe('validateSession', () => {
           name: 'a'.repeat(31),
         } as unknown as Parameters<typeof validateSession>[0]);
         expect(validation.success).toBe(false);
-        expect(validation.success === false && validation.error.code).toBe('TECHNICAL_ERROR');
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_SESSION_DATA.NAME'
+        );
       });
 
       it('should fail when is not a string', () => {
@@ -94,7 +98,9 @@ describe('validateSession', () => {
           name: 123,
         } as unknown as Parameters<typeof validateSession>[0]);
         expect(validation.success).toBe(false);
-        expect(validation.success === false && validation.error.code).toBe('TECHNICAL_ERROR');
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_SESSION_DATA.NAME'
+        );
       });
     });
 
@@ -105,7 +111,9 @@ describe('validateSession', () => {
           description: 123,
         } as unknown as Parameters<typeof validateSession>[0]);
         expect(validation.success).toBe(false);
-        expect(validation.success === false && validation.error.code).toBe('TECHNICAL_ERROR');
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_SESSION_DATA.DESCRIPTION'
+        );
       });
 
       it('should fail when is too long (more than 100 chars)', () => {
@@ -114,7 +122,9 @@ describe('validateSession', () => {
           description: 'a'.repeat(101),
         } as unknown as Parameters<typeof validateSession>[0]);
         expect(validation.success).toBe(false);
-        expect(validation.success === false && validation.error.code).toBe('TECHNICAL_ERROR');
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_SESSION_DATA.DESCRIPTION'
+        );
       });
     });
 
