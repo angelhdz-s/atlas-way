@@ -1,26 +1,26 @@
 'use server';
-import { getContainer } from '@/di/containers';
+
 import type { User } from '@/modules/user/domain/user.entity';
-import {
-  ActionFailure,
-  ActionSuccess,
-  type ActionResponseProps,
-} from '@/shared/presentation/action.response';
 import type { UserProps } from '@/modules/user/domain/user.types';
+import type { ActionResponseProps } from '@/shared/presentation/action.response';
+import { getSession } from 'next-auth/react';
+import { getContainer } from '@/di/containers';
+import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.response';
+
 export async function getUser(): Promise<ActionResponseProps<User | null>> {
-  return {
-    success: false,
-    data: null,
-    message: 'User not found',
-  };
+  const session = await getSession();
+  if (!session) return ActionFailure('Unauthorized');
+
+  return ActionSuccess(null, 'User found');
 }
 
 export async function getCurrentUser(): Promise<ActionResponseProps<User>> {
+  const session = await getSession();
+  if (!session) return ActionFailure('Unauthorized');
+
   const container = getContainer();
   const getCurrentUser = container.user.GetCurrentUserUseCase;
-
   const userResult = await getCurrentUser.execute();
-
   if (!userResult.success) return ActionFailure(userResult.error.message);
   if (!userResult.data) return ActionFailure('User not found');
 
@@ -28,11 +28,12 @@ export async function getCurrentUser(): Promise<ActionResponseProps<User>> {
 }
 
 export async function getCurrentUserId(): Promise<ActionResponseProps<UserProps['id']>> {
+  const session = await getSession();
+  if (!session) return ActionFailure('Unauthorized');
+
   const container = getContainer();
   const getCurrentUserId = container.user.GetCurrentUserIdUseCase;
-
   const userIdResult = await getCurrentUserId.execute();
-
   if (!userIdResult.success) return ActionFailure(userIdResult.error.message);
   if (!userIdResult.data) return ActionFailure('User not found');
 

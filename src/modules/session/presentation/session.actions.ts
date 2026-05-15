@@ -1,31 +1,30 @@
 'use server';
 
-import { getContainer } from '@/di/containers';
-import { sessionFormSchema } from '@/modules/session/presentation/ui/config/session.schema';
-import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
-import { SessionMapper } from '@/modules/session/infrastructure/session.mapper';
-import {
-  ActionFailure,
-  ActionSuccess,
-  type ActionResponseProps,
-} from '@/shared/presentation/action.response';
+import type { ActionResponseProps } from '@/shared/presentation/action.response';
 import type { SessionForm } from '@/modules/session/presentation/ui/config/session.schema';
 import type { CreateSessionInput } from '@/modules/session/application/dtos/create-session.dto';
 import type { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 import type { SessionProps } from '@/modules/session/domain/session.types';
+import { getSession } from 'next-auth/react';
+import { getContainer } from '@/di/containers';
+import { sessionFormSchema } from '@/modules/session/presentation/ui/config/session.schema';
+import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
+import { SessionMapper } from '@/modules/session/infrastructure/session.mapper';
+import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.response';
 
 export async function createSessionAction(
   data: SessionForm
 ): Promise<ActionResponseProps<SessionDTO>> {
+  const session = await getSession();
+  if (!session) return ActionFailure('Unauthorized');
+
   const parseResult = sessionFormSchema.safeParse(data);
   if (!parseResult.success) return ActionFailure(parseResult.error.errors.join(', '));
   const sessionParsedData = parseResult.data;
 
   const userIdResult = await getCurrentUserId();
-
   if (!userIdResult.success) return ActionFailure(userIdResult.message);
   if (!userIdResult.data) return ActionFailure('User not found');
-
   const userId = userIdResult.data;
 
   const sessionInput: CreateSessionInput = {
@@ -44,10 +43,11 @@ export async function createSessionAction(
 }
 
 export async function getAllSessions(): Promise<ActionResponseProps<SessionDTO[]>> {
+  const session = await getSession();
+  if (!session) return ActionFailure('Unauthorized');
+
   const container = getContainer();
-
   const getAllSessions = container.session.GetAllSessionsUseCase;
-
   const sessionsResult = await getAllSessions.execute();
 
   if (!sessionsResult.success)
@@ -58,7 +58,6 @@ export async function getAllSessions(): Promise<ActionResponseProps<SessionDTO[]
     };
 
   const { data } = sessionsResult;
-
   const sessionsDTO = data.map((session) => SessionMapper.toDTO(session));
 
   return {
@@ -71,10 +70,11 @@ export async function getAllSessions(): Promise<ActionResponseProps<SessionDTO[]
 export async function getSessionsByIds(
   ids: SessionProps['id'][]
 ): Promise<ActionResponseProps<SessionDTO[]>> {
+  const session = await getSession();
+  if (!session) return ActionFailure('Unauthorized');
+
   const container = getContainer();
-
   const getAllSessions = container.session.GetSessionsByIdsUseCase;
-
   const sessionsResult = await getAllSessions.execute(ids);
 
   if (!sessionsResult.success)
@@ -85,7 +85,6 @@ export async function getSessionsByIds(
     };
 
   const { data } = sessionsResult;
-
   const sessionsDTO = data.map((session) => SessionMapper.toDTO(session));
 
   return {
@@ -98,8 +97,10 @@ export async function getSessionsByIds(
 export async function deleteSession(
   sessionId: SessionProps['id']
 ): Promise<ActionResponseProps<SessionDTO>> {
-  const container = getContainer();
+  const session = await getSession();
+  if (!session) return ActionFailure('Unauthorized');
 
+  const container = getContainer();
   const userIdResult = await getCurrentUserId();
   if (!userIdResult.success) return ActionFailure(userIdResult.message);
   if (!userIdResult.data) return ActionFailure('User not found');
