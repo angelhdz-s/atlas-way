@@ -20,7 +20,7 @@ export function DropdownList({
   const [selectedOption, setSelectedOption] =
     useState<DropdownListValueType['value']>(selectedValue);
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const updateOptionSelected = (e: React.ChangeEvent<HTMLSelectElement>) => {
     onChange?.(e);
     setSelectedOption(e.currentTarget.value);
   };
@@ -32,7 +32,7 @@ export function DropdownList({
   return (
     <select
       className={className}
-      onChange={handleChange}
+      onChange={updateOptionSelected}
       value={selectedOption}
       style={{
         backgroundColor: 'var(--color-fill-back)',

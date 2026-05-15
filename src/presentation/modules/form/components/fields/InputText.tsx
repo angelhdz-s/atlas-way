@@ -7,7 +7,7 @@ export function InputText(props: InputTextProps) {
   const { onChange, className, error, value, ...rest } = props;
   const [valueState, setValueState] = useState(value ?? '');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const updateInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e);
     setValueState(e.currentTarget.value);
   };
@@ -18,7 +18,7 @@ export function InputText(props: InputTextProps) {
         {...rest}
         type="text"
         className={`${InputClasses} ${className}`}
-        onChange={handleChange}
+        onChange={updateInput}
         value={valueState}
       />
       <ErrorMessage message={error} />

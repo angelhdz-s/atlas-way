@@ -12,7 +12,7 @@ type Props = {
 };
 
 export function HeroFooter({ className, logged }: Props) {
-  const handleClick = () => {
+  const goToDashboard = () => {
     if (logged) return redirect('/dashboard');
     return nextAuthLogin(true);
   };
@@ -24,7 +24,7 @@ export function HeroFooter({ className, logged }: Props) {
       )}
     >
       <Button
-        onClick={handleClick}
+        onClick={goToDashboard}
         variant={{
           color: 'primary',
           size: 'lg',

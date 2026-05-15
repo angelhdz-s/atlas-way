@@ -23,7 +23,7 @@ export function RadiobuttonGroup({
 }: RadiobuttonsProps) {
   const [selected, setSelected] = useState<string>(checked);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const updateSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.value === selected) return;
     const value = e.currentTarget.value;
     setSelected(value);
@@ -39,7 +39,7 @@ export function RadiobuttonGroup({
             checked={option.value === selected}
             value={option.value}
             label={option.label}
-            onChange={handleChange}
+            onChange={updateSelect}
             {...props}
           />
         ))}

@@ -4,20 +4,15 @@ const MD_BREAKPOINT = 768;
 
 export function useHeaderNav() {
   const [showing, setShowing] = useState(false);
-  const handleClick = () => {
+  const showNav = () => {
     setShowing((prev) => {
       const state = !prev;
       return state;
     });
   };
 
-  const handleClickOut = () => {
+  const closeNav = () => {
     setShowing(false);
-  };
-
-  const hiddenClass = (show: boolean, el: 'button' | 'backdrop'): string => {
-    if (el === 'backdrop') return show ? '' : 'hidden';
-    return show ? '' : 'hidden';
   };
 
   useEffect(() => {
@@ -38,8 +33,7 @@ export function useHeaderNav() {
 
   return {
     showing,
-    handleClick,
-    hiddenClass,
-    handleClickOut,
+    showNav,
+    closeNav,
   };
 }

@@ -11,11 +11,11 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
   const [settingsOpen, setSettingsOpen] = useState<boolean>(false);
   const { handleLogout } = useLogout();
 
-  const handleClick = () => {
+  const openSettings = () => {
     setSettingsOpen((prev) => !prev);
   };
 
-  const handleClose = () => {
+  const closeSettings = () => {
     setSettingsOpen(false);
   };
 
@@ -34,7 +34,7 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
                   variant={{ type: 'icon', color: 'simple' }}
                   Icon={IconCog}
                   aria-label="Configuration"
-                  onClick={handleClick}
+                  onClick={openSettings}
                 />
               </li>
               <li>
@@ -53,7 +53,7 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
           </aside>
         </div>
 
-        <SettingsTooltip isOpen={settingsOpen} onClose={handleClose} />
+        <SettingsTooltip isOpen={settingsOpen} onClose={closeSettings} />
       </div>
     </footer>
   );

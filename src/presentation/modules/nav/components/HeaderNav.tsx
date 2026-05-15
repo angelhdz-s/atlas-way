@@ -6,7 +6,7 @@ import { useHeaderNav } from '@/presentation/modules/nav/hooks/useHeaderNav';
 import { Button } from '@/presentation/modules/button/components/Button';
 
 export function HeaderNav() {
-  const { showing, handleClick, handleClickOut, hiddenClass } = useHeaderNav();
+  const { showing, showNav, closeNav } = useHeaderNav();
 
   return (
     <div className="w-full md:mx-auto md:grid md:w-fit md:place-items-center">
@@ -17,7 +17,7 @@ export function HeaderNav() {
             color: 'simple',
             type: 'icon',
           }}
-          onClick={handleClick}
+          onClick={showNav}
           className="md:hidden"
           aria-label="Open navigation items"
           Icon={IconMenu}
@@ -37,10 +37,7 @@ export function HeaderNav() {
         </ul>
       </nav>
       {showing && (
-        <div
-          onClick={handleClickOut}
-          className={`bg-fill-back/80 fixed inset-0 z-1 md:hidden`}
-        ></div>
+        <div onClick={closeNav} className={`bg-fill-back/80 fixed inset-0 z-1 md:hidden`}></div>
       )}
     </div>
   );

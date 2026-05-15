@@ -15,7 +15,7 @@ type Props = {
 export function ToggleTheme({ className, children }: Props) {
   const { theme, setTheme } = useTheme();
 
-  const handleClick = () => {
+  const toggleTheme = () => {
     setTheme(theme === THEME.DARK ? THEME.LIGHT : THEME.DARK);
   };
 
@@ -29,7 +29,7 @@ export function ToggleTheme({ className, children }: Props) {
             color: 'simple',
           }}
           className={twMerge('light:hidden flex', className)}
-          onClick={handleClick}
+          onClick={toggleTheme}
           Icon={IconSun}
         >
           {children}
@@ -41,7 +41,7 @@ export function ToggleTheme({ className, children }: Props) {
             color: 'simple',
           }}
           className={twMerge('light:flex hidden', className)}
-          onClick={handleClick}
+          onClick={toggleTheme}
           Icon={IconMoon}
         >
           {children && children}
@@ -58,7 +58,7 @@ export function ToggleTheme({ className, children }: Props) {
           color: 'simple',
         }}
         className={twMerge('light:hidden flex', className)}
-        onClick={handleClick}
+        onClick={toggleTheme}
         aria-label={'Switch to light theme'}
         Icon={IconSun}
       />
@@ -69,7 +69,7 @@ export function ToggleTheme({ className, children }: Props) {
           color: 'simple',
         }}
         className={twMerge('light:flex hidden', className)}
-        onClick={handleClick}
+        onClick={toggleTheme}
         aria-label={'Switch to dark theme'}
         Icon={IconMoon}
       />
