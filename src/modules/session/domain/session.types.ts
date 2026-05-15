@@ -10,3 +10,5 @@ export type SessionProps = {
   readonly userId: UserProps['id'];
   exercises: Exercise[];
 };
+
+export type SessionFactoryData = Omit<SessionProps, 'id' | 'createdAt' | 'updatedAt'>;
