@@ -1,4 +1,7 @@
 'use client';
+
+import { useCallback } from 'react';
+
 type Point = { x: number; y: number };
 
 export function LineChart({
@@ -139,8 +142,14 @@ export function BarCharts({
 
   const maxY = Math.max(...data.map((d) => d.y));
 
-  const X = (i: number) =>
-    i === 0 ? padding : padding + i * (barWidth + freeWidth / (data.length - 1));
+  const X = useCallback(
+    (i: number) => {
+      if (i === 0) return padding;
+      return padding + i * (barWidth + freeWidth / (data.length - 1));
+    },
+    [padding, barWidth, freeWidth, data]
+  );
+
   const scaleY = (val: number) => height - padding - (val / maxY) * absoluteHeight;
 
   return (
