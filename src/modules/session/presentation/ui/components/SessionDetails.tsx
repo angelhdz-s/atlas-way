@@ -63,8 +63,8 @@ export function SessionDetails({
             <span>Sets x Reps</span>
             <span>Weight</span>
           </li>
-          {exercises.map((exercise, index) => (
-            <ExerciseRow withStatus={withStatus} exercise={exercise} key={index} />
+          {exercises.map((exercise) => (
+            <ExerciseRow key={exercise.id} withStatus={withStatus} exercise={exercise} />
           ))}
         </ul>
       </main>

@@ -63,7 +63,7 @@ export function LineChart({
 
       {data.map((p, i) => (
         <circle
-          key={i}
+          key={`${p.x}-${p.y}`}
           cx={scaleX(p.x)}
           cy={scaleY(p.y)}
           r={3}
@@ -196,7 +196,7 @@ export function BarCharts({
         const yBar = scaleY(p.y);
         return (
           <rect
-            key={i}
+            key={`${p.x}-${p.y}`}
             width={widthBar}
             height={0}
             x={xBar}

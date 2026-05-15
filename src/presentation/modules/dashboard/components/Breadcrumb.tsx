@@ -23,14 +23,14 @@ function ListBreadcrumbs({
     );
     if (completeUrl === pathname)
       return (
-        <li key={index} className="flex items-center gap-1">
+        <li key={`${index}-${name}`} className="flex items-center gap-1">
           {index > 0 && <IconArrowUp className="size-3 rotate-90" strokeWidth="3" />}
           <span className="p-2">{part}</span>
         </li>
       );
 
     return (
-      <li key={index} className="flex items-center gap-1">
+      <li key={`${index}-${name}`} className="flex items-center gap-1">
         {index > 0 && <IconArrowUp className="size-3 rotate-90" strokeWidth="3" />}
         <Link href={completeUrl} className="p-2 hover:text-current/50">
           {part}

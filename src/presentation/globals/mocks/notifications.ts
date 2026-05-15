@@ -1,6 +1,7 @@
 export type NotificationRelevanceType = 'special' | 'info' | 'warning' | 'error';
 
 export interface NotificationType {
+  id: string;
   title: string;
   description: string;
   date: string;
@@ -11,6 +12,7 @@ export interface NotificationType {
 
 export const NOTIFICATIONS: NotificationType[] = [
   {
+    id: '1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d',
     title: 'Account Locked',
     description: 'Your account has been locked due to suspicious activity.',
     date: '1 day',
@@ -19,6 +21,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'error',
   },
   {
+    id: '2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e',
     title: 'Profile Picture Updated',
     description: 'Your profile picture has been updated.',
     date: '2 days',
@@ -27,6 +30,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'info',
   },
   {
+    id: '3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f',
     title: 'Session Reminder',
     description: "Don't forget your upcoming session tomorrow.",
     date: '3 days',
@@ -35,6 +39,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'info',
   },
   {
+    id: '4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a',
     title: 'Invitation to Join Team',
     description: 'You have been invited to join a new team.',
     date: '4 days',
@@ -43,6 +48,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'info',
   },
   {
+    id: '5e6f7a8b-9c0d-1e2f-3a4b-5c6d7e8f9a0b',
     title: 'Update Available',
     description: 'A new update is available. Please refresh the page.',
     date: '5 days',
@@ -51,6 +57,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'info',
   },
   {
+    id: '6f7a8b9c-0d1e-2f3a-4b5c-6d7e8f9a0b1c',
     title: 'Security Alert',
     description: 'A new device was used to access your account.',
     date: '6 days',
@@ -59,6 +66,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'warning',
   },
   {
+    id: '7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d',
     title: 'Goal Achieved!',
     description: 'You have achieved your weekly goal.',
     date: '1 week',
@@ -67,6 +75,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'special',
   },
   {
+    id: '8b9c0d1e-2f3a-4b5c-6d7e-8f9a0b1c2d3e',
     title: 'Friend Request Accepted',
     description: 'Your friend request was accepted.',
     date: '1 week',
@@ -75,6 +84,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'info',
   },
   {
+    id: '9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f',
     title: 'Error: Unable to Sync Data',
     description: 'There was an error syncing your data. Please try again.',
     date: '2 weeks',
@@ -83,6 +93,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'error',
   },
   {
+    id: '0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a',
     title: 'System Maintenance Scheduled',
     description: 'Scheduled maintenance will occur this weekend.',
     date: '2 weeks',
@@ -91,6 +102,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'warning',
   },
   {
+    id: '1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b',
     title: 'New Comment on Your Post',
     description: 'Someone commented on your recent post.',
     date: '2 weeks',
@@ -99,6 +111,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'info',
   },
   {
+    id: '2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c',
     title: 'Payment Received',
     description: 'Your payment was processed successfully.',
     date: '3 weeks',
@@ -107,6 +120,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'info',
   },
   {
+    id: '3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d',
     title: 'Subscription Expiring Soon',
     description: 'Your subscription will expire in 7 days.',
     date: '3 weeks',
@@ -115,6 +129,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'warning',
   },
   {
+    id: '4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9e',
     title: 'Account Verification Needed',
     description: 'Please verify your email address to continue.',
     date: '1 month',
@@ -123,6 +138,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'warning',
   },
   {
+    id: '5c6d7e8f-9a0b-1c2d-3e4f-5a6b7c8d9e0f',
     title: 'Routine Completed',
     description: 'Congratulations! You completed your routine.',
     date: '1 month',
@@ -131,6 +147,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'special',
   },
   {
+    id: '6d7e8f9a-0b1c-2d3e-4f5a-6b7c8d9e0f1a',
     title: 'New Message Received',
     description: 'You have received a new message from your coach.',
     date: '1 month',
@@ -139,6 +156,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'info',
   },
   {
+    id: '7e8f9a0b-1c2d-3e4f-5a6b-7c8d9e0f1a2b',
     title: 'Profile Updated',
     description: 'Your profile information was updated.',
     date: '1 month',
@@ -147,6 +165,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'info',
   },
   {
+    id: '8f9a0b1c-2d3e-4f5a-6b7c-8d9e0f1a2b3c',
     title: 'Session Expired',
     description: 'Your session has expired. Please log in again.',
     date: '2 months',
@@ -155,6 +174,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'warning',
   },
   {
+    id: '9a0b1c2d-3e4f-5a6b-7c8d-9e0f1a2b3c4d',
     title: 'New Feature: Dark Mode',
     description: 'Try out the new dark mode in your profile settings.',
     date: '2 months',
@@ -163,6 +183,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'special',
   },
   {
+    id: '0b1c2d3e-4f5a-6b7c-8d9e-0f1a2b3c4d5e',
     title: 'Password Changed Successfully',
     description: 'Your password was changed successfully.',
     date: '2 months',
@@ -171,6 +192,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'info',
   },
   {
+    id: '1c2d3e4f-5a6b-7c8d-9e0f-1a2b3c4d5e6f',
     title: 'Monthly report is ready',
     description: 'The monthly report for your project is ready to view.',
     date: '3 months',
@@ -179,6 +201,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'info',
   },
   {
+    id: '2d3e4f5a-6b7c-8d9e-0f1a-2b3c4d5e6f7a',
     title: 'Create your sessions',
     description: 'Go to sessions and create your own sessions.',
     date: '4 months',
@@ -187,6 +210,7 @@ export const NOTIFICATIONS: NotificationType[] = [
     relevance: 'info',
   },
   {
+    id: '3e4f5a6b-7c8d-9e0f-1a2b-3c4d5e6f7a8b',
     title: 'Welcome to AtlasWay - Start your journey',
     description: 'Start creating your first routine.',
     date: '4 months',

@@ -9,8 +9,8 @@ export default function Dashboard() {
     <PageContainer>
       <PageHeader title="Notifications" />
       <PageContent className="space-y-1">
-        {NOTIFICATIONS.map((notification, index) => (
-          <Notification key={index} data={notification} />
+        {NOTIFICATIONS.map((notification) => (
+          <Notification key={notification.id} data={notification} />
         ))}
       </PageContent>
     </PageContainer>

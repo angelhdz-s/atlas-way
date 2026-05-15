@@ -28,9 +28,9 @@ export function Calendar() {
         </ul>
       </header>
       <main className="grid w-full grid-cols-7 gap-2">
-        {days.map((day, index) => (
+        {days.map((day) => (
           <CalendarDay
-            key={index}
+            key={day.date.toISOString()}
             onClick={() => setCurrentDate(day.date)}
             day={day}
             initialDate={FIRST_TRACKED_DAY}

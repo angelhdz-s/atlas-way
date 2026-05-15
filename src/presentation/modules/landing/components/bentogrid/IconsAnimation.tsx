@@ -14,17 +14,50 @@ import { IconPlayerTrackNext } from '@/presentation/globals/components/icons/out
 import styles from '@/presentation/modules/landing/components/bentogrid/IconsAnimation.module.css';
 import type { IconTypes } from '@/presentation/globals/presentation.types';
 
-const ICONS: IconTypes[] = [
-  IconBell,
-  IconBarbell,
-  IconMapRoute,
-  IconAlarm,
-  IconEdit,
-  IconPlayerTrackNext,
-  IconHeart,
-  IconScale,
-  IconTrendingUp,
-  IconTrophy,
+const ICONS_LIST: {
+  id: number;
+  Icon: IconTypes;
+}[] = [
+  {
+    id: 1,
+    Icon: IconBell,
+  },
+  {
+    id: 2,
+    Icon: IconBarbell,
+  },
+  {
+    id: 3,
+    Icon: IconMapRoute,
+  },
+  {
+    id: 4,
+    Icon: IconAlarm,
+  },
+  {
+    id: 5,
+    Icon: IconEdit,
+  },
+  {
+    id: 6,
+    Icon: IconPlayerTrackNext,
+  },
+  {
+    id: 7,
+    Icon: IconHeart,
+  },
+  {
+    id: 8,
+    Icon: IconScale,
+  },
+  {
+    id: 9,
+    Icon: IconTrendingUp,
+  },
+  {
+    id: 10,
+    Icon: IconTrophy,
+  },
 ];
 
 const DURATION = 20000;
@@ -58,7 +91,7 @@ function IconContainer({
 export function IconsAnimation({ direction }: { direction: AnimationDirection }) {
   const [mounted, setMounted] = useState(false);
 
-  const limitRange = ICONS.length;
+  const limitRange = ICONS_LIST.length;
   const displacedIndex = Math.floor(Math.random() * limitRange);
 
   const getIndex = (index: number) => {
@@ -70,7 +103,7 @@ export function IconsAnimation({ direction }: { direction: AnimationDirection })
   };
 
   const getDelay = (index: number) => {
-    const delay = getIndex(index) * (DURATION / ICONS.length);
+    const delay = getIndex(index) * (DURATION / ICONS_LIST.length);
     return delay;
   };
 
@@ -85,7 +118,7 @@ export function IconsAnimation({ direction }: { direction: AnimationDirection })
     mounted && (
       <div className="animate-fade relative h-8 w-full mask-x-from-50% mask-x-to-100%">
         <div className={`absolute top-0 -left-6`}>
-          {ICONS.map((Icon, index) => {
+          {ICONS_LIST.map(({ Icon, id }, index) => {
             return (
               <IconContainer
                 className={`${DIRECTION[direction]}`}
@@ -93,7 +126,7 @@ export function IconsAnimation({ direction }: { direction: AnimationDirection })
                   animationDelay: `-${getDelay(index)}ms`,
                   animationDuration: `${DURATION}ms`,
                 }}
-                key={index}
+                key={id}
                 Icon={Icon}
               />
             );
