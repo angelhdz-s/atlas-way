@@ -8,10 +8,10 @@ export function Modal({
   className?: string;
   children: React.ReactNode;
 }) {
-  const router = useRouter();
+  const { back } = useRouter();
 
   const handleClose = () => {
-    router.back();
+    back();
   };
 
   const { ref } = useLayer({

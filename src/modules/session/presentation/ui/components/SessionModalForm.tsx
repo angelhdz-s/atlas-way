@@ -18,13 +18,13 @@ export function SessionModalForm({
   exercises: SelectOption[];
   data?: SessionDTO;
 }) {
-  const router = useRouter();
+  const { back } = useRouter();
   const handleSuccess = () => {
-    router.back();
+    back();
   };
 
   const handleClose = () => {
-    router.back();
+    back();
   };
 
   const config = {

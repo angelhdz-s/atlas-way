@@ -23,14 +23,14 @@ export function ModalExerciseForm({
   muscles: SelectOption[];
   data?: ExerciseDTO;
 }) {
-  const router = useRouter();
+  const { back } = useRouter();
 
   const handleSuccess = () => {
-    router.back();
+    back();
   };
 
   const handleClose = () => {
-    router.back();
+    back();
   };
 
   const config = {
