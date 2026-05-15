@@ -6,6 +6,8 @@ import { Link } from '@/presentation/modules/button/components/Link';
 import { IconPlus } from '@/presentation/globals/components/icons/outline/IconPlus';
 import { ExercisesTable } from '@/modules/exercise/presentation/components/ExercisesTable';
 
+export const dynamic = 'force-dynamic';
+
 export default async function ExercisesPage() {
   const exercisesRequest = await getAllUserExercises();
 

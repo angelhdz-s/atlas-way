@@ -2,6 +2,8 @@ import { getAllUserExercises } from '@/modules/exercise/presentation/exercise.ac
 import { SessionModalForm } from '@/modules/session/presentation/ui/components/SessionModalForm';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
 
+export const dynamic = 'force-dynamic';
+
 export default async function CreateSessionPage() {
   const exercisesRequest = await getAllUserExercises();
   const data = exercisesRequest.success ? exercisesRequest.data : [];

@@ -5,6 +5,8 @@ import { Header } from '@/presentation/modules/landing/components/Header';
 import { Hero } from '@/presentation/modules/landing/components/Hero';
 import { Try } from '@/presentation/modules/landing/components/Try';
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   return (
     <>
