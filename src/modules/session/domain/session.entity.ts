@@ -1,5 +1,12 @@
 import type { Exercise } from '@/modules/exercise/domain/exercise.entity';
-import type { SessionProps } from '@/modules/session/domain/session.types';
+import type { SessionFactoryData, SessionProps } from '@/modules/session/domain/session.types';
+import type { DomainError } from '@/shared/domain/errors/domain.errors';
+import type { Result } from '@/shared/domain/result';
+import { Failure, Success } from '@/shared/domain/result';
+import {
+  sessionValidators,
+  validateSession,
+} from '@/modules/session/domain/validation/session.validation';
 
 export class Session {
   constructor(private data: SessionProps) {}
@@ -27,24 +34,29 @@ export class Session {
   get userId() {
     return this.data.userId;
   }
-  changeName(name: SessionProps['name']) {
-    this.data.name = name;
+  changeName(name: SessionProps['name']): Result<null, DomainError> {
+    if (!sessionValidators.name.validate(name)) return Failure(sessionValidators.name.error);
+    this.data.name = name.trim();
+    return Success(null);
   }
-  changeDescription(description: SessionProps['description']) {
-    this.data.description = description;
+  changeDescription(description: SessionProps['description']): Result<null, DomainError> {
+    if (!sessionValidators.description.validate(description))
+      return Failure(sessionValidators.description.error);
+    this.data.description = description !== null ? description.trim() : null;
+    return Success(null);
   }
-  changeExercises(exercises: Exercise[]) {
+  changeExercises(exercises: Exercise[]): Result<null, DomainError> {
     this.data.exercises = exercises;
+    return Success(null);
   }
-  static create(
-    id: SessionProps['id'],
-    data: Omit<SessionProps, 'id' | 'createdAt' | 'updatedAt'>
-  ) {
-    return new Session({
-      ...data,
+  static create(id: SessionProps['id'], data: SessionFactoryData): Result<Session, DomainError> {
+    const validateResult = validateSession({
       id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      ...data,
     });
+
+    if (!validateResult.success) return validateResult;
+    const session = validateResult.data;
+    return Success(session);
   }
 }
