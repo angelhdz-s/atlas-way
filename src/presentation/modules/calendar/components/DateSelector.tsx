@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { use } from 'react';
 import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
 import { useCalendar } from '@/presentation/modules/calendar/hooks/useCalendar';
 import { IconArrowUp } from '@/presentation/globals/components/icons/outline/IconArrowUp';
@@ -50,7 +50,7 @@ function DateController({
 }
 
 export function DateSelector({ className = '' }: { className?: string }) {
-  const { selectedDate, setCurrentDate } = useContext(CalendarContext);
+  const { selectedDate, setCurrentDate } = use(CalendarContext);
 
   const {
     handleNextDate,

@@ -1,11 +1,11 @@
-import { useContext } from 'react';
+import { use } from 'react';
 import { DateControl } from '@/presentation/modules/calendar/components/DateControl';
 import { MonthDropdownlist } from '@/presentation/modules/calendar/components/MonthDropdownlist';
 import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
 import { useCalendar } from '@/presentation/modules/calendar/hooks/useCalendar';
 
 export function MonthDateSelector({ className = '' }: { className?: string }) {
-  const { selectedDate, setCurrentDate } = useContext(CalendarContext);
+  const { selectedDate, setCurrentDate } = use(CalendarContext);
   const {
     selectedDate: currentDate,
     handlePreviousMonth,

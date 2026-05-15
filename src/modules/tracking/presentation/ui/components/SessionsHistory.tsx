@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext } from 'react';
+import { use } from 'react';
 import { Calendar } from '@/presentation/modules/calendar/components/Calendar';
 import { CalendarProvider } from '@/presentation/modules/calendar/components/CalendarProvider';
 import { MonthDateSelector } from '@/presentation/modules/calendar/components/MonthDateSelector';
@@ -60,7 +60,7 @@ const session = {
 } as SessionDetailsType;
 
 export function SessionsHistory({ className }: { className?: string }) {
-  const { selectedDate } = useContext(CalendarContext);
+  const { selectedDate } = use(CalendarContext);
   const _currentSession = getSessionFromDate(selectedDate); // Here will be a function to get session from date
   return (
     <CalendarProvider>
