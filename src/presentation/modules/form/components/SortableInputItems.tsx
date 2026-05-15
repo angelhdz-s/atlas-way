@@ -15,7 +15,7 @@ type Props<TForm extends FieldValues, TName extends FieldArrayPath<TForm>> = {
   name: TName;
   control: Control<TForm>;
   items: SelectOption[];
-  itemsSelected?: SelectOption['value'][];
+  itemsSelected: SelectOption['value'][];
 };
 
 /**
@@ -35,7 +35,7 @@ export function SortableInputItems<TForm extends FieldValues, TName extends Fiel
   addButtonLabel,
   control,
   items,
-  itemsSelected = [],
+  itemsSelected,
   selectingTitle,
 }: Props<TForm, TName>) {
   const {

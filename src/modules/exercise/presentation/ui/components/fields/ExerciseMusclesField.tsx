@@ -7,10 +7,10 @@ import type { ExerciseFormProps } from '@/modules/exercise/presentation/ui/schem
 
 type Props = {
   items: SelectOption[];
-  selectedItems?: string[];
+  selectedItems: string[];
 };
 
-export function ExerciseMusclesField({ items, selectedItems = [] }: Props) {
+export function ExerciseMusclesField({ items, selectedItems }: Props) {
   const {
     control,
     formState: { errors },

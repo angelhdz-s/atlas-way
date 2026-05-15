@@ -12,6 +12,7 @@ export function DevSortableInputItems() {
         control={control}
         items={DEV_FORM_OPTIONS}
         name="Sortable Input Items"
+        itemsSelected={[]}
       />
     </Label>
   );
