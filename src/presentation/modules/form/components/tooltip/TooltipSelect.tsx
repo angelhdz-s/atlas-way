@@ -13,6 +13,7 @@ type Props = {
   onSelectChange?: (value: SelectOption['value']) => void;
   onClose: () => void;
   isOpen: boolean;
+  doneButtonText?: string;
 };
 
 export function TooltipSelect({
@@ -22,6 +23,7 @@ export function TooltipSelect({
   onClose,
   onSelectChange,
   selectOptions,
+  doneButtonText,
 }: Props) {
   const selectRef = useRef<HTMLSelectElement | null>(null);
 
@@ -63,7 +65,7 @@ export function TooltipSelect({
               Cancel
             </Button>
             <Button variant={{ color: 'primary', size: 'sm' }} onClick={handleSelectOption}>
-              Done
+              {doneButtonText ? doneButtonText : 'Done'}
             </Button>
           </footer>
         </main>
