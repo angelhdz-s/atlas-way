@@ -37,22 +37,25 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24.12.0'
-          cache: 'npm'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Generate Prisma Client
-        run: npx prisma generate
+        run: pnpm exec prisma generate
 
       - name: Push Schema to DB
-        run: npx prisma db push
+        run: pnpm exec prisma db push
 
       - name: Type Check
-        run: npm run typecheck
+        run: pnpm typecheck
 
       - name: Safe Fixes
-        run: npm run safe-fixes
+        run: pnpm safe-fixes
 
       - name: Run Tests
-        run: npm run test
+        run: pnpm test
+
+      - name: Run Build
+        run: pnpm build
