@@ -1,3 +1,5 @@
+'use client';
+
 export function Footer({ className = '' }: { className?: string }) {
   return (
     <footer className={`bg-fill-base mt-16 flex h-48 w-full items-center ${className}`}>
