@@ -24,7 +24,6 @@ export class CreateSession implements UseCase {
     const { exerciseIds, ...sessionData } = data;
 
     const exercises: Exercise[] = [];
-
     for (const exerciseId of exerciseIds) {
       const exerciseResult = await this.exerciseRepository.findById(exerciseId);
       if (!exerciseResult.success) return exerciseResult;
