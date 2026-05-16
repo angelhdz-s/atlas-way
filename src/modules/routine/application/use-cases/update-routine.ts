@@ -1,12 +1,19 @@
-import { Failure } from '@/shared/domain/result';
-import { RoutineNotFoundError } from '@/modules/routine/domain/errors/routine.errors';
+import type { Result } from '@/shared/domain/result';
 import type { UseCase } from '@/shared/application/shared.use-case';
+import type { DomainError } from '@/shared/domain/errors/domain.errors';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
 import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
 import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 import type { UpdateRoutineInput } from '@/modules/routine/application/dtos/update-routine.dto';
-import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
-import { SessionNotFoundError } from '@/modules/session/domain/errors/session.errors';
+import type { Routine } from '@/modules/routine/domain/routine.entity';
+import { Failure, Success } from '@/shared/domain/result';
+import { isArray } from '@/shared/domain/validation/validation.non-primitives';
+import {
+  InvalidRoutineData,
+  RoutineNotFoundError,
+} from '@/modules/routine/domain/errors/routine.errors';
+import { updateRoutineProperties } from '@/modules/routine/application/helpers/update-routine.use-case.helper';
 
 export class UpdateRoutine implements UseCase {
   constructor(
@@ -24,62 +31,56 @@ export class UpdateRoutine implements UseCase {
 
     const routine = routineResult.data;
 
-    if (data.name) {
-      const nameResult = routine.changeName(data.name);
-      if (!nameResult.success) return nameResult;
-    }
-    if (data.description) {
-      const descResult = routine.changeDescription(data.description);
-      if (!descResult.success) return descResult;
-    }
-    if (data.active !== undefined) {
-      const activeResult = routine.changeActive(data.active);
-      if (!activeResult.success) return activeResult;
-    }
-    if (data.days) {
-      const daysResult = routine.changeDays(data.days);
-      if (!daysResult.success) return daysResult;
-    }
-    if (data.initialDate) {
-      const dateResult = routine.changeInitialDate(data.initialDate);
-      if (!dateResult.success) return dateResult;
-    }
-    if (data.cycleId) {
-      const cycleResult = routine.changeCycle(data.cycleId);
-      if (!cycleResult.success) return cycleResult;
-    }
-    if (data.routineDays) {
-      const routineDays: RoutineProps['routineDays'] = [];
-      for (const routineDay of data.routineDays) {
-        const idResult = await this.generatorRepository.generate();
-        if (!idResult.success) return idResult;
+    const updatePropertiesResult = updateRoutineProperties(data, routine);
+    if (!updatePropertiesResult.success) return updatePropertiesResult;
 
-        const routineDayId = idResult.data;
-
-        const routineDayBaseProps: Omit<RoutineProps['routineDays'][number], 'session'> = {
-          id: routineDayId,
-          day: routineDay.day,
-          name: routineDay.name,
-        };
-        if (!routineDay.sessionId) {
-          routineDays.push({
-            ...routineDayBaseProps,
-            session: null,
-          });
-          continue;
-        }
-        const sessionResult = await this.sessionRepository.findById(routineDay.sessionId);
-        if (!sessionResult.success) return sessionResult;
-        if (!sessionResult.data) return Failure(new SessionNotFoundError());
-        routineDays.push({
-          ...routineDayBaseProps,
-          session: sessionResult.data,
-        });
-      }
-      const routineDaysResult = routine.changeRoutineDays(routineDays);
-      if (!routineDaysResult.success) return routineDaysResult;
-    }
+    const updateRoutineDaysResult = await this.updateRoutineDays(data.routineDays, routine);
+    if (!updateRoutineDaysResult.success) return updateRoutineDaysResult;
 
     return await this.routineRepository.update(routine);
+  }
+
+  private async updateRoutineDays(
+    routineDaysInput: UpdateRoutineInput['routineDays'],
+    routine: Routine
+  ): Promise<Result<null, DomainError>> {
+    if (!routineDaysInput) return Success(null);
+    if (!isArray(routineDaysInput)) return Failure(new InvalidRoutineData('ROUTINE_DAYS'));
+
+    const routineDays: RoutineProps['routineDays'] = [];
+    const routineDaysPromises = routineDaysInput.map((r) => this.generatePromises(r.sessionId));
+    const routineDaysResults = await Promise.all(routineDaysPromises);
+
+    for (let i = 0; i < routineDaysResults.length; i++) {
+      const results = routineDaysResults[i];
+      const routineDay = routineDaysInput[i];
+      if (!results || !routineDay) continue;
+
+      const [idResult, sessionResult] = results;
+      if (!idResult.success) return idResult;
+      if (!sessionResult.success) return sessionResult;
+
+      const { day, name } = routineDay;
+      routineDays.push({
+        id: idResult.data,
+        day,
+        name,
+        session: sessionResult.data,
+      });
+    }
+    const routineDaysResult = routine.changeRoutineDays(routineDays);
+    if (!routineDaysResult.success) return routineDaysResult;
+
+    return Success(null);
+  }
+
+  private generatePromises(sessionId: string | null) {
+    if (sessionId === null)
+      return Promise.all([this.generatorRepository.generate(), Success(null)]);
+
+    return Promise.all([
+      this.generatorRepository.generate(),
+      this.sessionRepository.findById(sessionId),
+    ]);
   }
 }
