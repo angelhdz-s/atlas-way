@@ -1,8 +1,10 @@
-import { isKeyOf, isObject, isString, isValidUuid } from '@/shared/domain/validation.utils';
-import { Session } from '@/modules/session/domain/session.entity';
-import { isValidRoutineDays } from '@/modules/routine/domain/validation/routine.validation.utils';
 import type { ValidationFunction } from '@/shared/shared.types';
 import type { RoutineDay } from '@/modules/routine/domain/routine.types';
+import { isObject } from '@/shared/domain/validation/validation.non-primitives';
+import { isString } from '@/shared/domain/validation/validation.primitives';
+import { isKeyOf, isValidUuid } from '@/shared/domain/validation/validation.utils';
+import { Session } from '@/modules/session/domain/session.entity';
+import { isValidRoutineDays } from '@/modules/routine/domain/validation/routine.validation.utils';
 
 const isValidRoutineDayId: ValidationFunction = (id: unknown) => {
   return isValidUuid(id);

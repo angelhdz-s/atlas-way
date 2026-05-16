@@ -1,5 +1,5 @@
 import { Failure, Success } from '@/shared/domain/result';
-import { isValidUuid } from '@/shared/domain/validation.utils';
+import { isValidUuid } from '@/shared/domain/validation/validation.utils';
 import { InvalidUserData, RoleNotFound } from '@/modules/user/domain/errors/user.errors';
 import { ROLES } from '@/modules/user/domain/user.constants.roles';
 import {

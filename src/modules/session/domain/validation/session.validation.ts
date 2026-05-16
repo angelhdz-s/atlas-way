@@ -9,7 +9,8 @@ import {
 } from '@/modules/session/domain/validation/session.validation.utils';
 import { Session } from '@/modules/session/domain//session.entity';
 import { Failure, Success } from '@/shared/domain/result';
-import { isKeyOf, isObject } from '@/shared/domain/validation.utils';
+import { isObject } from '@/shared/domain/validation/validation.non-primitives';
+import { isKeyOf } from '@/shared/domain/validation/validation.utils';
 import { InvalidSessionData } from '@/modules/session/domain//errors/session.errors';
 
 type SessionValidationKeys = Omit<SessionFactoryData, 'userId' | 'exercises'> & {

@@ -1,4 +1,8 @@
-import { isIntegerNumber, isNumber, isString } from '@/shared/domain/validation.utils';
+import {
+  isIntegerNumber,
+  isNumber,
+  isString,
+} from '@/shared/domain/validation/validation.primitives';
 import {
   EXERCISE_DESCRIPTION_LENGTH,
   EXERCISE_NAME_LENGTH,

@@ -4,7 +4,8 @@ import type { DomainError } from '@/shared/domain/errors/domain.errors';
 import type { Exercise } from '@/modules/exercise/domain/exercise.entity';
 import type { UpdateExerciseInput } from '@/modules/exercise/application/dtos/update-exercise.dto';
 import { Failure, Success } from '@/shared/domain/result';
-import { isKeyOf, isObject } from '@/shared/domain/validation.utils';
+import { isObject } from '@/shared/domain/validation/validation.non-primitives';
+import { isKeyOf } from '@/shared/domain/validation/validation.utils';
 import { InvalidExerciseData } from '@/modules/exercise/domain/errors/exercise.errors';
 
 type UpdateExerciseKeys = Omit<UpdateExerciseInput, 'muscleIds'>;

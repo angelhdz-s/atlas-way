@@ -1,18 +1,17 @@
+import type { ValidationFunction } from '@/shared/shared.types';
 import {
-  isArray,
   isBoolean,
-  isDate,
   isIntegerNumber,
   isString,
-  isValidUuid,
-} from '@/shared/domain/validation.utils';
+} from '@/shared/domain/validation/validation.primitives';
+import { isArray, isDate } from '@/shared/domain/validation/validation.non-primitives';
+import { isValidUuid } from '@/shared/domain/validation/validation.utils';
 import {
   ROUTINE_DAYS_LENGTH,
   ROUTINE_DESCRIPTION_LENGTH,
   ROUTINE_NAME_LENGTH,
 } from '@/modules/routine/domain/validation/routine.validation.constants';
 import { isValidRoutineRoutineDay } from '@/modules/routine/domain/validation/routine.routine-day.validation';
-import type { ValidationFunction } from '@/shared/shared.types';
 
 export const isValidRoutineId: ValidationFunction = (id: unknown) => {
   return isValidUuid(id);

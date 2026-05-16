@@ -1,4 +1,4 @@
-import { isValidEmail } from '@/shared/domain/validation.utils';
+import { isValidEmail } from '@/shared/domain/validation/validation.utils';
 import {
   USER_EMAIL_SERVICES,
   USER_NAME_LENGTH,

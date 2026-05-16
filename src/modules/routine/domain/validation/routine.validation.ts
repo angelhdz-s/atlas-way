@@ -1,7 +1,8 @@
 import { InvalidRoutineData } from '@/modules/routine/domain/errors/routine.errors';
 import { Failure, Success } from '@/shared/domain/result';
 import { Routine } from '@/modules/routine/domain/routine.entity';
-import { isKeyOf, isObject } from '@/shared/domain/validation.utils';
+import { isObject } from '@/shared/domain/validation/validation.non-primitives';
+import { isKeyOf } from '@/shared/domain/validation/validation.utils';
 import { CYCLE_TYPES } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
 import {
   areValidRoutineRoutineDays,

@@ -1,5 +1,6 @@
 import { Failure, Success } from '@/shared/domain/result';
-import { isKeyOf, isObject, isValidUuid } from '@/shared/domain/validation.utils';
+import { isObject } from '@/shared/domain/validation/validation.non-primitives';
+import { isKeyOf, isValidUuid } from '@/shared/domain/validation/validation.utils';
 import { Exercise } from '@/modules/exercise/domain/exercise.entity';
 import {
   isValidExerciseDescription,

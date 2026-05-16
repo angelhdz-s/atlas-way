@@ -1,4 +1,5 @@
-import { isString, isValidUuid } from '@/shared/domain/validation.utils';
+import { isString } from '@/shared/domain/validation/validation.primitives';
+import { isValidUuid } from '@/shared/domain/validation/validation.utils';
 import { SESSION_DESCRIPTION_LENGTH, SESSION_NAME_LENGTH } from './session.validation.constants';
 
 export function isValidSessionId(id: unknown) {
