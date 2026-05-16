@@ -18,7 +18,7 @@ export const typeValidators: Record<keyof ValidatorsTypes, (value: unknown) => b
   string: isString,
   boolean: isBoolean,
   number: isNumber,
-  integer: isNumber,
+  integer: isIntegerNumber,
   symbol: isSymbol,
   date: isDate,
   array: isArray,
