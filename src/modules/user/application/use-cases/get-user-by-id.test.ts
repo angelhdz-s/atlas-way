@@ -16,8 +16,11 @@ describe('GetUserById use case', () => {
       const user = userRepoMock.users[0] as User;
 
       // Execute
-      const getUserById = await useCase.execute(user.id);
-      const getUserByIdNotFound = await useCase.execute('userid-never-1234');
+
+      const [getUserById, getUserByIdNotFound] = await Promise.all([
+        useCase.execute(user.id),
+        useCase.execute('userid-never-1234'),
+      ]);
 
       // Assert result pattern when user found
       expect(getUserById.success).toBe(true);
