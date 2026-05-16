@@ -6,7 +6,12 @@ import type { UseCase } from '@/shared/application/shared.use-case';
 import type { Exercise } from '@/modules/exercise/domain/exercise.entity';
 import { Failure } from '@/shared/domain/result';
 import { SessionNotFoundError } from '@/modules/session/domain/errors/session.errors';
-import { ExerciseNotFoundError } from '@/modules/exercise/domain/errors/exercise.errors';
+import {
+  ExerciseNotFoundError,
+  InvalidExerciseData,
+} from '@/modules/exercise/domain/errors/exercise.errors';
+import { isArray } from '@/shared/domain/validation/validation.non-primitives';
+import { isArrayOf } from '@/shared/domain/validation/validation.utils';
 
 export class UpdateSession implements UseCase {
   constructor(
@@ -33,8 +38,11 @@ export class UpdateSession implements UseCase {
 
     const exercises: Exercise[] = [];
     if (data.exerciseIds) {
-      for (const exerciseId of data.exerciseIds) {
-        const exerciseResult = await this.exerciseRepository.findById(exerciseId);
+      if (!isArray(data.exerciseIds)) return Failure(new InvalidExerciseData());
+      if (!isArrayOf(data.exerciseIds, 'string')) return Failure(new InvalidExerciseData());
+      const exercisesFindById = data.exerciseIds.map((id) => this.exerciseRepository.findById(id));
+      const exercisesResults = await Promise.all(exercisesFindById);
+      for (const exerciseResult of exercisesResults) {
         if (!exerciseResult.success) return exerciseResult;
         if (!exerciseResult.data) return Failure(new ExerciseNotFoundError());
         exercises.push(exerciseResult.data);
