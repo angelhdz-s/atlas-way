@@ -6,7 +6,7 @@ import type { InputNumberProps } from '@/presentation/modules/form/form.types';
 export function InputNumber(props: InputNumberProps) {
   const { onChange, value, error, className, ...rest } = props;
   const [currentValue, setCurrentValue] = useState(value ?? '');
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const updateValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e);
     const val = e.target.value;
     if (val !== currentValue) setCurrentValue(val);
@@ -18,7 +18,7 @@ export function InputNumber(props: InputNumberProps) {
         type="number"
         className={`${InputClasses} ${className}`}
         value={currentValue}
-        onChange={handleChange}
+        onChange={updateValue}
       />
       <ErrorMessage message={error} />
     </>

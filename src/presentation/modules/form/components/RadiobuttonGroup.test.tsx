@@ -59,8 +59,8 @@ describe('<RadiobuttonGroup />', () => {
     it('Should trigger onChange callback when clicked', async () => {
       const fn = jest.fn();
       const user = userEvent.setup();
-      const handleChange = (_e: React.ChangeEvent<HTMLInputElement>) => fn();
-      render(<RadiobuttonGroup options={MOCK_SELECT_OPTIONS_LIST} onChange={handleChange} />);
+      const updateSelected = (_e: React.ChangeEvent<HTMLInputElement>) => fn();
+      render(<RadiobuttonGroup options={MOCK_SELECT_OPTIONS_LIST} onChange={updateSelected} />);
       await user.click(screen.getByRole('radio', { name: /health/i }));
       expect(fn).toHaveBeenCalledTimes(1);
     });

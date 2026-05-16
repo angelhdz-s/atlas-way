@@ -46,9 +46,9 @@ describe('<Radiobutton />', () => {
   describe('User Interactions', () => {
     it('Should trigger onChange callback when clicked', async () => {
       const fn = jest.fn();
-      const handleChange = (_e: React.ChangeEvent<HTMLInputElement>) => fn();
+      const updateSelected = (_e: React.ChangeEvent<HTMLInputElement>) => fn();
       const user = userEvent.setup();
-      render(<Radiobutton onChange={handleChange} label="Strength" value="strength" />);
+      render(<Radiobutton onChange={updateSelected} label="Strength" value="strength" />);
       await user.click(screen.getByLabelText('Strength'));
       expect(fn).toHaveBeenCalledTimes(1);
     });

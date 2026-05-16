@@ -7,7 +7,7 @@ export function TextArea(props: TextAreaProps) {
   const { className, error, value, onChange, ...rest } = props;
   const [stateValue, setStateValue] = useState(value);
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const updateValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onChange?.(e);
     setStateValue(e.currentTarget.value);
   };
@@ -17,7 +17,7 @@ export function TextArea(props: TextAreaProps) {
       <textarea
         {...rest}
         className={`${TextAreaClasses} ${className}`}
-        onChange={handleChange}
+        onChange={updateValue}
         value={stateValue}
       />
       <ErrorMessage message={error} />

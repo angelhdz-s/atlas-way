@@ -17,7 +17,7 @@ type SelectedOption = {
 };
 
 function SelectedOptions({ option, onCrossClick }: SelectedOption) {
-  const handleClick = () => {
+  const removeOption = () => {
     onCrossClick?.(option.value);
   };
   return (
@@ -27,7 +27,7 @@ function SelectedOptions({ option, onCrossClick }: SelectedOption) {
         <Button
           variant={{ size: 'xs', type: 'icon' }}
           type="button"
-          onClick={handleClick}
+          onClick={removeOption}
           className="transition-opacity hover:opacity-50"
           Icon={IconXMark}
           aria-label="Remove option selected"

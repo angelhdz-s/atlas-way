@@ -12,7 +12,7 @@ export function InputCheckBox(props: Props) {
   const { active: activeProp = false, ...inputProps } = props;
   const [active, setActive] = useState<boolean>(activeProp);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const toggleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setActive((prev) => !prev);
   };
@@ -32,7 +32,7 @@ export function InputCheckBox(props: Props) {
     <>
       <input
         {...inputProps}
-        onChange={handleChange}
+        onChange={toggleCheck}
         onKeyDown={handleEnterKeyDown}
         type="checkbox"
         checked={active}
