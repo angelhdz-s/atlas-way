@@ -1,9 +1,17 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
 export function Footer({ className = '' }: { className?: string }) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   return (
     <footer className={`flex items-center justify-center gap-4 p-4 md:justify-start ${className}`}>
       <main className="flex items-center gap-2">
         <h5>AtlasWay</h5>
-        <p>&copy; {new Date().getFullYear()}</p>
+        <p>&copy; {mounted && new Date().getFullYear()}</p>
       </main>
       <p>
         <span className="hidden md:inline">Mail us at: </span>
