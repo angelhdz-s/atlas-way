@@ -138,7 +138,7 @@ describe('CreateExercise use case', () => {
 
       jest
         .spyOn(idGeneratorMock, 'generate')
-        .mockResolvedValue(Failure(new TechnicalError() as never));
+        .mockReturnValue(Failure(new TechnicalError() as never));
 
       const exerciseData: CreateExerciseInput = {
         name: 'Bench Press',

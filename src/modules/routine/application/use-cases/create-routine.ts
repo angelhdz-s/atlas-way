@@ -18,7 +18,7 @@ export class CreateRoutine implements UseCase {
   ) {}
 
   async execute(routineData: CreateRoutineInput) {
-    const idResult = await this.generator.generate();
+    const idResult = this.generator.generate();
     if (!idResult.success) return idResult;
 
     const routineId = idResult.data;

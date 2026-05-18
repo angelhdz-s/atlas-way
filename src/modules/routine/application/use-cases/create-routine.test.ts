@@ -170,7 +170,7 @@ describe('CreateRoutine use case', () => {
 
       jest
         .spyOn(idGeneratorMock, 'generate')
-        .mockResolvedValue(Failure(new TechnicalError() as never));
+        .mockReturnValue(Failure(new TechnicalError() as never));
 
       const routineData: CreateRoutineInput = {
         name: 'Test Routine',

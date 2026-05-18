@@ -224,7 +224,7 @@ describe('UpdateRoutine use case', () => {
 
       jest
         .spyOn(idGeneratorMock, 'generate')
-        .mockResolvedValue(Failure(new TechnicalError() as never));
+        .mockReturnValue(Failure(new TechnicalError() as never));
 
       const updateResult = await useCase.execute(routineId, {
         routineDays: [{ name: 'Day 1', day: 1, sessionId: null }],

@@ -17,7 +17,7 @@ export class CreateUser implements UseCase {
     if (!userByEmailResult.success) return userByEmailResult;
     if (userByEmailResult.data) return Failure(new UserEmailAlreadyExists());
 
-    const idResult = await this.generator.generate();
+    const idResult = this.generator.generate();
     if (!idResult.success) return idResult;
 
     const userId = idResult.data;

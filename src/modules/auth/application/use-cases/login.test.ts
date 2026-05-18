@@ -154,7 +154,7 @@ describe('Login use case', () => {
       const idGeneratorRepoMock = new MockIdGenerator();
       const generateSpy = jest
         .spyOn(idGeneratorRepoMock, 'generate')
-        .mockResolvedValue(Failure(new TechnicalError() as never));
+        .mockReturnValue(Failure(new TechnicalError() as never));
       const login = new Login(authRepoMock, userRepoMock, idGeneratorRepoMock);
 
       const loginResult = await login.execute({ email: 'new.user@gmail.com', name: 'New User' });

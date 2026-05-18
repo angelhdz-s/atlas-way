@@ -4,7 +4,7 @@ import type { InfrastructureErrorTranslator } from '@/shared/infrastructure/erro
 
 export class UUIDGenerator implements IdGeneratorRepository {
   constructor(readonly errorMapper: InfrastructureErrorTranslator) {}
-  async generate() {
+  generate() {
     try {
       const id = crypto.randomUUID();
       return Success(id);

@@ -158,7 +158,7 @@ describe('CreateUser use case', () => {
       const useCase = new CreateUser(userRepoMock, idGeneratorMock);
       jest
         .spyOn(idGeneratorMock, 'generate')
-        .mockResolvedValue(Failure(new TechnicalError() as never));
+        .mockReturnValue(Failure(new TechnicalError() as never));
 
       // Data
       const userData: CreateUserInput = {

@@ -1,5 +1,6 @@
-import type { RepositoryResult } from '@/shared/domain/repository.result';
+import type { Result } from '@/shared/domain/result';
+import type { DomainError } from '@/shared/domain//errors/domain.errors';
 
 export interface IdGeneratorRepository {
-  generate: () => RepositoryResult<string>;
+  generate: () => Result<string, DomainError>;
 }

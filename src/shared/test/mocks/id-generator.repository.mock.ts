@@ -8,7 +8,7 @@ import type { IdGeneratorRepository } from '@/shared/application/id-generator.re
  */
 export class MockIdGenerator implements IdGeneratorRepository {
   public id: string = '1df38173-6fae-4abb-8cb2-ce33b6c24da4';
-  async generate() {
+  generate() {
     return Success(this.id);
   }
 }

@@ -16,7 +16,7 @@ export class CreateSession implements UseCase {
   ) {}
 
   async execute(data: CreateSessionInput) {
-    const idResult = await this.generator.generate();
+    const idResult = this.generator.generate();
     if (!idResult.success) return idResult;
 
     const sessionId = idResult.data;

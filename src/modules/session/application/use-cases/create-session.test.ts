@@ -176,7 +176,7 @@ describe('CreateSession use case', () => {
 
       jest
         .spyOn(idGeneratorMock, 'generate')
-        .mockResolvedValue(Failure(new TechnicalError() as never));
+        .mockReturnValue(Failure(new TechnicalError() as never));
 
       const newExercise = createExercise();
       const exerciseResult = await exerciseRepoMock.create(newExercise);
