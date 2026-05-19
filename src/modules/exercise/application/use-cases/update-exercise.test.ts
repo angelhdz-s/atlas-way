@@ -6,6 +6,21 @@ import { InMemoryExerciseRepository } from '@/modules/exercise/mocks/exercise.mo
 import { InMemoryMuscleRepository } from '@/modules/muscle/mocks/muscle.mocks.repository';
 import { Exercise } from '@/modules/exercise/domain/exercise.entity';
 
+function createExercise(id: string): Exercise {
+  const exercise = Exercise.create(id, {
+    name: 'Bench Press',
+    description: 'Chest exercise',
+    sets: 3,
+    reps: 10,
+    weight: 80,
+    muscles: [],
+    userId: 'user-123',
+  });
+
+  if (!exercise.success) throw new Error('Failed to create exercise');
+  return exercise.data;
+}
+
 describe('UpdateExercise use case', () => {
   describe('Happy Path', () => {
     it('should update exercise successfully and persist changes', async () => {
@@ -13,22 +28,14 @@ describe('UpdateExercise use case', () => {
       const muscleRepoMock = new InMemoryMuscleRepository();
       const useCase = new UpdateExercise(exerciseRepoMock, muscleRepoMock);
 
-      const exercise = Exercise.create('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {
-        name: 'Bench Press',
-        description: 'Chest exercise',
-        sets: 3,
-        reps: 10,
-        weight: 80,
-        muscles: [],
-        userId: 'user-123',
-      });
-      if (!exercise.success) throw new Error('Failed to create exercise');
-      await exerciseRepoMock.create(exercise.data);
+      const exercise = createExercise('1df38173-6fae-4abb-8cb2-ce33b6c24da4');
+      exerciseRepoMock.exercises.push(exercise);
 
       expect(exerciseRepoMock.exercises[0]?.name).not.toBe('Updated Bench Press');
 
       const updateResult = await useCase.execute('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {
         name: 'Updated Bench Press',
+        muscleIds: [1],
       });
 
       expect(updateResult.success).toBe(true);
@@ -38,6 +45,7 @@ describe('UpdateExercise use case', () => {
       expect(updateResult.success && updateResult.data.name).toBe('Updated Bench Press');
 
       expect(exerciseRepoMock.exercises[0]?.name).toBe('Updated Bench Press');
+      expect(exerciseRepoMock.exercises[0]?.muscles).toHaveLength(1);
     });
 
     it('should update multiple fields', async () => {
@@ -45,17 +53,8 @@ describe('UpdateExercise use case', () => {
       const muscleRepoMock = new InMemoryMuscleRepository();
       const useCase = new UpdateExercise(exerciseRepoMock, muscleRepoMock);
 
-      const exercise = Exercise.create('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {
-        name: 'Bench Press',
-        description: 'Chest exercise',
-        sets: 3,
-        reps: 10,
-        weight: 80,
-        muscles: [],
-        userId: 'user-123',
-      });
-      if (!exercise.success) throw new Error('Failed to create exercise');
-      await exerciseRepoMock.create(exercise.data);
+      const exercise = createExercise('1df38173-6fae-4abb-8cb2-ce33b6c24da4');
+      exerciseRepoMock.exercises.push(exercise);
 
       const updateResult = await useCase.execute('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {
         name: 'Updated Name',
@@ -89,17 +88,8 @@ describe('UpdateExercise use case', () => {
       const muscleRepoMock = new InMemoryMuscleRepository();
       const useCase = new UpdateExercise(exerciseRepoMock, muscleRepoMock);
 
-      const exercise = Exercise.create('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {
-        name: 'Bench Press',
-        description: 'Chest exercise',
-        sets: 3,
-        reps: 10,
-        weight: 80,
-        muscles: [],
-        userId: 'user-123',
-      });
-      if (!exercise.success) throw new Error('Failed to create exercise');
-      await exerciseRepoMock.create(exercise.data);
+      const exercise = createExercise('1df38173-6fae-4abb-8cb2-ce33b6c24da4');
+      exerciseRepoMock.exercises.push(exercise);
 
       const updateResult = await useCase.execute(
         '1df38173-6fae-4abb-8cb2-ce33b6c24da4',
@@ -115,17 +105,8 @@ describe('UpdateExercise use case', () => {
       const muscleRepoMock = new InMemoryMuscleRepository();
       const useCase = new UpdateExercise(exerciseRepoMock, muscleRepoMock);
 
-      const exercise = Exercise.create('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {
-        name: 'Bench Press',
-        description: 'Chest exercise',
-        sets: 3,
-        reps: 10,
-        weight: 80,
-        muscles: [],
-        userId: 'user-123',
-      });
-      if (!exercise.success) throw new Error('Failed to create exercise');
-      await exerciseRepoMock.create(exercise.data);
+      const exercise = createExercise('1df38173-6fae-4abb-8cb2-ce33b6c24da4');
+      exerciseRepoMock.exercises.push(exercise);
 
       const updateResult = await useCase.execute('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {
         muscleIds: [999],
@@ -142,17 +123,8 @@ describe('UpdateExercise use case', () => {
       const muscleRepoMock = new InMemoryMuscleRepository();
       const useCase = new UpdateExercise(exerciseRepoMock, muscleRepoMock);
 
-      const exercise = Exercise.create('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {
-        name: 'Bench Press',
-        description: 'Chest exercise',
-        sets: 3,
-        reps: 10,
-        weight: 80,
-        muscles: [],
-        userId: 'user-123',
-      });
-      if (!exercise.success) throw new Error('Failed to create exercise');
-      await exerciseRepoMock.create(exercise.data);
+      const exercise = createExercise('1df38173-6fae-4abb-8cb2-ce33b6c24da4');
+      exerciseRepoMock.exercises.push(exercise);
 
       jest
         .spyOn(exerciseRepoMock, 'update')
@@ -173,6 +145,9 @@ describe('UpdateExercise use case', () => {
       const muscleRepoMock = new InMemoryMuscleRepository();
       const useCase = new UpdateExercise(exerciseRepoMock, muscleRepoMock);
 
+      const exercise = createExercise('1df38173-6fae-4abb-8cb2-ce33b6c24da4');
+      exerciseRepoMock.exercises.push(exercise);
+
       jest
         .spyOn(exerciseRepoMock, 'findById')
         .mockResolvedValue(Failure(new TechnicalError() as never));
@@ -185,26 +160,16 @@ describe('UpdateExercise use case', () => {
       expect(!updateResult.success && updateResult.error.code).toBe('TECHNICAL_ERROR');
     });
 
-    it('should return failure when muscle repository findByIds operation fails', async () => {
+    it('should return failure when muscle repository findById operation fails', async () => {
       const exerciseRepoMock = new InMemoryExerciseRepository();
       const muscleRepoMock = new InMemoryMuscleRepository();
       const useCase = new UpdateExercise(exerciseRepoMock, muscleRepoMock);
 
-      const exercise = Exercise.create('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {
-        name: 'Bench Press',
-        description: 'Chest exercise',
-        sets: 3,
-        reps: 10,
-        weight: 80,
-        muscles: [],
-        userId: 'user-123',
-      });
-
-      if (!exercise.success) throw new Error('Failed to create exercise');
-      await exerciseRepoMock.create(exercise.data);
+      const exercise = createExercise('1df38173-6fae-4abb-8cb2-ce33b6c24da4');
+      exerciseRepoMock.exercises.push(exercise);
 
       jest
-        .spyOn(muscleRepoMock, 'findByIds')
+        .spyOn(muscleRepoMock, 'findById')
         .mockResolvedValue(Failure(new TechnicalError() as never));
 
       const updateResult = await useCase.execute('1df38173-6fae-4abb-8cb2-ce33b6c24da4', {

@@ -1,12 +1,12 @@
-import { ExerciseNotFoundError } from '@/modules/exercise/domain/errors/exercise.errors';
-import { Failure } from '@/shared/domain/result';
 import type { Exercise } from '@/modules/exercise/domain/exercise.entity';
 import type { IExerciseRepository } from '@/modules/exercise/domain/exercise.repository';
 import type { IMuscleRepository } from '@/modules/muscle/domain/muscle.repository';
 import type { UpdateExerciseInput } from '@/modules/exercise/application/dtos/update-exercise.dto';
 import type { UseCase } from '@/shared/application/shared.use-case';
-import { MuscleNotFoundError } from '@/modules/muscle/domain/errors/muscle.errors';
+import { ExerciseNotFoundError } from '@/modules/exercise/domain/errors/exercise.errors';
+import { Failure } from '@/shared/domain/result';
 import { updateExercise } from '@/modules/exercise/application/helpers/update-exercise.helper';
+import { MuscleValidationService } from '@/modules/muscle/domain/services/muscle.validation.service';
 
 export class UpdateExercise implements UseCase {
   constructor(
@@ -24,13 +24,10 @@ export class UpdateExercise implements UseCase {
     const updateResult = updateExercise(data, exercise);
     if (!updateResult.success) return updateResult;
 
-    if (data.muscleIds) {
-      const musclesResult = await this.muscleRepository.findByIds(data.muscleIds);
-      if (!musclesResult.success) return musclesResult;
-      if (data.muscleIds.length !== musclesResult.data.length)
-        return Failure(new MuscleNotFoundError());
-      exercise.changeMuscles(musclesResult.data);
-    }
+    const muscleValidationService = new MuscleValidationService(this.muscleRepository);
+    const musclesResult = await muscleValidationService.validateAndFetch(data.muscleIds);
+    if (!musclesResult.success) return musclesResult;
+    if (musclesResult.data) exercise.changeMuscles(musclesResult.data);
 
     return await this.exerciseRepository.update(exercise);
   }

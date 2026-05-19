@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom';
+import type { CreateExerciseInput } from '@/modules/exercise/application/dtos/create-exercise.dto';
 import { Failure } from '@/shared/domain/result';
 import { TechnicalError } from '@/shared/domain/errors/domain.errors';
 import { CreateExercise } from '@/modules/exercise/application/use-cases/create-exercise';
 import { InMemoryExerciseRepository } from '@/modules/exercise/mocks/exercise.mocks.repository';
 import { InMemoryMuscleRepository } from '@/modules/muscle/mocks/muscle.mocks.repository';
 import { MockIdGenerator } from '@/shared/test/mocks/id-generator.repository.mock';
-import type { CreateExerciseInput } from '@/modules/exercise/application/dtos/create-exercise.dto';
 
 describe('CreateExercise use case', () => {
   describe('Happy Path', () => {
@@ -24,6 +24,34 @@ describe('CreateExercise use case', () => {
         muscleIds: [1],
         userId: 'user-123',
       };
+
+      idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da4';
+
+      const createExerciseResult = await useCase.execute(exerciseData);
+
+      expect(createExerciseResult.success).toBe(true);
+      expect(createExerciseResult.success && createExerciseResult.data.id).toBe(
+        '1df38173-6fae-4abb-8cb2-ce33b6c24da4'
+      );
+      expect(createExerciseResult.success && createExerciseResult.data.name).toBe('Bench Press');
+
+      expect(exerciseRepoMock.exercises).toHaveLength(1);
+    });
+
+    it('should create exercise successfully and persist it wihtout muscle ids', async () => {
+      const exerciseRepoMock = new InMemoryExerciseRepository();
+      const muscleRepoMock = new InMemoryMuscleRepository();
+      const idGeneratorMock = new MockIdGenerator();
+      const useCase = new CreateExercise(exerciseRepoMock, muscleRepoMock, idGeneratorMock);
+
+      const exerciseData: CreateExerciseInput = {
+        name: 'Bench Press',
+        description: 'Chest exercise',
+        sets: 3,
+        reps: 10,
+        weight: 80,
+        userId: 'user-123',
+      } as never;
 
       idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da4';
 
@@ -160,14 +188,14 @@ describe('CreateExercise use case', () => {
       expect(exerciseRepoMock.exercises).toHaveLength(0);
     });
 
-    it('should return failure when muscle repository findByIds operation fails', async () => {
+    it('should return failure when muscle repository findById operation fails', async () => {
       const exerciseRepoMock = new InMemoryExerciseRepository();
       const muscleRepoMock = new InMemoryMuscleRepository();
       const idGeneratorMock = new MockIdGenerator();
       const useCase = new CreateExercise(exerciseRepoMock, muscleRepoMock, idGeneratorMock);
 
       jest
-        .spyOn(muscleRepoMock, 'findByIds')
+        .spyOn(muscleRepoMock, 'findById')
         .mockResolvedValue(Failure(new TechnicalError() as never));
 
       const exerciseData: CreateExerciseInput = {

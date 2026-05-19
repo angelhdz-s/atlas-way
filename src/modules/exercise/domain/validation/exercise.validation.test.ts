@@ -141,6 +141,17 @@ describe('validateExercise', () => {
         );
       });
 
+      it('should fail when is too short (less than 1 chars)', () => {
+        const validation = validateExercise({
+          ...validExerciseData,
+          description: '',
+        } as unknown as Parameters<typeof validateExercise>[0]);
+        expect(validation.success).toBe(false);
+        expect(validation.success === false && validation.error.code).toBe(
+          'INVALID_EXERCISE_DATA.DESCRIPTION'
+        );
+      });
+
       it('should fail when is too long (more than 100 chars)', () => {
         const validation = validateExercise({
           ...validExerciseData,
