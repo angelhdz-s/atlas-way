@@ -26,19 +26,4 @@ export class Muscle {
   get bodySection() {
     return this.data.group.section;
   }
-  changeName(name: MuscleProps['name']) {
-    this.data.name = name;
-  }
-  changeDescription(description: MuscleProps['name']) {
-    this.data.description = description;
-  }
-
-  static create(id: MuscleProps['id'], data: Omit<MuscleProps, 'id' | 'createdAt' | 'updatedAt'>) {
-    return new Muscle({
-      ...data,
-      id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-  }
 }
