@@ -9,6 +9,7 @@ export const errorMessages: Record<DomainErrorCode, string> = {
   'INVALID_EXERCISE_DATA.SETS': '',
   'INVALID_EXERCISE_DATA.WEIGHT': '',
   MUSCLE_NOT_FOUND: '',
+  INVALID_MUSCLE_DATA: '',
   NOTIFICATION_NOT_FOUND: '',
   ROUTINE_NOT_FOUND: '',
   SESSION_NOT_FOUND: '',

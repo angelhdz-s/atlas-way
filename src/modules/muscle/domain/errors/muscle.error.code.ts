@@ -1,1 +1,1 @@
-export type MuscleErrorCode = 'MUSCLE_NOT_FOUND';
+export type MuscleErrorCode = 'MUSCLE_NOT_FOUND' | 'INVALID_MUSCLE_DATA';
