@@ -5,11 +5,14 @@ import { IconPlus } from '@/presentation/globals/components/icons/outline/IconPl
 import { Routine } from '@/modules/routine/presentation/ui/components/Routine';
 import { Link } from '@/presentation/modules/button/components/Link';
 import { getAllRoutines } from '@/modules/routine/presentation/routine.actions';
+import { RoutineEmptyData } from '@/modules/routine/presentation/ui/components/RoutineEmptyData';
 
 export default async function RoutinesPage() {
   const routinesResult = await getAllRoutines();
 
   const routines = routinesResult.success ? routinesResult.data : [];
+
+  if (routines.length < 1) return <RoutineEmptyData />;
 
   return (
     <PageContainer>
