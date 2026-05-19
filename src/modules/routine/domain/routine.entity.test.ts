@@ -180,7 +180,7 @@ describe('Routine entity', () => {
       expect(result.success).toBe(true);
       expect(result.success && result.data).toBe(null);
       expect(routine.routineDays).toEqual(newRoutineDays);
-      expect(routine.days).toBe(2);
+      expect(routine.days).toBe(3);
     });
   });
 });
