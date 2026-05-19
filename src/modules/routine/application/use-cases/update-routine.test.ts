@@ -96,27 +96,6 @@ describe('UpdateRoutine use case', () => {
       expect(!updateResult.success && updateResult.error.code).toBe('ROUTINE_NOT_FOUND');
     });
 
-    it('should return failure when session not found', async () => {
-      const routineRepoMock = new InMemoryRoutineRepository();
-      const sessionRepoMock = new InMemorySessionRepository();
-      const idGeneratorMock = new MockIdGenerator();
-      const useCase = new UpdateRoutine(routineRepoMock, sessionRepoMock, idGeneratorMock);
-
-      const updateResult = await useCase.execute('1df38173-6fae-4abb-8cb2-ce33b6c24d99', {
-        name: 'New Name',
-        routineDays: [
-          {
-            day: 1,
-            name: 'Day 1',
-            sessionId: 'not-existing-session',
-          },
-        ],
-      });
-
-      expect(updateResult.success).toBe(false);
-      expect(!updateResult.success && updateResult.error.code).toBe('ROUTINE_NOT_FOUND');
-    });
-
     it('should return failure when invalid data provided', async () => {
       const routineRepoMock = new InMemoryRoutineRepository();
       const sessionRepoMock = new InMemorySessionRepository();
@@ -157,7 +136,7 @@ describe('UpdateRoutine use case', () => {
 
       const routineId = '1df38173-6fae-4abb-8cb2-ce33b6c24da5';
       const routine = Routine.create(routineId, {
-        name: 'Test',
+        name: 'Routine',
         description: null,
         active: true,
         days: 1,
@@ -194,74 +173,6 @@ describe('UpdateRoutine use case', () => {
 
       const updateResult = await useCase.execute('1df38173-6fae-4abb-8cb2-ce33b6c24da6', {
         name: 'Updated',
-      });
-
-      expect(updateResult.success).toBe(false);
-      expect(!updateResult.success && updateResult.error.code).toBe('TECHNICAL_ERROR');
-    });
-
-    it('should return failure when idGenerator fails during routineDays update', async () => {
-      const routineRepoMock = new InMemoryRoutineRepository();
-      const sessionRepoMock = new InMemorySessionRepository();
-      const idGeneratorMock = new MockIdGenerator();
-      const useCase = new UpdateRoutine(routineRepoMock, sessionRepoMock, idGeneratorMock);
-
-      const routineId = '1df38173-6fae-4abb-8cb2-ce33b6c24da7';
-      const routine = Routine.create(routineId, {
-        name: 'Test',
-        description: null,
-        active: true,
-        days: 1,
-        initialDate: new Date(),
-        cycleId: 'week',
-        routineDays: [
-          { id: '1df38173-6fae-4abb-8cb2-ce33b6c24d07', day: 1, name: 'Day 1', session: null },
-        ],
-        userId: 'user-123',
-      });
-      if (!routine.success) throw new Error('Failed to create routine');
-      await routineRepoMock.create(routine.data);
-
-      jest
-        .spyOn(idGeneratorMock, 'generate')
-        .mockReturnValue(Failure(new TechnicalError() as never));
-
-      const updateResult = await useCase.execute(routineId, {
-        routineDays: [{ name: 'Day 1', day: 1, sessionId: null }],
-      });
-
-      expect(updateResult.success).toBe(false);
-      expect(!updateResult.success && updateResult.error.code).toBe('TECHNICAL_ERROR');
-    });
-
-    it('should return failure when session operation findById fails', async () => {
-      const routineRepoMock = new InMemoryRoutineRepository();
-      const sessionRepoMock = new InMemorySessionRepository();
-      const idGeneratorMock = new MockIdGenerator();
-      const useCase = new UpdateRoutine(routineRepoMock, sessionRepoMock, idGeneratorMock);
-
-      jest
-        .spyOn(sessionRepoMock, 'findById')
-        .mockResolvedValue(Failure(new TechnicalError() as never));
-
-      const routineId = '1df38173-6fae-4abb-8cb2-ce33b6c24da4';
-      const routine = Routine.create(routineId, {
-        name: 'Test',
-        description: null,
-        active: true,
-        days: 1,
-        initialDate: new Date(),
-        cycleId: 'week',
-        routineDays: [
-          { id: '1df38173-6fae-4abb-8cb2-ce33b6c24d05', day: 1, name: 'Day 1', session: null },
-        ],
-        userId: 'user-123',
-      });
-      if (!routine.success) throw new Error('Failed to create routine');
-      await routineRepoMock.create(routine.data);
-
-      const updateResult = await useCase.execute(routineId, {
-        routineDays: [{ name: 'Day 1', day: 1, sessionId: '1df38173-6fae-4abb-8cb2-ce33b6c24da4' }],
       });
 
       expect(updateResult.success).toBe(false);

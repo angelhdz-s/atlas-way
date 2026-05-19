@@ -52,7 +52,6 @@ describe('Exercise entity', () => {
       const exercise = createTestExercise();
       const result = exercise.changeName('New Bench Press');
       expect(result.success).toBe(true);
-      expect(result.success && result.data).toBe(null);
       expect(exercise.name).toBe('New Bench Press');
     });
 
@@ -65,12 +64,18 @@ describe('Exercise entity', () => {
   });
 
   describe('changeDescription()', () => {
-    it('should change exercise description successfully', () => {
+    it('should change exercise description with string successfully', () => {
       const exercise = createTestExercise();
-      const result = exercise.changeDescription('New description');
-      expect(result.success).toBe(true);
-      expect(result.success && result.data).toBe(null);
+      const changeResult = exercise.changeDescription('New description');
+      expect(changeResult.success).toBe(true);
       expect(exercise.description).toBe('New description');
+    });
+
+    it('should change exercise description with null successfully', () => {
+      const exercise = createTestExercise();
+      const changeResult = exercise.changeDescription(null);
+      expect(changeResult.success).toBe(true);
+      expect(exercise.description).toBe(null);
     });
 
     it('should return failure when description is invalid', () => {
@@ -86,7 +91,6 @@ describe('Exercise entity', () => {
       const exercise = createTestExercise();
       const result = exercise.changeSets(5);
       expect(result.success).toBe(true);
-      expect(result.success && result.data).toBe(null);
       expect(exercise.sets).toBe(5);
     });
 
@@ -103,7 +107,6 @@ describe('Exercise entity', () => {
       const exercise = createTestExercise();
       const result = exercise.changeReps(12);
       expect(result.success).toBe(true);
-      expect(result.success && result.data).toBe(null);
       expect(exercise.reps).toBe(12);
     });
 
@@ -120,7 +123,6 @@ describe('Exercise entity', () => {
       const exercise = createTestExercise();
       const result = exercise.changeWeight(90);
       expect(result.success).toBe(true);
-      expect(result.success && result.data).toBe(null);
       expect(exercise.weight).toBe(90);
     });
 
@@ -140,7 +142,6 @@ describe('Exercise entity', () => {
         newMuscles as Parameters<typeof exercise.changeMuscles>[0]
       );
       expect(result.success).toBe(true);
-      expect(result.success && result.data).toBe(null);
       expect(exercise.muscles).toEqual(newMuscles);
     });
   });

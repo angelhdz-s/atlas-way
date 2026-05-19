@@ -28,10 +28,8 @@ export function updateExercise(
 ): Result<Exercise, DomainError> {
   if (!isObject(data)) return Failure(new InvalidExerciseData());
   const dataKeys = Object.keys(data) as (keyof UpdateExerciseInput)[];
-
   for (const key of dataKeys) {
-    if (!isKeyOf(key, updateOperations)) continue;
-    if (!isKeyOf(key, data)) continue;
+    if (!isKeyOf(key, updateOperations) || !isKeyOf(key, data)) continue;
 
     const value = data[key] as never;
     const method = updateOperations[key] as keyof ExerciseMethods;

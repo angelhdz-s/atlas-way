@@ -1,14 +1,12 @@
+import type { UseCase } from '@/shared/application/shared.use-case';
+import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
+import type { CreateRoutineInput } from '@/modules/routine/application/dtos/create-routine.dto';
+import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
+import type { ISessionRepository } from '@/modules/session/domain/session.repository';
 import { Failure } from '@/shared/domain/result';
 import { Routine } from '@/modules/routine/domain/routine.entity';
 import { InvalidRoutineData } from '@/modules/routine/domain/errors/routine.errors';
-import type { CreateRoutineInput } from '@/modules/routine/application/dtos/create-routine.dto';
-import type { IdGeneratorRepository } from '@/shared/application/id-generator.repository';
-import type { IRoutineRepository } from '@/modules/routine/domain/routine.repository';
-import type { ISessionRepository } from '@/modules/session/domain/session.repository';
-import type { RoutineProps } from '@/modules/routine/domain/routine.types';
-import type { Session } from '@/modules/session/domain/session.entity';
-import type { UseCase } from '@/shared/application/shared.use-case';
-import { SessionNotFoundError } from '@/modules/auth/domain/errors/auth.errors';
+import { RoutineDaysValidationService } from '@/modules/routine/domain/services/routine-day.validation.service';
 
 export class CreateRoutine implements UseCase {
   constructor(
@@ -23,41 +21,20 @@ export class CreateRoutine implements UseCase {
 
     const routineId = idResult.data;
 
-    const sessions: (Session | null)[] = [];
-
-    for (const routineDay of routineData.routineDays) {
-      if (!routineDay.sessionId) {
-        sessions.push(null);
-        continue;
-      }
-      const sessionResult = await this.sessionRepository.findById(routineDay.sessionId);
-      if (!sessionResult.success) return sessionResult;
-      if (!sessionResult.data) return Failure(new SessionNotFoundError());
-      sessions.push(sessionResult.data);
-    }
-
-    const routineDays: RoutineProps['routineDays'] = [];
-
-    for (let i = 0; i < routineData.routineDays.length; i++) {
-      const routineDay = routineData.routineDays[i];
-      if (!routineDay) return Failure(new InvalidRoutineData('ROUTINE_DAYS'));
-
-      const sessionIdResult = await this.generator.generate();
-      if (!sessionIdResult.success) return sessionIdResult;
-      const sessionId = sessionIdResult.data;
-
-      routineDays.push({
-        id: sessionId,
-        day: routineDay.day,
-        name: routineDay.name,
-        session: sessions[i] ?? null,
-      });
-    }
+    const routineDaysService = new RoutineDaysValidationService(
+      this.sessionRepository,
+      this.generator
+    );
+    const routineDaysResult = await routineDaysService.createRoutineDays(routineData.routineDays);
+    if (!routineDaysResult.success) return routineDaysResult;
+    if (!routineDaysResult.data) return Failure(new InvalidRoutineData('ROUTINE_DAYS_LENGTH'));
+    const routineDays = routineDaysResult.data;
 
     const newRoutineResult = Routine.create(routineId, {
       ...routineData,
       routineDays,
     });
+
     if (!newRoutineResult.success) return newRoutineResult;
 
     return await this.routineRepository.create(newRoutineResult.data);

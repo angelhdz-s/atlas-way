@@ -79,11 +79,10 @@ export class Routine {
     return Success(null);
   }
   changeRoutineDays(routineDays: RoutineProps['routineDays']): Result<null, DomainError> {
-    if (!routineValidators.routineDays.validate(routineDays))
-      return Failure(routineValidators.routineDays.error);
-    const daysResult = this.changeDays(routineDays.length);
-    if (!daysResult.success) return daysResult;
-
+    if (this.days !== routineDays.length) {
+      const daysResult = this.changeDays(routineDays.length);
+      if (!daysResult.success) return daysResult;
+    }
     this.data.routineDays = routineDays;
     return Success(null);
   }

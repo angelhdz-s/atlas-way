@@ -4,7 +4,7 @@ export const EXERCISE_NAME_LENGTH = {
 } as const;
 
 export const EXERCISE_DESCRIPTION_LENGTH = {
-  min: 0,
+  min: 1,
   max: 100,
 } as const;
 

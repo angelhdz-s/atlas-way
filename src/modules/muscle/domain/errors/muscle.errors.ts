@@ -5,3 +5,9 @@ export class MuscleNotFoundError extends DomainError {
     super('MUSCLE_NOT_FOUND');
   }
 }
+
+export class InvalidMuscleData extends DomainError {
+  constructor() {
+    super('INVALID_MUSCLE_DATA');
+  }
+}

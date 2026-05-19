@@ -4,14 +4,13 @@ import {
   isIntegerNumber,
   isString,
 } from '@/shared/domain/validation/validation.primitives';
-import { isArray, isDate } from '@/shared/domain/validation/validation.non-primitives';
+import { isDate } from '@/shared/domain/validation/validation.non-primitives';
 import { isValidUuid } from '@/shared/domain/validation/validation.utils';
 import {
   ROUTINE_DAYS_LENGTH,
   ROUTINE_DESCRIPTION_LENGTH,
   ROUTINE_NAME_LENGTH,
 } from '@/modules/routine/domain/validation/routine.validation.constants';
-import { isValidRoutineRoutineDay } from '@/modules/routine/domain/validation/routine.routine-day.validation';
 
 export const isValidRoutineId: ValidationFunction = (id: unknown) => {
   return isValidUuid(id);
@@ -44,13 +43,4 @@ export const isValidRoutineDays: ValidationFunction = (days: unknown) => {
   if (!isIntegerNumber(days)) return false;
   if (days < ROUTINE_DAYS_LENGTH.min) return false;
   return days <= ROUTINE_DAYS_LENGTH.max;
-};
-
-export const areValidRoutineRoutineDays: ValidationFunction = (routineDays: unknown) => {
-  if (!isArray(routineDays)) return false;
-  if (!isValidRoutineDays(routineDays.length)) return false;
-  for (const routineDay of routineDays) {
-    if (!isValidRoutineRoutineDay(routineDay)) return false;
-  }
-  return true;
 };

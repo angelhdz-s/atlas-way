@@ -1,49 +1,44 @@
 import type { ValidationFunction } from '@/shared/shared.types';
-import type { RoutineDay } from '@/modules/routine/domain/routine.types';
+import type { RoutineRoutineDayFactory } from '@/modules/routine/domain/routine.types';
 import { isObject } from '@/shared/domain/validation/validation.non-primitives';
 import { isString } from '@/shared/domain/validation/validation.primitives';
-import { isKeyOf, isValidUuid } from '@/shared/domain/validation/validation.utils';
-import { Session } from '@/modules/session/domain/session.entity';
+import { isKeyOf } from '@/shared/domain/validation/validation.utils';
 import { isValidRoutineDays } from '@/modules/routine/domain/validation/routine.validation.utils';
+import { isValidSessionId } from '@/modules/session/domain/validation/session.validation.utils';
 
-const isValidRoutineDayId: ValidationFunction = (id: unknown) => {
-  return isValidUuid(id);
-};
-
-const isValidRoutineDayDay: ValidationFunction = (day: unknown) => {
+function isValidRoutineDayDay(day: unknown): boolean {
   return isValidRoutineDays(day);
-};
+}
 
-const isValidRoutineDaySession: ValidationFunction = (session: unknown) => {
-  if (session === null) return true;
-  return session instanceof Session;
-};
-
-const isValidRoutineDayName: ValidationFunction = (name: unknown) => {
+function isValidRoutineDayName(name: unknown): boolean {
   return isString(name);
+}
+
+function isValidRoutineDaySessionId(sessionId: unknown): boolean {
+  return sessionId === null || isValidSessionId(sessionId);
+}
+
+type RawRoutineDaysValidations = {
+  [K in keyof RoutineRoutineDayFactory]: ValidationFunction;
 };
 
-type RoutineDaysValidations = {
-  [K in keyof RoutineDay]: ValidationFunction;
-};
-
-const routineDaysValidation: RoutineDaysValidations = {
-  id: isValidRoutineDayId,
+const factoryRoutineDaysInputValidation: RawRoutineDaysValidations = {
   day: isValidRoutineDayDay,
   name: isValidRoutineDayName,
-  session: isValidRoutineDaySession,
+  sessionId: isValidRoutineDaySessionId,
 };
 
-export const isValidRoutineRoutineDay: ValidationFunction = (routineDay: unknown) => {
+export function isValidFactoryRoutineRoutineDayInput(routineDay: unknown): boolean {
   if (!isObject(routineDay)) return true;
-  const routineDayKeys = Object.keys(routineDaysValidation) as (keyof RoutineDay)[];
+  const routineDayKeys = Object.keys(
+    factoryRoutineDaysInputValidation
+  ) as (keyof RawRoutineDaysValidations)[];
 
   for (const key of routineDayKeys) {
     if (!isKeyOf(key, routineDay)) return false;
-
     const value = routineDay[key];
-    const validate = routineDaysValidation[key] as ValidationFunction;
+    const validate = factoryRoutineDaysInputValidation[key] as ValidationFunction;
     if (!validate(value)) return false;
   }
   return true;
-};
+}

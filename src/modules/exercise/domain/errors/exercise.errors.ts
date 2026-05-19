@@ -15,10 +15,6 @@ export class ExerciseOwnershipError extends DomainError {
 
 export class InvalidExerciseData extends DomainError {
   constructor(readonly error_code: ExerciseInvalidDataErrorCodes | undefined = undefined) {
-    if (!error_code) {
-      super('INVALID_EXERCISE_DATA');
-    } else {
-      super(`INVALID_EXERCISE_DATA.${error_code}`);
-    }
+    super(error_code ? `INVALID_EXERCISE_DATA.${error_code}` : 'INVALID_EXERCISE_DATA');
   }
 }
