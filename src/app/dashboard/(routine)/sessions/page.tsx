@@ -5,10 +5,14 @@ import { Session } from '@/modules/session/presentation/ui/components/Session';
 import { IconPlus } from '@/presentation/globals/components/icons/outline/IconPlus';
 import { Link } from '@/presentation/modules/button/components/Link';
 import { getAllSessions } from '@/modules/session/presentation/session.actions';
+import { SessionEmptyData } from '@/modules/session/presentation/ui/components/SessionEmptyData';
 
 export default async function SessionsPage() {
   const sessionsResult = await getAllSessions();
   const sessions = sessionsResult.success ? sessionsResult.data : [];
+
+  if (sessions.length < 1) return <SessionEmptyData />;
+
   return (
     <PageContainer>
       <PageHeader title="Sessions" description="Manage your days planifications" className="">

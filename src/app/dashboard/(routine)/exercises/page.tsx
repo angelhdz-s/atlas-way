@@ -5,6 +5,7 @@ import { getAllUserExercises } from '@/modules/exercise/presentation/exercise.ac
 import { Link } from '@/presentation/modules/button/components/Link';
 import { IconPlus } from '@/presentation/globals/components/icons/outline/IconPlus';
 import { ExercisesTable } from '@/modules/exercise/presentation/components/ExercisesTable';
+import { ExerciseEmptyData } from '@/modules/exercise/presentation/components/ExerciseEmptyData';
 
 export const dynamic = 'force-dynamic';
 
@@ -12,6 +13,8 @@ export default async function ExercisesPage() {
   const exercisesRequest = await getAllUserExercises();
 
   const exercises = exercisesRequest.success ? exercisesRequest.data : [];
+
+  if (exercises.length < 1) return <ExerciseEmptyData />;
 
   return (
     <PageContainer>
