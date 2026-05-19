@@ -5,7 +5,6 @@ import { isObject } from '@/shared/domain/validation/validation.non-primitives';
 import { isKeyOf } from '@/shared/domain/validation/validation.utils';
 import { CYCLE_TYPES } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
 import {
-  areValidRoutineRoutineDays,
   isValidRoutineActive,
   isValidRoutineDays,
   isValidRoutineDescription,
@@ -18,7 +17,10 @@ import type { Result } from '@/shared/domain/result';
 import type { DomainError } from '@/shared/domain/errors/domain.errors';
 import type { RoutineFactoryData, RoutineProps } from '@/modules/routine/domain/routine.types';
 
-type RoutineValidationKeys = Omit<RoutineProps, 'createdAt' | 'updatedAt' | 'cycle' | 'userId'>;
+type RoutineValidationKeys = Omit<
+  RoutineProps,
+  'createdAt' | 'updatedAt' | 'cycle' | 'userId' | 'routineDays'
+>;
 
 type RoutineValidators = Record<
   keyof RoutineValidationKeys,
@@ -40,10 +42,6 @@ export const routineValidators: RoutineValidators = {
   initialDate: {
     validate: isValidRoutineInitialDate,
     error: new InvalidRoutineData('INITIAL_DATE'),
-  },
-  routineDays: {
-    validate: areValidRoutineRoutineDays,
-    error: new InvalidRoutineData('ROUTINE_DAYS'),
   },
 };
 

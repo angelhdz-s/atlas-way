@@ -76,32 +76,6 @@ describe('CreateRoutine use case', () => {
   });
 
   describe('Error Handling', () => {
-    it('should return failure when session not found', async () => {
-      const routineRepoMock = new InMemoryRoutineRepository();
-      const sessionRepoMock = new InMemorySessionRepository();
-      const idGeneratorMock = new MockIdGenerator();
-      const useCase = new CreateRoutine(routineRepoMock, sessionRepoMock, idGeneratorMock);
-
-      const routineData: CreateRoutineInput = {
-        name: 'Invalid Routine',
-        description: null,
-        active: true,
-        days: 1,
-        initialDate: new Date(),
-        cycleId: 'week',
-        userId: 'user-123',
-        routineDays: [{ name: 'Day 1', day: 1, sessionId: 'non-existent-session' }],
-      };
-
-      idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da6';
-
-      const createResult = await useCase.execute(routineData);
-
-      expect(createResult.success).toBe(false);
-      expect(!createResult.success && createResult.error.code).toBe('SESSION_NOT_FOUND');
-      expect(routineRepoMock.routines).toHaveLength(0);
-    });
-
     it('should return failure when invalid routine data', async () => {
       const routineRepoMock = new InMemoryRoutineRepository();
       const sessionRepoMock = new InMemorySessionRepository();
@@ -117,6 +91,61 @@ describe('CreateRoutine use case', () => {
         cycleId: 'week',
         userId: 'user-123',
         routineDays: [{ name: 'Day 1', day: 1, sessionId: null }],
+      };
+
+      idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da7';
+
+      const createResult = await useCase.execute(routineData);
+
+      expect(createResult.success).toBe(false);
+      expect(
+        !createResult.success && createResult.error.code.startsWith('INVALID_ROUTINE_DATA')
+      ).toBe(true);
+      expect(routineRepoMock.routines).toHaveLength(0);
+    });
+
+    it('should return failure when no routineDays provided', async () => {
+      const routineRepoMock = new InMemoryRoutineRepository();
+      const sessionRepoMock = new InMemorySessionRepository();
+      const idGeneratorMock = new MockIdGenerator();
+      const useCase = new CreateRoutine(routineRepoMock, sessionRepoMock, idGeneratorMock);
+
+      const routineData: CreateRoutineInput = {
+        name: 'AB',
+        description: null,
+        active: true,
+        days: 1,
+        initialDate: new Date(),
+        cycleId: 'week',
+        userId: 'user-123',
+      } as never;
+
+      idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da7';
+
+      const createResult = await useCase.execute(routineData);
+
+      expect(createResult.success).toBe(false);
+      expect(
+        !createResult.success && createResult.error.code.startsWith('INVALID_ROUTINE_DATA')
+      ).toBe(true);
+      expect(routineRepoMock.routines).toHaveLength(0);
+    });
+
+    it('should return failure when invalid routineDays provided', async () => {
+      const routineRepoMock = new InMemoryRoutineRepository();
+      const sessionRepoMock = new InMemorySessionRepository();
+      const idGeneratorMock = new MockIdGenerator();
+      const useCase = new CreateRoutine(routineRepoMock, sessionRepoMock, idGeneratorMock);
+
+      const routineData: CreateRoutineInput = {
+        name: 'AB',
+        description: null,
+        active: true,
+        days: 1,
+        initialDate: new Date(),
+        cycleId: 'week',
+        userId: 'user-123',
+        routineDays: [],
       };
 
       idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da7';
@@ -182,36 +211,6 @@ describe('CreateRoutine use case', () => {
         userId: 'user-123',
         routineDays: [{ name: 'Day 1', day: 1, sessionId: null }],
       };
-
-      const createResult = await useCase.execute(routineData);
-
-      expect(createResult.success).toBe(false);
-      expect(!createResult.success && createResult.error.code).toBe('TECHNICAL_ERROR');
-      expect(routineRepoMock.routines).toHaveLength(0);
-    });
-
-    it('should return failure when session repository findById fails', async () => {
-      const routineRepoMock = new InMemoryRoutineRepository();
-      const sessionRepoMock = new InMemorySessionRepository();
-      const idGeneratorMock = new MockIdGenerator();
-      const useCase = new CreateRoutine(routineRepoMock, sessionRepoMock, idGeneratorMock);
-
-      jest
-        .spyOn(sessionRepoMock, 'findById')
-        .mockResolvedValue(Failure(new TechnicalError() as never));
-
-      const routineData: CreateRoutineInput = {
-        name: 'Test Routine',
-        description: null,
-        active: true,
-        days: 1,
-        initialDate: new Date(),
-        cycleId: 'week',
-        userId: 'user-123',
-        routineDays: [{ name: 'Day 1', day: 1, sessionId: 'session-1' }],
-      };
-
-      idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24d10';
 
       const createResult = await useCase.execute(routineData);
 

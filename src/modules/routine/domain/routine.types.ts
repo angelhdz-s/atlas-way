@@ -3,6 +3,7 @@ import type { UserProps } from '@/modules/user/domain/user.types';
 import type { Session } from '@/modules/session/domain/session.entity';
 import type { RoutineCycleId } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
 import type { Routine } from '@/modules/routine/domain/routine.entity';
+import type { SessionProps } from '@/modules/session/domain/session.types';
 
 export type RoutineDay = {
   id: string;
@@ -33,3 +34,10 @@ export type RoutineFactoryData = Omit<RoutineProps, 'id' | 'createdAt' | 'update
 };
 
 export type RoutineMethods = ClassMethods<Routine>;
+
+export type RoutineRoutineDayFactory = Omit<
+  RoutineProps['routineDays'][number],
+  'id' | 'session'
+> & {
+  sessionId: SessionProps['id'] | null;
+};

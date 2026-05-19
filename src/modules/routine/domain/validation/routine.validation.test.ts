@@ -233,54 +233,6 @@ describe('validateRoutine', () => {
       });
     });
 
-    describe('ROUTINE DAYS field', () => {
-      it('should fail when is not an array', () => {
-        const validation = validateRoutine({
-          ...validRoutineData,
-          routineDays: 'not-an-array',
-        } as unknown as Parameters<typeof validateRoutine>[0]);
-        expect(validation.success).toBe(false);
-        expect(validation.success === false && validation.error.code).toBe(
-          'INVALID_ROUTINE_DATA.ROUTINE_DAYS'
-        );
-      });
-
-      describe("ROUTINE DAYS' fields", () => {
-        it('should fail missing a key', () => {
-          const validation = validateRoutine({
-            ...validRoutineData,
-            routineDays: [{ day: 1, name: 'Day 1', session: null }],
-          } as unknown as Parameters<typeof validateRoutine>[0]);
-          expect(validation.success).toBe(false);
-          expect(validation.success === false && validation.error.code).toBe(
-            'INVALID_ROUTINE_DATA.ROUTINE_DAYS'
-          );
-        });
-
-        it('should fail when has invalid day', () => {
-          const validation = validateRoutine({
-            ...validRoutineData,
-            routineDays: [{ id: validId, day: -1, name: 'Day 1', session: null }],
-          } as unknown as Parameters<typeof validateRoutine>[0]);
-          expect(validation.success).toBe(false);
-          expect(validation.success === false && validation.error.code).toBe(
-            'INVALID_ROUTINE_DATA.ROUTINE_DAYS'
-          );
-        });
-
-        it('should fail when has invalid name', () => {
-          const validation = validateRoutine({
-            ...validRoutineData,
-            routineDays: [{ id: validId, day: 1, session: null }],
-          } as unknown as Parameters<typeof validateRoutine>[0]);
-          expect(validation.success).toBe(false);
-          expect(validation.success === false && validation.error.code).toBe(
-            'INVALID_ROUTINE_DATA.ROUTINE_DAYS'
-          );
-        });
-      });
-    });
-
     describe('CYCLE ID field', () => {
       it('should fail when is not a valid cycle type', () => {
         const validation = validateRoutine({
