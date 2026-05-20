@@ -10,9 +10,9 @@ import { CardTagsWrapperFade } from '@/presentation/modules/card/components/Card
 import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 
 export function Routine({ data }: { data: RoutineDTO }) {
-  const { name, routineDays, description } = data;
+  const { name, plan, description } = data;
 
-  const routineDaysSessions = routineDays.map((r) => r.session);
+  const routineDaysSessions = plan.map((r) => r.session);
 
   const sessions = routineDaysSessions.filter((s) => s !== null);
 
@@ -37,7 +37,7 @@ export function Routine({ data }: { data: RoutineDTO }) {
         </CardTagsWrapperFade>
         <main>
           <ul className="flex flex-wrap items-center gap-2 text-sm">
-            {routineDays.map(({ day, session }) => (
+            {plan.map(({ day, session }) => (
               <RoutineDayItem
                 key={day}
                 name={DAYS[(day + 1) as DayWeeksType].shortName}

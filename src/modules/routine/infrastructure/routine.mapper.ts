@@ -1,5 +1,3 @@
-import { Routine } from '@/modules/routine/domain/routine.entity';
-import { SessionMapper } from '@/modules/session/infrastructure/session.mapper';
 import type { RoutineProps } from '@/modules/routine/domain/routine.types';
 import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
 import type {
@@ -8,6 +6,8 @@ import type {
   RoutinePrismaUpdate,
 } from '@/modules/routine/infrastructure/prisma/routine.prisma.types';
 import type { RoutineCycleId } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
+import { Routine } from '@/modules/routine/domain/routine.entity';
+import { SessionMapper } from '@/modules/session/infrastructure/session.mapper';
 
 export class RoutineMapper {
   static toDomain(data: RoutinePrisma): Routine {
@@ -25,7 +25,7 @@ export class RoutineMapper {
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
       userId: data.userId,
-      routineDays: data.routineDays.map((r) => ({
+      plan: data.plan.map((r) => ({
         id: r.id,
         day: r.dayNumber,
         name: r.name,
@@ -56,8 +56,8 @@ export class RoutineMapper {
           id: data.userId,
         },
       },
-      routineDays: {
-        create: data.routineDays.map((r) => ({
+      plan: {
+        create: data.plan.map((r) => ({
           id: r.id,
           name: r.name,
           dayNumber: r.day,
@@ -77,9 +77,9 @@ export class RoutineMapper {
       active: data.active,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
-      routineDays: {
+      plan: {
         deleteMany: {},
-        create: data.routineDays.map((r) => ({
+        create: data.plan.map((r) => ({
           id: r.id,
           dayNumber: r.day,
           name: r.name,
@@ -100,7 +100,7 @@ export class RoutineMapper {
       createdAt: data.createdAt,
       userId: data.userId,
       cycle: data.cycle,
-      routineDays: data.routineDays.map((r) => ({
+      plan: data.plan.map((r) => ({
         day: r.day,
         name: r.name,
         session: r.session ? SessionMapper.toDTO(r.session) : null,

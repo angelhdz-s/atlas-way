@@ -7,7 +7,7 @@ import type { UpdateRoutineInput } from '@/modules/routine/application/dtos/upda
 import { Failure } from '@/shared/domain/result';
 import { RoutineNotFoundError } from '@/modules/routine/domain/errors/routine.errors';
 import { updateRoutineProperties } from '@/modules/routine/application/helpers/update-routine.use-case.helper';
-import { RoutineDaysValidationService } from '@/modules/routine/domain/services/routine-day.validation.service';
+import { RoutinePlanValidationService } from '@/modules/routine/domain/services/routine-plan.validation.service';
 
 export class UpdateRoutine implements UseCase {
   constructor(
@@ -26,13 +26,13 @@ export class UpdateRoutine implements UseCase {
     const updatePropertiesResult = updateRoutineProperties(data, routine);
     if (!updatePropertiesResult.success) return updatePropertiesResult;
 
-    const routineDaysService = new RoutineDaysValidationService(
+    const routineDaysService = new RoutinePlanValidationService(
       this.sessionRepository,
       this.generatorRepository
     );
-    const updateRoutineDaysResult = await routineDaysService.createRoutineDays(data.routineDays);
+    const updateRoutineDaysResult = await routineDaysService.createRoutineDays(data.plan);
     if (!updateRoutineDaysResult.success) return updateRoutineDaysResult;
-    if (updateRoutineDaysResult.data) routine.changeRoutineDays(updateRoutineDaysResult.data);
+    if (updateRoutineDaysResult.data) routine.changePlan(updateRoutineDaysResult.data);
 
     return await this.routineRepository.update(routine);
   }

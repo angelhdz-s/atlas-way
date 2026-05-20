@@ -24,13 +24,13 @@ model Users {
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   roleId        String        @default("base")
-  role          Roles         @relation(fields: [roleId], references: [id])
+  role        Roles         @relation(fields: [roleId], references: [id])
   routines      Routines[]
   sessions      Sessions[]
   exercises     Exercises[]
   muscles       Muscles[]
   notifications Notifications[]
-  tracking      Tracking[]
+  training      Training[]
 }
 
 model RoutineCycleTypes {
@@ -52,33 +52,36 @@ model Routines {
   description     String?
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
-  user            Users             @relation(fields: [userId], references: [id])
-  cycleType       RoutineCycleTypes @relation(fields: [routineCycleId], references: [id])
-  routineDays     RoutineDays[]
+  user          Users             @relation(fields: [userId], references: [id])
+  cycleType     RoutineCycleTypes @relation(fields: [routineCycleId], references: [id])
+  training        Training[]
+  plan            RoutinePlan[]
 }
 
-model RoutineDays {
-  id            String    @id @default(uuid())
+model RoutinePlan {
+  id            String        @id @default(uuid())
   routineId     String    
   sessionId     String?   
   name          String    
   dayNumber     Int       
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  routine       Routines  @relation(fields: [routineId], references: [id])
-  session       Sessions? @relation(fields: [sessionId], references: [id])
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  routine     Routines      @relation(fields: [routineId], references: [id])
+  session     Sessions?     @relation(fields: [sessionId], references: [id])
+	@@map("RoutineDays")
 }
 
 model Sessions {
-  id            String           @id @default(uuid())
-  userId        String
-  name          String        @unique
-  description   String?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  user          Users          @relation(fields: [userId], references: [id])
-  routineDays   RoutineDays[]
+  id                String            @id @default(uuid())
+  userId            String
+  name              String            @unique
+  description       String?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  user            Users             @relation(fields: [userId], references: [id])
+  plan              RoutinePlan[]
   sessionToExercise SessionsToExercises[]
+  training          Training[]
 }
 
 model Exercises {
@@ -88,11 +91,11 @@ model Exercises {
   description   String?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
-  user          Users         @relation(fields: [userId], references: [id])
   reps          Int
   sets          Int
   weight        Int
-  trackedExercise TrackedExercises[]
+  user        Users         @relation(fields: [userId], references: [id])
+  trainingPlan  TrainingPlan[]
   exercisesToMuscles ExercisesToMuscles[]
   sessionToExercise SessionsToExercises[]
 }
@@ -100,13 +103,13 @@ model Exercises {
 // MARK: System tables
 
 model Notifications {
-  id              String                 @id @default(uuid())
+  id              String              @id @default(uuid())
   userId          String
   name            String              
   message         String
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt
-  user            Users                @relation(fields: [userId], references: [id])
+  user            Users             @relation(fields: [userId], references: [id])
 }
 
 model Status {
@@ -114,8 +117,8 @@ model Status {
   name            String              @unique
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt
-  tracking        Tracking[]
-  exercises       TrackedExercises[]
+  training      Training[]
+  trainingSets  TrainingSets[]
 }
 
 model DayTypes {
@@ -123,7 +126,7 @@ model DayTypes {
   name            String              @unique
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt
-  tracking        Tracking[]
+  training        Training[]
 }
 
 model BodySections {
@@ -145,57 +148,68 @@ model MuscularGroups {
 }
 
 model Muscles {
-  id              Int           @id @default(autoincrement())
+  id              Int             @id @default(autoincrement())
   muscularGroupId Int
   userId          String
   name            String
   description     String?       
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  user            Users @relation(fields: [userId], references: [id])
-  muscularGroup   MuscularGroups @relation(fields: [muscularGroupId], references: [id])
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  user            Users           @relation(fields: [userId], references: [id])
+  muscularGroup   MuscularGroups  @relation(fields: [muscularGroupId], references: [id])
   exercisesToMuscles ExercisesToMuscles[]
 }
 
 // MARK: Tracking tables
 
-model Tracking {
-  id                    String                 @id @default(uuid())
+model Training {
+  id                    String             @id @default(uuid())
   userId                String
+  routineId             String?
+  sessionId             String?
   date                  DateTime
-  status                String
-  dayType               String
+  statusId                String
+  dayTypeId               String
   notes                 String?
   createdAt             DateTime            @default(now())
   updatedAt             DateTime            @updatedAt
-  user                  Users                @relation(fields: [userId], references: [id])
-  fkStatus              Status              @relation(fields: [status], references: [id])
-  fkDayType             DayTypes             @relation(fields: [dayType], references: [id])
-  trackedExercise       TrackedExercises[]
+  user                  Users               @relation(fields: [userId], references: [id])
+  dayType             DayTypes            @relation(fields: [dayTypeId], references: [id])
+  routine             Routines?            @relation(fields: [routineId], references: [id])
+  session             Sessions?            @relation(fields: [sessionId], references: [id])
+  status              Status              @relation(fields: [statusId], references: [id])
+  trainingPlan          TrainingPlan[]
+  @@unique([id, routineId, sessionId])
 }
 
-model TrackedExercises {
-  id                      String                   @id @default(uuid())
-  trackingId              String
-  exerciseId              String?
-  status                  String                  
-  createdAt               DateTime                 @default(now())
-  updatedAt               DateTime                 @updatedAt
-  tracking                Tracking                 @relation(fields: [trackingId], references: [id])
-  exercise                Exercises?               @relation(fields: [exerciseId], references: [id])
-  fkStatus                Status?                  @relation(fields: [status], references: [id])
-  trackedExerciseStats    TrackedExerciseStats?
-}
-
-model TrackedExerciseStats {
-  id                  String                 @id @default(uuid())
-  trackedExerciseId   String                 @unique
+model TrainingPlan {
+  id                  String       @id @default(uuid())
+  trainingId          String       
+  exerciseId          String
   sets                Int
   reps                Int
   weight              Int
-  createdAt           DateTime            @default(now())
-  updatedAt           DateTime            @updatedAt
-  trackedExercise     TrackedExercises     @relation(fields: [trackedExerciseId], references: [id])
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+  training          Training     @relation(fields: [trainingId], references: [id])
+  exercise          Exercises    @relation(fields: [exerciseId], references: [id])
+  trainingSets        TrainingSets[]
+  @@unique([trainingId, exerciseId])
+}
+
+model TrainingSets {
+  id                      String                @id @default(uuid())
+  trainingPlanId          String                 
+  exerciseId              String                 
+  set                     Int
+  reps                    Int
+  weight                  Int
+  statusId                  String
+  createdAt               DateTime              @default(now())
+  updatedAt               DateTime              @updatedAt
+  trainingPlan          TrainingPlan          @relation(fields: [trainingPlanId], references: [id])
+  status                Status                @relation(fields: [statusId], references: [id])
+  @@unique([trainingPlanId, exerciseId])
 }
 
 /* Link Tables */

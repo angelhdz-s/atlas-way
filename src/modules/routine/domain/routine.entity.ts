@@ -42,8 +42,8 @@ export class Routine {
   get userId() {
     return this.data.userId;
   }
-  get routineDays() {
-    return this.data.routineDays;
+  get plan() {
+    return this.data.plan;
   }
   changeName(name: RoutineProps['name']): Result<null, DomainError> {
     if (!routineValidators.name.validate(name)) return Failure(routineValidators.name.error);
@@ -78,12 +78,12 @@ export class Routine {
     this.data.cycle = cycle;
     return Success(null);
   }
-  changeRoutineDays(routineDays: RoutineProps['routineDays']): Result<null, DomainError> {
+  changePlan(routineDays: RoutineProps['plan']): Result<null, DomainError> {
     if (this.days !== routineDays.length) {
       const daysResult = this.changeDays(routineDays.length);
       if (!daysResult.success) return daysResult;
     }
-    this.data.routineDays = routineDays;
+    this.data.plan = routineDays;
     return Success(null);
   }
   static create(id: RoutineProps['id'], data: RoutineFactoryData): Result<Routine, DomainError> {

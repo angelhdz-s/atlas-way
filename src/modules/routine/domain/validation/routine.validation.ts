@@ -19,7 +19,7 @@ import type { RoutineFactoryData, RoutineProps } from '@/modules/routine/domain/
 
 type RoutineValidationKeys = Omit<
   RoutineProps,
-  'createdAt' | 'updatedAt' | 'cycle' | 'userId' | 'routineDays'
+  'createdAt' | 'updatedAt' | 'cycle' | 'userId' | 'plan'
 >;
 
 type RoutineValidators = Record<
@@ -61,8 +61,7 @@ export function validateRoutine(routine: RoutineMiminumProps): Result<Routine, D
     if (!validator.validate(value)) return Failure(validator.error);
   }
 
-  if (routine.days !== routine.routineDays.length)
-    return Failure(new InvalidRoutineData('ROUTINE_DAYS_LENGTH'));
+  if (routine.days !== routine.plan.length) return Failure(new InvalidRoutineData('PLAN_LENGTH'));
 
   const cycle = Object.values(CYCLE_TYPES).find((c) => c.id === routine.cycleId);
   if (!cycle) return Failure(new InvalidRoutineData('CYCLE'));
@@ -73,7 +72,7 @@ export function validateRoutine(routine: RoutineMiminumProps): Result<Routine, D
     description: routine.description,
     active: routine.active,
     initialDate: routine.initialDate,
-    routineDays: routine.routineDays,
+    plan: routine.plan,
     cycle,
     days: routine.days,
     createdAt: new Date(),

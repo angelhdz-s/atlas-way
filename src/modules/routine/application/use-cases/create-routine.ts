@@ -6,7 +6,7 @@ import type { ISessionRepository } from '@/modules/session/domain/session.reposi
 import { Failure } from '@/shared/domain/result';
 import { Routine } from '@/modules/routine/domain/routine.entity';
 import { InvalidRoutineData } from '@/modules/routine/domain/errors/routine.errors';
-import { RoutineDaysValidationService } from '@/modules/routine/domain/services/routine-day.validation.service';
+import { RoutinePlanValidationService } from '@/modules/routine/domain/services/routine-plan.validation.service';
 
 export class CreateRoutine implements UseCase {
   constructor(
@@ -21,18 +21,18 @@ export class CreateRoutine implements UseCase {
 
     const routineId = idResult.data;
 
-    const routineDaysService = new RoutineDaysValidationService(
+    const routineDaysService = new RoutinePlanValidationService(
       this.sessionRepository,
       this.generator
     );
-    const routineDaysResult = await routineDaysService.createRoutineDays(routineData.routineDays);
+    const routineDaysResult = await routineDaysService.createRoutineDays(routineData.plan);
     if (!routineDaysResult.success) return routineDaysResult;
-    if (!routineDaysResult.data) return Failure(new InvalidRoutineData('ROUTINE_DAYS_LENGTH'));
+    if (!routineDaysResult.data) return Failure(new InvalidRoutineData('PLAN_LENGTH'));
     const routineDays = routineDaysResult.data;
 
     const newRoutineResult = Routine.create(routineId, {
       ...routineData,
-      routineDays,
+      plan: routineDays,
     });
 
     if (!newRoutineResult.success) return newRoutineResult;

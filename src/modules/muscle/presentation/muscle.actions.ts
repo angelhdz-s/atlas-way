@@ -3,13 +3,13 @@
 import type { ActionResponseProps } from '@/shared/presentation/action.response';
 import type { MuscleDTO } from '@/modules/muscle/application/dtos/muscle.dto';
 import type { MuscleProps } from '@/modules/muscle/domain/muscle.types';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 import { getContainer } from '@/di/containers';
 import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.response';
 import { MuscleMapper } from '@/modules/muscle/infrastructure/muscle.mapper';
 
 export async function getAllMuscles(): Promise<ActionResponseProps<MuscleDTO[]>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();
@@ -25,7 +25,7 @@ export async function getAllMuscles(): Promise<ActionResponseProps<MuscleDTO[]>>
 export async function getMuscleById(
   id: MuscleProps['id']
 ): Promise<ActionResponseProps<MuscleDTO | null>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();
@@ -41,7 +41,7 @@ export async function getMuscleById(
 export async function getMusclesByIds(
   ids: MuscleProps['id'][]
 ): Promise<ActionResponseProps<null>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();
