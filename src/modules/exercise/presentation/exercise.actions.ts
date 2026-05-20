@@ -6,7 +6,7 @@ import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.d
 import type { ExerciseProps } from '@/modules/exercise/domain/exercise.types';
 import type { ExerciseFormProps } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
 import { revalidatePath } from 'next/cache';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.response';
 import { ExerciseFormSchema } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
 import { ExerciseMapper } from '@/modules/exercise/infrastructure/exercise.mapper';
@@ -16,7 +16,7 @@ import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
 export async function createExerciseAction(
   data: ExerciseFormProps
 ): Promise<ActionResponseProps<ExerciseDTO | null>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const exerciseParseResult = ExerciseFormSchema.safeParse(data);
@@ -51,7 +51,7 @@ export async function createExerciseAction(
 }
 
 export async function getAllUserExercises(): Promise<ActionResponseProps<ExerciseDTO[]>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();
@@ -74,7 +74,7 @@ export async function getAllUserExercises(): Promise<ActionResponseProps<Exercis
 export async function deleteExercise(
   exerciseId: ExerciseProps['id']
 ): Promise<ActionResponseProps<ExerciseDTO>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();

@@ -2,6 +2,7 @@
 
 import type { ActionResponseProps } from '@/shared/presentation/action.response';
 import type { AuthSession } from '@/modules/auth/domain/auth-session.types';
+import { getServerSession } from 'next-auth';
 import { getContainer } from '@/di/containers';
 import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.response';
 
@@ -17,7 +18,7 @@ export async function getSession(): Promise<ActionResponseProps<AuthSession | nu
 }
 
 export async function logout(): Promise<ActionResponseProps<null>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();

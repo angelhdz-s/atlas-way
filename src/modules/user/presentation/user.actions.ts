@@ -3,19 +3,19 @@
 import type { User } from '@/modules/user/domain/user.entity';
 import type { UserProps } from '@/modules/user/domain/user.types';
 import type { ActionResponseProps } from '@/shared/presentation/action.response';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 import { getContainer } from '@/di/containers';
 import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.response';
 
 export async function getUser(): Promise<ActionResponseProps<User | null>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   return ActionSuccess(null, 'User found');
 }
 
 export async function getCurrentUser(): Promise<ActionResponseProps<User>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();
@@ -28,7 +28,7 @@ export async function getCurrentUser(): Promise<ActionResponseProps<User>> {
 }
 
 export async function getCurrentUserId(): Promise<ActionResponseProps<UserProps['id']>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();

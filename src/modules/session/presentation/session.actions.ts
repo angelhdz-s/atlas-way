@@ -5,7 +5,7 @@ import type { SessionForm } from '@/modules/session/presentation/ui/config/sessi
 import type { CreateSessionInput } from '@/modules/session/application/dtos/create-session.dto';
 import type { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 import type { SessionProps } from '@/modules/session/domain/session.types';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 import { getContainer } from '@/di/containers';
 import { sessionFormSchema } from '@/modules/session/presentation/ui/config/session.schema';
 import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
@@ -15,7 +15,7 @@ import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.respo
 export async function createSessionAction(
   data: SessionForm
 ): Promise<ActionResponseProps<SessionDTO>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const parseResult = sessionFormSchema.safeParse(data);
@@ -43,7 +43,7 @@ export async function createSessionAction(
 }
 
 export async function getAllSessions(): Promise<ActionResponseProps<SessionDTO[]>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();
@@ -70,7 +70,7 @@ export async function getAllSessions(): Promise<ActionResponseProps<SessionDTO[]
 export async function getSessionsByIds(
   ids: SessionProps['id'][]
 ): Promise<ActionResponseProps<SessionDTO[]>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();
@@ -97,7 +97,7 @@ export async function getSessionsByIds(
 export async function deleteSession(
   sessionId: SessionProps['id']
 ): Promise<ActionResponseProps<SessionDTO>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();

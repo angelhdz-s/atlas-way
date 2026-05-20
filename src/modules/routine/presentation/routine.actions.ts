@@ -6,7 +6,7 @@ import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto'
 import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
 import type { RoutineCycleId } from '@/modules/routine/domain/constants/routine.constants.cycle-types';
 import type { RoutineProps } from '@/modules/routine/domain/routine.types';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 import { getContainer } from '@/di/containers';
 import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.response';
 import { getCurrentUserId } from '@/modules/user/presentation/user.actions';
@@ -16,7 +16,7 @@ import { RoutineMapper } from '@/modules/routine/infrastructure/routine.mapper';
 export async function createRoutineAction(
   data: RoutineForm
 ): Promise<ActionResponseProps<RoutineDTO>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const parsedRoutine = routineFormSchema.safeParse(data);
@@ -56,7 +56,7 @@ export async function createRoutineAction(
 }
 
 export async function getAllRoutines(): Promise<ActionResponseProps<RoutineDTO[]>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();
@@ -71,7 +71,7 @@ export async function getAllRoutines(): Promise<ActionResponseProps<RoutineDTO[]
 export async function deleteRoutine(
   routineId: RoutineProps['id']
 ): Promise<ActionResponseProps<RoutineDTO>> {
-  const session = await getSession();
+  const session = await getServerSession();
   if (!session) return ActionFailure('Unauthorized');
 
   const container = getContainer();
