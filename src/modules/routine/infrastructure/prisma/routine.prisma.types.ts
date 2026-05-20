@@ -3,7 +3,7 @@ import type { Prisma } from '@/prisma/client';
 
 export const routineIncludeAnatomy = {
   include: {
-    routineDays: {
+    plan: {
       include: {
         session: sessionIncludeAnatomy,
       },

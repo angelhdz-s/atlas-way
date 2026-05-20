@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
-import type { RoutineRoutineDayFactory } from '@/modules/routine/domain/routine.types';
+import type { RoutinePlanDayFactory } from '@/modules/routine/domain/routine.types';
 import { InMemorySessionRepository } from '@/modules/session/mocks/session.mocks.repository';
 import { MockIdGenerator } from '@/shared/test/mocks/id-generator.repository.mock';
-import { RoutineDaysValidationService } from '@/modules/routine/domain/services/routine-day.validation.service';
+import { RoutinePlanValidationService } from '@/modules/routine/domain/services/routine-plan.validation.service';
 import { TechnicalError } from '@/shared/domain/errors/domain.errors';
 import { Failure } from '@/shared/domain/result';
 
@@ -10,9 +10,9 @@ describe('ExerciseValidationService', () => {
   describe('Happy path', () => {
     const idGeneratorRepoMock = new MockIdGenerator();
     const sessionRepoMock = new InMemorySessionRepository();
-    const service = new RoutineDaysValidationService(sessionRepoMock, idGeneratorRepoMock);
+    const service = new RoutinePlanValidationService(sessionRepoMock, idGeneratorRepoMock);
     it('should return result successfully when valid routineDays array', async () => {
-      const routineDaysInput: RoutineRoutineDayFactory[] = [
+      const routineDaysInput: RoutinePlanDayFactory[] = [
         {
           day: 1,
           name: 'Day 1',
@@ -32,7 +32,7 @@ describe('ExerciseValidationService', () => {
     });
 
     it('should return result successfully when empty array', async () => {
-      const routineDaysInput: RoutineRoutineDayFactory[] = [];
+      const routineDaysInput: RoutinePlanDayFactory[] = [];
 
       const routineDaysResult = await service.createRoutineDays(routineDaysInput);
 
@@ -52,9 +52,9 @@ describe('ExerciseValidationService', () => {
   describe('Error Handling', () => {
     const idGeneratorRepoMock = new MockIdGenerator();
     const sessionRepoMock = new InMemorySessionRepository();
-    const service = new RoutineDaysValidationService(sessionRepoMock, idGeneratorRepoMock);
+    const service = new RoutinePlanValidationService(sessionRepoMock, idGeneratorRepoMock);
     it('should return failure when invalid input', async () => {
-      const routineDaysInput: RoutineRoutineDayFactory[] = [
+      const routineDaysInput: RoutinePlanDayFactory[] = [
         1,
         [
           {
@@ -70,7 +70,7 @@ describe('ExerciseValidationService', () => {
     });
 
     it('should return failure when invalid routineDays element', async () => {
-      const routineDaysInput: RoutineRoutineDayFactory[] = [
+      const routineDaysInput: RoutinePlanDayFactory[] = [
         1,
         [
           {
@@ -86,7 +86,7 @@ describe('ExerciseValidationService', () => {
     });
 
     it('should return failure when invalid routineDays element', async () => {
-      const routineDaysInput: RoutineRoutineDayFactory[] = [
+      const routineDaysInput: RoutinePlanDayFactory[] = [
         {
           day: -1,
           name: '',
@@ -98,7 +98,7 @@ describe('ExerciseValidationService', () => {
     });
 
     it('should return failure when session not found', async () => {
-      const routineDaysInput: RoutineRoutineDayFactory[] = [
+      const routineDaysInput: RoutinePlanDayFactory[] = [
         {
           day: 1,
           name: 'Day 1',
@@ -112,7 +112,7 @@ describe('ExerciseValidationService', () => {
   });
 
   describe('Dependency Interaction', () => {
-    const routineDaysInput: RoutineRoutineDayFactory[] = [
+    const routineDaysInput: RoutinePlanDayFactory[] = [
       {
         day: 1,
         name: 'Day 1',
@@ -128,7 +128,7 @@ describe('ExerciseValidationService', () => {
     it('should return failure when idGenerator generate operation fails', async () => {
       const idGeneratorRepoMock = new MockIdGenerator();
       const sessionRepoMock = new InMemorySessionRepository();
-      const service = new RoutineDaysValidationService(sessionRepoMock, idGeneratorRepoMock);
+      const service = new RoutinePlanValidationService(sessionRepoMock, idGeneratorRepoMock);
       jest
         .spyOn(idGeneratorRepoMock, 'generate')
         .mockReturnValue(Failure(new TechnicalError() as never));
@@ -141,7 +141,7 @@ describe('ExerciseValidationService', () => {
     it('should return failure when session findById operation fails', async () => {
       const idGeneratorRepoMock = new MockIdGenerator();
       const sessionRepoMock = new InMemorySessionRepository();
-      const service = new RoutineDaysValidationService(sessionRepoMock, idGeneratorRepoMock);
+      const service = new RoutinePlanValidationService(sessionRepoMock, idGeneratorRepoMock);
       jest
         .spyOn(sessionRepoMock, 'findById')
         .mockResolvedValue(Failure(new TechnicalError() as never));

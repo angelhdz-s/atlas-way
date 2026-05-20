@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { MockIdGenerator } from '@/shared/test/mocks/id-generator.repository.mock';
-import { validateRoutine } from './routine.validation';
-import { Routine } from '../routine.entity';
+import { validateRoutine } from '@/modules/routine/domain/validation/routine.validation';
+import { Routine } from '@/modules/routine/domain/routine.entity';
 
 describe('validateRoutine', () => {
   describe('Happy path', () => {
@@ -17,7 +17,7 @@ describe('validateRoutine', () => {
         cycleId: 'week',
         days: 1,
         initialDate: new Date(),
-        routineDays: [
+        plan: [
           {
             id,
             day: 1,
@@ -45,7 +45,7 @@ describe('validateRoutine', () => {
       cycleId: 'week',
       days: 1,
       initialDate: new Date(),
-      routineDays: [
+      plan: [
         {
           id: validId,
           day: 1,
@@ -215,7 +215,7 @@ describe('validateRoutine', () => {
         } as unknown as Parameters<typeof validateRoutine>[0]);
         expect(validation.success).toBe(false);
         expect(validation.success === false && validation.error.code).toBe(
-          'INVALID_ROUTINE_DATA.ROUTINE_DAYS_LENGTH'
+          'INVALID_ROUTINE_DATA.PLAN_LENGTH'
         );
       });
     });

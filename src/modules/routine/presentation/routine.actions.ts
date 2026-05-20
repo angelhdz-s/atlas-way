@@ -41,7 +41,7 @@ export async function createRoutineAction(
     name: routineData.name,
     userId,
     cycleId: routineData.cycleType as RoutineCycleId,
-    routineDays: routineData.sessions.map((s) => ({
+    plan: routineData.sessions.map((s) => ({
       day: s.day,
       name: s.dayName,
       sessionId: s.sessionId,

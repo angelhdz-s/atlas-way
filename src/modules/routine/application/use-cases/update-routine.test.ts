@@ -23,7 +23,7 @@ describe('UpdateRoutine use case', () => {
         days: 1,
         initialDate: new Date(),
         cycleId: 'week',
-        routineDays: [
+        plan: [
           { id: '1df38173-6fae-4abb-8cb2-ce33b6c24d01', day: 1, name: 'Day 1', session: null },
         ],
         userId: 'user-123',
@@ -41,7 +41,7 @@ describe('UpdateRoutine use case', () => {
       expect(routineRepoMock.routines[0]?.name).toBe('Updated Routine');
     });
 
-    it('should update multiple fields including routineDays', async () => {
+    it('should update multiple fields including plan', async () => {
       const routineRepoMock = new InMemoryRoutineRepository();
       const sessionRepoMock = new InMemorySessionRepository();
       const idGeneratorMock = new MockIdGenerator();
@@ -55,7 +55,7 @@ describe('UpdateRoutine use case', () => {
         days: 1,
         initialDate: new Date(),
         cycleId: 'week',
-        routineDays: [
+        plan: [
           { id: '1df38173-6fae-4abb-8cb2-ce33b6c24d02', day: 1, name: 'Day 1', session: null },
         ],
         userId: 'user-123',
@@ -68,7 +68,7 @@ describe('UpdateRoutine use case', () => {
         name: 'Updated',
         active: true,
         days: 2,
-        routineDays: [
+        plan: [
           { name: 'Day 1', day: 1, sessionId: '1df38173-6fae-4abb-8cb2-ce33b6c24da4' },
           { name: 'Day 2', day: 2, sessionId: null },
         ],
@@ -110,7 +110,7 @@ describe('UpdateRoutine use case', () => {
         days: 1,
         initialDate: new Date(),
         cycleId: 'week',
-        routineDays: [
+        plan: [
           { id: '1df38173-6fae-4abb-8cb2-ce33b6c24d04', day: 1, name: 'Day 1', session: null },
         ],
         userId: 'user-123',
@@ -142,7 +142,7 @@ describe('UpdateRoutine use case', () => {
         days: 1,
         initialDate: new Date(),
         cycleId: 'week',
-        routineDays: [
+        plan: [
           { id: '1df38173-6fae-4abb-8cb2-ce33b6c24d06', day: 1, name: 'Day 1', session: null },
         ],
         userId: 'user-123',

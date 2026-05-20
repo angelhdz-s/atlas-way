@@ -4,9 +4,9 @@ import type { SessionProps } from '@/modules/session/domain/session.types';
 
 type UpdateProps = Pick<RoutineProps, 'name' | 'description' | 'active' | 'days' | 'initialDate'>;
 export type UpdateRoutineInput = UpdateDto<UpdateProps> & {
-  routineDays?: {
-    name: RoutineProps['routineDays'][number]['name'];
-    day: RoutineProps['routineDays'][number]['day'];
+  plan?: {
+    name: RoutineProps['plan'][number]['name'];
+    day: RoutineProps['plan'][number]['day'];
     sessionId: SessionProps['id'] | null;
   }[];
   cycleId?: RoutineProps['cycle']['id'];

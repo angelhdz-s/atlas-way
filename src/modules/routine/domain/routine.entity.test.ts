@@ -9,7 +9,7 @@ function createTestRoutine(): Routine {
     days: 3,
     initialDate: new Date(),
     cycleId: 'week',
-    routineDays: [
+    plan: [
       { id: '1df38173-6fae-4abb-8cb2-ce33b6c24da1', name: 'Day 1', day: 1, session: null },
       { id: '1df38173-6fae-4abb-8cb2-ce33b6c24da2', name: 'Day 2', day: 2, session: null },
       { id: '1df38173-6fae-4abb-8cb2-ce33b6c24da3', name: 'Day 3', day: 3, session: null },
@@ -30,7 +30,7 @@ describe('Routine entity', () => {
         days: 3,
         initialDate: new Date(),
         cycleId: 'week',
-        routineDays: [
+        plan: [
           { id: '1df38173-6fae-4abb-8cb2-ce33b6c24da1', name: 'Day 1', day: 1, session: null },
           { id: '1df38173-6fae-4abb-8cb2-ce33b6c24da2', name: 'Day 2', day: 2, session: null },
           { id: '1df38173-6fae-4abb-8cb2-ce33b6c24da3', name: 'Day 3', day: 3, session: null },
@@ -50,7 +50,7 @@ describe('Routine entity', () => {
         days: 3,
         initialDate: new Date(),
         cycleId: 'week',
-        routineDays: [
+        plan: [
           { id: '1df38173-6fae-4abb-8cb2-ce33b6c24da1', name: 'Day 1', day: 1, session: null },
           { id: '1df38173-6fae-4abb-8cb2-ce33b6c24da2', name: 'Day 2', day: 2, session: null },
           { id: '1df38173-6fae-4abb-8cb2-ce33b6c24da3', name: 'Day 3', day: 3, session: null },
@@ -176,10 +176,10 @@ describe('Routine entity', () => {
         { id: '1df38173-6fae-4abb-8cb2-ce33b6c24da2', name: 'Day 2', day: 2, session: null },
         { id: '1df38173-6fae-4abb-8cb2-ce33b6c24da3', name: 'Day 3', day: 3, session: null },
       ];
-      const result = routine.changeRoutineDays(newRoutineDays);
+      const result = routine.changePlan(newRoutineDays);
       expect(result.success).toBe(true);
       expect(result.success && result.data).toBe(null);
-      expect(routine.routineDays).toEqual(newRoutineDays);
+      expect(routine.plan).toEqual(newRoutineDays);
       expect(routine.days).toBe(3);
     });
   });

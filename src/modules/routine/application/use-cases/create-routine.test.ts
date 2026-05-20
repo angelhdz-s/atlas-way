@@ -23,7 +23,7 @@ describe('CreateRoutine use case', () => {
         initialDate: new Date(),
         cycleId: 'week',
         userId: 'user-123',
-        routineDays: [
+        plan: [
           { name: 'Day 1', day: 1, sessionId: '1df38173-6fae-4abb-8cb2-ce33b6c24da4' },
           { name: 'Day 2', day: 2, sessionId: '2df38173-6fae-4abb-8cb2-ce33b6c24da4' },
           { name: 'Day 3', day: 3, sessionId: null },
@@ -56,7 +56,7 @@ describe('CreateRoutine use case', () => {
         initialDate: new Date(),
         cycleId: 'custom',
         userId: 'user-123',
-        routineDays: [
+        plan: [
           { name: 'Day 1', day: 1, sessionId: null },
           { name: 'Day 2', day: 2, sessionId: null },
         ],
@@ -90,7 +90,7 @@ describe('CreateRoutine use case', () => {
         initialDate: new Date(),
         cycleId: 'week',
         userId: 'user-123',
-        routineDays: [{ name: 'Day 1', day: 1, sessionId: null }],
+        plan: [{ name: 'Day 1', day: 1, sessionId: null }],
       };
 
       idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da7';
@@ -104,7 +104,7 @@ describe('CreateRoutine use case', () => {
       expect(routineRepoMock.routines).toHaveLength(0);
     });
 
-    it('should return failure when no routineDays provided', async () => {
+    it('should return failure when no plan provided', async () => {
       const routineRepoMock = new InMemoryRoutineRepository();
       const sessionRepoMock = new InMemorySessionRepository();
       const idGeneratorMock = new MockIdGenerator();
@@ -131,7 +131,7 @@ describe('CreateRoutine use case', () => {
       expect(routineRepoMock.routines).toHaveLength(0);
     });
 
-    it('should return failure when invalid routineDays provided', async () => {
+    it('should return failure when invalid plan provided', async () => {
       const routineRepoMock = new InMemoryRoutineRepository();
       const sessionRepoMock = new InMemorySessionRepository();
       const idGeneratorMock = new MockIdGenerator();
@@ -145,7 +145,7 @@ describe('CreateRoutine use case', () => {
         initialDate: new Date(),
         cycleId: 'week',
         userId: 'user-123',
-        routineDays: [],
+        plan: [],
       };
 
       idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da7';
@@ -179,7 +179,7 @@ describe('CreateRoutine use case', () => {
         initialDate: new Date(),
         cycleId: 'week',
         userId: 'user-123',
-        routineDays: [{ name: 'Day 1', day: 1, sessionId: null }],
+        plan: [{ name: 'Day 1', day: 1, sessionId: null }],
       };
 
       idGeneratorMock.id = '1df38173-6fae-4abb-8cb2-ce33b6c24da8';
@@ -209,7 +209,7 @@ describe('CreateRoutine use case', () => {
         initialDate: new Date(),
         cycleId: 'week',
         userId: 'user-123',
-        routineDays: [{ name: 'Day 1', day: 1, sessionId: null }],
+        plan: [{ name: 'Day 1', day: 1, sessionId: null }],
       };
 
       const createResult = await useCase.execute(routineData);

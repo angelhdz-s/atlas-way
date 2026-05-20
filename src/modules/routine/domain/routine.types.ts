@@ -5,7 +5,7 @@ import type { RoutineCycleId } from '@/modules/routine/domain/constants/routine.
 import type { Routine } from '@/modules/routine/domain/routine.entity';
 import type { SessionProps } from '@/modules/session/domain/session.types';
 
-export type RoutineDay = {
+export type RoutinePlanDay = {
   id: string;
   name: string;
   day: number;
@@ -26,7 +26,7 @@ export type RoutineProps = {
   readonly createdAt: Date;
   readonly updatedAt: Date;
   readonly userId: UserProps['id'];
-  routineDays: RoutineDay[];
+  plan: RoutinePlanDay[];
 };
 
 export type RoutineFactoryData = Omit<RoutineProps, 'id' | 'createdAt' | 'updatedAt' | 'cycle'> & {
@@ -35,9 +35,6 @@ export type RoutineFactoryData = Omit<RoutineProps, 'id' | 'createdAt' | 'update
 
 export type RoutineMethods = ClassMethods<Routine>;
 
-export type RoutineRoutineDayFactory = Omit<
-  RoutineProps['routineDays'][number],
-  'id' | 'session'
-> & {
+export type RoutinePlanDayFactory = Omit<RoutineProps['plan'][number], 'id' | 'session'> & {
   sessionId: SessionProps['id'] | null;
 };

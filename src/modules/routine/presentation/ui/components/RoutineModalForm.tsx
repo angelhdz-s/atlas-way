@@ -42,8 +42,8 @@ export function RoutineModalForm({ sessions, data }: Props) {
     setDaysEnabled(value === 'custom');
   };
 
-  const routineDays: RoutineForm['sessions'] =
-    data?.routineDays.map((r) => ({
+  const plan: RoutineForm['sessions'] =
+    data?.plan.map((r) => ({
       day: r.day,
       dayName: r.name,
       sessionId: r.session?.id ?? null,
@@ -70,7 +70,7 @@ export function RoutineModalForm({ sessions, data }: Props) {
       <RoutineSessionPlanField
         days={DEFAULT_WEEK_CYCLE_DAYS_DATA}
         sessions={sessions}
-        routineDays={routineDays}
+        routineDays={plan}
       />
       <ModalFormButtons onClose={handleClose} />
     </ModalForm>

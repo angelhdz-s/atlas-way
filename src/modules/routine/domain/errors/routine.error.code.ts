@@ -3,10 +3,10 @@ export type RoutineInvalidDataErrorCodes =
   | 'DESCRIPTION'
   | 'INITIAL_DATE'
   | 'ACTIVE'
-  | 'ROUTINE_DAYS'
+  | 'PLAN'
   | 'DAYS'
   | 'CYCLE'
-  | 'ROUTINE_DAYS_LENGTH';
+  | 'PLAN_LENGTH';
 
 export type RoutineErrorCode =
   | 'ROUTINE_NOT_FOUND'

@@ -1,5 +1,5 @@
 import type { ValidationFunction } from '@/shared/shared.types';
-import type { RoutineRoutineDayFactory } from '@/modules/routine/domain/routine.types';
+import type { RoutinePlanDayFactory } from '@/modules/routine/domain/routine.types';
 import { isObject } from '@/shared/domain/validation/validation.non-primitives';
 import { isString } from '@/shared/domain/validation/validation.primitives';
 import { isKeyOf } from '@/shared/domain/validation/validation.utils';
@@ -19,7 +19,7 @@ function isValidRoutineDaySessionId(sessionId: unknown): boolean {
 }
 
 type RawRoutineDaysValidations = {
-  [K in keyof RoutineRoutineDayFactory]: ValidationFunction;
+  [K in keyof RoutinePlanDayFactory]: ValidationFunction;
 };
 
 const factoryRoutineDaysInputValidation: RawRoutineDaysValidations = {
