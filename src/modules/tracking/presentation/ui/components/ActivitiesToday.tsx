@@ -6,8 +6,8 @@ import {
   type SessionDetailsType,
 } from '@/modules/session/presentation/ui/components/SessionDetails';
 import { SubtleCard } from '@/presentation/modules/card/components/SubtleCard';
-import { Button } from '@/presentation/modules/button/components/Button';
 import { Card } from '@/presentation/modules/card/components/Card';
+import { Link } from '@/presentation/modules/button/components/Link';
 
 const session = {
   id: 1,
@@ -62,7 +62,7 @@ export function ActivitiesToday({ className }: { className?: string }) {
         </SubtleCard>
       </main>
       <footer>
-        <Button
+        <Link
           type="button"
           variant={{
             size: 'sm',
@@ -71,9 +71,10 @@ export function ActivitiesToday({ className }: { className?: string }) {
           }}
           className="flex items-center gap-1"
           Icon={IconCirclePlus}
+          href="/dashboard/tracking/record"
         >
           Register
-        </Button>
+        </Link>
       </footer>
     </Card>
   );
