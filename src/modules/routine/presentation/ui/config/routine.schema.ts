@@ -25,10 +25,13 @@ export const routineFormSchema = z.object({
     .string({ message: 'Name must be a string' })
     .min(3, 'Name must be at least 3 characters long')
     .max(50, 'Name must be at most 50 characters long'),
-  description: z
-    .string({ message: 'Description must be a string' })
-    .max(255, 'Description must be at most 255 characters long')
-    .optional(),
+  description: z.null().or(
+    z
+      .string({
+        message: 'Description must be string',
+      })
+      .max(100, 'Description must be at most 100 characters')
+  ),
   cycleType: routineCycleSchema,
   active: z.boolean(),
   initialDate: z.date({
