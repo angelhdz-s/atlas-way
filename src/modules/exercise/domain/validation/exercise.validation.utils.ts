@@ -8,6 +8,7 @@ import {
   EXERCISE_NAME_LENGTH,
   EXERCISE_REPS_RANGE,
   EXERCISE_SETS_RANGE,
+  EXERCISE_WEIGHT_RANGE,
 } from '@/modules/exercise/domain/validation/exercise.validation.constants';
 import type { ValidationFunction } from '@/shared/shared.types';
 
@@ -38,5 +39,5 @@ export const isValidExerciseReps: ValidationFunction = (reps: unknown) => {
 
 export const isValidExerciseWeight: ValidationFunction = (weight: unknown) => {
   if (!isNumber(weight)) return false;
-  return weight >= EXERCISE_REPS_RANGE.min;
+  return weight >= EXERCISE_WEIGHT_RANGE.min;
 };
