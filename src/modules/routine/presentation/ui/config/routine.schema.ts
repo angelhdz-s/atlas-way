@@ -24,7 +24,7 @@ export const routineFormSchema = z.object({
   name: z
     .string({ message: 'Name must be a string' })
     .min(3, 'Name must be at least 3 characters long')
-    .max(50, 'Name must be at most 50 characters long'),
+    .max(30, 'Name must be at most 30 characters long'),
   description: z.null().or(
     z
       .string({
