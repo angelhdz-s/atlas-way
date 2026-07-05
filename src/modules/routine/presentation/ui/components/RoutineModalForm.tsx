@@ -1,5 +1,8 @@
 'use client';
 
+import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
+import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createRoutineAction } from '@/modules/routine/presentation/routine.actions';
@@ -14,9 +17,6 @@ import { RoutineInitialDateField } from '@/modules/routine/presentation/ui/compo
 import { RoutineNameField } from '@/modules/routine/presentation/ui/components/fields/RoutineNameField';
 import { RoutineSessionPlanField } from '@/modules/routine/presentation/ui/components/fields/RoutineSessionPlanField';
 import { routineFormSchema } from '@/modules/routine/presentation/ui/config/routine.schema';
-import type { RoutineDTO } from '@/modules/routine/application/dtos/routine.dto';
-import type { RoutineForm } from '@/modules/routine/presentation/ui/config/routine.schema';
-import type { SelectOption } from '@/presentation/modules/form/form.types';
 
 type Props = {
   sessions: SelectOption[];
