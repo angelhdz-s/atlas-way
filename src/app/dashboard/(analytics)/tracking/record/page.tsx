@@ -65,12 +65,12 @@ export default async function TrackingRecordPage() {
                       <Button
                         aria-label="Switch exercise"
                         Icon={IconSwitch}
-                        variant={{ color: 'subtle', type: 'icon', size: 'sm' }}
+                        variant={{ color: 'primary', type: 'icon', size: 'sm' }}
                       />
                       <Button
                         aria-label="Switch exercise"
                         Icon={IconX}
-                        variant={{ color: 'subtle', type: 'icon', size: 'sm' }}
+                        variant={{ color: 'primary', type: 'icon', size: 'sm' }}
                       />
                     </div>
                   </li>
