@@ -7,6 +7,7 @@ import { isValidRoutineDays } from '@/modules/routine/domain/validation/routine.
 import { isValidSessionId } from '@/modules/session/domain/validation/session.validation.utils';
 
 function isValidRoutineDayDay(day: unknown): boolean {
+  if (day === 0) return true;
   return isValidRoutineDays(day);
 }
 
