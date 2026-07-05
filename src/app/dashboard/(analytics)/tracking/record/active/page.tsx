@@ -1,7 +1,15 @@
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 import type { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 import { twMerge } from 'tailwind-merge';
-import { IconCheck, IconCircle, IconGolf, IconMinus, IconPlus } from '@tabler/icons-react';
+import {
+  IconBarbell,
+  IconCheck,
+  IconCircle,
+  IconGolf,
+  IconMinus,
+  IconPlus,
+  IconWeight,
+} from '@tabler/icons-react';
 import { getAllRoutines } from '@/modules/routine/presentation/routine.actions';
 import { IconSchema } from '@/presentation/globals/components/icons/outline/IconSchema';
 import { Button } from '@/presentation/modules/button/components/Button';
@@ -9,10 +17,6 @@ import { Link } from '@/presentation/modules/button/components/Link';
 import { PageContainer } from '@/presentation/modules/dashboard/components/page/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/components/page/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/components/page/PageHeader';
-
-import { Check, Dumbbell, Flame, Weight } from 'lucide-react';
-import { StatCard } from '@/presentation/modules/dashboard/components/StatCard';
-import { LastTargets } from '@/presentation/modules/dashboard/components/LastTargets';
 
 function Form({
   exercise,
@@ -26,7 +30,7 @@ function Form({
   return (
     <div
       className={twMerge(
-        'border-bd-muted from-fill-back to-fill-base space-y-4 rounded-4xl border bg-linear-315 from-[-25%] to-125% p-8',
+        'bg-fill-base border-bd-default space-y-4 rounded-4xl border p-8',
         className
       )}
     >
@@ -48,6 +52,15 @@ function Form({
       </header>
 
       <main className="space-y-4">
+        <div className="space-y-1">
+          <h5 className="font-light">Last goal</h5>
+          <div className="border-bd-default text-fg-default flex items-center gap-8 rounded-xl border px-3 py-2 font-light *:whitespace-nowrap">
+            <div className="w-full">March 24</div>
+            <div>4 sets</div>
+            <div>16 reps</div>
+            <div>50 lbs</div>
+          </div>
+        </div>
         <main className="space-y-1">
           <h5 className="border-bd-default text-fg-strong flex items-center gap-1 border-b pb-2 font-light">
             <IconGolf />
@@ -61,7 +74,7 @@ function Form({
                   <Button
                     Icon={IconMinus}
                     aria-label="-1 sets"
-                    variant={{ color: 'subtle', type: 'icon', size: 'sm' }}
+                    variant={{ color: 'primary', type: 'icon', size: 'lg' }}
                   />
 
                   <input
@@ -73,7 +86,7 @@ function Form({
                   <Button
                     Icon={IconPlus}
                     aria-label="+1 sets"
-                    variant={{ color: 'subtle', type: 'icon', size: 'sm' }}
+                    variant={{ color: 'primary', type: 'icon', size: 'lg' }}
                   />
                 </div>
               </label>
@@ -86,7 +99,7 @@ function Form({
                   <Button
                     Icon={IconMinus}
                     aria-label="-1 sets"
-                    variant={{ color: 'subtle', type: 'icon', size: 'sm' }}
+                    variant={{ color: 'primary', type: 'icon', size: 'lg' }}
                   />
 
                   <input
@@ -98,7 +111,7 @@ function Form({
                   <Button
                     Icon={IconPlus}
                     aria-label="+1 sets"
-                    variant={{ color: 'subtle', type: 'icon', size: 'sm' }}
+                    variant={{ color: 'primary', type: 'icon', size: 'lg' }}
                   />
                 </div>
               </label>
@@ -111,7 +124,7 @@ function Form({
                   <Button
                     Icon={IconMinus}
                     aria-label="-1 sets"
-                    variant={{ color: 'subtle', type: 'icon', size: 'sm' }}
+                    variant={{ color: 'primary', type: 'icon', size: 'lg' }}
                   />
 
                   <input
@@ -123,7 +136,7 @@ function Form({
                   <Button
                     Icon={IconPlus}
                     aria-label="+1 sets"
-                    variant={{ color: 'subtle', type: 'icon', size: 'sm' }}
+                    variant={{ color: 'primary', type: 'icon', size: 'lg' }}
                   />
                 </div>
               </label>
@@ -198,34 +211,10 @@ function Goals({ exercises, className = '' }: { exercises: ExerciseDTO[]; classN
 
 function PremiumCard({ className = '' }: { className?: string }) {
   return (
-    <div
-      className={twMerge(
-        'border-bd-muted flex flex-col gap-8 rounded-[20px] border p-8',
-        className
-      )}
-    >
-      <header className="font-funnel-display text-[40px] font-bold tracking-tight">
-        Get Premium: The Experience You Deserve
-      </header>
-      <main className="flex-1 text-[20px] font-light">
-        <ul className="space-y-4">
-          <li className="flex items-center">
-            <span className="w-full">Unlimited Backups</span>
-            <Check />
-          </li>
-          <li className="flex items-center">
-            <span className="w-full">Wide Analytics</span>
-            <Check />
-          </li>
-          <li className="flex items-center">
-            <span className="w-full">Session Reminders</span>
-            <Check />
-          </li>
-        </ul>
-      </main>
-      <footer>
-        <Button variant={{ color: 'subtle', size: 'lg' }}>Become Premium</Button>
-      </footer>
+    <div className={twMerge('bg-primary border-bd-default rounded-4xl border', className)}>
+      <header></header>
+      <main></main>
+      <footer></footer>
     </div>
   );
 }
@@ -246,26 +235,40 @@ export default async function TrackingRecordActivePage() {
   return (
     <PageContainer>
       <PageHeader title="Tracking" description="Track your progress and achieve your goals" />
-      <PageContent className="grid grid-cols-12 gap-4">
-        <StatCard Icon={Flame} statData="156 Days" statTitle="Streak" className="col-span-3" />
-        <StatCard
-          Icon={Weight}
-          statData="546 lb"
-          statTitle="Plan Total Weight"
-          className="col-span-3"
-        />
-        <StatCard
-          Icon={Dumbbell}
-          statData="274 reps"
-          statTitle="Plan Total Reps"
-          className="col-span-3"
-        />
+      <PageContent className="grid grid-cols-12 gap-8">
+        <div className="border-bd-default bg-fill-base col-span-3 flex items-center gap-4 rounded-4xl border p-4">
+          <picture className="grid size-11 place-content-center p-1">
+            <IconWeight className="text-fg-default size-9" strokeWidth={1.5} />
+          </picture>
+          <main>
+            <div className="text-fg-default font-light">Plan Total Weight</div>
+            <div className="text-fg-strong font-funnel-display text-2xl font-medium">546 lb</div>
+          </main>
+        </div>
+
+        <div className="border-bd-default bg-fill-base col-span-3 flex items-center gap-4 rounded-4xl border p-4">
+          <picture className="grid size-11 place-content-center p-1">
+            <IconWeight className="text-fg-default size-9" strokeWidth={1.5} />
+          </picture>
+          <main>
+            <div className="text-fg-default font-light">Plan Total Weight</div>
+            <div className="text-fg-strong font-funnel-display text-2xl font-medium">546 lb</div>
+          </main>
+        </div>
+
+        <div className="border-bd-default bg-fill-base col-span-3 flex items-center gap-4 rounded-4xl border p-4">
+          <picture className="grid size-11 place-content-center p-1">
+            <IconWeight className="text-fg-default size-9" strokeWidth={1.5} />
+          </picture>
+          <main>
+            <div className="text-fg-default font-light">Plan Total Weight</div>
+            <div className="text-fg-strong font-funnel-display text-2xl font-medium">546 lb</div>
+          </main>
+        </div>
 
         <PremiumCard className="col-span-3 row-span-2" />
 
-        <Form exercise={exercise} session={session} className="col-span-4" />
-
-        <LastTargets className="col-span-2" />
+        <Form exercise={exercise} session={session} className="col-span-6" />
 
         <Goals exercises={session.exercises} className="col-span-3" />
       </PageContent>
