@@ -71,7 +71,7 @@ export function ActivitiesToday({ className }: { className?: string }) {
           }}
           className="flex items-center gap-1"
           Icon={IconCirclePlus}
-          href="/dashboard/tracking/record"
+          href="/dashboard/tracking/confirm-session"
         >
           Register
         </Link>
