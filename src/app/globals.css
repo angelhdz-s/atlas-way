@@ -208,7 +208,7 @@ html[data-theme='light'] {
 body {
   position: relative;
   background: var(--color-fill-back);
-  color: var(--color-default);
+  color: var(--color-fg-default);
   font-family: 'Outfit', sans-serif;
   font-size: 1rem;
   z-index: 10;
