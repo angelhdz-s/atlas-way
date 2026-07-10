@@ -1,5 +1,6 @@
 import { getAllRoutines } from '@/modules/routine/presentation/routine.actions';
 import { ExerciseTargets } from '@/modules/tracking/presentation/ui/components/ExerciseTargets';
+import { ExerciseTargetsProvider } from '@/modules/tracking/presentation/ui/components/ExerciseTargetsProvider';
 
 export default async function TrackingTargetsPage() {
   const routinesResult = await getAllRoutines();
@@ -14,5 +15,9 @@ export default async function TrackingTargetsPage() {
   const exercise = session.exercises[0];
   if (!exercise) return null;
 
-  return <ExerciseTargets exercises={session.exercises} />;
+  return (
+    <ExerciseTargetsProvider exercises={session.exercises}>
+      <ExerciseTargets exercises={session.exercises} />
+    </ExerciseTargetsProvider>
+  );
 }

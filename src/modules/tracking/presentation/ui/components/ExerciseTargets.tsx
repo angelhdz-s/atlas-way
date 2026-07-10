@@ -1,23 +1,28 @@
 'use client';
 
-import { IconCheck, IconClock } from '@tabler/icons-react';
-import { useEffect, useRef, useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
+import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
+import { useFieldArray, useForm } from 'react-hook-form';
+import { IconCheck, IconClock, IconX } from '@tabler/icons-react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { type SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod/v3';
-import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { LastTargets } from '@/presentation/modules/dashboard/components/LastTargets';
 import { PageContainer } from '@/presentation/modules/dashboard/components/page/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/components/page/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/components/page/PageHeader';
-import { useToast } from '@/presentation/modules/toast/hooks/useToast';
 import { ExerciseSchema } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
 import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
 import { useLayer } from '@/presentation/globals/hooks/useLayer';
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
+import {
+  ExerciseTargetsContext,
+  type ExerciseTargetsStep,
+} from '@/modules/tracking/presentation/ui/contexts/ExerciseTargets.context';
+import { ExerciseTargetsStatus } from '@/modules/tracking/presentation/ui/components/ExerciseTargetsStatus';
 
 type Props = {
   className?: string;
@@ -36,13 +41,6 @@ const exerciseTargets = z.object({
 
 type ExerciseTargets = z.infer<typeof exerciseTargets>;
 
-type Step = {
-  id: string;
-  step: number;
-  title: string;
-  status: 'pending' | 'complete';
-};
-
 const processData: SubmitHandler<ExerciseTargets> = async (data) => {
   console.log('Submitted');
   console.log(data);
@@ -52,20 +50,22 @@ const processData: SubmitHandler<ExerciseTargets> = async (data) => {
 };
 
 export function ExerciseTargets({ className, exercises = [] }: Props) {
-  const [movement, setMovement] = useState<number>(0);
+  const { step, stepIndex, steps, movement, updateStep, goToStep, goNextStep, goPreviousStep } =
+    useContext(ExerciseTargetsContext);
+
   const [isShowingConfirmation, setIsShowingConfirmation] = useState<boolean>(false);
   const { ref } = useLayer({
     isOpen: isShowingConfirmation,
     onClose: () => setIsShowingConfirmation(false),
   });
-  const { addToast } = useToast();
 
   const {
     control,
-    formState: { errors, isReady },
+    formState: { errors, isSubmitting, isSubmitted },
     trigger,
     handleSubmit,
     register,
+    getValues,
   } = useForm<ExerciseTargets>({
     resolver: zodResolver(exerciseTargets),
     shouldUnregister: false,
@@ -75,39 +75,51 @@ export function ExerciseTargets({ className, exercises = [] }: Props) {
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  const [steps, setSteps] = useState<Step[]>(
-    exercises.map((e, i) => ({
-      id: e.id,
-      step: i + 1,
-      title: e.name,
-      status: 'pending',
-    }))
-  );
-
-  const [step, setStep] = useState<number>(1);
-  const indexStep = step - 1;
-
-  const goNextStep = async () => {
-    const isValid = await trigger(`exercises.${indexStep}`);
-    if (!isValid) return;
-
-    setSteps((prevSteps) => {
-      const prevStepsCopy = [...prevSteps];
-      if (!prevStepsCopy[indexStep]) return prevSteps;
-      prevStepsCopy[indexStep].status = 'complete';
-      return [...prevStepsCopy];
-    });
-
-    if (step + 1 > steps.length) return;
-    setStep((step) => step + 1);
-    if (movement !== 0) setMovement(0);
+  const submitForm: SubmitHandler<ExerciseTargets> = (data) => {
+    if (isSubmitting || isSubmitted) return;
+    updateCurrentStep('complete');
+    processData(data);
   };
 
-  const goPreviousStep = () => {
-    trigger(`exercises.${indexStep}`);
-    if (step - 1 < 1) return;
-    setStep((step) => step - 1);
-    if (movement !== -1) setMovement(-1);
+  const isCurrentFormValid = async () => {
+    return await trigger(`exercises.${stepIndex}`);
+  };
+
+  const getCurrentValues = () => {
+    const values = getValues();
+    return values.exercises[stepIndex];
+  };
+
+  const updateCurrentStep = (status: ExerciseTargetsStep['status']) => {
+    const values = getCurrentValues();
+    if (!values) return;
+    updateStep(stepIndex, {
+      status,
+      ...values,
+    });
+  };
+
+  const validateAndCurrentStep = async (update: boolean = false) => {
+    const isValid = await isCurrentFormValid();
+    if (update) updateCurrentStep(isValid ? 'complete' : 'error');
+    return isValid;
+  };
+
+  const nextStep = async () => {
+    if (!(await validateAndCurrentStep(true))) return;
+
+    goNextStep();
+  };
+
+  const previousStep = async () => {
+    if (!(await validateAndCurrentStep())) return;
+    goPreviousStep();
+  };
+
+  const toStep = async (targetStep: number) => {
+    if (!(await validateAndCurrentStep())) return;
+
+    goToStep(targetStep);
   };
 
   useEffect(() => {
@@ -116,14 +128,6 @@ export function ExerciseTargets({ className, exercises = [] }: Props) {
         sets,
         reps,
         weight,
-      }))
-    );
-    setSteps(
-      exercises.map((e, i) => ({
-        id: e.id,
-        step: i + 1,
-        title: e.name,
-        status: 'pending',
       }))
     );
   }, [exercises, replace]);
@@ -137,107 +141,108 @@ export function ExerciseTargets({ className, exercises = [] }: Props) {
             <header className="space-y-8">
               <ul className="flex items-center gap-2">
                 {steps.map((s) => (
-                  <li
-                    key={s.id}
-                    className={twMerge(
-                      'flex size-8 w-fit items-center justify-center gap-2 rounded-full px-2',
-                      step === s.step ? 'bg-primary text-fg-strong' : 'bg-fill-base'
-                    )}
-                  >
-                    {`Step ${s.step}`}
-                    {s.status === 'complete' ? (
-                      <IconCheck size={16} strokeWidth={2} />
-                    ) : (
-                      <IconClock size={16} strokeWidth={2} />
-                    )}
+                  <li key={s.id}>
+                    <button
+                      type="button"
+                      onClick={async () => await toStep(s.step)}
+                      className={twMerge(
+                        'flex size-8 w-fit cursor-pointer items-center justify-center gap-2 rounded-full px-2',
+                        step === s.step ? 'bg-primary text-fg-strong' : 'bg-fill-base'
+                      )}
+                    >
+                      {`Step ${s.step}`}
+                      {s.status === 'complete' && <IconCheck size={16} strokeWidth={2} />}
+                      {s.status === 'pending' && <IconClock size={16} strokeWidth={2} />}
+                      {s.status === 'error' && <IconX size={16} strokeWidth={2} />}
+                    </button>
                   </li>
                 ))}
               </ul>
 
-              {exercises[indexStep] !== undefined && (
+              {exercises[stepIndex] !== undefined && (
                 <div
-                  key={exercises[indexStep].id}
+                  key={exercises[stepIndex].id}
                   className={twMerge(
                     'animate-duration-100',
                     movement === 0 ? 'animate-fade-left' : 'animate-fade-right'
                   )}
                 >
-                  <h6>{exercises[indexStep].name}</h6>
-                  <p>{exercises[indexStep].description ?? 'No description.'}</p>
+                  <h6>{exercises[stepIndex].name}</h6>
+                  <p>{exercises[stepIndex].description ?? 'No description.'}</p>
                 </div>
               )}
             </header>
           )}
           <main>
-            <form id="exercise-targets-form" ref={formRef} onSubmit={handleSubmit(processData)}>
+            <form id="exercise-targets-form" ref={formRef} onSubmit={handleSubmit(submitForm)}>
               <div
-                key={`form-fields-container.${indexStep}`}
+                key={`form-fields-container.${stepIndex}`}
                 className={twMerge(
                   'animate-duration-100 flex w-full items-start gap-4',
                   movement === 0 ? 'animate-fade-left' : 'animate-fade-right'
                 )}
               >
                 <label
-                  key={`exercises.${indexStep}.sets`}
+                  key={`exercises.${stepIndex}.sets`}
                   className="text-fg-strong block w-full space-y-2"
-                  htmlFor={`exercises.${indexStep}.sets`}
+                  htmlFor={`exercises.${stepIndex}.sets`}
                 >
                   Sets
                   <p className="text-fg-default">Number of sets</p>
                   <input
                     type="number"
-                    id={`exercises.${indexStep}.sets`}
+                    id={`exercises.${stepIndex}.sets`}
                     className="bg-fill-base h-10 w-full rounded-xl px-4"
-                    {...register(`exercises.${indexStep}.sets`, {
-                      value: fields[indexStep]?.sets ?? 4,
+                    {...register(`exercises.${stepIndex}.sets`, {
+                      value: fields[stepIndex]?.sets ?? 4,
                       ...inputNumberConfig,
                     })}
                   />
-                  <ErrorMessage message={errors.exercises?.[indexStep]?.sets?.message} />
+                  <ErrorMessage message={errors.exercises?.[stepIndex]?.sets?.message} />
                 </label>
 
                 <label
-                  key={`exercises.${indexStep}.reps`}
+                  key={`exercises.${stepIndex}.reps`}
                   className="text-fg-strong block w-full space-y-2"
-                  htmlFor={`exercises.${indexStep}.reps`}
+                  htmlFor={`exercises.${stepIndex}.reps`}
                 >
                   Reps
                   <p className="text-fg-default">Number of repetitions</p>
                   <input
-                    id={`exercises.${indexStep}.reps`}
+                    id={`exercises.${stepIndex}.reps`}
                     type="number"
                     className="bg-fill-base h-10 w-full rounded-xl px-4"
-                    {...register(`exercises.${indexStep}.reps`, {
-                      value: fields[indexStep]?.reps ?? 12,
+                    {...register(`exercises.${stepIndex}.reps`, {
+                      value: fields[stepIndex]?.reps ?? 12,
                       ...inputNumberConfig,
                     })}
                   />
-                  <ErrorMessage message={errors.exercises?.[indexStep]?.reps?.message} />
+                  <ErrorMessage message={errors.exercises?.[stepIndex]?.reps?.message} />
                 </label>
 
                 <label
-                  key={`exercises.${indexStep}.weight`}
+                  key={`exercises.${stepIndex}.weight`}
                   className="text-fg-strong block w-full space-y-2"
-                  htmlFor={`exercises.${indexStep}.weight`}
+                  htmlFor={`exercises.${stepIndex}.weight`}
                 >
                   Weight
                   <p className="text-fg-default">Weight quantity</p>
                   <input
-                    id={`exercises.${indexStep}.weight`}
+                    id={`exercises.${stepIndex}.weight`}
                     type="number"
                     className="bg-fill-base h-10 w-full rounded-xl px-4"
-                    {...register(`exercises.${indexStep}.weight`, {
-                      value: fields[indexStep]?.weight ?? 0,
+                    {...register(`exercises.${stepIndex}.weight`, {
+                      value: fields[stepIndex]?.weight ?? 0,
                       ...inputNumberConfig,
                     })}
                   />
-                  <ErrorMessage message={errors.exercises?.[indexStep]?.weight?.message} />
+                  <ErrorMessage message={errors.exercises?.[stepIndex]?.weight?.message} />
                 </label>
               </div>
             </form>
           </main>
           <footer className="flex items-center justify-end gap-4">
-            <Button variant={{ color: 'subtle' }} onClick={goPreviousStep}>
+            <Button variant={{ color: 'subtle' }} onClick={previousStep}>
               {step === 1 ? 'Cancel' : 'Previous exercise'}
             </Button>
             {step === steps.length ? (
@@ -246,11 +251,12 @@ export function ExerciseTargets({ className, exercises = [] }: Props) {
                 variant={{ color: 'primary' }}
                 type="submit"
                 form="exercise-targets-form"
+                onClick={nextStep}
               >
                 Start training
               </Button>
             ) : (
-              <Button key="target-next-button" variant={{ color: 'primary' }} onClick={goNextStep}>
+              <Button key="target-next-button" variant={{ color: 'primary' }} onClick={nextStep}>
                 Next exercise
               </Button>
             )}
@@ -258,12 +264,13 @@ export function ExerciseTargets({ className, exercises = [] }: Props) {
         </PageContent>
       </div>
 
-      <aside className="w-120 space-y-8">
+      <aside className="w-100 space-y-8">
         <header>
           <h5>Push day</h5>
           <p>Push day focused on push muscles development</p>
         </header>
         <LastTargets className="col-span-2" />
+        <ExerciseTargetsStatus />
       </aside>
 
       {isShowingConfirmation && (
