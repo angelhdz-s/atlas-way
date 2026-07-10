@@ -2,5 +2,8 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "tailwindCSS.classFunctions": ["tv", "cn", "cva", "compose", "variants"],
   "css.lint.unknownAtRules": "ignore",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "js/ts.preferences.importModuleSpecifier": "non-relative",
+  "js/ts.preferences.preferTypeOnlyAutoImports": true,
+  "js/ts.preferences.importModuleSpecifierEnding": "minimal"
 }
