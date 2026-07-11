@@ -21,7 +21,7 @@ import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessag
 import {
   ExerciseTargetsContext,
   type ExerciseTargetsStep,
-} from '@/modules/tracking/presentation/ui/contexts/ExerciseTargets.context';
+} from '@/modules/tracking/presentation/ui/contexts/ExerciseTargetsContext';
 import { ExerciseTargetsStatus } from '@/modules/tracking/presentation/ui/components/ExerciseTargetsStatus';
 
 type Props = {
@@ -44,9 +44,6 @@ type ExerciseTargets = z.infer<typeof exerciseTargets>;
 const processData: SubmitHandler<ExerciseTargets> = async (data) => {
   console.log('Submitted');
   console.log(data);
-  await Promise.resolve(() => {
-    setTimeout(() => {}, 1000);
-  });
 };
 
 export function ExerciseTargets({ className, exercises = [] }: Props) {

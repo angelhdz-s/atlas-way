@@ -1,10 +1,12 @@
 'use client';
 
-import type { ExerciseTargetsStep } from '@/modules/tracking/presentation/ui/contexts/ExerciseTargets.context';
+import {
+  ExerciseTargetsContext,
+  type ExerciseTargetsStep,
+} from '@/modules/tracking/presentation/ui/contexts/ExerciseTargetsContext';
 import type { IconTypes } from '@/presentation/globals/presentation.types';
 import { useContext } from 'react';
 import { IconCheck, IconClock, IconX } from '@tabler/icons-react';
-import { ExerciseTargetsContext } from '@/modules/tracking/presentation/ui/contexts/ExerciseTargets.context';
 
 type Props = {
   className?: string;

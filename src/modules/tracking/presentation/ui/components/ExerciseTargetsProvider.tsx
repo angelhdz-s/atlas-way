@@ -1,8 +1,10 @@
 'use client';
 
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
-import type { ExerciseTargetsStep } from '../contexts/ExerciseTargets.context';
-import { ExerciseTargetsContext } from '../contexts/ExerciseTargets.context';
+import {
+  ExerciseTargetsContext,
+  type ExerciseTargetsStep,
+} from '@/modules/tracking/presentation/ui/contexts/ExerciseTargetsContext';
 import { useEffect, useState } from 'react';
 
 type Props = {

@@ -10,7 +10,7 @@ export type ExerciseTargetsStep = {
   weight: number;
 };
 
-type ExerciseTargetsContext = {
+type ExerciseTargetsContextType = {
   steps: ExerciseTargetsStep[];
   step: number;
   stepIndex: number;
@@ -23,7 +23,7 @@ type ExerciseTargetsContext = {
   errorCurrentStep: () => void;
 };
 
-export const ExerciseTargetsContext = createContext<ExerciseTargetsContext>({
+export const ExerciseTargetsContext = createContext<ExerciseTargetsContextType>({
   step: 1,
   stepIndex: 0,
   steps: [],
