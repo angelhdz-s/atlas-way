@@ -17,7 +17,7 @@ export default async function TrackingTrainingPage() {
 
   return (
     <SessionTrainingProvider targets={session.exercises}>
-      <SessionTraining targets={session.exercises} />
+      <SessionTraining />
     </SessionTrainingProvider>
   );
 }
