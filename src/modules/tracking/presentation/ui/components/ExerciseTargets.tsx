@@ -14,7 +14,6 @@ import { PageContainer } from '@/presentation/modules/dashboard/components/page/
 import { PageContent } from '@/presentation/modules/dashboard/components/page/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/components/page/PageHeader';
 import { ExerciseSchema } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
-import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
 import { useLayer } from '@/presentation/globals/hooks/useLayer';
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
@@ -23,6 +22,7 @@ import {
   type ExerciseTargetsStep,
 } from '@/modules/tracking/presentation/ui/contexts/ExerciseTargetsContext';
 import { ExerciseTargetsStatus } from '@/modules/tracking/presentation/ui/components/ExerciseTargetsStatus';
+import { inputNumberConfig } from '@/presentation/globals/utils/react-hook-form.utils';
 
 type Props = {
   className?: string;

@@ -2,9 +2,9 @@ import type { SubmitHandler } from 'react-hook-form';
 import type { SessionTrainingForm } from '@/modules/tracking/presentation/tracking.presentation.types';
 import { twMerge } from 'tailwind-merge';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
-import { inputNumberConfig } from '@/presentation/modules/form/config/input-config';
 import { useSessionTrainingForm } from '@/modules/tracking/presentation/ui/hooks/useSessionTrainingForm';
 import { useSessionTrainingSteps } from '@/modules/tracking/presentation/ui/hooks/useSessionTrainingSteps';
+import { inputNumberConfig } from '@/presentation/globals/utils/react-hook-form.utils';
 
 type Props = {
   className?: string;
