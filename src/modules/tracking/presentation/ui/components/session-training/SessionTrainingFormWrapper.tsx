@@ -85,3 +85,31 @@ export function SessionTrainingFormWrapper({ className }: Props) {
     </form>
   );
 }
+
+function Fallback() {
+  return (
+    <div className="flex h-20 w-full items-start gap-8">
+      <div className="w-full space-y-4">
+        <div className="w-full space-y-2">
+          <div className="bg-fill-base h-4 w-24 rounded-full" />
+          <div className="bg-fill-base h-4 w-full rounded-full" />
+        </div>
+        <main className="bg-fill-base h-10 w-full rounded-full"></main>
+      </div>
+      <div className="w-full space-y-4">
+        <div className="w-full space-y-2">
+          <div className="bg-fill-base h-4 w-24 rounded-full" />
+          <div className="bg-fill-base h-4 w-full rounded-full" />
+        </div>
+        <main className="bg-fill-base h-10 w-full rounded-full"></main>
+      </div>
+      <div className="w-full space-y-4">
+        <div className="w-full space-y-2">
+          <div className="bg-fill-base h-4 w-24 rounded-full" />
+          <div className="bg-fill-base h-4 w-full rounded-full" />
+        </div>
+        <main className="bg-fill-base h-10 w-full rounded-full"></main>
+      </div>
+    </div>
+  );
+}
