@@ -16,8 +16,6 @@ type Props = {
 };
 
 export function SessionTraining({ className }: Props) {
-  const { methods, currentStep, trainingState, goNextStep, goPreviousStep } = useSessionTraining();
-
   return (
     <PageContainer className={twMerge('flex flex-row gap-8', className)}>
       <div className="flex-1 space-y-8">
@@ -25,35 +23,9 @@ export function SessionTraining({ className }: Props) {
         <PageContent className="space-y-8">
           <SessionTrainingHeaderSteps />
           <main className="min-h-24">
-            <FormProvider {...methods}>
               <SessionTrainingFormWrapper />
-            </FormProvider>
           </main>
-          <footer className="flex items-center justify-end gap-4">
-            <Button key="target-next-button" variant={{ color: 'subtle' }} onClick={goPreviousStep}>
-              {currentStep.stage === 1 && currentStep.step === 1 ? 'Cancel' : 'Previous set'}
-            </Button>
-            {currentStep.stage === trainingState.length &&
-            currentStep.step === trainingState.lastStep ? (
-              <Button
-                key={'session-training-submit-button'}
-                variant={{ color: 'primary' }}
-                onClick={goNextStep}
-                type="submit"
-                form="session-training-form"
-              >
-                Finish training
-              </Button>
-            ) : (
-              <Button
-                key={'session-training-next-button'}
-                variant={{ color: 'primary' }}
-                onClick={goNextStep}
-              >
-                Next set
-              </Button>
-            )}
-          </footer>
+            <SessionTrainingButtons />
         </PageContent>
       </div>
 

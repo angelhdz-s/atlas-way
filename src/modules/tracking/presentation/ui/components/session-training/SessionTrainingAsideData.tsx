@@ -1,13 +1,13 @@
 import { twMerge } from 'tailwind-merge';
 import { IconCheck, IconClock, IconX } from '@tabler/icons-react';
-import { useSessionTraining } from '@/modules/tracking/presentation/ui/hooks/useSessionTraining';
+import { useSessionTrainingSteps } from '@/modules/tracking/presentation/ui/hooks/useSessionTrainingSteps';
 
 type Props = {
   className?: string;
 };
 
 export function SessionTrainingAsideData({ className }: Props) {
-  const { trainingState } = useSessionTraining();
+  const { trainingState } = useSessionTrainingSteps();
 
   if (trainingState.stages.length < 1) return null;
 
