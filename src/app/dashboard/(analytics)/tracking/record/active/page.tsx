@@ -20,7 +20,6 @@ import { PageHeader } from '@/presentation/modules/dashboard/components/page/Pag
 
 function Form({
   exercise,
-  session,
   className = '',
 }: {
   exercise: ExerciseDTO;
