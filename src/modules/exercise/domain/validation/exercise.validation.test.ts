@@ -34,7 +34,7 @@ describe('validateExercise', () => {
         description: null,
         sets: 4,
         reps: 8,
-        weight: 100,
+        weight: 0,
         muscles: [],
         userId: id,
       });

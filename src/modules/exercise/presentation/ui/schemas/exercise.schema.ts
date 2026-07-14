@@ -4,8 +4,14 @@ export const ExerciseSchema = z.object({
   name: z
     .string()
     .min(3, 'Name must be at least 3 characters')
-    .max(50, 'Name must be at most 50 characters'),
-  description: z.string().optional(),
+    .max(30, 'Name must be at most 30 characters'),
+  description: z.null().or(
+    z
+      .string({
+        message: 'Description must be string',
+      })
+      .max(100, 'Description must be at most 100 characters')
+  ),
   sets: z.number().min(1, 'Sets must be at least 1'),
   reps: z.number().min(1, 'Reps must be at least 1'),
   weight: z.number().min(0, 'Weight must be at least 0'),
