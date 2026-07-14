@@ -7,16 +7,8 @@ import { useEffect } from 'react';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 export function useSessionTrainingForm() {
-  const {
-    targets,
-    stageIndex,
-    stepIndex,
-    currentStep,
-    trainingState,
-    nextStep,
-    previousStep,
-    updateCurrentStage,
-  } = useSessionTrainingSteps();
+  const { targets, stageIndex, stepIndex, nextStep, previousStep, updateCurrentStage } =
+    useSessionTrainingSteps();
 
   const methods = useFormContext<SessionTrainingForm>();
 

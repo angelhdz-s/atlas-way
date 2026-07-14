@@ -41,9 +41,8 @@ const exerciseTargets = z.object({
 
 type ExerciseTargets = z.infer<typeof exerciseTargets>;
 
-const processData: SubmitHandler<ExerciseTargets> = async (data) => {
-  console.log('Submitted');
-  console.log(data);
+const processData: SubmitHandler<ExerciseTargets> = async (_data) => {
+  // data logic here
 };
 
 export function ExerciseTargets({ className, exercises = [] }: Props) {

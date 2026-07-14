@@ -1,7 +1,15 @@
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 import type { SessionDTO } from '@/modules/session/application/dtos/session.dto';
 import { twMerge } from 'tailwind-merge';
-import { IconCheck, IconCircle, IconGolf, IconMinus, IconPlus } from '@tabler/icons-react';
+import {
+  IconCheck,
+  IconCircle,
+  IconDumbbell,
+  IconGolf,
+  IconMinus,
+  IconPlus,
+  IconWeight,
+} from '@tabler/icons-react';
 import { getAllRoutines } from '@/modules/routine/presentation/routine.actions';
 import { IconSchema } from '@/presentation/globals/components/icons/outline/IconSchema';
 import { Button } from '@/presentation/modules/button/components/Button';
@@ -10,13 +18,12 @@ import { PageContainer } from '@/presentation/modules/dashboard/components/page/
 import { PageContent } from '@/presentation/modules/dashboard/components/page/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/components/page/PageHeader';
 
-import { Check, Dumbbell, Flame, Weight } from 'lucide-react';
 import { StatCard } from '@/presentation/modules/dashboard/components/StatCard';
 import { LastTargets } from '@/presentation/modules/dashboard/components/LastTargets';
+import { IconFlame } from '@/presentation/globals/components/icons/outline/IconFlame';
 
 function Form({
   exercise,
-  session,
   className = '',
 }: {
   exercise: ExerciseDTO;
@@ -211,15 +218,15 @@ function PremiumCard({ className = '' }: { className?: string }) {
         <ul className="space-y-4">
           <li className="flex items-center">
             <span className="w-full">Unlimited Backups</span>
-            <Check />
+            <IconCheck />
           </li>
           <li className="flex items-center">
             <span className="w-full">Wide Analytics</span>
-            <Check />
+            <IconCheck />
           </li>
           <li className="flex items-center">
             <span className="w-full">Session Reminders</span>
-            <Check />
+            <IconCheck />
           </li>
         </ul>
       </main>
@@ -247,15 +254,15 @@ export default async function TrackingRecordActivePage() {
     <PageContainer>
       <PageHeader title="Tracking" description="Track your progress and achieve your goals" />
       <PageContent className="grid grid-cols-12 gap-4">
-        <StatCard Icon={Flame} statData="156 Days" statTitle="Streak" className="col-span-3" />
+        <StatCard Icon={IconFlame} statData="156 Days" statTitle="Streak" className="col-span-3" />
         <StatCard
-          Icon={Weight}
+          Icon={IconWeight}
           statData="546 lb"
           statTitle="Plan Total Weight"
           className="col-span-3"
         />
         <StatCard
-          Icon={Dumbbell}
+          Icon={IconDumbbell}
           statData="274 reps"
           statTitle="Plan Total Reps"
           className="col-span-3"

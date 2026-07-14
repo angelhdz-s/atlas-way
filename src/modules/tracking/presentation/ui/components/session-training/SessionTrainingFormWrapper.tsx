@@ -10,8 +10,8 @@ type Props = {
   className?: string;
 };
 
-const processData: SubmitHandler<SessionTrainingForm> = (data) => {
-  console.log(data);
+const processData: SubmitHandler<SessionTrainingForm> = (_data) => {
+  // logic here
 };
 
 export function SessionTrainingFormWrapper({ className }: Props) {
