@@ -26,7 +26,7 @@ export type TrainingState = {
   stages: TrainingStage[];
 };
 
-export type SessionTrainingContextType = {
+export type SessionTrainingStepsContextType = {
   targets: ExerciseDTO[];
   stepIndex: number;
   stageIndex: number;
@@ -41,7 +41,7 @@ export type SessionTrainingContextType = {
   updateCurrentStage: (currentStepValues: SessionTrainingSetForm, error?: boolean) => void;
 };
 
-export const SessionTrainingContext = createContext<SessionTrainingContextType>({
+export const SessionTrainingStepsContext = createContext<SessionTrainingStepsContextType>({
   targets: [],
   stepIndex: 0,
   stageIndex: 0,

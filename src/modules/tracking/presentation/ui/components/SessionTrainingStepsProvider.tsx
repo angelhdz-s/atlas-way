@@ -4,12 +4,12 @@ import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.d
 import { sessionTrainingSchema } from '@/modules/tracking/presentation/schemas/session-training.schema';
 import type { SessionTrainingSetForm } from '@/modules/tracking/presentation/tracking.presentation.types';
 import {
-  SessionTrainingContext,
-  type SessionTrainingContextType,
+  SessionTrainingStepsContext,
+  type SessionTrainingStepsContextType,
   type TrainingStage,
   type TrainingState,
   type TrainingStep,
-} from '@/modules/tracking/presentation/ui/contexts/SessionTrainingContext';
+} from '@/modules/tracking/presentation/ui/contexts/SessionTrainingStepsContext';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -19,7 +19,10 @@ type Props = {
   targets: ExerciseDTO[];
 };
 
-type Step = Pick<SessionTrainingContextType['currentStep'], 'stage' | 'step' | 'accumulatedStep'>;
+type Step = Pick<
+  SessionTrainingStepsContextType['currentStep'],
+  'stage' | 'step' | 'accumulatedStep'
+>;
 
 const initializeStages = (targets: ExerciseDTO[]): TrainingState => {
   const limitStage = targets.length;
@@ -53,7 +56,7 @@ const initializeStages = (targets: ExerciseDTO[]): TrainingState => {
   };
 };
 
-export function SessionTrainingProvider({ children, targets }: Props) {
+export function SessionTrainingStepsProvider({ children, targets }: Props) {
   const methods = useForm({
     resolver: zodResolver(sessionTrainingSchema),
     shouldUnregister: false,
@@ -168,7 +171,7 @@ export function SessionTrainingProvider({ children, targets }: Props) {
   }, [targets]);
 
   return (
-    <SessionTrainingContext.Provider
+    <SessionTrainingStepsContext.Provider
       value={{
         targets,
         currentStep: {
@@ -183,6 +186,6 @@ export function SessionTrainingProvider({ children, targets }: Props) {
       }}
     >
       <FormProvider {...methods}>{children}</FormProvider>
-    </SessionTrainingContext.Provider>
+    </SessionTrainingStepsContext.Provider>
   );
 }
