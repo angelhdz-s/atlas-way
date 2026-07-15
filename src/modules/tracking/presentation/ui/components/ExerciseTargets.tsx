@@ -33,7 +33,11 @@ const exerciseMetricsSchema = ExerciseSchema.pick({
   reps: true,
   sets: true,
   weight: true,
-});
+}).merge(
+  z.object({
+    exerciseId: z.string().uuid(),
+  })
+);
 
 const exerciseTargets = z.object({
   exercises: z.array(exerciseMetricsSchema),
@@ -120,7 +124,8 @@ export function ExerciseTargets({ className, exercises = [] }: Props) {
 
   useEffect(() => {
     replace(
-      exercises.map(({ reps, sets, weight }) => ({
+      exercises.map(({ id, reps, sets, weight }) => ({
+        exerciseId: id,
         sets,
         reps,
         weight,
