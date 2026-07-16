@@ -5,6 +5,7 @@ import { BODY_SECTIONS } from '../src/modules/muscle/seed/body-sections';
 import { MUSCLES } from '../src/modules/muscle/seed/muscles';
 import { MUSCULAR_GROUPS } from '../src/modules/muscle/seed/muscular-groups';
 import { STATUS } from '../src/modules/status/seed/status';
+import { TRAINING_STATUS } from '../src/modules/tracking/seeds/tracking.seed';
 import { ROLES, USERS } from '../src/modules/user/seed/users';
 async function main() {
   await prisma.$transaction([
@@ -16,6 +17,7 @@ async function main() {
     prisma.bodySections.createMany({ data: BODY_SECTIONS }),
     prisma.muscularGroups.createMany({ data: MUSCULAR_GROUPS }),
     prisma.muscles.createMany({ data: MUSCLES }),
+    prisma.trainingStatus.createMany({ data: TRAINING_STATUS }),
   ]);
 }
 

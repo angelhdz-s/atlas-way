@@ -112,12 +112,18 @@ model Notifications {
   user            Users             @relation(fields: [userId], references: [id])
 }
 
+enum StatusEnum {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  CANCELED
+}
+
 model Status {
-  id              String              @id
+  id              StatusEnum              @id
   name            String              @unique
   createdAt       DateTime            @default(now())
   updatedAt       DateTime            @updatedAt
-  training      Training[]
   trainingSets  TrainingSets[]
 }
 
@@ -162,22 +168,39 @@ model Muscles {
 
 // MARK: Tracking tables
 
+enum TrainingStatusEnum {
+  PENDING
+  TARGETS_SET
+  IN_PROGRESS
+  INTERRUPTED
+  COMPLETED
+  ABANDONED
+}
+
+model TrainingStatus {
+  id                    TrainingStatusEnum @id
+  name                  String
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+  training              Training[]
+}
+
 model Training {
   id                    String             @id @default(uuid())
   userId                String
   routineId             String?
   sessionId             String?
   date                  DateTime
-  statusId                String
-  dayTypeId               String
+  statusId              TrainingStatusEnum
+  dayTypeId             String
   notes                 String?
   createdAt             DateTime            @default(now())
   updatedAt             DateTime            @updatedAt
   user                  Users               @relation(fields: [userId], references: [id])
-  dayType             DayTypes            @relation(fields: [dayTypeId], references: [id])
-  routine             Routines?            @relation(fields: [routineId], references: [id])
-  session             Sessions?            @relation(fields: [sessionId], references: [id])
-  status              Status              @relation(fields: [statusId], references: [id])
+  dayType               DayTypes            @relation(fields: [dayTypeId], references: [id])
+  routine               Routines?            @relation(fields: [routineId], references: [id])
+  session               Sessions?            @relation(fields: [sessionId], references: [id])
+  status                TrainingStatus              @relation(fields: [statusId], references: [id])
   trainingPlan          TrainingPlan[]
   @@unique([id, routineId, sessionId])
 }
@@ -204,7 +227,7 @@ model TrainingSets {
   set                     Int
   reps                    Int
   weight                  Int
-  statusId                  String
+  statusId                StatusEnum
   createdAt               DateTime              @default(now())
   updatedAt               DateTime              @updatedAt
   trainingPlan          TrainingPlan          @relation(fields: [trainingPlanId], references: [id])
