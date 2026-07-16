@@ -18,9 +18,9 @@ export function SessionTrainingAsideData({ className }: Props) {
           <header className="flex justify-between gap-8">
             <h5>{t.title}</h5>
             <aside>
-              {t.status === 'pending' && <IconClock size={16} strokeWidth={2} />}
-              {t.status === 'complete' && <IconCheck size={16} strokeWidth={2} />}
-              {t.status === 'error' && <IconX size={16} strokeWidth={2} />}
+              {t.status === 'PENDING' && <IconClock size={16} strokeWidth={2} />}
+              {t.status === 'COMPLETED' && <IconCheck size={16} strokeWidth={2} />}
+              {t.status === 'ERROR' && <IconX size={16} strokeWidth={2} />}
             </aside>
           </header>
           {t.steps.map((s) => (
@@ -29,9 +29,9 @@ export function SessionTrainingAsideData({ className }: Props) {
               <li>{s.reps}</li>
               <li>{s.weight}</li>
               <li>
-                {s.status === 'pending' && <IconClock size={16} strokeWidth={2} />}
-                {s.status === 'complete' && <IconCheck size={16} strokeWidth={2} />}
-                {s.status === 'error' && <IconX size={16} strokeWidth={2} />}
+                {s.status === 'PENDING' && <IconClock size={16} strokeWidth={2} />}
+                {s.status === 'COMPLETED' && <IconCheck size={16} strokeWidth={2} />}
+                {s.status === 'ERROR' && <IconX size={16} strokeWidth={2} />}
               </li>
             </ul>
           ))}

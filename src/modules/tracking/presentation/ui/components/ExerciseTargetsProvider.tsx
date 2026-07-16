@@ -25,26 +25,26 @@ export function ExerciseTargetsProvider({ children, exercises }: Props) {
       sets: e.sets,
       reps: e.reps,
       weight: e.weight,
-      status: 'pending',
+      status: 'PENDING',
     }))
   );
 
   const completeCurrentStep = () => {
-    if (steps[stepIndex]?.status === 'complete') return;
+    if (steps[stepIndex]?.status === 'COMPLETED') return;
     setSteps((prevSteps) => {
       const prevStepsCopy = [...prevSteps];
       if (!prevStepsCopy[stepIndex]) return prevSteps;
-      prevStepsCopy[stepIndex].status = 'complete';
+      prevStepsCopy[stepIndex].status = 'COMPLETED';
       return [...prevStepsCopy];
     });
   };
 
   const errorCurrentStep = () => {
-    if (steps[stepIndex]?.status === 'error') return;
+    if (steps[stepIndex]?.status === 'ERROR') return;
     setSteps((prevSteps) => {
       const prevStepsCopy = [...prevSteps];
       if (!prevStepsCopy[stepIndex]) return prevSteps;
-      prevStepsCopy[stepIndex].status = 'error';
+      prevStepsCopy[stepIndex].status = 'ERROR';
       return [...prevStepsCopy];
     });
   };
@@ -71,7 +71,7 @@ export function ExerciseTargetsProvider({ children, exercises }: Props) {
 
     const stepInfo = steps[targetStep - 1];
     if (!stepInfo) return;
-    if (steps[targetStep - 2]?.status === 'pending' && stepInfo.status === 'pending') return;
+    if (steps[targetStep - 2]?.status === 'PENDING' && stepInfo.status === 'PENDING') return;
     setStep(targetStep);
   };
 
@@ -103,7 +103,7 @@ export function ExerciseTargetsProvider({ children, exercises }: Props) {
         sets: e.sets,
         reps: e.reps,
         weight: e.weight,
-        status: 'pending',
+        status: 'PENDING',
       }))
     );
   }, [exercises]);

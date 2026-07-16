@@ -69,7 +69,7 @@ export function ExerciseTargets({ className, exercises = [], trainingId }: Props
 
   const submitForm: SubmitHandler<ExerciseTargetsForm> = async (data) => {
     if (isSubmitting || isSubmitted) return;
-    updateCurrentStep('complete');
+    updateCurrentStep('COMPLETED');
     const targetsResult = await createTargets(data);
     if (!targetsResult.success)
       return addToast(targetsResult.message, {
@@ -99,7 +99,7 @@ export function ExerciseTargets({ className, exercises = [], trainingId }: Props
 
   const validateAndCurrentStep = async (update: boolean = false) => {
     const isValid = await isCurrentFormValid();
-    if (update) updateCurrentStep(isValid ? 'complete' : 'error');
+    if (update) updateCurrentStep(isValid ? 'COMPLETED' : 'ERROR');
     return isValid;
   };
 
@@ -151,9 +151,9 @@ export function ExerciseTargets({ className, exercises = [], trainingId }: Props
                       )}
                     >
                       {`Step ${s.step}`}
-                      {s.status === 'complete' && <IconCheck size={16} strokeWidth={2} />}
-                      {s.status === 'pending' && <IconClock size={16} strokeWidth={2} />}
-                      {s.status === 'error' && <IconX size={16} strokeWidth={2} />}
+                      {s.status === 'COMPLETED' && <IconCheck size={16} strokeWidth={2} />}
+                      {s.status === 'PENDING' && <IconClock size={16} strokeWidth={2} />}
+                      {s.status === 'ERROR' && <IconX size={16} strokeWidth={2} />}
                     </button>
                   </li>
                 ))}

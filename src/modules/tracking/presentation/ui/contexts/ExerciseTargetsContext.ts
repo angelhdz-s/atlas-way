@@ -1,10 +1,11 @@
+import type { StatusCode } from '@/modules/status/status.types';
 import { createContext } from 'react';
 
 export type ExerciseTargetsStep = {
   id: string;
   title: string;
   step: number;
-  status: 'pending' | 'complete' | 'error';
+  status: Exclude<StatusCode, 'IN_PROGRESS' | 'CANCELED'> | 'ERROR';
   sets: number;
   reps: number;
   weight: number;

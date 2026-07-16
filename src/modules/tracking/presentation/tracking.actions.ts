@@ -60,7 +60,7 @@ export async function createTraining(): Promise<ActionResponseProps<Training>> {
         id,
         date,
         dayTypeId: 'training',
-        statusId: 'pending',
+        statusId: 'PENDING',
         userId: userId.data.id,
         routineId,
         sessionId,
@@ -106,7 +106,7 @@ export async function createTargets(data: ExerciseTargetsForm): Promise<ActionRe
     return ActionFailure('Training not found');
   }
 
-  if (training.statusId !== 'pending') {
+  if (training.statusId !== 'PENDING') {
     const status = training.statusId;
     console.log(`Training was ${status}`);
     return ActionFailure(`Training was ${status}`);
@@ -129,7 +129,7 @@ export async function createTargets(data: ExerciseTargetsForm): Promise<ActionRe
           id: training.id,
         },
         data: {
-          statusId: 'draft',
+          statusId: 'TARGETS_SET',
         },
       }),
     ]);

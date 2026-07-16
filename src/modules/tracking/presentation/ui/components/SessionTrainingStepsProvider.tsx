@@ -35,7 +35,7 @@ const initializeStages = (targets: ExerciseDTO[]): TrainingState => {
       reps: t.reps,
       rir: 0,
       weight: t.weight,
-      status: 'pending',
+      status: 'PENDING',
     }));
 
     if (index === limitStage - 1) limitStep = t.sets;
@@ -44,7 +44,7 @@ const initializeStages = (targets: ExerciseDTO[]): TrainingState => {
       id: t.id,
       stage: index + 1,
       title: t.name,
-      status: 'pending',
+      status: 'PENDING',
       steps,
     };
   });
@@ -93,10 +93,10 @@ export function SessionTrainingStepsProvider({ children, targets }: Props) {
         status: currentStepValues.status,
       };
 
-      if (error) stageCopy.status = 'error';
+      if (error) stageCopy.status = 'ERROR';
       else {
-        const areStepsComplete = stageCopy.steps.every((s) => s.status === 'complete');
-        stageCopy.status = areStepsComplete ? 'complete' : 'pending';
+        const areStepsComplete = stageCopy.steps.every((s) => s.status === 'COMPLETED');
+        stageCopy.status = areStepsComplete ? 'COMPLETED' : 'PENDING';
       }
 
       stateCopy.stages[stageIndex] = stageCopy;

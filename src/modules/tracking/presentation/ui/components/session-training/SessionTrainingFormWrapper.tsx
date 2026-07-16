@@ -15,7 +15,7 @@ const processData: SubmitHandler<SessionTrainingForm> = (_data) => {
 };
 
 export function SessionTrainingFormWrapper({ className }: Props) {
-  const { trainingState, stepIndex, stageIndex } = useSessionTrainingSteps();
+  const { stepIndex, stageIndex } = useSessionTrainingSteps();
 
   const { handleSubmit, isReady, errors, register } = useSessionTrainingForm();
 
@@ -43,7 +43,6 @@ export function SessionTrainingFormWrapper({ className }: Props) {
             className="bg-fill-base h-10 w-full rounded-xl px-4"
             {...register(`exercises.${stageIndex}.sets.${stepIndex}.reps`, {
               ...inputNumberConfig,
-              value: trainingState.stages[stageIndex]?.steps[stepIndex]?.reps,
             })}
           />
           <ErrorMessage

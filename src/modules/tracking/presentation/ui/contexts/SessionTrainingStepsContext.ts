@@ -1,4 +1,5 @@
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
+import type { StatusCode } from '@/modules/status/status.types';
 import type { SessionTrainingSetForm } from '@/modules/tracking/presentation/tracking.presentation.types';
 import { createContext } from 'react';
 
@@ -9,14 +10,14 @@ export type TrainingStep = {
   reps: number;
   rir: number;
   weight: number;
-  status: 'pending' | 'complete' | 'error' | 'cancel';
+  status: StatusCode | 'ERROR';
 };
 
 export type TrainingStage = {
   id: string;
   title: string;
   stage: number;
-  status: 'pending' | 'complete' | 'cancel' | 'error';
+  status: StatusCode | 'ERROR';
   steps: TrainingStep[];
 };
 

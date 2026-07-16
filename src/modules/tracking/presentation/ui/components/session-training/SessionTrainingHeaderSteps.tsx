@@ -24,9 +24,9 @@ export function SessionTrainingHeaderSteps({ className }: Props) {
               )}
             >
               {`Step ${i + 1}`}
-              {s.status === 'pending' && <IconClock size={16} strokeWidth={2} />}
-              {s.status === 'complete' && <IconCheck size={16} strokeWidth={2} />}
-              {s.status === 'error' && <IconX size={16} strokeWidth={2} />}
+              {s.status === 'PENDING' && <IconClock size={16} strokeWidth={2} />}
+              {s.status === 'COMPLETED' && <IconCheck size={16} strokeWidth={2} />}
+              {s.status === 'CANCELED' && <IconX size={16} strokeWidth={2} />}
             </button>
           </li>
         ))}

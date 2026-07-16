@@ -34,11 +34,11 @@ export function useSessionTrainingForm() {
     const setsCopy = [...stage.sets];
     setsCopy[stepIndex] = values;
 
-    const areStepsCompleted = setsCopy.every((s) => s.status === 'complete');
+    const areStepsCompleted = setsCopy.every((s) => s.status === 'COMPLETED');
     update(stageIndex, {
       ...stage,
       sets: setsCopy,
-      status: areStepsCompleted ? 'complete' : 'pending',
+      status: areStepsCompleted ? 'COMPLETED' : 'PENDING',
     });
   };
 
@@ -51,12 +51,12 @@ export function useSessionTrainingForm() {
     updateCurrentStage(
       {
         ...step,
-        status: isValid ? 'complete' : 'pending',
+        status: isValid ? 'COMPLETED' : 'PENDING',
       },
       !isValid
     );
 
-    updateFields({ ...step, status: isValid ? 'complete' : 'pending' });
+    updateFields({ ...step, status: isValid ? 'COMPLETED' : 'PENDING' });
     if (!isValid) return;
 
     nextStep();
@@ -76,13 +76,13 @@ export function useSessionTrainingForm() {
             reps: t.reps,
             rir: 0,
             weight: t.weight,
-            status: 'pending',
+            status: 'PENDING',
           })
         );
 
         return {
           exerciseId: t.id,
-          status: 'pending',
+          status: 'PENDING',
           sets,
         };
       })
