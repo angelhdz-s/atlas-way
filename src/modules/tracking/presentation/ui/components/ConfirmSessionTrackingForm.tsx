@@ -1,8 +1,25 @@
 'use client';
+
+import { useRouter } from 'next/navigation';
+import { getTodaysTraining } from '@/modules/tracking/presentation/tracking.actions';
 import { Button } from '@/presentation/modules/button/components/Button';
-import { Link } from '@/presentation/modules/button/components/Link';
+import { useToast } from '@/presentation/modules/toast/hooks/useToast';
 
 export function ConfirmSessionTrackingForm() {
+  const { addToast } = useToast();
+  const { push } = useRouter();
+  const goToTargets = async () => {
+    const training = await getTodaysTraining();
+    if (!training.success) {
+      return addToast(training.message, {
+        type: 'error',
+      });
+    }
+    const trainingId = training.data.id;
+
+    return push(`/dashboard/tracking/${trainingId}/targets`);
+  };
+
   return (
     <div className="bg-fill-base border-bd-muted w-100 space-y-8 rounded-2xl p-8">
       <header>
@@ -47,9 +64,9 @@ export function ConfirmSessionTrackingForm() {
       </main>
       <footer className="flex items-center justify-end gap-4">
         <Button variant={{ color: 'simple' }}>Cancel</Button>
-        <Link variant={{ color: 'primary' }} href={'/dashboard/tracking/targets'}>
+        <Button variant={{ color: 'primary' }} onClick={goToTargets}>
           Confirm training
-        </Link>
+        </Button>
       </footer>
     </div>
   );
