@@ -9,6 +9,10 @@ import {
 } from '@/shared/presentation/action.response';
 import { prisma } from '@/shared/infrastructure/prisma/client';
 import { getCurrentUser } from '@/modules/user/presentation/user.actions';
+import {
+  exerciseTargetsSchema,
+  type ExerciseTargetsForm,
+} from '@/modules/tracking/presentation/schemas/exercise-targets.schema';
 
 export async function getTodaysTraining(): Promise<ActionResponseProps<Training>> {
   const today = new Date();
@@ -80,5 +84,59 @@ export async function getTrainingById(
     return ActionSuccess(training, 'Training returned successfully');
   } catch (_) {
     return ActionFailure('Error getting training by id');
+  }
+}
+
+export async function createTargets(data: ExerciseTargetsForm): Promise<ActionResponseProps<true>> {
+  console.log(data);
+  const parseResult = exerciseTargetsSchema.safeParse(data);
+  if (!parseResult.success) {
+    console.log('Invalid data');
+    return ActionFailure('Invalid data');
+  }
+
+  const training = await prisma.training.findUnique({
+    where: {
+      id: data.trainingId,
+    },
+  });
+
+  if (!training) {
+    console.log('Training not found');
+    return ActionFailure('Training not found');
+  }
+
+  if (training.statusId !== 'pending') {
+    const status = training.statusId;
+    console.log(`Training was ${status}`);
+    return ActionFailure(`Training was ${status}`);
+  }
+
+  try {
+    await prisma.$transaction([
+      prisma.trainingPlan.createMany({
+        data: data.exercises.map((e) => ({
+          exerciseId: e.exerciseId,
+          sets: e.sets,
+          reps: e.reps,
+          weight: e.weight,
+          trainingId: training.id,
+        })),
+        skipDuplicates: true,
+      }),
+      prisma.training.update({
+        where: {
+          id: training.id,
+        },
+        data: {
+          statusId: 'draft',
+        },
+      }),
+    ]);
+
+    return ActionSuccess(true, 'TrainingPlan created successfully');
+  } catch (e) {
+    console.log(e);
+    return ActionFailure('Error creating trainingPlans');
   }
 }
