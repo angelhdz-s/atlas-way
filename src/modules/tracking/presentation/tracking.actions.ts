@@ -1,7 +1,7 @@
 'use server';
 
 import { randomUUID } from 'node:crypto';
-import type { Training } from '@/prisma/client';
+import type { Prisma, Training } from '@/prisma/client';
 import {
   ActionFailure,
   ActionSuccess,
@@ -13,6 +13,10 @@ import {
   exerciseTargetsSchema,
   type ExerciseTargetsForm,
 } from '@/modules/tracking/presentation/schemas/exercise-targets.schema';
+import {
+  trainingSetSchema,
+  type TrainingSetForm,
+} from '@/modules/tracking/presentation/schemas/training.schema';
 
 export async function getTodaysTraining(): Promise<ActionResponseProps<Training>> {
   const today = new Date();
@@ -139,5 +143,83 @@ export async function createTargets(data: ExerciseTargetsForm): Promise<ActionRe
   } catch (e) {
     console.log(e);
     return ActionFailure('Error creating trainingPlans');
+  }
+}
+
+const trainingPlanAnatomy = {
+  include: {
+    exercise: {
+      select: {
+        name: true,
+        description: true,
+      },
+    },
+    trainingSets: true,
+  },
+} satisfies Prisma.TrainingPlanDefaultArgs;
+
+export type FullTrainingPlan = Prisma.TrainingPlanGetPayload<typeof trainingPlanAnatomy>;
+
+export async function getTrainingPlansByTrainingId(
+  trainingId: string
+): Promise<ActionResponseProps<FullTrainingPlan[]>> {
+  const trainingResult = await getTrainingById(trainingId);
+  if (!trainingResult.success) return trainingResult;
+  if (!trainingResult.data) {
+    console.log('Training not found');
+    return ActionFailure('Training not found');
+  }
+
+  try {
+    const trainingPlans = await prisma.trainingPlan.findMany({
+      where: {
+        trainingId,
+      },
+      ...trainingPlanAnatomy,
+    });
+    return ActionSuccess(trainingPlans, 'Training plans found');
+  } catch (error) {
+    console.log(error);
+    return ActionFailure('Error getting training plans');
+  }
+}
+
+type TrainingSetFormWithId = TrainingSetForm & {
+  id: string;
+};
+
+export async function createTrainingSet(
+  data: TrainingSetForm
+): Promise<ActionResponseProps<TrainingSetFormWithId>> {
+  const parsedDataResult = trainingSetSchema.safeParse(data);
+  if (!parsedDataResult.success) {
+    console.log(parsedDataResult.error);
+    return ActionFailure('Invalid data');
+  }
+
+  const set = parsedDataResult.data;
+
+  if (set.id !== undefined) {
+    const typedSet = set as TrainingSetFormWithId;
+    console.log(typedSet);
+    return ActionSuccess(typedSet, 'Set updated successfully');
+  }
+
+  try {
+    const id = randomUUID();
+    console.log({
+      ...set,
+      id,
+    });
+    return ActionSuccess(
+      {
+        ...set,
+        id,
+      },
+      'Set created successfully'
+    );
+  } catch (error) {
+    console.log(error);
+    return ActionFailure('Error creating set');
   }
 }
