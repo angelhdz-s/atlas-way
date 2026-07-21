@@ -1,48 +1,49 @@
 'use client';
 
-import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
-import { trainingSetSchema } from '@/modules/tracking/presentation/schemas/training.schema';
-import {
-  SessionTrainingStepsContext,
-  type SessionTrainingStepsContextType,
-  type TrainingStage,
-  type TrainingState,
-  type TrainingStep,
-} from '@/modules/tracking/presentation/ui/contexts/SessionTrainingStepsContext';
-import { zodResolver } from '@hookform/resolvers/zod';
+import type { FullTrainingPlan } from '@/modules/tracking/presentation/tracking.actions';
+import type {
+  TrainingStage,
+  TrainingState,
+  TrainingStep,
+} from '@/modules/tracking/presentation/ui/contexts/TrainingStepsContext';
+import type { TrainingStepsContextType } from '@/modules/tracking/presentation/ui/contexts/TrainingStepsContext';
+import type { TrainingSets } from '@/prisma/client';
 import { useEffect, useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { TrainingStepsContext } from '@/modules/tracking/presentation/ui/contexts/TrainingStepsContext';
+
+export type CurrentStep = Omit<TrainingSets, 'id' | 'createdAt' | 'updatedAt'>;
 
 type Props = {
   children: React.ReactNode;
-  targets: ExerciseDTO[];
+  targets: FullTrainingPlan[];
 };
 
-type Step = Pick<
-  SessionTrainingStepsContextType['currentStep'],
-  'stage' | 'step' | 'accumulatedStep'
->;
+type Step = Pick<TrainingStepsContextType['currentStep'], 'stage' | 'step'>;
 
-const initializeStages = (targets: ExerciseDTO[]): TrainingState => {
+const initializeStages = (targets: FullTrainingPlan[]): TrainingState => {
   const limitStage = targets.length;
   let limitStep: number = 1;
   const stages: TrainingStage[] = targets.map((t, index) => {
-    const steps: TrainingStep[] = Array.from({ length: t.sets }, (_, i) => i + 1).map((s) => ({
-      title: `Set ${s}`,
-      id: `${t.id}-${s}`,
-      set: s,
-      reps: t.reps,
-      rir: 0,
-      weight: t.weight,
-      status: 'PENDING',
-    }));
+    const steps: TrainingStep[] = Array.from({ length: t.sets }, (_, i) => i + 1).map((s, i) => {
+      const trainingSet = t.trainingSets[i];
+      return {
+        title: `Set ${s}`,
+        key: `${t.id}-${s}`,
+        set: trainingSet?.set ?? s,
+        reps: trainingSet?.reps ?? t.reps,
+        rir: 0,
+        weight: trainingSet?.weight ?? t.weight,
+        status: trainingSet ? 'COMPLETED' : 'PENDING',
+        ...(trainingSet?.id ? { id: trainingSet.id } : {}),
+      };
+    });
 
     if (index === limitStage - 1) limitStep = t.sets;
 
     return {
       id: t.id,
       stage: index + 1,
-      title: t.name,
+      title: t.exercise.name,
       status: 'PENDING',
       steps,
     };
@@ -56,24 +57,23 @@ const initializeStages = (targets: ExerciseDTO[]): TrainingState => {
 };
 
 export function TrainingStepsProvider({ children, targets }: Props) {
-  const methods = useForm({
-    resolver: zodResolver(trainingSetSchema),
-    shouldUnregister: false,
-  });
-
   const [currentStep, setCurrentStep] = useState<Step>({
     stage: 1,
     step: 1,
-    accumulatedStep: 1,
   });
   const stepIndex = currentStep.step - 1;
   const stageIndex = currentStep.stage - 1;
 
   const [trainingState, setTrainingState] = useState<TrainingState>(initializeStages(targets));
 
-  const updateCurrentStage = (currentStepValues: TrainingStep, error = false) => {
+  const updateCurrentStage = (
+    currentStepValues: TrainingStep,
+    stageIndex: number,
+    stepIndex: number
+  ) => {
     const stage = trainingState.stages[stageIndex];
     if (!stage) return;
+
     const step = stage.steps[stepIndex];
     if (!step) return;
 
@@ -90,13 +90,11 @@ export function TrainingStepsProvider({ children, targets }: Props) {
         weight: currentStepValues.weight ?? stepCopy.weight,
         rir: currentStepValues.rir ?? stepCopy.rir,
         status: currentStepValues.status,
+        ...(currentStepValues.id ? { id: currentStepValues.id } : {}),
       };
 
-      if (error) stageCopy.status = 'ERROR';
-      else {
-        const areStepsComplete = stageCopy.steps.every((s) => s.id !== undefined);
-        stageCopy.status = areStepsComplete ? 'COMPLETED' : 'PENDING';
-      }
+      const areStepsComplete = stageCopy.steps.every((s) => s.status === 'COMPLETED');
+      stageCopy.status = areStepsComplete ? 'COMPLETED' : 'PENDING';
 
       stateCopy.stages[stageIndex] = stageCopy;
       return stateCopy;
@@ -113,10 +111,9 @@ export function TrainingStepsProvider({ children, targets }: Props) {
     if (currentStep.step + 1 > stageData.steps.length) {
       return setCurrentStep((prev) => {
         const prevCopy = { ...prev };
-        const { accumulatedStep, stage } = prevCopy;
+        const { stage } = prevCopy;
 
         return {
-          accumulatedStep: accumulatedStep + 1,
           stage: stage + 1,
           step: 1,
         };
@@ -125,10 +122,9 @@ export function TrainingStepsProvider({ children, targets }: Props) {
 
     return setCurrentStep((prev) => {
       const prevCopy = { ...prev };
-      const { accumulatedStep, step, stage } = prevCopy;
+      const { step, stage } = prevCopy;
 
       return {
-        accumulatedStep: accumulatedStep + 1,
         step: step + 1,
         stage,
       };
@@ -143,10 +139,9 @@ export function TrainingStepsProvider({ children, targets }: Props) {
       if (!stageData) return;
       return setCurrentStep((prev) => {
         const prevCopy = { ...prev };
-        const { accumulatedStep, stage } = prevCopy;
+        const { stage } = prevCopy;
 
         return {
-          accumulatedStep: accumulatedStep - 1,
           stage: stage - 1,
           step: stageData.steps.length,
         };
@@ -155,10 +150,9 @@ export function TrainingStepsProvider({ children, targets }: Props) {
 
     return setCurrentStep((prev) => {
       const prevCopy = { ...prev };
-      const { accumulatedStep, step, stage } = prevCopy;
+      const { step, stage } = prevCopy;
 
       return {
-        accumulatedStep: accumulatedStep - 1,
         step: step - 1,
         stage,
       };
@@ -166,11 +160,36 @@ export function TrainingStepsProvider({ children, targets }: Props) {
   };
 
   useEffect(() => {
+    const initialState = initializeStages(targets);
     setTrainingState(initializeStages(targets));
+    const targetStatusDictionary: Record<Exclude<TrainingStage['status'], 'ERROR'>, number> = {
+      COMPLETED: 0,
+      IN_PROGRESS: 0,
+      PENDING: 0,
+    };
+
+    const inProgressStageIndex = initialState.stages.findIndex((s) => {
+      targetStatusDictionary[s.status as Exclude<TrainingStage['status'], 'ERROR'>]++;
+      return s.status === 'IN_PROGRESS';
+    });
+
+    if (inProgressStageIndex < 0) return;
+
+    const lastSetCompletedIndex = initialState.stages[inProgressStageIndex]?.steps.findLastIndex(
+      (s) => s.status === 'COMPLETED'
+    );
+
+    if (!lastSetCompletedIndex || lastSetCompletedIndex < 0)
+      return setCurrentStep({ stage: inProgressStageIndex + 1, step: 1 });
+
+    return setCurrentStep({
+      stage: inProgressStageIndex + 1,
+      step: lastSetCompletedIndex + 2,
+    });
   }, [targets]);
 
   return (
-    <SessionTrainingStepsContext.Provider
+    <TrainingStepsContext.Provider
       value={{
         targets,
         currentStep: {
@@ -184,7 +203,7 @@ export function TrainingStepsProvider({ children, targets }: Props) {
         updateCurrentStage,
       }}
     >
-      <FormProvider {...methods}>{children}</FormProvider>
-    </SessionTrainingStepsContext.Provider>
+      {children}
+    </TrainingStepsContext.Provider>
   );
 }
