@@ -121,6 +121,7 @@ export async function createTargets(data: ExerciseTargetsForm): Promise<ActionRe
           reps: e.reps,
           weight: e.weight,
           trainingId: training.id,
+          statusId: 'PENDING',
         })),
         skipDuplicates: true,
       }),
