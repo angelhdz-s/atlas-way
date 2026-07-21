@@ -1,28 +1,20 @@
-import type { SubmitHandler } from 'react-hook-form';
 import { twMerge } from 'tailwind-merge';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { inputNumberConfig } from '@/presentation/globals/utils/react-hook-form.utils';
 import { useTrainingSteps } from '@/modules/tracking/presentation/ui/hooks/useTrainingSteps';
 import { useTrainingForm } from '@/modules/tracking/presentation/ui/hooks/useTrainingForm';
-import type { TrainingSetForm } from '@/modules/tracking/presentation/schemas/training.schema';
 
 type Props = {
   className?: string;
 };
 
-const processData: SubmitHandler<TrainingSetForm> = (_data) => {
-  // logic here
-};
-
 export function TrainingFormWrapper({ className }: Props) {
   const { stepIndex, stageIndex } = useTrainingSteps();
-
   const { handleSubmit, isReady, errors, register } = useTrainingForm();
-
   if (!isReady) return <Fallback />;
 
   return (
-    <form id="training-set-form" onSubmit={handleSubmit(processData)} className={className}>
+    <form id="training-set-form" onSubmit={handleSubmit} className={className}>
       <div
         key={`training-form-fields-container-${stageIndex}-${stepIndex}`}
         className={twMerge(
@@ -31,7 +23,6 @@ export function TrainingFormWrapper({ className }: Props) {
         )}
       >
         <label
-          key={`exercises.${stageIndex}.sets.${stepIndex}.reps`}
           className="text-fg-strong block w-full space-y-2"
           htmlFor={`exercises.${stageIndex}.sets.${stepIndex}.reps`}
         >
@@ -49,7 +40,6 @@ export function TrainingFormWrapper({ className }: Props) {
         </label>
 
         <label
-          key={`exercises.${stageIndex}.sets.${stepIndex}.rir`}
           className="text-fg-strong block w-full space-y-2"
           htmlFor={`exercises.${stageIndex}.sets.${stepIndex}.rir`}
         >
@@ -65,7 +55,6 @@ export function TrainingFormWrapper({ className }: Props) {
         </label>
 
         <label
-          key={`exercises.${stageIndex}.sets.${stepIndex}.weight`}
           className="text-fg-strong block w-full space-y-2"
           htmlFor={`exercises.${stageIndex}.sets.${stepIndex}.weight`}
         >

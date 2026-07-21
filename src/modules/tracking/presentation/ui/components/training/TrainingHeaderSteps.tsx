@@ -37,8 +37,8 @@ export function TrainingHeaderSteps({ className }: Props) {
           key={targets[stageIndex].id}
           className={twMerge('animate-duration-100', 'animate-fade-left')}
         >
-          <h6>{targets[stageIndex].name}</h6>
-          <p>{targets[stageIndex].description ?? 'No description.'}</p>
+          <h6>{targets[stageIndex].exercise.name}</h6>
+          <p>{targets[stageIndex].exercise.description ?? 'No description.'}</p>
         </div>
       )}
 

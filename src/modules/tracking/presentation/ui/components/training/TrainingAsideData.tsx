@@ -24,7 +24,7 @@ export function TrainingAsideData({ className }: Props) {
             </aside>
           </header>
           {t.steps.map((s) => (
-            <ul key={s.id} className="flex items-center gap-2">
+            <ul key={s.key} className="flex items-center gap-2">
               <li className="w-full">{`Set ${s.set}`}</li>
               <li>{s.reps}</li>
               <li>{s.weight}</li>

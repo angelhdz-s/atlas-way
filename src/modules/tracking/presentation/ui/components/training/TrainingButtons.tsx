@@ -9,7 +9,7 @@ type Props = {
 
 export function TrainingButtons({ className }: Props) {
   const { currentStep, trainingState } = useTrainingSteps();
-  const { goPreviousStep, goNextStep } = useTrainingForm();
+  const { goPreviousStep, isSubmitting } = useTrainingForm();
   return (
     <footer className={twMerge('flex items-center justify-end gap-4', className)}>
       <Button key="target-next-button" variant={{ color: 'subtle' }} onClick={goPreviousStep}>
@@ -18,9 +18,9 @@ export function TrainingButtons({ className }: Props) {
       <Button
         key={'session-training-submit-button'}
         variant={{ color: 'primary' }}
-        onClick={goNextStep}
         type="submit"
         form="training-set-form"
+        disabled={isSubmitting}
       >
         {currentStep.stage === trainingState.length && currentStep.step === trainingState.lastStep
           ? 'Finish training'
