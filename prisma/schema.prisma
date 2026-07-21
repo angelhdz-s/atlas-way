@@ -183,6 +183,7 @@ model TrainingStatus {
   createdAt             DateTime            @default(now())
   updatedAt             DateTime            @updatedAt
   training              Training[]
+  trainingPlan          TrainingPlan[]
 }
 
 model Training {
@@ -209,11 +210,13 @@ model TrainingPlan {
   id                  String       @id @default(uuid())
   trainingId          String       
   exerciseId          String
+  statusId            TrainingStatusEnum
   sets                Int
   reps                Int
   weight              Int
   createdAt           DateTime     @default(now())
   updatedAt           DateTime     @updatedAt
+  status            TrainingStatus @relation(fields: [statusId], references: [id])
   training          Training     @relation(fields: [trainingId], references: [id])
   exercise          Exercises    @relation(fields: [exerciseId], references: [id])
   trainingSets        TrainingSets[]
