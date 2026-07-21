@@ -1,6 +1,6 @@
 'use client';
 
-import { TrainingStepsContext } from '@/modules/tracking/presentation/ui/contexts/TrainingStepsContext copy';
+import { TrainingStepsContext } from '@/modules/tracking/presentation/ui/contexts/TrainingStepsContext';
 import { useContext } from 'react';
 
 export function useTrainingSteps() {
