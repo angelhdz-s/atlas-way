@@ -5,5 +5,8 @@
   "editor.formatOnSave": true,
   "js/ts.preferences.importModuleSpecifier": "non-relative",
   "js/ts.preferences.preferTypeOnlyAutoImports": true,
-  "js/ts.preferences.importModuleSpecifierEnding": "minimal"
+  "js/ts.preferences.importModuleSpecifierEnding": "minimal",
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false
 }
