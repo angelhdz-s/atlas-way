@@ -26,7 +26,12 @@ export function TrainingHeaderSteps({ className }: Props) {
               {`Step ${i + 1}`}
               {s.status === 'PENDING' && <IconClock size={16} strokeWidth={2} />}
               {s.status === 'COMPLETED' && <IconCheck size={16} strokeWidth={2} />}
-              {s.status === 'ERROR' && <IconX size={16} strokeWidth={2} />}
+              {s.status === 'CANCELED' && s.steps.length > 0 && (
+                <IconCheck size={16} strokeWidth={2} />
+              )}
+              {s.status === 'CANCELED' && s.steps.length === 0 && (
+                <IconX size={16} strokeWidth={2} />
+              )}
             </button>
           </li>
         ))}

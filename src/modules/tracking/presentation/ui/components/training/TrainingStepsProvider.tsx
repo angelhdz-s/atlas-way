@@ -66,7 +66,7 @@ export function TrainingStepsProvider({ children, targets }: Props) {
 
   const [trainingState, setTrainingState] = useState<TrainingState>(initializeStages(targets));
 
-  const updateCurrentStage = (
+  const updateCurrentStep = (
     currentStepValues: TrainingStep,
     stageIndex: number,
     stepIndex: number
@@ -101,6 +101,37 @@ export function TrainingStepsProvider({ children, targets }: Props) {
     });
   };
 
+  const getNextAvailableStageIndex = () => {
+    const lastStageIndex = trainingState.length - 1;
+    if (lastStageIndex === stageIndex) {
+      console.log('stages less than 1');
+      return;
+    }
+    const stages = lastStageIndex - stageIndex;
+
+    for (let i = 1; i <= stages; i++) {
+      const currentStage = trainingState.stages[i + stageIndex];
+      if (!currentStage) {
+        console.log('currentStage not found');
+        return;
+      }
+      console.log('Current steps length', currentStage.steps.length);
+      if (currentStage.steps.length > 0) {
+        return i + stageIndex;
+      }
+    }
+  };
+
+  const getPreviousAvailableStageIndex = () => {
+    if (stageIndex === 0) return;
+
+    for (let i = stageIndex - 1; i >= 0; i--) {
+      const currentStage = trainingState.stages[i];
+      if (!currentStage) return;
+      if (currentStage.steps.length > 0) return i;
+    }
+  };
+
   const nextStep = async () => {
     if (currentStep.stage === trainingState.length && currentStep.step === trainingState.lastStep)
       return;
@@ -109,14 +140,12 @@ export function TrainingStepsProvider({ children, targets }: Props) {
     if (!stageData) return;
 
     if (currentStep.step + 1 > stageData.steps.length) {
-      return setCurrentStep((prev) => {
-        const prevCopy = { ...prev };
-        const { stage } = prevCopy;
+      const nextStageIndex = getNextAvailableStageIndex();
+      if (nextStageIndex === undefined) return console.log('No stageIndex available');
 
-        return {
-          stage: stage + 1,
-          step: 1,
-        };
+      return setCurrentStep({
+        stage: nextStageIndex + 1,
+        step: 1,
       });
     }
 
@@ -135,16 +164,13 @@ export function TrainingStepsProvider({ children, targets }: Props) {
     if (currentStep.stage === 1 && currentStep.step === 1) return;
 
     if (currentStep.step - 1 < 1) {
-      const stageData = trainingState.stages[stageIndex - 1];
+      const previousStageAvailableIndex = getPreviousAvailableStageIndex();
+      if (previousStageAvailableIndex === undefined) return;
+      const stageData = trainingState.stages[previousStageAvailableIndex];
       if (!stageData) return;
-      return setCurrentStep((prev) => {
-        const prevCopy = { ...prev };
-        const { stage } = prevCopy;
-
-        return {
-          stage: stage - 1,
-          step: stageData.steps.length,
-        };
+      return setCurrentStep({
+        stage: previousStageAvailableIndex + 1,
+        step: stageData.steps.length,
       });
     }
 
@@ -159,6 +185,36 @@ export function TrainingStepsProvider({ children, targets }: Props) {
     });
   };
 
+  const updateStage = (stage: TrainingStage, stageIndex: number) => {
+    const targetStage = trainingState.stages[stageIndex];
+    if (!targetStage) return;
+    setTrainingState((prev) => {
+      const prevCopy = { ...prev };
+      const targetStage = prevCopy.stages[stageIndex];
+      if (!targetStage) return prev;
+      prevCopy.stages[stageIndex] = stage;
+      if (stageIndex + 1 === prev.stages.length) {
+        prevCopy.lastStep = prevCopy.stages[stageIndex].steps.length;
+      }
+      return prevCopy;
+    });
+  };
+
+  const finishStage = (stageIndex: number) => {
+    const targetStage = trainingState.stages[stageIndex];
+    const notValidStatus: TrainingStage['status'][] = ['COMPLETED', 'CANCELED'];
+    if (!targetStage || notValidStatus.includes(targetStage.status)) return;
+
+    updateStage(
+      {
+        ...targetStage,
+        status: 'CANCELED',
+        steps: targetStage.steps.filter((s) => s.status === 'COMPLETED'),
+      },
+      stageIndex
+    );
+  };
+
   useEffect(() => {
     const initialState = initializeStages(targets);
     setTrainingState(initializeStages(targets));
@@ -166,6 +222,7 @@ export function TrainingStepsProvider({ children, targets }: Props) {
       COMPLETED: 0,
       IN_PROGRESS: 0,
       PENDING: 0,
+      CANCELED: 0,
     };
 
     const inProgressStageIndex = initialState.stages.findIndex((s) => {
@@ -200,7 +257,9 @@ export function TrainingStepsProvider({ children, targets }: Props) {
         trainingState,
         nextStep,
         previousStep,
-        updateCurrentStage,
+        updateCurrentStep,
+        updateStage,
+        finishStage,
       }}
     >
       {children}

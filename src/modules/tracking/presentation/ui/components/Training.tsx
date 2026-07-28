@@ -30,7 +30,7 @@ export function Training({ className }: Props) {
         </TrainingFormProvider>
       </div>
 
-      <aside className="w-100 space-y-8">
+      <aside className="w-70 space-y-8">
         <header>
           <h5>Push day</h5>
           <p>Push day focused on push muscles development</p>
