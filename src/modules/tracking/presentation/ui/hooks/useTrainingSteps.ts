@@ -12,7 +12,9 @@ export function useTrainingSteps() {
     trainingState,
     nextStep,
     previousStep,
-    updateCurrentStage,
+    updateCurrentStep,
+    updateStage,
+    finishStage,
   } = useContext(TrainingStepsContext);
 
   return {
@@ -23,6 +25,8 @@ export function useTrainingSteps() {
     trainingState,
     nextStep,
     previousStep,
-    updateCurrentStage,
+    updateCurrentStep,
+    updateStage,
+    finishStage,
   };
 }

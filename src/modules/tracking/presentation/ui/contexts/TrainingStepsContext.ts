@@ -2,8 +2,6 @@ import type { StatusCode } from '@/modules/status/status.types';
 import type { FullTrainingPlan } from '@/modules/tracking/presentation/tracking.actions';
 import { createContext } from 'react';
 
-type StatusCodeWithoutCanceled = Exclude<StatusCode, 'CANCELED'>;
-
 export type TrainingStep = {
   id?: string;
   key: string;
@@ -12,14 +10,14 @@ export type TrainingStep = {
   reps: number;
   rir: number;
   weight: number;
-  status: StatusCodeWithoutCanceled | 'ERROR';
+  status: StatusCode | 'ERROR';
 };
 
 export type TrainingStage = {
   id: string;
   title: string;
   stage: number;
-  status: StatusCodeWithoutCanceled | 'ERROR';
+  status: StatusCode | 'ERROR';
   steps: TrainingStep[];
 };
 
@@ -40,11 +38,9 @@ export type TrainingStepsContextType = {
   trainingState: TrainingState;
   nextStep: () => void;
   previousStep: () => void;
-  updateCurrentStage: (
-    currentStepValues: TrainingStep,
-    stageIndex: number,
-    stepIndex: number
-  ) => void;
+  updateCurrentStep: (step: TrainingStep, stageIndex: number, stepIndex: number) => void;
+  updateStage: (stage: TrainingStage, stageIndex: number) => void;
+  finishStage: (stageIndex: number) => void;
 };
 
 export const TrainingStepsContext = createContext<TrainingStepsContextType>({
@@ -62,5 +58,7 @@ export const TrainingStepsContext = createContext<TrainingStepsContextType>({
   },
   nextStep: () => {},
   previousStep: () => {},
-  updateCurrentStage: () => {},
+  updateCurrentStep: () => {},
+  updateStage: () => {},
+  finishStage: () => {},
 });

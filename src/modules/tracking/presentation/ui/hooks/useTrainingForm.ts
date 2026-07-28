@@ -7,6 +7,9 @@ import { useToast } from '@/presentation/modules/toast/hooks/useToast';
 
 export function useTrainingForm() {
   const { addToast } = useToast();
+
+  // Current stage/step ref to updated state ensurance
+  // avoiding useEffect reexecution logic when rerender
   const currentStageIndexRef = useRef<{
     stage: number;
     step: number;
@@ -21,8 +24,9 @@ export function useTrainingForm() {
     stageIndex,
     stepIndex,
     trainingState,
-    updateCurrentStage,
     targets,
+    updateCurrentStep,
+    finishStage,
   } = useTrainingSteps();
 
   const methods = useFormContext<TrainingSetForm>();
@@ -34,8 +38,8 @@ export function useTrainingForm() {
     reset,
   } = methods;
 
-  // Reset the form values
-  // next prop receives the if step movement is forward
+  // Reset the form values getting the information of the current step
+  // It keeps the same metrics from previous steps (sets) saved when applicable
   const resetValues = () => {
     const currentStage = trainingState.stages[stageIndex];
     if (!currentStage) return;
@@ -71,6 +75,7 @@ export function useTrainingForm() {
     });
   };
 
+  // Gets the current step information: current stage with current step information;
   const getCurrentStep = () => {
     const currentStage = trainingState.stages[stageIndex];
     if (!currentStage) return;
@@ -87,6 +92,8 @@ export function useTrainingForm() {
     };
   };
 
+  // Handle function to process data from every training set form
+  // Receives data and verifies if data has changed, whether not do not send the data
   const onSubmit = async (data: TrainingSetForm) => {
     const currentStage = trainingState.stages[stageIndex];
     const currentStep = currentStage?.steps[stepIndex];
@@ -112,7 +119,7 @@ export function useTrainingForm() {
     const step = getCurrentStep();
     if (!step) return;
 
-    updateCurrentStage(
+    updateCurrentStep(
       {
         id: set.id,
         key: step.step.key,
@@ -130,11 +137,20 @@ export function useTrainingForm() {
     nextStep();
   };
 
+  // Handle submit wrapper with react hook form handleSubmit method
+  // Form only uses this method instead of loading onSubmit with handleSubmit directly in the form.
   const handleSubmitSet = handleSubmit(onSubmit);
 
+  // Reset form values every previous step movement
   const goPreviousStep = () => {
     previousStep();
     resetValues();
+  };
+
+  // Finish/interrupt/leave exercise
+  const leaveExercise = () => {
+    finishStage(stageIndex);
+    nextStep();
   };
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: resetValues() changes in every rerender. It can't be used as dependencie
@@ -156,5 +172,6 @@ export function useTrainingForm() {
     isReady,
     isSubmitting,
     errors,
+    leaveExercise,
   };
 }
