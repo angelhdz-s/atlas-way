@@ -38,3 +38,16 @@ export type StepEngineAction =
       type: StepEngineActionType.RESET_ENGINE;
       payload: { flatSteps: FlatStep[] };
     };
+
+export interface StepEngineContextValue {
+  currentStep: FlatStep;
+  currentIndex: number;
+  totalSteps: number;
+  isFirstStep: boolean;
+  isLastStep: boolean;
+  cancelledPhaseIds: Record<string, boolean>;
+  nextStep: () => void;
+  prevStep: () => void;
+  goToStep: (stepId: string) => void;
+  toggleCancelPhase: (phaseId: string) => void;
+}

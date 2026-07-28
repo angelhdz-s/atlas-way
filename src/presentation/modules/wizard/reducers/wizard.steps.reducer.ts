@@ -1,0 +1,83 @@
+import {
+  StepEngineActionType,
+  type StepEngineAction,
+  type StepEngineState,
+} from '@/presentation/modules/wizard/wizard.steps.types';
+
+function findNextValidIndex(state: StepEngineState, startIndex: number, direction: 1 | -1): number {
+  let currentIndex = startIndex + direction;
+  while (currentIndex >= 0 && currentIndex < state.flatSteps.length) {
+    const step = state.flatSteps[currentIndex];
+    if (!step) return state.currentIndex;
+    const isPhaseCancelled = Boolean(state.cancelledPhaseIds[step.phaseId]);
+    if (!isPhaseCancelled) return currentIndex;
+    currentIndex += direction;
+  }
+  return state.currentIndex;
+}
+
+export function stepEngineReducer(
+  state: StepEngineState,
+  action: StepEngineAction
+): StepEngineState {
+  switch (action.type) {
+    case StepEngineActionType.NEXT_STEP: {
+      const nextIndex = findNextValidIndex(state, state.currentIndex, 1);
+      return { ...state, currentIndex: nextIndex };
+    }
+    case StepEngineActionType.PREV_STEP: {
+      const prevIndex = findNextValidIndex(state, state.currentIndex, -1);
+      return { ...state, currentIndex: prevIndex };
+    }
+    case StepEngineActionType.JUMP_TO_PHASE: {
+      const phaseStepIndex = state.flatSteps.findIndex((s) => s.phaseId === action.payload.phaseId);
+      if (phaseStepIndex === -1) return state;
+      return { ...state, currentIndex: phaseStepIndex };
+    }
+    case StepEngineActionType.JUMP_TO_STEP: {
+      const stepIndex = state.flatSteps.findIndex((s) => s.stepId === action.payload.stepId);
+      if (stepIndex === -1) return state;
+      return { ...state, currentIndex: stepIndex };
+    }
+    case StepEngineActionType.TOGGLE_CANCEL_PHASE: {
+      const { phaseId } = action.payload;
+      const isCurrentlyCancelled = state.cancelledPhaseIds[phaseId] === true;
+      if (isCurrentlyCancelled) return state;
+      const updatedCancelled: StepEngineState['cancelledPhaseIds'] = {
+        ...state.cancelledPhaseIds,
+        [phaseId]: !isCurrentlyCancelled,
+      };
+      let newCurrentIndex = state.currentIndex;
+      const currentStep = state.flatSteps[state.currentIndex];
+      if (!isCurrentlyCancelled && currentStep?.phaseId === phaseId) {
+        const tempState: StepEngineState = { ...state, cancelledPhaseIds: updatedCancelled };
+        newCurrentIndex = findNextValidIndex(tempState, state.currentIndex, 1);
+        if (newCurrentIndex === state.currentIndex)
+          newCurrentIndex = findNextValidIndex(tempState, state.currentIndex, -1);
+      }
+
+      return {
+        ...state,
+        cancelledPhaseIds: updatedCancelled,
+        currentIndex: newCurrentIndex,
+      };
+    }
+    case StepEngineActionType.RESET_ENGINE: {
+      const initialCancelled: StepEngineState['cancelledPhaseIds'] = {};
+      action.payload.flatSteps.forEach((step) => {
+        if (step.isCancelled) {
+          initialCancelled[step.phaseId] = true;
+        }
+      });
+      return {
+        flatSteps: action.payload.flatSteps,
+        currentIndex: 0,
+        cancelledPhaseIds: initialCancelled,
+      };
+    }
+
+    default: {
+      return state;
+    }
+  }
+}
