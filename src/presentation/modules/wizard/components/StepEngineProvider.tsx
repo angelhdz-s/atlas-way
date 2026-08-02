@@ -1,9 +1,11 @@
+'use client';
+
+import { useMemo, useReducer } from 'react';
 import type { FlatStep } from '@/presentation/modules/wizard/wizard.types';
 import type {
   StepEngineContextValue,
   StepEngineState,
 } from '@/presentation/modules/wizard/wizard.steps.types';
-import { useMemo, useReducer } from 'react';
 import { StepEngineActionType } from '@/presentation/modules/wizard/wizard.steps.types';
 import { StepEngineContext } from '@/presentation/modules/wizard/context/StepEngineContext';
 import { stepEngineReducer } from '@/presentation/modules/wizard/reducers/wizard.steps.reducer';

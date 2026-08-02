@@ -1,8 +1,10 @@
+'use client';
+
 import { FormProvider, useForm } from 'react-hook-form';
 
 type Props<FormValues> = {
   children: React.ReactNode;
-  defaultValues: Record<string, FormValues[]>;
+  defaultValues: Record<string, FormValues>;
 };
 
 export function StepFormProvider<FormValues>({ children, defaultValues }: Props<FormValues>) {
