@@ -1,8 +1,3 @@
-import type { StatusCode } from '@/modules/status/status.types';
-
-export type StepStatus = StatusCode;
-export type PhaseStatus = StatusCode;
-
 export interface StepSummary<FormValues> {
   stepId: string;
   title: string;

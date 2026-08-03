@@ -1,16 +1,38 @@
+import type { StatusCode } from '@/modules/status/status.types';
+
+export type PhaseStatus = StatusCode;
+
 export interface PhaseEntries<FormStepValues> {
   id: string;
+  title: string;
   steps: number;
   isCancelled?: boolean;
   stepsData?: FormStepValues[];
 }
 
+export interface Phase {
+  id: string;
+  title: string;
+  description?: string;
+  order: number;
+  status: PhaseStatus;
+}
+
+export type StepStatus = StatusCode;
+
 export interface FlatStep {
-  stepId: string;
-  phaseId: string;
-  stepIndex: number;
-  // Phase cancelled status
-  isCancelled: boolean;
+  id: string;
+  title: string;
+  status: StepStatus;
+
+  // Step position metadata
+  globalIndex: number;
+  stepIndexInPhase: number;
+  isFirstInPhase: boolean;
+  isLastInPhase: boolean;
+
+  // Phase metadata
+  phase: Phase;
 }
 export interface NormalizeDomain<FormStepValues> {
   flatSteps: FlatStep[];
