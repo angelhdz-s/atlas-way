@@ -1,17 +1,8 @@
 import { useStepFormSync } from '@/presentation/modules/wizard/hooks/useStepFormSync';
-import { ActionSuccess, type ActionResponseProps } from '@/shared/presentation/action.response';
 import { useFormContext } from 'react-hook-form';
 
 type Props = {
   className?: string;
-};
-
-const processData = async (data: {
-  phaseId: string;
-  stepId: string;
-  stepData: any;
-}): Promise<ActionResponseProps<true>> => {
-  return ActionSuccess(true, 'Done');
 };
 
 export function StepView({ className }: Props) {
@@ -19,8 +10,7 @@ export function StepView({ className }: Props) {
     register,
     formState: { errors },
   } = useFormContext();
-  const { currentStep, currentStepPath, isSaving, handleNext, handlePrev } =
-    useStepFormSync(processData);
+  const { currentStep, currentStepPath, isSaving, handleNext, handlePrev } = useStepFormSync();
   return (
     <div className={className}>
       <header></header>
