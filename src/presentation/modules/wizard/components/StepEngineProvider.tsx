@@ -19,7 +19,7 @@ export function StepEngineProvider({ children, flatSteps }: Props) {
   const initialCancelled = useMemo(() => {
     const map: StepEngineState['cancelledPhaseIds'] = {};
     flatSteps.forEach((step) => {
-      if (step.isCancelled) map[step.stepId] = true;
+      if (step.status === 'CANCELED') map[step.id] = true;
     });
     return map;
   }, [flatSteps]);

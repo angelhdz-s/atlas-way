@@ -10,25 +10,24 @@ import type { ActionResponseProps } from '@/shared/presentation/action.response'
 import { useCallback, useMemo, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-type SaveStepAction = (data: {
+type SaveStepAction<FormValues> = (data: {
   phaseId: string;
-  stepId: string;
   stepData: Record<string, any>;
-}) => Promise<ActionResponseProps<true>>;
+}) => Promise<ActionResponseProps<FormValues>>;
 
-type Props = {
+type Props<FormValues> = {
   children: React.ReactNode;
-  saveStepAction: SaveStepAction;
+  saveStepAction: SaveStepAction<FormValues>;
 };
 
-export function StepFormSyncProvider({ children, saveStepAction }: Props) {
+export function StepFormSyncProvider<FormValues>({ children, saveStepAction }: Props<FormValues>) {
   const { currentStep, nextStep, prevStep } = useStepEngine();
-  const { trigger, getValues } = useFormContext();
+  const { trigger, getValues } = useFormContext<Record<string, FormValues[]>>();
   const [isSaving, setIsSaving] = useState<boolean>(false);
 
   const { addToast } = useToast();
 
-  const currentStepPath = `${currentStep.stepId}`;
+  const currentStepPath = `${currentStep.id}`;
 
   const saveCurrentStep = useCallback(async (): Promise<boolean> => {
     const isStepValid = await trigger(currentStepPath);
@@ -40,8 +39,7 @@ export function StepFormSyncProvider({ children, saveStepAction }: Props) {
       const formData = getValues(currentStepPath);
 
       const response = await saveStepAction({
-        phaseId: currentStep.phaseId,
-        stepId: currentStep.stepId,
+        phaseId: currentStep.phase.id,
         stepData: formData,
       });
 
