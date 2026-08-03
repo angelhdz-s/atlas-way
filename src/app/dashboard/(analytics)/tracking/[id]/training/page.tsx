@@ -9,11 +9,12 @@ import { Training } from '@/modules/tracking/presentation/ui/components/Training
 import { StepEngineProvider } from '@/presentation/modules/wizard/components/StepEngineProvider';
 import { StepFormProvider } from '@/presentation/modules/wizard/components/StepFormProvider';
 import { StepFormSyncProvider } from '@/presentation/modules/wizard/components/StepFormSyncProvider';
+import { normalizeDomainData } from '@/presentation/modules/wizard/helpers/wizard.normalizer.helper';
+import type { PhaseEntries } from '@/presentation/modules/wizard/wizard.types';
 import { ActionSuccess, type ActionResponseProps } from '@/shared/presentation/action.response';
 
 const processData = async (data: {
   phaseId: string;
-  stepId: string;
   stepData: any;
 }): Promise<ActionResponseProps<true>> => {
   'use server';
@@ -63,40 +64,18 @@ export default async function TrackingTrainingPage(
 
   const targets = trainingPlansResult.data;
 
-  let stepIndex = 0;
-  const flatSteps = targets.flatMap((t) =>
-    Array.from({ length: t.sets }, (_, i) => i + 1).map((s) => {
-      const flatStep = {
-        phaseId: t.id,
-        stepId: `${t.id}-${s}`,
-        stepIndex,
-        isCancelled: false,
-      };
-      stepIndex++;
-      return flatStep;
-    })
-  );
+  const phaseEntries: PhaseEntries<SetForm>[] = targets.map((t) => ({
+    id: t.id,
+    steps: t.sets,
+    title: t.exercise.name,
+    isCancelled: t.statusId === 'ABANDONED' || t.statusId === 'INTERRUPTED',
+  }));
 
-  const defaultValues: Record<string, SetForm> = {};
-
-  for (const target of targets) {
-    const sets = Array.from({ length: target.sets }, (_, i) => i + 1);
-
-    for (const set of sets) {
-      const values: SetForm = {
-        trainingPlanId: target.id,
-        set: set,
-        reps: target.reps,
-        rir: 0,
-        weight: target.weight,
-      };
-      defaultValues[`${target.id}-${set}`] = values;
-    }
-  }
+  const normalizedInput = normalizeDomainData<SetForm>(phaseEntries);
 
   return (
-    <StepEngineProvider flatSteps={flatSteps}>
-      <StepFormProvider defaultValues={defaultValues}>
+    <StepEngineProvider flatSteps={normalizedInput.flatSteps}>
+      <StepFormProvider defaultValues={normalizedInput.defaultValues}>
         <StepFormSyncProvider saveStepAction={processData}>
           <Training />
         </StepFormSyncProvider>
