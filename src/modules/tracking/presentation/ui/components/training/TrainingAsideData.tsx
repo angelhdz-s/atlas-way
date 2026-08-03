@@ -11,7 +11,7 @@ export function TrainingAsideData({ className }: Props) {
 
   return (
     <div className={className}>
-      <div>{currentStep.isCancelled ? 'Cancelled' : 'Pending'}</div>
+      <div>{currentStep.status === 'CANCELED' ? 'Cancelled' : 'Pending'}</div>
     </div>
   );
 
