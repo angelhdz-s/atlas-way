@@ -1,13 +1,8 @@
-import { useStepEngine } from '@/presentation/modules/wizard/hooks/useStepEngine';
-import type {
-  PhaseStatus,
-  PhaseSummary,
-  StepStatus,
-  StepSummary,
-} from '@/presentation/modules/wizard/wizard.summary.types';
-import type { FlatStep } from '@/presentation/modules/wizard/wizard.types';
+import type { PhaseSummary, StepSummary } from '@/presentation/modules/wizard/wizard.summary.types';
+import type { FlatStep, Phase } from '@/presentation/modules/wizard/wizard.types';
 import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useStepEngine } from '@/presentation/modules/wizard/hooks/useStepEngine';
 
 export function useWizardSummary<FormValues>(flatSteps: FlatStep[]) {
   // 1. Get navigation and cancels from step engine
@@ -25,12 +20,12 @@ export function useWizardSummary<FormValues>(flatSteps: FlatStep[]) {
     const phaseMap = new Map<string, PhaseSummary<FormValues>>();
 
     flatSteps.forEach((s) => {
-      const isCancelled = cancelledPhaseIds[s.phaseId] === true;
-      const isCurrent = s.stepId === currentStep.stepId;
-      const stepData = formData[s.stepId];
+      const isCancelled = cancelledPhaseIds[s.phase.id] === true;
+      const isCurrent = s.id === currentStep.id;
+      const stepData = formData[s.id];
 
       // Evaluate step status
-      let status: StepStatus = 'PENDING';
+      let status: FlatStep['status'] = 'PENDING';
 
       if (isCancelled) status = 'CANCELED';
       else if (isCurrent) status = 'IN_PROGRESS';
@@ -42,16 +37,16 @@ export function useWizardSummary<FormValues>(flatSteps: FlatStep[]) {
       }
 
       const stepSummary: StepSummary<FormValues> = {
-        stepId: s.stepId,
-        title: `Step ${s.stepIndex + 1}`,
+        stepId: s.id,
+        title: `Step ${s.globalIndex + 1}`,
         status,
         isCurrent,
         dataSnapshot: stepData,
       };
 
-      if (!phaseMap.has(s.stepId))
-        phaseMap.set(s.stepId, {
-          phaseId: s.phaseId,
+      if (!phaseMap.has(s.id))
+        phaseMap.set(s.id, {
+          phaseId: s.phase.id,
           title: `Phase`,
           status: isCancelled ? 'CANCELED' : 'PENDING',
           isCancelled,
@@ -60,7 +55,7 @@ export function useWizardSummary<FormValues>(flatSteps: FlatStep[]) {
           totalCount: 1,
         });
       else {
-        const phase = phaseMap.get(s.stepId);
+        const phase = phaseMap.get(s.id);
         if (phase) {
           phase.steps.push(stepSummary);
           phase.totalCount++;
@@ -74,7 +69,7 @@ export function useWizardSummary<FormValues>(flatSteps: FlatStep[]) {
       if (p.isCancelled)
         return {
           ...p,
-          status: 'CANCELED' as PhaseStatus,
+          status: 'CANCELED',
         };
 
       const allCompleted = p.steps.every((s) => s.status === 'COMPLETED');
@@ -82,7 +77,7 @@ export function useWizardSummary<FormValues>(flatSteps: FlatStep[]) {
         (s) => s.status === 'COMPLETED' || s.status === 'IN_PROGRESS'
       );
 
-      let phaseStatus: PhaseStatus = 'PENDING';
+      let phaseStatus: Phase['status'] = 'PENDING';
       if (allCompleted) phaseStatus = 'COMPLETED';
       else if (hasStarted) phaseStatus = 'IN_PROGRESS';
 
