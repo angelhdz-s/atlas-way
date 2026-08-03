@@ -9,7 +9,7 @@ function findNextValidIndex(state: StepEngineState, startIndex: number, directio
   while (currentIndex >= 0 && currentIndex < state.flatSteps.length) {
     const step = state.flatSteps[currentIndex];
     if (!step) return state.currentIndex;
-    const isPhaseCancelled = Boolean(state.cancelledPhaseIds[step.phaseId]);
+    const isPhaseCancelled = Boolean(state.cancelledPhaseIds[step.phase.id]);
     if (!isPhaseCancelled) return currentIndex;
     currentIndex += direction;
   }
@@ -30,12 +30,14 @@ export function stepEngineReducer(
       return { ...state, currentIndex: prevIndex };
     }
     case StepEngineActionType.JUMP_TO_PHASE: {
-      const phaseStepIndex = state.flatSteps.findIndex((s) => s.phaseId === action.payload.phaseId);
+      const phaseStepIndex = state.flatSteps.findIndex(
+        (s) => s.phase.id === action.payload.phaseId
+      );
       if (phaseStepIndex === -1) return state;
       return { ...state, currentIndex: phaseStepIndex };
     }
     case StepEngineActionType.JUMP_TO_STEP: {
-      const stepIndex = state.flatSteps.findIndex((s) => s.stepId === action.payload.stepId);
+      const stepIndex = state.flatSteps.findIndex((s) => s.id === action.payload.stepId);
       if (stepIndex === -1) return state;
       return { ...state, currentIndex: stepIndex };
     }
@@ -49,7 +51,7 @@ export function stepEngineReducer(
       };
       let newCurrentIndex = state.currentIndex;
       const currentStep = state.flatSteps[state.currentIndex];
-      if (!isCurrentlyCancelled && currentStep?.phaseId === phaseId) {
+      if (!isCurrentlyCancelled && currentStep?.phase.id === phaseId) {
         const tempState: StepEngineState = { ...state, cancelledPhaseIds: updatedCancelled };
         newCurrentIndex = findNextValidIndex(tempState, state.currentIndex, 1);
         if (newCurrentIndex === state.currentIndex)
@@ -65,8 +67,8 @@ export function stepEngineReducer(
     case StepEngineActionType.RESET_ENGINE: {
       const initialCancelled: StepEngineState['cancelledPhaseIds'] = {};
       action.payload.flatSteps.forEach((step) => {
-        if (step.isCancelled) {
-          initialCancelled[step.phaseId] = true;
+        if (step.status === 'CANCELED') {
+          initialCancelled[step.phase.id] = true;
         }
       });
       return {
