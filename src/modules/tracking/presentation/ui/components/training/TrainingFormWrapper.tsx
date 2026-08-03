@@ -1,22 +1,29 @@
+'use client';
+
 import { twMerge } from 'tailwind-merge';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { inputNumberConfig } from '@/presentation/globals/utils/react-hook-form.utils';
-import { useTrainingSteps } from '@/modules/tracking/presentation/ui/hooks/useTrainingSteps';
-import { useTrainingForm } from '@/modules/tracking/presentation/ui/hooks/useTrainingForm';
+import { useStepFormSync } from '@/presentation/modules/wizard/hooks/useStepFormSync';
+import type { SetForm } from '@/modules/tracking/presentation/schemas/training.schema';
+import { useFormContext } from 'react-hook-form';
 
 type Props = {
   className?: string;
 };
 
 export function TrainingFormWrapper({ className }: Props) {
-  const { stepIndex, stageIndex } = useTrainingSteps();
-  const { handleSubmit, isReady, errors, register } = useTrainingForm();
+  const {
+    register,
+    formState: { errors, isReady },
+  } = useFormContext<Record<string, SetForm>>();
+
+  const { currentStepPath } = useStepFormSync();
   if (!isReady) return <Fallback />;
 
   return (
-    <form id="training-set-form" onSubmit={handleSubmit} className={className}>
+    <div className={className}>
       <div
-        key={`training-form-fields-container-${stageIndex}-${stepIndex}`}
+        key={`training-form-fields-container-${currentStepPath}`}
         className={twMerge(
           'animate-duration-100 flex w-full items-start gap-4',
           'animate-fade-left'
@@ -24,52 +31,49 @@ export function TrainingFormWrapper({ className }: Props) {
       >
         <label
           className="text-fg-strong block w-full space-y-2"
-          htmlFor={`exercises.${stageIndex}.sets.${stepIndex}.reps`}
+          htmlFor={`${currentStepPath}.reps`}
         >
           Reps
           <p className="text-fg-default">Number of repetitions</p>
           <input
-            id={`exercises.${stageIndex}.sets.${stepIndex}.reps`}
+            id={`${currentStepPath}.reps`}
             type="number"
             className="bg-fill-base h-10 w-full rounded-xl px-4"
-            {...register(`reps`, {
+            {...register(`${currentStepPath}.reps`, {
               ...inputNumberConfig,
             })}
           />
           <ErrorMessage message={errors.reps?.message} />
         </label>
 
-        <label
-          className="text-fg-strong block w-full space-y-2"
-          htmlFor={`exercises.${stageIndex}.sets.${stepIndex}.rir`}
-        >
+        <label className="text-fg-strong block w-full space-y-2" htmlFor={`${currentStepPath}.rir`}>
           Repeats in reserve (RIR)
           <p className="text-fg-default">Reps remaining</p>
           <input
-            id={`exercises.${stageIndex}.sets.${stepIndex}.rir`}
+            id={`${currentStepPath}.rir`}
             type="number"
             className="bg-fill-base h-10 w-full rounded-xl px-4"
-            {...register(`rir`, inputNumberConfig)}
+            {...register(`${currentStepPath}.rir`, inputNumberConfig)}
           />
-          <ErrorMessage message={errors.rir?.message} />
+          <ErrorMessage message={errors?.[currentStepPath]?.rir?.message} />
         </label>
 
         <label
           className="text-fg-strong block w-full space-y-2"
-          htmlFor={`exercises.${stageIndex}.sets.${stepIndex}.weight`}
+          htmlFor={`${currentStepPath}.weight`}
         >
           Weight
           <p className="text-fg-default">Weight quantity</p>
           <input
-            id={`exercises.${stageIndex}.sets.${stepIndex}.weight`}
+            id={`${currentStepPath}.weight`}
             type="number"
             className="bg-fill-base h-10 w-full rounded-xl px-4"
-            {...register(`weight`, inputNumberConfig)}
+            {...register(`${currentStepPath}.weight`, inputNumberConfig)}
           />
           <ErrorMessage message={errors.weight?.message} />
         </label>
       </div>
-    </form>
+    </div>
   );
 }
 
