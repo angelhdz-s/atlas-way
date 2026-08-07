@@ -13,6 +13,7 @@ export const trainingSetSchema = z.object({
 export type TrainingSetForm = z.infer<typeof trainingSetSchema>;
 
 export const setSchema = z.object({
+  id: z.string().uuid().optional(),
   trainingPlanId: z.string().uuid(),
   set: z.number().min(1),
   reps: z.number({ message: "Reps can't be empty" }).min(1),
