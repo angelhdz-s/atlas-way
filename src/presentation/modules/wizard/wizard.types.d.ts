@@ -37,5 +37,5 @@ export interface FlatStep {
 export interface NormalizeDomain<FormStepValues> {
   flatSteps: FlatStep[];
   // Initial values for react hook form organized by phase id
-  defaultValues: Record<string, FormStepValues[]>;
+  defaultValues: Record<string, FormStepValues>;
 }
