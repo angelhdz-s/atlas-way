@@ -43,7 +43,7 @@ export function TrainingFormWrapper({ className }: Props) {
               ...inputNumberConfig,
             })}
           />
-          <ErrorMessage message={errors.reps?.message} />
+          <ErrorMessage message={errors[currentStepPath]?.reps?.message} />
         </label>
 
         <label className="text-fg-strong block w-full space-y-2" htmlFor={`${currentStepPath}.rir`}>
@@ -70,7 +70,7 @@ export function TrainingFormWrapper({ className }: Props) {
             className="bg-fill-base h-10 w-full rounded-xl px-4"
             {...register(`${currentStepPath}.weight`, inputNumberConfig)}
           />
-          <ErrorMessage message={errors.weight?.message} />
+          <ErrorMessage message={errors?.[currentStepPath]?.weight?.message} />
         </label>
       </div>
     </div>
