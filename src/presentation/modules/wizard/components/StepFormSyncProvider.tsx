@@ -27,7 +27,7 @@ type Props<FormValues, SavedData> = {
     currentStepValue: FormValues;
     nextStepValue: FormValues;
   }) => FormValues;
-  syncCurrentStep: SyncCurrentStep<FormValues, SavedData>;
+  syncCurrentStep?: SyncCurrentStep<FormValues, SavedData>;
   flatSteps: FlatStep[];
   currentStepSave?: () => FormValues;
 };
