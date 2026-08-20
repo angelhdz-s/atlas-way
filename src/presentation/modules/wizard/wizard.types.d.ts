@@ -6,7 +6,7 @@ export interface PhaseEntries<FormStepValues> {
   id: string;
   title: string;
   steps: number;
-  isCancelled?: boolean;
+  status?: PhaseStatus;
   stepsData?: FormStepValues[];
 }
 
