@@ -4,22 +4,48 @@ import type {
   PhaseEntries,
 } from '@/presentation/modules/wizard/wizard.types';
 
-export function normalizeDomainData<FormStepValues>(
-  records: PhaseEntries<FormStepValues>[]
-): NormalizeDomain<FormStepValues> {
+export type NormalizeDataInput<FormStepValues> = {
+  records: PhaseEntries<FormStepValues>[];
+  defaultValuesMap: (input: {
+    step: FlatStep;
+    globalIndex: number;
+    phaseIndex: number;
+    data?: FormStepValues | undefined;
+  }) => FormStepValues;
+  stepTitleBuilder?: (input: {
+    phaseRecord: PhaseEntries<FormStepValues>;
+    globalIndex: number;
+    phaseIndex: number;
+  }) => string;
+};
+
+export function normalizeDomainData<FormStepValues>({
+  defaultValuesMap,
+  records,
+  stepTitleBuilder,
+}: NormalizeDataInput<FormStepValues>): NormalizeDomain<FormStepValues> {
   const flatSteps: FlatStep[] = [];
-  const defaultValues: Record<string, any> = {};
+  const defaultValues: Record<string, FormStepValues> = {};
 
   let globalIndex = 0;
 
+  let lastDefaultValue: FormStepValues | undefined;
+
   records.forEach((record, recordIndex) => {
-    defaultValues[record.id] = record.stepsData || [];
+    // defaultValues[record.id] = record.stepsData || [];
     const stepCount = Math.max(1, record.steps);
+    if (recordIndex === 0) lastDefaultValue = undefined;
 
     for (let i = 0; i < stepCount; i++) {
-      flatSteps.push({
-        id: `${record.id}_step_${i}`,
-        title: `Step ${i + 1}`,
+      const stepId = `${record.id}_step_${i}`;
+      const flatStep: FlatStep = {
+        id: stepId,
+        title:
+          stepTitleBuilder?.({
+            phaseRecord: record,
+            globalIndex,
+            phaseIndex: i,
+          }) ?? `Step ${i + 1}`,
         stepIndexInPhase: i,
         isFirstInPhase: i === 0,
         isLastInPhase: i === record.steps,
@@ -31,7 +57,18 @@ export function normalizeDomainData<FormStepValues>(
           status: recordIndex === 0 ? 'IN_PROGRESS' : 'PENDING',
           title: record.title,
         },
-      });
+      };
+      flatSteps.push(flatStep);
+      const data = record.stepsData?.[i] ?? lastDefaultValue;
+      defaultValues[stepId] =
+        data ??
+        defaultValuesMap({
+          data,
+          globalIndex,
+          phaseIndex: i,
+          step: flatStep,
+        });
+      lastDefaultValue = defaultValues[stepId];
       globalIndex++;
     }
   });
