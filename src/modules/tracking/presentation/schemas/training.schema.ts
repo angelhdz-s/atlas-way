@@ -22,3 +22,7 @@ export const setSchema = z.object({
 });
 
 export type SetForm = z.infer<typeof setSchema>;
+
+export const trainingSetFormSchema = z.record(setSchema);
+
+export type TrainingForm = z.infer<typeof trainingSetFormSchema>;
