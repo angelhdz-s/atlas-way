@@ -13,29 +13,24 @@ export default async function TrackingTargetsPage(
   const syncParams = await syncPageParams.params;
   const id = syncParams.id;
   if (!id) {
-    console.log('No param found', id);
     return null;
   }
 
   const trainingResult = await getTrainingById(id);
   if (!trainingResult.success) {
-    console.log('Error:', trainingResult.message);
     return <RoutineEmptyData />;
   }
 
   if (!trainingResult.data) {
-    console.log('Training not found');
     return <RoutineEmptyData />;
   }
 
   if (!trainingResult.data.sessionId) {
-    console.log('Session not included');
     return <ExerciseEmptyData />;
   }
 
   const sessionResult = await getSessionById(trainingResult.data.sessionId);
   if (!sessionResult.success || !sessionResult.data) {
-    console.log(sessionResult);
     return <SessionEmptyData />;
   }
 
