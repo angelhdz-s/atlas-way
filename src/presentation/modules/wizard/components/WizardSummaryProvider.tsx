@@ -37,8 +37,8 @@ export function WizardSummaryProvider<FormValues>({
       let status: FlatStepWithText['status'] = 'PENDING';
 
       if (isCancelled) status = 'CANCELED';
-      else if (isCurrent) status = 'IN_PROGRESS';
       else if (stepData && areFieldValuesCompleted?.(stepData)) status = 'COMPLETED';
+      else if (isCurrent) status = 'IN_PROGRESS';
 
       if (!isCancelled) {
         totalValidSteps++;
