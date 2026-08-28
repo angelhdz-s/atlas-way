@@ -1,28 +1,22 @@
 import type {
   FlatStep,
   NormalizeDomain,
-  PhaseEntries,
+  StepEnginePhaseEntries,
 } from '@/presentation/modules/wizard/wizard.types';
 
 export type NormalizeDataInput<FormStepValues> = {
-  records: PhaseEntries<FormStepValues>[];
+  records: StepEnginePhaseEntries<FormStepValues>[];
   defaultValuesMap: (input: {
     step: FlatStep;
     globalIndex: number;
     phaseIndex: number;
     data?: FormStepValues | undefined;
   }) => FormStepValues;
-  stepTitleBuilder?: (input: {
-    phaseRecord: PhaseEntries<FormStepValues>;
-    globalIndex: number;
-    phaseIndex: number;
-  }) => string;
 };
 
-export function normalizeDomainData<FormStepValues>({
+export function normalizeStepsData<FormStepValues>({
   defaultValuesMap,
   records,
-  stepTitleBuilder,
 }: NormalizeDataInput<FormStepValues>): NormalizeDomain<FormStepValues> {
   const flatSteps: FlatStep[] = [];
   const defaultValues: Record<string, FormStepValues> = {};
@@ -40,12 +34,6 @@ export function normalizeDomainData<FormStepValues>({
       const stepId = `${record.id}_step_${i}`;
       const flatStep: FlatStep = {
         id: stepId,
-        title:
-          stepTitleBuilder?.({
-            phaseRecord: record,
-            globalIndex,
-            phaseIndex: i,
-          }) ?? `Step ${i + 1}`,
         stepIndexInPhase: i,
         isFirstInPhase: i === 0,
         isLastInPhase: i === record.steps,
@@ -55,7 +43,6 @@ export function normalizeDomainData<FormStepValues>({
           id: record.id,
           order: recordIndex + 1,
           status: recordIndex === 0 ? 'IN_PROGRESS' : 'PENDING',
-          title: record.title,
         },
       };
       flatSteps.push(flatStep);

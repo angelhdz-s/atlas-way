@@ -12,17 +12,15 @@ export interface PhaseEntries<FormStepValues> {
 
 export interface Phase {
   id: string;
-  title: string;
-  description?: string;
   order: number;
   status: PhaseStatus;
 }
+
 
 export type StepStatus = StatusCode;
 
 export interface FlatStep {
   id: string;
-  title: string;
   status: StepStatus;
 
   // Step position metadata
