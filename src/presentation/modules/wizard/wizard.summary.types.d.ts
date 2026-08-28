@@ -9,6 +9,7 @@ export interface StepSummary<FormValues> {
 export interface PhaseSummary<FormValues> {
   phaseId: string;
   title: string;
+  description: string | null;
   status: PhaseStatus;
   isCancelled: boolean;
   steps: StepSummary<FormValues>[];
