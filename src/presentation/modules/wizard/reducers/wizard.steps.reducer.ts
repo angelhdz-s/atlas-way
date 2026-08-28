@@ -65,12 +65,8 @@ export function stepEngineReducer(
       };
     }
     case StepEngineActionType.RESET_ENGINE: {
+      // ToDo: receive by prop cancelledPhaseIds as flatSteps
       const initialCancelled: StepEngineState['cancelledPhaseIds'] = {};
-      action.payload.flatSteps.forEach((step) => {
-        if (step.status === 'CANCELED') {
-          initialCancelled[step.phase.id] = true;
-        }
-      });
       return {
         flatSteps: action.payload.flatSteps,
         currentIndex: 0,

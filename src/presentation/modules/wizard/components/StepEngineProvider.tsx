@@ -2,10 +2,7 @@
 
 import { useMemo, useReducer } from 'react';
 import type { FlatStep } from '@/presentation/modules/wizard/wizard.types';
-import type {
-  StepEngineContextValue,
-  StepEngineState,
-} from '@/presentation/modules/wizard/wizard.steps.types';
+import type { StepEngineContextValue } from '@/presentation/modules/wizard/wizard.steps.types';
 import { StepEngineActionType } from '@/presentation/modules/wizard/wizard.steps.types';
 import { StepEngineContext } from '@/presentation/modules/wizard/context/StepEngineContext';
 import { stepEngineReducer } from '@/presentation/modules/wizard/reducers/wizard.steps.reducer';
@@ -16,13 +13,8 @@ type Props = {
 };
 
 export function StepEngineProvider({ children, flatSteps }: Props) {
-  const initialCancelled = useMemo(() => {
-    const map: StepEngineState['cancelledPhaseIds'] = {};
-    flatSteps.forEach((step) => {
-      if (step.status === 'CANCELED') map[step.id] = true;
-    });
-    return map;
-  }, [flatSteps]);
+  // ToDo: normalize cancelled phases entries from server
+  const initialCancelled = {};
 
   const [state, dispatch] = useReducer(stepEngineReducer, {
     flatSteps,

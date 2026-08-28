@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useStepEngine } from '@/presentation/modules/wizard/hooks/useStepEngine';
-import type { FlatStepWithText, Phase } from '@/presentation/modules/wizard/wizard.types';
+import type { FlatStepWithText, PhaseWithText } from '@/presentation/modules/wizard/wizard.types';
 import type { PhaseSummary, StepSummary } from '@/presentation/modules/wizard/wizard.summary.types';
 import { WizardSummaryContext } from '@/presentation/modules/wizard/context/WizardSummaryContext';
 
@@ -87,7 +87,7 @@ export function WizardSummaryProvider<FormValues>({
         (s) => s.status === 'COMPLETED' || s.status === 'IN_PROGRESS'
       );
 
-      let phaseStatus: Phase['status'] = 'PENDING';
+      let phaseStatus: PhaseWithText['status'] = 'PENDING';
       if (allCompleted) phaseStatus = 'COMPLETED';
       else if (hasStarted) phaseStatus = 'IN_PROGRESS';
 

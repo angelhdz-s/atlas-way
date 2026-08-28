@@ -21,19 +21,18 @@ export interface WizardSummaryPhaseEntries<FormStepValues> {
 export interface Phase {
   id: string;
   order: number;
-  status: PhaseStatus;
 }
 
 export interface PhaseWithText extends Phase {
   title: string;
   description: string | null;
+  status: PhaseStatus;
 }
 
 export type StepStatus = StatusCode;
 
 export interface FlatStep {
   id: string;
-  status: StepStatus;
 
   // Step position metadata
   globalIndex: number;
@@ -48,6 +47,7 @@ export interface FlatStep {
 export interface FlatStepWithText extends FlatStep {
   title: string;
   phase: PhaseWithText;
+  status: StepStatus;
 }
 export interface NormalizeDomain<FormStepValues> {
   flatSteps: FlatStep[];
