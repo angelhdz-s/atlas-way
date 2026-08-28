@@ -94,10 +94,8 @@ export async function getTrainingById(
 }
 
 export async function createTargets(data: ExerciseTargetsForm): Promise<ActionResponseProps<true>> {
-  console.log(data);
   const parseResult = exerciseTargetsSchema.safeParse(data);
   if (!parseResult.success) {
-    console.log('Invalid data');
     return ActionFailure('Invalid data');
   }
 
@@ -108,13 +106,11 @@ export async function createTargets(data: ExerciseTargetsForm): Promise<ActionRe
   });
 
   if (!training) {
-    console.log('Training not found');
     return ActionFailure('Training not found');
   }
 
   if (training.statusId !== 'PENDING') {
     const status = training.statusId;
-    console.log(`Training was ${status}`);
     return ActionFailure(`Training was ${status}`);
   }
 
@@ -143,6 +139,7 @@ export async function createTargets(data: ExerciseTargetsForm): Promise<ActionRe
 
     return ActionSuccess(true, 'TrainingPlan created successfully');
   } catch (e) {
+    // biome-ignore lint/suspicious/noConsole: Error details for server
     console.log(e);
     return ActionFailure('Error creating trainingPlans');
   }
@@ -167,10 +164,7 @@ export async function getTrainingPlansByTrainingId(
 ): Promise<ActionResponseProps<FullTrainingPlan[]>> {
   const trainingResult = await getTrainingById(trainingId);
   if (!trainingResult.success) return trainingResult;
-  if (!trainingResult.data) {
-    console.log('Training not found');
-    return ActionFailure('Training not found');
-  }
+  if (!trainingResult.data) return ActionFailure('Training not found');
 
   try {
     const trainingPlans = await prisma.trainingPlan.findMany({
@@ -181,6 +175,7 @@ export async function getTrainingPlansByTrainingId(
     });
     return ActionSuccess(trainingPlans, 'Training plans found');
   } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: Error details for server
     console.log(error);
     return ActionFailure('Error getting training plans');
   }
@@ -195,7 +190,6 @@ export async function createTrainingSet(
 ): Promise<ActionResponseProps<TrainingSetFormWithId>> {
   const parsedDataResult = trainingSetSchema.safeParse(data);
   if (!parsedDataResult.success) {
-    console.log(parsedDataResult.error);
     return ActionFailure('Invalid data');
   }
 
@@ -203,16 +197,11 @@ export async function createTrainingSet(
 
   if (set.id !== undefined) {
     const typedSet = set as TrainingSetFormWithId;
-    console.log(typedSet);
     return ActionSuccess(typedSet, 'Set updated successfully');
   }
 
   try {
     const id = randomUUID();
-    console.log({
-      ...set,
-      id,
-    });
     return ActionSuccess(
       {
         ...set,
@@ -221,6 +210,7 @@ export async function createTrainingSet(
       'Set created successfully'
     );
   } catch (error) {
+    // biome-ignore lint/suspicious/noConsole: Error details for server
     console.log(error);
     return ActionFailure('Error creating set');
   }
