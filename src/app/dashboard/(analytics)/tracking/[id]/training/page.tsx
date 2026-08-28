@@ -44,5 +44,5 @@ export default async function TrackingTrainingPage(
 
   const targets = trainingPlansResult.data;
 
-  return <TrainingWrapper saveDataAction={processData} targets={targets} />;
+  return <TrainingWrapper targets={targets} />;
 }
