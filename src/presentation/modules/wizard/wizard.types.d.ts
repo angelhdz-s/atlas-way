@@ -2,9 +2,17 @@ import type { StatusCode } from '@/modules/status/status.types';
 
 export type PhaseStatus = StatusCode;
 
-export interface PhaseEntries<FormStepValues> {
+export interface StepEnginePhaseEntries<FormStepValues> {
+  id: string;
+  steps: number;
+  status?: PhaseStatus;
+  stepsData?: FormStepValues[];
+}
+
+export interface WizardSummaryPhaseEntries<FormStepValues> {
   id: string;
   title: string;
+  description: string | null;
   steps: number;
   status?: PhaseStatus;
   stepsData?: FormStepValues[];
@@ -16,6 +24,10 @@ export interface Phase {
   status: PhaseStatus;
 }
 
+export interface PhaseWithText extends Phase {
+  title: string;
+  description: string | null;
+}
 
 export type StepStatus = StatusCode;
 
@@ -31,6 +43,11 @@ export interface FlatStep {
 
   // Phase metadata
   phase: Phase;
+}
+
+export interface FlatStepWithText extends FlatStep {
+  title: string;
+  phase: PhaseWithText;
 }
 export interface NormalizeDomain<FormStepValues> {
   flatSteps: FlatStep[];
