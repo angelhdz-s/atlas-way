@@ -14,7 +14,9 @@ import {
   type ExerciseTargetsForm,
 } from '@/modules/tracking/presentation/schemas/exercise-targets.schema';
 import {
+  setSchema,
   trainingSetSchema,
+  type SetForm,
   type TrainingSetForm,
 } from '@/modules/tracking/presentation/schemas/training.schema';
 
@@ -222,4 +224,35 @@ export async function createTrainingSet(
     console.log(error);
     return ActionFailure('Error creating set');
   }
+}
+
+type SetFormWithId = SetForm & {
+  id: string;
+};
+
+/**
+ * Initial base method for wizard tests
+ */
+export async function processSetFormData(
+  data: SetForm
+): Promise<ActionResponseProps<SetFormWithId>> {
+  const setDataParsed = setSchema.safeParse(data);
+  if (!setDataParsed.success) return ActionFailure('Error saving set data. Invalid data');
+
+  // If already has an id return data itself (data is updated)
+  if (setDataParsed.data.id !== undefined) {
+    const setData: SetFormWithId = {
+      ...setDataParsed.data,
+      id: setDataParsed.data.id,
+    };
+    return ActionSuccess(setData, 'Set data saved successfully');
+  }
+
+  // Generate uuid to create the new set record
+  const newId = randomUUID();
+  const setData: SetFormWithId = {
+    ...setDataParsed.data,
+    id: newId,
+  };
+  return ActionSuccess(setData, 'Set data created successfully');
 }
