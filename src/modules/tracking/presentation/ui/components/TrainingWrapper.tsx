@@ -10,7 +10,6 @@ import { processSetFormData } from '@/modules/tracking/presentation/tracking.act
 import { Training } from '@/modules/tracking/presentation/ui/components/Training';
 import { trainingSetFormSchema } from '@/modules/tracking/presentation/schemas/training.schema';
 import { WizardSummaryProvider } from '@/presentation/modules/wizard/components/WizardSummaryProvider';
-import { WizardSummary } from '@/presentation/modules/wizard/components/WizardSummary';
 import { StepEngineProvider } from '@/presentation/modules/wizard/components/StepEngineProvider';
 import { StepFormProvider } from '@/presentation/modules/wizard/components/StepFormProvider';
 import { StepFormSyncProvider } from '@/presentation/modules/wizard/components/StepFormSyncProvider';
