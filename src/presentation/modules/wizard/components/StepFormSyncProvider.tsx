@@ -10,24 +10,17 @@ import { StepFormSyncContext } from '@/presentation/modules/wizard/context/StepF
 import { getNextPhaseStepId } from '@/presentation/modules/wizard/helpers/wizard.flat-steps.helper';
 import { useStepEngine } from '@/presentation/modules/wizard/hooks/useStepEngine';
 
-type SaveStepAction<ActionResponseData> = (data: {
-  phaseId: string;
-  stepData: Record<string, any>;
-}) => Promise<ActionResponseProps<ActionResponseData>>;
-
-type SyncCurrentStep<FormValues, Data> = (args: {
-  savedData: Data;
-  formValues: FormValues;
-}) => FormValues;
+type SaveStepAction<FormValues, ActionResponseData> = (
+  stepData: FormValues
+) => Promise<ActionResponseProps<ActionResponseData>>;
 
 type Props<FormValues, SavedData> = {
   children: React.ReactNode;
-  saveStepAction: SaveStepAction<SavedData>;
+  saveStepAction: SaveStepAction<FormValues, SavedData>;
   populateNextPhaseStep?: (data: {
     currentStepValue: FormValues;
     nextStepValue: FormValues;
   }) => FormValues;
-  syncCurrentStep?: SyncCurrentStep<FormValues, SavedData>;
   flatSteps: FlatStep[];
   currentStepSave?: () => FormValues;
 };
@@ -43,7 +36,6 @@ export function StepFormSyncProvider<FormValues, ActionResponseData>({
   flatSteps,
   saveStepAction,
   populateNextPhaseStep,
-  syncCurrentStep,
 }: Props<FormValues, ActionResponseData>) {
   const { currentStep, nextStep, prevStep } = useStepEngine();
   const { trigger, getValues, setValue } = useFormContext<Form<FormValues>>();
@@ -58,15 +50,11 @@ export function StepFormSyncProvider<FormValues, ActionResponseData>({
       const isStepValid = await trigger(`${currentStepPath}` as FormKey<FormValues>);
       if (!isStepValid) return false;
       setIsSaving(true);
-      console.log('Saving');
 
       const formData = getValues(currentStepPath as FormKey<FormValues>);
       if (!formData) return false;
 
-      const response = await saveStepAction({
-        phaseId: currentStep.phase.id,
-        stepData: formData,
-      });
+      const response = await saveStepAction(formData as FormValues);
 
       if (!response.success) {
         addToast('Error saving data', {
@@ -75,12 +63,9 @@ export function StepFormSyncProvider<FormValues, ActionResponseData>({
         return false;
       }
 
-      const newCurrentStepValues =
-        syncCurrentStep?.({ savedData: response.data, formValues: formData as FormValues }) ??
-        formData;
+      const newCurrentStepValues = response.data ?? formData;
 
-      if (syncCurrentStep !== undefined)
-        setValue(currentStepPath as FormKey<FormValues>, newCurrentStepValues as never);
+      setValue(currentStepPath as FormKey<FormValues>, newCurrentStepValues as never);
 
       if (!populateNextPhaseStep) return true;
 
@@ -98,15 +83,13 @@ export function StepFormSyncProvider<FormValues, ActionResponseData>({
       setValue(nextStepId as FormKey<FormValues>, newNextStepValue as never);
 
       return true;
-    } catch (e) {
+    } catch (_e) {
       addToast('Unknown error', {
         type: 'error',
       });
-      console.log(e);
       return false;
     } finally {
       setIsSaving(false);
-      console.log('Ended');
     }
   }, [
     addToast,
@@ -118,7 +101,6 @@ export function StepFormSyncProvider<FormValues, ActionResponseData>({
     flatSteps,
     populateNextPhaseStep,
     setValue,
-    syncCurrentStep,
   ]);
 
   const handleNext = useCallback(async () => {
