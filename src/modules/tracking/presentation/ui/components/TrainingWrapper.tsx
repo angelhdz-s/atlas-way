@@ -1,9 +1,11 @@
 'use client';
 
 import type { StatusCode } from '@/modules/status/status.types';
-import type { PhaseEntries } from '@/presentation/modules/wizard/wizard.types';
+import type {
+  StepEnginePhaseEntries,
+  WizardSummaryPhaseEntries,
+} from '@/presentation/modules/wizard/wizard.types';
 import type { TrainingPlan, TrainingSets } from '@/prisma/client';
-import type { ActionResponseProps } from '@/shared/presentation/action.response';
 import type { SetForm } from '@/modules/tracking/presentation/schemas/training.schema';
 import type { FullTrainingPlan } from '@/modules/tracking/presentation/tracking.actions';
 import { processSetFormData } from '@/modules/tracking/presentation/tracking.actions';
@@ -13,7 +15,8 @@ import { WizardSummaryProvider } from '@/presentation/modules/wizard/components/
 import { StepEngineProvider } from '@/presentation/modules/wizard/components/StepEngineProvider';
 import { StepFormProvider } from '@/presentation/modules/wizard/components/StepFormProvider';
 import { StepFormSyncProvider } from '@/presentation/modules/wizard/components/StepFormSyncProvider';
-import { normalizeDomainData } from '@/presentation/modules/wizard/helpers/wizard.normalizer.helper';
+import { normalizeStepsData } from '@/presentation/modules/wizard/helpers/wizard.normalizer.helper';
+import { normalizeSummaryData } from '@/presentation/modules/wizard/helpers/wizard.summary.normalizer.helper';
 
 type Props = {
   className?: string;
@@ -56,10 +59,9 @@ const onNextStep = ({
 };
 
 export function TrainingWrapper({ targets, className = '' }: Props) {
-  const phaseEntries: PhaseEntries<SetForm>[] = targets.map((t) => ({
+  const stepEnginePhaseEntries: StepEnginePhaseEntries<SetForm>[] = targets.map((t) => ({
     id: t.id,
     steps: t.sets,
-    title: t.exercise.name,
     status: targetStatusMapper(t.statusId),
     stepsData:
       t.trainingSets.length > 0
@@ -76,8 +78,29 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
           ],
   }));
 
-  const normalizedInput = normalizeDomainData<SetForm>({
-    records: phaseEntries,
+  const wizardSummaryPhaseEntries: WizardSummaryPhaseEntries<SetForm>[] = targets.map((t) => ({
+    id: t.id,
+    steps: t.sets,
+    title: t.exercise.name,
+    description: t.exercise.description,
+    status: targetStatusMapper(t.statusId),
+    stepsData:
+      t.trainingSets.length > 0
+        ? targetSetsMap(t.trainingSets)
+        : [
+            // Initialize a default values when no data comes from DB
+            {
+              reps: t.reps,
+              rir: 0,
+              set: 1,
+              trainingPlanId: t.id,
+              weight: t.weight,
+            },
+          ],
+  }));
+
+  const normalizedSteps = normalizeStepsData<SetForm>({
+    records: stepEnginePhaseEntries,
     defaultValuesMap: ({ data, step, phaseIndex }) => ({
       id: data?.id,
       reps: data?.reps ?? 12,
@@ -86,30 +109,32 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
       set: data?.set ?? phaseIndex + 1,
       trainingPlanId: data?.trainingPlanId ?? step.phase.id,
     }),
+  });
+
+  const normalizedSummarySteps = normalizeSummaryData<SetForm>({
+    flatSteps: normalizedSteps.flatSteps,
+    records: wizardSummaryPhaseEntries,
     stepTitleBuilder: ({ phaseIndex: i }) => `Set ${i + 1}`,
   });
 
   const isStepCompleted = (formData: SetForm): boolean => {
-    if (formData.id !== undefined) {
-      console.log(formData);
-      return true;
-    }
+    if (formData.id !== undefined) return true;
     return false;
   };
 
   return (
-    <StepEngineProvider flatSteps={normalizedInput.flatSteps}>
+    <StepEngineProvider flatSteps={normalizedSteps.flatSteps}>
       <StepFormProvider
         schema={trainingSetFormSchema}
-        defaultValues={normalizedInput.defaultValues}
+        defaultValues={normalizedSteps.defaultValues}
       >
         <StepFormSyncProvider
-          flatSteps={normalizedInput.flatSteps}
+          flatSteps={normalizedSteps.flatSteps}
           saveStepAction={processSetFormData}
           populateNextPhaseStep={onNextStep}
         >
           <WizardSummaryProvider
-            flatSteps={normalizedInput.flatSteps}
+            flatSteps={normalizedSummarySteps}
             areFieldValuesCompleted={isStepCompleted}
           >
             <div className="flex gap-4">
