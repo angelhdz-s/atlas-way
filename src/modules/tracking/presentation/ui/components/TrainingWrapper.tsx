@@ -1,15 +1,16 @@
 'use client';
 
 import type { StatusCode } from '@/modules/status/status.types';
-import {
-  trainingSetFormSchema,
-  type SetForm,
-} from '@/modules/tracking/presentation/schemas/training.schema';
-import type { FullTrainingPlan } from '@/modules/tracking/presentation/tracking.actions';
 import type { PhaseEntries } from '@/presentation/modules/wizard/wizard.types';
 import type { TrainingPlan, TrainingSets } from '@/prisma/client';
 import type { ActionResponseProps } from '@/shared/presentation/action.response';
+import type { SetForm } from '@/modules/tracking/presentation/schemas/training.schema';
+import type { FullTrainingPlan } from '@/modules/tracking/presentation/tracking.actions';
+import { processSetFormData } from '@/modules/tracking/presentation/tracking.actions';
 import { Training } from '@/modules/tracking/presentation/ui/components/Training';
+import { trainingSetFormSchema } from '@/modules/tracking/presentation/schemas/training.schema';
+import { WizardSummaryProvider } from '@/presentation/modules/wizard/components/WizardSummaryProvider';
+import { WizardSummary } from '@/presentation/modules/wizard/components/WizardSummary';
 import { StepEngineProvider } from '@/presentation/modules/wizard/components/StepEngineProvider';
 import { StepFormProvider } from '@/presentation/modules/wizard/components/StepFormProvider';
 import { StepFormSyncProvider } from '@/presentation/modules/wizard/components/StepFormSyncProvider';
@@ -56,7 +57,7 @@ const onNextStep = ({
   };
 };
 
-export function TrainingWrapper({ saveDataAction, targets, className = '' }: Props) {
+export function TrainingWrapper({ targets, className = '' }: Props) {
   const phaseEntries: PhaseEntries<SetForm>[] = targets.map((t) => ({
     id: t.id,
     steps: t.sets,
@@ -90,7 +91,13 @@ export function TrainingWrapper({ saveDataAction, targets, className = '' }: Pro
     stepTitleBuilder: ({ phaseIndex: i }) => `Set ${i + 1}`,
   });
 
-  console.log(Object.values(normalizedInput.defaultValues).map((v) => v.reps));
+  const isStepCompleted = (formData: SetForm): boolean => {
+    if (formData.id !== undefined) {
+      console.log(formData);
+      return true;
+    }
+    return false;
+  };
 
   return (
     <StepEngineProvider flatSteps={normalizedInput.flatSteps}>
@@ -100,10 +107,18 @@ export function TrainingWrapper({ saveDataAction, targets, className = '' }: Pro
       >
         <StepFormSyncProvider
           flatSteps={normalizedInput.flatSteps}
-          saveStepAction={saveDataAction}
+          saveStepAction={processSetFormData}
           populateNextPhaseStep={onNextStep}
         >
-          <Training className={className} />
+          <WizardSummaryProvider
+            flatSteps={normalizedInput.flatSteps}
+            areFieldValuesCompleted={isStepCompleted}
+          >
+            <div className="flex gap-4">
+              <Training className={className} />
+              <WizardSummary />
+            </div>
+          </WizardSummaryProvider>
         </StepFormSyncProvider>
       </StepFormProvider>
     </StepEngineProvider>
