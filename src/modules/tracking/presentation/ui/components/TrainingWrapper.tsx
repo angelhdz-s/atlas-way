@@ -116,7 +116,6 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
           >
             <div className="flex gap-4">
               <Training className={className} />
-              <WizardSummary />
             </div>
           </WizardSummaryProvider>
         </StepFormSyncProvider>

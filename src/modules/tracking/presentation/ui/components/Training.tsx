@@ -6,6 +6,7 @@ import { TrainingHeaderSteps } from '@/modules/tracking/presentation/ui/componen
 import { TrainingFormWrapper } from '@/modules/tracking/presentation/ui/components/training/TrainingFormWrapper';
 import { TrainingButtons } from '@/modules/tracking/presentation/ui/components/training/TrainingButtons';
 import { TrainingAsideData } from '@/modules/tracking/presentation/ui/components/training/TrainingAsideData';
+import { WizardSummary } from '@/presentation/modules/wizard/components/WizardSummary';
 
 type Props = {
   className?: string;
@@ -29,7 +30,7 @@ export function Training({ className }: Props) {
           <h5>Push day</h5>
           <p>Push day focused on push muscles development</p>
         </header>
-        <TrainingAsideData />
+        <WizardSummary />
       </aside>
     </PageContainer>
   );
