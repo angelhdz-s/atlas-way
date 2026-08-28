@@ -3,13 +3,13 @@
 import { useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useStepEngine } from '@/presentation/modules/wizard/hooks/useStepEngine';
-import type { FlatStep, Phase } from '@/presentation/modules/wizard/wizard.types';
+import type { FlatStepWithText, Phase } from '@/presentation/modules/wizard/wizard.types';
 import type { PhaseSummary, StepSummary } from '@/presentation/modules/wizard/wizard.summary.types';
 import { WizardSummaryContext } from '@/presentation/modules/wizard/context/WizardSummaryContext';
 
 type Props<FormValues> = {
   children: React.ReactNode;
-  flatSteps: FlatStep[];
+  flatSteps: FlatStepWithText[];
   areFieldValuesCompleted?: (formData: FormValues) => boolean;
 };
 
@@ -26,7 +26,7 @@ export function WizardSummaryProvider<FormValues>({
     let totalValidSteps = 0;
     let totalCompletedSteps = 0;
 
-    const phaseMap = new Map<string, PhaseSummary<any>>();
+    const phaseMap = new Map<string, PhaseSummary<FormValues>>();
 
     flatSteps.forEach((s) => {
       const isCancelled = cancelledPhaseIds[s.phase.id] === true;
@@ -34,7 +34,7 @@ export function WizardSummaryProvider<FormValues>({
       const stepData = formData[s.id] as FormValues | undefined;
 
       // Evaluate step status
-      let status: FlatStep['status'] = 'PENDING';
+      let status: FlatStepWithText['status'] = 'PENDING';
 
       if (isCancelled) status = 'CANCELED';
       else if (isCurrent) status = 'IN_PROGRESS';
@@ -45,18 +45,19 @@ export function WizardSummaryProvider<FormValues>({
         if (status === 'COMPLETED') totalCompletedSteps++;
       }
 
-      const stepSummary: StepSummary<any> = {
+      const stepSummary: StepSummary<FormValues> = {
         stepId: s.id,
-        title: `Step ${s.globalIndex + 1}`,
+        title: s.title,
         status: status,
         isCurrent,
-        dataSnapshot: stepData,
+        dataSnapshot: stepData as FormValues,
       };
 
       if (!phaseMap.has(s.phase.id)) {
         phaseMap.set(s.phase.id, {
           phaseId: s.phase.id,
           title: s.phase.title || `Phase`, // Use phase title if available
+          description: s.phase.description,
           status: status,
           isCancelled,
           steps: [stepSummary],
@@ -74,7 +75,7 @@ export function WizardSummaryProvider<FormValues>({
     });
 
     // Adjust final phase status
-    const phases: PhaseSummary<any>[] = Array.from(phaseMap.values()).map((p) => {
+    const phases: PhaseSummary<FormValues>[] = Array.from(phaseMap.values()).map((p) => {
       if (p.isCancelled)
         return {
           ...p,
