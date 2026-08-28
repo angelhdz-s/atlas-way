@@ -5,7 +5,6 @@ import { PageHeader } from '@/presentation/modules/dashboard/components/page/Pag
 import { TrainingHeaderSteps } from '@/modules/tracking/presentation/ui/components/training/TrainingHeaderSteps';
 import { TrainingFormWrapper } from '@/modules/tracking/presentation/ui/components/training/TrainingFormWrapper';
 import { TrainingButtons } from '@/modules/tracking/presentation/ui/components/training/TrainingButtons';
-import { TrainingAsideData } from '@/modules/tracking/presentation/ui/components/training/TrainingAsideData';
 import { WizardSummary } from '@/presentation/modules/wizard/components/WizardSummary';
 
 type Props = {
