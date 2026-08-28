@@ -5,16 +5,6 @@ import {
   getTrainingPlansByTrainingId,
 } from '@/modules/tracking/presentation/tracking.actions';
 import { TrainingWrapper } from '@/modules/tracking/presentation/ui/components/TrainingWrapper';
-import { ActionSuccess, type ActionResponseProps } from '@/shared/presentation/action.response';
-
-const processData = async (data: {
-  phaseId: string;
-  stepData: any;
-}): Promise<ActionResponseProps<true>> => {
-  'use server';
-  console.log(data);
-  return ActionSuccess(true, 'Done');
-};
 
 export default async function TrackingTrainingPage(
   pageParams: Promise<{ params: Promise<{ id: string }> }>

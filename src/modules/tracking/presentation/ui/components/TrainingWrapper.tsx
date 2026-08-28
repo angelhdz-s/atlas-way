@@ -17,7 +17,6 @@ import { normalizeDomainData } from '@/presentation/modules/wizard/helpers/wizar
 
 type Props = {
   className?: string;
-  saveDataAction: (data: { phaseId: string; stepData: any }) => Promise<ActionResponseProps<true>>;
   targets: FullTrainingPlan[];
 };
 
