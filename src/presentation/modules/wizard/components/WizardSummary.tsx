@@ -6,13 +6,13 @@ export function WizardSummary<FormValues>() {
   const summary = useWizardSummary<FormValues>();
 
   return (
-    <div className="rounded border p-4 shadow-sm">
-      <h2 className="mb-4 text-xl font-bold">Training Summary</h2>
+    <div className="space-y-4">
+      <h2 className="text-xl">Summary</h2>
 
-      <div className="mb-4">
-        <div className="mb-1 flex items-center justify-between">
-          <span className="text-sm font-medium text-gray-700">Progress</span>
-          <span className="text-sm font-bold text-blue-600">{summary.overallProgress}%</span>
+      <div className="space-y-2">
+        <div className="flex items-center justify-between">
+          <span>Progress</span>
+          <span>{summary.overallProgress}%</span>
         </div>
         <div className="h-2 w-full rounded-full">
           <div
@@ -20,23 +20,23 @@ export function WizardSummary<FormValues>() {
             style={{ width: `${summary.overallProgress}%` }}
           ></div>
         </div>
-        <p className="mt-1 text-xs text-gray-500">
+        <p className="text-sm text-gray-500">
           {summary.completedSteps} / {summary.totalSteps} steps completed
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
         {summary.phases.map((phase) => (
-          <div key={phase.phaseId} className="border-t pt-2">
+          <div key={phase.phaseId}>
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold">{phase.title}</h3>
               <span
-                className={`rounded px-2 py-1 text-xs ${
+                className={`bg-fill-middle rounded px-1 py-0.5 text-xs capitalize ${
                   phase.status === 'COMPLETED'
-                    ? 'bg-green-100 text-green-800'
+                    ? 'text-success'
                     : phase.status === 'IN_PROGRESS'
-                      ? 'bg-yellow-100 text-yellow-800'
-                      : 'bg-gray-100 text-gray-800'
+                      ? 'text-info'
+                      : 'text-current/80'
                 }`}
               >
                 {phase.status}
@@ -46,7 +46,7 @@ export function WizardSummary<FormValues>() {
               {phase.steps.map((step) => (
                 <li
                   key={step.stepId}
-                  className={`flex justify-between text-xs ${step.isCurrent ? 'font-bold text-blue-600' : 'text-gray-600'}`}
+                  className={`flex justify-between text-sm ${step.isCurrent ? 'text-info' : 'text-fg-muted'}`}
                 >
                   <span>{step.title}</span>
                   <span>{step.status}</span>
