@@ -49,19 +49,10 @@ export function stepEngineReducer(
         ...state.cancelledPhaseIds,
         [phaseId]: !isCurrentlyCancelled,
       };
-      let newCurrentIndex = state.currentIndex;
-      const currentStep = state.flatSteps[state.currentIndex];
-      if (!isCurrentlyCancelled && currentStep?.phase.id === phaseId) {
-        const tempState: StepEngineState = { ...state, cancelledPhaseIds: updatedCancelled };
-        newCurrentIndex = findNextValidIndex(tempState, state.currentIndex, 1);
-        if (newCurrentIndex === state.currentIndex)
-          newCurrentIndex = findNextValidIndex(tempState, state.currentIndex, -1);
-      }
 
       return {
         ...state,
         cancelledPhaseIds: updatedCancelled,
-        currentIndex: newCurrentIndex,
       };
     }
     case StepEngineActionType.RESET_ENGINE: {
