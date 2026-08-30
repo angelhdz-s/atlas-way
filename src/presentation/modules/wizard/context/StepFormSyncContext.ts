@@ -5,7 +5,7 @@ export type StepFormSyncValue = {
   currentStep: FlatStep;
   currentStepPath: string;
   isSaving: boolean;
-  saveCurrentStep: () => void;
+  saveCurrentStep: () => Promise<boolean>;
   handleNext: () => void;
   handlePrev: () => void;
 };
