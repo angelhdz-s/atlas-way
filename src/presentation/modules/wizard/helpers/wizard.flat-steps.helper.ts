@@ -11,3 +11,48 @@ export function getNextPhaseStepId(flatSteps: FlatStep[], currentStepIndex: numb
 
   return nextStep.id;
 }
+
+type GetNextStepIdProps = {
+  flatSteps: FlatStep[];
+  completedStepIds: Set<string>;
+  cancelledPhaseIds: Set<string>;
+  currentStepIndex: number;
+};
+
+export function getNextStepId({
+  cancelledPhaseIds,
+  completedStepIds,
+  currentStepIndex,
+  flatSteps,
+}: GetNextStepIdProps): string | null {
+  for (let i = currentStepIndex + 1; i < flatSteps.length; i++) {
+    const step = flatSteps[i];
+    if (!step) return null;
+
+    const isStepCompleted = completedStepIds.has(step.id);
+    const isPhaseCancelled = cancelledPhaseIds.has(step.phase.id);
+
+    // If phase is not canceled or step is completed. Step is navigable
+    if (!isPhaseCancelled || isStepCompleted) return step.id;
+  }
+  return null;
+}
+
+export function getPreviousStepId({
+  cancelledPhaseIds,
+  completedStepIds,
+  currentStepIndex,
+  flatSteps,
+}: GetNextStepIdProps): string | null {
+  for (let i = currentStepIndex - 1; i >= 0; i--) {
+    const step = flatSteps[i];
+    if (!step) return null;
+
+    const isStepCompleted = completedStepIds.has(step.id);
+    const isPhaseCancelled = cancelledPhaseIds.has(step.phase.id);
+
+    // If phase is not canceled or step is completed. Step is navigable
+    if (!isPhaseCancelled || isStepCompleted) return step.id;
+  }
+  return null;
+}
