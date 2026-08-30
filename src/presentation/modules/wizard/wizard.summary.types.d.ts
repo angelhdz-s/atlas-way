@@ -22,4 +22,5 @@ export interface WizardSummary<FormValues> {
   overallProgress: number; // percentage 0-100%
   totalSteps: number;
   completedSteps: number;
+  completedStepIds: Set<string>;
 }

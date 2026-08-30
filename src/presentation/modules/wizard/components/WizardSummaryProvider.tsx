@@ -27,9 +27,10 @@ export function WizardSummaryProvider<FormValues>({
     let totalCompletedSteps = 0;
 
     const phaseMap = new Map<string, PhaseSummary<FormValues>>();
+    const completedStepIds = new Set<string>();
 
     flatSteps.forEach((s) => {
-      const isCancelled = cancelledPhaseIds[s.phase.id] === true;
+      const isCancelled = cancelledPhaseIds.has(s.phase.id);
       const isCurrent = s.id === currentStep.id;
       const stepData = formData[s.id] as FormValues | undefined;
 
@@ -42,7 +43,10 @@ export function WizardSummaryProvider<FormValues>({
 
       if (!isCancelled) {
         totalValidSteps++;
-        if (status === 'COMPLETED') totalCompletedSteps++;
+        if (status === 'COMPLETED') {
+          completedStepIds.add(s.id);
+          totalCompletedSteps++;
+        }
       }
 
       const stepSummary: StepSummary<FormValues> = {
@@ -103,6 +107,7 @@ export function WizardSummaryProvider<FormValues>({
       overallProgress,
       totalSteps: totalValidSteps,
       completedSteps: totalCompletedSteps,
+      completedStepIds: completedStepIds,
     };
   }, [flatSteps, currentStep, cancelledPhaseIds, formData, areFieldValuesCompleted]);
 

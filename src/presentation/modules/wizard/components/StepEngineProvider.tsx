@@ -14,7 +14,7 @@ type Props = {
 
 export function StepEngineProvider({ children, flatSteps }: Props) {
   // ToDo: normalize cancelled phases entries from server
-  const initialCancelled = {};
+  const initialCancelled = new Set<string>();
 
   const [state, dispatch] = useReducer(stepEngineReducer, {
     flatSteps,

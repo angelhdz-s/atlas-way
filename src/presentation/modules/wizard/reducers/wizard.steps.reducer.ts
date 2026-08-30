@@ -41,12 +41,20 @@ export function stepEngineReducer(
     }
     case StepEngineActionType.TOGGLE_CANCEL_PHASE: {
       const { phaseId } = action.payload;
-      const isCurrentlyCancelled = state.cancelledPhaseIds[phaseId] === true;
-      if (isCurrentlyCancelled) return state;
-      const updatedCancelled: StepEngineState['cancelledPhaseIds'] = {
-        ...state.cancelledPhaseIds,
-        [phaseId]: !isCurrentlyCancelled,
-      };
+      const isCurrentlyCancelled = state.cancelledPhaseIds.has(phaseId);
+      const updatedCancelled: StepEngineState['cancelledPhaseIds'] = new Set(
+        state.cancelledPhaseIds
+      );
+
+      if (isCurrentlyCancelled) {
+        updatedCancelled.delete(phaseId);
+        return {
+          ...state,
+          cancelledPhaseIds: updatedCancelled,
+        };
+      }
+
+      updatedCancelled.add(phaseId);
 
       return {
         ...state,
@@ -55,7 +63,7 @@ export function stepEngineReducer(
     }
     case StepEngineActionType.RESET_ENGINE: {
       // ToDo: receive by prop cancelledPhaseIds as flatSteps
-      const initialCancelled: StepEngineState['cancelledPhaseIds'] = {};
+      const initialCancelled: StepEngineState['cancelledPhaseIds'] = new Set<string>();
       return {
         flatSteps: action.payload.flatSteps,
         currentIndex: 0,
