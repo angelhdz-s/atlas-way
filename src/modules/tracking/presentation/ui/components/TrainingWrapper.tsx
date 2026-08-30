@@ -3,6 +3,7 @@
 import type { StatusCode } from '@/modules/status/status.types';
 import type {
   StepEnginePhaseEntries,
+  StepStatus,
   WizardSummaryPhaseEntries,
 } from '@/presentation/modules/wizard/wizard.types';
 import type { TrainingPlan, TrainingSets } from '@/prisma/client';
@@ -10,13 +11,10 @@ import type { SetForm } from '@/modules/tracking/presentation/schemas/training.s
 import type { FullTrainingPlan } from '@/modules/tracking/presentation/tracking.actions';
 import { processSetFormData } from '@/modules/tracking/presentation/tracking.actions';
 import { Training } from '@/modules/tracking/presentation/ui/components/Training';
-import { trainingSetFormSchema } from '@/modules/tracking/presentation/schemas/training.schema';
-import { WizardSummaryProvider } from '@/presentation/modules/wizard/components/WizardSummaryProvider';
-import { StepEngineProvider } from '@/presentation/modules/wizard/components/StepEngineProvider';
-import { StepFormProvider } from '@/presentation/modules/wizard/components/StepFormProvider';
-import { StepFormSyncProvider } from '@/presentation/modules/wizard/components/StepFormSyncProvider';
+import { setSchema } from '@/modules/tracking/presentation/schemas/training.schema';
 import { normalizeStepsData } from '@/presentation/modules/wizard/helpers/wizard.normalizer.helper';
 import { normalizeSummaryData } from '@/presentation/modules/wizard/helpers/wizard.summary.normalizer.helper';
+import { WizardProvider } from '@/presentation/modules/wizard/components/WizardProvider';
 
 type Props = {
   className?: string;
@@ -111,10 +109,17 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
     }),
   });
 
+  const setInitialStepStatus = (data: SetForm | undefined): StepStatus => {
+    if (data === undefined) return 'PENDING';
+    if (data.id !== undefined) return 'COMPLETED';
+    return 'PENDING';
+  };
+
   const normalizedSummarySteps = normalizeSummaryData<SetForm>({
     flatSteps: normalizedSteps.flatSteps,
     records: wizardSummaryPhaseEntries,
     stepTitleBuilder: ({ phaseIndex: i }) => `Set ${i + 1}`,
+    setInitialStepStatus,
   });
 
   const isStepCompleted = (formData: SetForm): boolean => {
@@ -123,26 +128,18 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
   };
 
   return (
-    <StepEngineProvider flatSteps={normalizedSteps.flatSteps}>
-      <StepFormProvider
-        schema={trainingSetFormSchema}
-        defaultValues={normalizedSteps.defaultValues}
-      >
-        <StepFormSyncProvider
-          flatSteps={normalizedSteps.flatSteps}
-          saveStepAction={processSetFormData}
-          populateNextPhaseStep={onNextStep}
-        >
-          <WizardSummaryProvider
-            flatSteps={normalizedSummarySteps}
-            areFieldValuesCompleted={isStepCompleted}
-          >
-            <div className="flex gap-4">
-              <Training className={className} />
-            </div>
-          </WizardSummaryProvider>
-        </StepFormSyncProvider>
-      </StepFormProvider>
-    </StepEngineProvider>
+    <WizardProvider
+      flatSteps={normalizedSteps.flatSteps}
+      flatStepsWithText={normalizedSummarySteps}
+      formDefaultValues={normalizedSteps.defaultValues}
+      formSchema={setSchema}
+      isFormStepCompleted={isStepCompleted}
+      populateNextPhaseStep={onNextStep}
+      processSetFormData={processSetFormData}
+    >
+      <div className="flex gap-4">
+        <Training className={className} />
+      </div>
+    </WizardProvider>
   );
 }
