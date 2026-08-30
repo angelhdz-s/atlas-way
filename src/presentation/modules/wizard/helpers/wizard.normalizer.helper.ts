@@ -38,11 +38,9 @@ export function normalizeStepsData<FormStepValues>({
         isFirstInPhase: i === 0,
         isLastInPhase: i === record.steps,
         globalIndex,
-        status: globalIndex === 0 ? 'IN_PROGRESS' : 'PENDING',
         phase: {
           id: record.id,
           order: recordIndex + 1,
-          status: recordIndex === 0 ? 'IN_PROGRESS' : 'PENDING',
         },
       };
       flatSteps.push(flatStep);
