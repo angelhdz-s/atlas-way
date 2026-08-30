@@ -8,5 +8,6 @@
   "js/ts.preferences.importModuleSpecifierEnding": "minimal",
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
-  "editor.detectIndentation": false
+  "editor.detectIndentation": false,
+  "js/ts.preferences.useAliasesForRenames": false
 }
