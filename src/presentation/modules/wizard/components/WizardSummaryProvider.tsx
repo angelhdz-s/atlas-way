@@ -1,10 +1,10 @@
 'use client';
 
-import { useMemo } from 'react';
-import { useFormContext } from 'react-hook-form';
-import { useStepEngine } from '@/presentation/modules/wizard/hooks/useStepEngine';
 import type { FlatStepWithText, PhaseWithText } from '@/presentation/modules/wizard/wizard.types';
 import type { PhaseSummary, StepSummary } from '@/presentation/modules/wizard/wizard.summary.types';
+import { useMemo, useRef } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { useStepEngine } from '@/presentation/modules/wizard/hooks/useStepEngine';
 import { WizardSummaryContext } from '@/presentation/modules/wizard/context/WizardSummaryContext';
 
 type Props<FormValues> = {
@@ -22,32 +22,33 @@ export function WizardSummaryProvider<FormValues>({
   const { watch } = useFormContext();
   const formData = watch() || {};
 
+  const completedStepIdsRef = useRef<Set<string>>(new Set());
+
   const summary = useMemo(() => {
     let totalValidSteps = 0;
     let totalCompletedSteps = 0;
 
     const phaseMap = new Map<string, PhaseSummary<FormValues>>();
-    const completedStepIds = new Set<string>();
+    const completedStepIdsRefCopy = new Set(completedStepIdsRef.current);
 
     flatSteps.forEach((s) => {
-      const isCancelled = cancelledPhaseIds.has(s.phase.id);
+      const isPhaseCancelled = cancelledPhaseIds.has(s.phase.id);
       const isCurrent = s.id === currentStep.id;
       const stepData = formData[s.id] as FormValues | undefined;
 
       // Evaluate step status
       let status: FlatStepWithText['status'] = 'PENDING';
 
-      if (isCancelled) status = 'CANCELED';
-      else if (stepData && areFieldValuesCompleted?.(stepData)) status = 'COMPLETED';
+      if (stepData && areFieldValuesCompleted?.(stepData)) status = 'COMPLETED';
+      else if (isPhaseCancelled) status = 'CANCELED';
       else if (isCurrent) status = 'IN_PROGRESS';
 
-      if (!isCancelled) {
-        totalValidSteps++;
-        if (status === 'COMPLETED') {
-          completedStepIds.add(s.id);
-          totalCompletedSteps++;
-        }
+      if (status === 'COMPLETED') {
+        completedStepIdsRefCopy.add(s.id);
+        totalCompletedSteps++;
       }
+
+      if (status !== 'CANCELED') totalValidSteps++;
 
       const stepSummary: StepSummary<FormValues> = {
         stepId: s.id,
@@ -63,7 +64,7 @@ export function WizardSummaryProvider<FormValues>({
           title: s.phase.title || `Phase`, // Use phase title if available
           description: s.phase.description,
           status: status,
-          isCancelled,
+          isCancelled: isPhaseCancelled,
           steps: [stepSummary],
           completedCount: status === 'COMPLETED' ? 1 : 0,
           totalCount: 1,
@@ -102,12 +103,14 @@ export function WizardSummaryProvider<FormValues>({
     const overallProgress =
       totalValidSteps > 0 ? Math.round((totalCompletedSteps / totalValidSteps) * 100) : 0;
 
+    completedStepIdsRef.current = completedStepIdsRefCopy;
+
     return {
       phases,
       overallProgress,
       totalSteps: totalValidSteps,
       completedSteps: totalCompletedSteps,
-      completedStepIds: completedStepIds,
+      completedStepIds: new Set(completedStepIdsRef.current),
     };
   }, [flatSteps, currentStep, cancelledPhaseIds, formData, areFieldValuesCompleted]);
 
