@@ -9,8 +9,6 @@ function findNextValidIndex(state: StepEngineState, startIndex: number, directio
   while (currentIndex >= 0 && currentIndex < state.flatSteps.length) {
     const step = state.flatSteps[currentIndex];
     if (!step) return state.currentIndex;
-    const isPhaseCancelled = Boolean(state.cancelledPhaseIds[step.phase.id]);
-    if (!isPhaseCancelled) return currentIndex;
     currentIndex += direction;
   }
   return state.currentIndex;
