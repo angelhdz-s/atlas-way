@@ -11,7 +11,7 @@ export interface PhaseSummary<FormValues> {
   title: string;
   description: string | null;
   status: PhaseStatus;
-  isCancelled: boolean;
+  isCanceled: boolean;
   steps: StepSummary<FormValues>[];
   completedCount: number;
   totalCount: number;

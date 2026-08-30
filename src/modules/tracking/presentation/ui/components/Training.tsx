@@ -11,6 +11,20 @@ type Props = {
   className?: string;
 };
 
+/*
+ToDo: 
+  - [x] Implement cancels for phase and steps
+  - [ ] Update server action to save create/update register for training set
+  - [ ] Verify persistence of data when page reloaded
+  - [ ] Add last step confirmation feature
+  - [ ] Add preliminary final page after success training
+
+When completed:
+  - [ ] Add StepEngine, StepFormSync and WizardSummary wizard layers for targets process
+  - [ ] Extend certain layers when required for targets process integration
+        For example: Configuration for single step phases (when actually there are no phases, just steps)
+ */
+
 export function Training({ className }: Props) {
   return (
     <PageContainer className={twMerge('flex flex-row gap-8', className)}>

@@ -12,12 +12,12 @@ type Props = {
 };
 
 export function TrainingButtons({ className }: Props) {
-  const { isLastStep, isFirstStep, cancelledPhaseIds, currentStep } = useStepEngine();
+  const { isLastStep, isFirstStep, canceledPhaseIds, currentStep } = useStepEngine();
   const { isSaving } = useStepFormSync();
 
   const { goToNextStep, goToPrevStep, toggleCancelPhase } = useWizard<SetForm>();
 
-  const isPhaseCancelled = cancelledPhaseIds.has(currentStep.phase.id);
+  const isPhaseCanceled = canceledPhaseIds.has(currentStep.phase.id);
 
   return (
     <>
@@ -30,7 +30,7 @@ export function TrainingButtons({ className }: Props) {
             variant={{ color: 'simple' }}
             onClick={() => toggleCancelPhase(currentStep.phase.id)}
           >
-            {isPhaseCancelled ? 'Retake phase' : 'End phase'}
+            {isPhaseCanceled ? 'Retake phase' : 'End phase'}
           </Button>
         </div>
         <main className="flex items-center gap-4">

@@ -18,7 +18,7 @@ export function WizardSummaryProvider<FormValues>({
   flatSteps,
   areFieldValuesCompleted,
 }: Props<FormValues>) {
-  const { currentStep, cancelledPhaseIds } = useStepEngine();
+  const { currentStep, canceledPhaseIds } = useStepEngine();
   const { watch } = useFormContext();
   const formData = watch() || {};
 
@@ -32,7 +32,7 @@ export function WizardSummaryProvider<FormValues>({
     const completedStepIdsRefCopy = new Set(completedStepIdsRef.current);
 
     flatSteps.forEach((s) => {
-      const isPhaseCancelled = cancelledPhaseIds.has(s.phase.id);
+      const isPhaseCanceled = canceledPhaseIds.has(s.phase.id);
       const isCurrent = s.id === currentStep.id;
       const stepData = formData[s.id] as FormValues | undefined;
 
@@ -40,7 +40,7 @@ export function WizardSummaryProvider<FormValues>({
       let status: FlatStepWithText['status'] = 'PENDING';
 
       if (stepData && areFieldValuesCompleted?.(stepData)) status = 'COMPLETED';
-      else if (isPhaseCancelled) status = 'CANCELED';
+      else if (isPhaseCanceled) status = 'CANCELED';
       else if (isCurrent) status = 'IN_PROGRESS';
 
       if (status === 'COMPLETED') {
@@ -64,7 +64,7 @@ export function WizardSummaryProvider<FormValues>({
           title: s.phase.title || `Phase`, // Use phase title if available
           description: s.phase.description,
           status: status,
-          isCancelled: isPhaseCancelled,
+          isCanceled: isPhaseCanceled,
           steps: [stepSummary],
           completedCount: status === 'COMPLETED' ? 1 : 0,
           totalCount: 1,
@@ -81,7 +81,7 @@ export function WizardSummaryProvider<FormValues>({
 
     // Adjust final phase status
     const phases: PhaseSummary<FormValues>[] = Array.from(phaseMap.values()).map((p) => {
-      if (p.isCancelled)
+      if (p.isCanceled)
         return {
           ...p,
           status: 'CANCELED',
@@ -112,7 +112,7 @@ export function WizardSummaryProvider<FormValues>({
       completedSteps: totalCompletedSteps,
       completedStepIds: new Set(completedStepIdsRef.current),
     };
-  }, [flatSteps, currentStep, cancelledPhaseIds, formData, areFieldValuesCompleted]);
+  }, [flatSteps, currentStep, canceledPhaseIds, formData, areFieldValuesCompleted]);
 
   return <WizardSummaryContext.Provider value={summary}>{children}</WizardSummaryContext.Provider>;
 }

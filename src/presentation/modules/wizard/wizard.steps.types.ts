@@ -3,7 +3,7 @@ import type { FlatStep } from '@/presentation/modules/wizard/wizard.types';
 export interface StepEngineState {
   flatSteps: FlatStep[];
   currentIndex: number;
-  cancelledPhaseIds: Set<string>;
+  canceledPhaseIds: Set<string>;
 }
 
 export enum StepEngineActionType {
@@ -45,7 +45,7 @@ export interface StepEngineContextValue {
   totalSteps: number;
   isFirstStep: boolean;
   isLastStep: boolean;
-  cancelledPhaseIds: Set<string>;
+  canceledPhaseIds: Set<string>;
   nextStep: () => void;
   prevStep: () => void;
   goToStep: (stepId: string) => void;

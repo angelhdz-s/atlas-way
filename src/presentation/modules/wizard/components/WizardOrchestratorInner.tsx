@@ -18,7 +18,7 @@ type Props = {
 };
 
 export function WizardOrchestratorInner({ children, flatSteps }: Props) {
-  const { currentStep, cancelledPhaseIds, goToStep, toggleCancelPhase } = useStepEngine();
+  const { currentStep, canceledPhaseIds, goToStep, toggleCancelPhase } = useStepEngine();
   const { saveCurrentStep } = useStepFormSync();
   const { completedStepIds } = useWizardSummary();
 
@@ -27,7 +27,7 @@ export function WizardOrchestratorInner({ children, flatSteps }: Props) {
     if (!isSavedSuccessfully) return;
     const nextStepId = getNextStepId({
       flatSteps,
-      cancelledPhaseIds,
+      canceledPhaseIds,
       completedStepIds,
       currentStepIndex: currentStep.globalIndex,
     });
@@ -36,7 +36,7 @@ export function WizardOrchestratorInner({ children, flatSteps }: Props) {
   }, [
     saveCurrentStep,
     currentStep.globalIndex,
-    cancelledPhaseIds,
+    canceledPhaseIds,
     completedStepIds,
     flatSteps,
     goToStep,
@@ -45,28 +45,28 @@ export function WizardOrchestratorInner({ children, flatSteps }: Props) {
   const goToPrevStep = useCallback(async () => {
     const prevStepId = getPreviousStepId({
       flatSteps,
-      cancelledPhaseIds,
+      canceledPhaseIds,
       completedStepIds,
       currentStepIndex: currentStep.globalIndex,
     });
     if (prevStepId === null) return;
     goToStep(prevStepId);
-  }, [flatSteps, cancelledPhaseIds, completedStepIds, currentStep.globalIndex, goToStep]);
+  }, [flatSteps, canceledPhaseIds, completedStepIds, currentStep.globalIndex, goToStep]);
 
   const toggleCancelPhaseAndMoveNextStep = useCallback(
     (phaseId: string) => {
-      const isPhaseCancelled = cancelledPhaseIds.has(phaseId);
+      const isPhaseCanceled = canceledPhaseIds.has(phaseId);
       const isStepCompleted = completedStepIds.has(currentStep.id);
-      if (isPhaseCancelled || isStepCompleted) return toggleCancelPhase(phaseId);
+      if (isPhaseCanceled || isStepCompleted) return toggleCancelPhase(phaseId);
 
-      // Add new cancelled phase
-      const cancelledPhaseIdsCopy = new Set(cancelledPhaseIds);
-      cancelledPhaseIdsCopy.add(phaseId);
+      // Add new canceled phase
+      const canceledPhaseIdsCopy = new Set(canceledPhaseIds);
+      canceledPhaseIdsCopy.add(phaseId);
 
       toggleCancelPhase(phaseId);
       const nextStepId = getNextStepId({
         flatSteps,
-        cancelledPhaseIds: cancelledPhaseIdsCopy,
+        canceledPhaseIds: canceledPhaseIdsCopy,
         completedStepIds,
         currentStepIndex: currentStep.globalIndex,
       });
@@ -76,7 +76,7 @@ export function WizardOrchestratorInner({ children, flatSteps }: Props) {
     },
     [
       flatSteps,
-      cancelledPhaseIds,
+      canceledPhaseIds,
       completedStepIds,
       currentStep.globalIndex,
       currentStep.id,

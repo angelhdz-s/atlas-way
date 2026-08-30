@@ -13,13 +13,13 @@ type Props = {
 };
 
 export function StepEngineProvider({ children, flatSteps }: Props) {
-  // ToDo: normalize cancelled phases entries from server
-  const initialCancelled = new Set<string>();
+  // ToDo: normalize canceled phases entries from server
+  const initialCanceled = new Set<string>();
 
   const [state, dispatch] = useReducer(stepEngineReducer, {
     flatSteps,
     currentIndex: 0,
-    cancelledPhaseIds: initialCancelled,
+    canceledPhaseIds: initialCanceled,
   });
 
   const currentStep = state.flatSteps[state.currentIndex] as FlatStep;
@@ -33,7 +33,7 @@ export function StepEngineProvider({ children, flatSteps }: Props) {
       isFirstStep,
       isLastStep,
       totalSteps,
-      cancelledPhaseIds: state.cancelledPhaseIds,
+      canceledPhaseIds: state.canceledPhaseIds,
       currentIndex: state.currentIndex,
       nextStep: () => dispatch({ type: StepEngineActionType.NEXT_STEP }),
       prevStep: () => dispatch({ type: StepEngineActionType.PREV_STEP }),
@@ -44,7 +44,7 @@ export function StepEngineProvider({ children, flatSteps }: Props) {
       toggleCancelPhase: (phaseId: string) =>
         dispatch({ type: StepEngineActionType.TOGGLE_CANCEL_PHASE, payload: { phaseId } }),
     }),
-    [state.currentIndex, state.cancelledPhaseIds, currentStep, isFirstStep, isLastStep, totalSteps]
+    [state.currentIndex, state.canceledPhaseIds, currentStep, isFirstStep, isLastStep, totalSteps]
   );
 
   return <StepEngineContext.Provider value={value}>{children}</StepEngineContext.Provider>;
