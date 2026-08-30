@@ -2,6 +2,7 @@ import type {
   FlatStep,
   FlatStepWithText,
   StepEnginePhaseEntries,
+  StepStatus,
   WizardSummaryPhaseEntries,
 } from '@/presentation/modules/wizard/wizard.types';
 
@@ -13,12 +14,14 @@ export type NormalizeSummaryDataInput<FormStepValues> = {
     globalIndex: number;
     phaseIndex: number;
   }) => string;
+  setInitialStepStatus?: (data: FormStepValues | undefined) => StepStatus;
 };
 
 export function normalizeSummaryData<FormStepValues>({
   flatSteps,
   records,
   stepTitleBuilder,
+  setInitialStepStatus,
 }: NormalizeSummaryDataInput<FormStepValues>): FlatStepWithText[] {
   const phases: {
     [key: string]: WizardSummaryPhaseEntries<FormStepValues> | undefined;
@@ -31,6 +34,8 @@ export function normalizeSummaryData<FormStepValues>({
     }
 
     const phase = phases[step.phase.id];
+    const stepData = phase?.stepsData?.[step.stepIndexInPhase];
+    const stepStatus: StepStatus = setInitialStepStatus?.(stepData) ?? 'PENDING';
 
     return {
       ...step,
@@ -41,10 +46,12 @@ export function normalizeSummaryData<FormStepValues>({
             phaseIndex: step.stepIndexInPhase,
           })
         : `Step ${step.stepIndexInPhase + 1}`,
+      status: stepStatus,
       phase: {
         ...step.phase,
         title: phase?.title ?? 'Phase not found',
         description: phase?.description ?? 'No description',
+        status: phase?.status ?? 'PENDING',
       },
     };
   });
