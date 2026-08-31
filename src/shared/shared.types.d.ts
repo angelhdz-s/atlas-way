@@ -9,3 +9,5 @@ export type ClassMethods<T> = {
 };
 
 export type ValidationFunction = (arg: unknown) => boolean;
+
+export type Different<T, U> = T extends U ? never : T;
