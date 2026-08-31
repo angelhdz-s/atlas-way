@@ -14,6 +14,7 @@ type Props = {
 /*
 ToDo: 
   - [x] Implement cancels for phase and steps
+  - [x] Add preliminary integration with DTO response from server actions
   - [ ] Update server action to save create/update register for training set
   - [ ] Verify persistence of data when page reloaded
   - [ ] Add last step confirmation feature

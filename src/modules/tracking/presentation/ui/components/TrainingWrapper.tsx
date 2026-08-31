@@ -82,36 +82,34 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
     title: t.exercise.name,
     description: t.exercise.description,
     status: targetStatusMapper(t.statusId),
-    stepsData:
-      t.trainingSets.length > 0
-        ? targetSetsMap(t.trainingSets)
-        : [
-            // Initialize a default values when no data comes from DB
-            {
-              reps: t.reps,
-              rir: 0,
-              set: 1,
-              trainingPlanId: t.id,
-              weight: t.weight,
-            },
-          ],
+    stepsData: t.trainingSets.length > 0 ? targetSetsMap(t.trainingSets) : [],
   }));
 
   const normalizedSteps = normalizeStepsData<SetForm>({
     records: stepEnginePhaseEntries,
-    defaultValuesMap: ({ data, step, phaseIndex }) => ({
-      id: data?.id,
-      reps: data?.reps ?? 12,
-      rir: data?.rir ?? 0,
-      weight: data?.weight ?? 0,
-      set: data?.set ?? phaseIndex + 1,
-      trainingPlanId: data?.trainingPlanId ?? step.phase.id,
-    }),
+    defaultValuesMap: ({ data, step, phaseIndex, lastDefaultValue }) => {
+      if (data)
+        return {
+          id: data.id,
+          set: data.set,
+          rir: data.rir,
+          reps: data.reps,
+          weight: data.weight,
+          trainingPlanId: data.trainingPlanId ?? step.phase.id,
+        };
+
+      return {
+        set: lastDefaultValue?.set ?? phaseIndex + 1,
+        rir: lastDefaultValue?.rir ?? 0,
+        reps: lastDefaultValue?.reps ?? 12,
+        weight: lastDefaultValue?.weight ?? 0,
+        trainingPlanId: lastDefaultValue?.trainingPlanId ?? step.phase.id,
+      };
+    },
   });
 
   const setInitialStepStatus = (data: SetForm | undefined): StepStatus => {
-    if (data === undefined) return 'PENDING';
-    if (data.id !== undefined) return 'COMPLETED';
+    if (data !== undefined) return 'COMPLETED';
     return 'PENDING';
   };
 

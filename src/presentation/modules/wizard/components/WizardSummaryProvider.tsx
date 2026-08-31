@@ -38,8 +38,7 @@ export function WizardSummaryProvider<FormValues>({
 
       // Evaluate step status
       let status: FlatStepWithText['status'] = 'PENDING';
-
-      if (stepData && areFieldValuesCompleted?.(stepData)) status = 'COMPLETED';
+      if (stepData && areFieldValuesCompleted?.(stepData) === true) status = 'COMPLETED';
       else if (isPhaseCanceled) status = 'CANCELED';
       else if (isCurrent) status = 'IN_PROGRESS';
 
@@ -55,7 +54,7 @@ export function WizardSummaryProvider<FormValues>({
         title: s.title,
         status: status,
         isCurrent,
-        dataSnapshot: stepData as FormValues,
+        dataSnapshot: stepData as FormValues | undefined,
       };
 
       if (!phaseMap.has(s.phase.id)) {

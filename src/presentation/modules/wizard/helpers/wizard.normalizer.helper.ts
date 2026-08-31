@@ -10,7 +10,8 @@ export type NormalizeDataInput<FormStepValues> = {
     step: FlatStep;
     globalIndex: number;
     phaseIndex: number;
-    data?: FormStepValues | undefined;
+    data: FormStepValues | undefined;
+    lastDefaultValue: FormStepValues | undefined;
   }) => FormStepValues;
 };
 
@@ -44,15 +45,15 @@ export function normalizeStepsData<FormStepValues>({
         },
       };
       flatSteps.push(flatStep);
-      const data = record.stepsData?.[i] ?? lastDefaultValue;
-      defaultValues[stepId] =
-        data ??
-        defaultValuesMap({
-          data,
-          globalIndex,
-          phaseIndex: i,
-          step: flatStep,
-        });
+      const data = record.stepsData?.[i];
+      defaultValues[stepId] = defaultValuesMap({
+        data,
+        globalIndex,
+        phaseIndex: i,
+        step: flatStep,
+        lastDefaultValue,
+      });
+
       lastDefaultValue = defaultValues[stepId];
       globalIndex++;
     }

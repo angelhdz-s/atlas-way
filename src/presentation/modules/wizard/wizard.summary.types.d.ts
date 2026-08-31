@@ -3,7 +3,7 @@ export interface StepSummary<FormValues> {
   title: string;
   status: StepStatus;
   isCurrent: boolean;
-  dataSnapshot?: FormValues; // Snapshot from form values
+  dataSnapshot?: FormValues | undefined; // Snapshot from form values
 }
 
 export interface PhaseSummary<FormValues> {
