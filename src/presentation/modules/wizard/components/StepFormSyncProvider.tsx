@@ -23,7 +23,7 @@ type Props<FormValues, SavedDTO> = {
     nextStepValue: FormValues;
   }) => FormValues;
   flatSteps: FlatStep[];
-  syncCurrentStep?: (data: SavedDTO) => FormValues;
+  syncCurrentStep?: (data: Different<SavedDTO, FormValues>) => FormValues;
 };
 
 type FormKey<FormValues> = FieldPath<Record<string, FormValues>>;
