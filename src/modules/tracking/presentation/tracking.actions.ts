@@ -13,12 +13,7 @@ import {
   exerciseTargetsSchema,
   type ExerciseTargetsForm,
 } from '@/modules/tracking/presentation/schemas/exercise-targets.schema';
-import {
-  setSchema,
-  trainingSetSchema,
-  type SetForm,
-  type TrainingSetForm,
-} from '@/modules/tracking/presentation/schemas/training.schema';
+import { setSchema, type SetForm } from '@/modules/tracking/presentation/schemas/training.schema';
 
 export async function getTodaysTraining(): Promise<ActionResponseProps<Training>> {
   const today = new Date();
@@ -181,41 +176,6 @@ export async function getTrainingPlansByTrainingId(
   }
 }
 
-type TrainingSetFormWithId = TrainingSetForm & {
-  id: string;
-};
-
-export async function createTrainingSet(
-  data: TrainingSetForm
-): Promise<ActionResponseProps<TrainingSetFormWithId>> {
-  const parsedDataResult = trainingSetSchema.safeParse(data);
-  if (!parsedDataResult.success) {
-    return ActionFailure('Invalid data');
-  }
-
-  const set = parsedDataResult.data;
-
-  if (set.id !== undefined) {
-    const typedSet = set as TrainingSetFormWithId;
-    return ActionSuccess(typedSet, 'Set updated successfully');
-  }
-
-  try {
-    const id = randomUUID();
-    return ActionSuccess(
-      {
-        ...set,
-        id,
-      },
-      'Set created successfully'
-    );
-  } catch (error) {
-    // biome-ignore lint/suspicious/noConsole: Error details for server
-    console.log(error);
-    return ActionFailure('Error creating set');
-  }
-}
-
 /**
  * Initial base method for wizard tests
  */
@@ -259,4 +219,86 @@ export async function processSetFormData(
     exerciseId: '',
   };
   return ActionSuccess(trainingSet, 'Set data created successfully');
+}
+
+type SetFormWithId = SetForm & {
+  id: string;
+};
+
+export async function createTrainingSet(data: SetForm): Promise<ActionResponseProps<TrainingSets>> {
+  const parsedDataResult = setSchema.safeParse(data);
+  if (!parsedDataResult.success) return ActionFailure('Invalid data');
+
+  const setData = parsedDataResult.data;
+
+  try {
+    // Find exercise ID required in trainingSet creation
+    const trainingPlan = await prisma.trainingPlan.findUnique({
+      where: {
+        id: setData.trainingPlanId,
+      },
+      select: {
+        exerciseId: true,
+      },
+    });
+
+    // If training plan doesn't exist return a failure
+    if (!trainingPlan) return ActionFailure('Training target not found');
+
+    const id = randomUUID();
+    const trainingSet = await prisma.trainingSets.create({
+      data: {
+        id,
+        reps: setData.reps,
+        set: setData.set,
+        weight: setData.set,
+        trainingPlanId: setData.trainingPlanId,
+        exerciseId: trainingPlan.exerciseId,
+        statusId: 'COMPLETED',
+      },
+    });
+
+    return ActionSuccess(trainingSet, 'Training set created successfully');
+  } catch (e) {
+    // biome-ignore lint/suspicious/noConsole: Server error logs
+    console.error(e);
+    return ActionFailure('Error creating set');
+  }
+}
+
+export async function updateTrainingSet(
+  data: SetFormWithId
+): Promise<ActionResponseProps<TrainingSets>> {
+  const parsedDataResult = setSchema.safeParse(data);
+  if (!parsedDataResult.success) return ActionFailure('Invalid data');
+
+  const setData = parsedDataResult.data as SetFormWithId;
+
+  try {
+    // Find the already saved training set
+    const trainingSet = await prisma.trainingSets.findUnique({
+      where: {
+        id: setData.id,
+      },
+    });
+
+    if (!trainingSet) return ActionFailure('Training set not found');
+
+    const updatedTrainingSet = await prisma.trainingSets.update({
+      where: {
+        id: setData.id,
+      },
+      data: {
+        ...trainingSet,
+        reps: setData.reps,
+        weight: setData.weight,
+      },
+    });
+
+    return ActionSuccess(updatedTrainingSet, 'Training set updated successfully');
+  } catch (e) {
+    // biome-ignore lint/suspicious/noConsole: Server error logs
+    console.error(e);
+    return ActionFailure('Error updating set');
+  }
 }
