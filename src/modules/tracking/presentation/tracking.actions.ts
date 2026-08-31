@@ -1,7 +1,7 @@
 'use server';
 
 import { randomUUID } from 'node:crypto';
-import type { Prisma, Training } from '@/prisma/client';
+import type { Prisma, Training, TrainingSets } from '@/prisma/client';
 import {
   ActionFailure,
   ActionSuccess,
@@ -216,33 +216,47 @@ export async function createTrainingSet(
   }
 }
 
-type SetFormWithId = SetForm & {
-  id: string;
-};
-
 /**
  * Initial base method for wizard tests
  */
 export async function processSetFormData(
   data: SetForm
-): Promise<ActionResponseProps<SetFormWithId>> {
+): Promise<ActionResponseProps<TrainingSets>> {
   const setDataParsed = setSchema.safeParse(data);
   if (!setDataParsed.success) return ActionFailure('Error saving set data. Invalid data');
 
+  const setData = setDataParsed.data;
+
   // If already has an id return data itself (data is updated)
-  if (setDataParsed.data.id !== undefined) {
-    const setData: SetFormWithId = {
-      ...setDataParsed.data,
-      id: setDataParsed.data.id,
+  if (setData.id !== undefined) {
+    // Data is preliminary to integrate it with client logic
+    const trainingSet: TrainingSets = {
+      id: setData.id,
+      reps: setData.reps,
+      set: setData.set,
+      weight: setData.weight,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      statusId: 'COMPLETED',
+      trainingPlanId: setData.trainingPlanId,
+      exerciseId: '',
     };
-    return ActionSuccess(setData, 'Set data saved successfully');
+
+    return ActionSuccess(trainingSet, 'Set data saved successfully');
   }
 
   // Generate uuid to create the new set record
   const newId = randomUUID();
-  const setData: SetFormWithId = {
-    ...setDataParsed.data,
+  const trainingSet: TrainingSets = {
     id: newId,
+    reps: setData.reps,
+    set: setData.set,
+    weight: setData.weight,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    statusId: 'COMPLETED',
+    trainingPlanId: setData.trainingPlanId,
+    exerciseId: '',
   };
-  return ActionSuccess(setData, 'Set data created successfully');
+  return ActionSuccess(trainingSet, 'Set data created successfully');
 }
