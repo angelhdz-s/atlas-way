@@ -18,12 +18,16 @@ type SaveStepAction<FormValues, ActionResponseData> = (
 type Props<FormValues, SavedDTO> = {
   children: React.ReactNode;
   saveStepAction: SaveStepAction<FormValues, SavedDTO>;
-  populateNextPhaseStep?: (data: {
-    currentStepValue: FormValues;
-    nextStepValue: FormValues;
-  }) => FormValues;
+  populateNextPhaseStep?:
+    | ((data: { currentStepValue: FormValues; nextStepValue: FormValues }) => FormValues)
+    | undefined;
   flatSteps: FlatStep[];
-  syncCurrentStep?: (data: Different<SavedDTO, FormValues>) => FormValues;
+  syncCurrentStep?:
+    | ((data: {
+        savedData: Different<SavedDTO, FormValues>;
+        currentFormValues: FormValues;
+      }) => FormValues)
+    | undefined;
 };
 
 type FormKey<FormValues> = FieldPath<Record<string, FormValues>>;
@@ -61,7 +65,12 @@ export function StepFormSyncProvider<FormValues, ActionResponseData>({
         return false;
       }
 
-      const newCurrentStepValues = syncCurrentStep?.(response.data) ?? formData;
+      const newCurrentStepValues =
+        syncCurrentStep?.({
+          savedData: response.data,
+          currentFormValues: formData as FormValues,
+        }) ?? formData;
+
       if (syncCurrentStep !== undefined) {
         setValue(
           currentStepPath as Path<WizardForm<FormValues>>,

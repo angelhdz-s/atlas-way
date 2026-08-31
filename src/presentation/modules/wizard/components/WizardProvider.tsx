@@ -17,10 +17,15 @@ type Props<Schema extends ZodSchema<any, any>, FormValues, FormEntityDTO> = {
   processSetFormData: (
     data: FormValues
   ) => Promise<ActionResponseProps<Different<FormEntityDTO, FormValues>>>;
-  populateNextPhaseStep: (data: {
-    currentStepValue: FormValues;
-    nextStepValue: FormValues;
-  }) => FormValues;
+  populateNextPhaseStep?:
+    | ((data: { currentStepValue: FormValues; nextStepValue: FormValues }) => FormValues)
+    | undefined;
+  syncCurrentStep?:
+    | ((data: {
+        savedData: Different<FormEntityDTO, FormValues>;
+        currentFormValues: FormValues;
+      }) => FormValues)
+    | undefined;
   isFormStepCompleted: (data: FormValues) => boolean;
 };
 
@@ -32,6 +37,7 @@ export function WizardProvider<Schema extends ZodSchema<any, any>, FormValues, F
   formDefaultValues,
   processSetFormData,
   populateNextPhaseStep,
+  syncCurrentStep,
   isFormStepCompleted,
 }: Props<Schema, FormValues, FormEntityDTO>) {
   return (
@@ -41,6 +47,7 @@ export function WizardProvider<Schema extends ZodSchema<any, any>, FormValues, F
           flatSteps={flatSteps}
           saveStepAction={processSetFormData}
           populateNextPhaseStep={populateNextPhaseStep}
+          syncCurrentStep={syncCurrentStep}
         >
           <WizardSummaryProvider
             flatSteps={flatStepsWithText}
