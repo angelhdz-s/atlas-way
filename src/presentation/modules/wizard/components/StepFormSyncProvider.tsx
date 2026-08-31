@@ -1,44 +1,42 @@
 'use client';
 
-import type { FlatStep } from '@/presentation/modules/wizard/wizard.types';
+import type { FlatStep, WizardForm } from '@/presentation/modules/wizard/wizard.types';
 import type { ActionResponseProps } from '@/shared/presentation/action.response';
 import type { StepFormSyncValue } from '@/presentation/modules/wizard/context/StepFormSyncContext';
 import { useCallback, useMemo, useState } from 'react';
-import { useFormContext, type FieldPath } from 'react-hook-form';
+import { useFormContext, type FieldPath, type Path, type PathValue } from 'react-hook-form';
 import { useToast } from '@/presentation/modules/toast/hooks/useToast';
 import { StepFormSyncContext } from '@/presentation/modules/wizard/context/StepFormSyncContext';
 import { getNextPhaseStepId } from '@/presentation/modules/wizard/helpers/wizard.flat-steps.helper';
 import { useStepEngine } from '@/presentation/modules/wizard/hooks/useStepEngine';
+import type { Different } from '@/shared/shared.types';
 
 type SaveStepAction<FormValues, ActionResponseData> = (
   stepData: FormValues
-) => Promise<ActionResponseProps<ActionResponseData>>;
+) => Promise<ActionResponseProps<Different<ActionResponseData, FormValues>>>;
 
-type Props<FormValues, SavedData> = {
+type Props<FormValues, SavedDTO> = {
   children: React.ReactNode;
-  saveStepAction: SaveStepAction<FormValues, SavedData>;
+  saveStepAction: SaveStepAction<FormValues, SavedDTO>;
   populateNextPhaseStep?: (data: {
     currentStepValue: FormValues;
     nextStepValue: FormValues;
   }) => FormValues;
   flatSteps: FlatStep[];
-  currentStepSave?: () => FormValues;
+  syncCurrentStep?: (data: SavedDTO) => FormValues;
 };
 
 type FormKey<FormValues> = FieldPath<Record<string, FormValues>>;
-
-type Form<FormValues> = {
-  [key: string]: FormValues;
-};
 
 export function StepFormSyncProvider<FormValues, ActionResponseData>({
   children,
   flatSteps,
   saveStepAction,
   populateNextPhaseStep,
+  syncCurrentStep,
 }: Props<FormValues, ActionResponseData>) {
   const { currentStep, nextStep, prevStep } = useStepEngine();
-  const { trigger, getValues, setValue } = useFormContext<Form<FormValues>>();
+  const { trigger, getValues, setValue } = useFormContext<WizardForm<FormValues>>();
   const [isSaving, setIsSaving] = useState<boolean>(false);
 
   const { addToast } = useToast();
@@ -63,9 +61,13 @@ export function StepFormSyncProvider<FormValues, ActionResponseData>({
         return false;
       }
 
-      const newCurrentStepValues = response.data ?? formData;
-
-      setValue(currentStepPath as FormKey<FormValues>, newCurrentStepValues as never);
+      const newCurrentStepValues = syncCurrentStep?.(response.data) ?? formData;
+      if (syncCurrentStep !== undefined) {
+        setValue(
+          currentStepPath as Path<WizardForm<FormValues>>,
+          newCurrentStepValues as PathValue<WizardForm<FormValues>, Path<WizardForm<FormValues>>>
+        );
+      }
 
       if (!populateNextPhaseStep) return true;
 
@@ -76,7 +78,7 @@ export function StepFormSyncProvider<FormValues, ActionResponseData>({
       if (!nextStepValues) return true;
 
       const newNextStepValue = populateNextPhaseStep({
-        currentStepValue: newCurrentStepValues as FormValues,
+        currentStepValue: formData as FormValues,
         nextStepValue: nextStepValues as FormValues,
       });
 
@@ -101,6 +103,7 @@ export function StepFormSyncProvider<FormValues, ActionResponseData>({
     flatSteps,
     populateNextPhaseStep,
     setValue,
+    syncCurrentStep,
   ]);
 
   const handleNext = useCallback(async () => {
