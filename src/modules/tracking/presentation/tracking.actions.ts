@@ -187,38 +187,21 @@ export async function processSetFormData(
 
   const setData = setDataParsed.data;
 
-  // If already has an id return data itself (data is updated)
+  // If already has an id that means it needs to be updated
   if (setData.id !== undefined) {
-    // Data is preliminary to integrate it with client logic
-    const trainingSet: TrainingSets = {
-      id: setData.id,
-      reps: setData.reps,
-      set: setData.set,
-      weight: setData.weight,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      statusId: 'COMPLETED',
-      trainingPlanId: setData.trainingPlanId,
-      exerciseId: '',
-    };
+    const updateTrainingSetResult = await updateTrainingSet(setData as SetFormWithId);
+    if (!updateTrainingSetResult.success) return updateTrainingSetResult;
+    const updatedTrainingSet = updateTrainingSetResult.data;
 
-    return ActionSuccess(trainingSet, 'Set data saved successfully');
+    return ActionSuccess(updatedTrainingSet, 'Set data saved successfully');
   }
 
-  // Generate uuid to create the new set record
-  const newId = randomUUID();
-  const trainingSet: TrainingSets = {
-    id: newId,
-    reps: setData.reps,
-    set: setData.set,
-    weight: setData.weight,
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    statusId: 'COMPLETED',
-    trainingPlanId: setData.trainingPlanId,
-    exerciseId: '',
-  };
-  return ActionSuccess(trainingSet, 'Set data created successfully');
+  // When it doesn't have an id that means it was not created yet
+  const createTrainingSetResult = await createTrainingSet(setData);
+  if (!createTrainingSetResult.success) return createTrainingSetResult;
+  const createdTrainingSet = createTrainingSetResult.data;
+
+  return ActionSuccess(createdTrainingSet, 'Set data created successfully');
 }
 
 type SetFormWithId = SetForm & {
@@ -251,7 +234,7 @@ export async function createTrainingSet(data: SetForm): Promise<ActionResponsePr
         id,
         reps: setData.reps,
         set: setData.set,
-        weight: setData.set,
+        weight: setData.weight,
         trainingPlanId: setData.trainingPlanId,
         exerciseId: trainingPlan.exerciseId,
         statusId: 'COMPLETED',
