@@ -54,3 +54,5 @@ export interface NormalizeDomain<FormStepValues> {
   // Initial values for react hook form organized by phase id
   defaultValues: Record<string, FormStepValues>;
 }
+
+export type WizardForm<FormValues> = Record<string, FormValues>;
