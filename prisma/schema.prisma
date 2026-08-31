@@ -235,7 +235,7 @@ model TrainingSets {
   updatedAt               DateTime              @updatedAt
   trainingPlan          TrainingPlan          @relation(fields: [trainingPlanId], references: [id])
   status                Status                @relation(fields: [statusId], references: [id])
-  @@unique([trainingPlanId, exerciseId])
+  @@unique([trainingPlanId, exerciseId, set])
 }
 
 /* Link Tables */
