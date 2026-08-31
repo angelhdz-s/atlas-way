@@ -127,6 +127,19 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
     return false;
   };
 
+  const syncCurrentStep = ({
+    currentFormValues,
+    savedData,
+  }: {
+    savedData: TrainingSets;
+    currentFormValues: SetForm;
+  }): SetForm => {
+    return {
+      ...currentFormValues,
+      id: savedData.id,
+    };
+  };
+
   return (
     <WizardProvider
       flatSteps={normalizedSteps.flatSteps}
@@ -136,6 +149,7 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
       isFormStepCompleted={isStepCompleted}
       populateNextPhaseStep={onNextStep}
       processSetFormData={processSetFormData}
+      syncCurrentStep={syncCurrentStep}
     >
       <div className="flex gap-4">
         <Training className={className} />
