@@ -2,7 +2,7 @@ import { RoutineEmptyData } from '@/modules/routine/presentation/ui/components/R
 import { SessionEmptyData } from '@/modules/session/presentation/ui/components/SessionEmptyData';
 import { getWorkoutById } from '@/modules/tracking/presentation/workout.actions';
 import { getWorkoutTargetsByWorkoutId } from '@/modules/tracking/presentation/workout-target.actions';
-import { getWorkoutSetsByWorkoutId } from '@/modules/tracking/presentation/tracking.actions';
+import { getWorkoutSetsByWorkoutId } from '@/modules/tracking/presentation/workout-set.actions';
 import { WorkoutWrapper } from '@/modules/tracking/presentation/ui/components/WorkoutWrapper';
 
 export default async function TrackingTrainingPage(
