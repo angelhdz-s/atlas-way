@@ -2,7 +2,7 @@
 
 import type { FlatStepWithText, PhaseWithText } from '@/presentation/modules/wizard/wizard.types';
 import type { PhaseSummary, StepSummary } from '@/presentation/modules/wizard/wizard.summary.types';
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useStepEngine } from '@/presentation/modules/wizard/hooks/useStepEngine';
 import { WizardSummaryContext } from '@/presentation/modules/wizard/context/WizardSummaryContext';
@@ -18,9 +18,12 @@ export function WizardSummaryProvider<FormValues>({
   flatSteps,
   areFieldValuesCompleted,
 }: Props<FormValues>) {
-  const { currentStep, canceledPhaseIds } = useStepEngine();
+  const { currentStep, canceledPhaseIds, goToStep } = useStepEngine();
   const { watch } = useFormContext();
   const formData = watch() || {};
+
+  const landingStepIdRef = useRef<string | null>(null);
+  const landedStepRef = useRef<boolean>(false);
 
   const completedStepIdsRef = useRef<Set<string>>(new Set());
 
@@ -76,6 +79,9 @@ export function WizardSummaryProvider<FormValues>({
           if (status === 'COMPLETED') phase.completedCount++;
         }
       }
+
+      if (landingStepIdRef.current === null && status === 'PENDING')
+        landingStepIdRef.current = s.id;
     });
 
     // Adjust final phase status
@@ -112,6 +118,13 @@ export function WizardSummaryProvider<FormValues>({
       completedStepIds: new Set(completedStepIdsRef.current),
     };
   }, [flatSteps, currentStep, canceledPhaseIds, formData, areFieldValuesCompleted]);
+
+  useEffect(() => {
+    if (landingStepIdRef.current !== null && landedStepRef.current === false) {
+      goToStep(landingStepIdRef.current);
+      landedStepRef.current = true;
+    }
+  }, [goToStep]);
 
   return <WizardSummaryContext.Provider value={summary}>{children}</WizardSummaryContext.Provider>;
 }
