@@ -1,3 +1,5 @@
+'use server';
+
 import { getCurrentUser } from '@/modules/user/presentation/user.actions';
 import type { Workouts } from '@/prisma/client';
 import { prisma } from '@/shared/infrastructure/prisma/client';
