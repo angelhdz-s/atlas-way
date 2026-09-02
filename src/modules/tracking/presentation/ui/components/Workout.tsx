@@ -2,9 +2,9 @@ import { twMerge } from 'tailwind-merge';
 import { PageContainer } from '@/presentation/modules/dashboard/components/page/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/components/page/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/components/page/PageHeader';
-import { TrainingHeaderSteps } from '@/modules/tracking/presentation/ui/components/training/TrainingHeaderSteps';
-import { TrainingFormWrapper } from '@/modules/tracking/presentation/ui/components/training/TrainingFormWrapper';
-import { TrainingButtons } from '@/modules/tracking/presentation/ui/components/training/TrainingButtons';
+import { TrainingHeaderSteps } from '@/modules/tracking/presentation/ui/components/workout/WorkoutHeaderSteps';
+import { TrainingFormWrapper } from '@/modules/tracking/presentation/ui/components/workout/WorkoutFormWrapper';
+import { TrainingButtons } from '@/modules/tracking/presentation/ui/components/workout/WorkoutButtons';
 import { WizardSummary } from '@/presentation/modules/wizard/components/WizardSummary';
 
 type Props = {
@@ -15,8 +15,12 @@ type Props = {
 ToDo: 
   - [x] Implement cancels for phase and steps
   - [x] Add preliminary integration with DTO response from server actions
-  - [ ] Update server action to save create/update register for training set
-  - [ ] Verify persistence of data when page reloaded
+  - [x] Update server action to save create/update register for training set
+  - [x] Verify persistence of data when page reloaded
+  - [x] Add landing step feature to retake wizard where pending
+  - [ ] Change naming of Training features/tables by Workout
+  - [ ] Add logic to handle the state of the whole TrainingWorkout
+  - [ ]
   - [ ] Add last step confirmation feature
   - [ ] Add preliminary final page after success training
 
@@ -26,7 +30,7 @@ When completed:
         For example: Configuration for single step phases (when actually there are no phases, just steps)
  */
 
-export function Training({ className }: Props) {
+export function Workout({ className }: Props) {
   return (
     <PageContainer className={twMerge('flex flex-row gap-8', className)}>
       <div className="flex-1 space-y-8">

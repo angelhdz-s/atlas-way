@@ -6,28 +6,28 @@ import type {
   StepStatus,
   WizardSummaryPhaseEntries,
 } from '@/presentation/modules/wizard/wizard.types';
-import type { TrainingPlan, TrainingSets } from '@/prisma/client';
-import type { SetForm } from '@/modules/tracking/presentation/schemas/training.schema';
+import type { WorkoutTargets, WorkoutSets } from '@/prisma/client';
+import type { WorkoutSetForm } from '@/modules/tracking/presentation/schemas/workout.schema';
 import type { FullTrainingPlan } from '@/modules/tracking/presentation/tracking.actions';
 import { processSetFormData } from '@/modules/tracking/presentation/tracking.actions';
-import { Training } from '@/modules/tracking/presentation/ui/components/Training';
-import { setSchema } from '@/modules/tracking/presentation/schemas/training.schema';
+import { workoutSetSchema } from '@/modules/tracking/presentation/schemas/workout.schema';
 import { normalizeStepsData } from '@/presentation/modules/wizard/helpers/wizard.normalizer.helper';
 import { normalizeSummaryData } from '@/presentation/modules/wizard/helpers/wizard.summary.normalizer.helper';
 import { WizardProvider } from '@/presentation/modules/wizard/components/WizardProvider';
+import { Workout } from '@/modules/tracking/presentation/ui/components/Workout';
 
 type Props = {
   className?: string;
   targets: FullTrainingPlan[];
 };
 
-const targetStatusMapper = (targetStatus: TrainingPlan['statusId']): StatusCode => {
-  if (targetStatus === 'ABANDONED' || targetStatus === 'INTERRUPTED') return 'CANCELED';
+const targetStatusMapper = (targetStatus: WorkoutTargets['statusId']): StatusCode => {
+  if (targetStatus === 'SKIPPED' || targetStatus === 'INTERRUPTED') return 'CANCELED';
   if (targetStatus === 'TARGETS_SET') return 'PENDING';
   return targetStatus;
 };
 
-const targetSetsMap = (trainingSets: TrainingSets[]): SetForm[] => {
+const targetSetsMap = (trainingSets: WorkoutSets[]): WorkoutSetForm[] => {
   return trainingSets
     .map((t) => ({
       id: t.id,
@@ -44,9 +44,9 @@ const onNextStep = ({
   currentStepValue,
   nextStepValue,
 }: {
-  currentStepValue: SetForm;
-  nextStepValue: SetForm;
-}): SetForm => {
+  currentStepValue: WorkoutSetForm;
+  nextStepValue: WorkoutSetForm;
+}): WorkoutSetForm => {
   if (nextStepValue.id !== undefined) return nextStepValue;
   return {
     ...nextStepValue,
@@ -56,8 +56,8 @@ const onNextStep = ({
   };
 };
 
-export function TrainingWrapper({ targets, className = '' }: Props) {
-  const stepEnginePhaseEntries: StepEnginePhaseEntries<SetForm>[] = targets.map((t) => ({
+export function WorkoutWrapper({ targets, className = '' }: Props) {
+  const stepEnginePhaseEntries: StepEnginePhaseEntries<WorkoutSetForm>[] = targets.map((t) => ({
     id: t.id,
     steps: t.sets,
     status: targetStatusMapper(t.statusId),
@@ -76,16 +76,18 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
           ],
   }));
 
-  const wizardSummaryPhaseEntries: WizardSummaryPhaseEntries<SetForm>[] = targets.map((t) => ({
-    id: t.id,
-    steps: t.sets,
-    title: t.exercise.name,
-    description: t.exercise.description,
-    status: targetStatusMapper(t.statusId),
-    stepsData: t.trainingSets.length > 0 ? targetSetsMap(t.trainingSets) : [],
-  }));
+  const wizardSummaryPhaseEntries: WizardSummaryPhaseEntries<WorkoutSetForm>[] = targets.map(
+    (t) => ({
+      id: t.id,
+      steps: t.sets,
+      title: t.exercise.name,
+      description: t.exercise.description,
+      status: targetStatusMapper(t.statusId),
+      stepsData: t.trainingSets.length > 0 ? targetSetsMap(t.trainingSets) : [],
+    })
+  );
 
-  const normalizedSteps = normalizeStepsData<SetForm>({
+  const normalizedSteps = normalizeStepsData<WorkoutSetForm>({
     records: stepEnginePhaseEntries,
     defaultValuesMap: ({ data, step, phaseIndex, lastDefaultValue }) => {
       if (data)
@@ -108,19 +110,19 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
     },
   });
 
-  const setInitialStepStatus = (data: SetForm | undefined): StepStatus => {
+  const setInitialStepStatus = (data: WorkoutSetForm | undefined): StepStatus => {
     if (data !== undefined) return 'COMPLETED';
     return 'PENDING';
   };
 
-  const normalizedSummarySteps = normalizeSummaryData<SetForm>({
+  const normalizedSummarySteps = normalizeSummaryData<WorkoutSetForm>({
     flatSteps: normalizedSteps.flatSteps,
     records: wizardSummaryPhaseEntries,
     stepTitleBuilder: ({ phaseIndex: i }) => `Set ${i + 1}`,
     setInitialStepStatus,
   });
 
-  const isStepCompleted = (formData: SetForm): boolean => {
+  const isStepCompleted = (formData: WorkoutSetForm): boolean => {
     if (formData.id !== undefined) return true;
     return false;
   };
@@ -129,9 +131,9 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
     currentFormValues,
     savedData,
   }: {
-    savedData: TrainingSets;
-    currentFormValues: SetForm;
-  }): SetForm => {
+    savedData: WorkoutSets;
+    currentFormValues: WorkoutSetForm;
+  }): WorkoutSetForm => {
     return {
       ...currentFormValues,
       id: savedData.id,
@@ -143,14 +145,14 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
       flatSteps={normalizedSteps.flatSteps}
       flatStepsWithText={normalizedSummarySteps}
       formDefaultValues={normalizedSteps.defaultValues}
-      formSchema={setSchema}
+      formSchema={workoutSetSchema}
       isFormStepCompleted={isStepCompleted}
       populateNextPhaseStep={onNextStep}
       processSetFormData={processSetFormData}
       syncCurrentStep={syncCurrentStep}
     >
       <div className="flex gap-4">
-        <Training className={className} />
+        <Workout className={className} />
       </div>
     </WizardProvider>
   );

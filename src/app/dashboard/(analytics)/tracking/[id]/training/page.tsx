@@ -4,7 +4,7 @@ import {
   getTrainingById,
   getTrainingPlansByTrainingId,
 } from '@/modules/tracking/presentation/tracking.actions';
-import { TrainingWrapper } from '@/modules/tracking/presentation/ui/components/TrainingWrapper';
+import { WorkoutWrapper } from '@/modules/tracking/presentation/ui/components/TrainingWrapper';
 
 export default async function TrackingTrainingPage(
   pageParams: Promise<{ params: Promise<{ id: string }> }>
@@ -44,5 +44,5 @@ export default async function TrackingTrainingPage(
 
   const targets = trainingPlansResult.data;
 
-  return <TrainingWrapper targets={targets} />;
+  return <WorkoutWrapper targets={targets} />;
 }

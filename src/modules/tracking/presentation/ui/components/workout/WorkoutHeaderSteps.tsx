@@ -1,6 +1,6 @@
 'use client';
 
-import type { SetForm } from '@/modules/tracking/presentation/schemas/training.schema';
+import type { WorkoutSetForm } from '@/modules/tracking/presentation/schemas/workout.schema';
 import { useStepEngine } from '@/presentation/modules/wizard/hooks/useStepEngine';
 import { useWizardSummary } from '@/presentation/modules/wizard/hooks/useWizardSummary';
 import { twMerge } from 'tailwind-merge';
@@ -11,7 +11,7 @@ type Props = {
 
 export function TrainingHeaderSteps({ className }: Props) {
   const { currentStep } = useStepEngine();
-  const { phases } = useWizardSummary<SetForm>();
+  const { phases } = useWizardSummary<WorkoutSetForm>();
 
   const currentPhase = phases.find((p) => p.phaseId === currentStep.phase.id);
 

@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { inputNumberConfig } from '@/presentation/globals/utils/react-hook-form.utils';
 import { useStepFormSync } from '@/presentation/modules/wizard/hooks/useStepFormSync';
-import type { SetForm } from '@/modules/tracking/presentation/schemas/training.schema';
+import type { WorkoutSetForm } from '@/modules/tracking/presentation/schemas/workout.schema';
 import { useFormContext } from 'react-hook-form';
 
 type Props = {
@@ -15,7 +15,7 @@ export function TrainingFormWrapper({ className }: Props) {
   const {
     register,
     formState: { errors, isReady },
-  } = useFormContext<Record<string, SetForm>>();
+  } = useFormContext<Record<string, WorkoutSetForm>>();
 
   const { currentStepPath } = useStepFormSync();
   if (!isReady) return <Fallback />;

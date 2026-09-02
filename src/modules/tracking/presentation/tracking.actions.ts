@@ -13,7 +13,10 @@ import {
   exerciseTargetsSchema,
   type ExerciseTargetsForm,
 } from '@/modules/tracking/presentation/schemas/exercise-targets.schema';
-import { setSchema, type SetForm } from '@/modules/tracking/presentation/schemas/training.schema';
+import {
+  workoutSetSchema,
+  type WorkoutSetForm,
+} from '@/modules/tracking/presentation/schemas/workout.schema';
 
 export async function getTodaysTraining(): Promise<ActionResponseProps<Training>> {
   const today = new Date();
@@ -180,9 +183,9 @@ export async function getTrainingPlansByTrainingId(
  * Initial base method for wizard tests
  */
 export async function processSetFormData(
-  data: SetForm
+  data: WorkoutSetForm
 ): Promise<ActionResponseProps<TrainingSets>> {
-  const setDataParsed = setSchema.safeParse(data);
+  const setDataParsed = workoutSetSchema.safeParse(data);
   if (!setDataParsed.success) return ActionFailure('Error saving set data. Invalid data');
 
   const setData = setDataParsed.data;
@@ -204,12 +207,14 @@ export async function processSetFormData(
   return ActionSuccess(createdTrainingSet, 'Set data created successfully');
 }
 
-type SetFormWithId = SetForm & {
+type SetFormWithId = WorkoutSetForm & {
   id: string;
 };
 
-export async function createTrainingSet(data: SetForm): Promise<ActionResponseProps<TrainingSets>> {
-  const parsedDataResult = setSchema.safeParse(data);
+export async function createTrainingSet(
+  data: WorkoutSetForm
+): Promise<ActionResponseProps<TrainingSets>> {
+  const parsedDataResult = workoutSetSchema.safeParse(data);
   if (!parsedDataResult.success) return ActionFailure('Invalid data');
 
   const setData = parsedDataResult.data;
@@ -252,7 +257,7 @@ export async function createTrainingSet(data: SetForm): Promise<ActionResponsePr
 export async function updateTrainingSet(
   data: SetFormWithId
 ): Promise<ActionResponseProps<TrainingSets>> {
-  const parsedDataResult = setSchema.safeParse(data);
+  const parsedDataResult = workoutSetSchema.safeParse(data);
   if (!parsedDataResult.success) return ActionFailure('Invalid data');
 
   const setData = parsedDataResult.data as SetFormWithId;

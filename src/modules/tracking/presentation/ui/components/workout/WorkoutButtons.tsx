@@ -1,6 +1,6 @@
 'use client';
 
-import type { SetForm } from '@/modules/tracking/presentation/schemas/training.schema';
+import type { WorkoutSetForm } from '@/modules/tracking/presentation/schemas/workout.schema';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { useStepEngine } from '@/presentation/modules/wizard/hooks/useStepEngine';
 import { useStepFormSync } from '@/presentation/modules/wizard/hooks/useStepFormSync';
@@ -15,7 +15,7 @@ export function TrainingButtons({ className }: Props) {
   const { isLastStep, isFirstStep, canceledPhaseIds, currentStep } = useStepEngine();
   const { isSaving } = useStepFormSync();
 
-  const { goToNextStep, goToPrevStep, toggleCancelPhase } = useWizard<SetForm>();
+  const { goToNextStep, goToPrevStep, toggleCancelPhase } = useWizard<WorkoutSetForm>();
 
   const isPhaseCanceled = canceledPhaseIds.has(currentStep.phase.id);
 
