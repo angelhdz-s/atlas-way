@@ -180,6 +180,22 @@ export async function getWorkoutTargetsByWorkoutId(
     return ActionFailure('Error getting workout targets');
   }
 }
+
+export async function getWorkoutSetsByWorkoutId(
+  workoutId: Workouts['id']
+): Promise<ActionResponseProps<WorkoutSets[]>> {
+  try {
+    const workoutSets = await prisma.workoutSets.findMany({
+      where: {
+        workoutId,
+      },
+    });
+
+    return ActionSuccess(workoutSets, 'Workout sets fetched successfully');
+  } catch (e) {
+    // biome-ignore lint/suspicious/noConsole: Server error logs
+    console.log(e);
+    return ActionFailure('Workout sets not found');
   }
 }
 
