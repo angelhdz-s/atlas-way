@@ -8,7 +8,7 @@ import type {
 } from '@/presentation/modules/wizard/wizard.types';
 import type { WorkoutTargets, WorkoutSets } from '@/prisma/client';
 import type { WorkoutSetForm } from '@/modules/tracking/presentation/schemas/workout.schema';
-import type { FullWorkoutTargets } from '@/modules/tracking/presentation/tracking.actions';
+import type { FullWorkoutTargets } from '@/modules/tracking/presentation/workout-target.actions';
 import { processWorkoutSetData } from '@/modules/tracking/presentation/tracking.actions';
 import { workoutSetSchema } from '@/modules/tracking/presentation/schemas/workout.schema';
 import { normalizeStepsData } from '@/presentation/modules/wizard/helpers/wizard.normalizer.helper';

@@ -1,10 +1,8 @@
 import { RoutineEmptyData } from '@/modules/routine/presentation/ui/components/RoutineEmptyData';
 import { SessionEmptyData } from '@/modules/session/presentation/ui/components/SessionEmptyData';
 import { getWorkoutById } from '@/modules/tracking/presentation/workout.actions';
-import {
-  getWorkoutSetsByWorkoutId,
-  getWorkoutTargetsByWorkoutId,
-} from '@/modules/tracking/presentation/tracking.actions';
+import { getWorkoutTargetsByWorkoutId } from '@/modules/tracking/presentation/workout-target.actions';
+import { getWorkoutSetsByWorkoutId } from '@/modules/tracking/presentation/tracking.actions';
 import { WorkoutWrapper } from '@/modules/tracking/presentation/ui/components/WorkoutWrapper';
 
 export default async function TrackingTrainingPage(

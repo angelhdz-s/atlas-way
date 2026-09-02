@@ -25,7 +25,7 @@ import {
   workoutTargetsSchema,
   type WorkoutTargetsForm,
 } from '@/modules/tracking/presentation/schemas/workout-targets.schema';
-import { createWorkoutTargets } from '@/modules/tracking/presentation/tracking.actions';
+import { createWorkoutTargets } from '@/modules/tracking/presentation/workout-target.actions';
 import { useToast } from '@/presentation/modules/toast/hooks/useToast';
 import { useRouter } from 'next/navigation';
 
