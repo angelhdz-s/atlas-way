@@ -8,8 +8,8 @@ import type {
 } from '@/presentation/modules/wizard/wizard.types';
 import type { WorkoutTargets, WorkoutSets } from '@/prisma/client';
 import type { WorkoutSetForm } from '@/modules/tracking/presentation/schemas/workout.schema';
-import type { FullTrainingPlan } from '@/modules/tracking/presentation/tracking.actions';
-import { processSetFormData } from '@/modules/tracking/presentation/tracking.actions';
+import type { FullWorkoutTargets } from '@/modules/tracking/presentation/tracking.actions';
+import { processWorkoutSetData } from '@/modules/tracking/presentation/tracking.actions';
 import { workoutSetSchema } from '@/modules/tracking/presentation/schemas/workout.schema';
 import { normalizeStepsData } from '@/presentation/modules/wizard/helpers/wizard.normalizer.helper';
 import { normalizeSummaryData } from '@/presentation/modules/wizard/helpers/wizard.summary.normalizer.helper';
@@ -18,7 +18,8 @@ import { Workout } from '@/modules/tracking/presentation/ui/components/Workout';
 
 type Props = {
   className?: string;
-  targets: FullTrainingPlan[];
+  workoutTargets: FullWorkoutTargets[];
+  workoutSets: WorkoutSets[];
 };
 
 const targetStatusMapper = (targetStatus: WorkoutTargets['statusId']): StatusCode => {
@@ -31,7 +32,7 @@ const targetSetsMap = (trainingSets: WorkoutSets[]): WorkoutSetForm[] => {
   return trainingSets
     .map((t) => ({
       id: t.id,
-      trainingPlanId: t.trainingPlanId,
+      workoutId: t.workoutId,
       reps: t.reps,
       set: t.set,
       rir: 0,
@@ -56,35 +57,48 @@ const onNextStep = ({
   };
 };
 
-export function WorkoutWrapper({ targets, className = '' }: Props) {
-  const stepEnginePhaseEntries: StepEnginePhaseEntries<WorkoutSetForm>[] = targets.map((t) => ({
-    id: t.id,
-    steps: t.sets,
-    status: targetStatusMapper(t.statusId),
-    stepsData:
-      t.trainingSets.length > 0
-        ? targetSetsMap(t.trainingSets)
-        : [
-            // Initialize a default values when no data comes from DB
-            {
-              reps: t.reps,
-              rir: 0,
-              set: 1,
-              trainingPlanId: t.id,
-              weight: t.weight,
-            },
-          ],
-  }));
+export function WorkoutWrapper({ workoutTargets, workoutSets, className = '' }: Props) {
+  const stepEnginePhaseEntries: StepEnginePhaseEntries<WorkoutSetForm>[] = workoutTargets.map(
+    (t) => {
+      const targetSets = workoutSets
+        .filter((s) => s.exerciseId === t.exerciseId)
+        .sort((a, b) => a.set - b.set);
+      return {
+        id: t.id,
+        steps: t.sets,
+        status: targetStatusMapper(t.statusId),
+        stepsData:
+          targetSets.length > 0
+            ? targetSetsMap(targetSets)
+            : [
+                // Initialize a default values when no data comes from DB
+                {
+                  reps: t.reps,
+                  rir: 0,
+                  set: 1,
+                  workoutId: t.id,
+                  weight: t.weight,
+                },
+              ],
+      };
+    }
+  );
 
-  const wizardSummaryPhaseEntries: WizardSummaryPhaseEntries<WorkoutSetForm>[] = targets.map(
-    (t) => ({
-      id: t.id,
-      steps: t.sets,
-      title: t.exercise.name,
-      description: t.exercise.description,
-      status: targetStatusMapper(t.statusId),
-      stepsData: t.trainingSets.length > 0 ? targetSetsMap(t.trainingSets) : [],
-    })
+  const wizardSummaryPhaseEntries: WizardSummaryPhaseEntries<WorkoutSetForm>[] = workoutTargets.map(
+    (t) => {
+      const targetSets = workoutSets
+        .filter((s) => s.exerciseId === t.exerciseId)
+        .sort((a, b) => a.set - b.set);
+
+      return {
+        id: t.id,
+        steps: t.sets,
+        title: t.exercise.name,
+        description: t.exercise.description,
+        status: targetStatusMapper(t.statusId),
+        stepsData: targetSets.length > 0 ? targetSetsMap(targetSets) : [],
+      };
+    }
   );
 
   const normalizedSteps = normalizeStepsData<WorkoutSetForm>({
@@ -97,7 +111,7 @@ export function WorkoutWrapper({ targets, className = '' }: Props) {
           rir: data.rir,
           reps: data.reps,
           weight: data.weight,
-          trainingPlanId: data.trainingPlanId ?? step.phase.id,
+          workoutId: data.workoutId ?? step.phase.id,
         };
 
       return {
@@ -105,7 +119,7 @@ export function WorkoutWrapper({ targets, className = '' }: Props) {
         rir: lastDefaultValue?.rir ?? 0,
         reps: lastDefaultValue?.reps ?? 12,
         weight: lastDefaultValue?.weight ?? 0,
-        trainingPlanId: lastDefaultValue?.trainingPlanId ?? step.phase.id,
+        workoutId: lastDefaultValue?.workoutId ?? step.phase.id,
       };
     },
   });
@@ -148,7 +162,7 @@ export function WorkoutWrapper({ targets, className = '' }: Props) {
       formSchema={workoutSetSchema}
       isFormStepCompleted={isStepCompleted}
       populateNextPhaseStep={onNextStep}
-      processSetFormData={processSetFormData}
+      processSetFormData={processWorkoutSetData}
       syncCurrentStep={syncCurrentStep}
     >
       <div className="flex gap-4">
