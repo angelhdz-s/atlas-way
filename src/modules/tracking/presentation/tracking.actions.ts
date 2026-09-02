@@ -1,7 +1,7 @@
 'use server';
 
 import { randomUUID } from 'node:crypto';
-import type { Prisma, Training, TrainingSets } from '@/prisma/client';
+import type { Prisma, Workouts, WorkoutSets } from '@/prisma/client';
 import {
   ActionFailure,
   ActionSuccess,
@@ -18,12 +18,12 @@ import {
   type WorkoutSetForm,
 } from '@/modules/tracking/presentation/schemas/workout.schema';
 
-export async function getTodaysTraining(): Promise<ActionResponseProps<Training>> {
+export async function getTodaysTraining(): Promise<ActionResponseProps<Workouts>> {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const tomorrow = new Date(today.getDate() + 1);
 
-  const todayTraining = await prisma.training.findFirst({
+  const todayTraining = await prisma.workouts.findFirst({
     where: {
       date: {
         gte: today,
@@ -40,7 +40,7 @@ export async function getTodaysTraining(): Promise<ActionResponseProps<Training>
   return ActionSuccess(createdTraining.data, 'Training already created');
 }
 
-export async function createTraining(): Promise<ActionResponseProps<Training>> {
+export async function createTraining(): Promise<ActionResponseProps<Workouts>> {
   const date = new Date();
 
   const userId = await getCurrentUser();
@@ -59,7 +59,7 @@ export async function createTraining(): Promise<ActionResponseProps<Training>> {
   const sessionId = session.id;
 
   try {
-    const training = await prisma.training.create({
+    const training = await prisma.workouts.create({
       data: {
         id,
         date,
@@ -78,9 +78,9 @@ export async function createTraining(): Promise<ActionResponseProps<Training>> {
 
 export async function getTrainingById(
   trainingId: string
-): Promise<ActionResponseProps<Training | null>> {
+): Promise<ActionResponseProps<Workouts | null>> {
   try {
-    const training = await prisma.training.findUnique({
+    const training = await prisma.workouts.findUnique({
       where: {
         id: trainingId,
       },
@@ -97,7 +97,7 @@ export async function createTargets(data: ExerciseTargetsForm): Promise<ActionRe
     return ActionFailure('Invalid data');
   }
 
-  const training = await prisma.training.findUnique({
+  const training = await prisma.workouts.findUnique({
     where: {
       id: data.trainingId,
     },
@@ -114,7 +114,7 @@ export async function createTargets(data: ExerciseTargetsForm): Promise<ActionRe
 
   try {
     await prisma.$transaction([
-      prisma.trainingPlan.createMany({
+      prisma.workoutTargets.createMany({
         data: data.exercises.map((e) => ({
           exerciseId: e.exerciseId,
           sets: e.sets,
@@ -125,7 +125,7 @@ export async function createTargets(data: ExerciseTargetsForm): Promise<ActionRe
         })),
         skipDuplicates: true,
       }),
-      prisma.training.update({
+      prisma.workouts.update({
         where: {
           id: training.id,
         },
@@ -143,7 +143,7 @@ export async function createTargets(data: ExerciseTargetsForm): Promise<ActionRe
   }
 }
 
-const trainingPlanAnatomy = {
+const workoutTargetsAnatomy = {
   include: {
     exercise: {
       select: {
@@ -151,11 +151,11 @@ const trainingPlanAnatomy = {
         description: true,
       },
     },
-    trainingSets: true,
+    workoutSets: true,
   },
-} satisfies Prisma.TrainingPlanDefaultArgs;
+} satisfies Prisma.WorkoutTargetsDefaultArgs;
 
-export type FullTrainingPlan = Prisma.TrainingPlanGetPayload<typeof trainingPlanAnatomy>;
+export type FullTrainingPlan = Prisma.WorkoutTargetsGetPayload<typeof workoutTargetsAnatomy>;
 
 export async function getTrainingPlansByTrainingId(
   trainingId: string
@@ -165,11 +165,11 @@ export async function getTrainingPlansByTrainingId(
   if (!trainingResult.data) return ActionFailure('Training not found');
 
   try {
-    const trainingPlans = await prisma.trainingPlan.findMany({
+    const trainingPlans = await prisma.workoutSets.findMany({
       where: {
         trainingId,
       },
-      ...trainingPlanAnatomy,
+      ...workoutTargetsAnatomy,
     });
     return ActionSuccess(trainingPlans, 'Training plans found');
   } catch (error) {
@@ -184,7 +184,7 @@ export async function getTrainingPlansByTrainingId(
  */
 export async function processSetFormData(
   data: WorkoutSetForm
-): Promise<ActionResponseProps<TrainingSets>> {
+): Promise<ActionResponseProps<WorkoutSets>> {
   const setDataParsed = workoutSetSchema.safeParse(data);
   if (!setDataParsed.success) return ActionFailure('Error saving set data. Invalid data');
 
@@ -213,7 +213,7 @@ type SetFormWithId = WorkoutSetForm & {
 
 export async function createTrainingSet(
   data: WorkoutSetForm
-): Promise<ActionResponseProps<TrainingSets>> {
+): Promise<ActionResponseProps<WorkoutSets>> {
   const parsedDataResult = workoutSetSchema.safeParse(data);
   if (!parsedDataResult.success) return ActionFailure('Invalid data');
 
@@ -234,7 +234,7 @@ export async function createTrainingSet(
     if (!trainingPlan) return ActionFailure('Training target not found');
 
     const id = randomUUID();
-    const trainingSet = await prisma.trainingSets.create({
+    const trainingSet = await prisma.workoutSets.create({
       data: {
         id,
         reps: setData.reps,
@@ -256,7 +256,7 @@ export async function createTrainingSet(
 
 export async function updateTrainingSet(
   data: SetFormWithId
-): Promise<ActionResponseProps<TrainingSets>> {
+): Promise<ActionResponseProps<WorkoutSets>> {
   const parsedDataResult = workoutSetSchema.safeParse(data);
   if (!parsedDataResult.success) return ActionFailure('Invalid data');
 
@@ -264,7 +264,7 @@ export async function updateTrainingSet(
 
   try {
     // Find the already saved training set
-    const trainingSet = await prisma.trainingSets.findUnique({
+    const trainingSet = await prisma.workoutSets.findUnique({
       where: {
         id: setData.id,
       },
