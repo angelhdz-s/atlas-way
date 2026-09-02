@@ -1,6 +1,6 @@
 import type { Prisma } from '../../../prisma/client';
 
-export const TRAINING_STATUS: Prisma.TrainingStatusCreateManyInput[] = [
+export const WORKOUT_STATUS: Prisma.WorkoutStatusCreateManyInput[] = [
   {
     id: 'PENDING',
     name: 'Pending',
@@ -14,7 +14,7 @@ export const TRAINING_STATUS: Prisma.TrainingStatusCreateManyInput[] = [
     name: 'In progress',
   },
   {
-    id: 'ABANDONED',
+    id: 'SKIPPED',
     name: 'Pending',
   },
   {
