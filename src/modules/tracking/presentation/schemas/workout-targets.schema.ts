@@ -12,9 +12,9 @@ export const exerciseMetricsSchema = ExerciseSchema.pick({
   })
 );
 
-export const exerciseTargetsSchema = z.object({
+export const workoutTargetsSchema = z.object({
   exercises: z.array(exerciseMetricsSchema),
-  trainingId: z.string().uuid(),
+  workoutId: z.string().uuid(),
 });
 
-export type ExerciseTargetsForm = z.infer<typeof exerciseTargetsSchema>;
+export type WorkoutTargetsForm = z.infer<typeof workoutTargetsSchema>;

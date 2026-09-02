@@ -10,20 +10,20 @@ import {
 import { prisma } from '@/shared/infrastructure/prisma/client';
 import { getCurrentUser } from '@/modules/user/presentation/user.actions';
 import {
-  exerciseTargetsSchema,
-  type ExerciseTargetsForm,
-} from '@/modules/tracking/presentation/schemas/exercise-targets.schema';
+  workoutTargetsSchema,
+  type WorkoutTargetsForm,
+} from '@/modules/tracking/presentation/schemas/workout-targets.schema';
 import {
   workoutSetSchema,
   type WorkoutSetForm,
 } from '@/modules/tracking/presentation/schemas/workout.schema';
 
-export async function getTodaysTraining(): Promise<ActionResponseProps<Workouts>> {
+export async function getTodaysWorkout(): Promise<ActionResponseProps<Workouts>> {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const tomorrow = new Date(today.getDate() + 1);
 
-  const todayTraining = await prisma.workouts.findFirst({
+  const todaysWorkout = await prisma.workouts.findFirst({
     where: {
       date: {
         gte: today,
@@ -32,15 +32,15 @@ export async function getTodaysTraining(): Promise<ActionResponseProps<Workouts>
     },
   });
 
-  if (todayTraining) return ActionSuccess(todayTraining, 'Training created successfully');
+  if (todaysWorkout) return ActionSuccess(todaysWorkout, 'Workout created successfully');
 
-  const createdTraining = await createTraining();
-  if (!createdTraining.success) return createdTraining;
+  const createdWorkout = await createWorkout();
+  if (!createdWorkout.success) return createdWorkout;
 
-  return ActionSuccess(createdTraining.data, 'Training already created');
+  return ActionSuccess(createdWorkout.data, 'Training already created');
 }
 
-export async function createTraining(): Promise<ActionResponseProps<Workouts>> {
+export async function createWorkout(): Promise<ActionResponseProps<Workouts>> {
   const date = new Date();
 
   const userId = await getCurrentUser();
@@ -59,7 +59,7 @@ export async function createTraining(): Promise<ActionResponseProps<Workouts>> {
   const sessionId = session.id;
 
   try {
-    const training = await prisma.workouts.create({
+    const workout = await prisma.workouts.create({
       data: {
         id,
         date,
@@ -70,19 +70,19 @@ export async function createTraining(): Promise<ActionResponseProps<Workouts>> {
         sessionId,
       },
     });
-    return ActionSuccess(training, 'Training created successfully');
+    return ActionSuccess(workout, 'Workout created successfully');
   } catch (_) {
     return ActionFailure('Error creating training');
   }
 }
 
-export async function getTrainingById(
-  trainingId: string
+export async function getWorkoutById(
+  workoutId: string
 ): Promise<ActionResponseProps<Workouts | null>> {
   try {
     const training = await prisma.workouts.findUnique({
       where: {
-        id: trainingId,
+        id: workoutId,
       },
     });
     return ActionSuccess(training, 'Training returned successfully');
@@ -91,25 +91,27 @@ export async function getTrainingById(
   }
 }
 
-export async function createTargets(data: ExerciseTargetsForm): Promise<ActionResponseProps<true>> {
-  const parseResult = exerciseTargetsSchema.safeParse(data);
-  if (!parseResult.success) {
+export async function createWorkoutTargets(
+  data: WorkoutTargetsForm
+): Promise<ActionResponseProps<true>> {
+  const parsedWorkoutTargets = workoutTargetsSchema.safeParse(data);
+  if (!parsedWorkoutTargets.success) {
     return ActionFailure('Invalid data');
   }
 
-  const training = await prisma.workouts.findUnique({
+  const workout = await prisma.workouts.findUnique({
     where: {
-      id: data.trainingId,
+      id: data.workoutId,
     },
   });
 
-  if (!training) {
+  if (!workout) {
     return ActionFailure('Training not found');
   }
 
-  if (training.statusId !== 'PENDING') {
-    const status = training.statusId;
-    return ActionFailure(`Training was ${status}`);
+  if (workout.statusId !== 'PENDING') {
+    const status = workout.statusId;
+    return ActionFailure(`Workout was ${status}`);
   }
 
   try {
@@ -120,14 +122,14 @@ export async function createTargets(data: ExerciseTargetsForm): Promise<ActionRe
           sets: e.sets,
           reps: e.reps,
           weight: e.weight,
-          trainingId: training.id,
+          workoutId: workout.id,
           statusId: 'PENDING',
         })),
         skipDuplicates: true,
       }),
       prisma.workouts.update({
         where: {
-          id: training.id,
+          id: workout.id,
         },
         data: {
           statusId: 'TARGETS_SET',
@@ -135,11 +137,11 @@ export async function createTargets(data: ExerciseTargetsForm): Promise<ActionRe
       }),
     ]);
 
-    return ActionSuccess(true, 'TrainingPlan created successfully');
+    return ActionSuccess(true, 'Workout targets created successfully');
   } catch (e) {
     // biome-ignore lint/suspicious/noConsole: Error details for server
     console.log(e);
-    return ActionFailure('Error creating trainingPlans');
+    return ActionFailure('Error creating workout targets');
   }
 }
 
@@ -151,79 +153,82 @@ const workoutTargetsAnatomy = {
         description: true,
       },
     },
-    workoutSets: true,
   },
 } satisfies Prisma.WorkoutTargetsDefaultArgs;
 
-export type FullTrainingPlan = Prisma.WorkoutTargetsGetPayload<typeof workoutTargetsAnatomy>;
+export type FullWorkoutTargets = Prisma.WorkoutTargetsGetPayload<typeof workoutTargetsAnatomy>;
 
-export async function getTrainingPlansByTrainingId(
-  trainingId: string
-): Promise<ActionResponseProps<FullTrainingPlan[]>> {
-  const trainingResult = await getTrainingById(trainingId);
+export async function getWorkoutTargetsByWorkoutId(
+  workoutId: string
+): Promise<ActionResponseProps<FullWorkoutTargets[]>> {
+  const trainingResult = await getWorkoutById(workoutId);
   if (!trainingResult.success) return trainingResult;
-  if (!trainingResult.data) return ActionFailure('Training not found');
+  if (!trainingResult.data) return ActionFailure('Workout not found');
 
   try {
-    const trainingPlans = await prisma.workoutSets.findMany({
+    const workoutTargets = await prisma.workoutTargets.findMany({
       where: {
-        trainingId,
+        workoutId,
       },
       ...workoutTargetsAnatomy,
     });
-    return ActionSuccess(trainingPlans, 'Training plans found');
+
+    return ActionSuccess(workoutTargets, 'Workout targets found');
   } catch (error) {
     // biome-ignore lint/suspicious/noConsole: Error details for server
     console.log(error);
-    return ActionFailure('Error getting training plans');
+    return ActionFailure('Error getting workout targets');
+  }
+}
   }
 }
 
 /**
  * Initial base method for wizard tests
  */
-export async function processSetFormData(
+export async function processWorkoutSetData(
   data: WorkoutSetForm
 ): Promise<ActionResponseProps<WorkoutSets>> {
-  const setDataParsed = workoutSetSchema.safeParse(data);
-  if (!setDataParsed.success) return ActionFailure('Error saving set data. Invalid data');
+  const workoutSetDataParsed = workoutSetSchema.safeParse(data);
+  if (!workoutSetDataParsed.success)
+    return ActionFailure('Error saving workout set data: Invalid data');
 
-  const setData = setDataParsed.data;
+  const workoutSetData = workoutSetDataParsed.data;
 
   // If already has an id that means it needs to be updated
-  if (setData.id !== undefined) {
-    const updateTrainingSetResult = await updateTrainingSet(setData as SetFormWithId);
-    if (!updateTrainingSetResult.success) return updateTrainingSetResult;
-    const updatedTrainingSet = updateTrainingSetResult.data;
+  if (workoutSetData.id !== undefined) {
+    const updateWorkoutSetResult = await updateWorkoutSet(workoutSetData as WorkoutSetFormWithId);
+    if (!updateWorkoutSetResult.success) return updateWorkoutSetResult;
+    const updatedWorkoutSet = updateWorkoutSetResult.data;
 
-    return ActionSuccess(updatedTrainingSet, 'Set data saved successfully');
+    return ActionSuccess(updatedWorkoutSet, 'Workout set data saved successfully');
   }
 
   // When it doesn't have an id that means it was not created yet
-  const createTrainingSetResult = await createTrainingSet(setData);
-  if (!createTrainingSetResult.success) return createTrainingSetResult;
-  const createdTrainingSet = createTrainingSetResult.data;
+  const createWorkoutSetResult = await createWorkoutSet(workoutSetData);
+  if (!createWorkoutSetResult.success) return createWorkoutSetResult;
+  const createdWorkoutSet = createWorkoutSetResult.data;
 
-  return ActionSuccess(createdTrainingSet, 'Set data created successfully');
+  return ActionSuccess(createdWorkoutSet, 'Set data created successfully');
 }
 
-type SetFormWithId = WorkoutSetForm & {
+type WorkoutSetFormWithId = WorkoutSetForm & {
   id: string;
 };
 
-export async function createTrainingSet(
+export async function createWorkoutSet(
   data: WorkoutSetForm
 ): Promise<ActionResponseProps<WorkoutSets>> {
-  const parsedDataResult = workoutSetSchema.safeParse(data);
-  if (!parsedDataResult.success) return ActionFailure('Invalid data');
+  const workoutSetParsed = workoutSetSchema.safeParse(data);
+  if (!workoutSetParsed.success) return ActionFailure('Invalid data');
 
-  const setData = parsedDataResult.data;
+  const workoutSetData = workoutSetParsed.data;
 
   try {
     // Find exercise ID required in trainingSet creation
-    const trainingPlan = await prisma.trainingPlan.findUnique({
+    const workoutTarget = await prisma.workoutTargets.findUnique({
       where: {
-        id: setData.trainingPlanId,
+        id: workoutSetData.workoutId,
       },
       select: {
         exerciseId: true,
@@ -231,62 +236,61 @@ export async function createTrainingSet(
     });
 
     // If training plan doesn't exist return a failure
-    if (!trainingPlan) return ActionFailure('Training target not found');
+    if (!workoutTarget) return ActionFailure('Workout target not found');
 
     const id = randomUUID();
-    const trainingSet = await prisma.workoutSets.create({
+    const workoutSet = await prisma.workoutSets.create({
       data: {
         id,
-        reps: setData.reps,
-        set: setData.set,
-        weight: setData.weight,
-        trainingPlanId: setData.trainingPlanId,
-        exerciseId: trainingPlan.exerciseId,
-        statusId: 'COMPLETED',
+        reps: workoutSetData.reps,
+        set: workoutSetData.set,
+        weight: workoutSetData.weight,
+        workoutId: workoutSetData.workoutId,
+        exerciseId: workoutTarget.exerciseId,
       },
     });
 
-    return ActionSuccess(trainingSet, 'Training set created successfully');
+    return ActionSuccess(workoutSet, 'Workout set created successfully');
   } catch (e) {
     // biome-ignore lint/suspicious/noConsole: Server error logs
     console.error(e);
-    return ActionFailure('Error creating set');
+    return ActionFailure('Error creating workout set');
   }
 }
 
-export async function updateTrainingSet(
-  data: SetFormWithId
+export async function updateWorkoutSet(
+  data: WorkoutSetFormWithId
 ): Promise<ActionResponseProps<WorkoutSets>> {
-  const parsedDataResult = workoutSetSchema.safeParse(data);
-  if (!parsedDataResult.success) return ActionFailure('Invalid data');
+  const workoutSetParsed = workoutSetSchema.safeParse(data);
+  if (!workoutSetParsed.success) return ActionFailure('Invalid data');
 
-  const setData = parsedDataResult.data as SetFormWithId;
+  const workoutSetData = workoutSetParsed.data as WorkoutSetFormWithId;
 
   try {
     // Find the already saved training set
-    const trainingSet = await prisma.workoutSets.findUnique({
+    const workoutSet = await prisma.workoutSets.findUnique({
       where: {
-        id: setData.id,
+        id: workoutSetData.id,
       },
     });
 
-    if (!trainingSet) return ActionFailure('Training set not found');
+    if (!workoutSet) return ActionFailure('Workout set not found');
 
-    const updatedTrainingSet = await prisma.trainingSets.update({
+    const updatedWorkoutSet = await prisma.workoutSets.update({
       where: {
-        id: setData.id,
+        id: workoutSetData.id,
       },
       data: {
-        ...trainingSet,
-        reps: setData.reps,
-        weight: setData.weight,
+        ...workoutSet,
+        reps: workoutSetData.reps,
+        weight: workoutSetData.weight,
       },
     });
 
-    return ActionSuccess(updatedTrainingSet, 'Training set updated successfully');
+    return ActionSuccess(updatedWorkoutSet, 'Workout set updated successfully');
   } catch (e) {
     // biome-ignore lint/suspicious/noConsole: Server error logs
     console.error(e);
-    return ActionFailure('Error updating set');
+    return ActionFailure('Error updating workout set');
   }
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { getTodaysTraining } from '@/modules/tracking/presentation/tracking.actions';
+import { getTodaysWorkout } from '@/modules/tracking/presentation/tracking.actions';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { useToast } from '@/presentation/modules/toast/hooks/useToast';
 
@@ -9,7 +9,7 @@ export function ConfirmSessionTrackingForm() {
   const { addToast } = useToast();
   const { push } = useRouter();
   const goToTargets = async () => {
-    const training = await getTodaysTraining();
+    const training = await getTodaysWorkout();
     if (!training.success) {
       return addToast(training.message, {
         type: 'error',

@@ -22,20 +22,20 @@ import {
 import { ExerciseTargetsStatus } from '@/modules/tracking/presentation/ui/components/ExerciseTargetsStatus';
 import { inputNumberConfig } from '@/presentation/globals/utils/react-hook-form.utils';
 import {
-  exerciseTargetsSchema,
-  type ExerciseTargetsForm,
-} from '@/modules/tracking/presentation/schemas/exercise-targets.schema';
-import { createTargets } from '@/modules/tracking/presentation/tracking.actions';
+  workoutTargetsSchema,
+  type WorkoutTargetsForm,
+} from '@/modules/tracking/presentation/schemas/workout-targets.schema';
+import { createWorkoutTargets } from '@/modules/tracking/presentation/tracking.actions';
 import { useToast } from '@/presentation/modules/toast/hooks/useToast';
 import { useRouter } from 'next/navigation';
 
 type Props = {
   className?: string;
   exercises: ExerciseDTO[];
-  trainingId: string;
+  workoutId: string;
 };
 
-export function ExerciseTargets({ className, exercises = [], trainingId }: Props) {
+export function ExerciseTargets({ className, exercises = [], workoutId }: Props) {
   const { push } = useRouter();
   const { addToast } = useToast();
 
@@ -55,11 +55,11 @@ export function ExerciseTargets({ className, exercises = [], trainingId }: Props
     handleSubmit,
     register,
     getValues,
-  } = useForm<ExerciseTargetsForm>({
-    resolver: zodResolver(exerciseTargetsSchema),
+  } = useForm<WorkoutTargetsForm>({
+    resolver: zodResolver(workoutTargetsSchema),
     shouldUnregister: false,
     defaultValues: {
-      trainingId,
+      workoutId,
     },
   });
 
@@ -67,16 +67,16 @@ export function ExerciseTargets({ className, exercises = [], trainingId }: Props
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  const submitForm: SubmitHandler<ExerciseTargetsForm> = async (data) => {
+  const submitForm: SubmitHandler<WorkoutTargetsForm> = async (data) => {
     if (isSubmitting || isSubmitted) return;
     updateCurrentStep('COMPLETED');
-    const targetsResult = await createTargets(data);
+    const targetsResult = await createWorkoutTargets(data);
     if (!targetsResult.success)
       return addToast(targetsResult.message, {
         type: 'error',
       });
 
-    push(`/dashboard/tracking/${trainingId}/training`);
+    push(`/dashboard/tracking/${workoutId}/training`);
   };
 
   const isCurrentFormValid = async () => {

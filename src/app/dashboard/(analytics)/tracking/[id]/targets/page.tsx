@@ -2,7 +2,7 @@ import { ExerciseEmptyData } from '@/modules/exercise/presentation/components/Ex
 import { RoutineEmptyData } from '@/modules/routine/presentation/ui/components/RoutineEmptyData';
 import { getSessionById } from '@/modules/session/presentation/session.actions';
 import { SessionEmptyData } from '@/modules/session/presentation/ui/components/SessionEmptyData';
-import { getTrainingById } from '@/modules/tracking/presentation/tracking.actions';
+import { getWorkoutById } from '@/modules/tracking/presentation/tracking.actions';
 import { ExerciseTargets } from '@/modules/tracking/presentation/ui/components/ExerciseTargets';
 import { ExerciseTargetsProvider } from '@/modules/tracking/presentation/ui/components/ExerciseTargetsProvider';
 
@@ -16,7 +16,7 @@ export default async function TrackingTargetsPage(
     return null;
   }
 
-  const trainingResult = await getTrainingById(id);
+  const trainingResult = await getWorkoutById(id);
   if (!trainingResult.success) {
     return <RoutineEmptyData />;
   }
@@ -38,7 +38,7 @@ export default async function TrackingTargetsPage(
 
   return (
     <ExerciseTargetsProvider exercises={exercises}>
-      <ExerciseTargets exercises={exercises} trainingId={id} />
+      <ExerciseTargets exercises={exercises} workoutId={id} />
     </ExerciseTargetsProvider>
   );
 }
