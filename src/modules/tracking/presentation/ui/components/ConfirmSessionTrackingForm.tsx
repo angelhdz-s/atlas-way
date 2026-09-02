@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { getTodaysWorkout } from '@/modules/tracking/presentation/tracking.actions';
+import { getTodaysWorkout } from '@/modules/tracking/presentation/workout.actions';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { useToast } from '@/presentation/modules/toast/hooks/useToast';
 

@@ -2,7 +2,7 @@ import { ExerciseEmptyData } from '@/modules/exercise/presentation/components/Ex
 import { RoutineEmptyData } from '@/modules/routine/presentation/ui/components/RoutineEmptyData';
 import { getSessionById } from '@/modules/session/presentation/session.actions';
 import { SessionEmptyData } from '@/modules/session/presentation/ui/components/SessionEmptyData';
-import { getWorkoutById } from '@/modules/tracking/presentation/tracking.actions';
+import { getWorkoutById } from '@/modules/tracking/presentation/workout.actions';
 import { ExerciseTargets } from '@/modules/tracking/presentation/ui/components/ExerciseTargets';
 import { ExerciseTargetsProvider } from '@/modules/tracking/presentation/ui/components/ExerciseTargetsProvider';
 

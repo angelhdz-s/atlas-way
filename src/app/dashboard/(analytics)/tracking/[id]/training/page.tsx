@@ -1,7 +1,7 @@
 import { RoutineEmptyData } from '@/modules/routine/presentation/ui/components/RoutineEmptyData';
 import { SessionEmptyData } from '@/modules/session/presentation/ui/components/SessionEmptyData';
+import { getWorkoutById } from '@/modules/tracking/presentation/workout.actions';
 import {
-  getWorkoutById,
   getWorkoutSetsByWorkoutId,
   getWorkoutTargetsByWorkoutId,
 } from '@/modules/tracking/presentation/tracking.actions';
