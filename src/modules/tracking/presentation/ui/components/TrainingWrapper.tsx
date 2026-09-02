@@ -99,7 +99,7 @@ export function TrainingWrapper({ targets, className = '' }: Props) {
         };
 
       return {
-        set: lastDefaultValue?.set ?? phaseIndex + 1,
+        set: phaseIndex + 1,
         rir: lastDefaultValue?.rir ?? 0,
         reps: lastDefaultValue?.reps ?? 12,
         weight: lastDefaultValue?.weight ?? 0,
