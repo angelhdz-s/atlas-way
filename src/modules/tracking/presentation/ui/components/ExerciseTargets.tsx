@@ -7,13 +7,11 @@ import { IconCheck, IconClock, IconX } from '@tabler/icons-react';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod/v3';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { LastTargets } from '@/presentation/modules/dashboard/components/LastTargets';
 import { PageContainer } from '@/presentation/modules/dashboard/components/page/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/components/page/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/components/page/PageHeader';
-import { ExerciseSchema } from '@/modules/exercise/presentation/ui/schemas/exercise.schema';
 import { useLayer } from '@/presentation/globals/hooks/useLayer';
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
@@ -23,29 +21,24 @@ import {
 } from '@/modules/tracking/presentation/ui/contexts/ExerciseTargetsContext';
 import { ExerciseTargetsStatus } from '@/modules/tracking/presentation/ui/components/ExerciseTargetsStatus';
 import { inputNumberConfig } from '@/presentation/globals/utils/react-hook-form.utils';
+import {
+  workoutTargetsSchema,
+  type WorkoutTargetsForm,
+} from '@/modules/tracking/presentation/schemas/workout-targets.schema';
+import { createWorkoutTargets } from '@/modules/tracking/presentation/workout-target.actions';
+import { useToast } from '@/presentation/modules/toast/hooks/useToast';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   className?: string;
   exercises: ExerciseDTO[];
+  workoutId: string;
 };
 
-const exerciseMetricsSchema = ExerciseSchema.pick({
-  reps: true,
-  sets: true,
-  weight: true,
-});
+export function ExerciseTargets({ className, exercises = [], workoutId }: Props) {
+  const { push } = useRouter();
+  const { addToast } = useToast();
 
-const exerciseTargets = z.object({
-  exercises: z.array(exerciseMetricsSchema),
-});
-
-type ExerciseTargets = z.infer<typeof exerciseTargets>;
-
-const processData: SubmitHandler<ExerciseTargets> = async (_data) => {
-  // data logic here
-};
-
-export function ExerciseTargets({ className, exercises = [] }: Props) {
   const { step, stepIndex, steps, movement, updateStep, goToStep, goNextStep, goPreviousStep } =
     useContext(ExerciseTargetsContext);
 
@@ -62,19 +55,28 @@ export function ExerciseTargets({ className, exercises = [] }: Props) {
     handleSubmit,
     register,
     getValues,
-  } = useForm<ExerciseTargets>({
-    resolver: zodResolver(exerciseTargets),
+  } = useForm<WorkoutTargetsForm>({
+    resolver: zodResolver(workoutTargetsSchema),
     shouldUnregister: false,
+    defaultValues: {
+      workoutId,
+    },
   });
 
   const { fields, replace } = useFieldArray({ control, name: 'exercises' });
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  const submitForm: SubmitHandler<ExerciseTargets> = (data) => {
+  const submitForm: SubmitHandler<WorkoutTargetsForm> = async (data) => {
     if (isSubmitting || isSubmitted) return;
-    updateCurrentStep('complete');
-    processData(data);
+    updateCurrentStep('COMPLETED');
+    const targetsResult = await createWorkoutTargets(data);
+    if (!targetsResult.success)
+      return addToast(targetsResult.message, {
+        type: 'error',
+      });
+
+    push(`/dashboard/tracking/${workoutId}/training`);
   };
 
   const isCurrentFormValid = async () => {
@@ -97,7 +99,7 @@ export function ExerciseTargets({ className, exercises = [] }: Props) {
 
   const validateAndCurrentStep = async (update: boolean = false) => {
     const isValid = await isCurrentFormValid();
-    if (update) updateCurrentStep(isValid ? 'complete' : 'error');
+    if (update) updateCurrentStep(isValid ? 'COMPLETED' : 'ERROR');
     return isValid;
   };
 
@@ -120,7 +122,9 @@ export function ExerciseTargets({ className, exercises = [] }: Props) {
 
   useEffect(() => {
     replace(
-      exercises.map(({ reps, sets, weight }) => ({
+      exercises.map(({ id, reps, sets, weight }, i) => ({
+        order: i + 1,
+        exerciseId: id,
         sets,
         reps,
         weight,
@@ -147,9 +151,9 @@ export function ExerciseTargets({ className, exercises = [] }: Props) {
                       )}
                     >
                       {`Step ${s.step}`}
-                      {s.status === 'complete' && <IconCheck size={16} strokeWidth={2} />}
-                      {s.status === 'pending' && <IconClock size={16} strokeWidth={2} />}
-                      {s.status === 'error' && <IconX size={16} strokeWidth={2} />}
+                      {s.status === 'COMPLETED' && <IconCheck size={16} strokeWidth={2} />}
+                      {s.status === 'PENDING' && <IconClock size={16} strokeWidth={2} />}
+                      {s.status === 'ERROR' && <IconX size={16} strokeWidth={2} />}
                     </button>
                   </li>
                 ))}
@@ -252,7 +256,12 @@ export function ExerciseTargets({ className, exercises = [] }: Props) {
                 Start training
               </Button>
             ) : (
-              <Button key="target-next-button" variant={{ color: 'primary' }} onClick={nextStep}>
+              <Button
+                key="target-next-button"
+                variant={{ color: 'primary' }}
+                onClick={nextStep}
+                disabled={isSubmitting}
+              >
                 Next exercise
               </Button>
             )}

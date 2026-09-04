@@ -114,3 +114,18 @@ export async function deleteSession(
 
   return ActionSuccess(sessionDTO, 'Session deleted successfully');
 }
+
+export async function getSessionById(
+  sessionId: SessionProps['id']
+): Promise<ActionResponseProps<SessionDTO | null>> {
+  const container = getContainer();
+  const getSessionById = container.session.GetSessionByIdUseCase;
+
+  const sessionResult = await getSessionById.execute(sessionId);
+  if (!sessionResult.success) return ActionFailure(sessionResult.error.code);
+  if (!sessionResult.data) return ActionSuccess(null, 'Session not found');
+
+  const sessionDTO = SessionMapper.toDTO(sessionResult.data);
+
+  return ActionSuccess(sessionDTO, 'Session obtained successfully');
+}

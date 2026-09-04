@@ -13,9 +13,9 @@ type Props = {
 };
 
 const statusIcons: Record<ExerciseTargetsStep['status'], IconTypes> = {
-  complete: IconCheck,
-  error: IconX,
-  pending: IconClock,
+  COMPLETED: IconCheck,
+  ERROR: IconX,
+  PENDING: IconClock,
 };
 
 export function ExerciseTargetsStatus({ className }: Props) {

@@ -2,15 +2,19 @@ import type { Prisma } from '../../../prisma/client';
 
 export const STATUS: Prisma.StatusCreateManyInput[] = [
   {
-    id: 'completed',
+    id: 'COMPLETED',
     name: 'Completed',
   },
   {
-    id: 'canceled',
+    id: 'CANCELED',
     name: 'Canceled',
   },
   {
-    id: 'pending',
+    id: 'PENDING',
     name: 'Pending',
+  },
+  {
+    id: 'IN_PROGRESS',
+    name: 'In progress',
   },
 ];

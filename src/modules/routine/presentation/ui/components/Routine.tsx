@@ -31,8 +31,8 @@ export function Routine({ data }: { data: RoutineDTO }) {
       </CardHeader>
       <CardMain>
         <CardTagsWrapperFade>
-          {sessionsTags.map((tag) => (
-            <CardTag key={tag.value} tag={tag} />
+          {sessionsTags.map((tag, i) => (
+            <CardTag key={`${tag.value}-${i}`} tag={tag} />
           ))}
         </CardTagsWrapperFade>
         <main>

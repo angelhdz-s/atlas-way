@@ -1,0 +1,26 @@
+export interface StepSummary<FormValues> {
+  stepId: string;
+  title: string;
+  status: StepStatus;
+  isCurrent: boolean;
+  dataSnapshot?: FormValues | undefined; // Snapshot from form values
+}
+
+export interface PhaseSummary<FormValues> {
+  phaseId: string;
+  title: string;
+  description: string | null;
+  status: PhaseStatus;
+  isCanceled: boolean;
+  steps: StepSummary<FormValues>[];
+  completedCount: number;
+  totalCount: number;
+}
+
+export interface WizardSummary<FormValues> {
+  phases: PhaseSummary<FormValues>[];
+  overallProgress: number; // percentage 0-100%
+  totalSteps: number;
+  completedSteps: number;
+  completedStepIds: Set<string>;
+}

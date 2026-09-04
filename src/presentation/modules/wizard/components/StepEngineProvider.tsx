@@ -1,0 +1,51 @@
+'use client';
+
+import { useMemo, useReducer } from 'react';
+import type { FlatStep } from '@/presentation/modules/wizard/wizard.types';
+import type { StepEngineContextValue } from '@/presentation/modules/wizard/wizard.steps.types';
+import { StepEngineActionType } from '@/presentation/modules/wizard/wizard.steps.types';
+import { StepEngineContext } from '@/presentation/modules/wizard/context/StepEngineContext';
+import { stepEngineReducer } from '@/presentation/modules/wizard/reducers/wizard.steps.reducer';
+
+type Props = {
+  children: React.ReactNode;
+  flatSteps: FlatStep[];
+};
+
+export function StepEngineProvider({ children, flatSteps }: Props) {
+  // ToDo: normalize canceled phases entries from server
+  const initialCanceled = new Set<string>();
+
+  const [state, dispatch] = useReducer(stepEngineReducer, {
+    flatSteps,
+    currentIndex: 0,
+    canceledPhaseIds: initialCanceled,
+  });
+
+  const currentStep = state.flatSteps[state.currentIndex] as FlatStep;
+  const totalSteps = state.flatSteps.length;
+  const isFirstStep = state.currentIndex === 0;
+  const isLastStep = state.currentIndex === totalSteps - 1;
+
+  const value: StepEngineContextValue = useMemo(
+    () => ({
+      currentStep,
+      isFirstStep,
+      isLastStep,
+      totalSteps,
+      canceledPhaseIds: state.canceledPhaseIds,
+      currentIndex: state.currentIndex,
+      nextStep: () => dispatch({ type: StepEngineActionType.NEXT_STEP }),
+      prevStep: () => dispatch({ type: StepEngineActionType.PREV_STEP }),
+      goToStep: (stepId: string) =>
+        dispatch({ type: StepEngineActionType.JUMP_TO_STEP, payload: { stepId } }),
+      goToPhase: (phaseId: string) =>
+        dispatch({ type: StepEngineActionType.JUMP_TO_PHASE, payload: { phaseId } }),
+      toggleCancelPhase: (phaseId: string) =>
+        dispatch({ type: StepEngineActionType.TOGGLE_CANCEL_PHASE, payload: { phaseId } }),
+    }),
+    [state.currentIndex, state.canceledPhaseIds, currentStep, isFirstStep, isLastStep, totalSteps]
+  );
+
+  return <StepEngineContext.Provider value={value}>{children}</StepEngineContext.Provider>;
+}
