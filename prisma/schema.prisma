@@ -194,6 +194,8 @@ model Workouts {
   statusId              WorkoutStatusEnum
   dayTypeId             String
   notes                 String?
+  totalSets             Int?                
+  completedSets         Int?                @default(0)
   createdAt             DateTime            @default(now())
   updatedAt             DateTime            @updatedAt
   user                  Users               @relation(fields: [userId], references: [id])
@@ -212,6 +214,7 @@ model WorkoutTargets {
   exerciseId          String
   statusId            WorkoutStatusEnum
   sets                Int
+  completedSets       Int?           @default(0)
   reps                Int
   weight              Int
   createdAt           DateTime     @default(now())
