@@ -87,10 +87,40 @@ export async function getWorkoutById(
 }
 
 /**
- * Validate the workout status before updating
+ * Validate the workout status before updating. Checks the status of all current targets associated
+ *
+ * @param workoutId ID of workout to be validated/updated
+ *
+ * @returns Workouts DTO when success
  */
 export async function validateWorkoutStatus(
   workoutId: string
 ): Promise<ActionResponseProps<Workouts>> {
+  return ActionFailure('Error validating workout process');
+}
+
+/**
+ * Change workout status verifying if current workout bussiness rules
+ * are satisfied
+ *
+ * @param workout current Workouts DTO
+ *
+ * @returns Workouts DTO when success
+ */
+export async function setWorkoutInProgress(
+  workout: Workouts
+): Promise<ActionResponseProps<Workouts>> {
+  return ActionFailure('Error validating workout process');
+}
+
+/**
+ * Finish workout determining what is the final status
+ * based on the `totalSets` and `completedSets` properties
+ *
+ * @param workout current Workouts DTO
+ *
+ * @returns Workouts DTO when success
+ */
+export async function endWorkout(workout: Workouts): Promise<ActionResponseProps<Workouts>> {
   return ActionFailure('Error validating workout process');
 }
