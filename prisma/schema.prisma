@@ -10,91 +10,90 @@ datasource db {
 // MARK: User Plan
 
 model Roles {
-  id            String        @id
-  name          String
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  user          Users[]
+  id String @id
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user Users[]
 }
 
 model Users {
-  id            String        @id @default(cuid())
-  email         String        @unique
-  name          String
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  roleId        String        @default("base")
-  role        Roles         @relation(fields: [roleId], references: [id])
-  routines      Routines[]
-  sessions      Sessions[]
-  exercises     Exercises[]
-  muscles       Muscles[]
+  id String @id @default(cuid())
+  email String  @unique
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  roleId String @default("base")
+  role Roles @relation(fields: [roleId], references: [id])
+  routines Routines[]
+  sessions Sessions[]
+  exercises Exercises[]
+  muscles Muscles[]
   notifications Notifications[]
-  workouts      Workouts[]
+  workouts Workouts[]
 }
 
 model RoutineCycleTypes {
-  id            String          @id
-  name          String          @unique
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  routines      Routines[]
+  id String @id
+  name String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  routines Routines[]
 }
 
 model Routines {
-  id              String            @id @default(uuid())
-  userId          String
-  routineCycleId  String
-  active          Boolean           @default(true)
-  days            Int               @default(7)
-  initialDate     DateTime
-  name            String
-  description     String?
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  user          Users             @relation(fields: [userId], references: [id])
-  cycleType     RoutineCycleTypes @relation(fields: [routineCycleId], references: [id])
-  workouts        Workouts[]
-  plan            RoutinePlan[]
+  id String @id @default(uuid())
+  userId String
+  routineCycleId String
+  active Boolean @default(true)
+  days Int @default(7)
+  initialDate DateTime
+  name String
+  description String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user Users @relation(fields: [userId], references: [id])
+  cycleType RoutineCycleTypes @relation(fields: [routineCycleId], references: [id])
+  workouts Workouts[]
+  plan RoutinePlan[]
 }
 
 model RoutinePlan {
-  id            String        @id @default(uuid())
-  routineId     String    
-  sessionId     String?   
-  name          String    
-  dayNumber     Int       
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  routine     Routines      @relation(fields: [routineId], references: [id])
-  session     Sessions?     @relation(fields: [sessionId], references: [id])
-	@@map("RoutineDays")
+  id String @id @default(uuid())
+  routineId String    
+  sessionId String?   
+  name String    
+  dayNumber Int       
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  routine Routines @relation(fields: [routineId], references: [id])
+  session Sessions? @relation(fields: [sessionId], references: [id])
 }
 
 model Sessions {
-  id                String            @id @default(uuid())
-  userId            String
-  name              String            @unique
-  description       String?
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime          @updatedAt
-  user              Users             @relation(fields: [userId], references: [id])
-  plan              RoutinePlan[]
+  id String @id @default(uuid())
+  userId String
+  name String @unique
+  description String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user Users @relation(fields: [userId], references: [id])
+  plan RoutinePlan[]
   sessionToExercise SessionsToExercises[]
-  workouts          Workouts[]
+  workouts Workouts[]
 }
 
 model Exercises {
-  id            String        @id @default(uuid())
-  userId        String
-  name          String        
-  description   String?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  reps          Int
-  sets          Int
-  weight        Int
-  user        Users         @relation(fields: [userId], references: [id])
+  id String @id @default(uuid())
+  userId String
+  name String        
+  description String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  reps Int
+  sets Int
+  weight Int
+  user Users @relation(fields: [userId], references: [id])
   workoutTargets  WorkoutTargets[]
   exercisesToMuscles ExercisesToMuscles[]
   sessionToExercise SessionsToExercises[]
@@ -103,13 +102,13 @@ model Exercises {
 // MARK: System tables
 
 model Notifications {
-  id              String              @id @default(uuid())
-  userId          String
-  name            String              
-  message         String
-  createdAt       DateTime            @default(now())
-  updatedAt       DateTime            @updatedAt
-  user            Users             @relation(fields: [userId], references: [id])
+  id String @id @default(uuid())
+  userId String
+  name String              
+  message String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user Users @relation(fields: [userId], references: [id])
 }
 
 enum StatusEnum {
@@ -120,48 +119,48 @@ enum StatusEnum {
 }
 
 model Status {
-  id              StatusEnum          @id
-  name            String              @unique
-  createdAt       DateTime            @default(now())
-  updatedAt       DateTime            @updatedAt
+  id StatusEnum @id
+  name String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model DayTypes {
-  id              String              @id
-  name            String              @unique
-  createdAt       DateTime            @default(now())
-  updatedAt       DateTime            @updatedAt
-  workouts        Workouts[]
+  id String @id
+  name String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  workouts Workouts[]
 }
 
 model BodySections {
-  id              Int                 @id @default(autoincrement())
-  name            String              @unique
-  createdAt       DateTime            @default(now())
-  updatedAt       DateTime            @updatedAt
-  muscularGroups  MuscularGroups[]
+  id Int @id @default(autoincrement())
+  name String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  muscularGroups MuscularGroups[]
 }
 
 model MuscularGroups {
-  id            Int         @id @default(autoincrement())
+  id Int @id @default(autoincrement())
   bodySectionId Int
-  name          String
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  bodySection   BodySections @relation(fields: [bodySectionId], references: [id])
-  muscles       Muscles[]
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bodySection BodySections @relation(fields: [bodySectionId], references: [id])
+  muscles Muscles[]
 }
 
 model Muscles {
-  id              Int             @id @default(autoincrement())
+  id Int @id @default(autoincrement())
   muscularGroupId Int
-  userId          String
-  name            String
-  description     String?       
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
-  user            Users           @relation(fields: [userId], references: [id])
-  muscularGroup   MuscularGroups  @relation(fields: [muscularGroupId], references: [id])
+  userId String
+  name String
+  description String?       
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user Users @relation(fields: [userId], references: [id])
+  muscularGroup MuscularGroups  @relation(fields: [muscularGroupId], references: [id])
   exercisesToMuscles ExercisesToMuscles[]
 }
 
@@ -177,83 +176,83 @@ enum WorkoutStatusEnum {
 }
 
 model WorkoutStatus {
-  id                    WorkoutStatusEnum @id
-  name                  String
-  createdAt             DateTime            @default(now())
-  updatedAt             DateTime            @updatedAt
-  workouts              Workouts[]
-  workoutTargets          WorkoutTargets[]
+  id WorkoutStatusEnum @id
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  workouts Workouts[]
+  workoutTargets WorkoutTargets[]
 }
 
 model Workouts {
-  id                    String             @id @default(uuid())
-  userId                String
-  routineId             String?
-  sessionId             String?
-  date                  DateTime
-  statusId              WorkoutStatusEnum
-  dayTypeId             String
-  notes                 String?
-  totalSets             Int?                
-  completedSets         Int?                @default(0)
-  createdAt             DateTime            @default(now())
-  updatedAt             DateTime            @updatedAt
-  user                  Users               @relation(fields: [userId], references: [id])
-  dayType               DayTypes            @relation(fields: [dayTypeId], references: [id])
-  routine               Routines?            @relation(fields: [routineId], references: [id])
-  session               Sessions?            @relation(fields: [sessionId], references: [id])
-  status                WorkoutStatus              @relation(fields: [statusId], references: [id])
-  workoutTargets        WorkoutTargets[]
-  workoutSets           WorkoutSets[]
+  id String @id @default(uuid())
+  userId String
+  routineId String?
+  sessionId String?
+  date DateTime
+  statusId WorkoutStatusEnum
+  dayTypeId String
+  notes String?
+  totalTargets Int?             
+  completedTargets Int? @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user Users @relation(fields: [userId], references: [id])
+  dayType DayTypes @relation(fields: [dayTypeId], references: [id])
+  routine Routines? @relation(fields: [routineId], references: [id])
+  session Sessions? @relation(fields: [sessionId], references: [id])
+  status WorkoutStatus @relation(fields: [statusId], references: [id])
+  workoutTargets WorkoutTargets[]
+  workoutSets WorkoutSets[]
   @@unique([id, routineId, sessionId])
 }
 
 model WorkoutTargets {
-  id                  String       @id @default(uuid())
-  workoutId           String       
-  exerciseId          String
-  statusId            WorkoutStatusEnum
-  sets                Int
-  completedSets       Int?           @default(0)
-  reps                Int
-  weight              Int
-  createdAt           DateTime     @default(now())
-  updatedAt           DateTime     @updatedAt
-  status              WorkoutStatus @relation(fields: [statusId], references: [id])
-  workouts            Workouts     @relation(fields: [workoutId], references: [id])
-  exercise            Exercises    @relation(fields: [exerciseId], references: [id])
+  id String @id @default(uuid())
+  workoutId String       
+  exerciseId String
+  statusId WorkoutStatusEnum
+  sets Int
+  completedSets Int? @default(0)
+  reps Int
+  weight Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  status WorkoutStatus @relation(fields: [statusId], references: [id])
+  workouts Workouts @relation(fields: [workoutId], references: [id])
+  exercise Exercises @relation(fields: [exerciseId], references: [id])
   @@unique([workoutId, exerciseId])
 }
 
 model WorkoutSets {
-  id                      String                @id @default(uuid())
-  workoutId               String                
-  exerciseId              String                 
-  set                     Int
-  reps                    Int
-  weight                  Int
-  createdAt               DateTime              @default(now())
-  updatedAt               DateTime              @updatedAt
-  workouts                Workouts              @relation(fields: [workoutId], references: [id])
+  id String @id @default(uuid())
+  workoutId String                
+  exerciseId String                 
+  set Int
+  reps Int
+  weight Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  workouts Workouts @relation(fields: [workoutId], references: [id])
   @@unique([workoutId, exerciseId, set])
 }
 
 /* Link Tables */
 
 model ExercisesToMuscles {
-  exerciseId  String    
-  muscleId    Int    
-  createdAt   DateTime  @default(now())
-  exercise    Exercises @relation(fields: [exerciseId], references: [id])
-  muscle      Muscles   @relation(fields: [muscleId], references: [id])
+  exerciseId String    
+  muscleId Int    
+  createdAt DateTime @default(now())
+  exercise Exercises @relation(fields: [exerciseId], references: [id])
+  muscle Muscles @relation(fields: [muscleId], references: [id])
   @@id([exerciseId, muscleId])
 }
 
 model SessionsToExercises {
-  sessionId   String    
-  exerciseId  String    
-  createdAt   DateTime  @default(now())
-  session     Sessions  @relation(fields: [sessionId], references: [id])
-  exercise    Exercises @relation(fields: [exerciseId], references: [id])
+  sessionId String    
+  exerciseId String    
+  createdAt DateTime @default(now())
+  session Sessions @relation(fields: [sessionId], references: [id])
+  exercise Exercises @relation(fields: [exerciseId], references: [id])
   @@id([sessionId, exerciseId])
 }
