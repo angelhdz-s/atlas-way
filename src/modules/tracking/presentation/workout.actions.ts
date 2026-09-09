@@ -85,3 +85,12 @@ export async function getWorkoutById(
     return ActionFailure('Error getting training by id');
   }
 }
+
+/**
+ * Validate the workout status before updating
+ */
+export async function validateWorkoutStatus(
+  workoutId: string
+): Promise<ActionResponseProps<Workouts>> {
+  return ActionFailure('Error validating workout process');
+}

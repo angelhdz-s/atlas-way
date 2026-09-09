@@ -5,7 +5,7 @@ import {
   type WorkoutTargetsForm,
 } from '@/modules/tracking/presentation/schemas/workout-targets.schema';
 import { getWorkoutById } from '@/modules/tracking/presentation/workout.actions';
-import type { Prisma } from '@/prisma/client';
+import type { Prisma, WorkoutTargets } from '@/prisma/client';
 import { prisma } from '@/shared/infrastructure/prisma/client';
 import {
   ActionFailure,
@@ -104,4 +104,20 @@ export async function getWorkoutTargetsByWorkoutId(
     console.log(error);
     return ActionFailure('Error getting workout targets');
   }
+}
+
+export async function validateWorkoutTargets({
+  exerciseId,
+  workoutId,
+}: {
+  workoutId: string;
+  exerciseId: string;
+}): Promise<ActionResponseProps<WorkoutTargets>> {
+  return ActionFailure('Error validating workout targets');
+}
+
+export async function validateWorkoutTargetsStatus(
+  workoutTarget: WorkoutTargets
+): Promise<ActionResponseProps<WorkoutTargets>> {
+  return ActionFailure('Error validating workout target');
 }
