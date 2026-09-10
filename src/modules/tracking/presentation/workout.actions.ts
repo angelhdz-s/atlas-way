@@ -1,5 +1,6 @@
 'use server';
 
+import { getWorkoutTargetsByWorkoutId } from '@/modules/tracking/presentation/workout-target.actions';
 import { getCurrentUser } from '@/modules/user/presentation/user.actions';
 import type { Workouts } from '@/prisma/client';
 import { prisma } from '@/shared/infrastructure/prisma/client';
@@ -7,6 +8,8 @@ import {
   ActionFailure,
   ActionSuccess,
   type ActionResponseProps,
+  type ActionFailureType,
+  type ActionSuccessType,
 } from '@/shared/presentation/action.response';
 import { randomUUID } from 'node:crypto';
 
@@ -87,40 +90,160 @@ export async function getWorkoutById(
 }
 
 /**
- * Validate the workout status before updating. Checks the status of all current targets associated
+ * Update `Workout` status to `IN_PROGRESS`
  *
- * @param workoutId ID of workout to be validated/updated
+ * @remarks
+ * Before updating check if requirements are met:
+ * 1. Current status being `TARGETS_SET`
+ * 2. There must be `Workout Target`s associated to the target `Workout`
+ * 3. At least one `Workout Target` associated must be IN_PROGRESS
  *
- * @returns Workouts DTO when success
- */
-export async function validateWorkoutStatus(
-  workoutId: string
-): Promise<ActionResponseProps<Workouts>> {
-  return ActionFailure('Error validating workout process');
-}
-
-/**
- * Change workout status verifying if current workout bussiness rules
- * are satisfied
+ * @param workout Updating `Workout` DTO object
  *
- * @param workout current Workouts DTO
+ * @returns An async {@link ActionResponseProps} which contains:
  *
- * @returns Workouts DTO when success
+ * **Success case** - contains an {@link ActionSuccessType} object:
+ *
+ * > - `success`: `true`
+ * > - `message`: User friendly message about the success operation
+ * > - `data`: Contains the updated `Workout` as {@link Workouts} DTO
+ *
+ *
+ * **Failure case** - contains an {@link ActionFailureType} object:
+ *
+ * > - `success`: `false`
+ * > - `message`: User friendly message about the failed operation
+ * > - `data`: Contains null (due to the error)
  */
 export async function setWorkoutInProgress(
   workout: Workouts
 ): Promise<ActionResponseProps<Workouts>> {
-  return ActionFailure('Error validating workout process');
+  // Validate current status is not "TARGETS_SET"
+  if (workout.statusId !== 'TARGETS_SET')
+    return ActionFailure('Workout process. Not allowed status transition');
+
+  // Verify at least one Workout Target exist
+  const workoutTargetsResult = await getWorkoutTargetsByWorkoutId(workout.id);
+  if (!workoutTargetsResult.success) return ActionFailure(workoutTargetsResult.message);
+  if (workoutTargetsResult.data.length < 1)
+    return ActionFailure('Workout process. Not workout targets found');
+  const workoutTargets = workoutTargetsResult.data;
+  const areAnyWorkoutTargetInProgress = workoutTargets.some((wt) => wt.statusId === 'IN_PROGRESS');
+
+  // Verify at least one Workout Target status is IN_PROGRESS
+  if (!areAnyWorkoutTargetInProgress)
+    return ActionFailure('Workout process. No workout target in progress');
+
+  // Update status
+  try {
+    const updatedWorkout = await prisma.workouts.update({
+      where: {
+        id: workout.id,
+      },
+      data: {
+        ...workout,
+        statusId: 'IN_PROGRESS',
+      },
+    });
+
+    return ActionSuccess(updatedWorkout, 'Workout process started successfully');
+  } catch (e) {
+    // biome-ignore lint/suspicious/noConsole: Server error log
+    console.log(e);
+    return ActionFailure('Error starting workout process');
+  }
 }
 
 /**
- * Finish workout determining what is the final status
- * based on the `totalSets` and `completedSets` properties
+ * Finish `Workout` process
  *
- * @param workout current Workouts DTO
+ * @remarks
+ * Determine the final `Workout` status:
+ * - `SKIPPED`: For no one completed target
+ * - `INTERRUPTED`: At least one target completed but not all
+ * - `COMPLETED`: All targets were completed
  *
- * @returns Workouts DTO when success
+ * @param workout Updating workout DTO object
+ *
+ * @returns An async {@link ActionResponseProps} which contains:
+ *
+ * **Success case** - contains an {@link ActionSuccessType<Workouts>} object:
+ *
+ * > - `success`: `true`
+ * > - `message`: User friendly message about the success operation
+ * > - `data`: Contains the updated `Workout` as {@link Workouts} DTO
+ *
+ *
+ * **Failure case** - contains an {@link ActionFailureType} object:
+ *
+ * > - `success`: `false`
+ * > - `message`: User friendly message about the failed operation
+ * > - `data`: Contains null (due to the error)
  */
-export async function endWorkout(workout: Workouts): Promise<ActionResponseProps<Workouts>> {
-  return ActionFailure('Error validating workout process');
+export async function finishWorkout(workout: Workouts): Promise<ActionResponseProps<Workouts>> {
+  // Check if current workout status is TARGETS_SET;
+  // TARGETS_SET status can not be in a workout
+  // with one or more completed targets
+  if (workout.statusId === 'TARGETS_SET') {
+    try {
+      const updatedWorkout = await prisma.workouts.update({
+        where: {
+          id: workout.id,
+        },
+        data: {
+          ...workout,
+          statusId: 'SKIPPED', // Update status to skipped (no one target was completed)
+        },
+      });
+
+      return ActionSuccess(updatedWorkout, 'Workout skipped successfully');
+    } catch (e) {
+      // biome-ignore lint/suspicious/noConsole: Server error log
+      console.log(e);
+      return ActionFailure('Error skipping workout');
+    }
+  }
+
+  // Check if completed targets are not equal to total targets;
+  // At least one target was completed but not all
+  if (workout.completedTargets !== workout.totalTargets) {
+    try {
+      const updatedWorkout = await prisma.workouts.update({
+        where: {
+          id: workout.id,
+        },
+        data: {
+          ...workout,
+          // Update status to interrupted (at least
+          // one target was completed but no all)
+          statusId: 'INTERRUPTED',
+        },
+      });
+
+      return ActionSuccess(updatedWorkout, 'Workout interrupted successfully');
+    } catch (e) {
+      // biome-ignore lint/suspicious/noConsole: Server error log
+      console.log(e);
+      return ActionFailure('Error interrupting workout');
+    }
+  }
+
+  // For completed targets are equal to total targets
+  try {
+    const updatedWorkout = await prisma.workouts.update({
+      where: {
+        id: workout.id,
+      },
+      data: {
+        ...workout,
+        statusId: 'COMPLETED', // All targets completed
+      },
+    });
+
+    return ActionSuccess(updatedWorkout, 'Workout completed successfully');
+  } catch (e) {
+    // biome-ignore lint/suspicious/noConsole: Server error log
+    console.log(e);
+    return ActionFailure('Error completing workout');
+  }
 }
