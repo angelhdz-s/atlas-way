@@ -2,12 +2,12 @@ export type ActionResponse<T> = Promise<ActionResponseProps<T>>;
 
 export type ActionResponseProps<T> = ActionSuccessType<T> | ActionFailureType;
 
-type ActionSuccessType<T> = {
+export type ActionSuccessType<T> = {
   success: true;
   message: string;
   data: T;
 };
-type ActionFailureType = {
+export type ActionFailureType = {
   success: false;
   message: string;
   data: null;
