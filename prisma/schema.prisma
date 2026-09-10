@@ -181,7 +181,6 @@ model WorkoutStatus {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   workouts Workouts[]
-  workoutTargets WorkoutTargets[]
 }
 
 model Workouts {
@@ -207,18 +206,34 @@ model Workouts {
   @@unique([id, routineId, sessionId])
 }
 
+enum WorkoutTargetStatusEnum {
+  PENDING
+  IN_PROGRESS
+  INTERRUPTED
+  COMPLETED
+  SKIPPED
+}
+
+model WorkoutTargetStatus {
+  id WorkoutTargetStatusEnum @id
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  workoutTargets WorkoutTargets[]
+}
+
 model WorkoutTargets {
   id String @id @default(uuid())
   workoutId String       
   exerciseId String
-  statusId WorkoutStatusEnum
+  statusId WorkoutTargetStatusEnum
   sets Int
   completedSets Int? @default(0)
   reps Int
   weight Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  status WorkoutStatus @relation(fields: [statusId], references: [id])
+  status WorkoutTargetStatus @relation(fields: [statusId], references: [id])
   workouts Workouts @relation(fields: [workoutId], references: [id])
   exercise Exercises @relation(fields: [exerciseId], references: [id])
   @@unique([workoutId, exerciseId])
