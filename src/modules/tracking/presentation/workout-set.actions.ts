@@ -12,6 +12,10 @@ import {
   workoutSetSchema,
   type WorkoutSetForm,
 } from '@/modules/tracking/presentation/schemas/workout.schema';
+import {
+  finishWorkoutTarget,
+  setWorkoutTargetInProgress,
+} from '@/modules/tracking/presentation/workout-target.actions';
 
 // ToDo: add session validation at the top of the actions
 // const session = await getServerSession();
@@ -65,12 +69,56 @@ export async function processWorkoutSetData(
     return ActionSuccess(updatedWorkoutSet, 'Workout set data saved successfully');
   }
 
-  // When it doesn't have an id that means it was not created yet
+  // When Workout Set doesn't have an id that means it was not created yet
   const createWorkoutSetResult = await createWorkoutSet(workoutSetData);
   if (!createWorkoutSetResult.success) return createWorkoutSetResult;
   const createdWorkoutSet = createWorkoutSetResult.data;
 
-  return ActionSuccess(createdWorkoutSet, 'Set data created successfully');
+  try {
+    const workoutTarget = await prisma.workoutTargets.findFirst({
+      where: {
+        id: createdWorkoutSet.workoutTargetId,
+      },
+    });
+
+    if (!workoutTarget) return ActionFailure('No workout target found');
+
+    // Current Workout target in Progress
+    const isSetMinorThanTargetSets = createdWorkoutSet.set < workoutTarget.sets;
+    if (isSetMinorThanTargetSets && workoutTarget.statusId !== 'IN_PROGRESS') {
+      // Update current status of the Workout Target
+      const updatedWorkoutTargetResult = await setWorkoutTargetInProgress(workoutTarget);
+      if (!updatedWorkoutTargetResult.success) return updatedWorkoutTargetResult;
+      return ActionSuccess(createdWorkoutSet, 'Set data created successfully');
+    }
+
+    const isSetEqualToTargetSets = createdWorkoutSet.set === workoutTarget.sets;
+    if (isSetEqualToTargetSets && workoutTarget.statusId === 'IN_PROGRESS') {
+      const finishWorkoutTargetResult = await finishWorkoutTarget(workoutTarget);
+      if (!finishWorkoutTargetResult.success) return finishWorkoutTargetResult;
+      return ActionSuccess(createdWorkoutSet, 'Set data created successfully');
+    }
+
+    const newCompletedSets = workoutTarget.completedSets ? workoutTarget.completedSets + 1 : 1;
+    const updatedWorkoutTarget = await prisma.workoutTargets.update({
+      where: {
+        id: workoutTarget.id,
+      },
+      data: {
+        ...workoutTarget,
+        completedSets: newCompletedSets,
+      },
+    });
+
+    if (!updatedWorkoutTarget)
+      return ActionFailure('Workout set. Error updating target completed sets');
+
+    return ActionSuccess(createdWorkoutSet, 'Set data created successfully');
+  } catch (e) {
+    // biome-ignore lint/suspicious/noConsole: Server error log
+    console.log(e);
+    return ActionFailure('Workout Set. Error processing set');
+  }
 }
 
 type WorkoutSetFormWithId = WorkoutSetForm & {
@@ -93,7 +141,6 @@ export async function createWorkoutSet(
       },
       select: {
         exerciseId: true,
-        workoutId: true,
       },
     });
 
