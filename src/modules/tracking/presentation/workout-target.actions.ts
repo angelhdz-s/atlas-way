@@ -4,7 +4,6 @@ import {
   workoutTargetsSchema,
   type WorkoutTargetsForm,
 } from '@/modules/tracking/presentation/schemas/workout-targets.schema';
-import { getWorkoutSetsByWorkoutId } from '@/modules/tracking/presentation/workout-set.actions';
 import { getWorkoutById } from '@/modules/tracking/presentation/workout.actions';
 import type { Prisma, WorkoutTargets } from '@/prisma/client';
 import { prisma } from '@/shared/infrastructure/prisma/client';
@@ -141,13 +140,15 @@ export async function setWorkoutTargetInProgress(
   if (workoutTarget.statusId !== 'PENDING')
     return ActionFailure('Workout target. Not allowed status transition');
 
-  // Verify at least one Workout Set exist
-  const workoutSetsResult = await getWorkoutSetsByWorkoutId(workoutTarget.workoutId);
-  if (!workoutSetsResult.success) return ActionFailure(workoutSetsResult.message);
-  if (workoutSetsResult.data.length < 1) return ActionFailure('Workout target. Not sets found');
-
-  // Update status
   try {
+    // Verify at least one Workout Set exist
+    const workoutSetsCount = await prisma.workoutSets.count({
+      where: {
+        workoutId: workoutTarget.workoutId,
+        exerciseId: workoutTarget.exerciseId,
+      },
+    });
+    // Update status
     const updatedWorkoutTarget = await prisma.workoutTargets.update({
       where: {
         id: workoutTarget.id,
@@ -155,7 +156,7 @@ export async function setWorkoutTargetInProgress(
       data: {
         ...workoutTarget,
         statusId: 'IN_PROGRESS',
-        completedSets: workoutSetsResult.data.length,
+        completedSets: workoutSetsCount,
       },
     });
 
