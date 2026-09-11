@@ -142,9 +142,9 @@ export async function setWorkoutTargetInProgress(
     return ActionFailure('Workout target. Not allowed status transition');
 
   // Verify at least one Workout Set exist
-  const workoutTargetsResult = await getWorkoutSetsByWorkoutId(workoutTarget.workoutId);
-  if (!workoutTargetsResult.success) return ActionFailure(workoutTargetsResult.message);
-  if (workoutTargetsResult.data.length < 1) return ActionFailure('Workout target. Not sets found');
+  const workoutSetsResult = await getWorkoutSetsByWorkoutId(workoutTarget.workoutId);
+  if (!workoutSetsResult.success) return ActionFailure(workoutSetsResult.message);
+  if (workoutSetsResult.data.length < 1) return ActionFailure('Workout target. Not sets found');
 
   // Update status
   try {
@@ -155,6 +155,7 @@ export async function setWorkoutTargetInProgress(
       data: {
         ...workoutTarget,
         statusId: 'IN_PROGRESS',
+        completedSets: workoutSetsResult.data.length,
       },
     });
 
@@ -195,6 +196,14 @@ export async function setWorkoutTargetInProgress(
 export async function finishWorkoutTarget(
   workoutTarget: WorkoutTargets
 ): Promise<ActionResponseProps<WorkoutTargets>> {
+  // ToDo: get out this piece of code
+  const workoutSetsCount = await prisma.workoutSets.count({
+    where: {
+      workoutId: workoutTarget.workoutId,
+      exerciseId: workoutTarget.exerciseId,
+    },
+  });
+
   // Check if current workout status is PENDING;
   // PENDING status can not be in a Workout Target
   // with one or more completed sets
@@ -220,7 +229,7 @@ export async function finishWorkoutTarget(
 
   // Check if completed sets are not equal to target sets;
   // At least one set was completed but not all
-  if (workoutTarget.completedSets !== workoutTarget.sets) {
+  if (workoutSetsCount !== workoutTarget.sets) {
     try {
       const updatedWorkoutTarget = await prisma.workoutTargets.update({
         where: {
@@ -231,6 +240,7 @@ export async function finishWorkoutTarget(
           // Update status to interrupted (at least
           // one set was completed but no all)
           statusId: 'INTERRUPTED',
+          completedSets: workoutSetsCount,
         },
       });
 
@@ -251,6 +261,7 @@ export async function finishWorkoutTarget(
       data: {
         ...workoutTarget,
         statusId: 'COMPLETED', // All sets are completed
+        completedSets: workoutSetsCount,
       },
     });
 
