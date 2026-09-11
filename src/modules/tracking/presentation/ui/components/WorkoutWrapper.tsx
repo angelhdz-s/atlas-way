@@ -6,7 +6,7 @@ import type {
   StepStatus,
   WizardSummaryPhaseEntries,
 } from '@/presentation/modules/wizard/wizard.types';
-import type { WorkoutTargets, WorkoutSets } from '@/prisma/client';
+import type { WorkoutSets, WorkoutTargetStatusEnum } from '@/prisma/client';
 import type { WorkoutSetForm } from '@/modules/tracking/presentation/schemas/workout.schema';
 import type { FullWorkoutTargets } from '@/modules/tracking/presentation/workout-target.actions';
 import { processWorkoutSetData } from '@/modules/tracking/presentation/workout-set.actions';
@@ -22,9 +22,8 @@ type Props = {
   workoutSets: WorkoutSets[];
 };
 
-const targetStatusMapper = (targetStatus: WorkoutTargets['statusId']): StatusCode => {
+const targetStatusMapper = (targetStatus: WorkoutTargetStatusEnum): StatusCode => {
   if (targetStatus === 'SKIPPED' || targetStatus === 'INTERRUPTED') return 'CANCELED';
-  if (targetStatus === 'TARGETS_SET') return 'PENDING';
   return targetStatus;
 };
 
@@ -32,7 +31,7 @@ const targetSetsMap = (trainingSets: WorkoutSets[]): WorkoutSetForm[] => {
   return trainingSets
     .map((t) => ({
       id: t.id,
-      workoutId: t.workoutId,
+      workoutTargetId: t.id,
       reps: t.reps,
       set: t.set,
       rir: 0,
@@ -76,7 +75,7 @@ export function WorkoutWrapper({ workoutTargets, workoutSets, className = '' }: 
                   reps: t.reps,
                   rir: 0,
                   set: 1,
-                  workoutId: t.id,
+                  workoutTargetId: t.id,
                   weight: t.weight,
                 },
               ],
@@ -111,7 +110,7 @@ export function WorkoutWrapper({ workoutTargets, workoutSets, className = '' }: 
           rir: data.rir,
           reps: data.reps,
           weight: data.weight,
-          workoutId: data.workoutId ?? step.phase.id,
+          workoutTargetId: data.workoutTargetId ?? step.phase.id,
         };
 
       return {
@@ -119,7 +118,7 @@ export function WorkoutWrapper({ workoutTargets, workoutSets, className = '' }: 
         rir: lastDefaultValue?.rir ?? 0,
         reps: lastDefaultValue?.reps ?? 12,
         weight: lastDefaultValue?.weight ?? 0,
-        workoutId: lastDefaultValue?.workoutId ?? step.phase.id,
+        workoutTargetId: lastDefaultValue?.workoutTargetId ?? step.phase.id,
       };
     },
   });

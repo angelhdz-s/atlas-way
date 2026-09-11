@@ -80,10 +80,11 @@ export async function createWorkoutSet(
     // Find exercise ID required in trainingSet creation
     const workoutTarget = await prisma.workoutTargets.findUnique({
       where: {
-        id: workoutSetData.workoutId,
+        id: workoutSetData.workoutTargetId,
       },
       select: {
         exerciseId: true,
+        workoutId: true,
       },
     });
 
@@ -97,7 +98,7 @@ export async function createWorkoutSet(
         reps: workoutSetData.reps,
         set: workoutSetData.set,
         weight: workoutSetData.weight,
-        workoutId: workoutSetData.workoutId,
+        workoutId: workoutTarget.workoutId,
         exerciseId: workoutTarget.exerciseId,
       },
     });
