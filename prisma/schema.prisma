@@ -202,7 +202,6 @@ model Workouts {
   session Sessions? @relation(fields: [sessionId], references: [id])
   status WorkoutStatus @relation(fields: [statusId], references: [id])
   workoutTargets WorkoutTargets[]
-  workoutSets WorkoutSets[]
   @@unique([id, routineId, sessionId])
 }
 
@@ -236,20 +235,21 @@ model WorkoutTargets {
   status WorkoutTargetStatus @relation(fields: [statusId], references: [id])
   workouts Workouts @relation(fields: [workoutId], references: [id])
   exercise Exercises @relation(fields: [exerciseId], references: [id])
+  workoutSets WorkoutSets[]
   @@unique([workoutId, exerciseId])
 }
 
 model WorkoutSets {
   id String @id @default(uuid())
-  workoutId String                
+  workoutTargetId String                
   exerciseId String                 
   set Int
   reps Int
   weight Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  workouts Workouts @relation(fields: [workoutId], references: [id])
-  @@unique([workoutId, exerciseId, set])
+  workouts WorkoutTargets @relation(fields: [workoutTargetId], references: [id])
+  @@unique([workoutTargetId, set])
 }
 
 /* Link Tables */

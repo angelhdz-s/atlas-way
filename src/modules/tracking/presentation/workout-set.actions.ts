@@ -21,11 +21,20 @@ export async function getWorkoutSetsByWorkoutId(
   workoutId: Workouts['id']
 ): Promise<ActionResponseProps<WorkoutSets[]>> {
   try {
-    const workoutSets = await prisma.workoutSets.findMany({
+    const workout = await prisma.workouts.findUnique({
       where: {
-        workoutId,
+        id: workoutId,
+      },
+      include: {
+        workoutTargets: {
+          include: {
+            workoutSets: true,
+          },
+        },
       },
     });
+
+    const workoutSets = workout?.workoutTargets.flatMap((w) => w.workoutSets) ?? [];
 
     return ActionSuccess(workoutSets, 'Workout sets fetched successfully');
   } catch (e) {
@@ -98,7 +107,7 @@ export async function createWorkoutSet(
         reps: workoutSetData.reps,
         set: workoutSetData.set,
         weight: workoutSetData.weight,
-        workoutId: workoutTarget.workoutId,
+        workoutTargetId: workoutSetData.workoutTargetId,
         exerciseId: workoutTarget.exerciseId,
       },
     });
@@ -106,7 +115,7 @@ export async function createWorkoutSet(
     return ActionSuccess(workoutSet, 'Workout set created successfully');
   } catch (e) {
     // biome-ignore lint/suspicious/noConsole: Server error logs
-    console.error(e);
+    console.log(e);
     return ActionFailure('Error creating workout set');
   }
 }
@@ -143,7 +152,7 @@ export async function updateWorkoutSet(
     return ActionSuccess(updatedWorkoutSet, 'Workout set updated successfully');
   } catch (e) {
     // biome-ignore lint/suspicious/noConsole: Server error logs
-    console.error(e);
+    console.log(e);
     return ActionFailure('Error updating workout set');
   }
 }

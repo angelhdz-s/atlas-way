@@ -144,7 +144,7 @@ export async function setWorkoutTargetInProgress(
     // Verify at least one Workout Set exist
     const workoutSetsCount = await prisma.workoutSets.count({
       where: {
-        workoutId: workoutTarget.workoutId,
+        workoutTargetId: workoutTarget.id,
         exerciseId: workoutTarget.exerciseId,
       },
     });
@@ -200,7 +200,7 @@ export async function finishWorkoutTarget(
   // ToDo: get out this piece of code
   const workoutSetsCount = await prisma.workoutSets.count({
     where: {
-      workoutId: workoutTarget.workoutId,
+      workoutTargetId: workoutTarget.id,
       exerciseId: workoutTarget.exerciseId,
     },
   });

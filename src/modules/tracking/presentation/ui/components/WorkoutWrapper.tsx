@@ -31,7 +31,7 @@ const targetSetsMap = (trainingSets: WorkoutSets[]): WorkoutSetForm[] => {
   return trainingSets
     .map((t) => ({
       id: t.id,
-      workoutTargetId: t.id,
+      workoutTargetId: t.workoutTargetId,
       reps: t.reps,
       set: t.set,
       rir: 0,
