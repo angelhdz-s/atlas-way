@@ -273,3 +273,28 @@ export async function finishWorkoutTarget(
     return ActionFailure('Error completing workout target');
   }
 }
+
+/**
+ * Revert Finished `WorkoutTarget` stage status
+ *
+ * @remarks
+ * Behavior description
+ *
+ * @param workout Updating `WorkoutTarget` DTO object
+ *
+ * @returns An async {@link ActionResponseProps} which contains:
+ *
+ * **Success case** - contains an {@link ActionSuccessType} object:
+ *
+ * - `success`: `true`
+ * - `message`: User friendly message about the success operation
+ * - `data`: Contains the updated `WorkoutTarget` {@link WorkoutTargets} DTO
+ *
+ *
+ * **Failure case** - contains an {@link ActionFailureType} object:
+ *
+ * - `success`: `false`
+ * - `message`: User friendly message about the failed operation
+ * - `data`: Contains null (due to the error)
+ */
+export async function unfinishWorkoutTarget() {}
