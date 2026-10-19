@@ -1,249 +1,414 @@
 'use server';
 
-import { getWorkoutTargetsByWorkoutId } from '@/modules/tracking/presentation/workout-target.actions';
-import { getCurrentUser } from '@/modules/user/presentation/user.actions';
-import type { Workouts } from '@/prisma/client';
-import { prisma } from '@/shared/infrastructure/prisma/client';
-import {
-  ActionFailure,
-  ActionSuccess,
-  type ActionResponseProps,
-  type ActionFailureType,
-  type ActionSuccessType,
-} from '@/shared/presentation/action.response';
+import type { WorkoutStatusEnum, Workouts } from '@/prisma/client';
+import type { ActionResponseProps } from '@/shared/presentation/action.response';
+import { revalidatePath } from 'next/cache';
 import { randomUUID } from 'node:crypto';
+import { prisma } from '@/shared/infrastructure/prisma/client';
+import { ActionFailure, ActionSuccess } from '@/shared/presentation/action.response';
+import {
+  resolveRoutineSessionForDate,
+  todayDateOnly,
+} from '@/modules/tracking/domain/routine-session.rules';
+import { resolveWorkoutFinalStatus } from '@/modules/tracking/domain/workout-status.rules';
+import { getOwnedWorkout, getTrackingUserId } from '@/modules/tracking/presentation/tracking.auth';
 
-// ToDo: add session validation at the top of the actions
-// const session = await getServerSession();
-// if (!session) return ActionFailure('Unauthorized');
-export async function getTodaysWorkout(): Promise<ActionResponseProps<Workouts>> {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const tomorrow = new Date(today.getDate() + 1);
+export type TodayTrackingExercise = {
+  id: string;
+  name: string;
+  description: string | null;
+  sets: number;
+  reps: number;
+  weight: number;
+};
 
-  const todaysWorkout = await prisma.workouts.findFirst({
+export type TodayTrackingSession = {
+  id: string;
+  name: string;
+  description: string | null;
+  exercises: TodayTrackingExercise[];
+};
+
+export type TodayTrackingOverview = {
+  hasActiveRoutine: boolean;
+  routineName: string | null;
+  dayNumber: number | null;
+  isRestDay: boolean;
+  session: TodayTrackingSession | null;
+  workout: {
+    id: string;
+    statusId: WorkoutStatusEnum;
+  } | null;
+};
+
+function isUniqueConstraintError(error: unknown): boolean {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'code' in error &&
+    (error as { code?: unknown }).code === 'P2002'
+  );
+}
+
+async function findExistingWorkout({
+  userId,
+  routineId,
+  sessionId,
+  date,
+}: {
+  userId: string;
+  routineId: string;
+  sessionId: string | null;
+  date: Date;
+}): Promise<Workouts | null> {
+  return prisma.workouts.findFirst({
     where: {
-      date: {
-        gte: today,
-        lt: tomorrow,
-      },
+      userId,
+      routineId,
+      sessionId,
+      date,
+    },
+  });
+}
+
+async function createWorkoutForUser(
+  userId: string,
+  date: Date
+): Promise<ActionResponseProps<Workouts>> {
+  const routine = await prisma.routines.findFirst({
+    where: {
+      userId,
+      active: true,
+    },
+    include: {
+      plan: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
     },
   });
 
-  if (todaysWorkout) return ActionSuccess(todaysWorkout, 'Workout created successfully');
+  if (!routine) return ActionFailure('Active routine not found');
 
-  const createdWorkout = await createWorkout();
-  if (!createdWorkout.success) return createdWorkout;
+  const routineDay = resolveRoutineSessionForDate({
+    routine: {
+      initialDate: routine.initialDate,
+      days: routine.days,
+    },
+    plan: routine.plan.map((p) => ({
+      day: p.dayNumber,
+      sessionId: p.sessionId,
+    })),
+    date,
+  });
 
-  return ActionSuccess(createdWorkout.data, 'Training already created');
-}
+  if (!routineDay) return ActionFailure('No routine day scheduled for today');
 
-export async function createWorkout(): Promise<ActionResponseProps<Workouts>> {
-  const date = new Date();
+  const existingWorkout = await findExistingWorkout({
+    userId,
+    routineId: routine.id,
+    sessionId: routineDay.sessionId,
+    date,
+  });
 
-  const userId = await getCurrentUser();
-  if (!userId.success) return userId;
-
-  if (!userId.data) return ActionFailure('User not found');
-
-  const id = randomUUID();
-
-  const routine = await prisma.routines.findFirst();
-  if (!routine) return ActionFailure('Routine not found');
-  const routineId = routine.id;
-
-  const session = await prisma.sessions.findFirst();
-  if (!session) return ActionFailure('Routine not found');
-  const sessionId = session.id;
+  if (existingWorkout) return ActionSuccess(existingWorkout, 'Workout found');
 
   try {
     const workout = await prisma.workouts.create({
       data: {
-        id,
+        id: randomUUID(),
         date,
-        dayTypeId: 'training',
-        statusId: 'PENDING',
-        userId: userId.data.id,
-        routineId,
-        sessionId,
+        dayTypeId: routineDay.sessionId ? 'training' : 'rest',
+        statusId: routineDay.sessionId ? 'PENDING' : 'COMPLETED',
+        userId,
+        routineId: routine.id,
+        sessionId: routineDay.sessionId,
+        totalTargets: 0,
+        completedTargets: 0,
       },
     });
-    return ActionSuccess(workout, 'Workout created successfully');
-  } catch (_) {
-    return ActionFailure('Error creating training');
+
+    return ActionSuccess(
+      workout,
+      routineDay.sessionId ? 'Workout created successfully' : 'Rest workout created successfully'
+    );
+  } catch (error) {
+    if (isUniqueConstraintError(error)) {
+      const workout = await findExistingWorkout({
+        userId,
+        routineId: routine.id,
+        sessionId: routineDay.sessionId,
+        date,
+      });
+      if (workout) return ActionSuccess(workout, 'Workout found');
+    }
+
+    return ActionFailure('Error creating workout');
   }
+}
+
+export async function getTodayTrackingOverview(): Promise<
+  ActionResponseProps<TodayTrackingOverview>
+> {
+  const authResult = await getTrackingUserId();
+  if (!authResult.success) return ActionFailure(authResult.message);
+
+  const date = todayDateOnly();
+
+  const routine = await prisma.routines.findFirst({
+    where: {
+      userId: authResult.userId,
+      active: true,
+    },
+    include: {
+      plan: true,
+    },
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
+
+  if (!routine) {
+    return ActionSuccess(
+      {
+        hasActiveRoutine: false,
+        routineName: null,
+        dayNumber: null,
+        isRestDay: false,
+        session: null,
+        workout: null,
+      },
+      'No active routine found'
+    );
+  }
+
+  const routineDay = resolveRoutineSessionForDate({
+    routine: {
+      initialDate: routine.initialDate,
+      days: routine.days,
+    },
+    plan: routine.plan.map((p) => ({
+      day: p.dayNumber,
+      sessionId: p.sessionId,
+    })),
+    date,
+  });
+
+  const workout = await prisma.workouts.findFirst({
+    where: {
+      userId: authResult.userId,
+      date,
+    },
+    orderBy: {
+      createdAt: 'asc',
+    },
+  });
+
+  let session: TodayTrackingSession | null = null;
+
+  if (routineDay?.sessionId) {
+    const sessionRecord = await prisma.sessions.findFirst({
+      where: {
+        id: routineDay.sessionId,
+        userId: authResult.userId,
+      },
+      include: {
+        sessionToExercise: {
+          include: {
+            exercise: true,
+          },
+        },
+      },
+    });
+
+    if (sessionRecord) {
+      session = {
+        id: sessionRecord.id,
+        name: sessionRecord.name,
+        description: sessionRecord.description,
+        exercises: sessionRecord.sessionToExercise.map(({ exercise }) => ({
+          id: exercise.id,
+          name: exercise.name,
+          description: exercise.description,
+          sets: exercise.sets,
+          reps: exercise.reps,
+          weight: exercise.weight,
+        })),
+      };
+    }
+  }
+
+  return ActionSuccess(
+    {
+      hasActiveRoutine: true,
+      routineName: routine.name,
+      dayNumber: routineDay?.dayNumber ?? null,
+      isRestDay: routineDay !== null && routineDay.sessionId === null,
+      session,
+      workout: workout
+        ? {
+            id: workout.id,
+            statusId: workout.statusId,
+          }
+        : null,
+    },
+    'Today tracking overview found'
+  );
+}
+
+export async function getTodaysWorkout(): Promise<ActionResponseProps<Workouts>> {
+  const authResult = await getTrackingUserId();
+  if (!authResult.success) return ActionFailure(authResult.message);
+
+  const date = todayDateOnly();
+
+  const todaysWorkout = await prisma.workouts.findFirst({
+    where: {
+      userId: authResult.userId,
+      date,
+    },
+    orderBy: {
+      createdAt: 'asc',
+    },
+  });
+
+  if (todaysWorkout) return ActionSuccess(todaysWorkout, 'Workout found');
+
+  return createWorkoutForUser(authResult.userId, date);
+}
+
+export async function createWorkout(): Promise<ActionResponseProps<Workouts>> {
+  const authResult = await getTrackingUserId();
+  if (!authResult.success) return ActionFailure(authResult.message);
+
+  return createWorkoutForUser(authResult.userId, todayDateOnly());
 }
 
 export async function getWorkoutById(
   workoutId: string
 ): Promise<ActionResponseProps<Workouts | null>> {
-  try {
-    const training = await prisma.workouts.findUnique({
-      where: {
-        id: workoutId,
-      },
-    });
-    return ActionSuccess(training, 'Training returned successfully');
-  } catch (_) {
-    return ActionFailure('Error getting training by id');
-  }
+  const ownedWorkoutResult = await getOwnedWorkout(workoutId);
+  if (!ownedWorkoutResult.success) return ActionFailure(ownedWorkoutResult.message);
+
+  return ActionSuccess(ownedWorkoutResult.workout, 'Workout found');
 }
 
 /**
- * Update `Workout` status to `IN_PROGRESS`
+ * Update `Workout` status to `IN_PROGRESS`.
  *
- * @remarks
- * Before updating check if requirements are met:
- * 1. Current status being `TARGETS_SET`
- * 2. There must be `Workout Target`s associated to the target `Workout`
- * 3. At least one `Workout Target` associated must be IN_PROGRESS
- *
- * @param workout Updating `Workout` DTO object
- *
- * @returns An async {@link ActionResponseProps} which contains:
- *
- * **Success case** - contains an {@link ActionSuccessType} object:
- *
- * > - `success`: `true`
- * > - `message`: User friendly message about the success operation
- * > - `data`: Contains the updated `Workout` as {@link Workouts} DTO
- *
- *
- * **Failure case** - contains an {@link ActionFailureType} object:
- *
- * > - `success`: `false`
- * > - `message`: User friendly message about the failed operation
- * > - `data`: Contains null (due to the error)
+ * Requirements:
+ * 1. Current status is `TARGETS_SET`.
+ * 2. There is at least one `WorkoutTarget` associated with the workout.
  */
 export async function setWorkoutInProgress(
-  workout: Workouts
+  workoutId: string
 ): Promise<ActionResponseProps<Workouts>> {
-  // Validate current status is not "TARGETS_SET"
-  if (workout.statusId !== 'TARGETS_SET')
+  const ownedWorkoutResult = await getOwnedWorkout(workoutId);
+  if (!ownedWorkoutResult.success) return ActionFailure(ownedWorkoutResult.message);
+
+  const { workout } = ownedWorkoutResult;
+
+  if (workout.statusId === 'IN_PROGRESS') {
+    return ActionSuccess(workout, 'Workout already in progress');
+  }
+
+  if (workout.statusId !== 'TARGETS_SET') {
     return ActionFailure('Workout process. Not allowed status transition');
+  }
 
-  // Verify at least one Workout Target exist
-  const workoutTargetsResult = await getWorkoutTargetsByWorkoutId(workout.id);
-  if (!workoutTargetsResult.success) return ActionFailure(workoutTargetsResult.message);
-  if (workoutTargetsResult.data.length < 1)
-    return ActionFailure('Workout process. Not workout targets found');
-  const workoutTargets = workoutTargetsResult.data;
-  const areAnyWorkoutTargetInProgress = workoutTargets.some((wt) => wt.statusId === 'IN_PROGRESS');
+  const totalTargets = await prisma.workoutTargets.count({
+    where: {
+      workoutId,
+    },
+  });
 
-  // Verify at least one Workout Target status is IN_PROGRESS
-  if (!areAnyWorkoutTargetInProgress)
-    return ActionFailure('Workout process. No workout target in progress');
+  if (totalTargets < 1) return ActionFailure('Workout process. No workout targets found');
 
-  // Update status
   try {
     const updatedWorkout = await prisma.workouts.update({
       where: {
-        id: workout.id,
+        id: workoutId,
       },
       data: {
-        ...workout,
         statusId: 'IN_PROGRESS',
+        totalTargets,
       },
     });
 
     return ActionSuccess(updatedWorkout, 'Workout process started successfully');
-  } catch (e) {
-    // biome-ignore lint/suspicious/noConsole: Server error log
-    console.log(e);
+  } catch {
     return ActionFailure('Error starting workout process');
   }
 }
 
 /**
- * Finish `Workout` process
+ * Finish a `Workout` process.
  *
- * @remarks
- * Determine the final `Workout` status:
- * - `SKIPPED`: For no one completed target
- * - `INTERRUPTED`: At least one target completed but not all
- * - `COMPLETED`: All targets were completed
- *
- * @param workout Updating workout DTO object
- *
- * @returns An async {@link ActionResponseProps} which contains:
- *
- * **Success case** - contains an {@link ActionSuccessType<Workouts>} object:
- *
- * > - `success`: `true`
- * > - `message`: User friendly message about the success operation
- * > - `data`: Contains the updated `Workout` as {@link Workouts} DTO
- *
- *
- * **Failure case** - contains an {@link ActionFailureType} object:
- *
- * > - `success`: `false`
- * > - `message`: User friendly message about the failed operation
- * > - `data`: Contains null (due to the error)
+ * The final status is calculated from the targets stored in the database:
+ * - `SKIPPED`: no target was completed
+ * - `INTERRUPTED`: at least one target was completed but not all of them
+ * - `COMPLETED`: every target was completed
  */
-export async function finishWorkout(workout: Workouts): Promise<ActionResponseProps<Workouts>> {
-  // Check if current workout status is TARGETS_SET;
-  // TARGETS_SET status can not be in a workout
-  // with one or more completed targets
-  if (workout.statusId === 'TARGETS_SET') {
-    try {
-      const updatedWorkout = await prisma.workouts.update({
-        where: {
-          id: workout.id,
-        },
-        data: {
-          ...workout,
-          statusId: 'SKIPPED', // Update status to skipped (no one target was completed)
-        },
-      });
+export async function finishWorkout(workoutId: string): Promise<ActionResponseProps<Workouts>> {
+  const ownedWorkoutResult = await getOwnedWorkout(workoutId);
+  if (!ownedWorkoutResult.success) return ActionFailure(ownedWorkoutResult.message);
 
-      return ActionSuccess(updatedWorkout, 'Workout skipped successfully');
-    } catch (e) {
-      // biome-ignore lint/suspicious/noConsole: Server error log
-      console.log(e);
-      return ActionFailure('Error skipping workout');
-    }
+  const { workout } = ownedWorkoutResult;
+
+  if (
+    workout.statusId === 'COMPLETED' ||
+    workout.statusId === 'INTERRUPTED' ||
+    workout.statusId === 'SKIPPED'
+  ) {
+    return ActionSuccess(workout, 'Workout already finished');
   }
 
-  // Check if completed targets are not equal to total targets;
-  // At least one target was completed but not all
-  if (workout.completedTargets !== workout.totalTargets) {
-    try {
-      const updatedWorkout = await prisma.workouts.update({
-        where: {
-          id: workout.id,
-        },
-        data: {
-          ...workout,
-          // Update status to interrupted (at least
-          // one target was completed but no all)
-          statusId: 'INTERRUPTED',
-        },
-      });
-
-      return ActionSuccess(updatedWorkout, 'Workout interrupted successfully');
-    } catch (e) {
-      // biome-ignore lint/suspicious/noConsole: Server error log
-      console.log(e);
-      return ActionFailure('Error interrupting workout');
-    }
+  if (workout.statusId !== 'IN_PROGRESS') {
+    return ActionFailure('Workout process. Not allowed status transition');
   }
 
-  // For completed targets are equal to total targets
+  const totalTargets = await prisma.workoutTargets.count({
+    where: {
+      workoutId,
+    },
+  });
+
+  const completedTargets = await prisma.workoutTargets.count({
+    where: {
+      workoutId,
+      statusId: 'COMPLETED',
+    },
+  });
+
+  const statusId = resolveWorkoutFinalStatus({
+    totalTargets,
+    completedTargets,
+  });
+
   try {
     const updatedWorkout = await prisma.workouts.update({
       where: {
-        id: workout.id,
+        id: workoutId,
       },
       data: {
-        ...workout,
-        statusId: 'COMPLETED', // All targets completed
+        statusId,
+        totalTargets,
+        completedTargets,
       },
     });
 
-    return ActionSuccess(updatedWorkout, 'Workout completed successfully');
-  } catch (e) {
-    // biome-ignore lint/suspicious/noConsole: Server error log
-    console.log(e);
-    return ActionFailure('Error completing workout');
+    revalidatePath('/dashboard/tracking');
+    revalidatePath(`/dashboard/tracking/${workoutId}/training`);
+
+    const message =
+      statusId === 'COMPLETED'
+        ? 'Workout completed successfully'
+        : statusId === 'INTERRUPTED'
+          ? 'Workout interrupted successfully'
+          : 'Workout skipped successfully';
+
+    return ActionSuccess(updatedWorkout, message);
+  } catch {
+    return ActionFailure('Error finishing workout');
   }
 }
