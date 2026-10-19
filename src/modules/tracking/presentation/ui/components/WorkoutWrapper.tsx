@@ -10,14 +10,18 @@ import type { WorkoutSets, WorkoutTargetStatusEnum } from '@/prisma/client';
 import type { WorkoutSetForm } from '@/modules/tracking/presentation/schemas/workout.schema';
 import type { FullWorkoutTargets } from '@/modules/tracking/presentation/workout-target.actions';
 import { processWorkoutSetData } from '@/modules/tracking/presentation/workout-set.actions';
+import { finishWorkout } from '@/modules/tracking/presentation/workout.actions';
 import { workoutSetSchema } from '@/modules/tracking/presentation/schemas/workout.schema';
 import { normalizeStepsData } from '@/presentation/modules/wizard/helpers/wizard.normalizer.helper';
 import { normalizeSummaryData } from '@/presentation/modules/wizard/helpers/wizard.summary.normalizer.helper';
 import { WizardProvider } from '@/presentation/modules/wizard/components/WizardProvider';
 import { Workout } from '@/modules/tracking/presentation/ui/components/Workout';
+import { useToast } from '@/presentation/modules/toast/hooks/useToast';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   className?: string;
+  workoutId: string;
   workoutTargets: FullWorkoutTargets[];
   workoutSets: WorkoutSets[];
 };
@@ -34,7 +38,7 @@ const targetSetsMap = (trainingSets: WorkoutSets[]): WorkoutSetForm[] => {
       workoutTargetId: t.workoutTargetId,
       reps: t.reps,
       set: t.set,
-      rir: 0,
+      rir: t.rir ?? 0,
       weight: t.weight,
     }))
     .sort((a, b) => (a.set > b.set ? 1 : -1));
@@ -56,7 +60,30 @@ const onNextStep = ({
   };
 };
 
-export function WorkoutWrapper({ workoutTargets, workoutSets, className = '' }: Props) {
+export function WorkoutWrapper({ workoutId, workoutTargets, workoutSets, className = '' }: Props) {
+  const { addToast } = useToast();
+  const { push } = useRouter();
+
+  const initialCanceledPhaseIds = workoutTargets
+    .filter((target) => target.statusId === 'SKIPPED' || target.statusId === 'INTERRUPTED')
+    .map((target) => target.id);
+
+  const handleComplete = async () => {
+    const finishResult = await finishWorkout(workoutId);
+
+    if (!finishResult.success) {
+      addToast(finishResult.message, {
+        type: 'error',
+      });
+      return;
+    }
+
+    addToast(finishResult.message, {
+      type: 'success',
+    });
+    push('/dashboard/tracking');
+  };
+
   const stepEnginePhaseEntries: StepEnginePhaseEntries<WorkoutSetForm>[] = workoutTargets.map(
     (t) => {
       const targetSets = workoutSets
@@ -163,6 +190,8 @@ export function WorkoutWrapper({ workoutTargets, workoutSets, className = '' }: 
       populateNextPhaseStep={onNextStep}
       processSetFormData={processWorkoutSetData}
       syncCurrentStep={syncCurrentStep}
+      initialCanceledPhaseIds={initialCanceledPhaseIds}
+      onComplete={handleComplete}
     >
       <div className="flex gap-4">
         <Workout className={className} />

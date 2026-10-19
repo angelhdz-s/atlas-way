@@ -7,7 +7,7 @@ import {
 import type { StatusDayType } from '@/presentation/globals/mocks/routines';
 
 export type exerciseType = {
-  id: number;
+  id: string | number;
   name: string;
   sets: number;
   reps: number;
@@ -16,12 +16,12 @@ export type exerciseType = {
 };
 
 export type SessionDetailsType = {
-  id: number;
+  id: string | number;
   name: string;
-  description?: string;
+  description?: string | undefined;
   exercises: exerciseType[];
   status: StatusDayType;
-  date?: string;
+  date?: string | undefined;
 };
 
 export function SessionDetails({
