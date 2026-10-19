@@ -2,6 +2,7 @@ import { PageContainer } from '@/presentation/modules/dashboard/components/page/
 import { PageContent } from '@/presentation/modules/dashboard/components/page/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/components/page/PageHeader';
 import { ActivitiesToday } from '@/modules/tracking/presentation/ui/components/ActivitiesToday';
+import { getTodayTrackingOverview } from '@/modules/tracking/presentation/workout.actions';
 import { AllSessionsDoneCounter } from '@/modules/tracking/presentation/ui/components/AllSessionsDoneCounter';
 import { BestRecords } from '@/modules/tracking/presentation/ui/components/BestRecords';
 import { CurrentGoals } from '@/modules/tracking/presentation/ui/components/CurrentGoals';
@@ -12,7 +13,19 @@ import { SessionsChart } from '@/modules/tracking/presentation/ui/components/Ses
 import { SessionsHistory } from '@/modules/tracking/presentation/ui/components/SessionsHistory';
 import { SessionStreak } from '@/modules/tracking/presentation/ui/components/SessionStreak';
 
-export default function SessionsPage() {
+export default async function SessionsPage() {
+  const overviewResult = await getTodayTrackingOverview();
+  const overview = overviewResult.success
+    ? overviewResult.data
+    : {
+        hasActiveRoutine: false,
+        routineName: null,
+        dayNumber: null,
+        isRestDay: false,
+        session: null,
+        workout: null,
+      };
+
   return (
     <PageContainer>
       <PageHeader title="Tracking" />
@@ -23,7 +36,7 @@ export default function SessionsPage() {
           <CurrentMonthSessionsCounter />
           <AllSessionsDoneCounter />
         </section>
-        <ActivitiesToday />
+        <ActivitiesToday overview={overview} />
         <SessionsHistory className="col-span-2" />
         <NextSession />
         <BestRecords />
