@@ -27,6 +27,8 @@ type Props<Schema extends ZodSchema<any, any>, FormValues, FormEntityDTO> = {
       }) => FormValues)
     | undefined;
   isFormStepCompleted: (data: FormValues) => boolean;
+  initialCanceledPhaseIds?: string[] | undefined;
+  onComplete?: (() => Promise<void> | void) | undefined;
 };
 
 export function WizardProvider<Schema extends ZodSchema<any, any>, FormValues, FormEntityDTO>({
@@ -39,9 +41,11 @@ export function WizardProvider<Schema extends ZodSchema<any, any>, FormValues, F
   populateNextPhaseStep,
   syncCurrentStep,
   isFormStepCompleted,
+  initialCanceledPhaseIds,
+  onComplete,
 }: Props<Schema, FormValues, FormEntityDTO>) {
   return (
-    <StepEngineProvider flatSteps={flatSteps}>
+    <StepEngineProvider flatSteps={flatSteps} initialCanceledPhaseIds={initialCanceledPhaseIds}>
       <StepFormProvider schema={formSchema} defaultValues={formDefaultValues}>
         <StepFormSyncProvider
           flatSteps={flatSteps}
@@ -53,7 +57,9 @@ export function WizardProvider<Schema extends ZodSchema<any, any>, FormValues, F
             flatSteps={flatStepsWithText}
             areFieldValuesCompleted={isFormStepCompleted}
           >
-            <WizardOrchestratorInner flatSteps={flatSteps}>{children}</WizardOrchestratorInner>
+            <WizardOrchestratorInner flatSteps={flatSteps} onComplete={onComplete}>
+              {children}
+            </WizardOrchestratorInner>
           </WizardSummaryProvider>
         </StepFormSyncProvider>
       </StepFormProvider>
