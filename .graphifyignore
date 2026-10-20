@@ -1,0 +1,36 @@
+# AI/agent tooling
+/.opencode/agents/
+/.claude/
+/AGENTS.md
+/CLAUDE.md
+
+# CI scaffolding
+/.github/ISSUE_TEMPLATE/
+/.github/PULL_REQUEST_TEMPLATE/
+
+# Static assets (screenshots, backgrounds, textures)
+/public/
+
+# Dev-only playground
+/src/app/dev/
+
+# Tooling config: JSON extractors emit one node per key
+/package.json
+/biome.json
+/tsconfig.json
+/next.config.ts
+/jest.config.ts
+/postcss.config.mjs
+/prisma.config.ts
+/pnpm-workspace.yaml
+/compose.yaml
+/.vscode/
+
+# Fixtures and mocks
+**/mocks/
+/src/shared/test/
+
+# Generated or stray output (typically already gitignored)
+/src/prisma/
+/src/graphify-out/
+*.tsbuildinfo
