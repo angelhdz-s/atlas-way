@@ -28,6 +28,7 @@ When completed:
   - [ ] Add StepEngine, StepFormSync and WizardSummary wizard layers for targets process
   - [ ] Extend certain layers when required for targets process integration
         For example: Configuration for single step phases (when actually there are no phases, just steps)
+  - [ ] Add forgein keys indexes in schema models
  */
 
 export function Workout({ className }: Props) {

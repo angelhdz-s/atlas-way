@@ -15,9 +15,10 @@ import { useCallback, useMemo } from 'react';
 type Props = {
   children?: React.ReactNode;
   flatSteps: FlatStep[];
+  onComplete?: (() => Promise<void> | void) | undefined;
 };
 
-export function WizardOrchestratorInner({ children, flatSteps }: Props) {
+export function WizardOrchestratorInner({ children, flatSteps, onComplete }: Props) {
   const { currentStep, canceledPhaseIds, goToStep, toggleCancelPhase } = useStepEngine();
   const { saveCurrentStep } = useStepFormSync();
   const { completedStepIds } = useWizardSummary();
@@ -31,7 +32,10 @@ export function WizardOrchestratorInner({ children, flatSteps }: Props) {
       completedStepIds,
       currentStepIndex: currentStep.globalIndex,
     });
-    if (nextStepId === null) return;
+    if (nextStepId === null) {
+      await onComplete?.();
+      return;
+    }
     goToStep(nextStepId);
   }, [
     saveCurrentStep,
@@ -40,6 +44,7 @@ export function WizardOrchestratorInner({ children, flatSteps }: Props) {
     completedStepIds,
     flatSteps,
     goToStep,
+    onComplete,
   ]);
 
   const goToPrevStep = useCallback(async () => {

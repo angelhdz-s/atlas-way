@@ -10,11 +10,11 @@ import { stepEngineReducer } from '@/presentation/modules/wizard/reducers/wizard
 type Props = {
   children: React.ReactNode;
   flatSteps: FlatStep[];
+  initialCanceledPhaseIds?: string[] | undefined;
 };
 
-export function StepEngineProvider({ children, flatSteps }: Props) {
-  // ToDo: normalize canceled phases entries from server
-  const initialCanceled = new Set<string>();
+export function StepEngineProvider({ children, flatSteps, initialCanceledPhaseIds = [] }: Props) {
+  const initialCanceled = new Set<string>(initialCanceledPhaseIds);
 
   const [state, dispatch] = useReducer(stepEngineReducer, {
     flatSteps,

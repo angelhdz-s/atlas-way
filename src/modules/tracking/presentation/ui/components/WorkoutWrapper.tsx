@@ -6,25 +6,28 @@ import type {
   StepStatus,
   WizardSummaryPhaseEntries,
 } from '@/presentation/modules/wizard/wizard.types';
-import type { WorkoutTargets, WorkoutSets } from '@/prisma/client';
+import type { WorkoutSets, WorkoutTargetStatusEnum } from '@/prisma/client';
 import type { WorkoutSetForm } from '@/modules/tracking/presentation/schemas/workout.schema';
 import type { FullWorkoutTargets } from '@/modules/tracking/presentation/workout-target.actions';
 import { processWorkoutSetData } from '@/modules/tracking/presentation/workout-set.actions';
+import { finishWorkout } from '@/modules/tracking/presentation/workout.actions';
 import { workoutSetSchema } from '@/modules/tracking/presentation/schemas/workout.schema';
 import { normalizeStepsData } from '@/presentation/modules/wizard/helpers/wizard.normalizer.helper';
 import { normalizeSummaryData } from '@/presentation/modules/wizard/helpers/wizard.summary.normalizer.helper';
 import { WizardProvider } from '@/presentation/modules/wizard/components/WizardProvider';
 import { Workout } from '@/modules/tracking/presentation/ui/components/Workout';
+import { useToast } from '@/presentation/modules/toast/hooks/useToast';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   className?: string;
+  workoutId: string;
   workoutTargets: FullWorkoutTargets[];
   workoutSets: WorkoutSets[];
 };
 
-const targetStatusMapper = (targetStatus: WorkoutTargets['statusId']): StatusCode => {
+const targetStatusMapper = (targetStatus: WorkoutTargetStatusEnum): StatusCode => {
   if (targetStatus === 'SKIPPED' || targetStatus === 'INTERRUPTED') return 'CANCELED';
-  if (targetStatus === 'TARGETS_SET') return 'PENDING';
   return targetStatus;
 };
 
@@ -32,10 +35,10 @@ const targetSetsMap = (trainingSets: WorkoutSets[]): WorkoutSetForm[] => {
   return trainingSets
     .map((t) => ({
       id: t.id,
-      workoutId: t.workoutId,
+      workoutTargetId: t.workoutTargetId,
       reps: t.reps,
       set: t.set,
-      rir: 0,
+      rir: t.rir ?? 0,
       weight: t.weight,
     }))
     .sort((a, b) => (a.set > b.set ? 1 : -1));
@@ -57,7 +60,30 @@ const onNextStep = ({
   };
 };
 
-export function WorkoutWrapper({ workoutTargets, workoutSets, className = '' }: Props) {
+export function WorkoutWrapper({ workoutId, workoutTargets, workoutSets, className = '' }: Props) {
+  const { addToast } = useToast();
+  const { push } = useRouter();
+
+  const initialCanceledPhaseIds = workoutTargets
+    .filter((target) => target.statusId === 'SKIPPED' || target.statusId === 'INTERRUPTED')
+    .map((target) => target.id);
+
+  const handleComplete = async () => {
+    const finishResult = await finishWorkout(workoutId);
+
+    if (!finishResult.success) {
+      addToast(finishResult.message, {
+        type: 'error',
+      });
+      return;
+    }
+
+    addToast(finishResult.message, {
+      type: 'success',
+    });
+    push('/dashboard/tracking');
+  };
+
   const stepEnginePhaseEntries: StepEnginePhaseEntries<WorkoutSetForm>[] = workoutTargets.map(
     (t) => {
       const targetSets = workoutSets
@@ -76,7 +102,7 @@ export function WorkoutWrapper({ workoutTargets, workoutSets, className = '' }: 
                   reps: t.reps,
                   rir: 0,
                   set: 1,
-                  workoutId: t.id,
+                  workoutTargetId: t.id,
                   weight: t.weight,
                 },
               ],
@@ -111,7 +137,7 @@ export function WorkoutWrapper({ workoutTargets, workoutSets, className = '' }: 
           rir: data.rir,
           reps: data.reps,
           weight: data.weight,
-          workoutId: data.workoutId ?? step.phase.id,
+          workoutTargetId: data.workoutTargetId ?? step.phase.id,
         };
 
       return {
@@ -119,7 +145,7 @@ export function WorkoutWrapper({ workoutTargets, workoutSets, className = '' }: 
         rir: lastDefaultValue?.rir ?? 0,
         reps: lastDefaultValue?.reps ?? 12,
         weight: lastDefaultValue?.weight ?? 0,
-        workoutId: lastDefaultValue?.workoutId ?? step.phase.id,
+        workoutTargetId: lastDefaultValue?.workoutTargetId ?? step.phase.id,
       };
     },
   });
@@ -164,6 +190,8 @@ export function WorkoutWrapper({ workoutTargets, workoutSets, className = '' }: 
       populateNextPhaseStep={onNextStep}
       processSetFormData={processWorkoutSetData}
       syncCurrentStep={syncCurrentStep}
+      initialCanceledPhaseIds={initialCanceledPhaseIds}
+      onComplete={handleComplete}
     >
       <div className="flex gap-4">
         <Workout className={className} />

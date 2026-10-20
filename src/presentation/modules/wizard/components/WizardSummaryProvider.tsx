@@ -80,7 +80,7 @@ export function WizardSummaryProvider<FormValues>({
         }
       }
 
-      if (landingStepIdRef.current === null && status === 'PENDING')
+      if (landingStepIdRef.current === null && (status === 'IN_PROGRESS' || status === 'PENDING'))
         landingStepIdRef.current = s.id;
     });
 

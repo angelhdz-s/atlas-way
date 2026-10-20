@@ -59,7 +59,7 @@ export function StepFormSyncProvider<FormValues, ActionResponseData>({
       const response = await saveStepAction(formData as FormValues);
 
       if (!response.success) {
-        addToast('Error saving data', {
+        addToast(response.message, {
           type: 'error',
         });
         return false;
