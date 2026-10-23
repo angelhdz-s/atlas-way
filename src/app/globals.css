@@ -164,6 +164,112 @@
   --color-focus: var(--color-focus-dark);
 }
 
+@layer components {
+  .heading-1 {
+    @apply font-funnel-display text-[80px] leading-24 font-extrabold tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 144px;
+    }
+  }
+
+  .heading-2 {
+    @apply font-funnel-display text-[64px] leading-20 font-bold tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 128px;
+    }
+  }
+
+  .heading-3 {
+    @apply font-funnel-display text-[48px] leading-16 font-semibold tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 96px;
+    }
+  }
+
+  .heading-4 {
+    @apply font-funnel-display text-[40px] leading-12 font-medium tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 80px;
+    }
+  }
+
+  .heading-5 {
+    @apply font-funnel-display text-[32px] leading-10 font-normal tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 64px;
+    }
+  }
+
+  .heading-6 {
+    @apply font-outfit text-[24px] leading-8 font-medium tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 48px;
+    }
+  }
+
+  .body-large {
+    @apply font-outfit text-[20px] leading-6 font-normal tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 40px;
+    }
+  }
+
+  .body-medium {
+    @apply font-outfit text-[16px] leading-5 font-normal tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 32px;
+    }
+  }
+
+  .body-small {
+    @apply font-outfit text-[16px] leading-5 font-light tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 32px;
+    }
+  }
+
+  .button-label-large {
+    @apply font-outfit text-[20px] leading-6 font-medium tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 40px;
+    }
+  }
+
+  .button-label-medium {
+    @apply font-outfit text-[16px] leading-5 font-medium tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 32px;
+    }
+  }
+
+  .button-label-small {
+    @apply font-outfit text-[16px] leading-5 font-medium tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 32px;
+    }
+  }
+
+  .caption {
+    @apply font-outfit text-[12px] leading-4 font-light tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 24px;
+    }
+  }
+}
+
 /* Light Color Versions */
 html[data-theme='light'] {
   /* Backgound Colors*/
