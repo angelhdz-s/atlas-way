@@ -183,8 +183,8 @@ When translating font weights from Figma to Tailwind CSS, use a default rule of 
 | Figma weight | Figma numeric value | Target Tailwind utility | CSS weight |
 | ------------ | ------------------: | ----------------------- | ---------: |
 | Thin         |                 100 | `font-thin`             |        100 |
-| Extra Light  |                 200 | `font-extralight`       |        200 |
-| Light        |                 300 | `font-thin`             |        100 |
+| Extra Light  |                 200 | `font-thin`             |        100 |
+| Light        |                 300 | `font-extralight`       |        200 |
 | Regular      |                 400 | `font-light`            |        300 |
 | Medium       |                 500 | `font-normal`           |        400 |
 | Semi Bold    |                 600 | `font-medium`           |        500 |
@@ -209,6 +209,15 @@ The mapping represents the default one-step-lighter convention. The exact result
 ## 6. Design Tokens and `DESIGN.md`
 
 The project already has a `DESIGN.md` file. Treat it as the concise reference for the project's design system rather than a repository for implementation instructions.
+
+### Mapped color tokens
+
+- Use only the color variables declared after `/* DESIGN SYSTEM COLORS */` in `src/shared/ui/styles/theme.css`; variables before that marker are deprecated.
+- `DESIGN.md` lists the Mapped tokens in the same order as their CSS variables and maps each token to its Tailwind color name.
+- The CSS prefixes identify the token category: `sf` = Surface, `bd` = Border, `txt` = Text, and `ic` = Icon.
+- Apply color names with the appropriate Tailwind property utility: `bg-sf-*` for surfaces, `border-bd-*` or `ring-bd-*` for borders and focus rings, and `text-txt-*` or `text-ic-*` for text and icons.
+- Keep token paths grouped by their CSS variable segments, such as `Surface/base/page` for `--color-sf-base-page`. Preserve the exact CSS color name in the Tailwind class when a source variable contains a spelling inconsistency.
+- Do not use or document the deprecated Dark Colors or Light Colors collections; `DESIGN.md` keeps only Mapped color tokens.
 
 ### Keep `DESIGN.md` clean
 
@@ -245,6 +254,38 @@ When implementing a Figma component or modifying an existing interface:
 - Do not introduce unnecessary wrappers, duplicated components, or redundant utility classes.
 - Avoid overriding existing styles without understanding their purpose.
 - Preserve the intended behavior of existing components when modifying their appearance.
+
+### Shared icon component
+
+Use `src/presentation/modules/icon/components/Icon.tsx` for Lucide icons instead of rendering icons directly.
+
+The component accepts:
+
+- `icon` (required): a Lucide icon name in kebab-case, such as `plus` or `clipboard-list`.
+- `variant` (optional): an object with `size` and `weight` options:
+
+| `size` | Target size |
+| --- | ---: |
+| `sm` | 16px |
+| `md` | 20px |
+| `lg` | 24px |
+
+| `weight` | Nominal stroke |
+| --- | ---: |
+| `thin` | 1px |
+| `moderate` | 1.5px |
+| `medium` | 2px |
+| `thick` | 4px |
+
+These sizes and strokes describe the intended visual values to match in Figma, not necessarily the literal CSS utility values. The shared variants deliberately compensate for translation from Figma to CSS, including icon size, stroke rendering, and browser behavior. Preserve the existing variant definitions and the component's absolute SVG stroke-width behavior; do not "correct" a CSS value just because it differs from the Figma target, or replace the compensation with a uniform `strokeWidth` or ad hoc classes.
+
+When `variant` is omitted, the component defaults to `md` size and `thin` weight.
+
+```tsx
+<Icon icon="clipboard-list" variant={{ size: 'md', weight: 'moderate' }} />
+```
+
+Use the semantic icon assignments in `DESIGN.md` when choosing an icon for an application entity, status, or utility.
 
 ## 8. Implementation Workflow
 
