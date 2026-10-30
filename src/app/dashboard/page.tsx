@@ -2,6 +2,7 @@ import { Button } from '@/presentation/modules/button/components/Button';
 import { PageContainer } from '@/presentation/modules/dashboard/components/page/PageContainer';
 import { PageContent } from '@/presentation/modules/dashboard/components/page/PageContent';
 import { PageHeader } from '@/presentation/modules/dashboard/components/page/PageHeader';
+import { PageLateralPanel } from '@/presentation/modules/dashboard/components/page/PageLateralPanel';
 import { Icon } from '@/presentation/modules/icon/components/Icon';
 import { Tag } from '@/presentation/modules/tag/components/Tag';
 
@@ -262,7 +263,7 @@ export default function Dashboard() {
           </div>
         </PageContent>
       </main>
-      <aside className="w-96 space-y-4">
+      <PageLateralPanel>
         <section className="w-full space-y-2">
           <h2 className="heading-6 text-txt-base-heading">Your sessions</h2>
           <div>
@@ -442,7 +443,7 @@ export default function Dashboard() {
             </ul>
           </div>
         </section>
-      </aside>
+      </PageLateralPanel>
     </PageContainer>
   );
 }
