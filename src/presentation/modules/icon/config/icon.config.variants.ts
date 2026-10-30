@@ -4,7 +4,7 @@ export const iconVariant = tv({
   base: 'aspect-square',
   variants: {
     size: {
-      sm: 'size-4.5',
+      sm: 'size-4',
       md: 'size-5',
       lg: 'size-6',
     },
