@@ -1,15 +1,12 @@
-import { IconCalendarWeek } from '@/presentation/globals/components/icons/outline/IconCalendarWeek';
-import { IconCircleOutline } from '@/presentation/globals/components/icons/outline/IconCircleOutline';
 import { WEEK_DAYS } from '@/presentation/globals/constants/date';
 import { getNextDates, getSessionFromDate } from '@/presentation/globals/lib/dates';
 import { TODAY } from '@/presentation/globals/mocks/tracking';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { getStatusTextColorClass } from '@/presentation/globals/lib/get-classes';
 import { Card } from '@/presentation/modules/card/components/Card';
-import { SIconCircleCheck } from '@/presentation/globals/components/icons/solid/SIconCircleCheck';
-import { SIconCircleX } from '@/presentation/globals/components/icons/solid/SIconCircleX';
+import type { IconName } from '@/presentation/modules/icon/components/Icon';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 import type { StatusDayType } from '@/presentation/globals/mocks/routines';
-import type { IconTypes, SolidIconTypes } from '@/presentation/globals/presentation.types';
 
 const ICON_SIZE_CLASS = 'size-7';
 
@@ -38,46 +35,42 @@ function getCurrentWeekStatusDays(): CurrentWeekStatusDays[] {
   return dates;
 }
 
-function StatusDayIcon({ className = '', icon: Icon }: { className: string; icon: IconTypes }) {
-  return <Icon className={`${ICON_SIZE_CLASS} ${className}`} strokeWidth="1.5" />;
-}
-
-function StatusDaySolidIcon({
-  className = '',
-  icon: Icon,
-}: {
-  className?: string;
-  icon: SolidIconTypes;
-}) {
-  return <Icon className={`${ICON_SIZE_CLASS} ${className}`} />;
+function StatusDayIcon({ className = '', icon }: { className?: string; icon: IconName }) {
+  return (
+    <Icon
+      icon={icon}
+      className={`${ICON_SIZE_CLASS} ${className}`}
+      variant={{ weight: 'moderate' }}
+    />
+  );
 }
 
 function StatusDay({ status, className }: { status: StatusDayType; className?: string }) {
   if (status === 'completed')
     return (
       <span className={` ${className}`}>
-        <StatusDaySolidIcon className="text-success" icon={SIconCircleCheck} />
+        <StatusDayIcon className="text-success" icon="check" />
       </span>
     );
 
   if (status === 'canceled')
     return (
       <span className={` ${className}`}>
-        <StatusDaySolidIcon className="text-danger" icon={SIconCircleX} />
+        <StatusDayIcon className="text-danger" icon="octagon-alert" />
       </span>
     );
 
   if (status === 'current')
     return (
       <span className={` ${className}`}>
-        <StatusDayIcon className="text-accent" icon={IconCircleOutline} />
+        <StatusDayIcon className="text-accent" icon="circle-dot-dashed" />
       </span>
     );
 
   // default return if status === "next"
   return (
     <span className={`${className}`}>
-      <StatusDayIcon className="text-fg-default/25" icon={IconCircleOutline} />
+      <StatusDayIcon className="text-fg-default/25" icon="circle-dot" />
     </span>
   );
 }
@@ -88,7 +81,7 @@ export function CurrentWeekStatus({ className = '' }: { className?: string }) {
   return (
     <Card border="highlighted" className={`flex flex-col ${className}`}>
       <header>
-        <CardTitle Icon={IconCalendarWeek} title="Week" />
+        <CardTitle icon="calendar-days" title="Week" />
       </header>
       <main className="flex items-center justify-center gap-2">
         {currentWeekStatusDays.map(({ day, status, title }) => {

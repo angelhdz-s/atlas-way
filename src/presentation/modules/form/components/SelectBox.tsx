@@ -1,13 +1,12 @@
 'use client';
 
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { Box } from '@/presentation/modules/form/components/Box';
-import { IconSearch } from '@/presentation/globals/components/icons/outline/IconSearch';
-import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { useSelectBox } from '@/presentation/modules/form/hooks/useSelectBox';
 import { SelectBoxOption } from '@/presentation/modules/form/components/SelectBoxOption';
-import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 export function SelectBox({
   title,
@@ -51,13 +50,18 @@ export function SelectBox({
           <Button
             onClick={onClose}
             variant={{ color: 'simple', type: 'icon' }}
-            Icon={IconXMark}
             aria-label="Close selection"
-          />
+          >
+            <Icon icon="x" variant={{ size: 'md', weight: 'moderate' }} />
+          </Button>
         </header>
         <div>
           <label className="hover:outline-bd-default bg-fill-back mb-2 flex w-full items-center gap-2 rounded-lg px-4 py-2 text-base font-light hover:outline-1">
-            <IconSearch className="text-fg-subtle size-5" strokeWidth="2" />
+            <Icon
+              icon="search"
+              className="text-fg-subtle"
+              variant={{ size: 'md', weight: 'medium' }}
+            />
             <input
               type="search"
               className="w-full appearance-none outline-none"

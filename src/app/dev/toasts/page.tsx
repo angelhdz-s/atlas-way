@@ -4,7 +4,9 @@ import { DevToasts } from './components/DevToasts';
 export default function ToastsPage() {
   return (
     <div>
-      <Link href="/dev">Back</Link>
+      <Link variant={{ color: 'simple', size: 'md', type: 'default' }} href="/dev">
+        Back
+      </Link>
       <DevToasts />
     </div>
   );

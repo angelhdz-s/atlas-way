@@ -10,7 +10,6 @@ import { ExerciseRepsField } from '@/modules/exercise/presentation/ui/components
 import { ExerciseSetsField } from '@/modules/exercise/presentation/ui/components/fields/ExerciseSetsField';
 import { ExerciseWeightField } from '@/modules/exercise/presentation/ui/components/fields/ExerciseWeightField';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
-import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
 import { ModalForm } from '@/presentation/modules/form/components/modal-form/ModalForm';
 import { ModalFormButtons } from '@/presentation/modules/form/components/modal-form/ModalFormButtons';
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
@@ -47,7 +46,7 @@ export function ModalExerciseForm({
         <ExerciseNameField value={data?.name} />
         <ExerciseDescriptionField value={data?.description} />
       </section>
-      <FormFieldSection Icon={IconBarbell} title="Metrics" className="flex items-start gap-4">
+      <FormFieldSection icon="dumbbell" title="Metrics" className="flex items-start gap-4">
         <ExerciseSetsField value={data?.sets} />
         <ExerciseRepsField value={data?.reps} />
         <ExerciseWeightField value={data?.weight} />

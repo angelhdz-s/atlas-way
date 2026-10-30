@@ -3,10 +3,10 @@
 import type { SubmitHandler } from 'react-hook-form';
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { IconCheck, IconClock, IconX } from '@tabler/icons-react';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { LastTargets } from '@/presentation/modules/dashboard/components/LastTargets';
 import { PageContainer } from '@/presentation/modules/dashboard/components/page/PageContainer';
@@ -151,9 +151,15 @@ export function ExerciseTargets({ className, exercises = [], workoutId }: Props)
                       )}
                     >
                       {`Step ${s.step}`}
-                      {s.status === 'COMPLETED' && <IconCheck size={16} strokeWidth={2} />}
-                      {s.status === 'PENDING' && <IconClock size={16} strokeWidth={2} />}
-                      {s.status === 'ERROR' && <IconX size={16} strokeWidth={2} />}
+                      {s.status === 'COMPLETED' && (
+                        <Icon icon="check" variant={{ size: 'sm', weight: 'moderate' }} />
+                      )}
+                      {s.status === 'PENDING' && (
+                        <Icon icon="circle-dot" variant={{ size: 'sm', weight: 'moderate' }} />
+                      )}
+                      {s.status === 'ERROR' && (
+                        <Icon icon="octagon-alert" variant={{ size: 'sm', weight: 'moderate' }} />
+                      )}
                     </button>
                   </li>
                 ))}

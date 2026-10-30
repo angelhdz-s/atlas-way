@@ -3,7 +3,7 @@
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
 import { ToggleTheme } from '@/presentation/modules/theme/components/ToggleTheme';
 import { Button } from '@/presentation/modules/button/components/Button';
-import { IconLanguage } from '@/presentation/globals/components/icons/outline/IconLanguage';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 import { useLayer } from '@/presentation/globals/hooks/useLayer';
 
 type Props = {
@@ -32,7 +32,7 @@ export function SettingsTooltip({ isOpen, onClose }: Props) {
           </li>
           <li className="flex items-center gap-0">
             <Button variant={{ color: 'simple' }} className="pl-2">
-              <IconLanguage strokeWidth="1.5" />
+              <Icon icon="languages" variant={{ size: 'lg', weight: 'moderate' }} />
               Language
             </Button>
           </li>

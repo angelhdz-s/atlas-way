@@ -1,5 +1,5 @@
 import { twMerge } from 'tailwind-merge';
-import { IconDots } from '@/presentation/globals/components/icons/outline/IconDots';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 import { SessionExerciseRow } from '@/modules/session/presentation/ui/components/SessionExerciseRow';
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
 
@@ -29,7 +29,11 @@ export function SessionExercisesList({ exercises }: { exercises: ExerciseDTO[] }
         </SessionExerciseRow>
       ))}
       <li className="flex items-center justify-center">
-        <IconDots className="text-fg-subtle/50" />
+        <Icon
+          icon="ellipsis"
+          className="text-fg-subtle/50"
+          variant={{ size: 'lg', weight: 'moderate' }}
+        />
       </li>
     </ul>
   );

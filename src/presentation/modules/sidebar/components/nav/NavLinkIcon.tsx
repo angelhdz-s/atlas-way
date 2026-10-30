@@ -1,5 +1,6 @@
-import type { IconTypes } from '@/presentation/globals/presentation.types';
+import type { IconName } from '@/presentation/modules/icon/components/Icon';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
-export function NavLinkIcon({ Icon }: { Icon: IconTypes }) {
-  return <Icon className="size-5" strokeWidth="1.6" />;
+export function NavLinkIcon({ icon }: { icon: IconName }) {
+  return <Icon icon={icon} variant={{ size: 'md', weight: 'moderate' }} />;
 }

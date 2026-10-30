@@ -1,8 +1,6 @@
 'use client';
 
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
-import { IconCalendarClock } from '@/presentation/globals/components/icons/outline/IconCalendarClock';
-import { IconCirclePlus } from '@/presentation/globals/components/icons/outline/IconCirclePlus';
 import type { StatusDayType } from '@/presentation/globals/mocks/routines';
 import type { WorkoutStatusEnum } from '@/prisma/client';
 import type { TodayTrackingOverview } from '@/modules/tracking/presentation/workout.actions';
@@ -18,6 +16,7 @@ import { useState } from 'react';
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { useRouter } from 'next/navigation';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 const getSessionStatus = (statusId?: WorkoutStatusEnum): StatusDayType => {
   if (statusId === 'IN_PROGRESS') return 'current';
@@ -97,7 +96,7 @@ export function ActivitiesToday({
     <>
       <Card className={`flex flex-col gap-4 ${className}`}>
         <header>
-          <CardTitle Icon={IconCalendarClock} title="Today's Challenge" />
+          <CardTitle icon="calendar-clock" title="Today's Challenge" />
         </header>
         <main className="flex flex-col gap-1">
           <SubtleCard>
@@ -126,12 +125,11 @@ export function ActivitiesToday({
               variant={{
                 size: 'sm',
                 color: 'primary',
-                type: 'iconText',
               }}
               className="flex items-center gap-1"
-              Icon={IconCirclePlus}
               onClick={goToWorkout}
             >
+              <Icon icon="plus" variant={{ size: 'sm', weight: 'moderate' }} />
               {buttonLabel}
             </Button>
           </footer>

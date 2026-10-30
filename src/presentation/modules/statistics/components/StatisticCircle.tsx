@@ -1,4 +1,4 @@
-import { IconCircle } from '@/presentation/globals/components/icons/outline/IconCircle';
+import { IconCircle } from '@/presentation/modules/icon/components/IconCircle';
 
 export function StatisticCircle({
   title,

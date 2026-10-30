@@ -14,9 +14,8 @@ import { DevSortableInputItems } from './DevSortableInputItems';
 import { Select } from '@/presentation/modules/form/components/fields/Select';
 import { DEV_FORM_OPTIONS } from '../mocks/dev.form.mocks.options';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
-import { IconAlarm } from '@/presentation/globals/components/icons/outline/IconAlarm';
-import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
 import { Button } from '@/presentation/modules/button/components/Button';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props = {
   className?: string;
@@ -83,7 +82,7 @@ export function DevFormComponents({ className = '' }: Props) {
       </DevFormGroup>
 
       <DevFormGroup className={className}>
-        <FormFieldSection title="Form field section" Icon={IconAlarm}>
+        <FormFieldSection title="Form field section" icon="alarm-clock">
           Inputs here
         </FormFieldSection>
       </DevFormGroup>
@@ -91,11 +90,15 @@ export function DevFormComponents({ className = '' }: Props) {
       <DevFormGroup className={className}>
         <Label title="Form buttons" htmlFor="">
           <div className="flex items-center gap-2">
-            <Button
-              variant={{ color: 'simple', type: 'icon' }}
-              Icon={IconXMark}
-              aria-label="Close"
-            />
+            <Button variant={{ color: 'simple', type: 'icon' }} aria-label="Close">
+              <Icon
+                icon="x"
+                variant={{
+                  size: 'md',
+                  weight: 'moderate',
+                }}
+              />
+            </Button>
             <Button variant={{ color: 'simple' }}>Cancel</Button>
             <Button variant={{ color: 'primary' }}>Done</Button>
           </div>

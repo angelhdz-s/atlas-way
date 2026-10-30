@@ -4,8 +4,7 @@ import { SortableInputItem } from '@/presentation/modules/form/components/Sortab
 import { Button } from '@/presentation/modules/button/components/Button';
 import { SelectBox } from '@/presentation/modules/form/components/SelectBox';
 import { useSortableInputItems } from '@/presentation/modules/form/hooks/useSortableInputItems';
-import { IconCirclePlus } from '@/presentation/globals/components/icons/outline/IconCirclePlus';
-import { IconTrash } from '@/presentation/globals/components/icons/outline/IconTrash';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 import type { FieldArrayPath, Control, FieldValues } from 'react-hook-form';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
 
@@ -86,7 +85,7 @@ export function SortableInputItems<TForm extends FieldValues, TName extends Fiel
           onClick={openSelection}
           className="pr-3 pl-2"
         >
-          <IconCirclePlus />
+          <Icon icon="circle-plus" variant={{ size: 'lg', weight: 'moderate' }} />
           {addButtonLabel ?? 'Add'}
         </Button>
         <Button
@@ -95,7 +94,7 @@ export function SortableInputItems<TForm extends FieldValues, TName extends Fiel
           onClick={crearAllItems}
           className="pr-3 pl-2"
         >
-          <IconTrash />
+          <Icon icon="trash" variant={{ size: 'lg', weight: 'moderate' }} />
           Clear All
         </Button>
       </footer>

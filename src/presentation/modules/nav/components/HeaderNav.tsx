@@ -1,9 +1,9 @@
 'use client';
 
-import { IconMenu } from '@/presentation/globals/components/icons/outline/IconMenu';
 import { useHeaderNav } from '@/presentation/modules/nav/hooks/useHeaderNav';
 import { Button } from '@/presentation/modules/button/components/Button';
-import { NavList } from './NavList';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
+import { NavList } from '@/presentation/modules/nav/components/NavList';
 
 export function HeaderNav() {
   const { showing, showNav, closeNav } = useHeaderNav();
@@ -20,8 +20,9 @@ export function HeaderNav() {
           onClick={showNav}
           className="md:hidden"
           aria-label="Open navigation items"
-          Icon={IconMenu}
-        />
+        >
+          <Icon icon="menu" variant={{ size: 'md', weight: 'moderate' }} />
+        </Button>
         <NavList isOpen={showing} onClose={closeNav} />
       </nav>
     </div>

@@ -1,4 +1,4 @@
-import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 import {
   getGridColsClassFromWithStatus,
   getStatusTextColorClass,
@@ -41,7 +41,11 @@ export function ExerciseRow({
       <div className="grid grid-cols-[1fr_auto_1fr] gap-0.5">
         <span className="text-right">{sets}</span>
         <span className="text-fg-default/50 flex items-center justify-center">
-          <IconXMark className="text-fg-subtle size-3" strokeWidth="3" />
+          <Icon
+            icon="x"
+            className="text-fg-subtle size-3"
+            variant={{ size: 'md', weight: 'thick' }}
+          />
         </span>
         <span className="text-left">{reps}</span>
       </div>

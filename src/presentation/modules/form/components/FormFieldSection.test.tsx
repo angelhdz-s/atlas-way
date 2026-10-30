@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
-import { IconUser } from '@/presentation/globals/components/icons/outline/IconUser';
 
 describe('<FormFieldSection />', () => {
   describe('Basic Rendering', () => {
@@ -27,15 +26,15 @@ describe('<FormFieldSection />', () => {
   });
 
   describe('Conditional Rendering', () => {
-    it('Should not render an icon (svg element) when Icon prop not provided', () => {
+    it('Should not render an icon (svg element) when icon prop not provided', () => {
       render(<FormFieldSection title="Metrics">Anything</FormFieldSection>);
       const component = screen.getByRole('region');
       expect(component.querySelector('svg')).not.toBeInTheDocument();
     });
 
-    it('Should render an icon (svg element) when Icon prop provided', () => {
+    it('Should render an icon (svg element) when icon prop provided', () => {
       render(
-        <FormFieldSection title="Metrics" Icon={IconUser}>
+        <FormFieldSection title="Metrics" icon="user">
           Anything
         </FormFieldSection>
       );

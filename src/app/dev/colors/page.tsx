@@ -7,7 +7,9 @@ function SectionHeading({ text }: { text: string }) {
 export default function ColorsPage() {
   return (
     <div>
-      <Link href="/dev">Back</Link>
+      <Link variant={{ color: 'simple', size: 'md', type: 'default' }} href="/dev">
+        Back
+      </Link>
       <div className="mt-8 space-y-8">
         <div className="grid grid-cols-[156px_1fr] items-center">
           <SectionHeading text="Brand" />

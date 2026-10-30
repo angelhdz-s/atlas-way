@@ -1,5 +1,5 @@
-import { IconArrowUp } from '@/presentation/globals/components/icons/outline/IconArrowUp';
 import { ArrowButton } from '@/presentation/modules/calendar/components/ArrowButton';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props = {
   className?: string;
@@ -14,11 +14,19 @@ export function DateControl({ className = '', children, onLeftClick, onRightClic
   return (
     <div className={`flex h-full items-center ${className}`}>
       <ArrowButton className="rounded-l" onClick={onLeftClick}>
-        <IconArrowUp className={`${iconSize} -rotate-90`} strokeWidth="2" />
+        <Icon
+          icon="arrow-up"
+          className={`${iconSize} -rotate-90`}
+          variant={{ size: 'md', weight: 'medium' }}
+        />
       </ArrowButton>
       {children}
       <ArrowButton className="rounded-r" onClick={onRightClick}>
-        <IconArrowUp className={`${iconSize} rotate-90`} strokeWidth="2" />
+        <Icon
+          icon="arrow-up"
+          className={`${iconSize} rotate-90`}
+          variant={{ size: 'md', weight: 'medium' }}
+        />
       </ArrowButton>
     </div>
   );

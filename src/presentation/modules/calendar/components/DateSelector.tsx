@@ -1,7 +1,7 @@
 import { use } from 'react';
 import { CalendarContext } from '@/presentation/modules/calendar/contexts/calendar-context';
 import { useCalendar } from '@/presentation/modules/calendar/hooks/useCalendar';
-import { IconArrowUp } from '@/presentation/globals/components/icons/outline/IconArrowUp';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 function ArrowButton({
   onClick,
@@ -39,11 +39,19 @@ function DateController({
   return (
     <section className={`flex flex-col items-center justify-between gap-2 ${className}`}>
       <ArrowButton onClick={onPreviousClick} className="text-fg-default/25">
-        <IconArrowUp className="-mb-1.5 size-8" strokeWidth="2" />
+        <Icon
+          icon="arrow-up"
+          className="-mb-1.5 size-8"
+          variant={{ size: 'md', weight: 'medium' }}
+        />
       </ArrowButton>
       <span className="text-fg-strong text-3xl font-bold">{children}</span>
       <ArrowButton onClick={onNextClick} className="text-fg-default/25">
-        <IconArrowUp className="size-8 rotate-180" strokeWidth="2" />
+        <Icon
+          icon="arrow-up"
+          className="size-8 rotate-180"
+          variant={{ size: 'md', weight: 'medium' }}
+        />
       </ArrowButton>
     </section>
   );

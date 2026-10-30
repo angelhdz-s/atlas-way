@@ -3,8 +3,8 @@ import {
   getCalendarStatusDay,
   getISOStringDate,
 } from '@/presentation/globals/lib/dates';
-import { IconBarbellOff } from '@/presentation/globals/components/icons/outline/IconBarbellOff';
 import { Button } from '@/presentation/modules/button/components/Button';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 function CalendarDayItem({
   children,
@@ -20,8 +20,8 @@ function CalendarDayItem({
       type="button"
       variant={{
         color: 'simple',
-        size: 'xs',
-        type: 'square',
+        size: 'sm',
+        type: 'icon',
       }}
       onClick={onClick}
       className="flex w-full cursor-pointer justify-center hover:bg-transparent"
@@ -81,7 +81,7 @@ function CalendarDayCurrent({
       onClick={onClick}
       className={`${isSelected ? 'bg-fg-strong text-fg-strong-light light:text-fg-strong-dark' : 'bg-fill-top'}`}
     >
-      <IconBarbellOff className="size-4.5" strokeWidth={isSelected ? '2' : '1.5'} />
+      <Icon icon="bed" variant={{ size: 'sm', weight: isSelected ? 'medium' : 'moderate' }} />
     </CalendarDayItem>
   );
 }

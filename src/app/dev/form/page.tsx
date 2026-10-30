@@ -11,7 +11,9 @@ const Group = ({ title, children }: { title: string; children: React.ReactNode }
 export default function FormPage() {
   return (
     <div className="w-full space-y-8 overflow-x-auto">
-      <Link href="/dev">Back</Link>
+      <Link variant={{ color: 'simple', size: 'md', type: 'default' }} href="/dev">
+        Back
+      </Link>
       <section className="flex items-center justify-center gap-4">
         <Group title="Back">
           <DevFormComponents className="outline-bd-default" />

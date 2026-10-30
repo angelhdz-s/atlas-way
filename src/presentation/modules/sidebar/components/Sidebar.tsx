@@ -3,18 +3,10 @@ import { SidebarSection } from '@/presentation/modules/sidebar/components/Sideba
 import { NavLinks } from '@/presentation/modules/sidebar/components/nav/NavLinks';
 import { NavLink } from '@/presentation/modules/sidebar/components/nav/NavLink';
 import { NavLinkIcon } from '@/presentation/modules/sidebar/components/nav/NavLinkIcon';
-import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
-import { IconBell } from '@/presentation/globals/components/icons/outline/IconBell';
-import { IconCalendarCheck } from '@/presentation/globals/components/icons/outline/IconCalendarCheck';
-import { IconHome } from '@/presentation/globals/components/icons/outline/IconHome';
-import { IconMan } from '@/presentation/globals/components/icons/outline/IconMan';
-import { IconReportAnalytics } from '@/presentation/globals/components/icons/outline/IconReportAnalytics';
-import { IconRouteX } from '@/presentation/globals/components/icons/outline/IconRouteX';
-import { IconSchema } from '@/presentation/globals/components/icons/outline/IconSchema';
 
 export function Sidebar({ className = '' }: { className?: string }) {
   return (
-    <aside className="w-(--sidebar-width)">
+    <aside className="bg-primary w-(--sidebar-width)">
       <main
         className={`bg-fill-back border-bd-muted fixed top-(--header-height) left-0 z-10 flex h-(--sidebar-height) w-(--sidebar-width) flex-col gap-4 border-r shadow-2xl shadow-black/5 ${className}`}
       >
@@ -22,7 +14,7 @@ export function Sidebar({ className = '' }: { className?: string }) {
           <header>
             <NavLinks>
               <NavLink href="/dashboard" label="Home">
-                <NavLinkIcon Icon={IconHome} />
+                <NavLinkIcon icon="house" />
               </NavLink>
 
               <NavLink
@@ -30,13 +22,13 @@ export function Sidebar({ className = '' }: { className?: string }) {
                 variant={{ notice: 'unread' }}
                 label="Notifications"
               >
-                <NavLinkIcon Icon={IconBell} />
+                <NavLinkIcon icon="bell" />
               </NavLink>
 
               {/* <NavLinkNotification Icon={IconBell} href="/dashboard/notifications" /> */}
 
               <NavLink href="/dashboard/tracking" label="Tracking">
-                <NavLinkIcon Icon={IconCalendarCheck} />
+                <NavLinkIcon icon="notepad-text" />
               </NavLink>
             </NavLinks>
           </header>
@@ -45,19 +37,19 @@ export function Sidebar({ className = '' }: { className?: string }) {
             <SidebarSection name="Main">
               <NavLinks>
                 <NavLink href="/dashboard/routines" label="Routines">
-                  <NavLinkIcon Icon={IconRouteX} />
+                  <NavLinkIcon icon="waypoints" />
                 </NavLink>
 
                 <NavLink href="/dashboard/sessions" label="Sessions">
-                  <NavLinkIcon Icon={IconSchema} />
+                  <NavLinkIcon icon="clipboard-list" />
                 </NavLink>
 
                 <NavLink href="/dashboard/exercises" label="Exercises">
-                  <NavLinkIcon Icon={IconBarbell} />
+                  <NavLinkIcon icon="dumbbell" />
                 </NavLink>
 
                 <NavLink href="/dashboard/muscles" label="Muscles">
-                  <NavLinkIcon Icon={IconMan} />
+                  <NavLinkIcon icon="person-standing" />
                 </NavLink>
               </NavLinks>
             </SidebarSection>
@@ -65,7 +57,7 @@ export function Sidebar({ className = '' }: { className?: string }) {
             <SidebarSection name="Analytics">
               <NavLinks>
                 <NavLink href="/dashboard/statistics" label="Statistics">
-                  <NavLinkIcon Icon={IconReportAnalytics} />
+                  <NavLinkIcon icon="chart-no-axes-combined" />
                 </NavLink>
               </NavLinks>
             </SidebarSection>

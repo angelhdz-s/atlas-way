@@ -4,12 +4,13 @@ import { DevCardColors } from './components/DevCardColors';
 import { Card } from '@/presentation/modules/card/components/Card';
 import { CardHeader } from '@/presentation/modules/card/components/CardHeader';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
-import { IconCog } from '@/presentation/globals/components/icons/outline/IconCog';
 
 export default function DevCardPage() {
   return (
     <>
-      <Link href="/dev">Back</Link>
+      <Link variant={{ color: 'simple', size: 'md', type: 'default' }} href="/dev">
+        Back
+      </Link>
       <div className="space-y-8">
         <section className="space-y-4">
           <h2 className="text-fg-strong text-4xl">Sizes</h2>
@@ -26,14 +27,14 @@ export default function DevCardPage() {
           <main className="flex items-center gap-8">
             <Card className="h-50 space-y-4" width="md">
               <CardHeader>
-                <CardTitle title="Card" Icon={IconCog} />
+                <CardTitle title="Card" icon="cog" />
               </CardHeader>
               <span>Default</span>
             </Card>
 
             <Card type="dashboard" className="h-50 space-y-4" width="md">
               <CardHeader>
-                <CardTitle title="Card" Icon={IconCog} />
+                <CardTitle title="Card" icon="cog" />
               </CardHeader>
               <span>Dashboard</span>
             </Card>

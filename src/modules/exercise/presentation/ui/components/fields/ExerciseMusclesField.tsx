@@ -1,5 +1,4 @@
 import { useFormContext } from 'react-hook-form';
-import { IconMan } from '@/presentation/globals/components/icons/outline/IconMan';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
 import { MultipleSelectBox } from '@/presentation/modules/form/components/MultipleSelectBox';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
@@ -17,7 +16,7 @@ export function ExerciseMusclesField({ items, selectedItems }: Props) {
   } = useFormContext<ExerciseFormProps>();
 
   return (
-    <FormFieldSection Icon={IconMan} title="To train">
+    <FormFieldSection icon="person-standing" title="To train">
       <MultipleSelectBox
         control={control}
         name="muscles"

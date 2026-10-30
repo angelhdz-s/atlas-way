@@ -1,7 +1,7 @@
 import { TooltipBackdrop } from '@/presentation/globals/components/TooltipBackdrop';
 import { useLayer } from '@/presentation/globals/hooks/useLayer';
 import { Button } from '@/presentation/modules/button/components/Button';
-import { IconX } from '@tabler/icons-react';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 import { twMerge } from 'tailwind-merge';
 
 type Props = {
@@ -48,10 +48,11 @@ export function ConfirmationTooltip({ isOpen, onAbort, onClose, onConfirm, class
           <div>
             <Button
               variant={{ type: 'icon', color: 'simple' }}
-              Icon={IconX}
               aria-label="Close confirmation tooltip"
               onClick={closeConfirmation}
-            />
+            >
+              <Icon icon="x" variant={{ size: 'md', weight: 'moderate' }} />
+            </Button>
           </div>
         </header>
         <footer className="flex justify-end gap-4">

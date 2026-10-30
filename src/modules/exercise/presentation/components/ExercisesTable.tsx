@@ -1,13 +1,12 @@
 'use client';
 
-import { IconEdit } from '@/presentation/globals/components/icons/outline/IconEdit';
-import { IconTrash } from '@/presentation/globals/components/icons/outline/IconTrash';
 import { TableBody } from '@/presentation/globals/components/table/TableBody';
 import { TableBodyRow } from '@/presentation/globals/components/table/TableBodyRow';
 import { TableHeader } from '@/presentation/globals/components/table/TableHeader';
 import { TableWrapper } from '@/presentation/globals/components/table/TableWrapper';
 import { Button } from '@/presentation/modules/button/components/Button';
 import type { ExerciseDTO } from '@/modules/exercise/application/dtos/exercise.dto';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props = {
   exercises: ExerciseDTO[];
@@ -39,18 +38,14 @@ export function ExercisesTable({ exercises }: Props) {
             <td>
               <ul className="flex w-full items-center justify-center">
                 <li>
-                  <Button
-                    variant={{ color: 'simple', type: 'icon' }}
-                    aria-label="Edit exercise"
-                    Icon={IconEdit}
-                  />
+                  <Button variant={{ color: 'simple', type: 'icon' }} aria-label="Edit exercise">
+                    <Icon icon="square-pen" variant={{ size: 'md', weight: 'moderate' }} />
+                  </Button>
                 </li>
                 <li>
-                  <Button
-                    variant={{ color: 'simple', type: 'icon' }}
-                    aria-label="Delete exercise"
-                    Icon={IconTrash}
-                  />
+                  <Button variant={{ color: 'simple', type: 'icon' }} aria-label="Delete exercise">
+                    <Icon icon="trash" variant={{ size: 'md', weight: 'moderate' }} />
+                  </Button>
                 </li>
               </ul>
             </td>

@@ -3,7 +3,6 @@ import { SESSIONS_COUNTERS, TODAY } from '@/presentation/globals/mocks/tracking'
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { Counter } from '@/modules/tracking/presentation/ui/components/Counter';
 import { Card } from '@/presentation/modules/card/components/Card';
-import { IconCalendarCheck } from '@/presentation/globals/components/icons/outline/IconCalendarCheck';
 
 export function CurrentMonthSessionsCounter({ className }: { className?: string }) {
   const { currentMonth } = SESSIONS_COUNTERS;
@@ -12,7 +11,7 @@ export function CurrentMonthSessionsCounter({ className }: { className?: string 
   return (
     <Card className={`flex flex-col gap-1 font-light ${className}`}>
       <header>
-        <CardTitle Icon={IconCalendarCheck} title={`${monthName ?? 'Month'}'s Reached Sessions`} />
+        <CardTitle icon="calendar-check" title={`${monthName ?? 'Month'}'s Reached Sessions`} />
       </header>
       <main className="flex flex-1 items-center gap-1">
         <Counter number={currentMonth} />

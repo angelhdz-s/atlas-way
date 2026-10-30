@@ -1,13 +1,12 @@
 import { Card } from '@/presentation/modules/card/components/Card';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { LineChart } from '@/presentation/modules/statistics/components/Charts';
-import { IconChartLine } from '@/presentation/globals/components/icons/outline/IconChartLine';
 
 export function SessionsChart({ className }: { className?: string }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
       <header>
-        <CardTitle Icon={IconChartLine} title="Average of Sessions Completed" />
+        <CardTitle icon="chart-line" title="Average of Sessions Completed" />
       </header>
       <main className="mx-auto grid w-fit grid-cols-[auto_1fr] items-center justify-center gap-1">
         <span>%</span>

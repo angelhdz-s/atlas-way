@@ -2,25 +2,6 @@ export type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
 
-export interface IconProps {
-  className?: string;
-  strokeWidth?: string;
-  ariaHidden?: boolean;
-}
-
-export interface SIconProps {
-  className?: string;
-  ariaHidden?: boolean;
-}
-
-export type IconTypes = React.FC<IconProps> | React.FC<SIconProps>;
-
-export interface SolidIconProps {
-  className?: string;
-}
-
-export type SolidIconTypes = React.FC<IconProps>;
-
 export type ToastType = 'success' | 'error' | 'info' | 'warning';
 
 export interface Toast {

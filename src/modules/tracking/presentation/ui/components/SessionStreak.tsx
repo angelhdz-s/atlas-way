@@ -1,7 +1,6 @@
 import { SESSIONS_COUNTERS } from '@/presentation/globals/mocks/tracking';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { Counter } from '@/modules/tracking/presentation/ui/components/Counter';
-import { IconFlame } from '@/presentation/globals/components/icons/outline/IconFlame';
 import { Card } from '@/presentation/modules/card/components/Card';
 
 export function SessionStreak({ className = '' }: { className?: string }) {
@@ -9,7 +8,7 @@ export function SessionStreak({ className = '' }: { className?: string }) {
 
   return (
     <Card className={`flex flex-col gap-1 ${className}`}>
-      <CardTitle Icon={IconFlame} title="Session Streak" className="text-left" />
+      <CardTitle icon="flame" title="Session Streak" className="text-left" />
       <main className="flex flex-1 items-center gap-1">
         <Counter number={sessionStreak} />
       </main>

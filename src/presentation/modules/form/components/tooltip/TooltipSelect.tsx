@@ -2,9 +2,9 @@ import { useRef } from 'react';
 import { Select } from '@/presentation/modules/form/components/fields/Select';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { LabelGroup } from '@/presentation/modules/form/components/fields/LabelGroup';
-import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
 import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { useLayer } from '@/presentation/globals/hooks/useLayer';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props = {
   title: string;
@@ -52,9 +52,10 @@ export function TooltipSelect({
           <Button
             onClick={onClose}
             variant={{ type: 'icon', color: 'simple' }}
-            Icon={IconXMark}
             aria-label="Close tooltip"
-          />
+          >
+            <Icon icon="x" variant={{ size: 'md', weight: 'moderate' }} />
+          </Button>
         </header>
         <main className="space-y-4 px-4 pb-4">
           <LabelGroup title={label}>

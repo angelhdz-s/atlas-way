@@ -4,9 +4,11 @@ import { DevButtons } from './components/DevButtons';
 export default function ButtonsPage() {
   return (
     <div>
-      <Link href="/dev">Back</Link>
+      <Link variant={{ color: 'simple', size: 'md', type: 'default' }} href="/dev">
+        Back
+      </Link>
       <DevButtons
-        colors={['primary', 'subtle', 'outline', 'simple', 'danger']}
+        colors={['primary', 'subtle', 'outline', 'simple']}
         className="flex flex-wrap items-start gap-4"
       />
     </div>

@@ -1,0 +1,439 @@
+@import 'tailwindcss';
+@import 'tailwindcss-animated';
+
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
+
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@theme {
+  /* Brand Colors */
+
+  --color-primary: #bd1e01;
+  --color-primary-dark: #771b0a;
+  --color-secondary: #bc7700;
+  --color-tertiary: #eb5e31;
+  --color-accent: #e6a737;
+
+  /* Font families */
+
+  --font-funnel-display: var(--font-funnel-display);
+  --font-outfit: var(--font-outfit);
+
+  /* Breakpoints */
+  --breakpoint-xs: 30rem;
+
+  /* Static color versions */
+  /* 
+    These will be static (don't change with the current dark/light theme): 
+	  they have an ending with the theme color -dark and -light. 
+
+	  For example:
+	  [--color-back-dark]: is the static version of "--color-back" but from the dark theme
+	  [--color-back-light]: is the static light version of "--color-back"
+	*/
+
+  /* Dark */
+
+  /* Background */
+  --color-fill-back-dark: #0a0a0a;
+  --color-fill-base-dark: #0e0e0e;
+  --color-fill-middle-dark: #131313;
+  --color-fill-front-dark: #171717;
+  --color-fill-top-dark: #1a1a1a;
+
+  /* Foreground */
+  --color-fg-strong-dark: #fafafa;
+  --color-fg-default-dark: #c0c0c0;
+  --color-fg-subtle-dark: #a0a0a0;
+  --color-fg-muted-dark: #707070;
+
+  /* Borders */
+  --color-bd-strong-dark: #272727;
+  --color-bd-default-dark: #202020;
+  --color-bd-muted-dark: #1a1a1a;
+
+  /* Status */
+  --color-success-dark: #00c951;
+  --color-success-bd-dark: #0bbc3f;
+  --color-success-fill-dark: #07480f;
+
+  --color-danger-dark: #ff3c45;
+  --color-danger-bd-dark: #130a11;
+  --color-danger-fill-dark: #730005;
+
+  --color-info-dark: #3694ff;
+  --color-info-bd-dark: #1d5bb9;
+  --color-info-fill-dark: #112b62;
+
+  --color-warning-dark: #efef1c;
+  --color-warning-bd-dark: #bcaf20;
+  --color-warning-fill-dark: #5c550c;
+
+  /* Accessibility */
+  --color-focus-dark: #fff;
+
+  /* Light */
+
+  /* Background */
+  --color-fill-back-light: #f8f8ff;
+  --color-fill-base-light: #fcfcff;
+  --color-fill-middle-light: #eaeafa;
+  --color-fill-front-light: #e8e8fa;
+  --color-fill-top-light: #e4e4fa;
+
+  /* Foreground */
+  --color-fg-strong-light: #050505;
+  --color-fg-default-light: #2a2a2a;
+  --color-fg-subtle-light: #4a4a4a;
+  --color-fg-muted-light: #6a6a6a;
+
+  /* Borders */
+  --color-bd-strong-light: #d0d0d0;
+  --color-bd-default-light: #d9d9d9;
+  --color-bd-muted-light: #e0e0e0;
+
+  /* Status */
+  --color-success-light: #369a00;
+  --color-success-bd-light: #33be17;
+  --color-success-fill-light: #a2fe70;
+
+  --color-danger-light: #ba0000;
+  --color-danger-bd-light: #ef1e1e;
+  --color-danger-fill-light: #ff6e6e;
+
+  --color-info-light: #2f5dd0;
+  --color-info-bd-light: #7e80ff;
+  --color-info-fill-light: #b2a9ff;
+
+  --color-warning-light: #869800;
+  --color-warning-bd-light: #bfc500;
+  --color-warning-fill-light: #e6f97b;
+
+  /* Accessibility */
+  --color-focus-light: #000;
+
+  /* Dynamic Colors */
+
+  /* Background */
+  --color-fill-back: var(--color-fill-back-dark);
+  --color-fill-base: var(--color-fill-base-dark);
+  --color-fill-middle: var(--color-fill-middle-dark);
+  --color-fill-front: var(--color-fill-front-dark);
+  --color-fill-top: var(--color-fill-top-dark);
+
+  /* Foreground */
+  --color-fg-strong: var(--color-fg-strong-dark);
+  --color-fg-default: var(--color-fg-default-dark);
+  --color-fg-subtle: var(--color-fg-subtle-dark);
+  --color-fg-muted: var(--color-fg-muted-dark);
+
+  /* Border */
+  --color-bd-strong: var(--color-bd-strong-dark);
+  --color-bd-default: var(--color-bd-default-dark);
+  --color-bd-muted: var(--color-bd-muted-dark);
+
+  /* Status */
+  --color-success: var(--color-success-dark);
+  --color-success-bd: var(--color-success-bd-dark);
+  --color-success-fill: var(--color-success-fill-dark);
+
+  --color-danger: var(--color-danger-dark);
+  --color-danger-bd: var(--color-danger-bd-dark);
+  --color-danger-fill: var(--color-danger-fill-dark);
+
+  --color-info: var(--color-info-dark);
+  --color-info-bd: var(--color-info-bd-dark);
+  --color-info-fill: var(--color-info-fill-dark);
+
+  --color-warning: var(--color-warning-dark);
+  --color-warning-bd: var(--color-warning-bd-dark);
+  --color-warning-fill: var(--color-warning-fill-dark);
+
+  /* Accessibility */
+  --color-focus: var(--color-focus-dark);
+
+  /* DESIGN SYSTEM COLORS */
+
+  /* Surface */
+  --color-sf-base-page: #0a0a0a;
+  --color-sf-base-default: #0e0d0c;
+  --color-sf-base-subtle: #151210;
+  --color-sf-base-solid: #1d1814;
+  --color-sf-base-solid-hover: #191512;
+  --color-sf-base-disabled: #12100e;
+  --color-sf-base-inverse: #fafaff;
+
+  --color-sf-action-default: #bd1e01;
+  --color-sf-action-default-hover: #991a03;
+  --color-sf-action-subtle: #751604;
+  --color-sf-action-disabled: #2e0e08;
+
+  --color-sf-accent-default: #e6a737;
+  --color-sf-accent-subtle: #62481c;
+
+  --color-sf-success-static: #007a39;
+  --color-sf-success-default: #082013;
+  --color-sf-success-default-hover: #06371d;
+
+  --color-sf-information-statc: #1899d3;
+  --color-sf-information-default: #0d2732;
+  --color-sf-information-default-hover: #0f435a;
+
+  --color-sf-in-progress-static: #c98803;
+  --color-sf-in-progress-default: #221a09;
+  --color-sf-in-progress-default-hover: #3a2a08;
+
+  --color-sf-warning-static: #f9a801;
+  --color-sf-warning-default: #3a2a08;
+  --color-sf-warning-default-hover: #6a4906;
+
+  --color-sf-danger-static: #cd1f1d;
+  --color-sf-danger-default: #310e0e;
+  --color-sf-danger-default-hover: #581211;
+
+  /* Border */
+  --color-bd-base-default: #12100e;
+  --color-bd-base-subtle: #191512;
+  --color-bd-base-solid: #494543;
+  --color-bd-base-solid-hover: #1d1814;
+  --color-bd-base-disabled: #191512;
+
+  --color-bd-action-default: #bd1e01;
+  --color-bd-action-subtle: #751604;
+
+  --color-bd-accent-accent: #e6a737;
+  --color-bd-accent-subtle: #8e6825;
+
+  --color-bd-success-default: #06371d;
+  --color-bd-success-default-hover: #044d26;
+
+  --color-bd-information-default: #0f435a;
+  --color-bd-information-default-hover: #126083;
+
+  --color-bd-in-progress-default: #3a2a08;
+  --color-bd-in-progress-default-hover: #6a4906;
+
+  --color-bd-warning-default: #6a4906;
+  --color-bd-warning-default-hover: #996804;
+
+  --color-bd-danger-default: #581211;
+  --color-bd-danger-default-hover: #7f1715;
+
+  --color-bd-accesibility-focus: #fafaff;
+
+  /* Text */
+  --color-txt-base-heading: #fafaff;
+  --color-txt-base-body: #cecdd0;
+  --color-txt-base-placeholder: #a19fa0;
+  --color-txt-base-caption: #757372;
+  --color-txt-base-disabled: #494543;
+
+  --color-txt-action-default: #bd1e01;
+  --color-txt-action-on-default: #fafaff;
+  --color-txt-action-on-default-hover: #cecdd0;
+
+  --color-txt-accent-default: #e6a737;
+  --color-txt-accent-on-subtle: #f2d9af;
+
+  --color-txt-success-default: #007a39;
+  --color-txt-success-on-default: #64ad88;
+  --color-txt-success-on-default-hover: #96c7b0;
+
+  --color-txt-information-default: #1899d3;
+  --color-txt-information-on-default: #72bfe4;
+  --color-txt-information-on-default-hover: #a0d3ed;
+
+  --color-txt-in-progress-default: #c98803;
+  --color-txt-in-progress-on-default: #f9b834;
+  --color-txt-in-progress-on-default-hover: #f9c867;
+
+  --color-txt-warning-default: #f9a801;
+  --color-txt-warning-on-default: #f9c867;
+  --color-txt-warning-on-default-hover: #fad999;
+
+  --color-txt-danger-default: #cd1f1d;
+  --color-txt-danger-on-default: #df7777;
+  --color-txt-danger-on-default-hover: #e8a2a5;
+
+  /* Icon */
+  --color-ic-base-top: #fafaff;
+  --color-ic-base-default: #cecdd0;
+  --color-ic-base-default-dark: #12100e;
+  --color-ic-base-placeholder: #a19fa0;
+  --color-ic-base-caption: #757372;
+  --color-ic-base-disabled: #494543;
+
+  --color-ic-action-default: #bd1e01;
+  --color-ic-action-on-default: #fafaff;
+  --color-ic-action-on-default-hover: #cecdd0;
+
+  --color-ic-accent-default: #e6a737;
+  --color-ic-accent-on-subtle: #f2d9af;
+
+  --color-ic-success-default: #007a39;
+  --color-ic-success-on-default: #64ad88;
+  --color-ic-success-on-static: #09150f;
+
+  --color-ic-information-default: #1899d3;
+  --color-ic-information-on-default: #72bfe4;
+  --color-ic-information-on-static: #0b181e;
+
+  --color-ic-in-progress-default: #c98803;
+  --color-ic-in-progress-on-default: #f9b834;
+  --color-ic-in-progress-on-static: #221a09;
+
+  --color-ic-warning-default: #f9a801;
+  --color-ic-warning-on-default: #f9c867;
+  --color-ic-warning-on-static: #221a09;
+
+  --color-ic-danger-default: #cd1f1d;
+  --color-ic-danger-on-default: #df7777;
+  --color-ic-danger-on-static: #1d0c0c;
+}
+
+@layer components {
+  .heading-1 {
+    @apply font-funnel-display text-[5rem] leading-24 font-bold tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 9rem;
+    }
+  }
+
+  .heading-2 {
+    @apply font-funnel-display text-[4rem] leading-20 font-semibold tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 8rem;
+    }
+  }
+
+  .heading-3 {
+    @apply font-funnel-display text-[3rem] leading-16 font-medium tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 6rem;
+    }
+  }
+
+  .heading-4 {
+    @apply font-funnel-display text-[2.5rem] leading-12 font-normal tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 5rem;
+    }
+  }
+
+  .heading-5 {
+    @apply font-funnel-display text-[2rem] leading-10 font-light tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 4rem;
+    }
+  }
+
+  .heading-6 {
+    @apply font-outfit text-[1.5rem] leading-8 font-normal tracking-[-0.03em];
+
+    & + & {
+      margin-block-start: 3rem;
+    }
+  }
+
+  .body-large {
+    @apply font-outfit text-[1.25rem] leading-6 font-light tracking-[-0.03em];
+  }
+
+  .body-large-paragraph {
+    & + & {
+      margin-block-start: 2.5rem;
+    }
+  }
+
+  .body-medium {
+    @apply font-outfit text-[1rem] leading-5 font-light tracking-[-0.03em];
+  }
+
+  .body-medium-paragraph {
+    & + & {
+      margin-block-start: 2rem;
+    }
+  }
+
+  .body-small {
+    @apply font-outfit text-[1rem] leading-5 font-extralight tracking-[-0.03em];
+  }
+
+  .body-small-paragraph {
+    & + & {
+      margin-block-start: 2rem;
+    }
+  }
+
+  .button-label-large {
+    @apply font-outfit text-[1.25rem] leading-6 font-normal tracking-[-0.03em];
+  }
+
+  .button-label-medium {
+    @apply font-outfit text-[1rem] leading-5 font-normal tracking-[-0.03em];
+  }
+
+  .button-label-small {
+    @apply font-outfit text-[1rem] leading-5 font-normal tracking-[-0.03em];
+  }
+
+  .caption {
+    @apply font-outfit text-[0.75rem] leading-4 font-extralight tracking-[-0.03em];
+  }
+
+  .caption-paragraph {
+    & + & {
+      margin-block-start: 1.5rem;
+    }
+  }
+}
+
+/* Light Color Versions */
+html[data-theme='light'] {
+  /* Backgound Colors*/
+  --color-fill-back: var(--color-fill-back-light);
+  --color-fill-base: var(--color-fill-base-light);
+  --color-fill-middle: var(--color-fill-middle-light);
+  --color-fill-front: var(--color-fill-front-light);
+  --color-fill-top: var(--color-fill-top-light);
+
+  /* Foreground Colors */
+  --color-fg-strong: var(--color-fg-strong-light);
+  --color-fg-default: var(--color-fg-default-light);
+  --color-fg-subtle: var(--color-fg-subtle-light);
+  --color-fg-muted: var(--color-fg-muted-light);
+
+  /* Border Colors */
+  --color-bd-strong: var(--color-bd-strong-light);
+  --color-bd-default: var(--color-bd-default-light);
+  --color-bd-muted: var(--color-bd-muted-light);
+
+  /* Status */
+  --color-success: var(--color-success-light);
+  --color-success-bd: var(--color-success-bd-light);
+  --color-success-fill: var(--color-success-fill-light);
+
+  --color-danger: var(--color-danger-light);
+  --color-danger-bd: var(--color-danger-bd-light);
+  --color-danger-fill: var(--color-danger-fill-light);
+
+  --color-info: var(--color-info-light);
+  --color-info-bd: var(--color-info-bd-light);
+  --color-info-fill: var(--color-info-fill-light);
+
+  --color-warning: var(--color-warning-light);
+  --color-warning-bd: var(--color-warning-bd-light);
+  --color-warning-fill: var(--color-warning-fill-light);
+
+  /* Accessibility */
+  --color-focus: var(--color-focus-light);
+}

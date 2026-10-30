@@ -1,5 +1,5 @@
-import { IconArrowsLeftRight } from '@/presentation/globals/components/icons/outline/IconArrowsLeftRight';
 import { BentoCard } from '@/presentation/modules/landing/components/bentogrid/BentoCard';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props = {
   className?: string;
@@ -15,7 +15,11 @@ export function FlexibleRoutines({ className }: Props) {
       </main>
       <div className="absolute inset-0 z-0 overflow-hidden rounded-lg">
         <figure className="bg-primary absolute right-10 -bottom-21 h-32 w-fit rounded-full p-2">
-          <IconArrowsLeftRight className="text-fg-strong size-6" strokeWidth="1.5" />
+          <Icon
+            icon="arrow-left-right"
+            className="text-fg-strong"
+            variant={{ size: 'lg', weight: 'moderate' }}
+          />
         </figure>
       </div>
     </BentoCard>

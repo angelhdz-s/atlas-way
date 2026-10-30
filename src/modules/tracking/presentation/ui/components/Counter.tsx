@@ -1,4 +1,5 @@
-import type { IconTypes } from '@/presentation/globals/presentation.types';
+import type { IconName } from '@/presentation/modules/icon/components/Icon';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 export function Counter({ className = '', number }: { className?: string; number: number }) {
   return (
@@ -10,6 +11,6 @@ export function Counter({ className = '', number }: { className?: string; number
   );
 }
 
-export function CounterIcon({ icon: Icon }: { icon: IconTypes }) {
-  return <Icon className="text-accent size-8" strokeWidth="2" />;
+export function CounterIcon({ icon }: { icon: IconName }) {
+  return <Icon icon={icon} className="text-accent size-8" variant={{ weight: 'medium' }} />;
 }

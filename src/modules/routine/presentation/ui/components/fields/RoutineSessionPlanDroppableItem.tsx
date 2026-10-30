@@ -1,9 +1,9 @@
 'use client';
 
+import type { DnDFormFieldItemDroppableData } from '@/presentation/modules/form/form.types';
 import { useDroppable } from '@dnd-kit/react';
 import { Button } from '@/presentation/modules/button/components/Button';
-import { IconPlus } from '@/presentation/globals/components/icons/outline/IconPlus';
-import type { DnDFormFieldItemDroppableData } from '@/presentation/modules/form/form.types';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props = {
   id: string;
@@ -31,9 +31,10 @@ export function RoutineSessionPlanDroppableItem({ id, text, children, dndConfig,
             variant={{ color: 'simple', type: 'icon' }}
             onClick={onAdd}
             className="size-7 rounded-lg"
-            Icon={IconPlus}
             aria-label="Select a session"
-          />
+          >
+            <Icon icon="plus" variant={{ size: 'sm', weight: 'moderate' }} />
+          </Button>
         )}
       </header>
       <main className="w-full p-2">{children}</main>
