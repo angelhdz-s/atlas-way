@@ -4,7 +4,7 @@ export const pageLateralPanelVariant = tv({
   base: 'space-y-8',
   variants: {
     width: {
-      thin: 'w-64',
+      compact: 'w-64',
       default: 'w-96',
     },
   },
