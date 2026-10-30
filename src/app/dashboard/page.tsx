@@ -28,7 +28,7 @@ export default function Dashboard() {
                 </div>
               </header>
               <footer className="space-y-2 p-4">
-                <p className="body-small">0 de 6 ejercicios</p>
+                <p className="body-small text-txt-base-caption">0 de 6 ejercicios</p>
                 <div className="flex w-full items-center gap-4">
                   <ul className="flex w-full items-center gap-2">
                     <li className="bg-sf-success-static h-2 w-full rounded-full" />
@@ -135,7 +135,7 @@ export default function Dashboard() {
                       <ul className="caption flex items-center gap-4">
                         <li className="text-txt-base-caption flex items-center gap-1">
                           <Icon icon="clipboard-list" variant={{ size: 'sm', weight: 'thin' }} />3
-                          exercises
+                          sessions
                         </li>
                         <li className="text-txt-base-caption flex items-center gap-1">
                           <Icon icon="bed" variant={{ size: 'sm', weight: 'thin' }} />
@@ -179,7 +179,7 @@ export default function Dashboard() {
                       <ul className="caption flex items-center gap-4">
                         <li className="text-txt-base-caption flex items-center gap-1">
                           <Icon icon="clipboard-list" variant={{ size: 'sm', weight: 'thin' }} />3
-                          exercises
+                          sessions
                         </li>
                         <li className="text-txt-base-caption flex items-center gap-1">
                           <Icon icon="bed" variant={{ size: 'sm', weight: 'thin' }} />
@@ -223,7 +223,7 @@ export default function Dashboard() {
                       <ul className="caption flex items-center gap-4">
                         <li className="text-txt-base-caption flex items-center gap-1">
                           <Icon icon="clipboard-list" variant={{ size: 'sm', weight: 'thin' }} />3
-                          exercises
+                          sessions
                         </li>
                         <li className="text-txt-base-caption flex items-center gap-1">
                           <Icon icon="bed" variant={{ size: 'sm', weight: 'thin' }} />
