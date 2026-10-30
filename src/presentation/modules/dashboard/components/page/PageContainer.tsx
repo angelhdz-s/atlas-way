@@ -6,9 +6,7 @@ export function PageContainer({
   children: React.ReactNode;
 }) {
   return (
-    <main
-      className={`mx-1 flex flex-1 flex-col gap-4 overflow-x-hidden overflow-y-auto p-2 md:mx-4 md:p-4 ${className}`}
-    >
+    <main className={`flex-1 flex-col gap-4 overflow-y-auto p-2 md:p-8 ${className}`}>
       {children}
     </main>
   );

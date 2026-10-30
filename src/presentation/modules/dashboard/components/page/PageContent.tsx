@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge';
+
 export function PageContent({
   className = '',
   children,
@@ -5,5 +7,5 @@ export function PageContent({
   className?: string;
   children: React.ReactNode;
 }) {
-  return <main className={`${className}`}>{children}</main>;
+  return <main className={twMerge('flex-1', className)}>{children}</main>;
 }
