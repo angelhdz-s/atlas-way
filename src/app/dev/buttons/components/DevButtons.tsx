@@ -1,6 +1,6 @@
-import { IconRocket } from '@/presentation/globals/components/icons/outline/IconRocket';
 import type { ButtonVariantProps } from '@/presentation/modules/button/button.config';
 import { Button } from '@/presentation/modules/button/components/Button';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props = {
   colors: ButtonVariantProps['color'][];
@@ -12,30 +12,50 @@ export function DevButtons({ className = '', colors }: Props) {
   return (
     <div className={className}>
       {colors.map((color) => (
-        <div key={color} className="bg-fill-base w-fit space-y-4 p-8">
+        <div key={color} className="border-fill-base w-fit space-y-4 border p-8">
           <header className="text-fg-strong font-funnel-display text-2xl font-medium">
             {color?.toUpperCase()}
           </header>
-          <main className="flex items-start gap-2 *:space-y-4">
+          <section className="flex items-start gap-2 *:space-y-4">
             <div>
               <p>Icon Text</p>
-              <AllButtonSizes variant={{ color, type: 'iconText' }} Icon={IconRocket}>
-                Button
+              <AllButtonSizes variant={{ color, type: 'default' }}>
+                {' '}
+                <Icon icon="plus" variant={{ weight: 'medium' }} /> Button
+              </AllButtonSizes>
+            </div>
+            <div>
+              <p>Text Icon</p>
+              <AllButtonSizes variant={{ color, type: 'default' }}>
+                {' '}
+                Button <Icon icon="plus" variant={{ weight: 'medium' }} />
               </AllButtonSizes>
             </div>
             <div>
               <p>Text</p>
-              <AllButtonSizes variant={{ color, type: 'text' }}>Button</AllButtonSizes>
+              <AllButtonSizes variant={{ color, type: 'default' }}>Button</AllButtonSizes>
             </div>
             <div>
               <p>Icon</p>
-              <AllButtonSizes
-                variant={{ color, type: 'icon' }}
-                Icon={IconRocket}
-                aria-label="Launch"
-              />
+              <AllButtonSizes variant={{ color, type: 'icon' }} aria-label="Launch">
+                <Icon icon="plus" variant={{ weight: 'medium' }} />
+              </AllButtonSizes>
             </div>
-          </main>
+          </section>
+          <section className="flex items-start gap-2 *:space-y-4">
+            <div>
+              <p>Text</p>
+              <AllButtonSizes disabled variant={{ color, type: 'default' }}>
+                Button
+              </AllButtonSizes>
+            </div>
+            <div>
+              <p>Icon</p>
+              <AllButtonSizes disabled variant={{ color, type: 'icon' }} aria-label="Launch">
+                <Icon icon="plus" variant={{ weight: 'moderate' }} />
+              </AllButtonSizes>
+            </div>
+          </section>
         </div>
       ))}
     </div>
@@ -58,7 +78,6 @@ function AllButtonSizes({ variant, ...props }: React.ComponentProps<typeof Butto
       <Button {...props} variant={variantSize('lg') as any} />
       <Button {...props} variant={variantSize('md') as any} />
       <Button {...props} variant={variantSize('sm') as any} />
-      <Button {...props} variant={variantSize('xs') as any} />
     </div>
   );
 }
