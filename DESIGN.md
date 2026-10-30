@@ -1,6 +1,6 @@
 # Atlas Way Design System
 
-This document records the visual foundations and usage rules for Atlas Way. Figma is the source of truth for the token values; the semantic guidance below explains how to apply them consistently in the product.
+This document records the visual foundations and semantic color tokens for Atlas Way. `theme.css` is the source of truth for mapped color values and Tailwind color names.
 
 **Figma source:** [AtlasWay — Design](https://www.figma.com/design/KLIjXsaTyaM1jYZ4GQAQPj/AtlasWay---Design?node-id=0-1)
 
@@ -19,293 +19,192 @@ This document records the visual foundations and usage rules for Atlas Way. Figm
 - **Data:** analytical, legible, compact, and focused on progress.
 - **Overall feel:** focused, disciplined, powerful, and professional.
 
-## 2. Token collections
+## 2. Mapped color tokens
 
-The Figma file organizes local variables into these collections:
+Use these semantic `Mapped` tokens in product UI instead of choosing palette shades directly. The tables follow the order of the color variables declared after `/* DESIGN SYSTEM COLORS */` in `src/shared/ui/styles/theme.css`. Tailwind color names correspond to each CSS variable without its `--color-` prefix. Use them with the relevant property utility, such as `bg-sf-base-page`, `text-txt-base-heading`, `text-ic-base-default`, `border-bd-base-default`, or `ring-bd-accesibility-focus`.
 
-| Collection     | Purpose                                                                                                                                            |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Brand`        | Brand foundations and source color ramps.                                                                                                          |
-| `Alias`        | Reusable aliases for color ramps, spacing, border widths, and font families.                                                                       |
-| `Mapped`       | Semantic color tokens for product surfaces, text, icons, and borders. Use these in UI components.                                                  |
-| `Responsive`   | Type-scale size, line-height, and paragraph-spacing values. The collection currently has one mode; no breakpoint-specific values are defined here. |
-| `Components`   | Component-specific values, including button dimensions.                                                                                            |
-| `Dark Colors`  | Dark theme base colors and status colors.                                                                                                          |
-| `Light Colors` | Light color values. Their presence does not, by itself, define a complete light-mode experience.                                                   |
+Some source color names contain spelling errors (`statc`, `accesibility`); their Tailwind color names below intentionally match the CSS variables exactly.
 
-The local Figma file has no Boolean variables.
+### Surface
 
-## 3. Color
+| Token                               | Value     | Tailwind color name            |
+| ----------------------------------- | --------- | ------------------------------ |
+| `Surface/base/page`                 | `#0a0a0a` | `sf-base-page`                 |
+| `Surface/base/default`              | `#0e0d0c` | `sf-base-default`              |
+| `Surface/base/subtle`               | `#151210` | `sf-base-subtle`               |
+| `Surface/base/solid`                | `#1d1814` | `sf-base-solid`                |
+| `Surface/base/solid-hover`          | `#191512` | `sf-base-solid-hover`          |
+| `Surface/base/disabled`             | `#12100e` | `sf-base-disabled`             |
+| `Surface/base/inverse`              | `#fafaff` | `sf-base-inverse`              |
+| `Surface/action/default`            | `#bd1e01` | `sf-action-default`            |
+| `Surface/action/default-hover`      | `#991a03` | `sf-action-default-hover`      |
+| `Surface/action/subtle`             | `#751604` | `sf-action-subtle`             |
+| `Surface/action/disabled`           | `#2e0e08` | `sf-action-disabled`           |
+| `Surface/accent/default`            | `#e6a737` | `sf-accent-default`            |
+| `Surface/accent/subtle`             | `#62481c` | `sf-accent-subtle`             |
+| `Surface/success/static`            | `#007a39` | `sf-success-static`            |
+| `Surface/success/default`           | `#082013` | `sf-success-default`           |
+| `Surface/success/default-hover`     | `#06371d` | `sf-success-default-hover`     |
+| `Surface/information/static`        | `#1899d3` | `sf-information-statc`         |
+| `Surface/information/default`       | `#0d2732` | `sf-information-default`       |
+| `Surface/information/default-hover` | `#0f435a` | `sf-information-default-hover` |
+| `Surface/in-progress/static`        | `#c98803` | `sf-in-progress-static`        |
+| `Surface/in-progress/default`       | `#221a09` | `sf-in-progress-default`       |
+| `Surface/in-progress/default-hover` | `#3a2a08` | `sf-in-progress-default-hover` |
+| `Surface/warning/static`            | `#f9a801` | `sf-warning-static`            |
+| `Surface/warning/default`           | `#3a2a08` | `sf-warning-default`           |
+| `Surface/warning/default-hover`     | `#6a4906` | `sf-warning-default-hover`     |
+| `Surface/danger/static`             | `#cd1f1d` | `sf-danger-static`             |
+| `Surface/danger/default`            | `#310e0e` | `sf-danger-default`            |
+| `Surface/danger/default-hover`      | `#581211` | `sf-danger-default-hover`      |
 
-### Semantic mapped colors
+### Border
 
-Use `Mapped` tokens in product UI rather than choosing a palette shade directly. Hex values below are the resolved values of the Figma variables.
+| Token                              | Value     | Tailwind color name            |
+| ---------------------------------- | --------- | ------------------------------ |
+| `Border/base/default`              | `#12100e` | `bd-base-default`              |
+| `Border/base/subtle`               | `#191512` | `bd-base-subtle`               |
+| `Border/base/solid`                | `#494543` | `bd-base-solid`                |
+| `Border/base/solid-hover`          | `#1d1814` | `bd-base-solid-hover`          |
+| `Border/base/disabled`             | `#191512` | `bd-base-disabled`             |
+| `Border/action/default`            | `#bd1e01` | `bd-action-default`            |
+| `Border/action/subtle`             | `#751604` | `bd-action-subtle`             |
+| `Border/accent/accent`             | `#e6a737` | `bd-accent-accent`             |
+| `Border/accent/subtle`             | `#8e6825` | `bd-accent-subtle`             |
+| `Border/success/default`           | `#06371d` | `bd-success-default`           |
+| `Border/success/default-hover`     | `#044d26` | `bd-success-default-hover`     |
+| `Border/information/default`       | `#0f435a` | `bd-information-default`       |
+| `Border/information/default-hover` | `#126083` | `bd-information-default-hover` |
+| `Border/in-progress/default`       | `#3a2a08` | `bd-in-progress-default`       |
+| `Border/in-progress/default-hover` | `#6a4906` | `bd-in-progress-default-hover` |
+| `Border/warning/default`           | `#6a4906` | `bd-warning-default`           |
+| `Border/warning/default-hover`     | `#996804` | `bd-warning-default-hover`     |
+| `Border/danger/default`            | `#581211` | `bd-danger-default`            |
+| `Border/danger/default-hover`      | `#7f1715` | `bd-danger-default-hover`      |
+| `Border/accessibility/focus`       | `#fafaff` | `bd-accesibility-focus`        |
 
-#### Surfaces
+### Text
 
-| Token                    | Value     | Usage                                                                             |
-| ------------------------ | --------- | --------------------------------------------------------------------------------- |
-| `Surface/page`           | `#0A0A0A` | Application background.                                                           |
-| `Surface/default`        | `#0E0D0C` | Default raised surface, closer and more prominent than `page`.                    |
-| `Surface/default-subtle` | `#151210` | The next raised surface, closer and more prominent than `default`.                |
-| `Surface/action`         | `#BD1E01` | Primary action surface.                                                           |
-| `Surface/action-hover`   | `#991A03` | Hovered primary action surface.                                                   |
-| `Surface/accent`         | `#8E6825` | Accent surface.                                                                   |
-| `Surface/accent-hover`   | `#8E6825` | Hovered accent surface; currently resolves to the same value as `Surface/accent`. |
-| `Surface/success`        | `#082013` | Success surface.                                                                  |
-| `Surface/information`    | `#0D2732` | Informational surface.                                                            |
-| `Surface/warning`        | `#3A2A08` | Warning surface.                                                                  |
-| `Surface/danger`         | `#310E0E` | Danger surface.                                                                   |
+| Token                               | Value     | Tailwind color name                |
+| ----------------------------------- | --------- | ---------------------------------- |
+| `Text/base/heading`                 | `#fafaff` | `txt-base-heading`                 |
+| `Text/base/body`                    | `#cecdd0` | `txt-base-body`                    |
+| `Text/base/placeholder`             | `#a19fa0` | `txt-base-placeholder`             |
+| `Text/base/caption`                 | `#757372` | `txt-base-caption`                 |
+| `Text/base/disabled`                | `#494543` | `txt-base-disabled`                |
+| `Text/action/default`               | `#bd1e01` | `txt-action-default`               |
+| `Text/action/on-default`            | `#fafaff` | `txt-action-on-default`            |
+| `Text/action/on-default-hover`      | `#cecdd0` | `txt-action-on-default-hover`      |
+| `Text/accent/default`               | `#e6a737` | `txt-accent-default`               |
+| `Text/accent/on-subtle`             | `#f2d9af` | `txt-accent-on-subtle`             |
+| `Text/success/default`              | `#007a39` | `txt-success-default`              |
+| `Text/success/on-default`           | `#64ad88` | `txt-success-on-default`           |
+| `Text/success/on-default-hover`     | `#96c7b0` | `txt-success-on-default-hover`     |
+| `Text/information/default`          | `#1899d3` | `txt-information-default`          |
+| `Text/information/on-default`       | `#72bfe4` | `txt-information-on-default`       |
+| `Text/information/on-default-hover` | `#a0d3ed` | `txt-information-on-default-hover` |
+| `Text/in-progress/default`          | `#c98803` | `txt-in-progress-default`          |
+| `Text/in-progress/on-default`       | `#f9b834` | `txt-in-progress-on-default`       |
+| `Text/in-progress/on-default-hover` | `#f9c867` | `txt-in-progress-on-default-hover` |
+| `Text/warning/default`              | `#f9a801` | `txt-warning-default`              |
+| `Text/warning/on-default`           | `#f9c867` | `txt-warning-on-default`           |
+| `Text/warning/on-default-hover`     | `#fad999` | `txt-warning-on-default-hover`     |
+| `Text/danger/default`               | `#cd1f1d` | `txt-danger-default`               |
+| `Text/danger/on-default`            | `#df7777` | `txt-danger-on-default`            |
+| `Text/danger/on-default-hover`      | `#e8a2a5` | `txt-danger-on-default-hover`      |
 
-#### Text
+### Icon
 
-| Token                  | Value     |
-| ---------------------- | --------- |
-| `Text/heading`         | `#FAFAFF` |
-| `Text/body`            | `#CECDD0` |
-| `Text/placeholder`     | `#A19FA0` |
-| `Text/caption`         | `#757372` |
-| `Text/action`          | `#BD1E01` |
-| `Text/on-action`       | `#FAFAFF` |
-| `Text/on-action-hover` | `#CECDD0` |
-| `Text/accent`          | `#E6A737` |
-| `Text/on-accent`       | `#FAFAFF` |
-| `Text/success`         | `#007A39` |
-| `Text/on-sucess`       | `#64AD88` |
-| `Text/information`     | `#1899D3` |
-| `Text/on-information`  | `#72BFE4` |
-| `Text/warning`         | `#F9A801` |
-| `Text/on-warning`      | `#F9B834` |
-| `Text/danger`          | `#CD1F1D` |
-| `Text/on-danger`       | `#DF7777` |
-| `Text/disabled`        | `#494543` |
+| Token                          | Value     | Tailwind color name          |
+| ------------------------------ | --------- | ---------------------------- |
+| `Icon/base/top`                | `#fafaff` | `ic-base-top`                |
+| `Icon/base/default`            | `#cecdd0` | `ic-base-default`            |
+| `Icon/base/default-dark`       | `#12100e` | `ic-base-default-dark`       |
+| `Icon/base/placeholder`        | `#a19fa0` | `ic-base-placeholder`        |
+| `Icon/base/caption`            | `#757372` | `ic-base-caption`            |
+| `Icon/base/disabled`           | `#494543` | `ic-base-disabled`           |
+| `Icon/action/default`          | `#bd1e01` | `ic-action-default`          |
+| `Icon/action/on-default`       | `#fafaff` | `ic-action-on-default`       |
+| `Icon/action/on-default-hover` | `#cecdd0` | `ic-action-on-default-hover` |
+| `Icon/accent/default`          | `#e6a737` | `ic-accent-default`          |
+| `Icon/accent/on-subtle`        | `#f2d9af` | `ic-accent-on-subtle`        |
+| `Icon/success/default`         | `#007a39` | `ic-success-default`         |
+| `Icon/success/on-default`      | `#64ad88` | `ic-success-on-default`      |
+| `Icon/success/on-static`       | `#09150f` | `ic-success-on-static`       |
+| `Icon/information/default`     | `#1899d3` | `ic-information-default`     |
+| `Icon/information/on-default`  | `#72bfe4` | `ic-information-on-default`  |
+| `Icon/information/on-static`   | `#0b181e` | `ic-information-on-static`   |
+| `Icon/in-progress/default`     | `#c98803` | `ic-in-progress-default`     |
+| `Icon/in-progress/on-default`  | `#f9b834` | `ic-in-progress-on-default`  |
+| `Icon/in-progress/on-static`   | `#221a09` | `ic-in-progress-on-static`   |
+| `Icon/warning/default`         | `#f9a801` | `ic-warning-default`         |
+| `Icon/warning/on-default`      | `#f9c867` | `ic-warning-on-default`      |
+| `Icon/warning/on-static`       | `#221a09` | `ic-warning-on-static`       |
+| `Icon/danger/default`          | `#cd1f1d` | `ic-danger-default`          |
+| `Icon/danger/on-default`       | `#df7777` | `ic-danger-on-default`       |
+| `Icon/danger/on-static`        | `#1d0c0c` | `ic-danger-on-static`        |
 
-#### Icons
+Use `page` for the application background, then layer `default` and `subtle` surfaces above it. Match base borders to the surface layer: use `default` on `page`, `subtle` on `default`, and `solid` on `subtle`. Use state-group tokens for actions, statuses, and their hover or disabled states.
 
-| Token                  | Value     |
-| ---------------------- | --------- |
-| `Icon/top`             | `#FAFAFF` |
-| `Icon/default`         | `#CECDD0` |
-| `Icon/placeholder`     | `#A19FA0` |
-| `Icon/caption`         | `#757372` |
-| `Icon/disabled`        | `#494543` |
-| `Icon/action`          | `#BD1E01` |
-| `Icon/on-action`       | `#FAFAFF` |
-| `Icon/on-action-hover` | `#CECDD0` |
-| `Icon/accent`          | `#E6A737` |
-| `Icon/on-accent`       | `#FAFAFF` |
-| `Icon/success`         | `#007A39` |
-| `Icon/on-sucess`       | `#64AD88` |
-| `Icon/information`     | `#1899D3` |
-| `Icon/on-information`  | `#72BFE4` |
-| `Icon/warning`         | `#F9A801` |
-| `Icon/on-warning`      | `#F9C867` |
-| `Icon/danger`          | `#CD1F1D` |
-| `Icon/on-danger`       | `#DF7777` |
+## 3. Typography
 
-#### Borders
+Use the project's established typography styles and preserve their visual hierarchy. Most in-product titles use a compact heading style; reserve larger headings for content that needs stronger visual prominence. Choose semantic HTML independently from visual text styling.
 
-| Token                   | Value     |
-| ----------------------- | --------- |
-| `Border/default`        | `#12100E` |
-| `Border/default-subtle` | `#151210` |
-| `Border/default-solid`  | `#191512` |
-| `Border/action`         | `#BD1E01` |
-| `Border/action-hover`   | `#751604` |
-| `Border/accent`         | `#E6A737` |
-| `Border/accent-hover`   | `#8E6825` |
-| `Border/success`        | `#06371D` |
-| `Border/information`    | `#0F435A` |
-| `Border/warning`        | `#6A4906` |
-| `Border/danger`         | `#581211` |
-| `Border/focus`          | `#FAFAFF` |
+## 4. Buttons
 
-Apply surfaces and borders in this order:
+Use the shared `Button` component and choose its color by action priority:
 
-1. `page` is the application background.
-2. `default` is the first raised surface above `page`.
-3. `default-subtle` is the next raised surface above `default`.
-4. Use `Border/default` on `page` surfaces and components placed directly on `page`.
-5. Use `Border/default-subtle` on `default` surfaces and components with a `default` surface.
-6. Use `Border/default-solid` on `default-subtle` surfaces and components with a `default-subtle` surface.
+| Color | Use | Default, hover, and disabled tokens |
+| --- | --- | --- |
+| `primary` | Main application actions, such as creating a primary record or accepting changes. Reserve it for the most important action. | `Surface/action/default`, `Surface/action/default-hover`, `Surface/action/disabled` |
+| `subtle` | Secondary actions that commonly accompany a primary action. | `Surface/base/solid`, `Surface/base/solid-hover`, `Surface/base/disabled` |
+| `outline` | Tertiary, less common or less important standalone actions. | `Border/base/solid`, `Border/base/solid-hover`, `Border/base/disabled` |
+| `simple` | Contextual actions that accompany other UI elements without adding visual weight; commonly icon-only (for example, closing a modal or chip, or opening an action menu). | No surface or border; shared text states apply. |
 
-The source variable names `Text/on-sucess`, `Icon/on-sucess`, and `Status/Comeplete Back` are spelled this way in Figma; retain the Figma names when referring to those tokens until they are renamed at the source.
+Button text and icons use `Text/action/on-default` by default, `Text/action/on-default-hover` on hover, and `Text/base/disabled` when disabled. Focus uses a 2px outside outline with `Border/accessibility/focus`; active buttons scale to 95%. Disabled buttons show only their disabled variant styles, with no hover, focus, or active state.
 
-### Brand and alias color ramps
+| Size | Label style | Height | Gap | Horizontal padding | Use |
+| --- | --- | --- | --- | --- | --- |
+| `sm` | `button-label-small` | `h-8` | `gap-1` | `px-3` | Small controls, usually paired with `simple`. |
+| `md` | `button-label-medium` | `h-10` | `gap-2` | `px-4` | Default size for most primary, secondary, and tertiary actions. |
+| `lg` | `button-label-large` | `h-12` | `gap-2` | `px-6` | Prominent actions on sparse pages, such as landing or empty-data pages. |
 
-The `Alias` ramps resolve to the corresponding `Brand` ramps listed below. Ramp columns are ordered from the lightest (`50`) to the darkest (`950`). `Brand/Foundation/White` is `#FAFAFF`; `Brand/Foundation/Cod Grey` is `#0A0A0A`. The `Alias` collection also exposes `Foundation/White` and `Foundation/Black`, which alias those foundations respectively.
+`default` buttons may contain text alone or text with an icon. `icon` buttons contain only an icon and are square; their width matches their height and they have no horizontal padding.
 
-| Brand ramp / Alias ramp            | 50        | 100       | 200       | 300       | 400       | 500       | 600       | 700       | 800       | 900       | 950       |
-| ---------------------------------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- | --------- |
-| `Milano Red` / `Primary`           | `#F4E4E5` | `#EECECC` | `#E2A299` | `#D57667` | `#C94A34` | `#BD1E01` | `#991A03` | `#751604` | `#521206` | `#2E0E08` | `#1C0C09` |
-| `Mineral grey` / `Secondary Light` | `#EBEBF1` | `#DCDCE6` | `#BEBECC` | `#A1A1B3` | `#838399` | `#656580` | `#535368` | `#414151` | `#2E2E39` | `#1C1C21` | `#131316` |
-| `Zeus` / `Secondary Dark`          | `#E4E3E8` | `#CECDD0` | `#A19FA0` | `#757372` | `#494543` | `#1D1814` | `#191512` | `#151210` | `#12100E` | `#0E0D0C` | `#0C0B0B` |
-| `Tulip tree` / `Accent`            | `#F8F2EB` | `#F6E9D7` | `#F2D9AF` | `#EEC887` | `#EAB85F` | `#E6A737` | `#BA872E` | `#8E6825` | `#62481C` | `#362913` | `#201A0E` |
-| `Fun green` / `Success`            | `#E0ECEA` | `#C8E0D7` | `#96C7B0` | `#64AD88` | `#329461` | `#007A39` | `#026430` | `#044D26` | `#06371D` | `#082013` | `#09150F` |
-| `Olympic blue` / `Information`     | `#E4F1FB` | `#CEE7F6` | `#A0D3ED` | `#72BFE4` | `#45ACDC` | `#1899D3` | `#157CAB` | `#126083` | `#0F435A` | `#0D2732` | `#0B181E` |
-| `Yellow sea` / `Warning`           | `#F9F1E5` | `#FAEACC` | `#FAD999` | `#F9C867` | `#F9B834` | `#F9A801` | `#C98803` | `#996804` | `#6A4906` | `#3A2A08` | `#221A09` |
-| `Thunderbird` / `Danger`           | `#F6E4E8` | `#F1CED2` | `#E8A2A5` | `#DF7777` | `#D64B4A` | `#CD1F1D` | `#A61B19` | `#7F1715` | `#581211` | `#310E0E` | `#1D0C0C` |
-
-### Dark and light color collections
-
-These are additional Figma variables, separate from the semantic `Mapped` tokens. Prefer `Mapped` for new component styling.
-
-#### `Dark Colors`
-
-| Variable                 | Value     |
-| ------------------------ | --------- |
-| `Border Card`            | `#151515` |
-| `Brand/Primary`          | `#BD1E01` |
-| `Brand/Primary Dark`     | `#771B0A` |
-| `Brand/Secondary`        | `#BC7700` |
-| `Brand/Tertiary`         | `#EB5E31` |
-| `Brand/Accent`           | `#E6A737` |
-| `Background/Back`        | `#0A0A0A` |
-| `Background/Base`        | `#0E0E0E` |
-| `Background/Middle`      | `#131313` |
-| `Background/Front`       | `#171717` |
-| `Background/Top`         | `#1A1A1A` |
-| `Text/Strong`            | `#FAFAFA` |
-| `Text/Default`           | `#C0C0C0` |
-| `Text/Subtle`            | `#A0A0A0` |
-| `Text/Muted`             | `#707070` |
-| `Border/Strong`          | `#272727` |
-| `Border/Default`         | `#202020` |
-| `Border/Muted`           | `#1A1A1A` |
-| `Status/Complete`        | `#00C951` |
-| `Status/Complete Border` | `#0B8C3F` |
-| `Status/Comeplete Back`  | `#07480F` |
-| `Status/Cancel`          | `#FF3C45` |
-| `Status/Cancel Border`   | `#A30A11` |
-| `Status/Cancel Back`     | `#730005` |
-| `Status/Unread`          | `#3694FF` |
-| `Status/Unread Border`   | `#1D5BB9` |
-| `Status/Unread Back`     | `#112B62` |
-| `Status/Warning`         | `#EFEF1C` |
-| `Status/Warning Border`  | `#BCAF20` |
-| `Status/Warning Back`    | `#5C550C` |
-| `Accessibility/Focus`    | `#FFFFFF` |
-
-#### `Light Colors`
-
-| Variable              | Value     |
-| --------------------- | --------- |
-| `Fill/Back`           | `#F8F8FF` |
-| `Fill/Base`           | `#FDFDFF` |
-| `Fill/Middle`         | `#F4F4FD` |
-| `Fill/Front`          | `#EBEBF8` |
-| `Fill/Top`            | `#E4E4FA` |
-| `Border/Strong`       | `#D0D0D0` |
-| `Border/Default`      | `#D9D9D9` |
-| `Border/Muted`        | `#E0E0E0` |
-| `Complete/Foreground` | `#54AC24` |
-| `Complete/Border`     | `#3D912D` |
-| `Complete/Fill`       | `#55D459` |
-| `Danger/Foreground`   | `#9A0D0D` |
-| `Danger/Border`       | `#8E0C0C` |
-| `Danger/Fill`         | `#FA5858` |
-| `Warning/Foreground`  | `#88910F` |
-| `Warning/Border`      | `#AFAA0E` |
-| `Warning/Fill`        | `#FFFF70` |
-| `Info/Foreground`     | `#3262DD` |
-| `Info/Border`         | `#4B4EFB` |
-| `Info/Fill`           | `#7B6DFE` |
-| `Text/Strong`         | `#050505` |
-| `Text/Default`        | `#2A2A2A` |
-| `Text/Subtle`         | `#4A4A4A` |
-| `Text/Muted`          | `#6A6A6A` |
-
-## 4. Typography
-
-### Font families
-
-- **Funnel Display:** heading styles H1 through H5.
-- **Outfit:** H6, body text, captions, and button labels.
-- The Figma variables `Font family/heading` and `Font family/body` alias the `Funnel Display` and `Outfit` font family variables, respectively.
-
-Text styles express **visual hierarchy**, not HTML or SEO semantics. Choose the visual style that fits the content, then use the appropriate semantic HTML element independently.
-
-- Most in-product titles use the H6 visual style. Use H5 for a stronger level and H4–H1 only when the content requires that much visual prominence.
-- H3 and above are rare in product UI; the Landing page is the main exception.
-- Use Body Large for emphasized copy below heading prominence.
-- Use Body Medium as the default for readable copy and data.
-- Use Body Small for less prominent supporting copy.
-- Use Caption for low-priority small print, tags, and similar supporting labels.
-
-### Figma text styles
-
-All listed styles use `-3%` letter spacing in Figma (equivalent to `-0.03em` in CSS). Line heights and paragraph spacing are in pixels.
-
-| Figma style     | Font           | Weight          | Size | Line height | Paragraph spacing | Letter spacing |
-| --------------- | -------------- | --------------- | ---: | ----------: | ----------------: | -------------: |
-| `Heading H1`    | Funnel Display | ExtraBold (800) | 80px |        96px |             144px |            -3% |
-| `Heading H2`    | Funnel Display | Bold (700)      | 64px |        80px |             128px |            -3% |
-| `Heading H3`    | Funnel Display | SemiBold (600)  | 48px |        64px |              96px |            -3% |
-| `Heading H4`    | Funnel Display | Medium (500)    | 40px |        48px |              80px |            -3% |
-| `Heading H5`    | Funnel Display | Regular (400)   | 32px |        40px |              64px |            -3% |
-| `Heading H6`    | Outfit         | Medium (500)    | 24px |        32px |              48px |            -3% |
-| `Body/Large`    | Outfit         | Regular (400)   | 20px |        24px |              40px |            -3% |
-| `Body/Medium`   | Outfit         | Regular (400)   | 16px |        20px |              32px |            -3% |
-| `Body/Small`    | Outfit         | Light (300)     | 16px |        20px |              32px |            -3% |
-| `Caption`       | Outfit         | Light (300)     | 12px |        16px |              24px |            -3% |
-| `Button/Large`  | Outfit         | Medium (500)    | 20px |        24px |              40px |            -3% |
-| `Button/Medium` | Outfit         | Medium (500)    | 16px |        20px |              32px |            -3% |
-| `Button/Small`  | Outfit         | Medium (500)    | 16px |        20px |              32px |            -3% |
-
-## 5. Spacing, borders, and buttons
-
-### Spacing scale
-
-Values are in pixels. Use the named `Alias` spacing variables rather than introducing arbitrary spacing values.
-
-| Token          | Value |
-| -------------- | ----: |
-| `Spacing/none` |   0px |
-| `Spacing/2xs`  |   4px |
-| `Spacing/xs`   |   8px |
-| `Spacing/sm`   |  12px |
-| `Spacing/md`   |  16px |
-| `Spacing/lg`   |  20px |
-| `Spacing/xl`   |  24px |
-| `Spacing/2xl`  |  32px |
-| `Spacing/3xl`  |  40px |
-| `Spacing/4xl`  |  48px |
-| `Spacing/5xl`  |  64px |
-| `Spacing/6xl`  |  80px |
-| `Spacing/7xl`  |  96px |
-| `Spacing/8xl`  | 128px |
-| `Spacing/9xl`  | 160px |
-| `Spacing/10xl` | 192px |
-
-### Border widths
-
-| Token               | Value |
-| ------------------- | ----: |
-| `Border width/none` |   0px |
-| `Border width/sm`   |   1px |
-| `Border width/md`   | 1.5px |
-| `Border width/lg`   |   2px |
-| `Border width/xl`   |   4px |
-
-### Button dimensions
-
-| Size | Horizontal padding | Height | Corner radius |
-| ---- | -----------------: | -----: | ------------: |
-| `sm` |               12px |   32px |          20px |
-| `md` |               16px |   40px |          24px |
-| `lg` |               24px |   48px |          32px |
-
-## 6. Icons
+## 5. Icons and interaction
 
 - **Library:** [Lucide](https://lucide.dev/) via the `lucide-react` package.
 - **Style:** simple, functional, monochrome line icons.
-- **Stroke width:** 2px.
-- **Allowed sizes:** 16px (small), 20px (default), and 24px (large).
-- Prefer semantic `Mapped` icon color tokens; keep icon color aligned with its related text or control state.
-
-## 7. Interaction and data presentation
-
+- **Component:** use the shared `Icon` component; its props and size/weight variants are documented in the [design implementation skill](./.agents/skills/design-implementation/SKILL.md).
+- Prefer mapped icon color names from the table; keep icon color aligned with related text or control state.
 - Make actions visually distinct and provide immediate, unambiguous feedback for interactive states.
-- Use the mapped action, hover, focus, disabled, and status tokens rather than ad hoc colors.
+- Use mapped action, hover, focus, disabled, and status colors rather than ad hoc colors.
 - Preserve clear contrast and legibility across dense, analytics-oriented layouts.
 - Keep data compact and organized; use typography and selective color to emphasize progress and status without making color the only carrier of meaning.
+
+### Icon identity
+
+Use these icons consistently to make application concepts recognizable:
+
+| Category | Icon | Meaning |
+| --- | --- | --- |
+| Main entities | `waypoints` | Routine |
+| Main entities | `clipboard-list` | Session |
+| Main entities | `dumbbell` | Exercise or training day |
+| Main entities | `notepad-text` | Workout tracking and its related entities |
+| Main entities | `bed` | Rest day |
+| Supporting data and sections | `calendar-days` | Application calendar |
+| Supporting data and sections | `calendar` | Dates in general |
+| Supporting data and sections | `flame` | Workout streak |
+| Supporting data and sections | `timer` | Measured time (hours, minutes, seconds) |
+| Status | `check` | Completed |
+| Status | `circle-dot` | Pending |
+| Status | `circle-not-dashed` | In progress |
+| Status | `triangle-alert` | Warning |
+| Status | `circle-alert` | Informational |
+| Status | `octagon-alert` | Danger |
+| Utility | `arrow-up-right` | Large clickable items, especially full cards |
+| Utility | `link` | Links |
+| Utility | `grip-vertical` | Draggable items |
+| Utility | `ellipsis-vertical` | Expandable action menus |
+| Utility | `chevron-up`, `chevron-down` | Accordions, collapsible/expandable components, and dropdown lists |
