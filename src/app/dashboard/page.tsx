@@ -25,7 +25,7 @@ export default function Dashboard() {
                   Completed <Icon icon="check" variant={{ size: 'sm' }} />
                 </Tag>
                 <div className="text-txt-base-default grid size-5 place-content-center">
-                  <Icon icon="arrow-up-right" variant={{ size: 'sm' }} />
+                  <Icon icon="arrow-up-right" variant={{ size: 'md' }} />
                 </div>
               </header>
               <footer className="space-y-2 p-4">
@@ -359,7 +359,7 @@ export default function Dashboard() {
           </div>
         </section>
         <section className="w-full space-y-2">
-          <h2 className="heading-6 text-txt-base-heading">Your sessions</h2>
+          <h2 className="heading-6 text-txt-base-heading">Your exercises</h2>
           <div>
             <ul className="w-full space-y-2">
               <li className="w-full">
