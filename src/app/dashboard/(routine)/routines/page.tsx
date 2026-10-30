@@ -16,15 +16,17 @@ export default async function RoutinesPage() {
 
   return (
     <PageContainer>
-      <PageHeader
-        title="Your Routines"
-        description="Create and manage your routines to automate tasks and workflows."
-      >
+      <header className="flex items-center gap-4">
+        <PageHeader
+          title="Your Routines"
+          description="Create and manage your routines to automate tasks and workflows."
+          className="flex-1"
+        />
         <Link variant={{ color: 'primary' }} href="/dashboard/routines/create">
           <Icon icon="plus" variant={{ size: 'md', weight: 'moderate' }} />
           Add Routine
         </Link>
-      </PageHeader>
+      </header>
       <PageContent className="flex flex-col gap-4">
         <section className="flex flex-wrap gap-4">
           {routines.map((routine) => (

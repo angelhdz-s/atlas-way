@@ -18,12 +18,13 @@ export default async function ExercisesPage() {
 
   return (
     <PageContainer>
-      <PageHeader title="Exercises" className="flex items-center justify-between">
+      <header className="flex items-center gap-4">
+        <PageHeader title="Exercises" className="flex flex-1 items-center" />
         <Link variant={{ color: 'primary' }} href="/dashboard/exercises/create">
           <Icon icon="plus" variant={{ size: 'md', weight: 'moderate' }} />
           Add Exercise
         </Link>
-      </PageHeader>
+      </header>
       <PageContent className="flex flex-wrap gap-4">
         <ExercisesTable exercises={exercises} />
       </PageContent>
