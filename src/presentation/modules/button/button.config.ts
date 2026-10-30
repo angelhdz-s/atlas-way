@@ -1,44 +1,49 @@
 import { tv, type VariantProps } from 'tailwind-variants';
 
 export const buttonVariant = tv({
-  base: 'flex w-fit cursor-pointer items-center gap-2 rounded-full py-0.5 font-medium whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-50',
+  base: 'font-outfit text-txt-action-on-default not-disabled:hover:text-txt-action-on-default-hover before:outline-bd-accesibility-focus disabled:text-txt-base-disabled relative flex cursor-pointer items-center justify-center rounded-full transition-all outline-none before:absolute before:-inset-0.5 before:hidden before:rounded-full before:outline-2 focus-visible:before:block not-disabled:active:scale-95',
   variants: {
     color: {
-      primary: 'bg-primary text-fg-strong-dark hover:bg-primary/90 bg-linear-45',
-      subtle: 'text-fg-strong bg-fill-top hover:text-fg-subtle',
-      outline: 'text-fg-strong hover:text-fg-subtle hover:bg-fill-top ring-bd-strong ring-1',
-      simple: 'text-fg-strong hover:text-fg-subtle',
-      muted: 'text-fg-muted hover:text-fg-default',
-      danger: 'text-danger bg-danger-fill hover:text-danger/80 hover:bg-danger-fill/50',
+      primary:
+        'bg-sf-action-default not-disabled:hover:bg-sf-action-default-hover disabled:bg-sf-action-disabled',
+      subtle:
+        'bg-sf-base-solid not-disabled:hover:bg-sf-base-solid-hover disabled:bg-sf-base-disabled',
+      outline:
+        'border-bd-base-solid not-disabled:hover:border-bd-base-solid-hover disabled:border-bd-base-disabled border',
+      simple: '',
     },
     type: {
-      text: true,
+      default: true,
       icon: 'aspect-square',
-      square: 'aspect-square',
-      iconText: 'gap',
     },
     size: {
-      xs: 'h-8 px-4 text-sm',
-      sm: 'h-9 px-5 text-sm',
-      md: 'h-10 px-5 text-base',
-      lg: 'h-11 px-6 text-base',
+      sm: 'button-label-small h-8 gap-1 px-3',
+      md: 'button-label-medium h-10 gap-2 px-4',
+      lg: 'button-label-large h-12 gap-2 px-6',
     },
     disabled: {
-      true: 'cursor-not-allowed opacity-50',
+      true: 'cursor-not-allowed',
     },
   },
   compoundVariants: [
     {
-      type: 'square',
-      class: 'justify-center p-0',
+      type: 'icon',
+      size: 'sm',
+      class: 'w-8 px-0',
     },
     {
       type: 'icon',
-      class: 'justify-center p-0',
+      size: 'md',
+      class: 'w-10 px-0',
+    },
+    {
+      type: 'icon',
+      size: 'lg',
+      class: 'w-12 px-0',
     },
   ],
   defaultVariants: {
-    type: 'text',
+    type: 'default',
     size: 'md',
   },
 });
