@@ -150,11 +150,32 @@ Use `page` for the application background, then layer `default` and `subtle` sur
 
 Use the project's established typography styles and preserve their visual hierarchy. Most in-product titles use a compact heading style; reserve larger headings for content that needs stronger visual prominence. Choose semantic HTML independently from visual text styling.
 
-## 4. Icons and interaction
+## 4. Buttons
+
+Use the shared `Button` component and choose its color by action priority:
+
+| Color | Use | Default, hover, and disabled tokens |
+| --- | --- | --- |
+| `primary` | Main application actions, such as creating a primary record or accepting changes. Reserve it for the most important action. | `Surface/action/default`, `Surface/action/default-hover`, `Surface/action/disabled` |
+| `subtle` | Secondary actions that commonly accompany a primary action. | `Surface/base/solid`, `Surface/base/solid-hover`, `Surface/base/disabled` |
+| `outline` | Tertiary, less common or less important standalone actions. | `Border/base/solid`, `Border/base/solid-hover`, `Border/base/disabled` |
+| `simple` | Contextual actions that accompany other UI elements without adding visual weight; commonly icon-only (for example, closing a modal or chip, or opening an action menu). | No surface or border; shared text states apply. |
+
+Button text and icons use `Text/action/on-default` by default, `Text/action/on-default-hover` on hover, and `Text/base/disabled` when disabled. Focus uses a 2px outside outline with `Border/accessibility/focus`; active buttons scale to 95%. Disabled buttons show only their disabled variant styles, with no hover, focus, or active state.
+
+| Size | Label style | Height | Gap | Horizontal padding | Use |
+| --- | --- | --- | --- | --- | --- |
+| `sm` | `button-label-small` | `h-8` | `gap-1` | `px-3` | Small controls, usually paired with `simple`. |
+| `md` | `button-label-medium` | `h-10` | `gap-2` | `px-4` | Default size for most primary, secondary, and tertiary actions. |
+| `lg` | `button-label-large` | `h-12` | `gap-2` | `px-6` | Prominent actions on sparse pages, such as landing or empty-data pages. |
+
+`default` buttons may contain text alone or text with an icon. `icon` buttons contain only an icon and are square; their width matches their height and they have no horizontal padding.
+
+## 5. Icons and interaction
 
 - **Library:** [Lucide](https://lucide.dev/) via the `lucide-react` package.
 - **Style:** simple, functional, monochrome line icons.
-- **Component:** use the shared `Icon` component; its props and size/weight variants are documented in the [design implementation skill](./.opencode/skills/design-implementation/SKILL.md).
+- **Component:** use the shared `Icon` component; its props and size/weight variants are documented in the [design implementation skill](./.agents/skills/design-implementation/SKILL.md).
 - Prefer mapped icon color names from the table; keep icon color aligned with related text or control state.
 - Make actions visually distinct and provide immediate, unambiguous feedback for interactive states.
 - Use mapped action, hover, focus, disabled, and status colors rather than ad hoc colors.

@@ -255,6 +255,38 @@ When implementing a Figma component or modifying an existing interface:
 - Avoid overriding existing styles without understanding their purpose.
 - Preserve the intended behavior of existing components when modifying their appearance.
 
+### Shared button component
+
+Use `src/presentation/modules/button/components/Button.tsx` for application buttons. Choose the color, size, and use case according to the button guidance in `DESIGN.md`.
+
+The button's `variant` prop is required. Always explicitly provide all three values, including when using the usual defaults:
+
+| Property | Values                                   |
+| -------- | ---------------------------------------- |
+| `color`  | `primary`, `subtle`, `outline`, `simple` |
+| `size`   | `sm`, `md`, `lg`                         |
+| `type`   | `default`, `icon`                        |
+
+Buttons must not be empty. Pass text and icons as `children`; use the shared `Icon` component for icons and match its size to the button size. A `default` button may contain text alone or one icon alongside text. Put a leading icon before the text for local actions; put a trailing icon after the text for navigation. For primary and secondary text buttons, prefer simple icons such as chevrons, arrows, and plus/minus. Use chevrons for specific records or entities and arrows for processes or collections, unless a more specific icon exists. More external or standalone actions may use any clearly relevant icon (for example, a cog with "Settings" or log-in with "Log in"); reserve complex navigation icons for sidebar links.
+
+Use `type: 'icon'` only when the button contains a single icon and no text. Such buttons must have a descriptive `aria-label`. Prefer simple, recognizable icon shapes for icon-only buttons, such as chevrons, arrows, plus/minus, X, eye, trash, ellipsis, grip, and panel icons. Icons such as cog or log-out are appropriate when they clearly represent their standalone action. Complex icons are generally reserved for sidebar navigation links.
+
+```tsx
+<Button variant={{ color: 'primary', size: 'md', type: 'default' }}>
+  <Icon icon="plus" variant={{ size: 'md' }} />
+  New routine
+</Button>
+
+<Button
+  variant={{ color: 'simple', size: 'sm', type: 'icon' }}
+  aria-label="Close dialog"
+>
+  <Icon icon="x" variant={{ size: 'sm' }} />
+</Button>
+```
+
+`Button` also accepts native button props such as `onClick`, `disabled`, and the HTML `type` attribute. The HTML `type` (for example, `button` or `submit`) is distinct from `variant.type`; the component defaults the HTML type to `button`.
+
 ### Shared icon component
 
 Use `src/presentation/modules/icon/components/Icon.tsx` for Lucide icons instead of rendering icons directly.
@@ -265,17 +297,17 @@ The component accepts:
 - `variant` (optional): an object with `size` and `weight` options:
 
 | `size` | Target size |
-| --- | ---: |
-| `sm` | 16px |
-| `md` | 20px |
-| `lg` | 24px |
+| ------ | ----------: |
+| `sm`   |        16px |
+| `md`   |        20px |
+| `lg`   |        24px |
 
-| `weight` | Nominal stroke |
-| --- | ---: |
-| `thin` | 1px |
-| `moderate` | 1.5px |
-| `medium` | 2px |
-| `thick` | 4px |
+| `weight`   | Nominal stroke |
+| ---------- | -------------: |
+| `thin`     |            1px |
+| `moderate` |          1.5px |
+| `medium`   |            2px |
+| `thick`    |            4px |
 
 These sizes and strokes describe the intended visual values to match in Figma, not necessarily the literal CSS utility values. The shared variants deliberately compensate for translation from Figma to CSS, including icon size, stroke rendering, and browser behavior. Preserve the existing variant definitions and the component's absolute SVG stroke-width behavior; do not "correct" a CSS value just because it differs from the Figma target, or replace the compensation with a uniform `strokeWidth` or ad hoc classes.
 
