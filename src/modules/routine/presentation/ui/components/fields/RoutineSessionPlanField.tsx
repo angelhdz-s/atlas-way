@@ -4,7 +4,6 @@ import { DragDropProvider } from '@dnd-kit/react';
 import { isSortableOperation } from '@dnd-kit/react/sortable';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
-import { IconCalendarWeek } from '@/presentation/globals/components/icons/outline/IconCalendarWeek';
 import { RoutineSessionPlanDraggableItem } from '@/modules/routine/presentation/ui/components/fields/RoutineSessionPlanDraggableItem';
 import { RoutineSessionPlanDroppableItem } from '@/modules/routine/presentation/ui/components/fields/RoutineSessionPlanDroppableItem';
 import { useRoutineSessionPlanField } from '@/modules/routine/presentation/ui/hooks/useRoutineSessionPlanField';
@@ -158,7 +157,7 @@ export function RoutineSessionPlanField({ sessions, days, routineDays }: Props) 
         return;
       }}
     >
-      <FormFieldSection title="Your Plan" Icon={IconCalendarWeek}>
+      <FormFieldSection title="Your Plan" icon="calendar-days">
         <div className="space-y-2">
           <div className="grid w-full grid-cols-4 items-center gap-2">
             {days.map((day, index) => {

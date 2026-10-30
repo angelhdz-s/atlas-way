@@ -1,5 +1,4 @@
 import { useFormContext } from 'react-hook-form';
-import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
 import { FormFieldSection } from '@/presentation/modules/form/components/FormFieldSection';
 import { SortableInputItems } from '@/presentation/modules/form/components/SortableInputItems';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
@@ -19,7 +18,7 @@ export function SessionExercises({
   } = useFormContext<SessionForm>();
 
   return (
-    <FormFieldSection Icon={IconBarbell} title="Exercises" className="space-y-1">
+    <FormFieldSection icon="dumbbell" title="Exercises" className="space-y-1">
       <SortableInputItems
         control={control}
         name="exercises"

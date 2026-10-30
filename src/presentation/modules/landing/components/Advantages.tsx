@@ -1,7 +1,3 @@
-import { IconBellRinging } from '@/presentation/globals/components/icons/outline/IconBellRinging';
-import { IconDeviceDesktop } from '@/presentation/globals/components/icons/outline/IconDeviceDesktop';
-import { IconDeviceDesktopAnalytics } from '@/presentation/globals/components/icons/outline/IconDeviceDesktopAnalytics';
-import { IconHammer } from '@/presentation/globals/components/icons/outline/IconHammer';
 import { AdvantageItem } from '@/presentation/modules/landing/components/advantages/AdvantageItem';
 
 export function Advantages({ className = '' }: { className?: string }) {
@@ -14,25 +10,25 @@ export function Advantages({ className = '' }: { className?: string }) {
       <main>
         <ul className="mt-8 grid grid-cols-1 gap-2 md:grid-cols-2">
           <AdvantageItem
-            Icon={IconHammer}
+            icon="hammer"
             tile="Highly Customizable"
             description="Tailor your workout routines and exercises plans to fit your unique needs."
           />
 
           <AdvantageItem
-            Icon={IconDeviceDesktop}
+            icon="monitor"
             tile="Easy to Use"
             description="Designed with user-friendliness in mind, making it accessible for everyone."
           ></AdvantageItem>
 
           <AdvantageItem
-            Icon={IconDeviceDesktopAnalytics}
+            icon="monitor-up"
             tile="Comprehensive Tracking"
             description="Monitor your progress with detailed analytics and insights."
           ></AdvantageItem>
 
           <AdvantageItem
-            Icon={IconBellRinging}
+            icon="bell-ring"
             tile="Notifications and Alerts"
             description="Get reminders and alerts to keep you on track with your fitness goals."
           ></AdvantageItem>

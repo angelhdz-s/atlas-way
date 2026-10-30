@@ -1,11 +1,10 @@
-import { IconAward } from '@/presentation/globals/components/icons/outline/IconAward';
 import { Card } from '@/presentation/modules/card/components/Card';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 
 export function BestExercises({ className = '' }: { className?: string }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
-      <CardTitle Icon={IconAward} title="Best Exercises" />
+      <CardTitle icon="award" title="Best Exercises" />
       <main>
         <table className="w-full text-left">
           <thead>

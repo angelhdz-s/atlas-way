@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { IconArrowUp } from '@/presentation/globals/components/icons/outline/IconArrowUp';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 function joinUrlParts(urls: string[], index: number): string {
   return urls.slice(0, index + 1).join('');
@@ -24,14 +24,26 @@ function ListBreadcrumbs({
     if (completeUrl === pathname)
       return (
         <li key={`${name}-${url}`} className="flex items-center gap-1">
-          {index > 0 && <IconArrowUp className="size-3 rotate-90" strokeWidth="3" />}
+          {index > 0 && (
+            <Icon
+              icon="chevron-right"
+              className="size-3"
+              variant={{ size: 'sm', weight: 'medium' }}
+            />
+          )}
           <span className="p-2">{part}</span>
         </li>
       );
 
     return (
       <li key={`${name}-${url}`} className="flex items-center gap-1">
-        {index > 0 && <IconArrowUp className="size-3 rotate-90" strokeWidth="3" />}
+        {index > 0 && (
+          <Icon
+            icon="chevron-right"
+            className="size-3"
+            variant={{ size: 'sm', weight: 'medium' }}
+          />
+        )}
         <Link href={completeUrl} className="p-2 hover:text-current/50">
           {part}
         </Link>
@@ -58,7 +70,7 @@ export function Breadcrumb({ className = '' }: { className?: string }) {
     });
 
   return (
-    <nav className={`text-sm font-medium ${className}`}>
+    <nav className={`text-sm ${className}`}>
       <ol className="flex items-center gap-2">
         <ListBreadcrumbs parts={pathParts} pathname={pathname} />
       </ol>

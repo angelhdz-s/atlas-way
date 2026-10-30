@@ -1,15 +1,11 @@
-import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
-import { IconBarbellOff } from '@/presentation/globals/components/icons/outline/IconBarbellOff';
-import { IconCalendarWeek } from '@/presentation/globals/components/icons/outline/IconCalendarWeek';
-import { IconCircleCheck } from '@/presentation/globals/components/icons/outline/IconCircleCheck';
-import { IconXCircle } from '@/presentation/globals/components/icons/outline/IconXCircle';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
+import type { IconName } from '@/presentation/modules/icon/components/Icon';
 import { routineDayItemClassConfig } from '@/modules/routine/presentation/ui/routine.ui.config';
 import type { DayTypeProps, StatusDayType } from '@/presentation/globals/mocks/routines';
-import type { IconTypes } from '@/presentation/globals/presentation.types';
 
 interface DayObjectType {
   title: string;
-  icon: IconTypes;
+  icon: IconName;
 }
 
 type StatusDayTypes = {
@@ -19,41 +15,41 @@ type StatusDayTypes = {
 const STATUS_DAYS: StatusDayTypes = {
   canceled: {
     title: 'Canceled',
-    icon: IconXCircle,
+    icon: 'octagon-alert',
   },
   completed: {
     title: 'Completed',
-    icon: IconCircleCheck,
+    icon: 'check',
   },
   current: {
     title: 'Current Day',
-    icon: IconBarbell,
+    icon: 'dumbbell',
   },
   next: {
     title: 'Next Day',
-    icon: IconCalendarWeek,
+    icon: 'calendar-days',
   },
 };
 
 const DAY_TYPE_REST = {
-  icon: IconBarbellOff,
+  icon: 'bed' as IconName,
 };
 
 const getDayAttributes = (status: StatusDayType, type: DayTypeProps) => {
   if (type === 'rest' && status === 'completed')
     return {
-      Icon: STATUS_DAYS[status].icon,
+      icon: STATUS_DAYS[status].icon,
       title: `${STATUS_DAYS[status].title} - Rest Day`,
     };
 
   if (type === 'rest')
     return {
-      Icon: DAY_TYPE_REST.icon,
+      icon: DAY_TYPE_REST.icon,
       title: `${STATUS_DAYS[status].title} - Rest Day`,
     };
 
   return {
-    Icon: STATUS_DAYS[status].icon,
+    icon: STATUS_DAYS[status].icon,
     title: `${STATUS_DAYS[status].title} - Training Day`,
   };
 };
@@ -67,7 +63,7 @@ export function RoutineDayItem({
   type: DayTypeProps;
   status: StatusDayType;
 }) {
-  const { title, Icon } = getDayAttributes(status, type);
+  const { title, icon } = getDayAttributes(status, type);
 
   const className = routineDayItemClassConfig({
     status,
@@ -77,7 +73,7 @@ export function RoutineDayItem({
   return (
     <li className={className} title={title}>
       {name}
-      <Icon className="size-5" strokeWidth="1.5" />
+      <Icon icon={icon} variant={{ size: 'md', weight: 'moderate' }} />
     </li>
   );
 }

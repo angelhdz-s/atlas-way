@@ -1,8 +1,5 @@
-import { SIconCircleCheck } from '@/presentation/globals/components/icons/solid/SIconCircleCheck';
-import { IconMapRoute } from '@/presentation/globals/components/icons/outline/IconMapRoute';
-import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
-import { IconAlarm } from '@/presentation/globals/components/icons/outline/IconAlarm';
 import { Card } from '@/presentation/modules/card/components/Card';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 export function MainCard({ className = '' }: { className?: string }) {
   return (
@@ -16,13 +13,13 @@ export function MainCard({ className = '' }: { className?: string }) {
         <ul className="flex flex-col gap-0 text-lg *:relative *:flex *:items-start *:gap-2">
           <li>
             <span className="pt-1">
-              <SIconCircleCheck className="size-6" />
+              <Icon icon="check" variant={{ size: 'lg', weight: 'moderate' }} />
             </span>
             <span className="flex-1">Create Your Own Path</span>
           </li>
           <li>
             <span className="pt-1">
-              <SIconCircleCheck className="size-6" />
+              <Icon icon="check" variant={{ size: 'lg', weight: 'moderate' }} />
             </span>
             <span className="flex-1">{"You Don't Need to Be an Expert"}</span>
           </li>
@@ -30,15 +27,15 @@ export function MainCard({ className = '' }: { className?: string }) {
       </main>
       <ul className="*:border-bd-strong-light/50 relative z-1 flex w-full items-center justify-center gap-2 text-base *:flex *:items-center *:gap-2 *:rounded-full *:border *:px-3 *:py-1.5">
         <li>
-          <IconMapRoute className="size-5" strokeWidth="1.5" />
+          <Icon icon="waypoints" variant={{ size: 'md', weight: 'moderate' }} />
           Routines
         </li>
         <li>
-          <IconAlarm className="size-5" strokeWidth="1.5" />
+          <Icon icon="alarm-clock" variant={{ size: 'md', weight: 'moderate' }} />
           Sessions
         </li>
         <li>
-          <IconBarbell className="size-5" strokeWidth="1.5" />
+          <Icon icon="dumbbell" variant={{ size: 'md', weight: 'moderate' }} />
           Exercises
         </li>
       </ul>

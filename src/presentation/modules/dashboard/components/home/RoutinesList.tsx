@@ -1,13 +1,11 @@
-import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
-import { IconRouteX } from '@/presentation/globals/components/icons/outline/IconRouteX';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
-import { IconAlarm } from '@/presentation/globals/components/icons/outline/IconAlarm';
 import { Card } from '@/presentation/modules/card/components/Card';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 export function RoutinesList({ className = '' }: { className?: string }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
-      <CardTitle Icon={IconRouteX} title="Routines" />
+      <CardTitle icon="waypoints" title="Routines" />
       <main>
         <ul className="flex flex-col gap-2">
           <li className="flex flex-col gap-1">
@@ -16,11 +14,19 @@ export function RoutinesList({ className = '' }: { className?: string }) {
             </header>
             <ul className="text-fg-default/70 flex flex-col gap-1 text-sm *:leading-none">
               <li className="flex items-center gap-2">
-                <IconAlarm className="size-4" strokeWidth="1.5" />
+                <Icon
+                  icon="alarm-clock"
+                  className="size-4"
+                  variant={{ size: 'md', weight: 'moderate' }}
+                />
                 <span className="font-light">3 Sessions</span>
               </li>
               <li className="flex items-center gap-2">
-                <IconBarbell className="size-4" strokeWidth="1.5" />
+                <Icon
+                  icon="dumbbell"
+                  className="size-4"
+                  variant={{ size: 'md', weight: 'moderate' }}
+                />
                 <span className="font-light">16 Exercises</span>
               </li>
             </ul>
@@ -31,11 +37,19 @@ export function RoutinesList({ className = '' }: { className?: string }) {
             </header>
             <ul className="text-fg-default/70 flex flex-col gap-1 text-sm *:leading-none">
               <li className="flex items-center gap-2">
-                <IconAlarm className="size-4" strokeWidth="1.5" />
+                <Icon
+                  icon="alarm-clock"
+                  className="size-4"
+                  variant={{ size: 'md', weight: 'moderate' }}
+                />
                 <span className="font-light">1 Session</span>
               </li>
               <li className="flex items-center gap-2">
-                <IconBarbell className="size-4" strokeWidth="1.5" />
+                <Icon
+                  icon="dumbbell"
+                  className="size-4"
+                  variant={{ size: 'md', weight: 'moderate' }}
+                />
                 <span className="font-light">8 Exercises</span>
               </li>
             </ul>

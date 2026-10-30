@@ -4,18 +4,18 @@ import {
   ExerciseTargetsContext,
   type ExerciseTargetsStep,
 } from '@/modules/tracking/presentation/ui/contexts/ExerciseTargetsContext';
-import type { IconTypes } from '@/presentation/globals/presentation.types';
+import type { IconName } from '@/presentation/modules/icon/components/Icon';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 import { useContext } from 'react';
-import { IconCheck, IconClock, IconX } from '@tabler/icons-react';
 
 type Props = {
   className?: string;
 };
 
-const statusIcons: Record<ExerciseTargetsStep['status'], IconTypes> = {
-  COMPLETED: IconCheck,
-  ERROR: IconX,
-  PENDING: IconClock,
+const statusIcons: Record<ExerciseTargetsStep['status'], IconName> = {
+  COMPLETED: 'check',
+  ERROR: 'octagon-alert',
+  PENDING: 'circle-dot',
 };
 
 export function ExerciseTargetsStatus({ className }: Props) {
@@ -24,7 +24,7 @@ export function ExerciseTargetsStatus({ className }: Props) {
     <div className={className}>
       <ul>
         {steps.map((s) => {
-          const Icon = statusIcons[s.status];
+          const icon = statusIcons[s.status];
           return (
             <li key={s.id}>
               <ul className="flex items-center gap-2">
@@ -35,7 +35,7 @@ export function ExerciseTargetsStatus({ className }: Props) {
                 <li className="w-fit">{s.weight}</li>
                 <li className="w-fit">
                   {' '}
-                  <Icon strokeWidth="1" className="size-5" />{' '}
+                  <Icon icon={icon} variant={{ size: 'md', weight: 'thin' }} />{' '}
                 </li>
               </ul>
             </li>

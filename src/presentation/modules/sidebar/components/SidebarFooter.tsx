@@ -2,10 +2,9 @@
 
 import { useState } from 'react';
 import { Button } from '@/presentation/modules/button/components/Button';
-import { IconCog } from '@/presentation/globals/components/icons/outline/IconCog';
-import { IconLogout } from '@/presentation/globals/components/icons/outline/IconLogout';
 import { SettingsTooltip } from '@/presentation/modules/sidebar/components/SettingsTooltip';
 import { useLogout } from '@/modules/auth/presentation/ui/hooks/useLogout';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 export function SidebarFooter({ className = '' }: { className?: string }) {
   const [settingsOpen, setSettingsOpen] = useState<boolean>(false);
@@ -32,10 +31,11 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
               <li>
                 <Button
                   variant={{ type: 'icon', color: 'simple' }}
-                  Icon={IconCog}
                   aria-label="Configuration"
                   onClick={openSettings}
-                />
+                >
+                  <Icon icon="cog" variant={{ size: 'md', weight: 'moderate' }} />
+                </Button>
               </li>
               <li>
                 <Button
@@ -45,9 +45,10 @@ export function SidebarFooter({ className = '' }: { className?: string }) {
                     type: 'icon',
                     color: 'simple',
                   }}
-                  Icon={IconLogout}
                   aria-label="Log out"
-                />
+                >
+                  <Icon icon="log-out" variant={{ size: 'md', weight: 'moderate' }} />
+                </Button>
               </li>
             </ul>
           </aside>

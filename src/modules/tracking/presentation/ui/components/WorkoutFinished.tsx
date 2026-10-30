@@ -1,4 +1,3 @@
-import { IconCircleCheck, IconCircleX } from '@tabler/icons-react';
 import type { WorkoutStatusEnum } from '@/prisma/client';
 import { EmptyDataPage } from '@/presentation/globals/components/empty-data/EmptyDataPage';
 import { Link } from '@/presentation/modules/button/components/Link';
@@ -27,11 +26,11 @@ export function WorkoutFinished({ statusId }: { statusId: WorkoutStatusEnum }) {
       ? statusCopy[statusId]
       : statusCopy.SKIPPED;
 
-  const Icon = statusId === 'COMPLETED' ? IconCircleCheck : IconCircleX;
+  const icon = statusId === 'COMPLETED' ? 'circle-check' : 'circle-x';
 
   return (
-    <EmptyDataPage Icon={Icon} title={copy.title} description={copy.description}>
-      <Link variant={{ color: 'primary', type: 'text', size: 'lg' }} href="/dashboard/tracking">
+    <EmptyDataPage icon={icon} title={copy.title} description={copy.description}>
+      <Link variant={{ color: 'primary', size: 'lg' }} href="/dashboard/tracking">
         Back to tracking
       </Link>
     </EmptyDataPage>

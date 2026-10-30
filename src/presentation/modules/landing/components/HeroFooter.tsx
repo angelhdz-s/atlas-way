@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 import { redirect } from 'next/navigation';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { nextAuthLogin } from '@/modules/auth/infrastructure/next-auth/auth.next-auth.config';
-import { IconArrowUp } from '@/presentation/globals/components/icons/outline/IconArrowUp';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props = {
   className?: string;
@@ -33,7 +33,11 @@ export function HeroFooter({ className, logged }: Props) {
       >
         Try AtlasWay
         <span className="material-icons">
-          <IconArrowUp className="size-5 rotate-90" />
+          <Icon
+            icon="arrow-up"
+            className="rotate-90"
+            variant={{ size: 'md', weight: 'moderate' }}
+          />
         </span>
       </Button>
     </footer>

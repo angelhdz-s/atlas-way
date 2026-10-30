@@ -1,11 +1,11 @@
 import { FormProvider } from 'react-hook-form';
-import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
 import { Button } from '@/presentation/modules/button/components/Button';
 import {
   type ModalFormHookProps,
   useFormHook,
 } from '@/presentation/modules/form/hooks/useFormHook';
 import type { ZodSchema } from 'zod/v3';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props<T extends ZodSchema<any, any>> = {
   className?: string;
@@ -38,9 +38,10 @@ export function ModalForm<T extends ZodSchema<any, any>>({
               type: 'icon',
             }}
             onClick={onClose}
-            Icon={IconXMark}
             aria-label="Close modal"
-          />
+          >
+            <Icon icon="x" variant={{ size: 'md', weight: 'moderate' }} />
+          </Button>
         </aside>
       </header>
       <FormProvider {...methods}>

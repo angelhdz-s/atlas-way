@@ -1,14 +1,15 @@
-import type { IconTypes } from '@/presentation/globals/presentation.types';
 import { twMerge } from 'tailwind-merge';
+import type { IconName } from '@/presentation/modules/icon/components/Icon';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props = {
-  Icon: IconTypes;
+  icon: IconName;
   className?: string;
   statTitle: string;
   statData: string;
 };
 
-export function StatCard({ Icon, statData, statTitle, className }: Props) {
+export function StatCard({ icon, statData, statTitle, className }: Props) {
   return (
     <div
       className={twMerge(
@@ -17,7 +18,7 @@ export function StatCard({ Icon, statData, statTitle, className }: Props) {
       )}
     >
       <picture className="grid size-9 place-content-center p-1">
-        <Icon className="text-fg-default size-6" strokeWidth={'1.5'} />
+        <Icon icon={icon} className="text-fg-default" variant={{ size: 'lg', weight: 'moderate' }} />
       </picture>
       <main className="space-y-1">
         <header className="text-fg-default leading-none font-light">{statTitle}</header>

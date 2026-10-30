@@ -1,62 +1,53 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { IconAlarm } from '@/presentation/globals/components/icons/outline/IconAlarm';
-import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
-import { IconBell } from '@/presentation/globals/components/icons/outline/IconBell';
-import { IconEdit } from '@/presentation/globals/components/icons/outline/IconEdit';
-import { IconMapRoute } from '@/presentation/globals/components/icons/outline/IconMapRoute';
-import { IconHeart } from '@/presentation/globals/components/icons/outline/IconHeart';
-import { IconScale } from '@/presentation/globals/components/icons/outline/IconScale';
-import { IconTrendingUp } from '@/presentation/globals/components/icons/outline/IconTrendingUp';
-import { IconTrophy } from '@/presentation/globals/components/icons/outline/IconTrophy';
-import { IconPlayerTrackNext } from '@/presentation/globals/components/icons/outline/IconPlayerTrackNext';
 import styles from '@/presentation/modules/landing/components/bentogrid/IconsAnimation.module.css';
-import type { IconTypes } from '@/presentation/globals/presentation.types';
+import type { IconName } from '@/presentation/modules/icon/components/Icon';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 const ICONS_LIST: {
   id: number;
-  Icon: IconTypes;
+  icon: IconName;
 }[] = [
   {
     id: 1,
-    Icon: IconBell,
+    icon: 'bell',
   },
   {
     id: 2,
-    Icon: IconBarbell,
+    icon: 'dumbbell',
   },
   {
     id: 3,
-    Icon: IconMapRoute,
+    icon: 'waypoints',
   },
   {
     id: 4,
-    Icon: IconAlarm,
+    icon: 'alarm-clock',
   },
   {
     id: 5,
-    Icon: IconEdit,
+    icon: 'square-pen',
   },
   {
     id: 6,
-    Icon: IconPlayerTrackNext,
+    icon: 'skip-forward',
   },
   {
     id: 7,
-    Icon: IconHeart,
+    icon: 'heart',
   },
   {
     id: 8,
-    Icon: IconScale,
+    icon: 'scale',
   },
   {
     id: 9,
-    Icon: IconTrendingUp,
+    icon: 'trending-up',
   },
   {
     id: 10,
-    Icon: IconTrophy,
+    icon: 'trophy',
   },
 ];
 
@@ -72,17 +63,18 @@ type AnimationDirection = keyof typeof DIRECTION;
 function IconContainer({
   className = '',
   style,
-  Icon,
+  icon,
 }: {
   className?: string;
   style?: React.CSSProperties;
-  Icon: IconTypes;
+  icon: IconName;
 }) {
   return (
     <figure className={`absolute top-0 left-0 block ${className}`} style={style}>
       <Icon
+        icon={icon}
         className="text-fg-strong animate-wiggle-more animate-infinite animate-duration-5000 size-8"
-        strokeWidth="1"
+        variant={{ weight: 'thin' }}
       />
     </figure>
   );
@@ -118,7 +110,7 @@ export function IconsAnimation({ direction }: { direction: AnimationDirection })
     mounted && (
       <div className="animate-fade relative h-8 w-full mask-x-from-50% mask-x-to-100%">
         <div className={`absolute top-0 -left-6`}>
-          {ICONS_LIST.map(({ Icon, id }, index) => {
+          {ICONS_LIST.map(({ icon, id }, index) => {
             return (
               <IconContainer
                 className={`${DIRECTION[direction]}`}
@@ -127,7 +119,7 @@ export function IconsAnimation({ direction }: { direction: AnimationDirection })
                   animationDuration: `${DURATION}ms`,
                 }}
                 key={id}
-                Icon={Icon}
+                icon={icon}
               />
             );
           })}

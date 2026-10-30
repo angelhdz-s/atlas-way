@@ -2,7 +2,6 @@ import { EXERCISES } from '@/presentation/globals/constants/db';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { SimpleTable } from '@/presentation/modules/dashboard/components/home/SimpleTable';
 import { Card } from '@/presentation/modules/card/components/Card';
-import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
 
 export function ExercisesList({ className = '' }: { className?: string }) {
   const exercisesKeys = Object.keys(EXERCISES).slice(0, 5) as (keyof typeof EXERCISES)[];
@@ -13,7 +12,7 @@ export function ExercisesList({ className = '' }: { className?: string }) {
 
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
-      <CardTitle Icon={IconBarbell} title="Exercises" />
+      <CardTitle icon="dumbbell" title="Exercises" />
       <main>
         <SimpleTable header={{ key: '#', name: 'Exercise' }} values={exercises} />
       </main>

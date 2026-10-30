@@ -1,22 +1,24 @@
 import { BentoCard } from '@/presentation/modules/landing/components/bentogrid/BentoCard';
-import type { IconProps } from '@/presentation/globals/presentation.types';
+import type { IconName } from '@/presentation/modules/icon/components/Icon';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props = {
   className?: string;
-  Icon: React.ComponentType<IconProps>;
+  icon: IconName;
   title: string;
   description: string;
 };
 
-export function IconHeaderCard({ className, Icon, description, title }: Props) {
+export function IconHeaderCard({ className, icon, description, title }: Props) {
   return (
     <BentoCard className={`p-2 md:row-span-3 md:p-0 ${className}`}>
       <main className="flex h-full flex-col gap-2 overflow-hidden p-4">
         <header className="grid flex-1 place-content-center">
           <figure className="bg-primary shadow-primary/50 rounded-full p-1.5 shadow-lg">
             <Icon
-              className="text-fg-strong size-6 mask-b-from-black mask-b-from-0% mask-b-to-black/40 mask-b-to-100% md:size-10"
-              strokeWidth="1.5"
+              icon={icon}
+              className="text-fg-strong mask-b-from-black mask-b-from-0% mask-b-to-black/40 mask-b-to-100% md:size-10"
+              variant={{ size: 'lg', weight: 'moderate' }}
             />
           </figure>
         </header>

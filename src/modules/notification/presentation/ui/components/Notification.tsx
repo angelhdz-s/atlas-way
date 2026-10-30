@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { IconTrash } from '@/presentation/globals/components/icons/outline/IconTrash';
 import { Button } from '@/presentation/modules/button/components/Button';
 import type { NotificationType } from '@/presentation/globals/mocks/notifications';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 export function Notification({
   className = '',
@@ -47,13 +47,14 @@ export function Notification({
         <Button
           type="button"
           variant={{
-            color: 'muted',
-            size: 'xs',
+            color: 'simple',
+            size: 'sm',
             type: 'icon',
           }}
           aria-label="Edit exercise"
-          Icon={IconTrash}
-        />
+        >
+          <Icon icon="trash" variant={{ size: 'sm', weight: 'moderate' }} />
+        </Button>
       </div>
     </article>
   );

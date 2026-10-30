@@ -1,6 +1,5 @@
 import { Card } from '@/presentation/modules/card/components/Card';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
-import { IconAward } from '@/presentation/globals/components/icons/outline/IconAward';
 
 type BestRecordItemType = {
   id: number;
@@ -55,7 +54,7 @@ export function BestRecords({ className }: { className?: string }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
       <header>
-        <CardTitle Icon={IconAward} title="Best Records" />
+        <CardTitle icon="award" title="Best Records" />
       </header>
       <main className="flex flex-col gap-2">
         {RECORDS.map((record) => (

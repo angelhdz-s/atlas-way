@@ -1,12 +1,11 @@
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 import { Card } from '@/presentation/modules/card/components/Card';
-import { SIconCircleCheck } from '@/presentation/globals/components/icons/solid/SIconCircleCheck';
-import { IconPlayerTrackPrev } from '@/presentation/globals/components/icons/outline/IconPlayerTrackPrev';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 export function LastSession({ className = '' }: { className?: string }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
-      <CardTitle Icon={IconPlayerTrackPrev} title="Last Sessions" />
+      <CardTitle icon="skip-back" title="Last Sessions" />
       <main className="flex flex-col gap-4">
         <header className="flex items-center">
           <h4 className="text-success inline text-xl leading-none font-bold">Push Day</h4>
@@ -18,7 +17,11 @@ export function LastSession({ className = '' }: { className?: string }) {
           <ul className="font-sm font-light">
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SIconCircleCheck className="text-success mr-1 size-6" />
+                <Icon
+                  icon="check"
+                  className="text-success mr-1"
+                  variant={{ size: 'lg', weight: 'moderate' }}
+                />
                 <span className="leading-none">Push Ups</span>
               </main>
               <aside>
@@ -28,7 +31,11 @@ export function LastSession({ className = '' }: { className?: string }) {
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SIconCircleCheck className="text-success mr-1 size-6" />
+                <Icon
+                  icon="check"
+                  className="text-success mr-1"
+                  variant={{ size: 'lg', weight: 'moderate' }}
+                />
                 <span className="leading-none">Lateral Raises</span>
               </main>
               <aside>
@@ -38,7 +45,11 @@ export function LastSession({ className = '' }: { className?: string }) {
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SIconCircleCheck className="text-success mr-1 size-6" />
+                <Icon
+                  icon="check"
+                  className="text-success mr-1"
+                  variant={{ size: 'lg', weight: 'moderate' }}
+                />
                 <span className="leading-none">Abs</span>
               </main>
               <aside>
@@ -48,7 +59,11 @@ export function LastSession({ className = '' }: { className?: string }) {
 
             <li className="flex items-center justify-between gap-2">
               <main className="*:inline">
-                <SIconCircleCheck className="text-success mr-1 size-6" />
+                <Icon
+                  icon="check"
+                  className="text-success mr-1"
+                  variant={{ size: 'lg', weight: 'moderate' }}
+                />
                 <span className="leading-none">Dips</span>
               </main>
               <aside>

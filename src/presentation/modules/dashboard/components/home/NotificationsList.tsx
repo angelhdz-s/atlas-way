@@ -1,4 +1,3 @@
-import { IconBell } from '@/presentation/globals/components/icons/outline/IconBell';
 import { Card } from '@/presentation/modules/card/components/Card';
 import { CardTitle } from '@/presentation/modules/card/components/CardTitle';
 
@@ -43,7 +42,7 @@ export function NotificationsList({ className = '' }: { className?: string }) {
   return (
     <Card className={`flex flex-col gap-4 ${className}`}>
       <header>
-        <CardTitle Icon={IconBell} title="Notifications" />
+        <CardTitle icon="bell" title="Notifications" />
       </header>
       <main className="text-sm">
         <Notifications />

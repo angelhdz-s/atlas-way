@@ -1,8 +1,7 @@
 import { twMerge } from 'tailwind-merge';
-import { IconGripVertical } from '@/presentation/globals/components/icons/outline/IconGripVertical';
-import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
 import { Button } from '@/presentation/modules/button/components/Button';
 import type { DivProps } from '@/presentation/globals/presentation.types';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props = DivProps & {
   onRemove?: () => void;
@@ -20,15 +19,20 @@ export function DraggableBadge(props: Props) {
         className ?? ''
       )}
     >
-      <IconGripVertical className="size-4" />
+      <Icon
+        icon="grip-vertical"
+        className="size-4"
+        variant={{ size: 'md', weight: 'moderate' }}
+      />
       <span className="w-15 truncate">{children}</span>
       {onRemove && (
         <Button
-          variant={{ type: 'icon', size: 'xs', color: 'simple' }}
+          variant={{ type: 'icon', size: 'sm', color: 'simple' }}
           aria-label="Remove item"
-          Icon={IconXMark}
           onClick={onRemove}
-        />
+        >
+          <Icon icon="x" variant={{ size: 'sm', weight: 'moderate' }} />
+        </Button>
       )}
     </div>
   );

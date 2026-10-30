@@ -1,8 +1,5 @@
-import { IconBarbell } from '@/presentation/globals/components/icons/outline/IconBarbell';
-import { IconBarbellOff } from '@/presentation/globals/components/icons/outline/IconBarbellOff';
-import { IconCircleCheck } from '@/presentation/globals/components/icons/outline/IconCircleCheck';
-import { IconAlarm } from '@/presentation/globals/components/icons/outline/IconAlarm';
 import { Card } from '@/presentation/modules/card/components/Card';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 function CalendarHeader({ className = '' }: { className?: string }) {
   return (
@@ -27,7 +24,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
           <footer>07</footer>
         </main>
         <footer>
-          <IconCircleCheck className="mx-auto size-5" />
+          <Icon icon="check" className="mx-auto" variant={{ size: 'md', weight: 'moderate' }} />
         </footer>
       </li>
       <li className="bg-fill-middle flex flex-col items-center gap-2">
@@ -36,7 +33,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
           <footer>08</footer>
         </main>
         <footer>
-          <IconCircleCheck className="mx-auto size-5" />
+          <Icon icon="check" className="mx-auto" variant={{ size: 'md', weight: 'moderate' }} />
         </footer>
       </li>
       <li className="bg-fill-middle text-accent flex flex-col items-center gap-2 text-xl leading-[1.2] font-medium">
@@ -45,7 +42,11 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
           <footer>09</footer>
         </main>
         <footer>
-          <IconAlarm className="mx-auto size-5" />
+          <Icon
+            icon="alarm-clock"
+            className="mx-auto"
+            variant={{ size: 'md', weight: 'moderate' }}
+          />
         </footer>
       </li>
       <li className="bg-fill-middle flex flex-col items-center gap-2">
@@ -54,7 +55,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
           <footer>10</footer>
         </main>
         <footer>
-          <IconBarbell className="mx-auto size-5" />
+          <Icon icon="dumbbell" className="mx-auto" variant={{ size: 'md', weight: 'moderate' }} />
         </footer>
       </li>
       <li className="bg-fill-middle text-fg-default/70 flex flex-col items-center gap-2 text-xs font-normal">
@@ -63,7 +64,7 @@ function CalendarCurrentWeek({ className }: { className?: string }) {
           <footer>11</footer>
         </main>
         <footer>
-          <IconBarbellOff className="mx-auto size-5" />
+          <Icon icon="bed" className="mx-auto" variant={{ size: 'md', weight: 'moderate' }} />
         </footer>
       </li>
     </ul>
@@ -78,31 +79,51 @@ function CalendarNextWeek({ className }: { className?: string }) {
       <li>
         <main>Tue 12</main>
         <footer>
-          <IconBarbell className="mx-auto size-4" strokeWidth="1.5" />
+          <Icon
+            icon="dumbbell"
+            className="mx-auto size-4"
+            variant={{ size: 'md', weight: 'moderate' }}
+          />
         </footer>
       </li>
       <li>
         <main>Wed 13</main>
         <footer>
-          <IconBarbellOff className="mx-auto size-4" strokeWidth="1.5" />
+          <Icon
+            icon="bed"
+            className="mx-auto size-4"
+            variant={{ size: 'md', weight: 'moderate' }}
+          />
         </footer>
       </li>
       <li>
         <main>Thu 14</main>
         <footer>
-          <IconBarbell className="mx-auto size-4" strokeWidth="1.5" />
+          <Icon
+            icon="dumbbell"
+            className="mx-auto size-4"
+            variant={{ size: 'md', weight: 'moderate' }}
+          />
         </footer>
       </li>
       <li>
         <main>Fri 15</main>
         <footer>
-          <IconBarbellOff className="mx-auto size-4" strokeWidth="1.5" />
+          <Icon
+            icon="bed"
+            className="mx-auto size-4"
+            variant={{ size: 'md', weight: 'moderate' }}
+          />
         </footer>
       </li>
       <li>
         <main>Sat 16</main>
         <footer>
-          <IconBarbellOff className="mx-auto size-4" strokeWidth="1.5" />
+          <Icon
+            icon="bed"
+            className="mx-auto size-4"
+            variant={{ size: 'md', weight: 'moderate' }}
+          />
         </footer>
       </li>
     </ul>

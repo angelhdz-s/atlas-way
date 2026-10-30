@@ -3,9 +3,8 @@
 import { useTheme } from 'next-themes';
 import { twMerge } from 'tailwind-merge';
 import { THEME } from '@/presentation/modules/theme/constants/client';
-import { IconMoon } from '@/presentation/globals/components/icons/outline/IconMoon';
-import { IconSun } from '@/presentation/globals/components/icons/outline/IconSun';
 import { Button } from '@/presentation/modules/button/components/Button';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type Props = {
   className?: string;
@@ -25,25 +24,25 @@ export function ToggleTheme({ className, children }: Props) {
         <Button
           type="button"
           variant={{
-            type: 'iconText',
+            type: 'default',
             color: 'simple',
           }}
           className={twMerge('light:hidden flex', className)}
           onClick={toggleTheme}
-          Icon={IconSun}
         >
+          <Icon icon="sun" variant={{ size: 'md', weight: 'moderate' }} />
           {children}
         </Button>
         <Button
           type="button"
           variant={{
-            type: 'iconText',
+            type: 'default',
             color: 'simple',
           }}
           className={twMerge('light:flex hidden', className)}
           onClick={toggleTheme}
-          Icon={IconMoon}
         >
+          <Icon icon="moon" variant={{ size: 'md', weight: 'moderate' }} />
           {children && children}
         </Button>
       </>
@@ -60,8 +59,9 @@ export function ToggleTheme({ className, children }: Props) {
         className={twMerge('light:hidden flex', className)}
         onClick={toggleTheme}
         aria-label={'Switch to light theme'}
-        Icon={IconSun}
-      />
+      >
+        <Icon icon="sun" variant={{ size: 'md', weight: 'moderate' }} />
+      </Button>
       <Button
         type="button"
         variant={{
@@ -71,8 +71,9 @@ export function ToggleTheme({ className, children }: Props) {
         className={twMerge('light:flex hidden', className)}
         onClick={toggleTheme}
         aria-label={'Switch to dark theme'}
-        Icon={IconMoon}
-      />
+      >
+        <Icon icon="moon" variant={{ size: 'md', weight: 'moderate' }} />
+      </Button>
     </>
   );
 }

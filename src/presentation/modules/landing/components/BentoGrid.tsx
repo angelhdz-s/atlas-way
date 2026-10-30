@@ -6,8 +6,6 @@ import { FlexibleRoutines } from '@/presentation/modules/landing/components/bent
 import { CarruselIcons } from '@/presentation/modules/landing/components/bentogrid/CarruselIcons';
 import { GetStartedCard } from '@/presentation/modules/landing/components/bentogrid/GetStartedCard';
 import { IconHeaderCard } from '@/presentation/modules/landing/components/bentogrid/IconHeaderCard';
-import { IconHeart } from '@/presentation/globals/components/icons/outline/IconHeart';
-import { IconTrendingUp } from '@/presentation/globals/components/icons/outline/IconTrendingUp';
 
 export function BentoGrid({ className = '' }: { className?: string }) {
   return (
@@ -29,13 +27,13 @@ export function BentoGrid({ className = '' }: { className?: string }) {
         <IconHeaderCard
           title="Reminders"
           description="Timely reminders for your sessions"
-          Icon={IconHeart}
+          icon="heart"
         />
 
         <IconHeaderCard
           title="Statistics"
           description="Track your progress and performance"
-          Icon={IconTrendingUp}
+          icon="trending-up"
         />
 
         <GetStartedCard />

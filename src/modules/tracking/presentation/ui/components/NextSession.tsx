@@ -4,7 +4,6 @@ import {
   SessionDetails,
   type SessionDetailsType,
 } from '@/modules/session/presentation/ui/components/SessionDetails';
-import { IconPlayerTrackNext } from '@/presentation/globals/components/icons/outline/IconPlayerTrackNext';
 
 const session = {
   id: 2,
@@ -51,7 +50,7 @@ export function NextSession({ className = '' }: { className?: string }) {
   return (
     <Card border="highlighted" className={`flex flex-col gap-4 ${className}`}>
       <header>
-        <CardTitle Icon={IconPlayerTrackNext} title="Next Session" />
+        <CardTitle icon="skip-forward" title="Next Session" />
       </header>
       <main className="flex flex-col gap-1">
         <SessionDetails withStatus={false} session={session} />

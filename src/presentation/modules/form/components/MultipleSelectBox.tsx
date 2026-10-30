@@ -1,15 +1,13 @@
 'use client';
 
+import type { Control, FieldArrayPath, FieldValues } from 'react-hook-form';
+import type { SelectOption } from '@/presentation/modules/form/form.types';
 import { Box } from '@/presentation/modules/form/components/Box';
 import { useMultipleSelectBox } from '@/presentation/modules/form/hooks/useMultipleSelectBox';
-import { IconCirclePlus } from '@/presentation/globals/components/icons/outline/IconCirclePlus';
-import { IconTrash } from '@/presentation/globals/components/icons/outline/IconTrash';
-import { IconXMark } from '@/presentation/globals/components/icons/outline/IconXMark';
 import { ErrorMessage } from '@/presentation/modules/form/components/ErrorMessage';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { SelectBox } from '@/presentation/modules/form/components/SelectBox';
-import type { Control, FieldArrayPath, FieldValues } from 'react-hook-form';
-import type { SelectOption } from '@/presentation/modules/form/form.types';
+import { Icon } from '@/presentation/modules/icon/components/Icon';
 
 type SelectedOption = {
   option: SelectOption;
@@ -25,13 +23,14 @@ function SelectedOptions({ option, onCrossClick }: SelectedOption) {
       <span className="truncate">{option.label}</span>
       {onCrossClick && (
         <Button
-          variant={{ size: 'xs', type: 'icon' }}
+          variant={{ size: 'sm', type: 'icon' }}
           type="button"
           onClick={removeOption}
           className="transition-opacity hover:opacity-50"
-          Icon={IconXMark}
           aria-label="Remove option selected"
-        />
+        >
+          <Icon icon="x" variant={{ size: 'md', weight: 'moderate' }} />
+        </Button>
       )}
     </div>
   );
@@ -91,15 +90,17 @@ export function MultipleSelectBox<TForm extends FieldValues, TName extends Field
             <Button
               onClick={openSelection}
               variant={{ type: 'icon', color: 'subtle' }}
-              Icon={IconCirclePlus}
               aria-label="Add new element"
-            />
+            >
+              <Icon icon="plus" variant={{ size: 'md', weight: 'moderate' }} />
+            </Button>
             <Button
               onClick={clearAllItems}
               variant={{ type: 'icon', color: 'subtle' }}
               aria-label="Clear all elements"
-              Icon={IconTrash}
-            />
+            >
+              <Icon icon="trash" variant={{ size: 'md', weight: 'moderate' }} />
+            </Button>
           </aside>
         </Box>
         <ErrorMessage message={error} />
