@@ -1,6 +1,6 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "tailwindCSS.classFunctions": ["tv", "cn", "cva", "compose", "variants"],
+  "tailwindCSS.classFunctions": ["tv", "twMerge", "cn", "cva", "compose", "variants"],
   "css.lint.unknownAtRules": "ignore",
   "editor.formatOnSave": true,
   "js/ts.preferences.importModuleSpecifier": "non-relative",
