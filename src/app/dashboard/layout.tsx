@@ -13,9 +13,9 @@ export default async function Layout({
     <>
       {modal}
       <Header />
-      <main className="grid h-dvh flex-1 grid-cols-[auto_1fr]">
+      <main className="flex h-dvh flex-1">
         <Sidebar />
-        <main className="flex flex-1 flex-col">
+        <main className="m-0 flex flex-1 flex-col p-0">
           {children}
           <Footer />
         </main>
