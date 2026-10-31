@@ -20,8 +20,7 @@ export function SessionPanelItem({ className, name, date, exerciseCount, href }:
             <ul className="caption flex gap-4">
               <li className="text-txt-base-caption flex gap-1">
                 <Icon icon="dumbbell" variant={{ size: 'sm', weight: 'thin' }} />
-                {exerciseCount}
-                exercises
+                {`${exerciseCount} exercises`}
               </li>
               <li className="text-txt-base-caption flex gap-1">
                 <Icon icon="calendar" variant={{ size: 'sm', weight: 'thin' }} />

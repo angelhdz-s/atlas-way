@@ -28,7 +28,7 @@ export function ExercisePanelItem({ className, href, name, date, reps, sets }: P
         </main>
         <aside className="flex items-center gap-1">
           <div className="body-small text-txt-base-caption whitespace-nowrap">
-            {sets} x {reps}
+            {`${sets} x ${reps}`}
           </div>
           <Link
             href={href}
