@@ -1,45 +1,47 @@
 import { Icon } from '@/presentation/modules/icon/components/Icon';
 import { twMerge } from 'tailwind-merge';
 
+export type WeekActivityDays = [
+  {
+    day: 0;
+    isCompleted: boolean;
+    hasWorkout: boolean;
+  },
+  {
+    day: 1;
+    isCompleted: boolean;
+    hasWorkout: boolean;
+  },
+  {
+    day: 2;
+    isCompleted: boolean;
+    hasWorkout: boolean;
+  },
+  {
+    day: 3;
+    isCompleted: boolean;
+    hasWorkout: boolean;
+  },
+  {
+    day: 4;
+    isCompleted: boolean;
+    hasWorkout: boolean;
+  },
+  {
+    day: 5;
+    isCompleted: boolean;
+    hasWorkout: boolean;
+  },
+  {
+    day: 6;
+    isCompleted: boolean;
+    hasWorkout: boolean;
+  },
+];
+
 type Props = {
   className?: string;
-  days: [
-    {
-      day: 0;
-      isCompleted: boolean;
-      hasWorkout: boolean;
-    },
-    {
-      day: 1;
-      isCompleted: boolean;
-      hasWorkout: boolean;
-    },
-    {
-      day: 2;
-      isCompleted: boolean;
-      hasWorkout: boolean;
-    },
-    {
-      day: 3;
-      isCompleted: boolean;
-      hasWorkout: boolean;
-    },
-    {
-      day: 4;
-      isCompleted: boolean;
-      hasWorkout: boolean;
-    },
-    {
-      day: 5;
-      isCompleted: boolean;
-      hasWorkout: boolean;
-    },
-    {
-      day: 6;
-      isCompleted: boolean;
-      hasWorkout: boolean;
-    },
-  ];
+  days: WeekActivityDays;
 };
 
 const WEEK_DAY_NAMES = [
