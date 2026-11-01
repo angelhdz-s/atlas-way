@@ -1,4 +1,5 @@
-import { Button } from '@/presentation/modules/button/components/Button';
+import type { DropdownMenuItem } from '@/presentation/globals/components/DropdownMenu';
+import { ActionsButton } from '@/presentation/modules/button/components/ActionsButton';
 import { Icon } from '@/presentation/modules/icon/components/Icon';
 import { twMerge } from 'tailwind-merge';
 
@@ -7,6 +8,7 @@ export type ActiveRoutineData = {
   description: string | null;
   date: string;
   daysWithSessions: number[];
+  actions?: DropdownMenuItem[];
 };
 
 type Props = ActiveRoutineData & {
@@ -15,7 +17,14 @@ type Props = ActiveRoutineData & {
 
 const WEEK_DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-export function ActiveRoutineItem({ className, name, description, date, daysWithSessions }: Props) {
+export function ActiveRoutineItem({
+  className,
+  name,
+  description,
+  date,
+  daysWithSessions,
+  actions,
+}: Props) {
   return (
     <div className={twMerge('bg-sf-base-default flex gap-2 rounded-xl p-4', className)}>
       <main className="flex-1 space-y-1">
@@ -47,15 +56,7 @@ export function ActiveRoutineItem({ className, name, description, date, daysWith
             ))}
           </ol>
         </div>
-        <Button
-          variant={{
-            type: 'icon',
-            size: 'sm',
-            color: 'simple',
-          }}
-        >
-          <Icon icon="ellipsis-vertical" variant={{ size: 'sm', weight: 'moderate' }} />
-        </Button>
+        {actions && actions.length > 0 && <ActionsButton actions={actions} />}
       </aside>
     </div>
   );
