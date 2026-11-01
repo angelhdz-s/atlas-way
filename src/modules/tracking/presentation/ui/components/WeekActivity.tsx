@@ -60,7 +60,12 @@ export function WeekActivity({ className, days }: Props) {
       <ul className="flex items-center gap-2">
         {days.map(({ day, isCompleted, hasWorkout }) => (
           <li key={`week-activity-day-${day}`} className="w-full space-y-2">
-            <main className="text-txt-base-body flex w-full items-center gap-2">
+            <main
+              className={twMerge(
+                'flex w-full items-center gap-2',
+                isCompleted ? 'text-txt-success-default' : 'text-txt-base-body'
+              )}
+            >
               <p className="body-medium flex-1">{WEEK_DAY_NAMES[day] ?? 'Day'}</p>
               {isCompleted && <Icon icon="check" variant={{ size: 'sm', weight: 'thin' }} />}
             </main>
@@ -69,7 +74,9 @@ export function WeekActivity({ className, days }: Props) {
                 <Icon
                   variant={{ size: 'sm', weight: 'thin' }}
                   icon="dumbbell"
-                  className="text-txt-success-default"
+                  className={twMerge(
+                    isCompleted ? 'text-txt-success-default' : 'text-txt-base-caption'
+                  )}
                 />
               )}
             </div>
