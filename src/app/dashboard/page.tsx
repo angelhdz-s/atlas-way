@@ -21,13 +21,23 @@ export default function Dashboard() {
           {/* First Row */}
           <div className="flex gap-8">
             {/* Card */}
+
             <WorkoutCard
-              title="Push day"
-              icon="clipboard-list"
-              completedExercises={6}
-              totalExercises={6}
+              session={{
+                title: 'Push day',
+                completedExercises: 6,
+                totalExercises: 6,
+              }}
               href="#"
             />
+
+            {/* <RestCard
+              upcommingSession={{
+                title: 'Push day',
+                date: 'Lun (2 days left)',
+              }}
+              href="#"
+            /> */}
 
             {/* Current Week */}
 
@@ -53,6 +63,24 @@ export default function Dashboard() {
                       description={description}
                       date={date}
                       daysWithSessions={daysWithSessions}
+                      actions={[
+                        {
+                          icon: 'waypoints',
+                          label: 'View details',
+                          href: '#',
+                          disabled: true,
+                        },
+                        {
+                          icon: 'monitor-off',
+                          label: 'Desactivate',
+                          href: '#',
+                        },
+                        {
+                          icon: 'trash',
+                          label: 'Delete',
+                          href: '#',
+                        },
+                      ]}
                     />
                   </li>
                 ))}
