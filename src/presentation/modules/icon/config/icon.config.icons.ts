@@ -73,6 +73,8 @@ import {
   Waypoints,
   type LucideIcon,
   EllipsisVertical,
+  MonitorOff,
+  Calendar1,
 } from 'lucide-react';
 
 export const mappedIcons: Record<string, LucideIcon> = {
@@ -87,6 +89,7 @@ export const mappedIcons: Record<string, LucideIcon> = {
   'bell-off': BellOff,
   'bell-ring': BellRing,
   calendar: Calendar,
+  'calendar-1': Calendar1,
   'calendar-check': CalendarCheck,
   'calendar-clock': CalendarClock,
   'calendar-days': CalendarDays,
@@ -100,7 +103,7 @@ export const mappedIcons: Record<string, LucideIcon> = {
   circle: Circle,
   'circle-check': CircleCheck,
   'circle-dot': CircleDot,
-  'circle-not-dashed': CircleDashed,
+  'circle-dot-dashed': CircleDashed,
   'circle-alert': CircleAlert,
   'circle-plus': CirclePlus,
   'circle-x': CircleX,
@@ -122,6 +125,7 @@ export const mappedIcons: Record<string, LucideIcon> = {
   'map-plus': MapPlus,
   menu: Menu,
   monitor: Monitor,
+  'monitor-off': MonitorOff,
   'monitor-up': MonitorUp,
   moon: Moon,
   network: Network,
