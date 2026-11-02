@@ -14,10 +14,12 @@ type Props = {
 };
 export function useLayer({ onClose, isOpen }: Props) {
   const id = useId();
-  const ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isOpen) return;
+
+    const element = ref.current;
 
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -29,20 +31,26 @@ export function useLayer({ onClose, isOpen }: Props) {
     };
 
     const handleClickOutside = (e: MouseEvent) => {
-      if (!ref.current) return;
-      if (!ref.current.contains(e.target as Node)) {
+      if (!element) return;
+      if (!element.contains(e.target as Node)) {
         onClose();
       }
+    };
+
+    const handleMouseLeave = () => {
+      onClose();
     };
 
     registerLayer(id);
     window.addEventListener('keydown', handleEsc);
     window.addEventListener('mousedown', handleClickOutside);
+    element?.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       unregisterLayer(id);
       window.removeEventListener('keydown', handleEsc);
       window.removeEventListener('mousedown', handleClickOutside);
+      element?.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, [id, isOpen, onClose]);
 
