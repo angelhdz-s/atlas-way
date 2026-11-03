@@ -1,6 +1,10 @@
+'use client';
+
 import type { DropdownMenuItem } from '@/presentation/globals/components/DropdownMenu';
 import { ActionsButton } from '@/presentation/modules/button/components/ActionsButton';
 import { Icon } from '@/presentation/modules/icon/components/Icon';
+import { useDraggable } from '@dnd-kit/react';
+import { useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type ExerciseProps = {
@@ -25,10 +29,17 @@ export function SessionLateralPanelDraggableItem({
   session,
   actions,
 }: SessionLateralPanelDraggableItemProps) {
+  const id = useId();
+  const { ref, isDragging } = useDraggable({
+    id,
+  });
+
   return (
     <article
+      ref={ref}
       className={twMerge(
-        'bg-sf-base-default border-bd-base-default cursor-grab space-y-2 rounded-sm border p-2',
+        'bg-sf-base-default border-bd-base-default cursor-grab rounded-sm border p-2',
+        isDragging && 'h-10 w-40 shadow-2xl shadow-black',
         className
       )}
     >
@@ -39,9 +50,11 @@ export function SessionLateralPanelDraggableItem({
           className="text-ic-base-top"
         />
         <span className="body-medium text-txt-base-heading flex-1">{session.name}</span>
-        <ActionsButton menuSide="left" actions={actions} />
+        {!isDragging && <ActionsButton menuSide="left" actions={actions} className="" />}
       </header>
-      <ul className="caption text-txt-base-body space-y-0.5">
+      <ul
+        className={twMerge('caption text-txt-base-body space-y-0.5 pt-2', isDragging && 'hidden')}
+      >
         {session.exericises.map((e) => (
           <li key={e.name} className="flex items-center gap-2">
             <span className="flex-1">{e.name}</span>
