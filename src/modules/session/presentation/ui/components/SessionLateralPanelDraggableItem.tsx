@@ -2,9 +2,6 @@
 
 import type { DropdownMenuItem } from '@/presentation/globals/components/DropdownMenu';
 import { ActionsButton } from '@/presentation/modules/button/components/ActionsButton';
-import { Icon } from '@/presentation/modules/icon/components/Icon';
-import { useDraggable } from '@dnd-kit/react';
-import { useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type ExerciseProps = {
@@ -29,26 +26,28 @@ export function SessionLateralPanelDraggableItem({
   session,
   actions,
 }: SessionLateralPanelDraggableItemProps) {
-  const id = useId();
-  const { ref, isDragging } = useDraggable({
-    id,
-  });
+  // const id = useId();
+  // const { ref, isDragging } = useDraggable({
+  //   id,
+  // });
+
+  const isDragging = false;
 
   return (
     <article
-      ref={ref}
       className={twMerge(
         'bg-sf-base-default border-bd-base-default cursor-grab rounded-sm border p-2',
         isDragging && 'h-10 w-40 shadow-2xl shadow-black',
         className
       )}
     >
+      {/* ref={ref} */}
       <header className="flex items-center gap-1">
-        <Icon
+        {/* <Icon
           icon="grip-vertical"
           variant={{ size: 'sm', weight: 'thin' }}
           className="text-ic-base-top"
-        />
+        /> */}
         <span className="body-medium text-txt-base-heading flex-1">{session.name}</span>
         {!isDragging && <ActionsButton menuSide="left" actions={actions} className="" />}
       </header>
