@@ -75,6 +75,8 @@ import {
   EllipsisVertical,
   MonitorOff,
   Calendar1,
+  RotateCcw,
+  Shuffle,
 } from 'lucide-react';
 
 export const mappedIcons: Record<string, LucideIcon> = {
@@ -137,9 +139,11 @@ export const mappedIcons: Record<string, LucideIcon> = {
   plus: Plus,
   rocket: Rocket,
   'rotate-cw': RotateCw,
+  'rotate-ccw': RotateCcw,
   route: Route,
   scale: Scale,
   search: Search,
+  shuffle: Shuffle,
   'skip-back': SkipBack,
   'skip-forward': SkipForward,
   smile: Smile,
