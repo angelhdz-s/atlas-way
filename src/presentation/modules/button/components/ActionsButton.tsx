@@ -14,7 +14,7 @@ import { twMerge } from 'tailwind-merge';
 type Props = {
   className?: string;
   actions: DropdownMenuItem[];
-  menuSide: 'right' | 'left';
+  menuSide?: 'right' | 'left';
 };
 
 export function ActionsButton({ className, actions, menuSide = 'right' }: Props) {
