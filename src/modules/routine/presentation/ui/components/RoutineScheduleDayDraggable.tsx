@@ -26,7 +26,7 @@ export function RoutineScheduleDayDraggable({ className, session, onClose }: Pro
     >
       {/* ref={ref} */}
       <div className="flex flex-1 items-center gap-2">
-        <Icon icon="grip-vertical" variant={{ size: 'sm', weight: 'thin' }} />
+        {/* <Icon icon="grip-vertical" variant={{ size: 'sm', weight: 'thin' }} /> */}
         <span className="body-medium text-txt-base-heading flex-1">{session.name}</span>
         <Button
           variant={{ type: 'icon', size: 'sm', color: 'simple' }}
