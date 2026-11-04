@@ -1,24 +1,48 @@
-import { Icon } from '@/presentation/modules/icon/components/Icon';
-import { useDroppable } from '@dnd-kit/react';
-import { useId } from 'react';
+import { Icon, type IconName } from '@/presentation/modules/icon/components/Icon';
 import { twMerge } from 'tailwind-merge';
+
+type Action = 'move' | 'add' | 'swap' | 'replace';
 
 type Props = {
   className?: string;
+  action?: Action;
 };
 
-export function RoutineScheduleDayDroppable({ className }: Props) {
-  const id = useId();
-  const { ref, isDropTarget } = useDroppable({
-    id,
-  });
+type ActionContent = {
+  icon: IconName;
+  label: string;
+};
+
+const ACTION_CONTENTS: Record<Action, ActionContent> = {
+  add: {
+    icon: 'plus',
+    label: 'Add session',
+  },
+  move: {
+    icon: 'arrow-down',
+    label: 'Move session',
+  },
+  replace: {
+    icon: 'repeat',
+    label: 'Replace session',
+  },
+  swap: {
+    icon: 'shuffle',
+    label: 'Swap sessions',
+  },
+};
+
+export function RoutineScheduleDayDroppable({ className, action = 'add' }: Props) {
+  const actionContent = ACTION_CONTENTS[action] ?? ACTION_CONTENTS.add;
+  const icon = actionContent.icon;
+  const label = actionContent.label;
+
   return (
     <div
       className={twMerge(
-        'relative grid h-full w-full place-content-center overflow-visible rounded-sm p-2',
+        'relative flex h-full w-full items-center justify-center overflow-visible rounded-sm p-1',
         className
       )}
-      ref={ref}
     >
       <svg
         viewBox="0 0 100 100"
@@ -37,21 +61,16 @@ export function RoutineScheduleDayDroppable({ className }: Props) {
           strokeWidth={1.5}
           strokeLinecap="round"
           vectorEffect={'non-scaling-stroke'}
-          className={twMerge(
-            'transition-colors',
-            isDropTarget ? 'stroke-white' : 'stroke-bd-base-subtle'
-          )}
+          className={twMerge('transition-colors', 'stroke-white')}
         />
       </svg>
       <div className="text-txt-base-caption flex flex-col items-center justify-center">
         <Icon
-          icon="plus"
+          icon={icon}
           variant={{ size: 'sm', weight: 'thin' }}
           className="text-ic-base-caption"
         />
-        <span className="caption flex-1 text-center text-pretty">
-          {!isDropTarget ? 'Drag and drop your session here' : 'Drop your session here'}
-        </span>
+        <span className="caption flex-1 text-center text-pretty">{label}</span>
       </div>
     </div>
   );
