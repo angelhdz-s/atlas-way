@@ -1,17 +1,17 @@
 # Graph Report - atlas-way  (2026-11-04)
 
 ## Corpus Check
-- 529 files · ~81,691 words
+- 529 files · ~81,687 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 15 file(s) not represented in the graph (top: .css 7, (none) 5, .toml 1)
 
 ## Summary
-- 1955 nodes · 6362 edges · 74 communities (65 shown, 9 thin omitted)
+- 1955 nodes · 6357 edges · 74 communities (65 shown, 9 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 95 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0d7d1f39`
+- Built from commit: `017f5dfd`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -89,7 +89,7 @@
 - workout-status.rules.ts
 
 ## God Nodes (most connected - your core abstractions)
-1. `Icon()` - 133 edges
+1. `Icon()` - 131 edges
 2. `Failure()` - 125 edges
 3. `Success()` - 96 edges
 4. `DomainError` - 81 edges
@@ -392,7 +392,7 @@ Nodes (4): WorkoutStatusId, WorkoutTargetStatusId, resolveWorkoutFinalStatus(), 
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Icon()` connect `Icon` to `RoutineModalForm.tsx`, `dashboard/page.tsx`, `ref_tailwind_merge`, `CardTitle`, `Landing Page Sections`, `Session List UI`, `Dashboard Pages`, `Modal and Layout Primitives`, `Date Utilities`, `Drag and Drop UI`, `RoutineDayItem.tsx`, `Routine and Session Cards`, `RoutineSchedule.tsx`, `Root Layout and Fonts`, `Session Creation Flow`, `Tracking Pages and Empty States`, `ref_react`, `ErrorMessage`, `ref_next`, `Muscle`, `Exercise Targets UI`, `CalendarDay.tsx`, `Design System Documentation`?**
-  _High betweenness centrality (0.133) - this node is a cross-community bridge._
+  _High betweenness centrality (0.132) - this node is a cross-community bridge._
 - **What connects `NEXT_STEP`, `PREV_STEP`, `JUMP_TO_STEP` to the rest of the system?**
   _50 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Exercise Validation Schemas` be split into smaller, more focused modules?**
