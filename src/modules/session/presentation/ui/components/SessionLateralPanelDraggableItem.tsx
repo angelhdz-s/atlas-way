@@ -36,7 +36,7 @@ export function SessionLateralPanelDraggableItem({
   return (
     <article
       className={twMerge(
-        'bg-sf-base-default border-bd-base-default cursor-grab rounded-sm border p-2',
+        'bg-sf-base-default border-bd-base-default rounded-sm border p-2',
         isDragging && 'h-10 w-40 shadow-2xl shadow-black',
         className
       )}
