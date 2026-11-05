@@ -11,8 +11,9 @@ export const unregisterLayer = (id: string) => {
 type Props = {
   onClose: () => void;
   isOpen: boolean;
+  closeOnMouseLeave?: boolean;
 };
-export function useLayer({ onClose, isOpen }: Props) {
+export function useLayer({ onClose, isOpen, closeOnMouseLeave = true }: Props) {
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -44,15 +45,15 @@ export function useLayer({ onClose, isOpen }: Props) {
     registerLayer(id);
     window.addEventListener('keydown', handleEsc);
     window.addEventListener('mousedown', handleClickOutside);
-    element?.addEventListener('mouseleave', handleMouseLeave);
+    if (closeOnMouseLeave) element?.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
       unregisterLayer(id);
       window.removeEventListener('keydown', handleEsc);
       window.removeEventListener('mousedown', handleClickOutside);
-      element?.removeEventListener('mouseleave', handleMouseLeave);
+      if (closeOnMouseLeave) element?.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [id, isOpen, onClose]);
+  }, [id, isOpen, onClose, closeOnMouseLeave]);
 
   return {
     ref,

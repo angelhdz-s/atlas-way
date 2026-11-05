@@ -14,16 +14,20 @@ import { twMerge } from 'tailwind-merge';
 type Props = {
   className?: string;
   actions: DropdownMenuItem[];
+  menuSide?: 'right' | 'left';
 };
 
-export function ActionsButton({ className, actions }: Props) {
+export function ActionsButton({ className, actions, menuSide = 'right' }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { ref } = useLayer({
     isOpen: isMenuOpen,
     onClose: () => setIsMenuOpen(false),
   });
 
+  const areActionsEmpty = actions.length === 0;
+
   const openMenu = () => {
+    if (areActionsEmpty) return;
     if (isMenuOpen) return;
     setIsMenuOpen(true);
   };
@@ -42,7 +46,13 @@ export function ActionsButton({ className, actions }: Props) {
       </Button>
       {isMenuOpen && (
         <>
-          <div ref={ref} className="absolute top-0 left-full z-10">
+          <div
+            ref={ref}
+            className={twMerge(
+              'absolute top-0 z-10',
+              menuSide === 'right' ? 'left-full' : 'right-full'
+            )}
+          >
             <DropdownMenu items={actions} />
           </div>
           <TooltipBackdrop className="bg-transparent" />
