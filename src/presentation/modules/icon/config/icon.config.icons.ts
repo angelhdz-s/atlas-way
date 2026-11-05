@@ -63,7 +63,6 @@ import {
   SquarePen,
   Sun,
   Timer,
-  Trash,
   TrendingDown,
   TrendingUp,
   TriangleAlert,
@@ -78,6 +77,7 @@ import {
   RotateCcw,
   Shuffle,
   Trash2,
+  Info,
 } from 'lucide-react';
 
 export const mappedIcons: Record<string, LucideIcon> = {
@@ -105,6 +105,7 @@ export const mappedIcons: Record<string, LucideIcon> = {
   'chevron-up': ChevronUp,
   circle: Circle,
   'circle-check': CircleCheck,
+  'circle-dashed': CircleDashed,
   'circle-dot': CircleDot,
   'circle-dot-dashed': CircleDashed,
   'circle-alert': CircleAlert,
@@ -120,6 +121,7 @@ export const mappedIcons: Record<string, LucideIcon> = {
   hammer: Hammer,
   heart: Heart,
   house: House,
+  info: Info,
   'grip-vertical': GripVertical,
   languages: Languages,
   link: Link,
