@@ -77,6 +77,7 @@ import {
   Calendar1,
   RotateCcw,
   Shuffle,
+  Trash2,
 } from 'lucide-react';
 
 export const mappedIcons: Record<string, LucideIcon> = {
@@ -150,7 +151,7 @@ export const mappedIcons: Record<string, LucideIcon> = {
   'square-pen': SquarePen,
   sun: Sun,
   timer: Timer,
-  trash: Trash,
+  trash: Trash2,
   'trending-down': TrendingDown,
   'trending-up': TrendingUp,
   'triangle-alert': TriangleAlert,
