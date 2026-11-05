@@ -1,6 +1,7 @@
 'use client';
 
 import { RoutineScheduleDay } from '@/modules/routine/presentation/ui/components/RoutineScheduleDay';
+import { Alert } from '@/presentation/modules/alert/components/Alert';
 import { Button } from '@/presentation/modules/button/components/Button';
 import { SwitchButton } from '@/presentation/modules/button/components/SwitchButton';
 import { Icon } from '@/presentation/modules/icon/components/Icon';
@@ -22,6 +23,8 @@ type RoutineProps = {
 type Props = {
   className?: string;
   routine: RoutineProps;
+  onDelete?: () => void;
+  isNew?: boolean;
 };
 
 /*
@@ -50,7 +53,7 @@ type Props = {
 
  */
 
-export function RoutineSchedule({ className, routine }: Props) {
+export function RoutineSchedule({ className, routine, onDelete, isNew = false }: Props) {
   const sessionsCount = routine.weeklySchedule.filter((d) => d.session !== null).length;
   const restDaysCount = 7 - sessionsCount;
 
@@ -80,7 +83,14 @@ export function RoutineSchedule({ className, routine }: Props) {
     >
       <header className="flex items-start gap-4">
         <div className="flex-1 space-y-1">
-          <h3 className="body-large text-txt-base-heading transition-colors">{routine.name}</h3>
+          <h3
+            className={twMerge(
+              'body-large transition-colors',
+              isRoutineActive ? 'text-txt-base-heading' : 'text-txt-base-disabled'
+            )}
+          >
+            {routine.name}
+          </h3>
           {/* {!isEditingRoutineName ? (
             <h3
               onDoubleClick={() => setIsEditingRoutineName(true)}
@@ -125,6 +135,7 @@ export function RoutineSchedule({ className, routine }: Props) {
                 icon="clipboard-list"
                 variant={{ size: 'sm', weight: 'thin' }}
                 className={twMerge(
+                  'transition-colors',
                   isRoutineActive ? 'text-ic-base-caption' : 'text-ic-base-disabled'
                 )}
               />
@@ -136,6 +147,7 @@ export function RoutineSchedule({ className, routine }: Props) {
                 icon="bed"
                 variant={{ size: 'sm', weight: 'thin' }}
                 className={twMerge(
+                  'transition-colors',
                   isRoutineActive ? 'text-ic-base-caption' : 'text-ic-base-disabled'
                 )}
               />
@@ -145,12 +157,14 @@ export function RoutineSchedule({ className, routine }: Props) {
         </div>
         {/* biome-ignore lint/a11y/useSemanticElements: button group correctly applied */}
         <div role="group" aria-label="Routine actions" className="flex items-center gap-2">
-          <SwitchButton
-            activeLabel="Disactivate routine"
-            inactiveLabel="Activate routine"
-            active={isRoutineActive}
-            onClick={toggleRoutineActive}
-          />
+          <Button
+            type="button"
+            onClick={onDelete}
+            variant={{ type: 'icon', size: 'md', color: 'simple' }}
+            aria-label="Delete routine"
+          >
+            <Icon icon="trash" variant={{ size: 'md', weight: 'moderate' }} />
+          </Button>
           <Button
             type="button"
             onClick={toggleRoutineCollapsed}
@@ -159,15 +173,33 @@ export function RoutineSchedule({ className, routine }: Props) {
             aria-label={isRoutineCollapsed ? 'Hide routine schedule' : 'Show routine schedule'}
           >
             <Icon
-              icon={'chevron-down'}
+              icon="chevron-down"
               variant={{ size: 'md', weight: 'moderate' }}
               className={twMerge('transition-all', isRoutineCollapsed ? 'rotate-180' : 'rotate-0')}
             />
           </Button>
         </div>
       </header>
-      <section className={twMerge('space-y-1 pt-4', isRoutineCollapsed && 'hidden')}>
-        <h4 className="caption text-txt-base-caption">Weekly schedule</h4>
+      <section className={twMerge('space-y-2 pt-4', isRoutineCollapsed && 'hidden')}>
+        <header className="flex items-center gap-1">
+          <h4 className="caption text-txt-base-caption flex-1">Weekly schedule</h4>
+          <div className="flex items-center gap-4">
+            <span
+              className={twMerge(
+                'body-small transition-colors',
+                isRoutineActive ? 'text-txt-base-body' : 'text-txt-base-disabled'
+              )}
+            >
+              Active
+            </span>
+            <SwitchButton
+              activeLabel="Disactivate routine"
+              inactiveLabel="Activate routine"
+              active={isRoutineActive}
+              onClick={toggleRoutineActive}
+            />
+          </div>
+        </header>
         <ol className="flex h-fit items-center">
           {routine.weeklySchedule.map((d, i) => (
             <li
@@ -184,6 +216,9 @@ export function RoutineSchedule({ className, routine }: Props) {
             </li>
           ))}
         </ol>
+        {isNew && (
+          <Alert label="Weekly schedule must contain at least one session" type="infoSubtle" />
+        )}
       </section>
     </article>
   );
