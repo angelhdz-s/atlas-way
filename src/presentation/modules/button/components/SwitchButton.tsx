@@ -26,12 +26,13 @@ export function SwitchButton({
       role="switch"
       aria-checked={active}
       className={twMerge(
-        'relative h-8 w-12 cursor-pointer rounded-full border transition-all',
-        'before:bg-sf-base-inverse before:absolute before:inset-0 before:top-1.25 before:bottom-1.25 before:aspect-square before:h-5 before:rounded-full before:transition-[left]',
+        'relative h-6 w-10 cursor-pointer rounded-full border transition-all',
+        'before:bg-sf-base-inverse before:absolute before:inset-0 before:top-0.75 before:rounded-full before:transition-[left]',
+        'before:bottom-1 before:aspect-square before:h-4',
         active
           ? 'bg-sf-action-default border-bd-action-default'
           : 'bg-sf-base-page border-bd-base-default',
-        active ? 'before:right-0 before:left-5.25' : 'before:right-0 before:left-1.25',
+        active ? 'before:left-4.75' : 'before:left-0.75',
         className
       )}
       aria-label={active ? activeLabel : inactiveLabel}
