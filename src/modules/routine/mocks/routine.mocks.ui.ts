@@ -1,4 +1,5 @@
 import type { ActiveRoutineData } from '@/modules/routine/presentation/ui/components/ActiveRoutineItem';
+import { SESSION_MOCK_OPTIONS } from '@/modules/session/mocks/session.mocks.ui';
 
 export const ACTIVE_ROUTINES_MOCK: ActiveRoutineData[] = [
   {
@@ -29,9 +30,7 @@ export const ROUTINE_SCHEDULES_MOCK = [
     weeklySchedule: [
       {
         day: 0,
-        session: {
-          name: 'Push day',
-        },
+        session: SESSION_MOCK_OPTIONS[0],
       },
       {
         day: 1,
@@ -39,9 +38,7 @@ export const ROUTINE_SCHEDULES_MOCK = [
       },
       {
         day: 2,
-        session: {
-          name: 'Leg day',
-        },
+        session: SESSION_MOCK_OPTIONS[3],
       },
       {
         day: 3,
@@ -49,9 +46,7 @@ export const ROUTINE_SCHEDULES_MOCK = [
       },
       {
         day: 4,
-        session: {
-          name: 'Pull day',
-        },
+        session: SESSION_MOCK_OPTIONS[2],
       },
       {
         day: 5,
@@ -70,9 +65,7 @@ export const ROUTINE_SCHEDULES_MOCK = [
     weeklySchedule: [
       {
         day: 0,
-        session: {
-          name: 'Full body',
-        },
+        session: SESSION_MOCK_OPTIONS[1],
       },
       {
         day: 1,
@@ -84,9 +77,7 @@ export const ROUTINE_SCHEDULES_MOCK = [
       },
       {
         day: 3,
-        session: {
-          name: 'Full body',
-        },
+        session: SESSION_MOCK_OPTIONS[1],
       },
       {
         day: 4,

@@ -107,3 +107,22 @@ export const SESSION_LATERAL_PANEL_DRAGGABLE_MOCK: SessionLateralPanelDraggableI
     ],
   },
 ];
+
+export const SESSION_MOCK_OPTIONS = [
+  {
+    id: '1',
+    name: 'Push day',
+  },
+  {
+    id: '2',
+    name: 'Full body',
+  },
+  {
+    id: '3',
+    name: 'Pull day',
+  },
+  {
+    id: '4',
+    name: 'Leg day',
+  },
+] as const;
